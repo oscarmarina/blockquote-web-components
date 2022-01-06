@@ -1,0 +1,91 @@
+{
+  "name": "blockquote-web-components",
+  "version": "1.0.0-rc.1",
+  "private": true,
+  "description": "Monorepo - Blockquote Web Components",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oscarmarina/blockquote-web-components"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/**/*"
+    ],
+    "nohoist": [
+      "**/@blockquote-web-components/blockquote-foundations-sass"
+    ]
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "clean": "rm yarn.lock && lerna clean",
+    "clean:packages": "lerna exec -- rm -rf ./node_modules && lerna exec -- rm -rf ./dev && lerna exec -- rm -rf ./package-lock.json",
+    "format": "func() { npm run format:eslint $1 && npm run format:prettier $1 && npm run format:stylelint $1; }; func",
+    "format:eslint": "func() { eslint --fix --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{js,ts,html}\"; }; func",
+    "format:package": "func() { sort-package-json \"./packages/**/${1:-*}/**/package.json\"; }; func",
+    "format:prettier": "func() { prettier --write --list-different --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{js,ts,json,html,md}\"; }; func",
+    "format:stylelint": "func() { stylelint --fix --allow-empty-input --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{css,scss}\"; }; func",
+    "lint": "func() { npm run lint:eslint $1 && npm run lint:prettier $1 && npm run lint:stylelint $1; }; func",
+    "lint:eslint": "func() { eslint --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{js,ts,html}\"; }; func",
+    "lint:prettier": "func() { prettier --check --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{js,ts,json,html,md}\"; }; func",
+    "lint:stylelint": "func() { stylelint --allow-empty-input --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{css,scss}\"; }; func",
+    "push": "git push --follow-tags origin main",
+    "release": "npm run bootstrap && npm run test:pre-push && lerna version --no-push",
+    "standard": "standard-version",
+    "test": "lerna run test --stream --concurrency 1",
+    "test:pre-push": "npm run test -- --since",
+    "test:scope": "func() { lerna run test --stream --concurrency 1 --scope @blockquote-web-components/${1}; }; func",
+    "version": "npm run standard"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-push": "npm test -- --since main"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,ts,html}": [
+      "npm run format:eslint -- *"
+    ],
+    "**/*.{js,ts,json,html,md}": [
+      "npm run format:prettier -- *"
+    ],
+    "**/*.{scss,css}": [
+      "npm run format:stylelint -- *"
+    ],
+    "**/package.json": "npm run format:package -- *"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/eslint-parser": "^7.0.0",
+    "@babel/eslint-plugin": "^7.0.0",
+    "@commitlint/cli": "^16.0.1",
+    "@commitlint/config-conventional": "^16.0.0",
+    "@commitlint/config-lerna-scopes": "^16.0.0",
+    "@open-wc/eslint-config": "^7.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.0.0",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-import": "^2.0.0",
+    "eslint-plugin-json": "^3.0.0",
+    "eslint-plugin-lit": "^1.0.0",
+    "eslint-plugin-lit-a11y": "^2.0.0",
+    "eslint-plugin-no-only-tests": "^2.0.0",
+    "eslint-plugin-wc": "^1.0.0",
+    "husky": "^4.0.0",
+    "karma": "^6.0.0",
+    "lerna": "^4.0.0",
+    "lint-staged": "^12.0.0",
+    "postcss": "^8.0.0",
+    "prettier": "^2.0.0",
+    "sort-package-json": "^1.0.0",
+    "standard-version": "^9.0.0",
+    "stylelint": "^14.0.0",
+    "stylelint-config-standard-scss": "^3.0.0",
+    "tslib": "^2.0.0",
+    "typescript": "^4.0.0"
+  }
+}

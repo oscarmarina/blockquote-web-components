@@ -1,0 +1,51 @@
+name: Publish
+
+on:
+  pull_request:
+    types: [ closed ]
+    branches:
+      - main
+      - master
+
+  workflow_dispatch:
+
+jobs:
+  publish:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Use Node 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Setup npm
+        run: |
+          npm set scripts-prepend-node-path=true
+          npm set "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Install dependencies
+        run: |
+          npx lerna bootstrap --ci
+
+      - uses: microsoft/playwright-github-action@v1
+
+      - name: Test
+        run: |
+          yarn test:pre-push
+
+      - name: Version and publish
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+
+          npx lerna version --yes
+          npx lerna publish from-package --no-verify-access --yes

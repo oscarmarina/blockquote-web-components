@@ -1,0 +1,21 @@
+{
+  "packages": [
+    "packages/**/*"
+  ],
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "version": {
+      "ammend": true,
+      "conventionalCommits": true,
+      "conventionalGraduate": true,
+      "message": "chore: publish"
+    }
+  },
+  "ignoreChanges": [
+    "**/demo/**",
+    "**/test/**",
+    "**/*.md"
+  ]
+}
