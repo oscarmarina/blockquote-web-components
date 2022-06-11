@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      :root {
+        font: normal medium/1.25 sans-serif;
+      }
+
+      [data-embedded] .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 class="sr-only">blockquote-controller-rxjs-demo</h1>
+      <blockquote-controller-rxjs-demo></blockquote-controller-rxjs-demo>
+    </main>
+    <script type="module">
+      import { html, LitElement } from 'lit';
+      import { map, fromEvent } from 'rxjs';
+      import { BlockquoteControllerRxjs } from '../index.js';
+
+      class BlockquoteControllerRxjsDemo extends LitElement {
+        static get is() {
+          return 'blockquote-controller-rxjs-demo';
+        }
+
+        static get properties() {
+          return {
+            _pos: {
+              type: Object,
+              attribute: false,
+            },
+          };
+        }
+
+        constructor() {
+          super();
+          this.rx = new BlockquoteControllerRxjs(this);
+          this._pos = { x: 0, y: 0 };
+          this.values$ = fromEvent(window, 'mousemove').pipe(
+            map(({ clientX, clientY }) => ({ x: clientX, y: clientY })),
+          );
+        }
+
+        connectedCallback() {
+          super.connectedCallback();
+          this.rx.subscribe('_pos', this.values$);
+        }
+
+        render() {
+          return html`
+            <p>The mouse is at:</p>
+            <pre>
+              x: ${this._pos.x}
+              y: ${this._pos.y}
+            </pre
+            >
+          `;
+        }
+      }
+
+      window.customElements.define(BlockquoteControllerRxjsDemo.is, BlockquoteControllerRxjsDemo);
+    </script>
+  </body>
+</html>

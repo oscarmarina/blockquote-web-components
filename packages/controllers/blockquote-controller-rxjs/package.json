@@ -1,0 +1,155 @@
+{
+  "name": "@blockquote-web-components/blockquote-controller-rxjs",
+  "version": "1.0.0-rc.1",
+  "description": "Webcomponent blockquote-controller-rxjs following open-wc recommendations",
+  "keywords": [
+    "lit",
+    "web-component",
+    "lit-element"
+  ],
+  "license": "MIT",
+  "author": "blockquote-controller-rxjs",
+  "main": "index.js",
+  "module": "index.js",
+  "files": [
+    "/define/",
+    "/src/",
+    "index.js",
+    "!/**/*.scss"
+  ],
+  "scripts": {
+    "analyze": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
+    "analyze:doc": "npm run analyze && npx web-component-analyzer \"{src,define}/**/*.{js,ts}\" \"index.js\" --outFile README.md",
+    "build": "echo \"This is not a TypeScript project, so no need to build.\"",
+    "dev:vite": "vite build",
+    "format": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
+    "format:eslint": "eslint \"**/*.{js,ts,html}\" --fix --ignore-path .eslintignore",
+    "format:prettier": "prettier \"**/*.{js,ts,json,html,md}\" --write --ignore-path .eslintignore",
+    "format:stylelint": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .eslintignore",
+    "postinstall": "npm run sort:package",
+    "lint": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
+    "lint:eslint": "eslint \"**/*.{js,ts,html}\" --ignore-path .eslintignore",
+    "lint:prettier": "prettier \"**/*.{js,ts,json,html,md}\" --check --ignore-path .eslintignore",
+    "lint:stylelint": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .eslintignore",
+    "preview:vite": "vite preview",
+    "sass:watch": "sass-style-template",
+    "sort:package": "npx sort-package-json",
+    "start": "concurrently -k -r \"npm:sass:watch\" \"npm:vite\"",
+    "start:wds": "concurrently -k -r \"npm:sass:watch\" \"npm:wds\"",
+    "test": "wtr --coverage",
+    "test:watch": "wtr --watch",
+    "vite": "vite",
+    "wds": "web-dev-server"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,ts,html}": [
+      "npm run format:eslint"
+    ],
+    "**/*.{js,ts,json,html,md}": [
+      "npm run format:prettier"
+    ],
+    "**/*.{scss,css}": [
+      "npm run format:stylelint"
+    ]
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "overrides": [
+      {
+        "files": "*.{scss,css}",
+        "options": {
+          "singleQuote": false
+        }
+      }
+    ]
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": "latest"
+    },
+    "plugins": [
+      "log-filenames"
+    ],
+    "extends": [
+      "prettier",
+      "@open-wc"
+    ],
+    "rules": {
+      "class-methods-use-this": "off",
+      "object-curly-newline": "off",
+      "import/extensions": [
+        "error",
+        "always",
+        {
+          "ignorePackages": true
+        }
+      ],
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": [
+            "**/test/**/*.{js,ts}",
+            "**/*.config.{js,mjs,cjs}",
+            "**/*.conf.{js,mjs,cjs}"
+          ]
+        }
+      ],
+      "import/no-unresolved": "off",
+      "import/prefer-default-export": "off"
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard-scss",
+    "rules": {
+      "custom-property-pattern": null,
+      "max-line-length": null
+    }
+  },
+  "dependencies": {
+    "lit": "^2.0.2",
+    "rxjs": "^7.5.5"
+  },
+  "devDependencies": {
+    "@blockquote/rollup-plugin-total-bundlesize": "^1.0.0",
+    "@blockquote/sass-style-template": "^2.0.0",
+    "@blockquote/test-runner-mocha-style-reporter": "^1.0.0",
+    "@custom-elements-manifest/analyzer": "^0.5.3",
+    "@custom-elements-manifest/to-markdown": "^0.1.0",
+    "@open-wc/eslint-config": "^7.0.0",
+    "@open-wc/testing": "^3.0.3",
+    "@ungap/global-this": "^0.4.4",
+    "@web/dev-server": "^0.1.25",
+    "@web/rollup-plugin-html": "^1.10.1",
+    "@web/test-runner": "^0.13.23",
+    "@web/test-runner-playwright": "^0.8.8",
+    "@webcomponents/shadycss": "^1.11.0",
+    "@webcomponents/webcomponentsjs": "^2.6.0",
+    "concurrently": "^7.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-log-filenames": "^1.0.4",
+    "husky": "^4.3.8",
+    "lint-staged": "^12.0.0",
+    "prettier": "^2.4.1",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-minify-html-literals": "^1.2.6",
+    "rollup-plugin-summary": "^1.3.0",
+    "sort-package-json": "^1.52.0",
+    "stylelint": "^14.0.0",
+    "stylelint-config-standard-scss": "^3.0.0",
+    "tiny-array-flat-polyfill": "^0.2.1",
+    "vite": "^2.7.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "customElements": "custom-elements.json"
+}
