@@ -1,0 +1,129 @@
+/// Utils
+
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+// Capitalize string
+// --------------------------------------------------------------------------------
+// @param [string] $string
+// --------------------------------------------------------------------------------
+// @return [string]
+
+@function capitalize($string) {
+  @return to-upper-case(string.slice($string, 1, 1)) + string.slice($string, 2);
+}
+
+// Alias
+@function str-ucfirst($string) {
+  @return capitalize($string);
+}
+
+// Uncapitalize string
+// --------------------------------------------------------------------------------
+// @param [string] $string
+// --------------------------------------------------------------------------------
+// @return [string]
+
+@function uncapitalize($string) {
+  @return to-lower-case(string.slice($string, 1, 1)) + string.slice($string, 2);
+}
+
+// Alias
+@function str-lcfirst($string) {
+  @return uncapitalize($string);
+}
+
+// Capitalize each word in string
+// --------------------------------------------------------------------------------
+// @param [string] $string
+// --------------------------------------------------------------------------------
+// @return [string]
+
+@function str-ucwords($string) {
+  $progress: $string;
+  $result: "";
+  $running: true;
+
+  @while $running {
+    $index: string.index($progress, " ");
+
+    @if $index {
+      $result: $result + capitalize(string.slice($progress, 1, $index));
+      $progress: string.slice($progress, $index + 1);
+    } @else {
+      $running: false;
+    }
+  }
+
+  @return capitalize($result) + capitalize($progress);
+}
+
+// Return whether `$value` is contained in `$list`
+// --------------------------------------------------------------------------------
+// @param [list] $list
+// @param [$value] $value
+// --------------------------------------------------------------------------------
+// @return [boolean]
+
+@function contain($list, $value) {
+  @return not not index($list, $value);
+}
+
+// Camelize string with the possibility of truncating the argument/string
+// --------------------------------------------------------------------------------
+// @param [string] $string
+// @param [number] $sliceLength
+// --------------------------------------------------------------------------------
+// @return [string]
+
+@function camelize($string, $sliceLength: 0) {
+  $progress: $string;
+  $result: "";
+  $exclude: " ", "-", "–", "—", "_", ",", ";", ":", ".", "[", "]", '"', "'";
+
+  @while string.length($progress) > 0 {
+    $char: string.slice($progress, 1, 1);
+
+    @if contain($exclude, $char) {
+      $progress: capitalize(string.slice($progress, 2, 2)) + string.slice($progress, 3);
+    } @else {
+      $result: $result + $char;
+      $progress: string.slice($progress, 2);
+    }
+  }
+
+  @return uncapitalize(string.slice($result, $sliceLength));
+}
+
+// Return TRUE if first chart is:
+// "number (0 1 2 3 4 5 6 7 8 9)" : 12px
+// "minus (-)" : -12px
+// "dot (.)" .5rem
+// or FALSE
+// --------------------------------------------------------------------------------
+// @param [string] $value
+// --------------------------------------------------------------------------------
+// @return [boolean]
+@function is-number($value) {
+  $char: string.slice(#{$value}, 0, 1);
+
+  @if not contain("." "-" "0" "1" "2" "3" "4" "5" "6" "7" "8" "9", $char) {
+    @return false;
+  }
+
+  @return true;
+}
+
+// Return whether Unit Value
+// 'px', 'rem', 'em', '%', 'vw', 'vmin', ...
+// --------------------------------------------------------------------------------
+// @param [string] $value
+// --------------------------------------------------------------------------------
+// @return [string]
+@function to-unit($value) {
+  $units-to-one: $value * 0 + 1;
+  $units-string: string.slice(#{$units-to-one}, 2, string.length(#{$units-to-one}));
+
+  @return $units-string;
+}

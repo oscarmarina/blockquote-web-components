@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "src/BlockquoteControllerRxjs.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "# BlockquoteControllerRxjs\n\n![Lit](https://img.shields.io/badge/lit-2.0.0-blue)\n\n`BlockquoteControllerRxjs` is a Reactive Controller.\n\n- Original idea by [Adrian Fâciu](https://github.com/adrianfaciu/rx-lit)\n- [observables-litelement](https://adrianfaciu.dev/posts/observables-litelement/)\n\n`BlockquoteControllerRxjs` provides a subscribe method to which pass the property we want to\nassign values to and the Observable we want to subscribe.\n\n- It works with [reactive properties](https://lit.dev/docs/components/properties/) and no-reactive properties\n- It ignores calls on the same property with the same Observable\n- It unsubscribes from old observable if called again on the same property with different Observable\n- It unsubscribes when the component is removed\n\n## Usage\n\n```js\nclass BlockquoteControllerRxjsDemo extends LitElement {\nstatic get is() {\n  return 'blockquote-controller-rxjs-demo';\n}\n\nstatic get properties() {\n  return {\n    _pos: {\n      type: Object,\n      attribute: false,\n    },\n  };\n}\n\nconstructor() {\n  super();\n  this.rx = new BlockquoteControllerRxjs(this);\n  this._pos = { x: 0, y: 0 };\n  this.values$ = fromEvent(window, 'mousemove').pipe(\n    map(({ clientX, clientY }) => ({ x: clientX, y: clientY })),\n  );\n}\n\nconnectedCallback() {\n  super.connectedCallback();\n\n  // Property and Observable.\n  this.rx.subscribe('_pos', this.values$);\n}\n\nrender() {\n  return html`\n    <p>The mouse is at:</p>\n    <pre>\n      x: ${this._pos.x}\n      y: ${this._pos.y}\n    </pre\n    >\n  `;\n}\n}\n```\n\n## Exports\n\n- BlockquoteControllerRxjs",
+          "name": "BlockquoteControllerRxjs",
+          "members": [
+            {
+              "kind": "method",
+              "name": "subscribe",
+              "parameters": [
+                {
+                  "name": "propKey"
+                },
+                {
+                  "name": "stream$"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "hostDisconnected"
+            },
+            {
+              "kind": "field",
+              "default": "new Map()"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "BlockquoteControllerRxjs",
+          "declaration": {
+            "name": "BlockquoteControllerRxjs",
+            "module": "src/BlockquoteControllerRxjs.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "index.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "BlockquoteControllerRxjs",
+          "declaration": {
+            "name": "BlockquoteControllerRxjs",
+            "module": "./src/BlockquoteControllerRxjs.js"
+          }
+        }
+      ]
+    }
+  ]
+}

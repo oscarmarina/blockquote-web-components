@@ -1,0 +1,46 @@
+{
+  "name": "@blockquote-web-components/blockquote-foundations-sass",
+  "version": "1.0.0-rc.1",
+  "description": "Set of functions and mixins which help in the development of `web-component` SCSS.",
+  "keywords": [
+    "sass",
+    "string functions",
+    "mixins",
+    "functions",
+    "scss"
+  ],
+  "license": "MIT",
+  "author": "blockquote-foundations-sass",
+  "files": [
+    "*.scss"
+  ],
+  "prettier": {
+    "arrowParens": "avoid",
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "overrides": [
+      {
+        "files": "*.{scss,css}",
+        "options": {
+          "printWidth": 200,
+          "singleQuote": false
+        }
+      }
+    ]
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-prettier",
+      "stylelint-config-standard-scss"
+    ],
+    "rules": {
+      "custom-property-pattern": null,
+      "max-line-length": null,
+      "no-duplicate-selectors": null,
+      "color-function-notation": null,
+      "alpha-value-notation": null,
+      "string-quotes": "double"
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "src/BlockquoteBaseMeta.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "![Lit](https://img.shields.io/badge/lit-2.0.0-blue)\n\n`BlockquoteBaseMeta` is based on Polymer's `iron-meta`, and it is a generic class that you can use\nfor sharing information across the DOM tree.\nIt uses [monostate pattern](http://c2.com/cgi/wiki?MonostatePattern) pattern such that any instance\nof it has access to the shared information. You can use `BlockquoteBaseMeta` to share whatever you\nwant.\nThe `BlockquoteBaseMeta` instances contain your actual data. The only requirement is that you\ncreate them before you try to access them.\n\n`BlockquoteBaseMeta` uses [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map).\n\nMap is a collection of keyed data items, just like an Object.\nBut the main difference is that Map allows keys of any type.\n\n## Usage\n\n```js\nimport { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';\n\n const myDefault = new BlockquoteBaseMeta({\n   key: 'basic',\n   value: 'foo/bar',\n });\n\nconsole.log(myDefault.value); // foo/bar\n```\n\n## Keys string - Object\n\n```js\nimport { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';\n\n const myDefault = new BlockquoteBaseMeta({\n   type: 'one',\n   key: 'basic',\n   value: 'foo/bar',\n });\n\n console.log(myDefault.objectList); // {basic: 'foo/bar'}\n```\n\n## Keys any type - Map\n\n```js\nimport { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';\n\n const keyInfo = { id: 'dsfaskj0' };\n const myDefault = new BlockquoteBaseMeta({\n   type: 'two',\n   key: keyInfo,\n   value: 'foo/bar',\n });\n\nconsole.log(myDefault.mapList); // {{ id: 'dsfaskj0' }: 'foo/bar'}\n```\n\n## Properties\n\n| Property     | Modifiers | Description                                      |\n|--------------|-----------|--------------------------------------------------|\n| `key`        |           | Key for Meta                                     |\n| `list`       | readonly  | Returns a list of the values for that instance `type` |\n| `mapList`    | readonly  | Returns a Map list for that instance `type`      |\n| `objectList` | readonly  | Returns a Object list for that instance `type`   |\n| `type`       |           | Type of Meta                                     |\n| `value`      |           | Returns value of instance key and type           |\n\n## Methods\n\n| Method  | Type          | Description                                      |\n|---------|---------------|--------------------------------------------------|\n| `byKey` | `(key: *): *` | Returns the value of the provided key for that instance `type` |\n\n ## Exports\n\n - BlockquoteBaseMeta",
+          "name": "BlockquoteBaseMeta",
+          "members": [
+            {
+              "kind": "field",
+              "name": "types",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "uuid",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "description": "Sets value to instance type and key",
+              "return": {
+                "type": {
+                  "text": "*"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "value",
+                  "type": {
+                    "text": "*"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "list",
+              "description": "Returns a list (Array) of the values for that instance `type`",
+              "return": {
+                "type": {
+                  "text": "Array"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "mapList",
+              "description": "Returns a list (Map) for that instance `type`",
+              "return": {
+                "type": {
+                  "text": "Map"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "objectList",
+              "description": "Returns a list (Object) for that instance `type`",
+              "return": {
+                "type": {
+                  "text": "Object"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "byKey",
+              "parameters": [
+                {
+                  "name": "key",
+                  "type": {
+                    "text": "*"
+                  }
+                }
+              ],
+              "description": "Returns the value of the provided key for that instance `type`",
+              "return": {
+                "type": {
+                  "text": "*"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "description": "Type of Meta"
+            },
+            {
+              "kind": "field",
+              "name": "key",
+              "description": "Key for Meta"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "BlockquoteBaseMeta",
+          "declaration": {
+            "name": "BlockquoteBaseMeta",
+            "module": "src/BlockquoteBaseMeta.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "index.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "BlockquoteBaseMeta",
+          "declaration": {
+            "name": "BlockquoteBaseMeta",
+            "module": "./src/BlockquoteBaseMeta.js"
+          }
+        }
+      ]
+    }
+  ]
+}

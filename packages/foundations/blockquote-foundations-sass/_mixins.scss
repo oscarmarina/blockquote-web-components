@@ -1,0 +1,58 @@
+// *---------------
+// Convert pixels to ems
+// eg. for a relational value of 12px write em(12px) when the parent is 16px
+// if the parent is another value say 24px write em(12px, 24px)
+// ----------------*/
+@function em($pixels, $context: 16) {
+  @return calc($pixels / $context) * 1em;
+}
+
+// *---------------
+// Convert pixels to rems
+// eg. for a relational value of 12px write rem(12px)
+// Assumes $base-font-size is the font-size of <html>
+// ----------------*/
+@function rem($font-size) {
+  @return ($font-size / $base-font-size) * 1rem;
+}
+
+// *---------------
+// Hide element while making it readable for screen readers
+// Usage:
+// .sr-only { @include visuallyhidden; }
+// ----------------*/
+@mixin visuallyhidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// *---------------
+// Add inset properties of IE11 support
+// Usage:
+// element { @include inset; }
+// ----------------*/
+@mixin inset {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+// *---------------
+// Reset for list elements
+// Must be applied to <ul> or <ol> elements
+// Usage:
+// ul { @include list-unstyled;}
+// ----------------*/
+@mixin list-unstyled {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
