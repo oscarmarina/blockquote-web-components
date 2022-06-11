@@ -78,7 +78,6 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
   }
 
   _doubleclickForCssInitialSize() {
-    console.log('eeeeee', this);
     this.removeAttribute('style');
     // this._dispatchResizeEvent();
   }
