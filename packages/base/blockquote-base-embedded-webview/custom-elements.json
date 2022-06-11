@@ -1,0 +1,723 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "define/blockquote-base-embedded-webview-element.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebviewElement",
+            "module": "/src/BlockquoteBaseEmbeddedWebviewElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "define/blockquote-base-embedded-webview-resize.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebviewResize",
+            "module": "/src/BlockquoteBaseEmbeddedWebviewResize.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "define/blockquote-base-embedded-webview-size.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebviewSize",
+            "module": "/src/BlockquoteBaseEmbeddedWebviewSize.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "define/blockquote-base-embedded-webview.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebview",
+            "module": "/src/BlockquoteBaseEmbeddedWebview.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/BlockquoteBaseEmbeddedWebview.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "![Lit](https://img.shields.io/badge/lit-2.0.0-blue)\n\n`blockquote-base-embedded-webview` offers a responsive display using individual HTML files as content with the different use cases to be displayed.\nIt will create a `select` tag with the provided demo HTML files and add the `[data-embedded]` attribute to the loaded body tag.\n\n## Basic usage\n\n```html\n<blockquote-base-embedded-webview heading=\"My demo title\">\n <template data-src=\"./basic.html\" data-option=\"Basis\"></template>\n <template data-src=\"./complex.html\" data-option=\"Complex\"></template>\n</blockquote-base-embedded-webview>\n```\n\n## basic.html\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n <head>\n   <title>Demo Basic</title>\n   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n   <meta charset=\"utf-8\" />\n   <style>\n     :root {\n       font: normal medium/1.25 sans-serif;\n     }\n     body {\n       margin: 0;\n     }\n     [data-embedded] .hidden {\n       display: none;\n     }\n   </style>\n </head>\n <body>\n   <h1 class=\"hidden\">Heading</h1>\n   <p>Basic Demo</p>\n </body>\n</html>\n```\n\n ## Exports\n\n - BlockquoteBaseEmbeddedWebview",
+          "name": "BlockquoteBaseEmbeddedWebview",
+          "members": [
+            {
+              "kind": "field",
+              "name": "is",
+              "static": true
+            },
+            {
+              "kind": "method",
+              "name": "_updateSize",
+              "parameters": [
+                {
+                  "name": "{ detail }"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "_headingLevel"
+            },
+            {
+              "kind": "field",
+              "name": "_headerTpl"
+            },
+            {
+              "kind": "field",
+              "name": "_selectTpl"
+            },
+            {
+              "kind": "field",
+              "name": "_readDataPosTpl"
+            },
+            {
+              "kind": "field",
+              "name": "_screenSizeTpl"
+            },
+            {
+              "kind": "field",
+              "name": "_embeddedSlotTpl"
+            },
+            {
+              "kind": "method",
+              "name": "_onChangeFile",
+              "parameters": [
+                {
+                  "name": "{ target }"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "Number"
+              },
+              "default": "0",
+              "privacy": "public",
+              "description": "Index of currently srcset file",
+              "attribute": "selected"
+            },
+            {
+              "kind": "field",
+              "name": "screenSizeSelected",
+              "type": {
+                "text": "Number"
+              },
+              "default": "0",
+              "privacy": "public",
+              "description": "Index of currently screen size selected",
+              "attribute": "screen-size-selected"
+            },
+            {
+              "kind": "field",
+              "name": "headingLevel",
+              "type": {
+                "text": "Number"
+              },
+              "default": "1",
+              "privacy": "public",
+              "description": "Heading level from 1 to 6",
+              "attribute": "heading-level",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "heading",
+              "type": {
+                "text": "String"
+              },
+              "default": "''",
+              "privacy": "public",
+              "description": "The heading of the webview.",
+              "attribute": "heading"
+            },
+            {
+              "kind": "field",
+              "name": "__selectArrow",
+              "default": "svg`<svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n<polyline points=\"6 9 12 15 18 9\" />\n</svg>`"
+            },
+            {
+              "kind": "field",
+              "name": "__readDataPos",
+              "type": {
+                "text": "object"
+              },
+              "default": "{ x: 0, y: 0, resizing: false }"
+            },
+            {
+              "kind": "field",
+              "name": "limitHeight",
+              "type": {
+                "text": "Boolean"
+              },
+              "default": "false",
+              "privacy": "public",
+              "description": "Limit height to 100% available",
+              "attribute": "limit-height",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "_sources",
+              "type": {
+                "text": "array"
+              },
+              "default": "[{ file: '', option: '' }]"
+            },
+            {
+              "kind": "field",
+              "name": "_embeddedResizeRef"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "heading",
+              "description": "The heading of the webview.",
+              "type": {
+                "text": "String"
+              },
+              "fieldName": "heading"
+            },
+            {
+              "name": "selected",
+              "description": "Index of currently srcset file",
+              "type": {
+                "text": "Number"
+              },
+              "fieldName": "selected"
+            },
+            {
+              "name": "heading-level",
+              "description": "Heading level from 1 to 6",
+              "type": {
+                "text": "Number"
+              },
+              "fieldName": "headingLevel"
+            },
+            {
+              "name": "screen-size-selected",
+              "description": "Index of currently screen size selected",
+              "type": {
+                "text": "Number"
+              },
+              "fieldName": "screenSizeSelected"
+            },
+            {
+              "name": "limit-height",
+              "description": "Limit height to 100% available",
+              "type": {
+                "text": "Boolean"
+              },
+              "fieldName": "limitHeight"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "blockquote-base-embedded-webview",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "BlockquoteBaseEmbeddedWebview",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebview",
+            "module": "src/BlockquoteBaseEmbeddedWebview.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/BlockquoteBaseEmbeddedWebviewElement.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "![Lit](https://img.shields.io/badge/lit-2.0.0-blue)\n\n`blockquote-base-embedded-webview-element` wraps an `iframe` or `object` and shows it through light dom.\n\n## Exports\n\n- BlockquoteBaseEmbeddedWebviewElement",
+          "name": "BlockquoteBaseEmbeddedWebviewElement",
+          "members": [
+            {
+              "kind": "field",
+              "name": "is",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "_loadResource"
+            },
+            {
+              "kind": "field",
+              "name": "_embeddedTpl"
+            },
+            {
+              "kind": "method",
+              "name": "_fetch",
+              "parameters": [
+                {
+                  "name": "resource"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_onLoadElement",
+              "parameters": [
+                {
+                  "name": "{ target }"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "embeddedTitle",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "privacy": "public",
+              "description": "The title attribute on an <element> to label its content",
+              "attribute": "embedded-title"
+            },
+            {
+              "kind": "field",
+              "name": "src",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "privacy": "public",
+              "description": "The URL of the page to embed",
+              "attribute": "src"
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "default": "'iframe'",
+              "privacy": "public",
+              "description": "The type of the tag to embed - iframe or object",
+              "attribute": "type"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "embedded-title",
+              "description": "The title attribute on an <element> to label its content",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "embeddedTitle"
+            },
+            {
+              "name": "src",
+              "description": "The URL of the page to embed",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "src"
+            },
+            {
+              "name": "type",
+              "description": "The type of the tag to embed - iframe or object",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "type"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "blockquote-base-embedded-webview-element",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "BlockquoteBaseEmbeddedWebviewElement",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebviewElement",
+            "module": "src/BlockquoteBaseEmbeddedWebviewElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/BlockquoteBaseEmbeddedWebviewResize.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "![Lit](https://img.shields.io/badge/lit-2.0.0-blue)\n\n`blockquote-base-embedded-webview-resize`\n\n## Exports\n\n- BlockquoteBaseEmbeddedWebviewResize",
+          "name": "BlockquoteBaseEmbeddedWebviewResize",
+          "members": [
+            {
+              "kind": "field",
+              "name": "is",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "_resizersTpl"
+            },
+            {
+              "kind": "method",
+              "name": "_doubleclickForCssInitialSize"
+            },
+            {
+              "kind": "method",
+              "name": "_createResizer",
+              "parameters": [
+                {
+                  "name": "DOMRect"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_removeResizer"
+            },
+            {
+              "kind": "method",
+              "name": "_resizer",
+              "parameters": [
+                {
+                  "name": "{ detail }"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_dispatchResizeEvent"
+            },
+            {
+              "kind": "method",
+              "name": "_getBoundingClientRect",
+              "parameters": [
+                {
+                  "name": "DOMRect"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "_createResizerLeft"
+            },
+            {
+              "kind": "field",
+              "name": "_createResizerRight"
+            },
+            {
+              "kind": "field",
+              "name": "_createResizerBottom"
+            },
+            {
+              "kind": "field",
+              "name": "_createResizerBottomLeft"
+            },
+            {
+              "kind": "field",
+              "name": "_createResizerBottomRight"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "blockquote-base-embedded-webview-resize",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "BlockquoteBaseEmbeddedWebviewResize",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebviewResize",
+            "module": "src/BlockquoteBaseEmbeddedWebviewResize.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/BlockquoteBaseEmbeddedWebviewSize.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "![Lit](https://img.shields.io/badge/lit-2.0.0-blue)\n\n`blockquote-base-embedded-webview-size` provides a list of ideal screen sizes for responsive designs.\n\n```html\n<blockquote-base-embedded-webview-size\nscreen-sizes=\"[\n  { width: 360, height: 640, id: '360x640' },\n  { width: 375, height: 667, id: '375x667' },\n  { width: 414, height: 896, id: '414x896' },\n  { width: 768, height: 1024, id: '768x1024' },\n  { width: 1024, height: 768, id: '1024x768' },\n  { width: 1280, height: 800, id: '1280x800' },\n  { width: 1366, height: 768, id: '1366x768' },\n  { width: 1536, height: 864, id: '1536x864' },\n  { width: 1920, height: 1080, id: '1920x1080' },\n]\"\n></blockquote-base-embedded-webview-size>\n```\n\n## Exports\n\n- BlockquoteBaseEmbeddedWebviewSize",
+          "name": "BlockquoteBaseEmbeddedWebviewSize",
+          "members": [
+            {
+              "kind": "field",
+              "name": "is",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "selectedSize"
+            },
+            {
+              "kind": "field",
+              "name": "selectedDetail"
+            },
+            {
+              "kind": "field",
+              "name": "computedStyleWidth"
+            },
+            {
+              "kind": "field",
+              "name": "_toolbarTpl"
+            },
+            {
+              "kind": "field",
+              "name": "_visualTextTpl"
+            },
+            {
+              "kind": "method",
+              "name": "_onResize",
+              "parameters": [
+                {
+                  "name": "ev"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_setSelected",
+              "parameters": [
+                {
+                  "name": "ev"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "showOverflowSize",
+              "type": {
+                "text": "Boolean"
+              },
+              "default": "false",
+              "privacy": "public",
+              "description": "Show screen size options that are too large for the container",
+              "attribute": "show-overflow-size"
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "Number"
+              },
+              "default": "0",
+              "privacy": "public",
+              "description": "The screen size option selected",
+              "attribute": "selected"
+            },
+            {
+              "kind": "field",
+              "name": "screenSizes",
+              "type": {
+                "text": "Array"
+              },
+              "default": "[\n      { width: 360, height: 640, id: '360x640' },\n      { width: 375, height: 667, id: '375x667' },\n      { width: 414, height: 896, id: '414x896' },\n      { width: 768, height: 1024, id: '768x1024' },\n      { width: 1024, height: 768, id: '1024x768' },\n      { width: 1280, height: 800, id: '1280x800' },\n      { width: 1366, height: 768, id: '1366x768' },\n      { width: 1536, height: 864, id: '1536x864' },\n      { width: 1920, height: 1080, id: '1920x1080' },\n    ]",
+              "privacy": "public",
+              "description": "The screen size options to display",
+              "attribute": "screen-sizes"
+            },
+            {
+              "kind": "field",
+              "name": "widthInPercent",
+              "type": {
+                "text": "Boolean"
+              },
+              "default": "false",
+              "privacy": "public",
+              "description": "Percentage value for the width",
+              "attribute": "width-in-percent"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "screen-sizes",
+              "description": "The screen size options to display",
+              "type": {
+                "text": "Array"
+              },
+              "fieldName": "screenSizes"
+            },
+            {
+              "name": "selected",
+              "description": "The screen size option selected",
+              "type": {
+                "text": "Number"
+              },
+              "fieldName": "selected"
+            },
+            {
+              "name": "width-in-percent",
+              "description": "Percentage value for the width",
+              "type": {
+                "text": "Boolean"
+              },
+              "fieldName": "widthInPercent"
+            },
+            {
+              "name": "show-overflow-size",
+              "description": "Show screen size options that are too large for the container",
+              "type": {
+                "text": "Boolean"
+              },
+              "fieldName": "showOverflowSize"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "blockquote-base-embedded-webview-size",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "BlockquoteBaseEmbeddedWebviewSize",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebviewSize",
+            "module": "src/BlockquoteBaseEmbeddedWebviewSize.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/BlockquoteBaseEmbeddedWebview-styles.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/BlockquoteBaseEmbeddedWebview-styles.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/BlockquoteBaseEmbeddedWebviewElement-styles.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/BlockquoteBaseEmbeddedWebviewElement-styles.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/BlockquoteBaseEmbeddedWebviewResize-styles.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/BlockquoteBaseEmbeddedWebviewResize-styles.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/BlockquoteBaseEmbeddedWebviewSize-styles.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/BlockquoteBaseEmbeddedWebviewSize-styles.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "index.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "BlockquoteBaseEmbeddedWebview",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebview",
+            "module": "./src/BlockquoteBaseEmbeddedWebview.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "BlockquoteBaseEmbeddedWebviewSize",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebviewSize",
+            "module": "./src/BlockquoteBaseEmbeddedWebviewSize.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "BlockquoteBaseEmbeddedWebviewResize",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebviewResize",
+            "module": "./src/BlockquoteBaseEmbeddedWebviewResize.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "BlockquoteBaseEmbeddedWebviewElement",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebviewElement",
+            "module": "./src/BlockquoteBaseEmbeddedWebviewElement.js"
+          }
+        }
+      ]
+    }
+  ]
+}
