@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { html, fixture, assert, fixtureCleanup } from '@open-wc/testing';
 import { from, Subject } from 'rxjs';
 import { LitElement } from 'lit';
