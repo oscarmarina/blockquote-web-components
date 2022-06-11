@@ -1,0 +1,11 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.0.0 (2022-06-11)
+
+
+### Features
+
+* **blockquote-controller-rxjs:** new element ([8b52123](https://github.com/oscarmarina/blockquote-web-components/commit/8b521232bd59dc52d79e3f3a06a85cf7870687ee))
