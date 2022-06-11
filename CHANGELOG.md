@@ -1,0 +1,14 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## 1.0.0 (2022-06-11)
+
+
+### Features
+
+* **blockquote-base-common-dev-dependencies:** new element ([c65b1b5](https://github.com/oscarmarina/blockquote-web-components/commit/c65b1b58f0e79963d8878a52b61b980eef622945))
+* **blockquote-base-embedded-webview:** new element ([fec6d02](https://github.com/oscarmarina/blockquote-web-components/commit/fec6d02874233b71bbdbf03f713d564f693d61a3))
+* **blockquote-base-meta:** new element ([eec63bf](https://github.com/oscarmarina/blockquote-web-components/commit/eec63bfc5311c0bc58499f9e6e30de9eb4216c7a))
+* **blockquote-controller-rxjs:** new element ([8b52123](https://github.com/oscarmarina/blockquote-web-components/commit/8b521232bd59dc52d79e3f3a06a85cf7870687ee))
+* **blockquote-foundations-sass:** new element ([676fbca](https://github.com/oscarmarina/blockquote-web-components/commit/676fbca66a1e3acd4ab3bc04224b56e7c2aa807b))
