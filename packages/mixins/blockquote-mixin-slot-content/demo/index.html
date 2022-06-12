@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Demo blockquote-mixin-slot-content</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <blockquote-base-embedded-webview heading="blockquote-controller-rxjs">
+      <template data-src="./basic.html" data-option="Basic"></template>
+      <template data-src="./slots-on-the-fly.html" data-option="Slots on the fly"></template>
+      <template
+        data-src="./composition-with-slots-.html"
+        data-option="Composition with slots"
+      ></template>
+    </blockquote-base-embedded-webview>
+    <script type="module">
+      // eslint-disable-next-line import/no-extraneous-dependencies
+      import '@blockquote-web-components/blockquote-base-embedded-webview/define/blockquote-base-embedded-webview.js';
+    </script>
+  </body>
+</html>

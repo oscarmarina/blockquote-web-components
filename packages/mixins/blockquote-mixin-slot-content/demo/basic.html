@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Demo blockquote-mixin-slot-content</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <style>
+      :root {
+        font: normal medium/1.25 sans-serif;
+      }
+
+      [data-embedded] .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 class="sr-only">blockquote-mixin-slot-content</h1>
+      <slot-element>
+        <p>sdfas</p>
+        <p>2jfie</p>
+        <p>ramd5</p>
+        <p>domep</p>
+      </slot-element>
+      <hr />
+      <div class="actions">
+        <button id="add">Add item</button>
+        <button id="remove">Remove item</button>
+      </div>
+    </main>
+    <script type="module">
+      import { html, LitElement } from 'lit';
+      import { BlockquoteMixinSlotContent } from '../index.js';
+
+      const element = document.querySelector('slot-element');
+      function generateRandomString(stringLength) {
+        let randomString = '';
+        let randomAscii;
+        // eslint-disable-next-line no-plusplus
+        for (let i = 0; i < stringLength; i++) {
+          randomAscii = Math.floor(Math.random() * 25 + 97);
+          randomString += String.fromCharCode(randomAscii);
+        }
+        return randomString;
+      }
+      document.getElementById('add').addEventListener('click', () => {
+        const newElement = document.createElement('p');
+        newElement.textContent = generateRandomString(5);
+        element.appendChild(newElement);
+      });
+      document.getElementById('remove').addEventListener('click', () => {
+        const childElements = element.children;
+        if (childElements[childElements.length - 1]) {
+          element.removeChild(childElements[childElements.length - 1]);
+        }
+      });
+
+      class slotElement extends BlockquoteMixinSlotContent(LitElement) {
+        static get properties() {
+          return {
+            counter: {
+              type: Boolean,
+            },
+          };
+        }
+
+        connectedCallback() {
+          super.connectedCallback && super.connectedCallback();
+          this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges.bind(this));
+        }
+
+        _onSlotChanges(ev) {
+          const { detail } = ev;
+          ev.stopPropagation();
+          ev.preventDefault();
+          this._contentSlots = detail.assignedNodesContent.assignedNodes;
+          this.counter = this._contentSlots.length;
+          console.log(detail);
+          console.log('assignedNodes ==>', this._contentSlots);
+        }
+
+        render() {
+          return html`
+            <p><strong>contentSlots: </strong> ${this.counter}</p>
+            <hr />
+            <slot></slot>
+          `;
+        }
+      }
+      customElements.define('slot-element', slotElement);
+    </script>
+  </body>
+</html>
