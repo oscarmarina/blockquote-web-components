@@ -1,5 +1,5 @@
 {
-  "name": "@blockquote/blockquote-mixin-slot-content",
+  "name": "@blockquote-web-components/blockquote-mixin-slot-content",
   "version": "1.0.0",
   "description": "Webcomponent blockquote-mixin-slot-content following open-wc recommendations",
   "keywords": [
@@ -127,7 +127,6 @@
     }
   },
   "dependencies": {
-    "@blockquote/polymer": "^3.4.1",
     "lit": "^2.0.2"
   },
   "devDependencies": {
