@@ -1,16 +1,17 @@
 {
-  "name": "@blockquote-web-components/blockquote-mixin-slot-content",
-  "version": "1.0.0",
-  "description": "Webcomponent blockquote-mixin-slot-content following open-wc recommendations",
+  "name": "@blockquote-web-components/blockquote-directive-svg-to-data-image",
+  "version": "1.0.0-rc.1",
+  "description": "This directive receives a `Lit SVG Template Result` and returns a data URI string.",
   "keywords": [
     "lit",
     "web-component",
-    "lit-element",
-    "slotchange",
-    "assignedNodes"
+    "directive",
+    "svg",
+    "svg template",
+    "css background image"
   ],
   "license": "MIT",
-  "author": "blockquote-mixin-slot-content",
+  "author": "blockquote-directive-svg-to-data-image",
   "main": "index.js",
   "module": "index.js",
   "files": [
@@ -127,7 +128,6 @@
     }
   },
   "dependencies": {
-    "@blockquote/polymer": "^3.4.1",
     "lit": "^2.0.2"
   },
   "devDependencies": {
