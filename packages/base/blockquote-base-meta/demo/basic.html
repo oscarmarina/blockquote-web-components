@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Demo blockquote-base-meta</title>
+    <title>Basic - Demo blockquote-base-meta</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <style>
@@ -21,18 +21,25 @@
         border: 0;
       }
 
+      body {
+        background-color: #fff;
+      }
+
       h1,
       h2 {
         margin-top: 0;
       }
+
       h1 {
         font-size: 1.5rem;
         margin-bottom: 1rem;
       }
+
       h2 {
         font-size: 1.125rem;
         margin-bottom: 0.5rem;
       }
+
       p {
         margin: 0 0 1rem 0;
         padding: 0.5em 0.5em 1em 0.5em;
@@ -47,93 +54,96 @@
     </style>
   </head>
   <body>
-    <h1 class="sr-only">blockquote-base-meta</h1>
-    <article class="meta-key">
-      <h2>Key Query</h2>
-      <ul>
-        <li>
-          const myDefault = new BlockquoteBaseMeta({ <strong>key: </strong>'basic', value:
-          'foo/bar', });
-        </li>
-      </ul>
+    <main>
+      <h1 class="sr-only">blockquote-base-meta</h1>
+      <article class="meta-key">
+        <h2>Key Query</h2>
+        <ul>
+          <li>
+            const myDefault = new BlockquoteBaseMeta({ <strong>key: </strong>'basic', value:
+            'foo/bar', });
+          </li>
+        </ul>
 
-      <p>
-        <code>myDefault.byKey('basic')</code><br />
-        The value stored at <strong>key</strong>: <code class="inner-meta-key"></code> is:
-        <code class="inner-meta-value"></code>
-      </p>
-    </article>
+        <p>
+          <code>myDefault.byKey('basic')</code><br />
+          The value stored at <strong>key</strong>: <code class="inner-meta-key"></code> is:
+          <code class="inner-meta-value"></code>
+        </p>
+      </article>
 
-    <article class="meta-query">
-      <h2>Type Query</h2>
-      <ul>
-        <li>
-          const myMeta = new BlockquoteBaseMeta({ <strong>type: </strong>'article', key:
-          'indefinite', value: 'a/an', });
-        </li>
-        <li>
-          const myMeta2 = new BlockquoteBaseMeta({ <strong>type: </strong> 'article', key:
-          'definite', value: 'the', });
-        </li>
-        <li>
-          const myMeta3 = new BlockquoteBaseMeta({ <strong>type: </strong> 'article', key:
-          'negative', value: 'no', });
-        </li>
-      </ul>
+      <article class="meta-query">
+        <h2>Type Query</h2>
+        <ul>
+          <li>
+            const myMeta = new BlockquoteBaseMeta({ <strong>type: </strong>'article', key:
+            'indefinite', value: 'a/an', });
+          </li>
+          <li>
+            const myMeta2 = new BlockquoteBaseMeta({ <strong>type: </strong> 'article', key:
+            'definite', value: 'the', });
+          </li>
+          <li>
+            const myMeta3 = new BlockquoteBaseMeta({ <strong>type: </strong> 'article', key:
+            'negative', value: 'no', });
+          </li>
+        </ul>
 
-      <p>
-        <code>myMeta.list</code><br />
-        The values stored at <strong>type</strong> <code class="inner-meta-key"></code> is:
-        <code class="inner-meta-value"></code>
-      </p>
-      <p>
-        <code>myMeta.objectList</code><br />
-        key:value stored at <strong>type</strong>: <code class="inner-meta-keys"></code> is:
-        <code class="inner-meta-keys"></code>
-        <code class="inner-meta-values"></code>
-      </p>
-    </article>
+        <p>
+          <code>myMeta.list</code><br />
+          The values stored at <strong>type</strong> <code class="inner-meta-key"></code> is:
+          <code class="inner-meta-value"></code>
+        </p>
+        <p>
+          <code>myMeta.objectList</code><br />
+          key:value stored at <strong>type</strong>: <code class="inner-meta-keys"></code> is:
+          <code class="inner-meta-keys"></code>
+          <code class="inner-meta-values"></code>
+        </p>
+      </article>
 
-    <script type="module">
-      import { BlockquoteBaseMeta } from '../index.js';
+      <script type="module">
+        import { BlockquoteBaseMeta } from '../index.js';
 
-      const myDefault = new BlockquoteBaseMeta({
-        key: 'basic',
-        value: 'foo/bar',
-      });
-      const myMeta = new BlockquoteBaseMeta({
-        type: 'article',
-        key: 'indefinite',
-        value: 'a/an',
-      });
-      // eslint-disable-next-line no-unused-vars
-      const myMeta2 = new BlockquoteBaseMeta({
-        type: 'article',
-        key: 'definite',
-        value: 'the',
-      });
-      // eslint-disable-next-line no-unused-vars
-      const myMeta3 = new BlockquoteBaseMeta({
-        type: 'article',
-        key: 'negative',
-        value: 'no',
-      });
+        const myDefault = new BlockquoteBaseMeta({
+          key: 'basic',
+          value: 'foo/bar',
+        });
+        const myMeta = new BlockquoteBaseMeta({
+          type: 'article',
+          key: 'indefinite',
+          value: 'a/an',
+        });
+        // eslint-disable-next-line no-unused-vars
+        const myMeta2 = new BlockquoteBaseMeta({
+          type: 'article',
+          key: 'definite',
+          value: 'the',
+        });
+        // eslint-disable-next-line no-unused-vars
+        const myMeta3 = new BlockquoteBaseMeta({
+          type: 'article',
+          key: 'negative',
+          value: 'no',
+        });
 
-      const metaTextKey = document.querySelector('.meta-key .inner-meta-key');
-      const metaTextValue = document.querySelector('.meta-key .inner-meta-value');
-      metaTextKey.textContent = `${myDefault.key}`;
-      metaTextValue.textContent = `${myDefault.byKey('basic')}`;
+        const metaTextKey = document.querySelector('.meta-key .inner-meta-key');
+        const metaTextValue = document.querySelector('.meta-key .inner-meta-value');
+        metaTextKey.textContent = `${myDefault.key}`;
+        metaTextValue.textContent = `${myDefault.byKey('basic')}`;
 
-      const metaTextQueryList = document.querySelector('.meta-query .inner-meta-key');
-      const metaTextQueryValue = document.querySelector('.meta-query .inner-meta-value');
-      metaTextQueryList.textContent = `${myMeta.type}`;
-      metaTextQueryValue.textContent = `${JSON.stringify(myMeta.list)}`;
+        const metaTextQueryList = document.querySelector('.meta-query .inner-meta-key');
+        const metaTextQueryValue = document.querySelector('.meta-query .inner-meta-value');
+        metaTextQueryList.textContent = `${myMeta.type}`;
+        metaTextQueryValue.textContent = `${JSON.stringify(myMeta.list)}`;
 
-      const metaTextQueryKeyList = document.querySelector('.meta-query .inner-meta-keys');
-      const metaTextQueryValues = document.querySelector('.meta-query .inner-meta-values');
-      metaTextQueryKeyList.textContent = `${myMeta.type}`;
-      metaTextQueryValues.textContent = `${JSON.stringify(myMeta.objectList)}`;
-      console.info('objectList: ', myMeta.objectList, 'mapList: ', myMeta.mapList);
-    </script>
+        const metaTextQueryKeyList = document.querySelector('.meta-query .inner-meta-keys');
+        const metaTextQueryValues = document.querySelector('.meta-query .inner-meta-values');
+        metaTextQueryKeyList.textContent = `${myMeta.type}`;
+        metaTextQueryValues.textContent = `${JSON.stringify(myMeta.objectList)}`;
+        console.info('objectList: ', myMeta.objectList);
+        console.info('mapList: ', myMeta.mapList);
+      </script>
+    </main>
   </body>
 </html>
