@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Demo blockquote-mixin-slot-content</title>
+    <title>Slots on the fly - blockquote-mixin-slot-content</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <style>
       :root {
         font: normal medium/1.25 sans-serif;
+      }
+
+      body {
+        background-color: #fff;
       }
 
       [data-embedded] .sr-only {
@@ -126,8 +130,8 @@
           const { detail } = ev;
           ev.stopPropagation();
           ev.preventDefault();
-          console.log(detail);
-          console.log(
+          console.info(detail);
+          console.info(
             'assignedNodes ==>',
             detail.assignedNodesContent.assignedNodes,
             '-',
