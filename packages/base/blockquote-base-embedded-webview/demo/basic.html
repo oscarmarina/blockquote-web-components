@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Demo Basic</title>
+    <title>Basic - blockquote-base-embedded-webview</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <style>
       :root {
         font: normal medium/1.25 sans-serif;
       }
-      [data-embedded] .hidden {
-        display: none;
+
+      [data-embedded] .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
       }
+
       body {
-        margin: 0;
-        background-color: palegoldenrod;
+        background-color: #fff;
       }
     </style>
   </head>
   <body>
-    <h1 class="hidden">Heading</h1>
-    <p>Basic Demo</p>
+    <main>
+      <h1 class="sr-only">blockquote-base-embedded-webview</h1>
+      <p>basic.html</p>
+    </main>
   </body>
 </html>
