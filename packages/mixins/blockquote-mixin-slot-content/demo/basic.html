@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Demo blockquote-mixin-slot-content</title>
+    <title>Basic - blockquote-mixin-slot-content</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <style>
       :root {
         font: normal medium/1.25 sans-serif;
+      }
+
+      body {
+        background-color: #fff;
       }
 
       [data-embedded] .sr-only {
@@ -68,7 +72,10 @@
         static get properties() {
           return {
             counter: {
-              type: Boolean,
+              type: Number,
+            },
+            originalCounter: {
+              type: Number,
             },
           };
         }
@@ -83,14 +90,19 @@
           ev.stopPropagation();
           ev.preventDefault();
           this._contentSlots = detail.assignedNodesContent.assignedNodes;
+          this._originalContentSlots = detail.originalEvent.assignedNodes;
           this.counter = this._contentSlots.length;
-          console.log(detail);
-          console.log('assignedNodes ==>', this._contentSlots);
+          this.originalCounter = this._originalContentSlots.length;
+          console.info(detail);
+          console.info('assignedNodes ==>', this._contentSlots);
         }
 
         render() {
           return html`
-            <p><strong>contentSlots: </strong> ${this.counter}</p>
+            <p>
+              <strong>contentSlots: </strong> ${this.counter} -
+              <span style="font-size: 90%;">(originalEvent: ${this.originalCounter})</span>
+            </p>
             <hr />
             <slot></slot>
           `;
