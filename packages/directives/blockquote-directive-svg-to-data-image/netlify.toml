@@ -1,0 +1,4 @@
+[build]
+  base = "packages/directives/blockquote-directive-svg-to-data-image"
+  command = "npm run dev:vite"
+  publish = "dev"
