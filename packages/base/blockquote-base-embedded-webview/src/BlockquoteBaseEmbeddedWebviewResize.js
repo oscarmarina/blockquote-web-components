@@ -103,7 +103,7 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
     let cssOffsetX;
     let cssOffsetY;
     const dx = Math.floor(detail.dx * 2);
-    const dy = Math.floor(detail.dy * 2);
+    const dy = Math.floor(detail.dy * 1.1);
 
     switch (this._getBoundingClientRecDOMRect) {
       case 'right':
