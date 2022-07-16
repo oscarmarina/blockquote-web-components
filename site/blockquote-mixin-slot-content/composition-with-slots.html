@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="en"><head>
+    <title>Composition with slots - blockquote-mixin-slot-content</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <script src="./web_modules/@ungap/global-this/index.js"></script>
+    <script src="./web_modules/tiny-array-flat-polyfill/tiny-array-flat-polyfill.min.js"></script>
+    <style>
+      :root {
+        font: normal medium/1.25 sans-serif;
+      }
+
+      body {
+        background-color: #fff;
+      }
+
+      [data-embedded] .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 class="sr-only">blockquote-mixin-slot-content</h1>
+      <slot-element><p slot="fullName">fullName: Commit Queue</p>
+        <span slot="firstName">firstName: Commit -</span><span slot="lastName">- lastName: Queue</span>
+      </slot-element>
+      <hr>
+      <div class="actions">
+        <button id="add">Add fullName</button>
+        <button id="remove">Remove fullName</button>
+      </div>
+    </main>
+    
+  
+
+<script type="module" src="./assets/inline-module-26a0b80a033a20935476c72c9cae69d2.c51251a7.js"></script></body></html>

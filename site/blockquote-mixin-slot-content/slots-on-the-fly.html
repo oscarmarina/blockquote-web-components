@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="en"><head>
+    <title>Slots on the fly - blockquote-mixin-slot-content</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <script src="./web_modules/@ungap/global-this/index.js"></script>
+    <script src="./web_modules/tiny-array-flat-polyfill/tiny-array-flat-polyfill.min.js"></script>
+    <style>
+      :root {
+        font: normal medium/1.25 sans-serif;
+      }
+
+      body {
+        background-color: #fff;
+      }
+
+      [data-embedded] .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      slot-element {
+        background: #ececec;
+        padding: 0.25em;
+        display: block;
+        text-align: center;
+      }
+
+      .actions > * {
+        display: block;
+        margin: 1rem auto;
+        min-width: 34ch;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 class="sr-only">blockquote-controller-rxjs-demo</h1>
+      <slot-element slots="3">
+        <p slot="slot1">Slot-Group 1-1</p>
+        <p slot="slot1">Slot-Group 1-2</p>
+        <p slot="slot1">Slot-Group 1-3</p>
+        <p slot="slot2">Slot-Group 2-1</p>
+        <p slot="slot2">Slot-Group 2-2</p>
+        <p slot="slot3">Slot-Group 3-1</p>
+      </slot-element>
+      <div class="actions">
+        <button id="add-group">Add group</button>
+        <hr>
+        <button id="add">Add item in random group</button>
+        <button id="remove">Remove item in random group</button>
+      </div>
+    </main>
+    
+  
+
+<script type="module" src="./assets/inline-module-2cd677301c60f7be147f6fbae3747bca.9889bd8f.js"></script></body></html>
