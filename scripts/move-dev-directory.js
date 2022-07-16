@@ -45,13 +45,13 @@ const getAllDev = (
 
 getAllDev().forEach((dev) => {
   copy(dev.devDirectory, resolve(`./site/${dev.devDirectoryParent}`))
-    .on(copy.events.COPY_FILE_COMPLETE, (copyOperation) => {
+    /* .on(copy.events.COPY_FILE_COMPLETE, (copyOperation) => {
       if (basename(copyOperation.dest) === 'index.html') {
         const $html = cheerio.load(readFileSync(copyOperation.dest));
         $html('title').after(`<base href="${dev.devDirectoryParent}/">`);
         writeFileSync(copyOperation.dest, $html.html(), 'utf8');
       }
-    })
+    }) */
     .then((results) => {
       const $olNode = $indexHtml('ol').append(
         `<li><a href="${dev.devDirectoryParent}/index.html">${dev.devDirectoryParent}</a></li>`
