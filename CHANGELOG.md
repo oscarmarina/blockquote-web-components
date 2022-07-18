@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.3.4...v1.4.0) (2022-07-18)
+
+
+### Features
+
+* **blockquote-base-common-dev-dependencies:** update stylelint scss ([7be4770](https://github.com/oscarmarina/blockquote-web-components/commit/7be4770d304460812425191429bd51ec5f241a58))
+
 ### [1.3.4](https://github.com/oscarmarina/blockquote-web-components/compare/v1.3.3...v1.3.4) (2022-07-16)
 
 ### [1.3.3](https://github.com/oscarmarina/blockquote-web-components/compare/v1.3.2...v1.3.3) (2022-07-16)
