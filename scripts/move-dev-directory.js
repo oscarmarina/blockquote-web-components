@@ -29,7 +29,9 @@ const getAllDev = (
 
         arrayOfDevDirectories.push({
           devDirectory: devBasePathObject,
-          devDirectoryParent: join(devBasePathObject, '..').split(sep).pop(),
+          devDirectoryName: join(devBasePathObject, '..').split(sep).pop(),
+          devDirectoryCategory: join(devBasePathObject, '..', '..').split(sep).pop(),
+
         });
       } else {
         // eslint-disable-next-line no-param-reassign
@@ -40,18 +42,19 @@ const getAllDev = (
       }
     }
   });
+  console.log('==>', arrayOfDevDirectories);
   return arrayOfDevDirectories;
 };
 
 getAllDev().forEach((dev) => {
-  copy(dev.devDirectory, resolve(`./site/${dev.devDirectoryParent}`))
+  copy(dev.devDirectory, resolve(`./site/${dev.devDirectoryName}`))
     .then((results) => {
       const $olNode = $indexHtml('ol').append(
-        `<li><a href="${dev.devDirectoryParent}/index.html">${dev.devDirectoryParent}</a></li>`
+        `<li><a href="${dev.devDirectoryName}/index.html">${dev.devDirectoryName}</a></li>`
       );
       writeFileSync(resolve(`./site/index.html`), $indexHtml.html(), 'utf8');
       console.info(
-        `${results.length} file(s) copied - ${dev.devDirectoryParent}`
+        `${results.length} file(s) copied - ${dev.devDirectoryName}`
       );
       return $olNode;
     })
