@@ -3,9 +3,14 @@
   "version": "1.3.4",
   "private": true,
   "description": "Monorepo - Blockquote Web Components",
+  "homepage": "https://github.com/oscarmarina/blockquote-web-components",
+  "author": {
+    "name": "oscarmarina",
+    "url": "https://62d3439a0eebee66a69d4650--adorable-macaron-7c1b61.netlify.app"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/oscarmarina/blockquote-web-components"
+    "url": "git+https://github.com/oscarmarina/blockquote-web-components"
   },
   "type": "module",
   "workspaces": {
@@ -38,7 +43,7 @@
     "test:pre-push": "npm run test -- --since",
     "test:scope": "func() { lerna run test --stream --concurrency 1 --scope @blockquote-web-components/${1}; }; func",
     "site": "npm run site:prepare && npm run site:copy",
-    "site:prepare": "lerna exec -- rm -rf ./dev && lerna run dev:vite",
+    "site:prepare": "npm run clean:packages:dev && lerna run dev:vite",
     "site:copy": "rm -rf ./site/**/* && node scripts/move-dev-directory.js",
     "version": "npm run standard"
   },
@@ -50,10 +55,10 @@
     }
   },
   "lint-staged": {
-    "**/*.{js,ts,html}": [
+    "**/*.{js,ts,html}, !site/**/*": [
       "npm run format:eslint -- *"
     ],
-    "**/*.{js,ts,json,html,md}": [
+    "**/*.{js,ts,json,html,md}, !site/**/*": [
       "npm run format:prettier -- *"
     ],
     "**/*.{scss,css}": [
