@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-mixin-slot-content@1.1.3...@blockquote-web-components/blockquote-mixin-slot-content@1.1.4) (2022-07-18)
+
+**Note:** Version bump only for package @blockquote-web-components/blockquote-mixin-slot-content
+
+
+
+
+
 ## [1.1.3](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-mixin-slot-content@1.1.2...@blockquote-web-components/blockquote-mixin-slot-content@1.1.3) (2022-07-16)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-mixin-slot-content

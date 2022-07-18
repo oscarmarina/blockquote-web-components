@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-common-dev-dependencies@1.1.2...@blockquote-web-components/blockquote-base-common-dev-dependencies@1.2.0) (2022-07-18)
+
+
+### Features
+
+* **blockquote-base-common-dev-dependencies:** update stylelint scss ([7be4770](https://github.com/oscarmarina/blockquote-web-components/commit/7be4770d304460812425191429bd51ec5f241a58))
+
+
+
+
+
 ## [1.1.2](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-common-dev-dependencies@1.1.1...@blockquote-web-components/blockquote-base-common-dev-dependencies@1.1.2) (2022-07-16)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-base-common-dev-dependencies
