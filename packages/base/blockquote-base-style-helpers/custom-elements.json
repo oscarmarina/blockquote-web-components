@@ -1,0 +1,198 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "src/getComponentSharedStyles.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "getComponentSharedStyles",
+          "parameters": [
+            {
+              "name": "id",
+              "description": "Identifier of styles; usually will be `[component-name]-shared-styles`",
+              "type": {
+                "text": "String"
+              }
+            }
+          ],
+          "description": "Get styles (as cssResult) already associated to provided ID string (using setComponentSharedStyles helper) and returns them",
+          "return": {
+            "type": {
+              "text": ""
+            }
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "getComponentSharedStyles",
+          "declaration": {
+            "name": "getComponentSharedStyles",
+            "module": "src/getComponentSharedStyles.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/setComponentSharedStyles.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "setComponentSharedStyles",
+          "parameters": [
+            {
+              "name": "id",
+              "description": "Identifier of styles; usually will be `[component-name]-shared-styles`",
+              "type": {
+                "text": "String"
+              }
+            },
+            {
+              "name": "styles",
+              "description": "Styles to add, wrapper in a Lit css tagged template literal",
+              "type": {
+                "text": "CSSResult"
+              }
+            }
+          ],
+          "description": "Set styles (as cssResult) associated to provided ID string which can then be retrieved by components"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "setComponentSharedStyles",
+          "declaration": {
+            "name": "setComponentSharedStyles",
+            "module": "src/setComponentSharedStyles.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/setDocumentStyles.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "supportCustomStyleInterface"
+        },
+        {
+          "kind": "function",
+          "name": "documentAdoptStyles",
+          "parameters": [
+            {
+              "name": "renderRoot"
+            },
+            {
+              "name": "styles"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "setDocumentStyles",
+          "parameters": [
+            {
+              "name": "styles"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "supportsAdoptingStyleSheets",
+          "declaration": {
+            "name": "supportsAdoptingStyleSheets",
+            "package": "lit"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "supportCustomStyleInterface",
+          "declaration": {
+            "name": "supportCustomStyleInterface",
+            "module": "src/setDocumentStyles.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "documentAdoptStyles",
+          "declaration": {
+            "name": "documentAdoptStyles",
+            "module": "src/setDocumentStyles.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "setDocumentStyles",
+          "declaration": {
+            "name": "setDocumentStyles",
+            "module": "src/setDocumentStyles.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "index.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "setDocumentStyles",
+          "declaration": {
+            "name": "setDocumentStyles",
+            "module": "./src/setDocumentStyles.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "supportCustomStyleInterface",
+          "declaration": {
+            "name": "supportCustomStyleInterface",
+            "module": "./src/setDocumentStyles.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "supportsAdoptingStyleSheets",
+          "declaration": {
+            "name": "supportsAdoptingStyleSheets",
+            "module": "./src/setDocumentStyles.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "documentAdoptStyles",
+          "declaration": {
+            "name": "documentAdoptStyles",
+            "module": "./src/setDocumentStyles.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "setComponentSharedStyles",
+          "declaration": {
+            "name": "setComponentSharedStyles",
+            "module": "./src/setComponentSharedStyles.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "getComponentSharedStyles",
+          "declaration": {
+            "name": "getComponentSharedStyles",
+            "module": "./src/getComponentSharedStyles.js"
+          }
+        }
+      ]
+    }
+  ]
+}
