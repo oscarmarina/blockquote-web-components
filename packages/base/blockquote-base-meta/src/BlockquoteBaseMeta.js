@@ -82,24 +82,7 @@ import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-m
 console.log(myDefault.mapList); // {{ id: 'dsfaskj0' }: 'foo/bar'}
 ```
 
-## Properties
-
-| Property     | Modifiers | Description                                      |
-|--------------|-----------|--------------------------------------------------|
-| `key`        |           | Key for Meta                                     |
-| `list`       | readonly  | Returns a list of the values for that instance `type` |
-| `mapList`    | readonly  | Returns a Map list for that instance `type`      |
-| `objectList` | readonly  | Returns a Object list for that instance `type`   |
-| `type`       |           | Type of Meta                                     |
-| `value`      |           | Returns value of instance key and type           |
-
-## Methods
-
-| Method  | Type          | Description                                      |
-|---------|---------------|--------------------------------------------------|
-| `byKey` | `(key: *): *` | Returns the value of the provided key for that instance `type` |
-
-  ## Exports
+# ## Exports
 
   - BlockquoteBaseMeta
 
