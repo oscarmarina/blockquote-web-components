@@ -1,0 +1,19 @@
+import{i as e,s as d,y as t}from"./lit-element.2d757a94.js";import{B as n,g as c}from"./getComponentSharedStyles.8c6b4e41.js";const s=(a,o)=>{if(!o.cssText)throw new Error("Value passed to 'setComponentSharedStyles' function must be a 'css' function result");const r=new n({type:"sharedStyles",key:a});r.value=r.value||[],r.value.push(o)};s("shared-element-shared-styles",e`.shared2{background-color:#e1f3f8}`);s("shared-element-shared-styles",e`.shared3{background-color:#fad980}`);class h extends d{static get styles(){return[e`:host{display:block;box-sizing:border-box;color:#212121}pre{margin:0;padding:1em;white-space:break-spaces;line-height:1.1}code{font-weight:700}.shared{background-color:#e4e2e0}.shared~.shared{margin:1rem 0 0}`,c("shared-element-shared-styles")]}render(){return t`<pre class="shared shared1">
+<code>
+  .shared {
+    background-color: #212121;
+  }
+</code>
+</pre><pre class="shared shared2">
+<code>
+  .shared2 {
+    background-color: #e1f3f8;
+  }
+</code>
+</pre><pre class="shared shared3">
+<code>
+  .shared3 {
+    background-color: #fad980;
+  }
+</code>
+</pre>`}}customElements.define("shared-element",h);s("shared-element-shared-styles",e`.shared1{background-color:#ff0}`);
