@@ -1,10 +1,6 @@
-import { Subject, isObservable } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-
-const unsubscribe = Symbol('unsubscribe');
-const subscriptions = Symbol('subscriptions');
-
 /**
+# BlockquoteControllerRxjs
+
 ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
 
 `BlockquoteControllerRxjs` is a Reactive Controller.
@@ -70,38 +66,7 @@ class BlockquoteControllerRxjsDemo extends LitElement {
 
   - BlockquoteControllerRxjs
 
+@tagname blockquote-controller-rxjs
+@element blockquote-controller-rxjs
 */
-export class BlockquoteControllerRxjs {
-  constructor(host) {
-    this[unsubscribe] = new Subject();
-    this[subscriptions] = new Map();
-    (this.host = host).addController(this);
-  }
-
-  subscribe(propKey, stream$) {
-    if (!isObservable(stream$)) {
-      throw new Error('Invalid Observable!');
-    }
-    const existingSubscription = this[subscriptions].get(propKey);
-    if (existingSubscription) {
-      if (existingSubscription?.stream$ === stream$) {
-        return stream$;
-      }
-      existingSubscription?.subscription?.unsubscribe();
-    }
-
-    // eslint-disable-next-line arrow-parens
-    const subscription = stream$.pipe(takeUntil(this[unsubscribe])).subscribe(res => {
-      this.host[propKey] = res;
-      this.host.requestUpdate();
-    });
-
-    this[subscriptions].set(propKey, { stream$, subscription });
-
-    return stream$;
-  }
-
-  hostDisconnected() {
-    this[unsubscribe].next();
-  }
-}
+export class ReadmElement extends HTMLElement {}
