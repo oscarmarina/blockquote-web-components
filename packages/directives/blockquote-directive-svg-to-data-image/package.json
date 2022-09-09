@@ -22,17 +22,17 @@
   ],
   "scripts": {
     "analyze": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
-    "analyze:doc": "npm run analyze && npx web-component-analyzer \"{src,define}/**/*.{js,ts}\" \"index.js\" --outFile README.md",
+    "analyze:doc": "npm run analyze && npx web-component-analyzer \"{src,define}/**/*.{js,ts}\" \"index.js\" \"README.js\" --outFile README.md",
     "build": "echo \"This is not a TypeScript project, so no need to build.\"",
     "dev:vite": "vite build",
     "format": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
     "format:eslint": "eslint \"**/*.{js,ts,html}\" --fix --ignore-path .eslintignore",
-    "format:prettier": "prettier \"**/*.{js,ts,json,html,md}\" --write --ignore-path .eslintignore",
+    "format:prettier": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .eslintignore",
     "format:stylelint": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .eslintignore",
     "postinstall": "npm run sort:package",
     "lint": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
     "lint:eslint": "eslint \"**/*.{js,ts,html}\" --ignore-path .eslintignore",
-    "lint:prettier": "prettier \"**/*.{js,ts,json,html,md}\" --check --ignore-path .eslintignore",
+    "lint:prettier": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .eslintignore",
     "lint:stylelint": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .eslintignore",
     "preview:vite": "vite preview",
     "sass:watch": "sass-style-template",
@@ -53,7 +53,7 @@
     "**/*.{js,ts,html}": [
       "npm run format:eslint"
     ],
-    "**/*.{js,ts,json,html,md}": [
+    "**/*.{js,ts,json,html}": [
       "npm run format:prettier"
     ],
     "**/*.{scss,css}": [
