@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-directive-svg-to-data-image",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "This directive receives a `Lit SVG Template Result` and returns a data URI string.",
   "keywords": [
     "lit",
@@ -131,7 +131,7 @@
     "lit": "^2.0.2"
   },
   "devDependencies": {
-    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.2.0"
+    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.2.1"
   },
   "publishConfig": {
     "access": "public"
