@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.4.0...v1.5.0) (2022-09-09)
+
+
+### Features
+
+* **blockquote-base-style-helpers:** new element ([eb8bfc8](https://github.com/oscarmarina/blockquote-web-components/commit/eb8bfc88d48d81a5752cb9a8d22cce5003725a9e))
+
+
+### Bug Fixes
+
+* **blockquote-base-embedded-webview:** update demo ([f3fcebd](https://github.com/oscarmarina/blockquote-web-components/commit/f3fcebd0805345283f06a32d62f7607f19d8b0b8))
+* **blockquote-base-meta:** update demo ([581b0c8](https://github.com/oscarmarina/blockquote-web-components/commit/581b0c85707099e3fdb6e1fe523a3ebf2fbd6fd4))
+* **blockquote-controller-rxjs:** update demo ([40a173c](https://github.com/oscarmarina/blockquote-web-components/commit/40a173c58e017c2d924a3af87e96455de9688e42))
+* **blockquote-directive-svg-to-data-image:** update demo ([aebd7b4](https://github.com/oscarmarina/blockquote-web-components/commit/aebd7b422f52ce8272dda568bfe138e14f3450de))
+* **blockquote-mixin-slot-content:** update demo ([0d107d2](https://github.com/oscarmarina/blockquote-web-components/commit/0d107d2f99b6dafe8f690344703c8ce0f12e6e2f))
+
 ## [1.4.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.3.4...v1.4.0) (2022-07-18)
 
 
