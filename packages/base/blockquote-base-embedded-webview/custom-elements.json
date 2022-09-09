@@ -64,7 +64,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "![Lit](https://img.shields.io/badge/lit-2.0.0-blue)\n\n`blockquote-base-embedded-webview` offers a responsive display using individual HTML files as content with the different use cases to be displayed.\nIt will create a `select` tag with the provided demo HTML files and add the `[data-embedded]` attribute to the loaded body tag.\n\n## Basic usage\n\n```html\n<blockquote-base-embedded-webview heading=\"My demo title\">\n <template data-src=\"./basic.html\" data-option=\"Basis\"></template>\n <template data-src=\"./complex.html\" data-option=\"Complex\"></template>\n</blockquote-base-embedded-webview>\n```\n\n## basic.html\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n <head>\n   <title>Demo Basic</title>\n   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n   <meta charset=\"utf-8\" />\n   <style>\n     :root {\n       font: normal medium/1.25 sans-serif;\n     }\n     body {\n       margin: 0;\n     }\n     [data-embedded] .hidden {\n       display: none;\n     }\n   </style>\n </head>\n <body>\n   <h1 class=\"hidden\">Heading</h1>\n   <p>Basic Demo</p>\n </body>\n</html>\n```\n\n ## Exports\n\n - BlockquoteBaseEmbeddedWebview",
+          "description": "![Lit](https://img.shields.io/badge/lit-2.0.0-blue)\n\n`blockquote-base-embedded-webview` offers a responsive display using individual HTML files as content with the different use cases to be displayed.\nIt will create a `select` tag with the provided demo HTML files and add the `[data-embedded]` attribute to the loaded body tag.\n\n## Base usage\n\n```html\n<blockquote-base-embedded-webview heading=\"My demo title\">\n <template data-src=\"./base.html\" data-option=\"Basis\"></template>\n <template data-src=\"./complex.html\" data-option=\"Complex\"></template>\n</blockquote-base-embedded-webview>\n```\n\n## base.html\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n <head>\n   <title>Demo Base</title>\n   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n   <meta charset=\"utf-8\" />\n   <style>\n     :root {\n       font: normal medium/1.25 sans-serif;\n     }\n     body {\n       margin: 0;\n     }\n     [data-embedded] .hidden {\n       display: none;\n     }\n   </style>\n </head>\n <body>\n   <h1 class=\"hidden\">Heading</h1>\n   <p>Base Demo</p>\n </body>\n</html>\n```\n\n ## Exports\n\n - BlockquoteBaseEmbeddedWebview",
           "name": "BlockquoteBaseEmbeddedWebview",
           "members": [
             {
@@ -117,46 +117,46 @@
             {
               "kind": "field",
               "name": "selected",
-              "type": {
-                "text": "Number"
-              },
-              "default": "0",
               "privacy": "public",
               "description": "Index of currently srcset file",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
               "attribute": "selected"
             },
             {
               "kind": "field",
               "name": "screenSizeSelected",
-              "type": {
-                "text": "Number"
-              },
-              "default": "0",
               "privacy": "public",
               "description": "Index of currently screen size selected",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
               "attribute": "screen-size-selected"
             },
             {
               "kind": "field",
               "name": "headingLevel",
-              "type": {
-                "text": "Number"
-              },
-              "default": "1",
               "privacy": "public",
               "description": "Heading level from 1 to 6",
+              "type": {
+                "text": "number"
+              },
+              "default": "1",
               "attribute": "heading-level",
               "reflects": true
             },
             {
               "kind": "field",
               "name": "heading",
-              "type": {
-                "text": "String"
-              },
-              "default": "''",
               "privacy": "public",
               "description": "The heading of the webview.",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
               "attribute": "heading"
             },
             {
@@ -175,12 +175,12 @@
             {
               "kind": "field",
               "name": "limitHeight",
-              "type": {
-                "text": "Boolean"
-              },
-              "default": "false",
               "privacy": "public",
               "description": "Limit height to 100% available",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
               "attribute": "limit-height",
               "reflects": true
             },
@@ -202,40 +202,45 @@
               "name": "heading",
               "description": "The heading of the webview.",
               "type": {
-                "text": "String"
+                "text": "string"
               },
+              "default": "''",
               "fieldName": "heading"
             },
             {
               "name": "selected",
               "description": "Index of currently srcset file",
               "type": {
-                "text": "Number"
+                "text": "number"
               },
+              "default": "0",
               "fieldName": "selected"
             },
             {
               "name": "heading-level",
               "description": "Heading level from 1 to 6",
               "type": {
-                "text": "Number"
+                "text": "number"
               },
+              "default": "1",
               "fieldName": "headingLevel"
             },
             {
               "name": "screen-size-selected",
               "description": "Index of currently screen size selected",
               "type": {
-                "text": "Number"
+                "text": "number"
               },
+              "default": "0",
               "fieldName": "screenSizeSelected"
             },
             {
               "name": "limit-height",
               "description": "Limit height to 100% available",
               "type": {
-                "text": "Boolean"
+                "text": "boolean"
               },
+              "default": "false",
               "fieldName": "limitHeight"
             }
           ],
@@ -301,34 +306,34 @@
             {
               "kind": "field",
               "name": "embeddedTitle",
+              "privacy": "public",
+              "description": "The title attribute on an <element> to label its content",
               "type": {
                 "text": "string"
               },
               "default": "''",
-              "privacy": "public",
-              "description": "The title attribute on an <element> to label its content",
               "attribute": "embedded-title"
             },
             {
               "kind": "field",
               "name": "src",
+              "privacy": "public",
+              "description": "The URL of the page to embed",
               "type": {
                 "text": "string"
               },
               "default": "''",
-              "privacy": "public",
-              "description": "The URL of the page to embed",
               "attribute": "src"
             },
             {
               "kind": "field",
               "name": "type",
+              "privacy": "public",
+              "description": "The type of the tag to embed - iframe or object",
               "type": {
                 "text": "string"
               },
               "default": "'iframe'",
-              "privacy": "public",
-              "description": "The type of the tag to embed - iframe or object",
               "attribute": "type"
             }
           ],
@@ -339,6 +344,7 @@
               "type": {
                 "text": "string"
               },
+              "default": "''",
               "fieldName": "embeddedTitle"
             },
             {
@@ -347,6 +353,7 @@
               "type": {
                 "text": "string"
               },
+              "default": "''",
               "fieldName": "src"
             },
             {
@@ -355,6 +362,7 @@
               "type": {
                 "text": "string"
               },
+              "default": "'iframe'",
               "fieldName": "type"
             }
           ],
@@ -529,45 +537,45 @@
             {
               "kind": "field",
               "name": "showOverflowSize",
-              "type": {
-                "text": "Boolean"
-              },
-              "default": "false",
               "privacy": "public",
               "description": "Show screen size options that are too large for the container",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
               "attribute": "show-overflow-size"
             },
             {
               "kind": "field",
               "name": "selected",
-              "type": {
-                "text": "Number"
-              },
-              "default": "0",
               "privacy": "public",
               "description": "The screen size option selected",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
               "attribute": "selected"
             },
             {
               "kind": "field",
               "name": "screenSizes",
-              "type": {
-                "text": "Array"
-              },
-              "default": "[\n      { width: 360, height: 640, id: '360x640' },\n      { width: 375, height: 667, id: '375x667' },\n      { width: 414, height: 896, id: '414x896' },\n      { width: 768, height: 1024, id: '768x1024' },\n      { width: 1024, height: 768, id: '1024x768' },\n      { width: 1280, height: 800, id: '1280x800' },\n      { width: 1366, height: 768, id: '1366x768' },\n      { width: 1536, height: 864, id: '1536x864' },\n      { width: 1920, height: 1080, id: '1920x1080' },\n    ]",
               "privacy": "public",
               "description": "The screen size options to display",
+              "type": {
+                "text": "array"
+              },
+              "default": "[\n      { width: 360, height: 640, id: '360x640' },\n      { width: 375, height: 667, id: '375x667' },\n      { width: 414, height: 896, id: '414x896' },\n      { width: 768, height: 1024, id: '768x1024' },\n      { width: 1024, height: 768, id: '1024x768' },\n      { width: 1280, height: 800, id: '1280x800' },\n      { width: 1366, height: 768, id: '1366x768' },\n      { width: 1536, height: 864, id: '1536x864' },\n      { width: 1920, height: 1080, id: '1920x1080' },\n    ]",
               "attribute": "screen-sizes"
             },
             {
               "kind": "field",
               "name": "widthInPercent",
-              "type": {
-                "text": "Boolean"
-              },
-              "default": "false",
               "privacy": "public",
               "description": "Percentage value for the width",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
               "attribute": "width-in-percent"
             }
           ],
@@ -576,32 +584,36 @@
               "name": "screen-sizes",
               "description": "The screen size options to display",
               "type": {
-                "text": "Array"
+                "text": "array"
               },
+              "default": "[\n      { width: 360, height: 640, id: '360x640' },\n      { width: 375, height: 667, id: '375x667' },\n      { width: 414, height: 896, id: '414x896' },\n      { width: 768, height: 1024, id: '768x1024' },\n      { width: 1024, height: 768, id: '1024x768' },\n      { width: 1280, height: 800, id: '1280x800' },\n      { width: 1366, height: 768, id: '1366x768' },\n      { width: 1536, height: 864, id: '1536x864' },\n      { width: 1920, height: 1080, id: '1920x1080' },\n    ]",
               "fieldName": "screenSizes"
             },
             {
               "name": "selected",
               "description": "The screen size option selected",
               "type": {
-                "text": "Number"
+                "text": "number"
               },
+              "default": "0",
               "fieldName": "selected"
             },
             {
               "name": "width-in-percent",
               "description": "Percentage value for the width",
               "type": {
-                "text": "Boolean"
+                "text": "boolean"
               },
+              "default": "false",
               "fieldName": "widthInPercent"
             },
             {
               "name": "show-overflow-size",
               "description": "Show screen size options that are too large for the container",
               "type": {
-                "text": "Boolean"
+                "text": "boolean"
               },
+              "default": "false",
               "fieldName": "showOverflowSize"
             }
           ],

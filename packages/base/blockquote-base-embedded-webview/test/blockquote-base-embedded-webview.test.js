@@ -12,7 +12,7 @@ suite('BlockquoteBaseEmbeddedWebview', () => {
     setup(async () => {
       el = await fixture(
         html` <blockquote-base-embedded-webview heading="blockquote-base-embedded-webview">
-          <template data-src="./test/test.html" data-option="Basic Complex"></template>
+          <template data-src="./test/test.html" data-option="Base Complex"></template>
           <template data-src="./test/test2.html" data-option="Other"></template>
         </blockquote-base-embedded-webview>`,
       );
@@ -38,7 +38,7 @@ suite('BlockquoteBaseEmbeddedWebview', () => {
             limit-height
             heading="blockquote-base-embedded-webview"
           >
-            <template data-src="./test/test.html" data-option="Basic Complex"></template>
+            <template data-src="./test/test.html" data-option="Base Complex"></template>
           </blockquote-base-embedded-webview>`,
         );
         await assert.shadowDom.equalSnapshot(elLimit, { ignoreAttributes: ['style'] });

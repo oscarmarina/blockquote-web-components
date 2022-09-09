@@ -15,22 +15,22 @@ const chevronDownIcon = svg`<svg aria-hidden="true" viewBox="0 0 24 24" stroke-w
 `blockquote-base-embedded-webview` offers a responsive display using individual HTML files as content with the different use cases to be displayed.
 It will create a `select` tag with the provided demo HTML files and add the `[data-embedded]` attribute to the loaded body tag.
 
-## Basic usage
+## Base usage
 
 ```html
 <blockquote-base-embedded-webview heading="My demo title">
-  <template data-src="./basic.html" data-option="Basis"></template>
+  <template data-src="./base.html" data-option="Basis"></template>
   <template data-src="./complex.html" data-option="Complex"></template>
 </blockquote-base-embedded-webview>
 ```
 
-## basic.html
+## base.html
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Demo Basic</title>
+    <title>Demo Base</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <style>
@@ -47,7 +47,7 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
   </head>
   <body>
     <h1 class="hidden">Heading</h1>
-    <p>Basic Demo</p>
+    <p>Base Demo</p>
   </body>
 </html>
 ```
