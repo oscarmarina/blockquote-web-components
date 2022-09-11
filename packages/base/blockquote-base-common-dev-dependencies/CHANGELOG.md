@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-common-dev-dependencies@1.2.1...@blockquote-web-components/blockquote-base-common-dev-dependencies@1.3.0) (2022-09-11)
+
+
+### Features
+
+* **blockquote-base-common-dev-dependencies:** update eslint config ([0868484](https://github.com/oscarmarina/blockquote-web-components/commit/08684842387c7b455fecb37281df5d6405b9b061))
+
+
+
+
+
 ## [1.2.1](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-common-dev-dependencies@1.2.0...@blockquote-web-components/blockquote-base-common-dev-dependencies@1.2.1) (2022-09-09)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-base-common-dev-dependencies
