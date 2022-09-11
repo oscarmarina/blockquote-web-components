@@ -8,7 +8,7 @@
     "@blockquote/sass-style-template": "^2.1.2",
     "@blockquote/test-runner-mocha-style-reporter": "^1.4.0",
     "@custom-elements-manifest/analyzer": "^0.6.3",
-    "@open-wc/eslint-config": "^7.0.0",
+    "@open-wc/eslint-config": "^8.0.2",
     "@open-wc/testing": "^3.1.6",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
