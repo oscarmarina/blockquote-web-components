@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.5.0...v1.6.0) (2022-09-11)
+
+
+### Features
+
+* **blockquote-base-common-dev-dependencies:** update eslint config ([0868484](https://github.com/oscarmarina/blockquote-web-components/commit/08684842387c7b455fecb37281df5d6405b9b061))
+
 ## [1.5.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.4.0...v1.5.0) (2022-09-09)
 
 
