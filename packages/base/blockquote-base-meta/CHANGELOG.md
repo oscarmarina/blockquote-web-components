@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-meta@1.0.6...@blockquote-web-components/blockquote-base-meta@1.0.7) (2022-09-12)
+
+
+### Bug Fixes
+
+* **blockquote-base-meta:** remove minify html literals ([6a60018](https://github.com/oscarmarina/blockquote-web-components/commit/6a600183bdac22299cccd3e7ba6a8c0bd54acb6c))
+
+
+
+
+
 ## [1.0.6](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-meta@1.0.5...@blockquote-web-components/blockquote-base-meta@1.0.6) (2022-09-11)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-base-meta

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-style-helpers@1.0.1...@blockquote-web-components/blockquote-base-style-helpers@1.0.2) (2022-09-12)
+
+
+### Bug Fixes
+
+* **blockquote-base-style-helpers:** remove minify html literals ([96488c4](https://github.com/oscarmarina/blockquote-web-components/commit/96488c485e0b70e1c2deaebf87a6455e4a4687e0))
+
+
+
+
+
 ## [1.0.1](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-style-helpers@1.0.0...@blockquote-web-components/blockquote-base-style-helpers@1.0.1) (2022-09-11)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-base-style-helpers

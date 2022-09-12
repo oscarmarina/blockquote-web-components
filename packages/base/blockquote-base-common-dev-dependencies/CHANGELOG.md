@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-common-dev-dependencies@1.3.0...@blockquote-web-components/blockquote-base-common-dev-dependencies@1.3.1) (2022-09-12)
+
+
+### Bug Fixes
+
+* **blockquote-base-common-dev-dependencies:** remove minify html literals ([9ee07c5](https://github.com/oscarmarina/blockquote-web-components/commit/9ee07c58db836c298b9e874f670eac0983de7bbc))
+
+
+
+
+
 # [1.3.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-common-dev-dependencies@1.2.1...@blockquote-web-components/blockquote-base-common-dev-dependencies@1.3.0) (2022-09-11)
 
 

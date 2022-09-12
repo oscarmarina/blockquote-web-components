@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-rxjs@1.0.7...@blockquote-web-components/blockquote-controller-rxjs@1.0.8) (2022-09-12)
+
+
+### Bug Fixes
+
+* **blockquote-controller-rxjs:** remove minify html literals ([ee2aa2b](https://github.com/oscarmarina/blockquote-web-components/commit/ee2aa2ba9745ed30870e9631ea8f21971670ea78))
+
+
+
+
+
 ## [1.0.7](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-rxjs@1.0.6...@blockquote-web-components/blockquote-controller-rxjs@1.0.7) (2022-09-11)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-controller-rxjs

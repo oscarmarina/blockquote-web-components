@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.0.7...@blockquote-web-components/blockquote-base-embedded-webview@1.0.8) (2022-09-12)
+
+
+### Bug Fixes
+
+* **blockquote-base-embedded-webview:** remove minify html literals ([09eeb6c](https://github.com/oscarmarina/blockquote-web-components/commit/09eeb6c631d5e69186143fa683e50655fa184b90))
+
+
+
+
+
 ## [1.0.7](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.0.6...@blockquote-web-components/blockquote-base-embedded-webview@1.0.7) (2022-09-11)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-base-embedded-webview
