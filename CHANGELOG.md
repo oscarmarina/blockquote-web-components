@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.1](https://github.com/oscarmarina/blockquote-web-components/compare/v1.6.0...v1.6.1) (2022-09-12)
+
+
+### Bug Fixes
+
+* **blockquote-base-common-dev-dependencies:** remove minify html literals ([9ee07c5](https://github.com/oscarmarina/blockquote-web-components/commit/9ee07c58db836c298b9e874f670eac0983de7bbc))
+* **blockquote-base-embedded-webview:** remove minify html literals ([09eeb6c](https://github.com/oscarmarina/blockquote-web-components/commit/09eeb6c631d5e69186143fa683e50655fa184b90))
+* **blockquote-base-meta:** remove minify html literals ([6a60018](https://github.com/oscarmarina/blockquote-web-components/commit/6a600183bdac22299cccd3e7ba6a8c0bd54acb6c))
+* **blockquote-base-style-helpers:** remove minify html literals ([96488c4](https://github.com/oscarmarina/blockquote-web-components/commit/96488c485e0b70e1c2deaebf87a6455e4a4687e0))
+* **blockquote-controller-rxjs:** remove minify html literals ([ee2aa2b](https://github.com/oscarmarina/blockquote-web-components/commit/ee2aa2ba9745ed30870e9631ea8f21971670ea78))
+* **blockquote-directive-svg-to-data-image:** remove minify html literals ([928ff39](https://github.com/oscarmarina/blockquote-web-components/commit/928ff3967effd786faa6b5af8c8b05443861fe74))
+* **blockquote-mixin-slot-content:** remove minify html literals ([258e74a](https://github.com/oscarmarina/blockquote-web-components/commit/258e74a8a7f286efab8b32fec6c3de706574a55a))
+
 ## [1.6.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.5.0...v1.6.0) (2022-09-11)
 
 
