@@ -2,16 +2,7 @@
 import { defineConfig } from 'vite';
 import pluginHtml from '@web/rollup-plugin-html';
 import copy from 'rollup-plugin-copy';
-import minifyHTML from 'rollup-plugin-minify-html-literals';
 import totalBundlesize from '@blockquote/rollup-plugin-total-bundlesize';
-
-const minifyHTMLLiteralsConfig = {
-  options: {
-    minifyOptions: {
-      removeAttributeQuotes: false,
-    },
-  },
-};
 
 const copyConfig = {
   targets: [
@@ -69,19 +60,18 @@ export default defineConfig({
       plugins: [
         pluginHtml({
           transformHtml: [
-            (html) =>
+            html =>
               html.replace(
                 '<meta charset="utf-8">',
                 `<meta charset="utf-8">
-        <script src="./web_modules/@ungap/global-this/index.js"></script>
-        <script src="./web_modules/tiny-array-flat-polyfill/tiny-array-flat-polyfill.min.js"></script>
-        <script src="./web_modules/lit/polyfill-support.js"></script>
-        <script src="./web_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-        <script src="./web_modules/@webcomponents/shadycss/custom-style-interface.min.js"></script>`,
+    <script src="./web_modules/@ungap/global-this/index.js"></script>
+    <script src="./web_modules/tiny-array-flat-polyfill/tiny-array-flat-polyfill.min.js"></script>
+    <script src="./web_modules/lit/polyfill-support.js"></script>
+    <script src="./web_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="./web_modules/@webcomponents/shadycss/custom-style-interface.min.js"></script>`,
               ),
           ],
         }),
-        minifyHTML(minifyHTMLLiteralsConfig),
         copy(copyConfig),
         totalBundlesize(),
       ],
