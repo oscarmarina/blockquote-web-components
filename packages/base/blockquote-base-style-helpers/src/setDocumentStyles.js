@@ -2,12 +2,14 @@ import { supportsAdoptingStyleSheets /* adoptStyles */ } from 'lit';
 import '@blockquote/polymer/lib/elements/custom-style.js';
 
 export { supportsAdoptingStyleSheets /* adoptStyles */ } from 'lit';
-export const supportCustomStyleInterface =
-  window.ShadyCSS && /* c8 ignore next */ window.ShadyCSS.CustomStyleInterface;
 
-const renderDocumentRoot = supportsAdoptingStyleSheets
-  ? document
-  : /* c8 ignore next */ document.head;
+export const supportCustomStyleInterface =
+  /* c8 ignore next */
+  window.ShadyCSS && window.ShadyCSS.CustomStyleInterface && !window.ShadyCSS.nativeShadow;
+
+const renderDocumentRoot =
+  /* c8 ignore next */
+  supportsAdoptingStyleSheets ? document : document.head;
 
 export const documentAdoptStyles = (renderRoot, styles) => {
   if (supportsAdoptingStyleSheets) {
