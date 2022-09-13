@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-style-helpers@1.0.2...@blockquote-web-components/blockquote-base-style-helpers@1.0.3) (2022-09-13)
+
+
+### Bug Fixes
+
+* **blockquote-base-style-helpers:** add control support nativeShadow ([dbe0a29](https://github.com/oscarmarina/blockquote-web-components/commit/dbe0a29755579789918c18f3cc580d27c08165c4))
+
+
+
+
+
 ## [1.0.2](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-style-helpers@1.0.1...@blockquote-web-components/blockquote-base-style-helpers@1.0.2) (2022-09-12)
 
 
