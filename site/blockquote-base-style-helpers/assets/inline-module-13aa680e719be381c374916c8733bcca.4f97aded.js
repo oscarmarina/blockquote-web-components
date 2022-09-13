@@ -1,4 +1,4 @@
-import{i as e,s as d,y as t}from"./lit-element.2d757a94.js";import{B as n,g as c}from"./getComponentSharedStyles.73161a7d.js";const s=(a,o)=>{if(!o.cssText)throw new Error("Value passed to 'setComponentSharedStyles' function must be a 'css' function result");const r=new n({type:"sharedStyles",key:a});r.value=r.value||[],r.value.push(o)};s("shared-element-shared-styles",e`
+import{i as e,s as d,y as t}from"./lit-element.2d757a94.js";import{B as n,g as c}from"./getComponentSharedStyles.21880e99.js";const s=(a,o)=>{if(!o.cssText)throw new Error("Value passed to 'setComponentSharedStyles' function must be a 'css' function result");const r=new n({type:"sharedStyles",key:a});r.value=r.value||[],r.value.push(o)};s("shared-element-shared-styles",e`
           .shared2 {
             background-color: #e1f3f8;
           }
