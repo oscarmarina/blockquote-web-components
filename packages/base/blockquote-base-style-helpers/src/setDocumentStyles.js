@@ -11,17 +11,19 @@ const renderDocumentRoot =
   /* c8 ignore next */
   supportsAdoptingStyleSheets ? document : document.head;
 
-export const documentAdoptStyles = (renderRoot, styles) => {
+export const adoptStyles = (renderRoot, styles) => {
   if (supportsAdoptingStyleSheets) {
+    // https://github.com/lit/lit/pull/3061
     // eslint-disable-next-line no-param-reassign
-    renderRoot.adoptedStyleSheets = renderRoot.adoptedStyleSheets.concat(
-      styles.map(s => (s instanceof CSSStyleSheet ? s : s.styleSheet)),
-    ); /* TODO PR css-tag.ts */
+    renderRoot.adoptedStyleSheets = [
+      ...renderRoot.adoptedStyleSheets,
+      ...styles.map(s => (s instanceof CSSStyleSheet ? s : s.styleSheet)),
+    ];
   } else {
     styles.forEach(s => {
       const style = document.createElement('style');
       // eslint-disable-next-line dot-notation
-      const nonce = window['litNonce']; /* original css-tag.ts const nonce = global['litNonce'] */
+      const nonce = window['litNonce'];
       if (nonce !== undefined) {
         style.setAttribute('nonce', nonce);
       }
@@ -43,5 +45,5 @@ const documentCustomStyle = s => {
 export const setDocumentStyles = styles => {
   supportCustomStyleInterface
     ? documentCustomStyle(styles)
-    : documentAdoptStyles(renderDocumentRoot, [styles]);
+    : adoptStyles(renderDocumentRoot, [styles]);
 };
