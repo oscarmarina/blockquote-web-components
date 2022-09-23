@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.3](https://github.com/oscarmarina/blockquote-web-components/compare/v1.6.2...v1.6.3) (2022-09-23)
+
+
+### Bug Fixes
+
+* **blockquote-base-style-helpers:** update futere pr ([af81cbb](https://github.com/oscarmarina/blockquote-web-components/commit/af81cbb4046e89875522c3854462fb15bf32a633))
+
 ### [1.6.2](https://github.com/oscarmarina/blockquote-web-components/compare/v1.6.1...v1.6.2) (2022-09-13)
 
 
