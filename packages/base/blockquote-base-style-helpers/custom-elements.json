@@ -84,7 +84,7 @@
         },
         {
           "kind": "function",
-          "name": "documentAdoptStyles",
+          "name": "adoptStyles",
           "parameters": [
             {
               "name": "renderRoot"
@@ -123,9 +123,9 @@
         },
         {
           "kind": "js",
-          "name": "documentAdoptStyles",
+          "name": "adoptStyles",
           "declaration": {
-            "name": "documentAdoptStyles",
+            "name": "adoptStyles",
             "module": "src/setDocumentStyles.js"
           }
         },
@@ -170,9 +170,9 @@
         },
         {
           "kind": "js",
-          "name": "documentAdoptStyles",
+          "name": "adoptStyles",
           "declaration": {
-            "name": "documentAdoptStyles",
+            "name": "adoptStyles",
             "module": "./src/setDocumentStyles.js"
           }
         },
