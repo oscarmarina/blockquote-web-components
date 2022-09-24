@@ -97,18 +97,18 @@ export class BlockquoteBaseEmbeddedWebviewElement extends LitElement {
 
   _fetch(resource) {
     if (resource) {
-      if (this.embeddedTitle) {
-        this._embeddedElement.title = this.embeddedTitle;
-      }
       Object.assign(
         this._embeddedElement,
         this.type === 'iframe' && {
+          allow: 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture',
           allowFullscreen: true,
-          allow: 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture,',
+          loading: 'lazy',
         },
+        this.embeddedTitle && { title: this.embeddedTitle },
       );
 
       this._embeddedElement[this._loadResource] = resource;
+      window.performance.mark('iframestart');
 
       Object.assign(
         this._embeddedElement.style,
@@ -126,6 +126,9 @@ export class BlockquoteBaseEmbeddedWebviewElement extends LitElement {
     Object.assign(target.contentDocument.body.dataset, {
       embedded: '',
     });
+
+    window.performance.mark('iframeend');
+    window.performance.measure('iframe', 'iframestart', 'iframeend');
     window.requestAnimationFrame(() => target.removeAttribute('style'));
 
     /**
