@@ -1,4 +1,4 @@
-var f=Object.defineProperty;var s=Object.getOwnPropertySymbols;var l=Object.prototype.hasOwnProperty,i=Object.prototype.propertyIsEnumerable;var t=(n,r,o)=>r in n?f(n,r,{enumerable:!0,configurable:!0,writable:!0,value:o}):n[r]=o,c=(n,r)=>{for(var o in r||(r={}))l.call(r,o)&&t(n,o,r[o]);if(s)for(var o of s(r))i.call(r,o)&&t(n,o,r[o]);return n};import{i as a,r as d,s as b,y as U}from"./lit-element.2d757a94.js";import{s as m}from"./getComponentSharedStyles.61611232.js";const u={main:`
+var f=Object.defineProperty;var s=Object.getOwnPropertySymbols;var l=Object.prototype.hasOwnProperty,i=Object.prototype.propertyIsEnumerable;var t=(n,r,o)=>r in n?f(n,r,{enumerable:!0,configurable:!0,writable:!0,value:o}):n[r]=o,c=(n,r)=>{for(var o in r||(r={}))l.call(r,o)&&t(n,o,r[o]);if(s)for(var o of s(r))i.call(r,o)&&t(n,o,r[o]);return n};import{i as a,r as d,s as b,y as U}from"./lit-element.2d757a94.js";import{s as m}from"./getComponentSharedStyles.b5a13611.js";const u={main:`
   @font-face {
     font-family: 'Kaisei HarunoUmi';
     font-style: normal;
