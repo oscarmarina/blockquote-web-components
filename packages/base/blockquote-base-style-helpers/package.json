@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-base-style-helpers",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Webcomponent blockquote-base-style-helpers following open-wc recommendations",
   "keywords": [
     "lit",

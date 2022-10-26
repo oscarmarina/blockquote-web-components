@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-style-helpers@1.0.4...@blockquote-web-components/blockquote-base-style-helpers@1.0.5) (2022-10-26)
+
+
+### Bug Fixes
+
+* **blockquote-base-style-helpers:** give up adoptStyles method ([4448d8d](https://github.com/oscarmarina/blockquote-web-components/commit/4448d8d9d9e95135e5fa60c0522476d263458e18))
+
+
+
+
+
 ## [1.0.4](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-style-helpers@1.0.3...@blockquote-web-components/blockquote-base-style-helpers@1.0.4) (2022-09-23)
 
 
