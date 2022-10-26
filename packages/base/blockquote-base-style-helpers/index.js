@@ -1,8 +1,7 @@
 export {
   setDocumentStyles,
   supportCustomStyleInterface,
-  supportsAdoptingStyleSheets,
-  adoptStyles,
+  adoptDocumentStyles,
 } from './src/setDocumentStyles.js';
 
 export { setComponentSharedStyles } from './src/setComponentSharedStyles.js';

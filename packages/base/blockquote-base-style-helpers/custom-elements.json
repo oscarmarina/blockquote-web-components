@@ -84,7 +84,7 @@
         },
         {
           "kind": "function",
-          "name": "adoptStyles",
+          "name": "adoptDocumentStyles",
           "parameters": [
             {
               "name": "renderRoot"
@@ -107,14 +107,6 @@
       "exports": [
         {
           "kind": "js",
-          "name": "supportsAdoptingStyleSheets",
-          "declaration": {
-            "name": "supportsAdoptingStyleSheets",
-            "package": "lit"
-          }
-        },
-        {
-          "kind": "js",
           "name": "supportCustomStyleInterface",
           "declaration": {
             "name": "supportCustomStyleInterface",
@@ -123,9 +115,9 @@
         },
         {
           "kind": "js",
-          "name": "adoptStyles",
+          "name": "adoptDocumentStyles",
           "declaration": {
-            "name": "adoptStyles",
+            "name": "adoptDocumentStyles",
             "module": "src/setDocumentStyles.js"
           }
         },
@@ -162,17 +154,9 @@
         },
         {
           "kind": "js",
-          "name": "supportsAdoptingStyleSheets",
+          "name": "adoptDocumentStyles",
           "declaration": {
-            "name": "supportsAdoptingStyleSheets",
-            "module": "./src/setDocumentStyles.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "adoptStyles",
-          "declaration": {
-            "name": "adoptStyles",
+            "name": "adoptDocumentStyles",
             "module": "./src/setDocumentStyles.js"
           }
         },

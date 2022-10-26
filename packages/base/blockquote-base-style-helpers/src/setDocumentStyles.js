@@ -1,7 +1,5 @@
-import { supportsAdoptingStyleSheets /* adoptStyles */ } from 'lit';
+import { supportsAdoptingStyleSheets } from 'lit';
 import '@blockquote/polymer/lib/elements/custom-style.js';
-
-export { supportsAdoptingStyleSheets /* adoptStyles */ } from 'lit';
 
 export const supportCustomStyleInterface =
   /* c8 ignore next */
@@ -11,9 +9,9 @@ const renderDocumentRoot =
   /* c8 ignore next */
   supportsAdoptingStyleSheets ? document : document.head;
 
-export const adoptStyles = (renderRoot, styles) => {
+export const adoptDocumentStyles = (renderRoot, styles) => {
   if (supportsAdoptingStyleSheets) {
-    // https://github.com/lit/lit/pull/3061
+    // https://github.com/lit/lit/issues/2984#issuecomment-1150224373
     // eslint-disable-next-line no-param-reassign
     renderRoot.adoptedStyleSheets = [
       ...renderRoot.adoptedStyleSheets,
@@ -22,11 +20,6 @@ export const adoptStyles = (renderRoot, styles) => {
   } else {
     styles.forEach(s => {
       const style = document.createElement('style');
-      // eslint-disable-next-line dot-notation
-      const nonce = window['litNonce'];
-      if (nonce !== undefined) {
-        style.setAttribute('nonce', nonce);
-      }
       style.textContent = s.cssText;
       renderRoot.appendChild(style);
     });
@@ -39,11 +32,10 @@ const documentCustomStyle = s => {
   style.textContent = s.cssText;
   customStyle.appendChild(style);
   document.head.appendChild(customStyle);
-  return customStyle;
 };
 
 export const setDocumentStyles = styles => {
   supportCustomStyleInterface
     ? documentCustomStyle(styles)
-    : adoptStyles(renderDocumentRoot, [styles]);
+    : adoptDocumentStyles(renderDocumentRoot, [styles]);
 };
