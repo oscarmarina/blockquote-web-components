@@ -19,8 +19,8 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 
 ```html
 <blockquote-base-embedded-webview heading="My demo title">
-  <template data-src="./base.html" data-option="Basis"></template>
-  <template data-src="./complex.html" data-option="Complex"></template>
+  <template data-src="./base.html" data-option="Base" data-description="base - description"></template>
+  <template data-src="./complex.html" data-option="Complex" data-description="complex - description"></template>
 </blockquote-base-embedded-webview>
 ```
 
@@ -122,10 +122,11 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     this.screenSizeSelected = 0;
     this.headingLevel = 1;
     this.heading = '';
+    this.__resetResizing = false;
     this.__selectArrow = chevronDownIcon;
     this.__readDataPos = { x: 0, y: 0, resizing: false };
     this.limitHeight = false;
-    this._sources = [{ file: '', option: '' }];
+    this._sources = [{ file: '', option: '', description: '' }];
     this._updateSize = this._updateSize.bind(this);
     this._embeddedResizeRef = createRef();
   }
@@ -135,16 +136,18 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
 
     this.shadowRoot.addEventListener('webviewresize', ({ detail }) => {
       Object.assign(this.__readDataPos, detail);
+      this.__resetResizing = true;
       this.requestUpdate();
     });
 
     const _sources = Array.from(this.querySelectorAll('template'));
     if (_sources.length) {
       this._sources = _sources.map(item => {
-        const { src, option } = item.dataset;
+        const { src, option, description } = item.dataset;
         return {
           src,
           option,
+          description,
         };
       });
 
@@ -168,6 +171,8 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
       '--blockquote-base-embedded-webview-resize-rect-height',
       this.limitHeight ? '100%' : `${detail.height}px`,
     );
+    this.__resetResizing = false;
+    this.requestUpdate();
   }
 
   get _headingLevel() {
@@ -175,20 +180,21 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
   }
 
   render() {
-    return html`
-      <header>
-        <div>${this._headerTpl} ${this._selectTpl} ${this._readDataPosTpl}</div>
-        ${this._screenSizeTpl}
-      </header>
-      <div class="main">
-        <blockquote-base-embedded-webview-resize ${ref(this._embeddedResizeRef)}>
-          <slot name="embedded"> ${this._embeddedSlotTpl} </slot>
-        </blockquote-base-embedded-webview-resize>
-      </div>
-    `;
+    return html` ${this._headerTpl} ${this._mainTpl} `;
   }
 
   get _headerTpl() {
+    return html`
+      <header>
+        <div>
+          ${this._headingTpl} ${this._selectTpl} ${this._descriptionTpl} ${this._readDataPosTpl}
+        </div>
+        ${this._screenSizeTpl}
+      </header>
+    `;
+  }
+
+  get _headingTpl() {
     return html`<div aria-level="${this._headingLevel}" role="heading">${this.heading}</div>`;
   }
 
@@ -209,6 +215,10 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     `;
   }
 
+  get _descriptionTpl() {
+    return html` <p class="description">${this._sources[this.selected].description}</p>`;
+  }
+
   get _readDataPosTpl() {
     return html`
       <div
@@ -225,10 +235,21 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
 
   get _screenSizeTpl() {
     return html` <blockquote-base-embedded-webview-size
+      ?data-resizing="${this.__resetResizing}"
       @click="${this._updateSize}"
       @selectedchange="${this._updateSize}"
       .selected="${this.screenSizeSelected}"
     ></blockquote-base-embedded-webview-size>`;
+  }
+
+  get _mainTpl() {
+    return html`
+      <div class="main">
+        <blockquote-base-embedded-webview-resize ${ref(this._embeddedResizeRef)}>
+          <slot name="embedded"> ${this._embeddedSlotTpl} </slot>
+        </blockquote-base-embedded-webview-resize>
+      </div>
+    `;
   }
 
   get _embeddedSlotTpl() {

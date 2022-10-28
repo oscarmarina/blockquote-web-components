@@ -2,12 +2,12 @@
 import { css } from 'lit';
 
 export default css`:host {
-  --_host-color: var(--blockquote-base-embedded-webview-color, rgb(32, 33, 36));
-  --_main-bgcolor: var(--blockquote-base-embedded-webview-main-bgcolor, rgb(248, 249, 249));
-  --_select-bgcolor: var(--blockquote-base-embedded-webview-select-bgcolor, rgb(222, 225, 230));
+  --_host-color: var(--blockquote-base-embedded-webview-color, rgb(32, 32, 32));
+  --_main-bgcolor: var(--blockquote-base-embedded-webview-main-bgcolor, rgb(250, 250, 250));
+  --_select-bgcolor: var(--blockquote-base-embedded-webview-select-bgcolor, rgb(222, 222, 222));
   --_select-transition: var(--blockquote-base-embedded-webview-select-transition, border-bottom 196ms ease-out, var(--blockquote-base-embedded-webview-select-transition, border-bottom 196ms ease-out));
-  --blockquote-base-embedded-webview-resize-rect-width: 640px; /* 40rem */
-  --blockquote-base-embedded-webview-resize-rect-height: 360px; /* 22.5rem */
+  --blockquote-base-embedded-webview-resize-rect-width: 40rem; /* 40rem */
+  --blockquote-base-embedded-webview-resize-rect-height: 22.5rem; /* 22.5rem */
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -68,7 +68,6 @@ header > div {
           appearance: none;
   color: inherit;
   font: inherit;
-  font-size: 0.875rem;
   background-color: transparent;
   border: none;
   border-bottom: 0.125rem solid var(--_select-bgcolor);
@@ -87,6 +86,11 @@ header > div {
 }
 .select select:hover, .select select:focus {
   border-bottom-color: currentcolor;
+}
+
+.description {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
 }
 
 .read-data-pos {

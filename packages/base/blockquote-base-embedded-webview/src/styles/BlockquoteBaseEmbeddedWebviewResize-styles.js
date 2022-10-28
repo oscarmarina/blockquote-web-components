@@ -9,8 +9,10 @@ export default css`:host {
   --_rect-max-height: var(--blockquote-base-embedded-webview-resize-rect-max-height, 100%);
   --_rect-width: var(--blockquote-base-embedded-webview-resize-rect-width, 40rem);
   --_rect-height: var(--blockquote-base-embedded-webview-resize-rect-height, 22.5rem);
-  --_resizer-bgcolor: var(--blockquote-base-embedded-webview-resize-resizer-bgcolor, rgb(222, 225, 230));
-  --_resizer-bgcolor-hover: var(--blockquote-base-embedded-webview-resize-resizer-bgcolor-hover, rgb(218, 220, 224));
+  --_resizer-bgcolor: var(--blockquote-base-embedded-webview-resize-resizer-bgcolor, rgb(234, 234, 234));
+  --_resizer-bgcolor-hover: var(--blockquote-base-embedded-webview-resize-resizer-bgcolor-hover, rgb(220, 220, 220));
+  --_resizer-bgimage-ew-hover: var(--blockquote-base-embedded-webview-resize-resizer-bgcolor-hover, linear-gradient(0deg, rgba(220, 220, 220, 0.2), rgba(220, 220, 220, 1) 50%, rgba(220, 220, 220, 0.2)));
+  --_resizer-bgimage-s-hover: var(--blockquote-base-embedded-webview-resize-resizer-bgcolor-hover, linear-gradient(90deg, rgba(220, 220, 220, 0.2), rgba(220, 220, 220, 1) 50%, rgba(220, 220, 220, 0.2)));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,9 +59,6 @@ export default css`:host {
   left: 50%;
   transform: translateX(-50%);
 }
-.resizer:hover:not(.resizer-n) {
-  background-color: var(--_resizer-bgcolor-hover);
-}
 .resizer-n {
   height: calc(var(--__resizer-factor) / 4);
   top: calc(var(--__resizer-factor) / 4 * -1);
@@ -69,34 +68,17 @@ export default css`:host {
 .resizer-n::after {
   content: none;
 }
-.resizer-se, .resizer-sw {
-  height: var(--__resizer-factor);
-  width: var(--__resizer-factor);
-}
-.resizer-se::after, .resizer-sw::after {
-  content: url("data:image/svg+xml,%0A%3Csvg width='13' height='13' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0)' fill='%23848282'%3E%3Crect x='-.195' y='10.775' width='15.566' height='2' rx='1' transform='rotate(-45 -.195 10.775)'/%3E%3Crect x='5.346' y='11.241' width='8.401' height='2' rx='1' transform='rotate(-45 5.346 11.24)'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0'%3E%3Cpath fill='%23fff' d='M0 0h13v13H0z'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
-  transform: translate(-50%, -50%);
-}
 .resizer-se {
   cursor: nwse-resize;
+}
+.resizer-se::after {
+  transform: translate(-50%, -50%);
 }
 .resizer-sw {
   cursor: nesw-resize;
 }
 .resizer-sw::after {
-  transform: translate(-50%, -50%) translateY(-1.5px) rotate(90deg);
-}
-.resizer-s {
-  cursor: ns-resize;
-  height: var(--__resizer-factor);
-}
-.resizer-s::after {
-  content: url("data:image/svg+xml,%0A%3Csvg width='26' height='6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='26' height='2' rx='1' fill='%23848282'/%3E%3Crect y='4' width='26' height='2' rx='1' fill='%23848282'/%3E%3C/svg%3E");
-  transform: translate(-50%, -50%) translateY(-3px);
-}
-.resizer-e, .resizer-w {
-  cursor: ew-resize;
-  width: var(--__resizer-factor);
+  transform: translate(-50%, -50%) translateY(-0.0938rem) rotate(90deg);
 }
 .resizer-se, .resizer-e {
   right: calc(var(--__resizer-factor) * -1);
@@ -106,6 +88,35 @@ export default css`:host {
 }
 .resizer-w, .resizer-sw {
   left: calc(var(--__resizer-factor) * -1);
+}
+.resizer-se, .resizer-sw {
+  height: var(--__resizer-factor);
+  width: var(--__resizer-factor);
+}
+.resizer-se::after, .resizer-sw::after {
+  content: url("data:image/svg+xml,%0A%3Csvg width='13' height='13' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0)' fill='%23848282'%3E%3Crect x='-.195' y='10.775' width='15.566' height='2' rx='1' transform='rotate(-45 -.195 10.775)'/%3E%3Crect x='5.346' y='11.241' width='8.401' height='2' rx='1' transform='rotate(-45 5.346 11.24)'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0'%3E%3Cpath fill='%23fff' d='M0 0h13v13H0z'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
+}
+.resizer-se:hover, .resizer-sw:hover {
+  background-color: var(--_resizer-bgcolor-hover);
+}
+.resizer-s {
+  cursor: ns-resize;
+  height: var(--__resizer-factor);
+}
+.resizer-s::after {
+  content: url("data:image/svg+xml,%0A%3Csvg width='26' height='6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='26' height='2' rx='1' fill='%23848282'/%3E%3Crect y='4' width='26' height='2' rx='1' fill='%23848282'/%3E%3C/svg%3E");
+  transform: translate(-50%, -50%) translateY(-0.1875rem);
+}
+.resizer-s:hover {
+  background-image: var(--_resizer-bgimage-s-hover);
+}
+.resizer-e, .resizer-w {
+  cursor: ew-resize;
+  width: var(--__resizer-factor);
+}
+.resizer-e:hover, .resizer-w:hover {
+  background-image: var(--_resizer-bgimage-ew-hover);
+  background-position: bottom;
 }
 
 :host([resizing]),

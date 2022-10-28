@@ -4,10 +4,10 @@ export default css`:host {
   --_host-color: var(--blockquote-base-embedded-webview-size-color, inherit);
   --_rect-height: var(--blockquote-base-embedded-webview-size-rect-height, 1.125rem);
   --_rect-size: var(--blockquote-base-embedded-webview-size-rect-size, 0.6875rem);
-  --_button-border-color: var(--blockquote-base-embedded-webview-size-button-border-color, rgb(255, 255, 255));
-  --_button-bgcolor: var(--blockquote-base-embedded-webview-size-button-bgcolor, rgb(222, 225, 230));
-  --_button-bgcolor-hover: var(--blockquote-base-embedded-webview-size-button-bgcolor-hover, rgb(218, 220, 224));
-  --_button-bgcolor-selected-hover: var(--blockquote-base-embedded-webview-size-button-bgcolor-selected-hover, rgb(207, 208, 208));
+  --_button-border-color: var(--blockquote-base-embedded-webview-size-button-border-color, rgb(184, 184, 184));
+  --_button-bgcolor: var(--blockquote-base-embedded-webview-size-button-bgcolor, rgb(234, 234, 234));
+  --_button-bgcolor-hover: var(--blockquote-base-embedded-webview-size-button-bgcolor-hover, rgb(220, 220, 220));
+  --_button-bgcolor-selected-hover: var(--blockquote-base-embedded-webview-size-button-bgcolor-selected-hover, rgb(210, 210, 210));
   color: var(--_host-color);
   display: block;
   box-sizing: border-box;
@@ -17,6 +17,22 @@ export default css`:host {
 :host([hidden]),
 [hidden] {
   display: none !important;
+}
+
+:host([data-resizing]) [aria-hidden=true] {
+  opacity: 0.4;
+}
+
+:host([data-resizing]) [aria-hidden=true]::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: calc(100% + 2rem);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0));
 }
 
 *,
@@ -70,8 +86,8 @@ button {
 button {
   position: absolute;
   background-color: var(--_button-bgcolor);
-  border-left: 2px solid var(--_button-border-color);
-  border-right: 2px solid var(--_button-border-color);
+  border-left: 1px solid var(--_button-border-color);
+  border-right: 1px solid var(--_button-border-color);
 }
 button span {
   opacity: 0;
