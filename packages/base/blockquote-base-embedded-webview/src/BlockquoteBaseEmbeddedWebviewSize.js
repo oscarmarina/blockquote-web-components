@@ -11,10 +11,10 @@ import styles from './styles/BlockquoteBaseEmbeddedWebviewSize-styles.js';
 <blockquote-base-embedded-webview-size
   screen-sizes="[
     { width: 360, height: 640, id: '360x640' },
-    { width: 375, height: 667, id: '375x667' },
+    { width: 360, height: 800, id: '360x800' },
     { width: 414, height: 896, id: '414x896' },
     { width: 768, height: 1024, id: '768x1024' },
-    { width: 1024, height: 768, id: '1024x768' },
+    { width: 810, height: 1080, id: '810x1080' },
     { width: 1280, height: 800, id: '1280x800' },
     { width: 1366, height: 768, id: '1366x768' },
     { width: 1536, height: 864, id: '1536x864' },
@@ -82,10 +82,10 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
     this.selected = 0;
     this.screenSizes = [
       { width: 360, height: 640, id: '360x640' },
-      { width: 375, height: 667, id: '375x667' },
+      { width: 360, height: 800, id: '360x800' },
       { width: 414, height: 896, id: '414x896' },
       { width: 768, height: 1024, id: '768x1024' },
-      { width: 1024, height: 768, id: '1024x768' },
+      { width: 810, height: 1080, id: '810x1080' },
       { width: 1280, height: 800, id: '1280x800' },
       { width: 1366, height: 768, id: '1366x768' },
       { width: 1536, height: 864, id: '1536x864' },
@@ -179,7 +179,7 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
   }
 
   get _visualTextTpl() {
-    return html` <span aria-hidden="true">${this.selectedSize.id}</span>`;
+    return html` <span aria-disabled="true" aria-hidden="true">${this.selectedSize.id}</span>`;
   }
 
   _onResize(ev) {

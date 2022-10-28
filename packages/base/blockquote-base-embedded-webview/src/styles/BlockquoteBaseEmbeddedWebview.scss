@@ -1,12 +1,12 @@
 @import "node_modules/@blockquote-web-components/blockquote-foundations-sass/main";
 
 :host {
-  --_host-color: var(--blockquote-base-embedded-webview-color, rgb(32, 33, 36));
-  --_main-bgcolor: var(--blockquote-base-embedded-webview-main-bgcolor, rgb(248, 249, 249));
-  --_select-bgcolor: var(--blockquote-base-embedded-webview-select-bgcolor, rgb(222, 225, 230));
+  --_host-color: var(--blockquote-base-embedded-webview-color, rgb(32, 32, 32));
+  --_main-bgcolor: var(--blockquote-base-embedded-webview-main-bgcolor, rgb(250, 250, 250));
+  --_select-bgcolor: var(--blockquote-base-embedded-webview-select-bgcolor, rgb(222, 222, 222));
   --_select-transition: var(--blockquote-base-embedded-webview-select-transition, border-bottom 196ms ease-out, var(--blockquote-base-embedded-webview-select-transition, border-bottom 196ms ease-out));
-  --blockquote-base-embedded-webview-resize-rect-width: 640px; /* 40rem */
-  --blockquote-base-embedded-webview-resize-rect-height: 360px; /* 22.5rem */
+  --blockquote-base-embedded-webview-resize-rect-width: 40rem; /* 40rem */
+  --blockquote-base-embedded-webview-resize-rect-height: 22.5rem; /* 22.5rem */
 
   display: flex;
   flex-direction: column;
@@ -70,11 +70,10 @@ header > div {
     appearance: none;
     color: inherit;
     font: inherit;
-    font-size: 0.875rem;
     background-color: transparent;
     border: none;
     border-bottom: 0.125rem solid var(--_select-bgcolor);
-    padding: em(4px, 14px) em(18px, 14px) em(4px, 14px) 0;
+    padding: em(0.25rem, 0.875rem) em(1.125rem, 0.875rem) em(0.25rem, 0.875rem) 0;
     margin: 0;
     width: 100%;
     cursor: pointer;
@@ -92,6 +91,11 @@ header > div {
       border-bottom-color: currentcolor;
     }
   }
+}
+
+.description {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
 }
 
 .read-data-pos {
