@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.7.1](https://github.com/oscarmarina/blockquote-web-components/compare/v1.7.0...v1.7.1) (2022-10-31)
+
+
+### Bug Fixes
+
+* **blockquote-base-embedded-webview:** no-option ([9d2d7f9](https://github.com/oscarmarina/blockquote-web-components/commit/9d2d7f9150392bf7212264363fce6633f182434f))
+
 ## [1.7.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.6.5...v1.7.0) (2022-10-28)
 
 
