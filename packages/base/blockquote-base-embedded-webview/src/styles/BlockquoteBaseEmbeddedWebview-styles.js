@@ -52,7 +52,6 @@ header > div {
   display: inline-grid;
   grid-template-areas: select;
   align-items: center;
-  margin-bottom: 0.5rem;
 }
 .select > * {
   grid-area: select;
@@ -89,8 +88,12 @@ header > div {
 }
 
 .description {
-  margin: 0 0 1rem;
+  margin: 0.5rem 0 1rem;
   font-size: 0.875rem;
+}
+
+.description:empty {
+  visibility: hidden;
 }
 
 .read-data-pos {

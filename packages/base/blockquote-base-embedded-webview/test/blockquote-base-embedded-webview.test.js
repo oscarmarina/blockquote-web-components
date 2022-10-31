@@ -5,6 +5,7 @@ import '../define/blockquote-base-embedded-webview.js';
 
 suite('BlockquoteBaseEmbeddedWebview', () => {
   let el;
+  let variant;
 
   teardown(() => fixtureCleanup());
 
@@ -12,8 +13,16 @@ suite('BlockquoteBaseEmbeddedWebview', () => {
     setup(async () => {
       el = await fixture(
         html` <blockquote-base-embedded-webview heading="blockquote-base-embedded-webview">
-          <template data-src="./test/test.html" data-option="Base Complex"></template>
-          <template data-src="./test/test2.html" data-option="Other"></template>
+          <template
+            data-src="./test/test.html"
+            data-option="Base"
+            data-description="base - description"
+          ></template>
+          <template
+            data-src="./test/test2.html"
+            data-option="Other"
+            data-description="other - description"
+          ></template>
         </blockquote-base-embedded-webview>`,
       );
       await el.updateComplete;
@@ -59,6 +68,31 @@ suite('BlockquoteBaseEmbeddedWebview', () => {
         select.dispatchEvent(new CustomEvent('change'));
         const { detail } = await oneEvent(embedded, 'elementloaded');
         assert.isTrue(detail.title === select.options[select.selectedIndex].text);
+      });
+    });
+  });
+
+  suite('variant', () => {
+    setup(async () => {
+      variant = await fixture(
+        html` <blockquote-base-embedded-webview heading="blockquote-base-embedded-webview">
+          <template data-src="./test/test.html"></template>
+        </blockquote-base-embedded-webview>`,
+      );
+      await variant.updateComplete;
+    });
+
+    suite('Semantic Dom and a11y', () => {
+      test('SHADOW DOM - Structure test', async () => {
+        await assert.shadowDom.equalSnapshot(variant, { ignoreAttributes: ['style'] });
+      });
+
+      test('LIGHT DOM - Structure test', async () => {
+        await assert.lightDom.equalSnapshot(variant, { ignoreAttributes: ['style'] });
+      });
+
+      test('a11y', async () => {
+        await assert.isAccessible(variant);
       });
     });
   });
