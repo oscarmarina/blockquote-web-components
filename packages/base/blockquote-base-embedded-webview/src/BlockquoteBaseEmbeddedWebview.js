@@ -200,18 +200,22 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
 
   get _selectTpl() {
     return html`
-      <div class="select">
-        <select @change="${this._onChangeFile}" aria-label="Cases">
-          ${this._sources.map(
-            (item, index) => html`
-              <option ?selected="${this.selected === index}" value="${index}">
-                ${item.option}
-              </option>
-            `,
-          )}
-        </select>
-        ${this.__selectArrow}
-      </div>
+      ${this._sources.some(options => options.option)
+        ? html`
+            <div class="select">
+              <select @change="${this._onChangeFile}" aria-label="Cases">
+                ${this._sources.map(
+                  (item, index) => html`
+                    <option ?selected="${this.selected === index}" value="${index}">
+                      ${item.option}
+                    </option>
+                  `,
+                )}
+              </select>
+              ${this.__selectArrow}
+            </div>
+          `
+        : ''}
     `;
   }
 
@@ -256,7 +260,7 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     return html` <blockquote-base-embedded-webview-element
       slot="embedded"
       .src="${this._src}"
-      .embeddedTitle="${this._sources[this.selected].option}"
+      .embeddedTitle="${this._sources[this.selected].option || 'Demo'}"
     >
     </blockquote-base-embedded-webview-element>`;
   }
