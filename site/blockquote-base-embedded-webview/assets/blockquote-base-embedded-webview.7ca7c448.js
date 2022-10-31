@@ -399,7 +399,6 @@ header > div {
   display: inline-grid;
   grid-template-areas: select;
   align-items: center;
-  margin-bottom: 0.5rem;
 }
 .select > * {
   grid-area: select;
@@ -436,8 +435,12 @@ header > div {
 }
 
 .description {
-  margin: 0 0 1rem;
+  margin: 0.5rem 0 1rem;
   font-size: 0.875rem;
+}
+
+.description:empty {
+  visibility: hidden;
 }
 
 .read-data-pos {
@@ -462,16 +465,18 @@ blockquote-base-embedded-webview-resize {
         ${this._screenSizeTpl}
       </header>
     `}get _headingTpl(){return p`<div aria-level="${this._headingLevel}" role="heading">${this.heading}</div>`}get _selectTpl(){return p`
-      <div class="select">
-        <select @change="${this._onChangeFile}" aria-label="Cases">
-          ${this._sources.map((e,t)=>p`
-              <option ?selected="${this.selected===t}" value="${t}">
-                ${e.option}
-              </option>
-            `)}
-        </select>
-        ${this.__selectArrow}
-      </div>
+      ${this._sources.some(e=>e.option)?p`
+            <div class="select">
+              <select @change="${this._onChangeFile}" aria-label="Cases">
+                ${this._sources.map((e,t)=>p`
+                    <option ?selected="${this.selected===t}" value="${t}">
+                      ${e.option}
+                    </option>
+                  `)}
+              </select>
+              ${this.__selectArrow}
+            </div>
+          `:""}
     `}get _descriptionTpl(){return p` <p class="description">${this._sources[this.selected].description}</p>`}get _readDataPosTpl(){return p`
       <div
         aria-hidden="true"
@@ -496,6 +501,6 @@ blockquote-base-embedded-webview-resize {
     `}get _embeddedSlotTpl(){return p` <blockquote-base-embedded-webview-element
       slot="embedded"
       .src="${this._src}"
-      .embeddedTitle="${this._sources[this.selected].option}"
+      .embeddedTitle="${this._sources[this.selected].option||"Demo"}"
     >
     </blockquote-base-embedded-webview-element>`}_onChangeFile({target:e}){this.selected=e.selectedIndex,this._src=this._sources[this.selected].src}}window.customElements.define(Me.is,Me);
