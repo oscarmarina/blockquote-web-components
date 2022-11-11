@@ -2,7 +2,6 @@ import { css } from 'lit';
 
 export default css`:host {
   --__resizer-factor: calc(1.25rem * var(--blockquote-base-embedded-webview-resize-factor, 1));
-  --_rect-transition: var(--blockquote-base-embedded-webview-resize-rect-transition, width 90ms cubic-bezier(0.25, 0.46, 0.45, 0.94), height 90ms cubic-bezier(0.25, 0.46, 0.45, 0.94));
   --_rect-min-width: var(--blockquote-base-embedded-webview-resize-rect-min-width, 18.75rem);
   --_rect-min-height: var(--blockquote-base-embedded-webview-resize-rect-min-height, 9.375rem);
   --_rect-max-width: var(--blockquote-base-embedded-webview-resize-rect-max-width, 100%);
@@ -41,7 +40,6 @@ export default css`:host {
   width: var(--_rect-width);
   height: var(--_rect-height);
   transform: translateZ(0);
-  transition: var(--_rect-transition);
 }
 
 .resizer {
@@ -64,18 +62,22 @@ export default css`:host {
   top: calc(var(--__resizer-factor) / 4 * -1);
   left: calc(var(--__resizer-factor) * -1);
   width: calc(100% + var(--__resizer-factor) * 2);
+  border-top-left-radius: calc(var(--__resizer-factor) / 10);
+  border-top-right-radius: calc(var(--__resizer-factor) / 10);
 }
 .resizer-n::after {
   content: none;
 }
 .resizer-se {
   cursor: nwse-resize;
+  border-bottom-right-radius: calc(var(--__resizer-factor) / 10);
 }
 .resizer-se::after {
   transform: translate(-50%, -50%);
 }
 .resizer-sw {
   cursor: nesw-resize;
+  border-bottom-left-radius: calc(var(--__resizer-factor) / 10);
 }
 .resizer-sw::after {
   transform: translate(-50%, -50%) translateY(-0.0938rem) rotate(90deg);

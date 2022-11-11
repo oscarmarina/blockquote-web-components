@@ -73,6 +73,15 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
         type: Boolean,
         attribute: 'show-overflow-size',
       },
+
+      /**
+       * If true, selected size text is disabled
+       * @type {Boolean}
+       */
+      disabledSelectedSizeText: {
+        type: Boolean,
+        attribute: 'disabled-selected-size-text',
+      },
     };
   }
 
@@ -80,6 +89,7 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
     super();
     this.showOverflowSize = false;
     this.selected = 0;
+    this.disabledSelectedSizeText = false;
     this.screenSizes = [
       { width: 360, height: 640, id: '360x640' },
       { width: 360, height: 800, id: '360x800' },
@@ -179,7 +189,9 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
   }
 
   get _visualTextTpl() {
-    return html` <span aria-disabled="true" aria-hidden="true">${this.selectedSize.id}</span>`;
+    return html` <span aria-disabled="${this.disabledSelectedSizeText}" aria-hidden="true"
+      >${this.selectedSize.id}</span
+    >`;
   }
 
   _onResize(ev) {
