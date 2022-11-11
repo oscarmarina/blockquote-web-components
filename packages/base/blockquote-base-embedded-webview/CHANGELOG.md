@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.1.2...@blockquote-web-components/blockquote-base-embedded-webview@1.2.0) (2022-11-11)
+
+
+### Features
+
+* **blockquote-base-embedded-webview:** improved resize performance ([62aa7e1](https://github.com/oscarmarina/blockquote-web-components/commit/62aa7e1b212400f0bc77cfd94429700b7de75632))
+
+
+
+
+
 ## [1.1.2](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.1.1...@blockquote-web-components/blockquote-base-embedded-webview@1.1.2) (2022-11-06)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-base-embedded-webview
