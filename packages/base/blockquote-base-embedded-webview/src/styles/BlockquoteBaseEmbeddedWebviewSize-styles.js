@@ -19,22 +19,6 @@ export default css`:host {
   display: none !important;
 }
 
-:host([data-resizing]) [aria-hidden=true] {
-  opacity: 0.4;
-}
-
-:host([data-resizing]) [aria-hidden=true]::after {
-  content: "";
-  display: block;
-  height: 1px;
-  width: calc(100% + 2rem);
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0));
-}
-
 *,
 *::before,
 *::after {
@@ -81,6 +65,20 @@ button {
   cursor: pointer;
   letter-spacing: inherit;
   position: absolute;
+}
+.rect [aria-disabled=true] {
+  opacity: 0.4;
+}
+.rect [aria-disabled=true]::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: calc(100% + 2rem);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0));
 }
 
 button {

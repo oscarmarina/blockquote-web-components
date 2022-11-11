@@ -124,7 +124,7 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     this.heading = '';
     this.__resetResizing = false;
     this.__selectArrow = chevronDownIcon;
-    this.__readDataPos = { x: 0, y: 0, resizing: false };
+    this.__readDataPos = { x: 0, y: 0, resizing: false, cursor: '' };
     this.limitHeight = false;
     this._sources = [{ file: '', option: '', description: '' }];
     this._updateSize = this._updateSize.bind(this);
@@ -137,6 +137,15 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     this.shadowRoot.addEventListener('webviewresize', ({ detail }) => {
       Object.assign(this.__readDataPos, detail);
       this.__resetResizing = true;
+      if (detail.cursor === 'n' || detail.cursor === 'ne' || detail.cursor === 'nw') {
+        // http://makeseleniumeasy.com/2018/03/14/part-7-usages-of-javascripts-in-selenium-difference-among-scrollby-scrollto-and-scroll-methods-of-javascript/
+        window.scroll({
+          top: Math.abs(parseInt(this.__readDataPos.y, 10) + this._controlBottom),
+          left: 0,
+          behavior: 'smooth',
+        });
+      }
+
       this.requestUpdate();
     });
 
@@ -159,6 +168,9 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     super.firstUpdated && super.firstUpdated(props);
 
     this.embedded = this.shadowRoot.querySelector('[slot="embedded"]');
+    this._controlBottom = parseFloat(
+      window.getComputedStyle(this._embeddedResizeRef.value).paddingBottom,
+    );
     this.append(this.embedded);
   }
 
@@ -171,6 +183,7 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
       '--blockquote-base-embedded-webview-resize-rect-height',
       this.limitHeight ? '100%' : `${detail.height}px`,
     );
+
     this.__resetResizing = false;
     this.requestUpdate();
   }
@@ -239,7 +252,7 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
 
   get _screenSizeTpl() {
     return html` <blockquote-base-embedded-webview-size
-      ?data-resizing="${this.__resetResizing}"
+      .disabledSelectedSizeText="${this.__resetResizing}"
       @click="${this._updateSize}"
       @selectedchange="${this._updateSize}"
       .selected="${this.screenSizeSelected}"

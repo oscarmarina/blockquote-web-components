@@ -190,7 +190,7 @@
               "type": {
                 "text": "object"
               },
-              "default": "{ x: 0, y: 0, resizing: false }"
+              "default": "{ x: 0, y: 0, resizing: false, cursor: '' }"
             },
             {
               "kind": "field",
@@ -464,6 +464,14 @@
             },
             {
               "kind": "field",
+              "name": "_cursor",
+              "type": {
+                "text": "string"
+              },
+              "default": "''"
+            },
+            {
+              "kind": "field",
               "name": "_createResizerLeft"
             },
             {
@@ -578,6 +586,17 @@
             },
             {
               "kind": "field",
+              "name": "disabledSelectedSizeText",
+              "privacy": "public",
+              "description": "If true, selected size text is disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled-selected-size-text"
+            },
+            {
+              "kind": "field",
               "name": "screenSizes",
               "privacy": "public",
               "description": "The screen size options to display",
@@ -635,6 +654,15 @@
               },
               "default": "false",
               "fieldName": "showOverflowSize"
+            },
+            {
+              "name": "disabled-selected-size-text",
+              "description": "If true, selected size text is disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "disabledSelectedSizeText"
             }
           ],
           "superclass": {

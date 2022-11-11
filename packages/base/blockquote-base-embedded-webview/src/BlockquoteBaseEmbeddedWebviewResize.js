@@ -28,6 +28,7 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
 
   constructor() {
     super();
+    this._cursor = '';
     this._resizer = this._resizer.bind(this);
     this._removeResizer = this._removeResizer.bind(this);
     this._createResizerLeft = this._createResizer.bind(this, 'right');
@@ -102,29 +103,34 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
   _resizer({ detail }) {
     let cssOffsetX;
     let cssOffsetY;
-    const dx = Math.floor(detail.dx * 2);
-    const dy = Math.floor(detail.dy * 1.1);
-
+    const dx = Math.floor(detail.dx * 2.02);
+    const dy = Math.floor(detail.dy * 1.02);
+    // http://jsfiddle.net/MissoulaLorenzo/gfn6ob3j/
     switch (this._getBoundingClientRecDOMRect) {
       case 'right':
+        this._cursor = 'w';
         cssOffsetX = `${this._getBoundingClientRectWidth - dx}px`;
         this.style.setProperty('--blockquote-base-embedded-webview-resize-rect-width', cssOffsetX);
         break;
       case 'left':
+        this._cursor = 'e';
         cssOffsetX = `${this._getBoundingClientRectWidth + dx}px`;
         this.style.setProperty('--blockquote-base-embedded-webview-resize-rect-width', cssOffsetX);
         break;
       case 'top':
+        this._cursor = 'n';
         cssOffsetY = `${this._getBoundingClientRectHeight + dy * 1}px`;
         this.style.setProperty('--blockquote-base-embedded-webview-resize-rect-height', cssOffsetY);
         break;
       case 'scaleTopLeft':
+        this._cursor = 'ne';
         cssOffsetX = `${this._getBoundingClientRectWidth + dx}px`;
         cssOffsetY = `${this._getBoundingClientRectHeight + dy * 1}px`;
         this.style.setProperty('--blockquote-base-embedded-webview-resize-rect-width', cssOffsetX);
         this.style.setProperty('--blockquote-base-embedded-webview-resize-rect-height', cssOffsetY);
         break;
       case 'scaleTopRight':
+        this._cursor = 'nw';
         cssOffsetX = `${this._getBoundingClientRectWidth - dx}px`;
         cssOffsetY = `${this._getBoundingClientRectHeight + dy * 1}px`;
         this.style.setProperty('--blockquote-base-embedded-webview-resize-rect-width', cssOffsetX);
@@ -153,6 +159,7 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
           '--blockquote-base-embedded-webview-resize-rect-height',
         ),
         resizing: this.hasAttribute('resizing'),
+        cursor: this._cursor,
       },
     });
     this.dispatchEvent(event);

@@ -43,7 +43,7 @@
 
 | Event           | Type                                             |
 |-----------------|--------------------------------------------------|
-| `webviewresize` | `CustomEvent<{ x: string; y: string; resizing: boolean; }>` |
+| `webviewresize` | `CustomEvent<{ x: string; y: string; resizing: boolean; cursor: string; }>` |
 
 
 # blockquote-base-embedded-webview-size
@@ -74,15 +74,16 @@ screen-sizes="[
 
 ## Properties
 
-| Property             | Attribute            | Modifiers | Type                                             | Default                                          | Description                                      |
-|----------------------|----------------------|-----------|--------------------------------------------------|--------------------------------------------------|--------------------------------------------------|
-| `computedStyleWidth` |                      | readonly  | `number`                                         |                                                  |                                                  |
-| `screenSizes`        | `screen-sizes`       |           | `Array`                                          | [{"width":360,"height":640,"id":"360x640"},{"width":360,"height":800,"id":"360x800"},{"width":414,"height":896,"id":"414x896"},{"width":768,"height":1024,"id":"768x1024"},{"width":810,"height":1080,"id":"810x1080"},{"width":1280,"height":800,"id":"1280x800"},{"width":1366,"height":768,"id":"1366x768"},{"width":1536,"height":864,"id":"1536x864"},{"width":1920,"height":1080,"id":"1920x1080"}] | The screen size options to display               |
-| `selected`           | `selected`           |           | `Number`                                         | 0                                                | The screen size option selected                  |
-| `selectedDetail`     |                      | readonly  | `{ index: number; width: number; height: number; id: string; }` |                                                  |                                                  |
-| `selectedSize`       |                      | readonly  | `{ width: number; height: number; id: string; }` |                                                  |                                                  |
-| `showOverflowSize`   | `show-overflow-size` |           | `Boolean`                                        | false                                            | Show screen size options that are too large for the container |
-| `widthInPercent`     | `width-in-percent`   |           | `Boolean`                                        | false                                            | Percentage value for the width                   |
+| Property                   | Attribute                     | Modifiers | Type                                             | Default                                          | Description                                      |
+|----------------------------|-------------------------------|-----------|--------------------------------------------------|--------------------------------------------------|--------------------------------------------------|
+| `computedStyleWidth`       |                               | readonly  | `number`                                         |                                                  |                                                  |
+| `disabledSelectedSizeText` | `disabled-selected-size-text` |           | `Boolean`                                        | false                                            | If true, selected size text is disabled          |
+| `screenSizes`              | `screen-sizes`                |           | `Array`                                          | [{"width":360,"height":640,"id":"360x640"},{"width":360,"height":800,"id":"360x800"},{"width":414,"height":896,"id":"414x896"},{"width":768,"height":1024,"id":"768x1024"},{"width":810,"height":1080,"id":"810x1080"},{"width":1280,"height":800,"id":"1280x800"},{"width":1366,"height":768,"id":"1366x768"},{"width":1536,"height":864,"id":"1536x864"},{"width":1920,"height":1080,"id":"1920x1080"}] | The screen size options to display               |
+| `selected`                 | `selected`                    |           | `Number`                                         | 0                                                | The screen size option selected                  |
+| `selectedDetail`           |                               | readonly  | `{ index: number; width: number; height: number; id: string; }` |                                                  |                                                  |
+| `selectedSize`             |                               | readonly  | `{ width: number; height: number; id: string; }` |                                                  |                                                  |
+| `showOverflowSize`         | `show-overflow-size`          |           | `Boolean`                                        | false                                            | Show screen size options that are too large for the container |
+| `widthInPercent`           | `width-in-percent`            |           | `Boolean`                                        | false                                            | Percentage value for the width                   |
 
 ## Methods
 
