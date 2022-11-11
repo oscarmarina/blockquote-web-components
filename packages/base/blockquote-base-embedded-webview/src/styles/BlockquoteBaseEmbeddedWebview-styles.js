@@ -22,7 +22,7 @@ export default css`:host {
 }
 
 .main {
-  transform: translateZ(0);
+  contain: content;
   flex: 1;
   background-color: var(--_main-bgcolor);
 }
