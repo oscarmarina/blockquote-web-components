@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.2.0...@blockquote-web-components/blockquote-base-embedded-webview@1.2.1) (2022-11-11)
+
+
+### Bug Fixes
+
+* **blockquote-base-embedded-webview:** add contain-content ([fcb74ab](https://github.com/oscarmarina/blockquote-web-components/commit/fcb74abfba484f1ef29897620a36e701c6605b8f))
+
+
+
+
+
 # [1.2.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.1.2...@blockquote-web-components/blockquote-base-embedded-webview@1.2.0) (2022-11-11)
 
 
