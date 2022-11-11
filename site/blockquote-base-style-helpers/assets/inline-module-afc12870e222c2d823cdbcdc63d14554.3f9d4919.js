@@ -1,4 +1,4 @@
-var te=Object.defineProperty,ie=Object.defineProperties;var se=Object.getOwnPropertyDescriptors;var D=Object.getOwnPropertySymbols;var re=Object.prototype.hasOwnProperty,oe=Object.prototype.propertyIsEnumerable;var B=(t,e,i)=>e in t?te(t,e,{enumerable:!0,configurable:!0,writable:!0,value:i}):t[e]=i,M=(t,e)=>{for(var i in e||(e={}))re.call(e,i)&&B(t,i,e[i]);if(D)for(var i of D(e))oe.call(e,i)&&B(t,i,e[i]);return t},N=(t,e)=>ie(t,se(e));import{b as P,i as k,s as x,y as a,w as ne}from"./lit-element.177803ef.js";/**
+var te=Object.defineProperty,ie=Object.defineProperties;var se=Object.getOwnPropertyDescriptors;var D=Object.getOwnPropertySymbols;var re=Object.prototype.hasOwnProperty,oe=Object.prototype.propertyIsEnumerable;var B=(t,e,i)=>e in t?te(t,e,{enumerable:!0,configurable:!0,writable:!0,value:i}):t[e]=i,M=(t,e)=>{for(var i in e||(e={}))re.call(e,i)&&B(t,i,e[i]);if(D)for(var i of D(e))oe.call(e,i)&&B(t,i,e[i]);return t},N=(t,e)=>ie(t,se(e));import{b as P,i as k,s as x,y as a,w as ne}from"./lit-element.2d757a94.js";/**
  * @license
  * Copyright 2020 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
@@ -180,6 +180,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   --_resizer-bgcolor-hover: var(--blockquote-base-embedded-webview-resize-resizer-bgcolor-hover, rgb(220, 220, 220));
   --_resizer-bgimage-ew-hover: var(--blockquote-base-embedded-webview-resize-resizer-bgcolor-hover, linear-gradient(0deg, rgba(220, 220, 220, 0.2), rgba(220, 220, 220, 1) 50%, rgba(220, 220, 220, 0.2)));
   --_resizer-bgimage-s-hover: var(--blockquote-base-embedded-webview-resize-resizer-bgcolor-hover, linear-gradient(90deg, rgba(220, 220, 220, 0.2), rgba(220, 220, 220, 1) 50%, rgba(220, 220, 220, 0.2)));
+  contain: content;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -351,7 +352,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 .main {
-  transform: translateZ(0);
+  contain: content;
   flex: 1;
   background-color: var(--_main-bgcolor);
 }
