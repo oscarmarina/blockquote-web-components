@@ -125,7 +125,10 @@ and equally for flattened nodes.
 
 ```json
 {
-   "slotName": "",
+   "assignedSlotContent" : {
+     "slotName": "",
+     "assignedSlot": slot
+   },
    "assignedNodesContent": {
        "assignedNodesByNode": [
            {
@@ -175,7 +178,10 @@ and equally for flattened nodes.
 
 ```json
 {
-   "slotName": "",
+   "assignedSlotContent" : {
+     "slotName": "",
+     "assignedSlot": null
+   },
    "assignedNodesContent": {
        "assignedNodesByNode": [],
        "assignedNodes": []
