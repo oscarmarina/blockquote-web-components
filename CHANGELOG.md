@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.8.1...v1.9.0) (2022-11-17)
+
+
+### Features
+
+* **blockquote-mixin-slot-content:** add assignedSlot ([aa3b444](https://github.com/oscarmarina/blockquote-web-components/commit/aa3b444e8322a977fdbdc39f1ff2f0531cd49987))
+
 ### [1.8.1](https://github.com/oscarmarina/blockquote-web-components/compare/v1.8.0...v1.8.1) (2022-11-11)
 
 
