@@ -132,7 +132,10 @@ and equally for flattened nodes.
 
 ```json
 {
-    "slotName": "",
+    "assignedSlotContent" : {
+      "slotName": "",
+      "assignedSlot": slot
+    },
     "assignedNodesContent": {
         "assignedNodesByNode": [
             {
@@ -182,7 +185,10 @@ and equally for flattened nodes.
 
 ```json
 {
-    "slotName": "",
+    "assignedSlotContent" : {
+      "slotName": "",
+      "assignedSlot": null
+    },
     "assignedNodesContent": {
         "assignedNodesByNode": [],
         "assignedNodes": []
@@ -245,6 +251,11 @@ export const BlockquoteMixinSlotContent = dedupingMixin(
           assignedNodes: flattenedContent.map(nod => nod.assignedNodes),
         };
 
+        const assignedSlotContent = {
+          slotName: contentSlotName,
+          assignedSlot: assignedContent[0]?.assignedSlot || null,
+        };
+
         /**
          * Raised when the node(s)contained in some slot change.
          * @event slotchanges
@@ -252,7 +263,7 @@ export const BlockquoteMixinSlotContent = dedupingMixin(
         const event = new CustomEvent('slotchanges', {
           bubbles: true,
           detail: {
-            slotName: contentSlotName,
+            assignedSlotContent,
             assignedNodesContent,
             flattenedNodesContent,
             originalEvent: { event: ev, assignedNodes: originalAssignedNodes },
