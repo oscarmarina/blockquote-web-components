@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.1](https://github.com/oscarmarina/blockquote-web-components/compare/v1.9.0...v1.9.1) (2022-11-18)
+
+
+### Bug Fixes
+
+* **blockquote-foundations-sass:** dart-modules ([7cceb5f](https://github.com/oscarmarina/blockquote-web-components/commit/7cceb5f698136c21c6e439af3a6ca256f5ff18a4))
+
 ## [1.9.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.8.1...v1.9.0) (2022-11-17)
 
 
