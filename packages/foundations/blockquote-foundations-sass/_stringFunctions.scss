@@ -1,7 +1,9 @@
 /// Utils
+@use "sass:math";
+@use "sass:string";
 
 @function strip-units($number) {
-  @return $number / ($number * 0 + 1);
+  @return math.div($number, ($number * 0 + 1));
 }
 
 // Capitalize string
