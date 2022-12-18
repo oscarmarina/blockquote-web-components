@@ -19,5 +19,6 @@
     "**/*.md",
     "**/*.config.js",
     "**/.*"
-  ]
+  ],
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json"
 }
