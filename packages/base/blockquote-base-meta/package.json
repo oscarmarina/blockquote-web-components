@@ -9,6 +9,19 @@
   ],
   "license": "MIT",
   "author": "blockquote-base-meta",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./index.js"
+    },
+    "./package.json": "./package.json",
+    "./src/BlockquoteBaseMeta.js": {
+      "default": "./src/BlockquoteBaseMeta.js"
+    },
+    "./index.js": {
+      "default": "./index.js"
+    }
+  },
   "main": "index.js",
   "module": "index.js",
   "files": [

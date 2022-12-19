@@ -9,6 +9,25 @@
   ],
   "license": "MIT",
   "author": "blockquote-base-style-helpers",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./index.js"
+    },
+    "./package.json": "./package.json",
+    "./src/getComponentSharedStyles.js": {
+      "default": "./src/getComponentSharedStyles.js"
+    },
+    "./src/setComponentSharedStyles.js": {
+      "default": "./src/setComponentSharedStyles.js"
+    },
+    "./src/setDocumentStyles.js": {
+      "default": "./src/setDocumentStyles.js"
+    },
+    "./index.js": {
+      "default": "./index.js"
+    }
+  },
   "main": "index.js",
   "module": "index.js",
   "files": [

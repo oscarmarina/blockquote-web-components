@@ -11,6 +11,19 @@
   ],
   "license": "MIT",
   "author": "blockquote-mixin-slot-content",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./index.js"
+    },
+    "./package.json": "./package.json",
+    "./src/BlockquoteMixinSlotContent.js": {
+      "default": "./src/BlockquoteMixinSlotContent.js"
+    },
+    "./index.js": {
+      "default": "./index.js"
+    }
+  },
   "main": "index.js",
   "module": "index.js",
   "files": [

@@ -9,6 +9,19 @@
   ],
   "license": "MIT",
   "author": "blockquote-controller-rxjs",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./index.js"
+    },
+    "./package.json": "./package.json",
+    "./src/BlockquoteControllerRxjs.js": {
+      "default": "./src/BlockquoteControllerRxjs.js"
+    },
+    "./index.js": {
+      "default": "./index.js"
+    }
+  },
   "main": "index.js",
   "module": "index.js",
   "files": [
