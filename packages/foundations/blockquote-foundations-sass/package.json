@@ -11,6 +11,7 @@
   ],
   "license": "MIT",
   "author": "blockquote-foundations-sass",
+  "type": "module",
   "files": [
     "*.scss"
   ],

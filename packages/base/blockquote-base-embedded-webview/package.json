@@ -9,6 +9,53 @@
   ],
   "license": "MIT",
   "author": "blockquote-base-embedded-webview",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./index.js"
+    },
+    "./package.json": "./package.json",
+    "./src/BlockquoteBaseEmbeddedWebview.js": {
+      "default": "./src/BlockquoteBaseEmbeddedWebview.js"
+    },
+    "./src/BlockquoteBaseEmbeddedWebviewElement.js": {
+      "default": "./src/BlockquoteBaseEmbeddedWebviewElement.js"
+    },
+    "./src/BlockquoteBaseEmbeddedWebviewResize.js": {
+      "default": "./src/BlockquoteBaseEmbeddedWebviewResize.js"
+    },
+    "./src/BlockquoteBaseEmbeddedWebviewSize.js": {
+      "default": "./src/BlockquoteBaseEmbeddedWebviewSize.js"
+    },
+    "./define/blockquote-base-embedded-webview-element.js": {
+      "default": "./define/blockquote-base-embedded-webview-element.js"
+    },
+    "./define/blockquote-base-embedded-webview-resize.js": {
+      "default": "./define/blockquote-base-embedded-webview-resize.js"
+    },
+    "./define/blockquote-base-embedded-webview-size.js": {
+      "default": "./define/blockquote-base-embedded-webview-size.js"
+    },
+    "./define/blockquote-base-embedded-webview.js": {
+      "default": "./define/blockquote-base-embedded-webview.js"
+    },
+    "./index.js": {
+      "default": "./index.js"
+    },
+    "./src/tab-panel.css.js": "./src/tab-panel.css.js",
+    "./src/styles/BlockquoteBaseEmbeddedWebview-styles.js": {
+      "default": "./src/styles/BlockquoteBaseEmbeddedWebview-styles.js"
+    },
+    "./src/styles/BlockquoteBaseEmbeddedWebviewElement-styles.js": {
+      "default": "./src/styles/BlockquoteBaseEmbeddedWebviewElement-styles.js"
+    },
+    "./src/styles/BlockquoteBaseEmbeddedWebviewResize-styles.js": {
+      "default": "./src/styles/BlockquoteBaseEmbeddedWebviewResize-styles.js"
+    },
+    "./src/styles/BlockquoteBaseEmbeddedWebviewSize-styles.js": {
+      "default": "./src/styles/BlockquoteBaseEmbeddedWebviewSize-styles.js"
+    }
+  },
   "main": "index.js",
   "module": "index.js",
   "files": [
