@@ -1,4 +1,4 @@
-import{e as i,i as l,n as c,a as o,s as m,b as v,w as u,y as d}from"./directive-helpers.d0d4c120.js";const h=(t="")=>`data:image/svg+xml;charset=utf-8,${encodeURI(t).replace(/#/g,"%23")}`,r=t=>c(t,o.SVG),g=(t=[],e=[])=>t.map((n,s)=>[n,r(e[s])?g(e[s].strings,e[s].values).join(""):e[s]].join(""));class b extends l{render(e){if(!e||!r(e))return"";const n=e.strings,s=e.values,a=g(n,s).join("");return h(a)}}const p=i(b);class S extends m{static get styles(){return v`
+import{e as i,i as l,n as c,a as o,s as m,b as v,w as u,y as d}from"./directive-helpers-7425d599.js";const h=(t="")=>`data:image/svg+xml;charset=utf-8,${encodeURI(t).replace(/#/g,"%23")}`,r=t=>c(t,o.SVG),g=(t=[],e=[])=>t.map((n,s)=>[n,r(e[s])?g(e[s].strings,e[s].values).join(""):e[s]].join(""));class b extends l{render(e){if(!e||!r(e))return"";const n=e.strings,s=e.values,a=g(n,s).join("");return h(a)}}const p=i(b);class S extends m{static get styles(){return v`
             :host {
               display: flex;
               align-items: center;
