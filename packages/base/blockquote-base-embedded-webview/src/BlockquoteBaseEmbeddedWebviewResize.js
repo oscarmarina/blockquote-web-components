@@ -80,7 +80,6 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
 
   _doubleclickForCssInitialSize() {
     this.removeAttribute('style');
-    // this._dispatchResizeEvent();
   }
 
   _createResizer(DOMRect) {
@@ -119,20 +118,20 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
         break;
       case 'top':
         this._cursor = 'n';
-        cssOffsetY = `${this._getBoundingClientRectHeight + dy * 1}px`;
+        cssOffsetY = `${this._getBoundingClientRectHeight + dy}px`;
         this.style.setProperty('--blockquote-base-embedded-webview-resize-rect-height', cssOffsetY);
         break;
       case 'scaleTopLeft':
         this._cursor = 'ne';
         cssOffsetX = `${this._getBoundingClientRectWidth + dx}px`;
-        cssOffsetY = `${this._getBoundingClientRectHeight + dy * 1}px`;
+        cssOffsetY = `${this._getBoundingClientRectHeight + dy}px`;
         this.style.setProperty('--blockquote-base-embedded-webview-resize-rect-width', cssOffsetX);
         this.style.setProperty('--blockquote-base-embedded-webview-resize-rect-height', cssOffsetY);
         break;
       case 'scaleTopRight':
         this._cursor = 'nw';
         cssOffsetX = `${this._getBoundingClientRectWidth - dx}px`;
-        cssOffsetY = `${this._getBoundingClientRectHeight + dy * 1}px`;
+        cssOffsetY = `${this._getBoundingClientRectHeight + dy}px`;
         this.style.setProperty('--blockquote-base-embedded-webview-resize-rect-width', cssOffsetX);
         this.style.setProperty('--blockquote-base-embedded-webview-resize-rect-height', cssOffsetY);
         break;
