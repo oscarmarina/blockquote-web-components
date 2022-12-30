@@ -1,22 +1,3 @@
-import { Directive, directive } from 'lit/directive.js';
-import { isTemplateResult } from 'lit/directive-helpers.js';
-
-const svgXmlEncode = (url = '') => {
-  const svgEncode = encodeURI(url).replace(/#/g, '%23');
-  const svgXml = `data:image/svg+xml;charset=utf-8,${svgEncode}`;
-  return svgXml;
-};
-
-const mergeAlternatingValues = (firstArray = [], secondArray = []) =>
-  firstArray.map((strings, index) =>
-    [
-      strings,
-      isTemplateResult(secondArray[index])
-        ? mergeAlternatingValues(secondArray[index].strings, secondArray[index].values).join('')
-        : secondArray[index],
-    ].join(''),
-  );
-
 /**
 # blockquoteDirectiveSvgToDataImage
 
@@ -126,23 +107,7 @@ render() {
 
 - blockquoteDirectiveSvgToDataImage
 
+@tagname blockquote-directive-vg-to-data-image
+@element blockquote-directive-vg-to-data-image
 */
-class BlockquoteDirectiveSvgToDataImage extends Directive {
-  render(svgNodeInfo) {
-    if (!svgNodeInfo || !isTemplateResult(svgNodeInfo)) {
-      return '';
-    }
-
-    const svgTemplateStrings = svgNodeInfo.strings;
-    const svgTemplateResultValues = svgNodeInfo.values;
-
-    const svgXmlEncodeString = mergeAlternatingValues(
-      svgTemplateStrings,
-      svgTemplateResultValues,
-    ).join('');
-
-    return svgXmlEncode(svgXmlEncodeString);
-  }
-}
-
-export const blockquoteDirectiveSvgToDataImage = directive(BlockquoteDirectiveSvgToDataImage);
+export class ReadmElement extends HTMLElement {}
