@@ -1,0 +1,9 @@
+/**
+@license
+Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/let C=0;const f=function(t){let i=t.__mixinApplications;i||(i=new WeakMap,t.__mixinApplications=i);let a=C++;return function(n){let l=n.__mixinSet;if(l&&l[a])return n;let d=i,s=d.get(n);if(!s){s=t(n),d.set(n,s);let o=Object.create(s.__mixinSet||l||null);o[a]=!0,s.__mixinSet=o}return s}},S=t=>!/[^\t\n\r ]/.test(t.textContent),m=t=>t.nodeType===8||t.nodeType===3&&S(t),_=f(t=>class extends t{connectedCallback(){super.connectedCallback&&super.connectedCallback(),this.shadowRoot.addEventListener("slotchange",this._onSlotChange.bind(this))}_onSlotChange(a){var r;const{target:n}=a,l=n.name||n.getAttribute("name")||"",d=[...n.assignedNodes(),...n.childNodes],s=n.assignedNodes({flatten:!0}),o=[];d.length&&d.forEach(e=>{m(e)||o.push({flatten:e.assignedSlot===null,assignedNodes:e.nodeType===3?e.textContent.trim():e,assignedSlot:e.assignedSlot})});const c=o.filter(e=>e.flatten===!1),g=o.filter(e=>e.flatten===!0),u={assignedNodesByNode:c,assignedNodes:c.map(e=>e.assignedNodes)},N={assignedNodesByNode:g,assignedNodes:g.map(e=>e.assignedNodes)},p={slotName:l,assignedSlot:((r=c[0])==null?void 0:r.assignedSlot)||null},h=new CustomEvent("slotchanges",{bubbles:!0,detail:{assignedSlotContent:p,assignedNodesContent:u,flattenedNodesContent:N,originalEvent:{event:a,assignedNodes:s}}});this.shadowRoot.dispatchEvent(h)}});export{_ as B};
