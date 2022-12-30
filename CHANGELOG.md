@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.9.4...v1.10.0) (2022-12-30)
+
+
+### Features
+
+* **blockquote-directive-svg-to-data-image:** add all template result ([9813b4e](https://github.com/oscarmarina/blockquote-web-components/commit/9813b4e66ba812d4ddac753556e2d70fd5bccb95))
+
 ### [1.9.4](https://github.com/oscarmarina/blockquote-web-components/compare/v1.9.3...v1.9.4) (2022-12-20)
 
 
