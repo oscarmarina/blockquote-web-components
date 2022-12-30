@@ -3,7 +3,7 @@ import { html, fixture, assert, fixtureCleanup } from '@open-wc/testing';
 import { LitElement, svg, html as litHtml } from 'lit';
 import { blockquoteDirectiveSvgToDataImage } from '../index.js';
 
-const svgTag1 = svg`<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+const svgTag1 = litHtml`<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="50" cy="50" r="50" fill="white" />
 <circle cx="50" cy="50" r="40" fill="black" />
 <circle cx="50" cy="50" r="30" fill="white" />
@@ -11,12 +11,9 @@ const svgTag1 = svg`<svg width="100" height="100" viewBox="0 0 100 100" fill="no
 <circle cx="50" cy="50" r="10" fill="white" />
 </svg>`;
 
-const svgTag2 = svg`<svg id="${Math.random()
-  .toString(36)
-  .substring(
-    2,
-    10,
-  )}" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+const svgTag2 = litHtml`<svg id="${String(
+  1,
+)}" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="50" cy="50" r="50" fill="white" />
 <circle cx="50" cy="50" r="40" fill="black" />
 <circle cx="50" cy="50" r="30" fill="white" />
@@ -25,12 +22,12 @@ const svgTag2 = svg`<svg id="${Math.random()
 </svg>`;
 
 const circleTag = svg`<circle cx="50" cy="50" r="10" fill="pink" />`;
-const svgTag3 = svg`<svg id="${Math.random()
-  .toString(36)
-  .substring(
-    2,
-    10,
-  )}" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+const circleString = `<circle cx="50" cy="50" r="10" fill="pink" />`;
+
+const svgTag3 = litHtml`<svg id="${String(
+  2,
+)}" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="50" cy="50" r="50" fill="white" />
 <circle cx="50" cy="50" r="40" fill="black" />
 <circle cx="50" cy="50" r="30" fill="white" />
@@ -75,28 +72,28 @@ suite('SVGtoDataImage', () => {
       await el.updateComplete;
     });
 
-    test('Shadow DOM - SVG string', async () => {
+    test('Shadow DOM: SVG string', async () => {
       el.svgToRender = svg`${svgTag1}`;
       await el.updateComplete;
-      assert.shadowDom.equalSnapshot(el);
+      await assert.shadowDom.equalSnapshot(el);
     });
 
-    test('Shadow DOM - SVG with interpolation', async () => {
+    test('Shadow DOM: SVG with interpolation', async () => {
       el.svgToRender = svgTag2;
       await el.updateComplete;
-      assert.shadowDom.equalSnapshot(el);
+      await assert.shadowDom.equalSnapshot(el);
     });
 
-    test('Shadow DOM - SVG with interpolation 2', async () => {
+    test('Shadow DOM: SVG with interpolation 2', async () => {
       el.svgToRender = svgTag3;
       await el.updateComplete;
-      assert.shadowDom.equalSnapshot(el);
+      await assert.shadowDom.equalSnapshot(el);
     });
 
-    test('Shadow DOM - SVG non-SVGTemplateResult', async () => {
-      el.svgToRender = {};
+    test('Shadow DOM: non-TemplateResult', async () => {
+      el.svgToRender = circleString;
       await el.updateComplete;
-      assert.shadowDom.equalSnapshot(el);
+      await assert.shadowDom.equalSnapshot(el);
     });
   });
 });
