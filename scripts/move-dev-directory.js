@@ -30,8 +30,9 @@ const getAllDev = (
         arrayOfDevDirectories.push({
           devDirectory: devBasePathObject,
           devDirectoryName: join(devBasePathObject, '..').split(sep).pop(),
-          devDirectoryCategory: join(devBasePathObject, '..', '..').split(sep).pop(),
-
+          devDirectoryCategory: join(devBasePathObject, '..', '..')
+            .split(sep)
+            .pop(),
         });
       } else {
         // eslint-disable-next-line no-param-reassign
@@ -50,7 +51,12 @@ getAllDev().forEach((dev) => {
   copy(dev.devDirectory, resolve(`./site/${dev.devDirectoryName}`))
     .then((results) => {
       const $olNode = $indexHtml('ol').append(
-        `<li><a href="${dev.devDirectoryName}/index.html">${dev.devDirectoryName}</a></li>`
+        `<li>
+          <ul>
+            <li><a href="${dev.devDirectoryName}/index.html">• ${dev.devDirectoryName}</a></li>
+            <li><a href="https://github.com/oscarmarina/blockquote-web-components/tree/main/packages/${dev.devDirectoryCategory}/${dev.devDirectoryName}/README.md">• readme</a></li>
+          </ul>
+        </li>`
       );
       writeFileSync(resolve(`./site/index.html`), $indexHtml.html(), 'utf8');
       console.info(
