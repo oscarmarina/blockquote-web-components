@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.10.1](https://github.com/oscarmarina/blockquote-web-components/compare/v1.10.0...v1.10.1) (2023-01-20)
+
+
+### Bug Fixes
+
+* **blockquote-base-common-dev-dependencies:** update nohoist ([8154aae](https://github.com/oscarmarina/blockquote-web-components/commit/8154aae449cb97e1c79b0105da907c886a6e62b1))
+* **blockquote-base-embedded-webview:** update nohoist ([79df0a3](https://github.com/oscarmarina/blockquote-web-components/commit/79df0a3835939ca3ad9480c6779b174553a7477d))
+
 ## [1.10.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.9.4...v1.10.0) (2022-12-30)
 
 
