@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.6](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.2.5...@blockquote-web-components/blockquote-base-embedded-webview@1.2.6) (2023-01-20)
+
+### Bug Fixes
+
+- **blockquote-base-embedded-webview:** update nohoist ([79df0a3](https://github.com/oscarmarina/blockquote-web-components/commit/79df0a3835939ca3ad9480c6779b174553a7477d))
+
 ## [1.2.5](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.2.4...@blockquote-web-components/blockquote-base-embedded-webview@1.2.5) (2022-12-20)
 
 ### Bug Fixes
