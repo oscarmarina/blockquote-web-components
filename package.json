@@ -16,14 +16,11 @@
   "workspaces": {
     "packages": [
       "packages/**/*"
-    ],
-    "nohoist": [
-      "**/@blockquote-web-components/blockquote-foundations-sass"
     ]
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "clean": "rm yarn.lock && lerna clean",
+    "clean": "rm package-lock && lerna clean",
     "clean:packages": "lerna exec -- rm -rf ./node_modules && npm run clean:packages:dev",
     "clean:packages:dev": "lerna exec -- rm -rf ./dev && lerna exec -- rm -rf ./package-lock.json",
     "format": "func() { npm run format:eslint $1 && npm run format:prettier $1 && npm run format:stylelint $1; }; func",

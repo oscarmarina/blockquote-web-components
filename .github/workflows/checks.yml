@@ -33,5 +33,5 @@ jobs:
 
       - name: Format and test
         run: |
-          yarn format
-          yarn test:pre-push
+          npm run format
+          npm run test:pre-push

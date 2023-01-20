@@ -40,7 +40,7 @@ jobs:
 
       - name: Test
         run: |
-          yarn test:pre-push
+          npm run test:pre-push
 
       - name: Version and publish
         run: |
