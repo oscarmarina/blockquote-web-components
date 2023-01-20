@@ -1,7 +1,8 @@
-/// Utils
+@use "sass:list";
 @use "sass:math";
 @use "sass:string";
 
+/// Utils
 @function strip-units($number) {
   @return math.div($number, ($number * 0 + 1));
 }
@@ -13,7 +14,7 @@
 // @return [string]
 
 @function capitalize($string) {
-  @return to-upper-case(string.slice($string, 1, 1)) + string.slice($string, 2);
+  @return string.to-upper-case(string.slice($string, 1, 1)) + string.slice($string, 2);
 }
 
 // Alias
@@ -28,7 +29,7 @@
 // @return [string]
 
 @function uncapitalize($string) {
-  @return to-lower-case(string.slice($string, 1, 1)) + string.slice($string, 2);
+  @return string.to-lower-case(string.slice($string, 1, 1)) + string.slice($string, 2);
 }
 
 // Alias
@@ -69,7 +70,7 @@
 // @return [boolean]
 
 @function contain($list, $value) {
-  @return not not index($list, $value);
+  @return not not list.index($list, $value);
 }
 
 // Camelize string with the possibility of truncating the argument/string
