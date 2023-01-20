@@ -1,4 +1,4 @@
-@import "node_modules/@blockquote-web-components/blockquote-foundations-sass/main";
+@use "../../../../../node_modules/@blockquote-web-components/blockquote-foundations-sass/main";
 
 :host {
   --__resizer-factor: calc(1.25rem * var(--blockquote-base-embedded-webview-resize-factor, 1));
