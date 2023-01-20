@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.10.1...v1.11.0) (2023-01-20)
+
+
+### Features
+
+* **blockquote-base-embedded-webview:** replace import rule ([28673d8](https://github.com/oscarmarina/blockquote-web-components/commit/28673d8d6d17df583d5d8c69e159388144a03605))
+* **blockquote-foundations-sass:** replace import rule ([ff6961a](https://github.com/oscarmarina/blockquote-web-components/commit/ff6961a77f5caa5877abbdb97be77227e0819aef))
+
 ### [1.10.1](https://github.com/oscarmarina/blockquote-web-components/compare/v1.10.0...v1.10.1) (2023-01-20)
 
 
