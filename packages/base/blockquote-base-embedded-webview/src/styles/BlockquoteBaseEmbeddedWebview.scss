@@ -1,4 +1,4 @@
-@import "node_modules/@blockquote-web-components/blockquote-foundations-sass/main";
+@use "../../../../../node_modules/@blockquote-web-components/blockquote-foundations-sass/main";
 
 :host {
   --_host-color: var(--blockquote-base-embedded-webview-color, rgb(32, 32, 32));
@@ -73,7 +73,7 @@ header > div {
     background-color: transparent;
     border: none;
     border-bottom: 0.125rem solid var(--_select-bgcolor);
-    padding: em(0.25rem, 0.875rem) em(1.125rem, 0.875rem) em(0.25rem, 0.875rem) 0;
+    padding: main.em(0.25rem, 0.875rem) main.em(1.125rem, 0.875rem) main.em(0.25rem, 0.875rem) 0;
     margin: 0;
     width: 100%;
     cursor: pointer;

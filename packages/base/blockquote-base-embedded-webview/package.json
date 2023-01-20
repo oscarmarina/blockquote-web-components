@@ -42,7 +42,6 @@
     "./index.js": {
       "default": "./index.js"
     },
-    "./src/tab-panel.css.js": "./src/tab-panel.css.js",
     "./src/styles/BlockquoteBaseEmbeddedWebview-styles.js": {
       "default": "./src/styles/BlockquoteBaseEmbeddedWebview-styles.js"
     },
