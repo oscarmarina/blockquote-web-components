@@ -91,8 +91,9 @@ export class BlockquoteControllerRxjs {
     }
 
     // eslint-disable-next-line arrow-parens
-    const subscription = stream$.pipe(takeUntil(this[unsubscribe])).subscribe(res => {
-      this.host[propKey] = res;
+    const subscription = stream$.pipe(takeUntil(this[unsubscribe])).subscribe(state => {
+      // eslint-disable-next-line no-unused-expressions
+      propKey in this.host && (this.host[propKey] = state);
       this.host.requestUpdate();
     });
 
