@@ -7,6 +7,7 @@
     "@blockquote/coverage-table-reporter": "^1.0.0",
     "@blockquote/rollup-plugin-total-bundlesize": "^1.0.0",
     "@blockquote/sass-style-template": "^2.1.2",
+    "@blockquote-web-components/blockquote-foundations-sass": "^1.0.2",
     "@custom-elements-manifest/analyzer": "^0.6.3",
     "@open-wc/eslint-config": "^9.0.0",
     "@open-wc/testing": "^3.1.6",
