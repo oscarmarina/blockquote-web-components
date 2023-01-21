@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Demo - pe-pe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta name="description" content="pe-pe" />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <blockquote-base-embedded-webview heading="pepe">
+      <template data-src="./base2.html" data-option="Base 1"></template>
+
+      <template data-src="./base3.html" data-option="Base 2"></template>
+    </blockquote-base-embedded-webview>
+    <script type="module">
+      import './html.js';
+    </script>
+  </body>
+</html>

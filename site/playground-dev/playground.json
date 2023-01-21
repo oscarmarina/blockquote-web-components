@@ -1,0 +1,31 @@
+{
+  "files": {
+    "define/pe-pe.js": {
+      "position": 0,
+      "hidden": true
+    },
+
+    "base2.html": {
+      "position": 1
+    },
+
+    "base3.html": {
+      "position": 2
+    },
+    "base.html": {
+      "hidden": true
+    },
+    "src/PePe.js": {
+      "position": 3
+    },
+
+    "html.js": {
+      "hidden": true
+    },
+
+    "src/styles/pe-pe-styles.css.js": {
+      "label": "Style",
+      "position": 4
+    }
+  }
+}

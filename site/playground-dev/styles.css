@@ -1,0 +1,68 @@
+:root {
+  --gray-50: hsl(0 0% 97.5%);
+  --gray-100: hsl(240 4.8% 95.9%);
+  --gray-200: hsl(240 5.9% 90%);
+  --gray-300: hsl(240 4.9% 83.9%);
+  --gray-400: hsl(240 5% 64.9%);
+  --gray-500: hsl(240 3.8% 46.1%);
+  --gray-600: hsl(240 5.2% 33.9%);
+  --gray-700: hsl(240 5.3% 26.1%);
+  --gray-800: hsl(240 3.7% 15.9%);
+  --gray-900: hsl(240 5.9% 10%);
+  --gray-950: hsl(240 7.3% 8%);
+  --primary-50: rgb(248 249 255);
+  --primary-100: rgb(231 236 255);
+  --primary-200: rgb(212 221 255);
+  --primary-300: rgb(192 205 255);
+  --primary-400: rgb(164 183 255);
+  --primary-500: rgb(128 154 255);
+  --primary-600: rgb(87 121 255);
+  --primary-700: rgb(49 90 251);
+  --primary-800: rgb(41 75 207);
+  --primary-900: rgb(29 53 148);
+  --primary-950: rgb(18 33 92);
+  --yellow-50: hsl(54.5 91.7% 95.3%);
+  --yellow-100: hsl(54.9 96.7% 88%);
+  --yellow-200: hsl(52.8 98.3% 76.9%);
+  --yellow-300: hsl(50.4 97.8% 63.5%);
+  --yellow-400: hsl(47.9 95.8% 53.1%);
+  --yellow-500: hsl(45.4 93.4% 47.5%);
+  --yellow-600: hsl(40.6 96.1% 40.4%);
+  --yellow-700: hsl(35.5 91.7% 32.9%);
+  --yellow-800: hsl(31.8 81% 28.8%);
+  --yellow-900: hsl(28.4 72.5% 25.7%);
+  --yellow-950: hsl(33.1 69% 13.9%);
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+playground-ide {
+  --playground-code-font-family: "Roboto Mono", monospace;
+  --playground-highlight-color: var(--primary-800);
+  --playground-code-linenumber-color: var(--gray-300);
+  --playground-tab-bar-background: var(--gray-100);
+  --playground-code-atom-color: rgb(108, 140, 213);
+  --playground-code-attribute-color: rgb(127, 0, 127);
+  --playground-code-builtin-color: rgb(126, 166, 86);
+  --playground-code-comment-color: rgb(0, 128, 255);
+  --playground-code-def-color: rgb(0, 0, 0);
+  --playground-code-keyword-color: rgb(90, 92, 173);
+  --playground-code-meta-color: rgb(202, 129, 56);
+  --playground-code-qualifier-color: rgb(128, 128, 128);
+  --playground-code-string-color: rgb(255, 0, 0);
+  --playground-code-string-2-color: rgb(0, 0, 0);
+  --playground-code-tag-color: rgb(63, 127, 127);
+  --playground-code-type-color: rgb(0, 0, 0);
+  --playground-code-variable-2-color: rgb(0, 0, 0);
+  --playground-code-variable-3-color: rgb(0, 0, 0);
+
+  min-height: 100%;
+}

@@ -1,4 +1,4 @@
-import{s as r,i,w as e,y as t}from"./directive-helpers-d694cc60.js";import{b as s}from"./BlockquoteDirectiveSvgToDataImage-03b06463.js";class l extends r{static get properties(){return{bgFill:{type:"String",attribute:"bg-fill"}}}constructor(){super(),this.bgFill="rgb(32, 32, 32)"}static get styles(){return i`
+import{s as r,i,w as e,y as t}from"./directive-helpers-1c5e1fea.js";import{b as s}from"./BlockquoteDirectiveSvgToDataImage-13302515.js";class l extends r{static get properties(){return{bgFill:{type:"String",attribute:"bg-fill"}}}constructor(){super(),this.bgFill="rgb(32, 32, 32)"}static get styles(){return i`
             :host {
               display: flex;
               flex-direction: column;
