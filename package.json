@@ -20,7 +20,7 @@
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "clean": "rm package-lock && lerna clean",
+    "clean": "rm package-lock.json && lerna clean",
     "clean:packages": "lerna exec -- rm -rf ./node_modules && npm run clean:packages:dev",
     "clean:packages:dev": "lerna exec -- rm -rf ./dev && lerna exec -- rm -rf ./package-lock.json",
     "format": "func() { npm run format:eslint $1 && npm run format:prettier $1 && npm run format:stylelint $1; }; func",
@@ -32,6 +32,7 @@
     "lint:eslint": "func() { eslint --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{js,ts,html}\"; }; func",
     "lint:prettier": "func() { prettier --check --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{js,ts,json,html}\"; }; func",
     "lint:stylelint": "func() { stylelint --allow-empty-input --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{css,scss}\"; }; func",
+    "postinstall":"npm run bootstrap",
     "push": "git push --follow-tags origin main",
     "release": "npm run bootstrap && npm run test:pre-push && lerna version --no-push",
     "standard": "standard-version",
