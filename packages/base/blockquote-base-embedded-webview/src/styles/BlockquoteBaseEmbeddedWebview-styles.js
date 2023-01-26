@@ -71,7 +71,7 @@ header > div {
   background-color: transparent;
   border: none;
   border-bottom: 0.125rem solid var(--_select-bgcolor);
-  padding: 0.2857142857em 1.2857142857em 0.2857142857em 0;
+  padding: 0.25em 1em 0.25em 0;
   margin: 0;
   width: 100%;
   cursor: pointer;

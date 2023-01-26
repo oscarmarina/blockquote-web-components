@@ -1,5 +1,3 @@
-@use "../../../../../node_modules/@blockquote-web-components/blockquote-foundations-sass/main";
-
 :host,
 ::slotted([slot="embedded"]) {
   display: block;
