@@ -48,4 +48,4 @@ jobs:
           git config user.email "${{ github.actor }}@users.noreply.github.com"
 
           npx lerna version --yes
-          npx lerna publish from-package --no-verify-access --yes
+          npx lerna publish from-package --yes
