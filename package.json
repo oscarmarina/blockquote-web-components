@@ -23,12 +23,12 @@
     "clean": "rm package-lock.json && lerna clean",
     "clean:packages": "lerna exec -- rm -rf ./node_modules && npm run clean:packages:dev",
     "clean:packages:dev": "lerna exec -- rm -rf ./dev && lerna exec -- rm -rf ./package-lock.json",
-    "format": "func() { npm run format:eslint $1 && npm run format:prettier $1 && npm run format:stylelint $1; }; func",
+    "format": "func() { lerna run format:eslint $1 && lerna run format:prettier $1 && lerna run format:stylelint $1; }; func",
     "format:eslint": "func() { eslint --fix --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{js,ts,html}\"; }; func",
     "format:package": "func() { sort-package-json \"./packages/**/${1:-*}/**/package.json\"; }; func",
     "format:prettier": "func() { prettier --write --list-different --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{js,ts,json,html}\"; }; func",
     "format:stylelint": "func() { stylelint --fix --allow-empty-input --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{css,scss}\"; }; func",
-    "lint": "func() { npm run lint:eslint $1 && npm run lint:prettier $1 && npm run lint:stylelint $1; }; func",
+    "lint": "func() { lerna run lint:eslint $1 && lerna run lint:prettier $1 && lerna run lint:stylelint $1; }; func",
     "lint:eslint": "func() { eslint --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{js,ts,html}\"; }; func",
     "lint:prettier": "func() { prettier --check --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{js,ts,json,html}\"; }; func",
     "lint:stylelint": "func() { stylelint --allow-empty-input --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{css,scss}\"; }; func",
@@ -43,13 +43,6 @@
     "site:prepare": "npm run clean:packages:dev && lerna run dev:vite",
     "site:copy": "rm -rf ./site/**/* && node scripts/move-dev-directory.js",
     "version": "npm run standard"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-push": "npm test -- --since main"
-    }
   },
   "lint-staged": {
     "**/*.{js,ts,html}, !site/**/*": [
@@ -109,14 +102,14 @@
     "@babel/core": "^7.20.5",
     "@babel/eslint-parser": "^7.19.1",
     "@babel/eslint-plugin": "^7.19.1",
-    "@commitlint/cli": "^17.3.0",
-    "@commitlint/config-conventional": "^17.3.0",
-    "@commitlint/config-lerna-scopes": "^17.2.1",
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
+    "@commitlint/config-lerna-scopes": "^17.4.2",
     "@open-wc/eslint-config": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^5.46.1",
     "@typescript-eslint/parser": "^5.46.1",
     "eslint": "^8.30.0",
-    "husky": "^4.0.0",
+    "husky": "^8.0.0",
     "karma": "^6.4.1",
     "lerna": "^6.1.0",
     "lint-staged": "^13.1.0",
@@ -124,8 +117,8 @@
     "prettier": "^2.8.1",
     "sort-package-json": "^2.1.0",
     "standard-version": "^9.5.0",
-    "stylelint": "^14.16.0",
-    "stylelint-config-standard-scss": "^6.1.0",
+    "stylelint": "^15.2.0",
+    "stylelint-config-standard-scss": "^7.0.1",
     "tslib": "^2.4.1",
     "typescript": "^4.9.4"
   },
