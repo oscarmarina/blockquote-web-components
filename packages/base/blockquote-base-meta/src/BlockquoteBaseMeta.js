@@ -9,17 +9,19 @@ part of the polymer project is also subject to an additional IP rights grant
 found at http://polymer.github.io/PATENTS.txt
 */
 
-window[Symbol.for('BLOCKQUOTE')] = window[Symbol.for('BLOCKQUOTE')] || Object.create(null);
+const BLOCKQUOTE = Symbol.for('BLOCKQUOTE');
+const blockquoteBaseMeta = Symbol.for('blockquoteBaseMeta');
+const types = Symbol.for('types');
+const uuid = Symbol.for('uuid');
 
-window[Symbol.for('BLOCKQUOTE')][Symbol.for('blockquoteBaseMeta')] =
-  window[Symbol.for('BLOCKQUOTE')][Symbol.for('blockquoteBaseMeta')] || Object.create(null);
+const blockquote = window[BLOCKQUOTE] || Object.create(null);
+const baseMeta = blockquote[blockquoteBaseMeta] || Object.create(null);
 
-const symbolBaseMeta = window[Symbol.for('BLOCKQUOTE')][Symbol.for('blockquoteBaseMeta')];
+baseMeta[types] = baseMeta[types] || new Map();
+baseMeta[uuid] = baseMeta[uuid] || Math.random().toString(36).substring(2, 10);
 
-symbolBaseMeta[Symbol.for('types')] = symbolBaseMeta[Symbol.for('types')] || new Map();
-
-symbolBaseMeta[Symbol.for('uuid')] =
-  symbolBaseMeta[Symbol.for('uuid')] || Math.random().toString(36).substr(2, 10);
+blockquote[blockquoteBaseMeta] = baseMeta;
+window[BLOCKQUOTE] = blockquote;
 
 // https://www.oreilly.com/library/view/learning-javascript-design/9781449334840/ch13s15.html
 // https://www.keithcirkel.co.uk/metaprogramming-in-es6-symbols/
@@ -111,11 +113,11 @@ export class BlockquoteBaseMeta {
   }
 
   static get types() {
-    return symbolBaseMeta[Symbol.for('types')];
+    return baseMeta[types];
   }
 
   static get uuid() {
-    return symbolBaseMeta[Symbol.for('uuid')];
+    return baseMeta[uuid];
   }
 
   /**

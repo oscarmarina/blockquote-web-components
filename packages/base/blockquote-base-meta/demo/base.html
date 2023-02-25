@@ -141,8 +141,18 @@
         const metaTextQueryValues = document.querySelector('.meta-query .inner-meta-values');
         metaTextQueryKeyList.textContent = `${myMeta.type}`;
         metaTextQueryValues.textContent = `${JSON.stringify(myMeta.objectList)}`;
+
         console.info('objectList: ', myMeta.objectList);
         console.info('mapList: ', myMeta.mapList);
+
+        // use complex key
+        const keyInfoMap = { id: 'dsfaskj0' };
+        const myDefaultMap = new BlockquoteBaseMeta({
+          type: 'two',
+          key: keyInfoMap,
+          value: 'foo/bar',
+        });
+        console.info(myDefaultMap.byKey(keyInfoMap));
       </script>
     </main>
   </body>
