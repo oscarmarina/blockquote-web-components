@@ -1,5 +1,6 @@
 import { Directive, directive } from 'lit/directive.js';
 import { isTemplateResult } from 'lit/directive-helpers.js';
+import { noChange } from 'lit';
 
 const svgXmlEncode = (url = '') => {
   const svgEncode = encodeURI(url).replace(/#/g, '%23');
@@ -130,7 +131,7 @@ render() {
 class BlockquoteDirectiveSvgToDataImage extends Directive {
   render(svgNodeInfo) {
     if (!svgNodeInfo || !isTemplateResult(svgNodeInfo)) {
-      return '';
+      return noChange;
     }
 
     const svgTemplateStrings = svgNodeInfo.strings;
