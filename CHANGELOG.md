@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.12.2](https://github.com/oscarmarina/blockquote-web-components/compare/v1.12.1...v1.12.2) (2023-07-01)
+
+
+### Bug Fixes
+
+* **blockquote-base-common-dev-dependencies:** update dependencies ([276920a](https://github.com/oscarmarina/blockquote-web-components/commit/276920afecec3884bab258b8ac12c622a8485573))
+* **blockquote-base-embedded-webview:** update dependencies ([6988b1b](https://github.com/oscarmarina/blockquote-web-components/commit/6988b1b4a54880f4c0138f07689fce716341a7da))
+* **blockquote-base-meta:** update dependencies ([45da4d9](https://github.com/oscarmarina/blockquote-web-components/commit/45da4d9176495263b8263fc770e4bf9fdea02f66))
+* **blockquote-base-style-helpers:** update dependencies ([d620459](https://github.com/oscarmarina/blockquote-web-components/commit/d62045992318cd9b72108d86b8fb794dff76c67e))
+* **blockquote-controller-rxjs:** update dependencies ([c43fdd0](https://github.com/oscarmarina/blockquote-web-components/commit/c43fdd04b32227513e1ec977ef17a6a4795d3209))
+* **blockquote-directive-svg-to-data-image:** update dependencies ([4c2723c](https://github.com/oscarmarina/blockquote-web-components/commit/4c2723c1d8bd12df063f18f31e6ec490e526101a))
+* **blockquote-mixin-slot-content:** update dependencies ([4e3ef45](https://github.com/oscarmarina/blockquote-web-components/commit/4e3ef45167f0104ffa9f077a1be9aad5b5d3b5fc))
+
 ### [1.12.1](https://github.com/oscarmarina/blockquote-web-components/compare/v1.12.0...v1.12.1) (2023-02-25)
 
 ## [1.12.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.11.1...v1.12.0) (2023-01-26)
