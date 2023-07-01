@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.3.1...@blockquote-web-components/blockquote-base-embedded-webview@1.3.2) (2023-07-01)
+
+### Bug Fixes
+
+- **blockquote-base-embedded-webview:** update dependencies ([6988b1b](https://github.com/oscarmarina/blockquote-web-components/commit/6988b1b4a54880f4c0138f07689fce716341a7da))
+
 ## [1.3.1](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.3.0...@blockquote-web-components/blockquote-base-embedded-webview@1.3.1) (2023-01-26)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-base-embedded-webview
