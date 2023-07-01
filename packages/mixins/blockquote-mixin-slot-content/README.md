@@ -18,17 +18,17 @@ this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges.bind(this));
 
 ```js
 class slotElement extends BlockquoteMixinSlotContent(LitElement) {
- ...
- connectedCallback() {
-   super.connectedCallback && super.connectedCallback();
-   this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges.bind(this));
- }
+  ...
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+    this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges.bind(this));
+  }
 
-  _onSlotChanges(ev) {
-     const { detail } = ev;
-     console.log(detail);
-   }
- ...
+   _onSlotChanges(ev) {
+      const { detail } = ev;
+      console.log(detail);
+    }
+  ...
 }
 ```
 
@@ -38,22 +38,22 @@ It's important to understand some of the nuances between text nodes that contain
 
 ```html
 <slot-element>
- nodeTex1
- <p>Element 1</p>
- <p>Element 2</p>
+  nodeTex1
+  <p>Element 1</p>
+  <p>Element 2</p>
 </slot-element>
 ```
 
 #### assignedNodes returns 5 Nodes
 
 ```js
- assignedNodes: Array(5)
- 0: text // textContent: "\n        nodeText1\n        "
- 1: p    // textContent: "Element 1"
- 2: text // textContent: "\n        "
- 3: p    // textContent: "Element 2"
- 4: text // textContent: "\n        "
- length: 5
+  assignedNodes: Array(5)
+  0: text // textContent: "\n        nodeText1\n        "
+  1: p    // textContent: "Element 1"
+  2: text // textContent: "\n        "
+  3: p    // textContent: "Element 2"
+  4: text // textContent: "\n        "
+  length: 5
 ```
 
 also another problem with whitespace is that when the content is just whitespace assignedNodes is no longer able to return `flattened` nodes.
@@ -62,10 +62,10 @@ also another problem with whitespace is that when the content is just whitespace
 
 ```html
 <slot-element>
- #shadow-root
- <slot>
-   <img src="icon.svg" />
- </slot>
+  #shadow-root
+  <slot>
+    <img src="icon.svg" />
+  </slot>
 </slot-element>
 
 <slot-element>Hello</slot-element>
@@ -83,10 +83,10 @@ document.querySelector('slot-element').textContent = '';
 
 ```html
 <slot-element>
- #shadow-root
- <slot>
-   <img src="icon.svg" />
- </slot>
+  #shadow-root
+  <slot>
+    <img src="icon.svg" />
+  </slot>
 </slot-element>
 
 <slot-element>Hello</slot-element>
@@ -109,15 +109,15 @@ and equally for flattened nodes.
 
 ```html
 <slot-element>
- #shadow-root
- <slot>
-   <img src="icon.svg" />
- </slot>
+  #shadow-root
+  <slot>
+    <img src="icon.svg" />
+  </slot>
 </slot-element>
 
 <slot-element>
- <p>sdfas</p>
- <p>2jfie</p>
+  <p>sdfas</p>
+  <p>2jfie</p>
 </slot-element>
 ```
 
@@ -125,41 +125,41 @@ and equally for flattened nodes.
 
 ```json
 {
-   "assignedSlotContent" : {
-     "slotName": "",
-     "assignedSlot": slot
-   },
-   "assignedNodesContent": {
-       "assignedNodesByNode": [
-           {
-               "flatten": false,
-               "assignedNodes": p,
-               "assignedSlot": slot
-           },
-           {
-               "flatten": false,
-               "assignedNodes": p,
-               "assignedSlot": slot
-           }
-       ],
-       "assignedNodes": [p, p]
-   },
-   "flattenedNodesContent": {
-       "assignedNodesByNode": [
-           {
-               "flatten": true,
-               "assignedNodes": img,
-               "assignedSlot": null
-           }
-       ],
-       "assignedNodes": [img]
-   },
-   "originalEvent": {
-       "event": {
-           isTrusted: true, type: 'slotchange', target: null, currentTarget: null, ...
-       },
-       "assignedNodes": [text, p, text, p, text, text, text]
-   }
+    "assignedSlotContent" : {
+      "slotName": "",
+      "assignedSlot": slot
+    },
+    "assignedNodesContent": {
+        "assignedNodesByNode": [
+            {
+                "flatten": false,
+                "assignedNodes": p,
+                "assignedSlot": slot
+            },
+            {
+                "flatten": false,
+                "assignedNodes": p,
+                "assignedSlot": slot
+            }
+        ],
+        "assignedNodes": [p, p]
+    },
+    "flattenedNodesContent": {
+        "assignedNodesByNode": [
+            {
+                "flatten": true,
+                "assignedNodes": img,
+                "assignedSlot": null
+            }
+        ],
+        "assignedNodes": [img]
+    },
+    "originalEvent": {
+        "event": {
+            isTrusted: true, type: 'slotchange', target: null, currentTarget: null, ...
+        },
+        "assignedNodes": [text, p, text, p, text, text, text]
+    }
 }
 ```
 
@@ -167,8 +167,8 @@ and equally for flattened nodes.
 
 ```html
 <slot-element>
- #shadow-root
- <slot></slot>
+  #shadow-root
+  <slot></slot>
 </slot-element>
 
 <slot-element> </slot-element>
@@ -178,24 +178,24 @@ and equally for flattened nodes.
 
 ```json
 {
-   "assignedSlotContent" : {
-     "slotName": "",
-     "assignedSlot": null
-   },
-   "assignedNodesContent": {
-       "assignedNodesByNode": [],
-       "assignedNodes": []
-   },
-   "flattenedNodesContent": {
-       "assignedNodesByNode": [],
-       "assignedNodes": []
-   },
-   "originalEvent": {
-       "event": {
-           isTrusted: true, type: 'slotchange', target: null, currentTarget: null, ...
-       },
-       "assignedNodes": [text]
-   }
+    "assignedSlotContent" : {
+      "slotName": "",
+      "assignedSlot": null
+    },
+    "assignedNodesContent": {
+        "assignedNodesByNode": [],
+        "assignedNodes": []
+    },
+    "flattenedNodesContent": {
+        "assignedNodesByNode": [],
+        "assignedNodes": []
+    },
+    "originalEvent": {
+        "event": {
+            isTrusted: true, type: 'slotchange', target: null, currentTarget: null, ...
+        },
+        "assignedNodes": [text]
+    }
 }
 ```
 
