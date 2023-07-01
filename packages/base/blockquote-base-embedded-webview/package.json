@@ -42,17 +42,17 @@
     "./index.js": {
       "default": "./index.js"
     },
-    "./src/styles/blockquote-base-embedded-webview-styles.js": {
-      "default": "./src/styles/blockquote-base-embedded-webview-styles.js"
+    "./src/styles/blockquote-base-embedded-webview-styles.css.js": {
+      "default": "./src/styles/blockquote-base-embedded-webview-styles.css.js"
     },
-    "./src/styles/blockquote-base-embedded-webview-element-styles.js": {
-      "default": "./src/styles/blockquote-base-embedded-webview-element-styles.js"
+    "./src/styles/blockquote-base-embedded-webview-element-styles.css.js": {
+      "default": "./src/styles/blockquote-base-embedded-webview-element-styles.css.js"
     },
-    "./src/styles/blockquote-base-embedded-webview-resize-styles.js": {
-      "default": "./src/styles/blockquote-base-embedded-webview-resize-styles.js"
+    "./src/styles/blockquote-base-embedded-webview-resize-styles.css.js": {
+      "default": "./src/styles/blockquote-base-embedded-webview-resize-styles.css.js"
     },
-    "./src/styles/blockquote-base-embedded-webview-size-styles.js": {
-      "default": "./src/styles/blockquote-base-embedded-webview-size-styles.js"
+    "./src/styles/blockquote-base-embedded-webview-size-styles.css.js": {
+      "default": "./src/styles/blockquote-base-embedded-webview-size-styles.css.js"
     }
   },
   "main": "index.js",

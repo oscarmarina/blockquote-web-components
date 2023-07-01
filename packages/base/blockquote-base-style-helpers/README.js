@@ -143,8 +143,6 @@ setDocumentStyles(css`
 
 #### 3. Themable component
 
-ThemeTokens-styles.js
-
 ```js
 // CSS var fallback from the same theme just a source of truth
 import { css, unsafeCSS } from 'lit';
