@@ -1,5 +1,5 @@
 import { html, LitElement } from 'lit';
-import styles from './styles/BlockquoteBaseEmbeddedWebviewElement-styles.js';
+import { styles } from './styles/blockquote-base-embedded-webview-element-styles.css.js';
 /**
   ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
 

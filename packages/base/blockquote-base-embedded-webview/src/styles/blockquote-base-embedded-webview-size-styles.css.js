@@ -1,6 +1,6 @@
 import { css } from 'lit';
 
-export default css`:host {
+export const styles = css`:host {
   --_host-color: var(--blockquote-base-embedded-webview-size-color, inherit);
   --_rect-height: var(--blockquote-base-embedded-webview-size-rect-height, 1.125rem);
   --_rect-size: var(--blockquote-base-embedded-webview-size-rect-size, 0.6875rem);

@@ -1,6 +1,6 @@
 import { html, LitElement } from 'lit';
 import * as Gestures from '@blockquote/polymer/lib/utils/gestures.js';
-import styles from './styles/BlockquoteBaseEmbeddedWebviewResize-styles.js';
+import { styles } from './styles/blockquote-base-embedded-webview-resize-styles.css.js';
 // https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect#value - window.scrollY to get a bounding rectangle which is independent from the current scrolling position.
 // https://www.browserstack.com/guide/ideal-screen-sizes-for-responsive-design
 // https://stackoverflow.com/questions/26233180/resize-a-div-on-border-drag-and-drop-without-adding-extra-markup

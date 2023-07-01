@@ -4,62 +4,6 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "define/blockquote-base-embedded-webview-element.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "BlockquoteBaseEmbeddedWebviewElement",
-            "module": "/src/BlockquoteBaseEmbeddedWebviewElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "define/blockquote-base-embedded-webview-resize.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "BlockquoteBaseEmbeddedWebviewResize",
-            "module": "/src/BlockquoteBaseEmbeddedWebviewResize.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "define/blockquote-base-embedded-webview-size.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "BlockquoteBaseEmbeddedWebviewSize",
-            "module": "/src/BlockquoteBaseEmbeddedWebviewSize.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "define/blockquote-base-embedded-webview.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "BlockquoteBaseEmbeddedWebview",
-            "module": "/src/BlockquoteBaseEmbeddedWebview.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/BlockquoteBaseEmbeddedWebview.js",
       "declarations": [
         {
@@ -70,7 +14,8 @@
             {
               "kind": "field",
               "name": "is",
-              "static": true
+              "static": true,
+              "readonly": true
             },
             {
               "kind": "method",
@@ -83,39 +28,48 @@
             },
             {
               "kind": "field",
-              "name": "_headingLevel"
+              "name": "_headingLevel",
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "_headerTpl"
+              "name": "_headerTpl",
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "_headingTpl"
+              "name": "_headingTpl",
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "_selectTpl"
+              "name": "_selectTpl",
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "_descriptionTpl"
+              "name": "_descriptionTpl",
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "_readDataPosTpl"
+              "name": "_readDataPosTpl",
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "_screenSizeTpl"
+              "name": "_screenSizeTpl",
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "_mainTpl"
+              "name": "_mainTpl",
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "_embeddedSlotTpl"
+              "name": "_embeddedSlotTpl",
+              "readonly": true
             },
             {
               "kind": "method",
@@ -130,10 +84,10 @@
               "kind": "field",
               "name": "selected",
               "privacy": "public",
-              "description": "Index of currently srcset file",
               "type": {
                 "text": "number"
               },
+              "description": "Index of currently srcset file",
               "default": "0",
               "attribute": "selected"
             },
@@ -141,10 +95,10 @@
               "kind": "field",
               "name": "screenSizeSelected",
               "privacy": "public",
-              "description": "Index of currently screen size selected",
               "type": {
                 "text": "number"
               },
+              "description": "Index of currently screen size selected",
               "default": "0",
               "attribute": "screen-size-selected"
             },
@@ -152,10 +106,10 @@
               "kind": "field",
               "name": "headingLevel",
               "privacy": "public",
-              "description": "Heading level from 1 to 6",
               "type": {
                 "text": "number"
               },
+              "description": "Heading level from 1 to 6",
               "default": "1",
               "attribute": "heading-level",
               "reflects": true
@@ -164,10 +118,10 @@
               "kind": "field",
               "name": "heading",
               "privacy": "public",
-              "description": "The heading of the webview.",
               "type": {
                 "text": "string"
               },
+              "description": "The heading of the webview.",
               "default": "''",
               "attribute": "heading"
             },
@@ -196,10 +150,10 @@
               "kind": "field",
               "name": "limitHeight",
               "privacy": "public",
-              "description": "Limit height to 100% available",
               "type": {
                 "text": "boolean"
               },
+              "description": "Limit height to 100% available",
               "default": "false",
               "attribute": "limit-height",
               "reflects": true
@@ -220,46 +174,46 @@
           "attributes": [
             {
               "name": "heading",
-              "description": "The heading of the webview.",
               "type": {
                 "text": "string"
               },
+              "description": "The heading of the webview.",
               "default": "''",
               "fieldName": "heading"
             },
             {
               "name": "selected",
-              "description": "Index of currently srcset file",
               "type": {
                 "text": "number"
               },
+              "description": "Index of currently srcset file",
               "default": "0",
               "fieldName": "selected"
             },
             {
               "name": "heading-level",
-              "description": "Heading level from 1 to 6",
               "type": {
                 "text": "number"
               },
+              "description": "Heading level from 1 to 6",
               "default": "1",
               "fieldName": "headingLevel"
             },
             {
               "name": "screen-size-selected",
-              "description": "Index of currently screen size selected",
               "type": {
                 "text": "number"
               },
+              "description": "Index of currently screen size selected",
               "default": "0",
               "fieldName": "screenSizeSelected"
             },
             {
               "name": "limit-height",
-              "description": "Limit height to 100% available",
               "type": {
                 "text": "boolean"
               },
+              "description": "Limit height to 100% available",
               "default": "false",
               "fieldName": "limitHeight"
             }
@@ -295,15 +249,18 @@
             {
               "kind": "field",
               "name": "is",
-              "static": true
+              "static": true,
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "_loadResource"
+              "name": "_loadResource",
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "_embeddedTpl"
+              "name": "_embeddedTpl",
+              "readonly": true
             },
             {
               "kind": "method",
@@ -327,10 +284,10 @@
               "kind": "field",
               "name": "embeddedTitle",
               "privacy": "public",
-              "description": "The title attribute on an <element> to label its content",
               "type": {
                 "text": "string"
               },
+              "description": "The title attribute on an <element> to label its content",
               "default": "''",
               "attribute": "embedded-title"
             },
@@ -338,10 +295,10 @@
               "kind": "field",
               "name": "src",
               "privacy": "public",
-              "description": "The URL of the page to embed",
               "type": {
                 "text": "string"
               },
+              "description": "The URL of the page to embed",
               "default": "''",
               "attribute": "src"
             },
@@ -349,10 +306,10 @@
               "kind": "field",
               "name": "type",
               "privacy": "public",
-              "description": "The type of the tag to embed - iframe or object",
               "type": {
                 "text": "string"
               },
+              "description": "The type of the tag to embed - iframe or object",
               "default": "'iframe'",
               "attribute": "type"
             }
@@ -360,28 +317,28 @@
           "attributes": [
             {
               "name": "embedded-title",
-              "description": "The title attribute on an <element> to label its content",
               "type": {
                 "text": "string"
               },
+              "description": "The title attribute on an <element> to label its content",
               "default": "''",
               "fieldName": "embeddedTitle"
             },
             {
               "name": "src",
-              "description": "The URL of the page to embed",
               "type": {
                 "text": "string"
               },
+              "description": "The URL of the page to embed",
               "default": "''",
               "fieldName": "src"
             },
             {
               "name": "type",
-              "description": "The type of the tag to embed - iframe or object",
               "type": {
                 "text": "string"
               },
+              "description": "The type of the tag to embed - iframe or object",
               "default": "'iframe'",
               "fieldName": "type"
             }
@@ -417,11 +374,13 @@
             {
               "kind": "field",
               "name": "is",
-              "static": true
+              "static": true,
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "_resizersTpl"
+              "name": "_resizersTpl",
+              "readonly": true
             },
             {
               "kind": "method",
@@ -522,27 +481,33 @@
             {
               "kind": "field",
               "name": "is",
-              "static": true
+              "static": true,
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "selectedSize"
+              "name": "selectedSize",
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "selectedDetail"
+              "name": "selectedDetail",
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "computedStyleWidth"
+              "name": "computedStyleWidth",
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "_toolbarTpl"
+              "name": "_toolbarTpl",
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "_visualTextTpl"
+              "name": "_visualTextTpl",
+              "readonly": true
             },
             {
               "kind": "method",
@@ -566,10 +531,10 @@
               "kind": "field",
               "name": "showOverflowSize",
               "privacy": "public",
-              "description": "Show screen size options that are too large for the container",
               "type": {
                 "text": "boolean"
               },
+              "description": "Show screen size options that are too large for the container",
               "default": "false",
               "attribute": "show-overflow-size"
             },
@@ -577,10 +542,10 @@
               "kind": "field",
               "name": "selected",
               "privacy": "public",
-              "description": "The screen size option selected",
               "type": {
                 "text": "number"
               },
+              "description": "The screen size option selected",
               "default": "0",
               "attribute": "selected"
             },
@@ -588,10 +553,10 @@
               "kind": "field",
               "name": "disabledSelectedSizeText",
               "privacy": "public",
-              "description": "If true, selected size text is disabled",
               "type": {
                 "text": "boolean"
               },
+              "description": "If true, selected size text is disabled",
               "default": "false",
               "attribute": "disabled-selected-size-text"
             },
@@ -599,10 +564,10 @@
               "kind": "field",
               "name": "screenSizes",
               "privacy": "public",
-              "description": "The screen size options to display",
               "type": {
                 "text": "array"
               },
+              "description": "The screen size options to display",
               "default": "[\n      { width: 360, height: 640, id: '360x640' },\n      { width: 360, height: 800, id: '360x800' },\n      { width: 414, height: 896, id: '414x896' },\n      { width: 768, height: 1024, id: '768x1024' },\n      { width: 810, height: 1080, id: '810x1080' },\n      { width: 1280, height: 800, id: '1280x800' },\n      { width: 1366, height: 768, id: '1366x768' },\n      { width: 1536, height: 864, id: '1536x864' },\n      { width: 1920, height: 1080, id: '1920x1080' },\n    ]",
               "attribute": "screen-sizes"
             },
@@ -610,10 +575,10 @@
               "kind": "field",
               "name": "widthInPercent",
               "privacy": "public",
-              "description": "Percentage value for the width",
               "type": {
                 "text": "boolean"
               },
+              "description": "Percentage value for the width",
               "default": "false",
               "attribute": "width-in-percent"
             }
@@ -621,46 +586,46 @@
           "attributes": [
             {
               "name": "screen-sizes",
-              "description": "The screen size options to display",
               "type": {
                 "text": "array"
               },
+              "description": "The screen size options to display",
               "default": "[\n      { width: 360, height: 640, id: '360x640' },\n      { width: 360, height: 800, id: '360x800' },\n      { width: 414, height: 896, id: '414x896' },\n      { width: 768, height: 1024, id: '768x1024' },\n      { width: 810, height: 1080, id: '810x1080' },\n      { width: 1280, height: 800, id: '1280x800' },\n      { width: 1366, height: 768, id: '1366x768' },\n      { width: 1536, height: 864, id: '1536x864' },\n      { width: 1920, height: 1080, id: '1920x1080' },\n    ]",
               "fieldName": "screenSizes"
             },
             {
               "name": "selected",
-              "description": "The screen size option selected",
               "type": {
                 "text": "number"
               },
+              "description": "The screen size option selected",
               "default": "0",
               "fieldName": "selected"
             },
             {
               "name": "width-in-percent",
-              "description": "Percentage value for the width",
               "type": {
                 "text": "boolean"
               },
+              "description": "Percentage value for the width",
               "default": "false",
               "fieldName": "widthInPercent"
             },
             {
               "name": "show-overflow-size",
-              "description": "Show screen size options that are too large for the container",
               "type": {
                 "text": "boolean"
               },
+              "description": "Show screen size options that are too large for the container",
               "default": "false",
               "fieldName": "showOverflowSize"
             },
             {
               "name": "disabled-selected-size-text",
-              "description": "If true, selected size text is disabled",
               "type": {
                 "text": "boolean"
               },
+              "description": "If true, selected size text is disabled",
               "default": "false",
               "fieldName": "disabledSelectedSizeText"
             }
@@ -686,56 +651,140 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/styles/BlockquoteBaseEmbeddedWebview-styles.js",
-      "declarations": [],
+      "path": "src/styles/blockquote-base-embedded-webview-element-styles.css.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`:host,\n::slotted([slot=embedded]) {\n  display: block;\n  box-sizing: border-box;\n  width: 100%;\n  height: 100%;\n  margin: 0;\n  border: 0;\n}\n\n:host([hidden]),\n[hidden] {\n  display: none !important;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}`"
+        }
+      ],
       "exports": [
         {
           "kind": "js",
-          "name": "default",
+          "name": "styles",
           "declaration": {
-            "module": "src/styles/BlockquoteBaseEmbeddedWebview-styles.js"
+            "name": "styles",
+            "module": "src/styles/blockquote-base-embedded-webview-element-styles.css.js"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/styles/BlockquoteBaseEmbeddedWebviewElement-styles.js",
-      "declarations": [],
+      "path": "src/styles/blockquote-base-embedded-webview-resize-styles.css.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`:host {\n  --__resizer-factor: calc(1.25rem * var(--blockquote-base-embedded-webview-resize-factor, 1));\n  --_rect-min-width: var(--blockquote-base-embedded-webview-resize-rect-min-width, 18.75rem);\n  --_rect-min-height: var(--blockquote-base-embedded-webview-resize-rect-min-height, 9.375rem);\n  --_rect-max-width: var(--blockquote-base-embedded-webview-resize-rect-max-width, 100%);\n  --_rect-max-height: var(--blockquote-base-embedded-webview-resize-rect-max-height, 100%);\n  --_rect-width: var(--blockquote-base-embedded-webview-resize-rect-width, 40rem);\n  --_rect-height: var(--blockquote-base-embedded-webview-resize-rect-height, 22.5rem);\n  --_resizer-bgcolor: var(--blockquote-base-embedded-webview-resize-resizer-bgcolor, rgb(234, 234, 234));\n  --_resizer-bgcolor-hover: var(--blockquote-base-embedded-webview-resize-resizer-bgcolor-hover, rgb(220, 220, 220));\n  --_resizer-bgimage-ew-hover: var(--blockquote-base-embedded-webview-resize-resizer-bgcolor-hover, linear-gradient(0deg, rgba(220, 220, 220, 0.2), rgba(220, 220, 220, 1) 50%, rgba(220, 220, 220, 0.2)));\n  --_resizer-bgimage-s-hover: var(--blockquote-base-embedded-webview-resize-resizer-bgcolor-hover, linear-gradient(90deg, rgba(220, 220, 220, 0.2), rgba(220, 220, 220, 1) 50%, rgba(220, 220, 220, 0.2)));\n  contain: content;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  height: inherit;\n  padding: calc(var(--__resizer-factor) * 1) 0 calc(var(--__resizer-factor) * 2) 0;\n}\n\n:host([hidden]),\n[hidden] {\n  display: none !important;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\n.rect {\n  position: relative;\n  align-self: center;\n  min-width: var(--_rect-min-width);\n  min-height: var(--_rect-min-height);\n  max-width: var(--_rect-max-width);\n  max-height: var(--_rect-max-height);\n  width: var(--_rect-width);\n  height: var(--_rect-height);\n  transform: translateZ(0);\n}\n\n.resizer {\n  /* https://github.com/ChromeDevTools/devtools-frontend/tree/main/front_end/Images/src */\n  display: block;\n  position: absolute;\n  background-color: var(--_resizer-bgcolor);\n  width: 100%;\n  height: 100%;\n}\n.resizer::after {\n  content: url(\"data:image/svg+xml,%0A%3Csvg width='6' height='26' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='2' height='26' rx='1' fill='%23848282'/%3E%3Crect x='4' width='2' height='26' rx='1' fill='%23848282'/%3E%3C/svg%3E\");\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateX(-50%);\n}\n.resizer-n {\n  height: calc(var(--__resizer-factor) / 4);\n  top: calc(var(--__resizer-factor) / 4 * -1);\n  left: calc(var(--__resizer-factor) * -1);\n  width: calc(100% + var(--__resizer-factor) * 2);\n  border-top-left-radius: calc(var(--__resizer-factor) / 10);\n  border-top-right-radius: calc(var(--__resizer-factor) / 10);\n}\n.resizer-n::after {\n  content: none;\n}\n.resizer-se {\n  cursor: nwse-resize;\n  border-bottom-right-radius: calc(var(--__resizer-factor) / 10);\n}\n.resizer-se::after {\n  transform: translate(-50%, -50%);\n}\n.resizer-sw {\n  cursor: nesw-resize;\n  border-bottom-left-radius: calc(var(--__resizer-factor) / 10);\n}\n.resizer-sw::after {\n  transform: translate(-50%, -50%) translateY(-0.0938rem) rotate(90deg);\n}\n.resizer-se, .resizer-e {\n  right: calc(var(--__resizer-factor) * -1);\n}\n.resizer-se, .resizer-sw, .resizer-s {\n  bottom: calc(var(--__resizer-factor) * -1);\n}\n.resizer-w, .resizer-sw {\n  left: calc(var(--__resizer-factor) * -1);\n}\n.resizer-se, .resizer-sw {\n  height: var(--__resizer-factor);\n  width: var(--__resizer-factor);\n}\n.resizer-se::after, .resizer-sw::after {\n  content: url(\"data:image/svg+xml,%0A%3Csvg width='13' height='13' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0)' fill='%23848282'%3E%3Crect x='-.195' y='10.775' width='15.566' height='2' rx='1' transform='rotate(-45 -.195 10.775)'/%3E%3Crect x='5.346' y='11.241' width='8.401' height='2' rx='1' transform='rotate(-45 5.346 11.24)'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0'%3E%3Cpath fill='%23fff' d='M0 0h13v13H0z'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E\");\n}\n.resizer-se:hover, .resizer-sw:hover {\n  background-color: var(--_resizer-bgcolor-hover);\n}\n.resizer-s {\n  cursor: ns-resize;\n  height: var(--__resizer-factor);\n}\n.resizer-s::after {\n  content: url(\"data:image/svg+xml,%0A%3Csvg width='26' height='6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='26' height='2' rx='1' fill='%23848282'/%3E%3Crect y='4' width='26' height='2' rx='1' fill='%23848282'/%3E%3C/svg%3E\");\n  transform: translate(-50%, -50%) translateY(-0.1875rem);\n}\n.resizer-s:hover {\n  background-image: var(--_resizer-bgimage-s-hover);\n}\n.resizer-e, .resizer-w {\n  cursor: ew-resize;\n  width: var(--__resizer-factor);\n}\n.resizer-e:hover, .resizer-w:hover {\n  background-image: var(--_resizer-bgimage-ew-hover);\n  background-position: bottom;\n}\n\n:host([resizing]),\n:host([resizing]) ::slotted(*) {\n  cursor: move;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n          user-select: none;\n}\n\n:host([resizing]) ::slotted(*) {\n  pointer-events: none;\n}`"
+        }
+      ],
       "exports": [
         {
           "kind": "js",
-          "name": "default",
+          "name": "styles",
           "declaration": {
-            "module": "src/styles/BlockquoteBaseEmbeddedWebviewElement-styles.js"
+            "name": "styles",
+            "module": "src/styles/blockquote-base-embedded-webview-resize-styles.css.js"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/styles/BlockquoteBaseEmbeddedWebviewResize-styles.js",
-      "declarations": [],
+      "path": "src/styles/blockquote-base-embedded-webview-size-styles.css.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`:host {\n  --_host-color: var(--blockquote-base-embedded-webview-size-color, inherit);\n  --_rect-height: var(--blockquote-base-embedded-webview-size-rect-height, 1.125rem);\n  --_rect-size: var(--blockquote-base-embedded-webview-size-rect-size, 0.6875rem);\n  --_button-border-color: var(--blockquote-base-embedded-webview-size-button-border-color, rgb(184, 184, 184));\n  --_button-bgcolor: var(--blockquote-base-embedded-webview-size-button-bgcolor, rgb(234, 234, 234));\n  --_button-bgcolor-hover: var(--blockquote-base-embedded-webview-size-button-bgcolor-hover, rgb(220, 220, 220));\n  --_button-bgcolor-selected-hover: var(--blockquote-base-embedded-webview-size-button-bgcolor-selected-hover, rgb(210, 210, 210));\n  color: var(--_host-color);\n  display: block;\n  box-sizing: border-box;\n  pointer-events: none;\n}\n\n:host([hidden]),\n[hidden] {\n  display: none !important;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\nbutton {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  background-color: transparent;\n  border: none;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  pointer-events: auto;\n  font: inherit;\n  margin: 0;\n  padding: 0;\n  height: inherit;\n  text-align: inherit;\n  text-decoration: none;\n  text-transform: inherit;\n  text-shadow: inherit;\n  letter-spacing: inherit;\n  word-spacing: inherit;\n  width: auto;\n}\n\n.rect {\n  overflow: hidden;\n  height: var(--_rect-height);\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: var(--_rect-size);\n  white-space: nowrap;\n  text-align: center;\n  letter-spacing: 0.0625rem;\n  box-shadow: 0 1px 0 0 var(--_button-bgcolor);\n}\n.rect [aria-hidden=true] {\n  cursor: pointer;\n  letter-spacing: inherit;\n  position: absolute;\n}\n.rect [aria-disabled=true] {\n  opacity: 0.4;\n}\n.rect [aria-disabled=true]::after {\n  content: \"\";\n  display: block;\n  height: 1px;\n  width: calc(100% + 2rem);\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0));\n}\n\nbutton {\n  position: absolute;\n  background-color: var(--_button-bgcolor);\n  border-left: 1px solid var(--_button-border-color);\n  border-right: 1px solid var(--_button-border-color);\n}\nbutton span {\n  opacity: 0;\n  pointer-events: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n          user-select: none;\n}\nbutton:hover {\n  background-color: var(--_button-bgcolor-hover);\n}\nbutton[data-selected], button[data-selected] ~ button {\n  background-color: var(--_button-bgcolor-hover);\n}\nbutton:hover ~ button {\n  background-color: transparent;\n}\nbutton:not([data-selected]):hover span {\n  opacity: 1;\n}\nbutton:not([data-selected]):hover ~ span {\n  visibility: hidden;\n}\nbutton[data-selected] ~ button:hover {\n  background-color: var(--_button-bgcolor-selected-hover);\n}`"
+        }
+      ],
       "exports": [
         {
           "kind": "js",
-          "name": "default",
+          "name": "styles",
           "declaration": {
-            "module": "src/styles/BlockquoteBaseEmbeddedWebviewResize-styles.js"
+            "name": "styles",
+            "module": "src/styles/blockquote-base-embedded-webview-size-styles.css.js"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/styles/BlockquoteBaseEmbeddedWebviewSize-styles.js",
-      "declarations": [],
+      "path": "src/styles/blockquote-base-embedded-webview-styles.css.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`:host {\n  --_host-color: var(--blockquote-base-embedded-webview-color, rgb(32, 32, 32));\n  --_main-bgcolor: var(--blockquote-base-embedded-webview-main-bgcolor, rgb(250, 250, 250));\n  --_select-bgcolor: var(--blockquote-base-embedded-webview-select-bgcolor, rgb(222, 222, 222));\n  --_select-transition: var(--blockquote-base-embedded-webview-select-transition, border-bottom 196ms ease-out, var(--blockquote-base-embedded-webview-select-transition, border-bottom 196ms ease-out));\n  --blockquote-base-embedded-webview-resize-rect-width: 40rem; /* 40rem */\n  --blockquote-base-embedded-webview-resize-rect-height: 22.5rem; /* 22.5rem */\n  display: flex;\n  flex-direction: column;\n  box-sizing: border-box;\n  width: 100%;\n  height: 100%;\n  color: var(--_host-color);\n}\n\n:host([hidden]),\n[hidden] {\n  display: none !important;\n}\n\n.main {\n  contain: content;\n  flex: 1;\n  background-color: var(--_main-bgcolor);\n}\n\n:host([limit-height]) .main {\n  height: inherit;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\n[role=heading] {\n  font-size: 1.25rem;\n  margin-bottom: 0.5rem;\n}\n\nheader > div {\n  position: relative;\n  max-width: 80rem;\n  margin: 0 auto;\n  padding: 0.5rem 1.5rem;\n}\n\n.select {\n  display: inline-grid;\n  grid-template-areas: select;\n  align-items: center;\n}\n.select > * {\n  grid-area: select;\n}\n.select svg {\n  width: 0.875rem;\n  justify-self: end;\n  pointer-events: none;\n}\n.select select {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  color: inherit;\n  font: inherit;\n  background-color: transparent;\n  border: none;\n  border-bottom: 0.125rem solid var(--_select-bgcolor);\n  padding: 0.25em 1em 0.25em 0;\n  margin: 0;\n  width: 100%;\n  cursor: pointer;\n  outline: none;\n  border-radius: 0;\n  min-width: 10ch;\n  max-width: 18ch;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  transition: var(--_select-transition);\n}\n.select select:hover, .select select:focus {\n  border-bottom-color: currentcolor;\n}\n\n.description {\n  margin: 0.5rem 0 1rem;\n  font-size: 0.875rem;\n}\n\n.description:empty {\n  visibility: hidden;\n}\n\n.read-data-pos {\n  font-size: 0.875rem;\n  letter-spacing: 0.0156rem;\n  position: fixed;\n  z-index: 1;\n  right: 0.375rem;\n  top: 0.3125rem;\n  opacity: 0;\n  transition: opacity 90ms cubic-bezier(0.25, 0.46, 0.45, 0.94);\n}\n\nblockquote-base-embedded-webview-resize {\n  overflow-x: hidden;\n}`"
+        }
+      ],
       "exports": [
         {
           "kind": "js",
-          "name": "default",
+          "name": "styles",
           "declaration": {
-            "module": "src/styles/BlockquoteBaseEmbeddedWebviewSize-styles.js"
+            "name": "styles",
+            "module": "src/styles/blockquote-base-embedded-webview-styles.css.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "define/blockquote-base-embedded-webview-element.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebviewElement",
+            "module": "/src/BlockquoteBaseEmbeddedWebviewElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "define/blockquote-base-embedded-webview-resize.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebviewResize",
+            "module": "/src/BlockquoteBaseEmbeddedWebviewResize.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "define/blockquote-base-embedded-webview-size.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebviewSize",
+            "module": "/src/BlockquoteBaseEmbeddedWebviewSize.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "define/blockquote-base-embedded-webview.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebview",
+            "module": "/src/BlockquoteBaseEmbeddedWebview.js"
           }
         }
       ]

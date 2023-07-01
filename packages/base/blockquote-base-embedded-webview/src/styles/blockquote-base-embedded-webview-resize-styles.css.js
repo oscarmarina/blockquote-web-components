@@ -1,6 +1,6 @@
 import { css } from 'lit';
 
-export default css`:host {
+export const styles = css`:host {
   --__resizer-factor: calc(1.25rem * var(--blockquote-base-embedded-webview-resize-factor, 1));
   --_rect-min-width: var(--blockquote-base-embedded-webview-resize-rect-min-width, 18.75rem);
   --_rect-min-height: var(--blockquote-base-embedded-webview-resize-rect-min-height, 9.375rem);

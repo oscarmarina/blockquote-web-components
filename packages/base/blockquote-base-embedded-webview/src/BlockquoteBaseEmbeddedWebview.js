@@ -3,7 +3,7 @@ import { ref, createRef } from 'lit/directives/ref.js';
 import '../define/blockquote-base-embedded-webview-size.js';
 import '../define/blockquote-base-embedded-webview-resize.js';
 import '../define/blockquote-base-embedded-webview-element.js';
-import styles from './styles/BlockquoteBaseEmbeddedWebview-styles.js';
+import { styles } from './styles/blockquote-base-embedded-webview-styles.css.js';
 
 const chevronDownIcon = svg`<svg aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 <polyline points="6 9 12 15 18 9" />
