@@ -42,7 +42,8 @@
     "site": "npm run site:prepare && npm run site:copy",
     "site:prepare": "npm run clean:packages:dev && lerna run dev:vite",
     "site:copy": "rm -rf ./site/**/* && node scripts/move-dev-directory.js",
-    "version": "npm run standard"
+    "version": "npm run standard",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "**/*.{js,ts,html}, !site/**/*": [
@@ -109,7 +110,7 @@
     "@typescript-eslint/eslint-plugin": "^5.46.1",
     "@typescript-eslint/parser": "^5.60.1",
     "eslint": "^8.44.0",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "karma": "^6.4.2",
     "lerna": "^6.1.0",
     "lint-staged": "^13.2.3",

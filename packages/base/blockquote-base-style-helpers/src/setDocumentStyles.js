@@ -9,7 +9,6 @@ const renderDocumentRoot = supportsAdoptingStyleSheets
   : /* c8 ignore next */ document.head;
 
 export const adoptDocumentStyles = (renderRoot, styles) => {
-
   if (supportsAdoptingStyleSheets) {
     // https://github.com/lit/lit/issues/2984#issuecomment-1150224373
     // eslint-disable-next-line no-param-reassign
