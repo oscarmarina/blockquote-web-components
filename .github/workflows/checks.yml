@@ -16,20 +16,18 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Use Node 16
+      - name: Use Node 18
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
-
-      - name: Setup npm
-        run: |
-          npm set scripts-prepend-node-path=true
+          node-version: '18.x'
 
       - name: Install dependencies
         run: |
-          npx lerna bootstrap --ci
+          npx lerna@6.6.2 bootstrap --ci
 
-      - uses: microsoft/playwright-github-action@v1
+      - name: Install playwright
+        run: |
+          npx playwright install --with-deps
 
       - name: Format and test
         run: |

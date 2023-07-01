@@ -12,9 +12,7 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
   files: [`${outDir}/test/**/*.test.js`],
 
   /** Resolve bare module imports */
-  nodeResolve: {
-    exportConditions: ['browser', 'development'],
-  },
+  nodeResolve: true,
 
   /** Browsers to run tests on */
   browsers: [
@@ -47,7 +45,6 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
     config: {
       ui: 'tdd',
       timeout: 4000,
-      reporter: 'html',
     },
   },
 
