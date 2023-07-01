@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
 import { css } from 'lit';
 
-export default css`:host {
+export const styles = css`:host {
   --_host-color: var(--blockquote-base-embedded-webview-color, rgb(32, 32, 32));
   --_main-bgcolor: var(--blockquote-base-embedded-webview-main-bgcolor, rgb(250, 250, 250));
   --_select-bgcolor: var(--blockquote-base-embedded-webview-select-bgcolor, rgb(222, 222, 222));

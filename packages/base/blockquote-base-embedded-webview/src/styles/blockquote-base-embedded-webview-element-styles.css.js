@@ -1,6 +1,6 @@
 import { css } from 'lit';
 
-export default css`:host,
+export const styles = css`:host,
 ::slotted([slot=embedded]) {
   display: block;
   box-sizing: border-box;

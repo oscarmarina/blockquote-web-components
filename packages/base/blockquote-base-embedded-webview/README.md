@@ -55,15 +55,15 @@
 ```html
 <blockquote-base-embedded-webview-size
 screen-sizes="[
-  { width: 360, height: 640, id: '360x640' },
-  { width: 360, height: 800, id: '360x800' },
-  { width: 414, height: 896, id: '414x896' },
-  { width: 768, height: 1024, id: '768x1024' },
-  { width: 810, height: 1080, id: '810x1080' },
-  { width: 1280, height: 800, id: '1280x800' },
-  { width: 1366, height: 768, id: '1366x768' },
-  { width: 1536, height: 864, id: '1536x864' },
-  { width: 1920, height: 1080, id: '1920x1080' },
+   { width: 360, height: 640, id: '360x640' },
+   { width: 360, height: 800, id: '360x800' },
+   { width: 414, height: 896, id: '414x896' },
+   { width: 768, height: 1024, id: '768x1024' },
+   { width: 810, height: 1080, id: '810x1080' },
+   { width: 1280, height: 800, id: '1280x800' },
+   { width: 1366, height: 768, id: '1366x768' },
+   { width: 1536, height: 864, id: '1536x864' },
+   { width: 1920, height: 1080, id: '1920x1080' },
 ]"
 ></blockquote-base-embedded-webview-size>
 ```
@@ -110,8 +110,8 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 
 ```html
 <blockquote-base-embedded-webview heading="My demo title">
- <template data-src="./base.html" data-option="Base" data-description="base - description"></template>
- <template data-src="./complex.html" data-option="Complex" data-description="complex - description"></template>
+  <template data-src="./base.html" data-option="Base" data-description="base - description"></template>
+  <template data-src="./complex.html" data-option="Complex" data-description="complex - description"></template>
 </blockquote-base-embedded-webview>
 ```
 
@@ -120,32 +120,32 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 ```html
 <!DOCTYPE html>
 <html lang="en">
- <head>
-   <title>Demo Base</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1" />
-   <meta charset="utf-8" />
-   <style>
-     :root {
-       font: normal medium/1.25 sans-serif;
-     }
-     body {
-       margin: 0;
-     }
-     [data-embedded] .hidden {
-       display: none;
-     }
-   </style>
- </head>
- <body>
-   <h1 class="hidden">Heading</h1>
-   <p>Base Demo</p>
- </body>
+  <head>
+    <title>Demo Base</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <style>
+      :root {
+        font: normal medium/1.25 sans-serif;
+      }
+      body {
+        margin: 0;
+      }
+      [data-embedded] .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="hidden">Heading</h1>
+    <p>Base Demo</p>
+  </body>
 </html>
 ```
 
- ## Exports
+  ## Exports
 
- - BlockquoteBaseEmbeddedWebview
+  - BlockquoteBaseEmbeddedWebview
 
 ## Properties
 

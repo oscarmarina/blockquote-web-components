@@ -1,5 +1,5 @@
 import { html, LitElement } from 'lit';
-import styles from './styles/BlockquoteBaseEmbeddedWebviewSize-styles.js';
+import { styles } from './styles/blockquote-base-embedded-webview-size-styles.css.js';
 // https://source.chromium.org/chromium/chromium/src/+/main:third_party/devtools-frontend/src/front_end/panels/emulation/DeviceModeView.ts;l=164
 
 /**

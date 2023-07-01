@@ -42,17 +42,17 @@
     "./index.js": {
       "default": "./index.js"
     },
-    "./src/styles/BlockquoteBaseEmbeddedWebview-styles.js": {
-      "default": "./src/styles/BlockquoteBaseEmbeddedWebview-styles.js"
+    "./src/styles/blockquote-base-embedded-webview-styles.js": {
+      "default": "./src/styles/blockquote-base-embedded-webview-styles.js"
     },
-    "./src/styles/BlockquoteBaseEmbeddedWebviewElement-styles.js": {
-      "default": "./src/styles/BlockquoteBaseEmbeddedWebviewElement-styles.js"
+    "./src/styles/blockquote-base-embedded-webview-element-styles.js": {
+      "default": "./src/styles/blockquote-base-embedded-webview-element-styles.js"
     },
-    "./src/styles/BlockquoteBaseEmbeddedWebviewResize-styles.js": {
-      "default": "./src/styles/BlockquoteBaseEmbeddedWebviewResize-styles.js"
+    "./src/styles/blockquote-base-embedded-webview-resize-styles.js": {
+      "default": "./src/styles/blockquote-base-embedded-webview-resize-styles.js"
     },
-    "./src/styles/BlockquoteBaseEmbeddedWebviewSize-styles.js": {
-      "default": "./src/styles/BlockquoteBaseEmbeddedWebviewSize-styles.js"
+    "./src/styles/blockquote-base-embedded-webview-size-styles.js": {
+      "default": "./src/styles/blockquote-base-embedded-webview-size-styles.js"
     }
   },
   "main": "index.js",
@@ -81,16 +81,9 @@
     "sass:watch": "sass-style-template",
     "sort:package": "npx sort-package-json",
     "start": "concurrently -k -r \"npm:sass:watch\" \"npm:vite\"",
-    "start:wds": "concurrently -k -r \"npm:sass:watch\" \"npm:wds\"",
     "test": "wtr --coverage",
     "test:watch": "wtr --watch",
-    "vite": "vite",
-    "wds": "web-dev-server"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "vite": "vite"
   },
   "lint-staged": {
     "**/*.{js,ts,html}": [
