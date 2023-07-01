@@ -11,7 +11,6 @@ on:
 
 jobs:
   publish:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
@@ -35,7 +34,9 @@ jobs:
         run: |
           npx lerna@6.6.2 bootstrap --ci
 
-      - uses: microsoft/playwright-github-action@v1
+      - name: Install playwright
+        run: |
+          npx playwright install chromium webkit --with-deps
 
       - name: Test
         run: |

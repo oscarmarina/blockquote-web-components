@@ -2,8 +2,7 @@ name: Checks
 
 on:
   pull_request:
-    types: [ opened, synchronize ]
-
+    types: [opened, synchronize]
   workflow_dispatch:
 
 jobs:
@@ -27,7 +26,7 @@ jobs:
 
       - name: Install playwright
         run: |
-          npx playwright install --with-deps
+          npx playwright install chromium webkit --with-deps
 
       - name: Format and test
         run: |
