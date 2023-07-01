@@ -168,7 +168,6 @@ export default css`
 
 ### Progressive Enhancement:
 
-- support browsers without native `Shadow DOM`
 - support browsers with native `Shadow DOM` but without `adoptedStyleSheets`
 - support browsers with native `Shadow DOM` and `adoptedStyleSheets`
 

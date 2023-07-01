@@ -33,10 +33,10 @@ import { setComponentSharedStyles } from blockquote-base-style-helpers.js;
 
 setComponentSharedStyles('x-foo-shared-styles', css`
 :host {
- background-color: red;
+  background-color: red;
 }
 p {
- color: blue;
+  color: blue;
 }
 `);
 ```
@@ -53,10 +53,10 @@ import { getComponentSharedStyles } from 'blockquote-base-style-helpers';
 
 class XFoo extends LitElement {
 static get styles() {
- return [
-   css`...`,
-   getComponentSharedStyles('x-foo-shared-styles)
- ];
+  return [
+    css`...`,
+    getComponentSharedStyles('x-foo-shared-styles)
+  ];
 }
 }
 ```
@@ -83,47 +83,47 @@ The last step in the Built-in theme support creation is to [provide the CSS vari
 
 ```js
 export const theme = {
- colors: {
-   ...tertiary0,
-   ...tertiary1,
-   ...tertiary2,
-   ...neutral,
- },
- fontFace: {
-   ...fontFace,
- },
- fonts: {
-   main: 'Kaisei HarunoUmi, serif',
- },
+  colors: {
+    ...tertiary0,
+    ...tertiary1,
+    ...tertiary2,
+    ...neutral,
+  },
+  fontFace: {
+    ...fontFace,
+  },
+  fonts: {
+    main: 'Kaisei HarunoUmi, serif',
+  },
 };
 
 const THEME = `
 :root {
- --red-300: ${theme.colors['--red-300']};
- --red-400: ${theme.colors['--red-400']};
- --red-500: ${theme.colors['--red-500']};
- --red-600: ${theme.colors['--red-600']};
- --red-700: ${theme.colors['--red-700']};
+  --red-300: ${theme.colors['--red-300']};
+  --red-400: ${theme.colors['--red-400']};
+  --red-500: ${theme.colors['--red-500']};
+  --red-600: ${theme.colors['--red-600']};
+  --red-700: ${theme.colors['--red-700']};
 
- --green-300: ${theme.colors['--green-300']};
- --green-400: ${theme.colors['--green-400']};
- --green-500: ${theme.colors['--green-500']};
- --green-600: ${theme.colors['--green-600']};
- --green-700: ${theme.colors['--green-700']};
+  --green-300: ${theme.colors['--green-300']};
+  --green-400: ${theme.colors['--green-400']};
+  --green-500: ${theme.colors['--green-500']};
+  --green-600: ${theme.colors['--green-600']};
+  --green-700: ${theme.colors['--green-700']};
 
- --blue-300: ${theme.colors['--blue-300']};
- --blue-400: ${theme.colors['--blue-400']};
- --blue-500: ${theme.colors['--blue-500']};
- --blue-600: ${theme.colors['--blue-600']};
- --blue-700: ${theme.colors['--blue-700']};
+  --blue-300: ${theme.colors['--blue-300']};
+  --blue-400: ${theme.colors['--blue-400']};
+  --blue-500: ${theme.colors['--blue-500']};
+  --blue-600: ${theme.colors['--blue-600']};
+  --blue-700: ${theme.colors['--blue-700']};
 
- --neutral-300: ${theme.colors['--neutral-300']};
- --neutral-400: ${theme.colors['--neutral-400']};
- --neutral-500: ${theme.colors['--neutral-500']};
- --neutral-600: ${theme.colors['--neutral-600']};
- --neutral-700: ${theme.colors['--neutral-700']};
+  --neutral-300: ${theme.colors['--neutral-300']};
+  --neutral-400: ${theme.colors['--neutral-400']};
+  --neutral-500: ${theme.colors['--neutral-500']};
+  --neutral-600: ${theme.colors['--neutral-600']};
+  --neutral-700: ${theme.colors['--neutral-700']};
 
- font: normal medium/1.25 sans-serif;
+  font: normal medium/1.25 sans-serif;
 
 }`;
 ```
@@ -134,11 +134,11 @@ const THEME = `
 // Two call (setDocumentStyles) preserves any existing StyleSheets added via adoptedStyleSheets
 
 setDocumentStyles(css`
- ${unsafeCSS(theme.fontFace.root)}
+  ${unsafeCSS(theme.fontFace.root)}
 `);
 
 setDocumentStyles(css`
- ${unsafeCSS(THEME)}
+  ${unsafeCSS(THEME)}
 `);
 ```
 
@@ -152,10 +152,10 @@ import { css, unsafeCSS } from 'lit';
 import { theme } from '../theme/theme.js';
 
 export default css`
- :host {
-   display: block;
-   color: var(--neutral-600, ${unsafeCSS(theme.colors['--neutral-600'])});
- }
+  :host {
+    display: block;
+    color: var(--neutral-600, ${unsafeCSS(theme.colors['--neutral-600'])});
+  }
 `;
 ```
 
@@ -169,6 +169,5 @@ export default css`
 
 ### Progressive Enhancement:
 
-- support browsers without native `Shadow DOM`
 - support browsers with native `Shadow DOM` but without `adoptedStyleSheets`
 - support browsers with native `Shadow DOM` and `adoptedStyleSheets`

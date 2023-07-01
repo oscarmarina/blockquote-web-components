@@ -28,12 +28,12 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
   /** Amount of test files per browser to test concurrently */
   concurrency: 1,
 
-  reporters: [defaultReporter(), summaryReporter(), coverageTableReporter()],
+  reporters: [summaryReporter(), defaultReporter(), coverageTableReporter()],
 
+  coverage: true,
   coverageConfig: {
-    report: true,
     reportDir: `${outDir}/test/coverage`,
-    reporters: ['html', 'lcovonly', 'json'],
+    reporters: ['lcov', 'lcovonly', 'json'],
     threshold: {
       statements: 80,
       branches: 80,
@@ -47,6 +47,7 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
     config: {
       ui: 'tdd',
       timeout: 4000,
+      reporter: 'html',
     },
   },
 
