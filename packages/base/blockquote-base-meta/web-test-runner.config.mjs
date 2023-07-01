@@ -28,24 +28,26 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
   /** Amount of test files per browser to test concurrently */
   concurrency: 1,
 
-  reporters: [defaultReporter(), summaryReporter(), coverageTableReporter()],
+  reporters: [summaryReporter(), defaultReporter(), coverageTableReporter()],
 
+  coverage: true,
   coverageConfig: {
-    report: true,
     reportDir: `${outDir}/test/coverage`,
-    reporters: ['html', 'lcovonly', 'json'],
+    reporters: ['lcov', 'lcovonly', 'json'],
     threshold: {
       statements: 80,
       branches: 80,
       functions: 80,
       lines: 80,
     },
+    exclude: ['**/node_modules/**/*', '**/web_modules/**/*', '**/__wds-outside-root__/**/*'],
   },
 
   testFramework: {
     config: {
       ui: 'tdd',
       timeout: 4000,
+      reporter: 'html',
     },
   },
 

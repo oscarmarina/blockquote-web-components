@@ -48,16 +48,9 @@
     "sass:watch": "sass-style-template",
     "sort:package": "npx sort-package-json",
     "start": "concurrently -k -r \"npm:sass:watch\" \"npm:vite\"",
-    "start:wds": "concurrently -k -r \"npm:sass:watch\" \"npm:wds\"",
     "test": "wtr --coverage",
     "test:watch": "wtr --watch",
-    "vite": "vite",
-    "wds": "web-dev-server"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "vite": "vite"
   },
   "lint-staged": {
     "**/*.{js,ts,html}": [
