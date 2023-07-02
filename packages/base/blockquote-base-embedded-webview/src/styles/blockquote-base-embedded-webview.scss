@@ -1,3 +1,5 @@
+@use "../../../../../node_modules/@blockquote-web-components/blockquote-foundations-sass/main" as *;
+
 :host {
   --_host-color: var(--blockquote-base-embedded-webview-color, rgb(32, 32, 32));
   --_main-bgcolor: var(--blockquote-base-embedded-webview-main-bgcolor, rgb(250, 250, 250));
@@ -19,6 +21,10 @@
   display: none !important;
 }
 
+.sr-only {
+  @include visuallyhidden;
+}
+
 .main {
   contain: content;
   flex: 1;
@@ -37,16 +43,32 @@
   box-sizing: inherit;
 }
 
-[role="heading"] {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-}
-
 header > div {
   position: relative;
   max-width: 80rem;
   margin: 0 auto;
   padding: 0.5rem 1.5rem;
+}
+
+[role="heading"] {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+[role="heading"] + div {
+  display: flex;
+  align-items: center;
+}
+
+.open-externally {
+  width: 1rem;
+  display: inline-block;
+  margin-left: 1rem;
+  color: inherit;
+
+  & svg {
+    vertical-align: bottom;
+  }
 }
 
 .select {

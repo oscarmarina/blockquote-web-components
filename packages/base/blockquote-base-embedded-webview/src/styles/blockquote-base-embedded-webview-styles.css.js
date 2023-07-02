@@ -20,6 +20,18 @@ export const styles = css`:host {
   display: none !important;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .main {
   contain: content;
   flex: 1;
@@ -36,16 +48,31 @@ export const styles = css`:host {
   box-sizing: inherit;
 }
 
-[role=heading] {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-}
-
 header > div {
   position: relative;
   max-width: 80rem;
   margin: 0 auto;
   padding: 0.5rem 1.5rem;
+}
+
+[role=heading] {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+[role=heading] + div {
+  display: flex;
+  align-items: center;
+}
+
+.open-externally {
+  width: 1rem;
+  display: inline-block;
+  margin-left: 1rem;
+  color: inherit;
+}
+.open-externally svg {
+  vertical-align: bottom;
 }
 
 .select {

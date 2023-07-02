@@ -43,7 +43,17 @@
             },
             {
               "kind": "field",
+              "name": "_navigationDemosTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
               "name": "_selectTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_externalLinkTpl",
               "readonly": true
             },
             {
@@ -136,7 +146,7 @@
             {
               "kind": "field",
               "name": "__selectArrow",
-              "default": "svg`<svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n<polyline points=\"6 9 12 15 18 9\" />\n</svg>`"
+              "default": "html`<svg\n  aria-hidden=\"true\"\n  viewBox=\"0 0 24 24\"\n  stroke-width=\"2\"\n  stroke=\"currentcolor\"\n  fill=\"none\"\n  stroke-linecap=\"round\"\n  stroke-linejoin=\"round\"\n>\n  <polyline points=\"6 9 12 15 18 9\" />\n</svg>`"
             },
             {
               "kind": "field",
@@ -719,7 +729,7 @@
         {
           "kind": "variable",
           "name": "styles",
-          "default": "css`:host {\n  --_host-color: var(--blockquote-base-embedded-webview-color, rgb(32, 32, 32));\n  --_main-bgcolor: var(--blockquote-base-embedded-webview-main-bgcolor, rgb(250, 250, 250));\n  --_select-bgcolor: var(--blockquote-base-embedded-webview-select-bgcolor, rgb(222, 222, 222));\n  --_select-transition: var(--blockquote-base-embedded-webview-select-transition, border-bottom 196ms ease-out, var(--blockquote-base-embedded-webview-select-transition, border-bottom 196ms ease-out));\n  --blockquote-base-embedded-webview-resize-rect-width: 40rem; /* 40rem */\n  --blockquote-base-embedded-webview-resize-rect-height: 22.5rem; /* 22.5rem */\n  display: flex;\n  flex-direction: column;\n  box-sizing: border-box;\n  width: 100%;\n  height: 100%;\n  color: var(--_host-color);\n}\n\n:host([hidden]),\n[hidden] {\n  display: none !important;\n}\n\n.main {\n  contain: content;\n  flex: 1;\n  background-color: var(--_main-bgcolor);\n}\n\n:host([limit-height]) .main {\n  height: inherit;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\n[role=heading] {\n  font-size: 1.25rem;\n  margin-bottom: 0.5rem;\n}\n\nheader > div {\n  position: relative;\n  max-width: 80rem;\n  margin: 0 auto;\n  padding: 0.5rem 1.5rem;\n}\n\n.select {\n  display: inline-grid;\n  grid-template-areas: select;\n  align-items: center;\n}\n.select > * {\n  grid-area: select;\n}\n.select svg {\n  width: 0.875rem;\n  justify-self: end;\n  pointer-events: none;\n}\n.select select {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  color: inherit;\n  font: inherit;\n  background-color: transparent;\n  border: none;\n  border-bottom: 0.125rem solid var(--_select-bgcolor);\n  padding: 0.25em 1em 0.25em 0;\n  margin: 0;\n  width: 100%;\n  cursor: pointer;\n  outline: none;\n  border-radius: 0;\n  min-width: 10ch;\n  max-width: 18ch;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  transition: var(--_select-transition);\n}\n.select select:hover, .select select:focus {\n  border-bottom-color: currentcolor;\n}\n\n.description {\n  margin: 0.5rem 0 1rem;\n  font-size: 0.875rem;\n}\n\n.description:empty {\n  visibility: hidden;\n}\n\n.read-data-pos {\n  font-size: 0.875rem;\n  letter-spacing: 0.0156rem;\n  position: fixed;\n  z-index: 1;\n  right: 0.375rem;\n  top: 0.3125rem;\n  opacity: 0;\n  transition: opacity 90ms cubic-bezier(0.25, 0.46, 0.45, 0.94);\n}\n\nblockquote-base-embedded-webview-resize {\n  overflow-x: hidden;\n}`"
+          "default": "css`:host {\n  --_host-color: var(--blockquote-base-embedded-webview-color, rgb(32, 32, 32));\n  --_main-bgcolor: var(--blockquote-base-embedded-webview-main-bgcolor, rgb(250, 250, 250));\n  --_select-bgcolor: var(--blockquote-base-embedded-webview-select-bgcolor, rgb(222, 222, 222));\n  --_select-transition: var(--blockquote-base-embedded-webview-select-transition, border-bottom 196ms ease-out, var(--blockquote-base-embedded-webview-select-transition, border-bottom 196ms ease-out));\n  --blockquote-base-embedded-webview-resize-rect-width: 40rem; /* 40rem */\n  --blockquote-base-embedded-webview-resize-rect-height: 22.5rem; /* 22.5rem */\n  display: flex;\n  flex-direction: column;\n  box-sizing: border-box;\n  width: 100%;\n  height: 100%;\n  color: var(--_host-color);\n}\n\n:host([hidden]),\n[hidden] {\n  display: none !important;\n}\n\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  white-space: nowrap;\n  border: 0;\n}\n\n.main {\n  contain: content;\n  flex: 1;\n  background-color: var(--_main-bgcolor);\n}\n\n:host([limit-height]) .main {\n  height: inherit;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\nheader > div {\n  position: relative;\n  max-width: 80rem;\n  margin: 0 auto;\n  padding: 0.5rem 1.5rem;\n}\n\n[role=heading] {\n  font-size: 1.25rem;\n  margin-bottom: 0.5rem;\n}\n\n[role=heading] + div {\n  display: flex;\n  align-items: center;\n}\n\n.open-externally {\n  width: 1rem;\n  display: inline-block;\n  margin-left: 1rem;\n  color: inherit;\n}\n.open-externally svg {\n  vertical-align: bottom;\n}\n\n.select {\n  display: inline-grid;\n  grid-template-areas: select;\n  align-items: center;\n}\n.select > * {\n  grid-area: select;\n}\n.select svg {\n  width: 0.875rem;\n  justify-self: end;\n  pointer-events: none;\n}\n.select select {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  color: inherit;\n  font: inherit;\n  background-color: transparent;\n  border: none;\n  border-bottom: 0.125rem solid var(--_select-bgcolor);\n  padding: 0.25em 1em 0.25em 0;\n  margin: 0;\n  width: 100%;\n  cursor: pointer;\n  outline: none;\n  border-radius: 0;\n  min-width: 10ch;\n  max-width: 18ch;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  transition: var(--_select-transition);\n}\n.select select:hover, .select select:focus {\n  border-bottom-color: currentcolor;\n}\n\n.description {\n  margin: 0.5rem 0 1rem;\n  font-size: 0.875rem;\n}\n\n.description:empty {\n  visibility: hidden;\n}\n\n.read-data-pos {\n  font-size: 0.875rem;\n  letter-spacing: 0.0156rem;\n  position: fixed;\n  z-index: 1;\n  right: 0.375rem;\n  top: 0.3125rem;\n  opacity: 0;\n  transition: opacity 90ms cubic-bezier(0.25, 0.46, 0.45, 0.94);\n}\n\nblockquote-base-embedded-webview-resize {\n  overflow-x: hidden;\n}`"
         }
       ],
       "exports": [

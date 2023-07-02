@@ -169,6 +169,7 @@
   },
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.4.1",
+    "@blockquote-web-components/blockquote-foundations-sass": "^1.0.0",
     "@polymer/iron-test-helpers": "^3.0.1"
   },
   "publishConfig": {
