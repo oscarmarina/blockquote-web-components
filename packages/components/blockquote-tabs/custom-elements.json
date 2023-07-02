@@ -1,0 +1,650 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "src/BlockquoteTabs.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "![Lit](https://img.shields.io/badge/lit-2.0.0-blue)\n\n[ARIA patterns](https://www.w3.org/WAI/ARIA/apg/patterns/)\n\nTabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time. Each tab panel has an associated tab element, that when activated, displays the panel. The list of tab elements is arranged along one edge of the currently displayed panel, most commonly the top edge.\n\n## Usage\n\n```html\n     <blockquote-tabs label=\"List of tabs\">\n       <blockquote-tab id=\"tab-1\">Tab 1</blockquote-tab>\n       <blockquote-tab id=\"tab-2\">Tab 2</blockquote-tab>\n       <blockquote-tab id=\"tab-3\">Tab 3</blockquote-tab>\n       <blockquote-tab id=\"tab-4\">Tab 4</blockquote-tab>\n       <blockquote-tab id=\"tab-5\">Tab 5</blockquote-tab>\n       <blockquote-tab id=\"tab-6\">Tab 6</blockquote-tab>\n       <blockquote-tab id=\"tab-7\">Tab 7</blockquote-tab>\n       <blockquote-tab id=\"tab-8\">Tab 8</blockquote-tab>\n       <blockquote-tab id=\"tab-9\">Tab 9</blockquote-tab>\n       <blockquote-tab id=\"tab-10\">Tab 10</blockquote-tab>\n       <blockquote-tabpanel aria-labelledby=\"tab-1\"><p>Panel 1</p></blockquote-tabpanel>\n       <blockquote-tabpanel aria-labelledby=\"tab-2\"><p>Panel 2</p></blockquote-tabpanel>\n       <blockquote-tabpanel aria-labelledby=\"tab-3\"><p>Panel 3</p></blockquote-tabpanel>\n       <blockquote-tabpanel aria-labelledby=\"tab-4\"><p>Panel 4</p></blockquote-tabpanel>\n       <blockquote-tabpanel aria-labelledby=\"tab-5\"><p>Panel 5</p></blockquote-tabpanel>\n       <blockquote-tabpanel aria-labelledby=\"tab-6\"><p>Panel 6</p></blockquote-tabpanel>\n       <blockquote-tabpanel aria-labelledby=\"tab-7\"><p>Panel 7</p></blockquote-tabpanel>\n       <blockquote-tabpanel aria-labelledby=\"tab-8\"><p>Panel 8</p></blockquote-tabpanel>\n       <blockquote-tabpanel aria-labelledby=\"tab-9\"><p>Panel 9</p></blockquote-tabpanel>\n       <blockquote-tabpanel aria-labelledby=\"tab-10\"><p>Panel 10</p></blockquote-tabpanel>\n     </blockquote-tabs>\n```\n\n## Exports\n\n - BlockquoteTabs",
+          "name": "BlockquoteTabs",
+          "members": [
+            {
+              "kind": "field",
+              "name": "is",
+              "static": true,
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "_selectedIsInRange",
+              "parameters": [
+                {
+                  "name": "idx"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "_selectedTab",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_selectedTabIndex",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_selectedTabIndexFromOne",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_getTabListLength",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "_onSlotChanges",
+              "parameters": [
+                {
+                  "name": "ev"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "_scrollContentTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_tablistTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_separatorTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_indicatorsTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_holdTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_tabpanelTpl",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "_scrollEdge",
+              "parameters": [
+                {
+                  "name": "{ target = this._scrollContentRef.value }",
+                  "default": "{}"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_onTabClick",
+              "parameters": [
+                {
+                  "name": "ev"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_onTabKeyDown",
+              "parameters": [
+                {
+                  "name": "ev"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_selectTab"
+            },
+            {
+              "kind": "method",
+              "name": "_moveFocusSelectedTab",
+              "parameters": [
+                {
+                  "name": "selectedTab",
+                  "default": "this._selectedTab"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_requestFocusUpdate"
+            },
+            {
+              "kind": "method",
+              "name": "_scrollIntoView"
+            },
+            {
+              "kind": "method",
+              "name": "_scrollIntoViewWithOffset",
+              "parameters": [
+                {
+                  "name": "tabScroller",
+                  "default": "this._selectedTab"
+                },
+                {
+                  "name": "behavior",
+                  "default": "this._observeScrollBehavior ? 'smooth' : 'auto'"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_requestPropertyUpdate",
+              "parameters": [
+                {
+                  "name": "prop"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_onResizeObserverChange"
+            },
+            {
+              "kind": "field",
+              "name": "autofocus",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If present, the tab automatically have focus",
+              "default": "false",
+              "attribute": "autofocus"
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "description": "`aria-label` for tabs group",
+              "default": "''",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "description": "The tab selected.",
+              "default": "1",
+              "attribute": "selected",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "_tabList",
+              "type": {
+                "text": "array"
+              },
+              "default": "[]"
+            },
+            {
+              "kind": "field",
+              "name": "_tabpanelList",
+              "type": {
+                "text": "array"
+              },
+              "default": "[]"
+            },
+            {
+              "kind": "field",
+              "name": "_selectTabLast",
+              "default": "undefined"
+            },
+            {
+              "kind": "field",
+              "name": "_selectTabpanelLast",
+              "default": "undefined"
+            },
+            {
+              "kind": "field",
+              "name": "_observedFocus",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "_observeScrollBehavior",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "_slotChangesCount",
+              "type": {
+                "text": "number"
+              },
+              "default": "0"
+            },
+            {
+              "kind": "field",
+              "name": "_slotNodesCount",
+              "default": "undefined"
+            },
+            {
+              "kind": "field",
+              "name": "_scrollContentRef"
+            },
+            {
+              "kind": "field",
+              "name": "_resizeControllerObserver",
+              "default": "new ResizeController(this, {\n      callback: () => {\n        this._onResizeObserverChange();\n      },\n      skipInitial: true,\n    })"
+            },
+            {
+              "kind": "field",
+              "name": "_hasScrollLeftIndicator",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "attribute": "_hasScrollLeftIndicator"
+            },
+            {
+              "kind": "field",
+              "name": "_hasScrollRightIndicator",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "attribute": "_hasScrollRightIndicator"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "autofocus",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If present, the tab automatically have focus",
+              "default": "false",
+              "fieldName": "autofocus"
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "`aria-label` for tabs group",
+              "default": "''",
+              "fieldName": "label"
+            },
+            {
+              "name": "selected",
+              "type": {
+                "text": "number"
+              },
+              "description": "The tab selected.",
+              "default": "1",
+              "fieldName": "selected"
+            },
+            {
+              "name": "_hasScrollLeftIndicator",
+              "type": {
+                "text": "boolean"
+              },
+              "fieldName": "_hasScrollLeftIndicator"
+            },
+            {
+              "name": "_hasScrollRightIndicator",
+              "type": {
+                "text": "boolean"
+              },
+              "fieldName": "_hasScrollRightIndicator"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "BlockquoteMixinSlotContent",
+              "package": "@blockquote-web-components/blockquote-mixin-slot-content"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "blockquote-tabs",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "BlockquoteTabs",
+          "declaration": {
+            "name": "BlockquoteTabs",
+            "module": "src/BlockquoteTabs.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/blockquote-tabs-styles.css.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`:host {\n  --_unselected-color: var(--blockquote-tabs-unselected-color, rgb(234 234 234));\n  --_scroll-gradient-start-color: var(--blockquote-tabs-scroll-gradient-start-color, rgba(255, 255, 255, 0));\n  --_scroll-gradient-end-color: var(--blockquote-tabs-scroll-gradient-end-color, rgba(252, 252, 252, 1));\n  --_scroll-arrow-color: var(--blockquote-tabs-scroll-arrow-color, rgb(94, 94, 94));\n  contain: content;\n  display: block;\n  box-sizing: border-box;\n  color: #202020;\n}\n\n:host([hidden]),\n[hidden] {\n  display: none !important;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\n.hold {\n  position: relative;\n  display: flex;\n}\n.hold .separator {\n  position: absolute;\n  z-index: -1;\n  bottom: 0;\n  height: 1px;\n  left: 0;\n  right: 0;\n  background-color: var(--_unselected-color);\n}\n.hold .indicator {\n  position: absolute;\n  width: 1rem;\n  pointer-events: none;\n  top: 0;\n  bottom: 1px;\n  left: 0;\n  box-shadow: rgb(255, 255, 255) 4px 0 12px 4px inset, rgb(210, 210, 210) 4px 0 4px -4px;\n  background-color: rgba(234, 234, 234, 0.5);\n  transition: opacity 92ms ease-in-out;\n  opacity: 0;\n  background-clip: padding-box;\n}\n.hold .indicator.show-indicator {\n  opacity: 1;\n}\n.hold .indicator + .indicator {\n  left: auto;\n  right: 0;\n  transform: scale(-1);\n}\n\n.scroll-content {\n  width: 100%;\n  overflow-x: auto;\n  overflow-y: hidden;\n  -webkit-overflow-scrolling: touch;\n  scrollbar-width: none;\n  overscroll-behavior: none;\n}\n.scroll-content::-webkit-scrollbar {\n  display: none;\n}\n.scroll-content:focus-visible {\n  outline: #9e9e9e dashed 0.0625rem;\n  outline-offset: -2px;\n}\n.scroll-content:focus:not(:focus-visible) {\n  outline: none;\n}\n\n[role=tablist] {\n  display: flex;\n}`"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "src/styles/blockquote-tabs-styles.css.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/tab/BlockquoteTab.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "BlockquoteTab",
+          "members": [
+            {
+              "kind": "field",
+              "name": "is",
+              "static": true,
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "_onSlotChanges",
+              "parameters": [
+                {
+                  "name": "ev"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "__setArrayAttibute",
+              "parameters": [
+                {
+                  "name": "entries",
+                  "default": "[]"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "The tab selected.",
+              "default": "false",
+              "attribute": "selected"
+            },
+            {
+              "kind": "field",
+              "name": "globalRootAttributes",
+              "type": {
+                "text": "object"
+              },
+              "default": "{\n      role: 'tab',\n      slot: 'tab',\n      tabindex: 0,\n    }"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "The tab selected.",
+              "default": "false",
+              "fieldName": "selected"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "BlockquoteMixinSlotContent",
+              "package": "@blockquote-web-components/blockquote-mixin-slot-content"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "BlockquoteTab",
+          "declaration": {
+            "name": "BlockquoteTab",
+            "module": "src/tab/BlockquoteTab.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/tabpanel/BlockquoteTabPanel.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "BlockquoteTabPanel",
+          "members": [
+            {
+              "kind": "field",
+              "name": "is",
+              "static": true,
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "__setArrayAttibute",
+              "parameters": [
+                {
+                  "name": "entries",
+                  "default": "[]"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "The -",
+              "default": "false",
+              "attribute": "selected"
+            },
+            {
+              "kind": "field",
+              "name": "globalRootAttributes",
+              "type": {
+                "text": "object"
+              },
+              "default": "{\n      role: 'tabpanel',\n      slot: 'tabpanel',\n      tabindex: 0,\n    }"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "The -",
+              "default": "false",
+              "fieldName": "selected"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "BlockquoteTabPanel",
+          "declaration": {
+            "name": "BlockquoteTabPanel",
+            "module": "src/tabpanel/BlockquoteTabPanel.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/tab/styles/blockquote-tab-styles.css.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`:host {\n  --__color: var(--blockquote-tab-color-dark-mode, var(--blockquote-tab-color-ambient, var(--theme-colors-secondary500, rgb(32, 32, 32))));\n  --_color: var(--blockquote-tab-color, var(--__color));\n  --_selected-border-color: var(--blockquote-tab-selected-border-color, var(--blockquote-tab-selected-border-color-ambient, var(--theme-colors-secondary500, rgb(184, 184, 184))));\n  --_focus-outline-color: var(--blockquote-tab-focus-outline-color, var(--blockquote-tab-focus-outline-color-ambient, var(--theme-colors-secondary500, rgb(184, 184, 184))));\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  white-space: nowrap;\n  color: var(--_color);\n  padding: 1em 0.5em;\n  min-width: 6.25rem;\n  border-bottom: 0.0625rem solid transparent;\n  transition: border-bottom-color 192ms ease-in-out;\n  cursor: pointer;\n}\n\n:host([hidden]),\n[hidden] {\n  display: none !important;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\n:host([aria-selected=true]) {\n  font-weight: 700;\n  border-bottom-color: var(--_selected-border-color);\n}\n\n:host(:focus:not(:focus-visible)) {\n  outline: none;\n}\n\n:host(:focus-visible) {\n  outline: 0.0625rem dashed var(--_focus-outline-color);\n  outline-offset: -0.125rem;\n}\n\nslot::before {\n  content: attr(data-text);\n  display: block;\n  font: inherit;\n  font-weight: 700;\n  width: inherit;\n  height: 0;\n  overflow: hidden;\n  visibility: hidden;\n}`"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "src/tab/styles/blockquote-tab-styles.css.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/tabpanel/styles/blockquote-tabpanel-styles.css.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`:host {\n  display: block;\n  box-sizing: border-box;\n  padding: 1rem;\n  color: var(--tabpanel, inherit);\n}\n\n:host([hidden]),\n[hidden] {\n  display: none !important;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\n:host([aria-hidden=true]) {\n  display: none;\n}\n\n:host(:focus:not(:focus-visible)) {\n  outline: none;\n}\n\n:host(:focus-visible) {\n  outline: #9e9e9e dashed 0.0625rem;\n  outline-offset: -2px;\n}`"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "src/tabpanel/styles/blockquote-tabpanel-styles.css.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "define/blockquote-tab.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "BlockquoteTab",
+            "module": "/src/tab/BlockquoteTab.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "define/blockquote-tabpanel.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "BlockquoteTabPanel",
+            "module": "/src/tabpanel/BlockquoteTabPanel.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "define/blockquote-tabs.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "declaration": {
+            "name": "BlockquoteTabs",
+            "module": "/src/BlockquoteTabs.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "index.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "BlockquoteTabs",
+          "declaration": {
+            "name": "BlockquoteTabs",
+            "module": "./src/BlockquoteTabs.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "BlockquoteTab",
+          "declaration": {
+            "name": "BlockquoteTab",
+            "module": "./src/tab/BlockquoteTab.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "BlockquoteTabPanel",
+          "declaration": {
+            "name": "BlockquoteTabPanel",
+            "module": "./src/tabpanel/BlockquoteTabPanel.js"
+          }
+        }
+      ]
+    }
+  ]
+}
