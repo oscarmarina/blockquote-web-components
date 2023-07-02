@@ -1,1 +1,0 @@
-import{e as l,a as o,n}from"./directive-helpers-1c5e1fea.js";const r=(s="")=>`data:image/svg+xml;charset=utf-8,${encodeURI(s).replace(/#/g,"%23")}`,g=(s=[],t=[])=>s.map((a,e)=>[a,n(t[e])?g(t[e].strings,t[e].values).join(""):t[e]].join(""));class m extends o{render(t){if(!t||!n(t))return"";const a=t.strings,e=t.values,c=g(a,e).join("");return r(c)}}const v=l(m);export{v as b};

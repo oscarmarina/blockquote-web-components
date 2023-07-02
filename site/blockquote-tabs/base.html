@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="en" dark="_mode"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base - blockquote-tabs</title>
+    <style>
+      :root {
+        font: normal medium/1.25 sans-serif;
+      }
+      body {
+        margin: 0;
+      }
+
+      [data-embedded] .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      blockquote-tabs:not(:defined) {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 class="sr-only">blockquote-tabs</h1>
+      <blockquote-tabs label="List of tabs">
+        <blockquote-tab id="tab-1">Tab 1</blockquote-tab>
+        <blockquote-tab id="tab-2">Tab 2</blockquote-tab>
+        <blockquote-tab id="tab-3">Tab 3</blockquote-tab>
+        <blockquote-tab id="tab-4">Tab 4</blockquote-tab>
+        <blockquote-tab id="tab-5">Tab 5</blockquote-tab>
+        <blockquote-tab id="tab-6">Tab 6</blockquote-tab>
+        <blockquote-tab id="tab-7">Tab 7</blockquote-tab>
+        <blockquote-tab id="tab-8">Tab 8</blockquote-tab>
+        <blockquote-tab id="tab-9">Tab 9</blockquote-tab>
+        <blockquote-tab id="tab-10">Tab 10</blockquote-tab>
+        <blockquote-tabpanel aria-labelledby="tab-1"><p>Panel 1</p></blockquote-tabpanel>
+        <blockquote-tabpanel aria-labelledby="tab-2"><p>Panel 2</p></blockquote-tabpanel>
+        <blockquote-tabpanel aria-labelledby="tab-3"><p><button>Panel 3</button></p></blockquote-tabpanel>
+        <blockquote-tabpanel aria-labelledby="tab-4"><p>Panel 4</p></blockquote-tabpanel>
+        <blockquote-tabpanel aria-labelledby="tab-5"><p>Panel 5</p></blockquote-tabpanel>
+        <blockquote-tabpanel aria-labelledby="tab-6"><p>Panel 6</p></blockquote-tabpanel>
+        <blockquote-tabpanel aria-labelledby="tab-7"><p>Panel 7</p></blockquote-tabpanel>
+        <blockquote-tabpanel aria-labelledby="tab-8"><p>Panel 8</p></blockquote-tabpanel>
+        <blockquote-tabpanel aria-labelledby="tab-9"><p>Panel 9</p></blockquote-tabpanel>
+        <blockquote-tabpanel aria-labelledby="tab-10"><p>Panel 10</p></blockquote-tabpanel>
+      </blockquote-tabs>
+    </main>
+    
+    <script>
+      document.addEventListener('selectedchange', ({ detail }) => console.log(detail));
+    </script>
+  
+
+<script type="module" src="./assets/blockquote-tabs-5c9aff43.js"></script></body></html>

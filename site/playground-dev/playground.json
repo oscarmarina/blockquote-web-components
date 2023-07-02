@@ -4,12 +4,10 @@
       "position": 0,
       "hidden": true
     },
-
-    "base2.html": {
+    "base1.html": {
       "position": 1
     },
-
-    "base3.html": {
+    "base2.html": {
       "position": 2
     },
     "base.html": {
