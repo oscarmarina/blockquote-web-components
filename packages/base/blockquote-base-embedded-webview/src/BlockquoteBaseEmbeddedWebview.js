@@ -1,13 +1,37 @@
-import { html, LitElement, svg } from 'lit';
+import { html, LitElement } from 'lit';
 import { ref, createRef } from 'lit/directives/ref.js';
 import '../define/blockquote-base-embedded-webview-size.js';
 import '../define/blockquote-base-embedded-webview-resize.js';
 import '../define/blockquote-base-embedded-webview-element.js';
 import { styles } from './styles/blockquote-base-embedded-webview-styles.css.js';
 
-const chevronDownIcon = svg`<svg aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-<polyline points="6 9 12 15 18 9" />
+const chevronDownIcon = html`<svg
+  aria-hidden="true"
+  viewBox="0 0 24 24"
+  stroke-width="2"
+  stroke="currentcolor"
+  fill="none"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <polyline points="6 9 12 15 18 9" />
 </svg>`;
+
+// https://github.com/ChromeDevTools/devtools-frontend/blob/main/front_end/Images/src/open-externally.svg
+const openExternallyIcon = html`
+  <svg
+    viewBox="0 0 20 20"
+    fill-rule="evenodd"
+    fill="currentcolor"
+    preserveAspectRatio="xMidYMid meet"
+    focusable="false"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M4.5 17C4.08333 17 3.72933 16.854 3.438 16.562C3.146 16.2707 3 15.9167 3 15.5V4.5C3 4.08333 3.146 3.72933 3.438 3.438C3.72933 3.146 4.08333 3 4.5 3H10V4.5H4.5V15.5H15.5V10H17V15.5C17 15.9167 16.854 16.2707 16.562 16.562C16.2707 16.854 15.9167 17 15.5 17H4.5ZM8.062 13L7 11.938L14.438 4.5H12V3H17V8H15.5V5.562L8.062 13Z"
+    />
+  </svg>
+`;
 
 /**
 ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
@@ -200,7 +224,8 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     return html`
       <header>
         <div>
-          ${this._headingTpl} ${this._selectTpl} ${this._descriptionTpl} ${this._readDataPosTpl}
+          ${this._headingTpl} ${this._navigationDemosTpl} ${this._descriptionTpl}
+          ${this._readDataPosTpl}
         </div>
         ${this._screenSizeTpl}
       </header>
@@ -209,6 +234,10 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
 
   get _headingTpl() {
     return html`<div aria-level="${this._headingLevel}" role="heading">${this.heading}</div>`;
+  }
+
+  get _navigationDemosTpl() {
+    return html` <div>${this._selectTpl}${this._externalLinkTpl}</div> `;
   }
 
   get _selectTpl() {
@@ -230,6 +259,13 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
           `
         : ''}
     `;
+  }
+
+  get _externalLinkTpl() {
+    return html`<a href="${this._src}" target="_blank" class="open-externally">
+      <span class="sr-only">View demo in a new tab</span
+      ><span aria-hidden="true">${openExternallyIcon}</span></a
+    >`;
   }
 
   get _descriptionTpl() {
