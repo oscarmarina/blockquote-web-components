@@ -1,0 +1,172 @@
+{
+  "name": "@blockquote-web-components/blockquote-tabs",
+  "version": "1.0.0-rc.1",
+  "description": "Webcomponent blockquote-tabs following open-wc recommendations",
+  "keywords": [
+    "lit",
+    "web-component",
+    "lit-element"
+  ],
+  "license": "MIT",
+  "author": "blockquote-tabs",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./index.js"
+    },
+    "./package.json": "./package.json",
+    "./src/BlockquoteTabs.js": {
+      "default": "./src/BlockquoteTabs.js"
+    },
+    "./src/tab/BlockquoteTab.js": {
+      "default": "./src/tab/BlockquoteTab.js"
+    },
+    "./src/tabpanel/BlockquoteTabPanel.js": {
+      "default": "./src/tabpanel/BlockquoteTabPanel.js"
+    },
+    "./src/styles/blockquote-tabs-styles.css.js": {
+      "default": "./src/styles/blockquote-tabs-styles.css.js"
+    },
+    "./src/tab/styles/blockquote-tab-styles.css.js": {
+      "default": "./src/styles/blockquote-tab-styles.css.js"
+    },
+    "./src/tabpanel/styles/blockquote-tabpanel-styles.css.js": {
+      "default": "./src/styles/blockquote-tabpanel-styles.css.js"
+    },
+    "./define/blockquote-tabs.js": {
+      "default": "./define/blockquote-tabs.js"
+    },
+    "./define/blockquote-tab.js": {
+      "default": "./define/blockquote-tab.js"
+    },
+    "./define/blockquote-tabpanel.js": {
+      "default": "./define/blockquote-tabpanel.js"
+    },
+    "./index.js": {
+      "default": "./index.js"
+    }
+  },
+  "main": "index.js",
+  "module": "index.js",
+  "files": [
+    "/define/",
+    "/src/",
+    "index.js",
+    "!/**/*.scss"
+  ],
+  "scripts": {
+    "analyze": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
+    "analyze:doc": "npm run analyze && npx web-component-analyzer \"{src,define}/**/*.{js,ts}\" \"index.js\" \"README.js\" --outFile README.md",
+    "build": "echo \"This is not a TypeScript project, so no need to build.\"",
+    "dev:vite": "vite build",
+    "format": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
+    "format:eslint": "eslint \"**/*.{js,ts,html}\" --fix --ignore-path .eslintignore",
+    "format:prettier": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .eslintignore",
+    "format:stylelint": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .eslintignore",
+    "postinstall": "npm run sort:package",
+    "lint": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
+    "lint:eslint": "eslint \"**/*.{js,ts,html}\" --ignore-path .eslintignore",
+    "lint:prettier": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .eslintignore",
+    "lint:stylelint": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .eslintignore",
+    "preview:vite": "vite preview",
+    "sass:watch": "sass-style-template",
+    "sort:package": "npx sort-package-json",
+    "start": "concurrently -k -r \"npm:sass:watch\" \"npm:vite\"",
+    "test": "wtr --coverage",
+    "test:watch": "wtr --watch",
+    "vite": "vite"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,html}": [
+      "npm run format:eslint"
+    ],
+    "**/*.{js,ts,json,html}": [
+      "npm run format:prettier"
+    ],
+    "**/*.{scss,css}": [
+      "npm run format:stylelint"
+    ]
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "overrides": [
+      {
+        "files": "*.{scss,css}",
+        "options": {
+          "printWidth": 280,
+          "singleQuote": false
+        }
+      }
+    ]
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": "latest"
+    },
+    "plugins": [
+      "log-filenames"
+    ],
+    "extends": [
+      "@open-wc",
+      "prettier"
+    ],
+    "rules": {
+      "class-methods-use-this": "off",
+      "no-unused-expressions": [
+        "error",
+        {
+          "allowShortCircuit": true,
+          "allowTernary": true
+        }
+      ],
+      "object-curly-newline": "off",
+      "import/extensions": [
+        "error",
+        "always",
+        {
+          "ignorePackages": true
+        }
+      ],
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": [
+            "**/test/**/*.{js,ts}",
+            "**/*.config.{js,ts,mjs,cjs}",
+            "**/*.conf.{js,ts,mjs,cjs}"
+          ]
+        }
+      ],
+      "import/no-unresolved": "off",
+      "import/prefer-default-export": "off"
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard-scss",
+    "rules": {
+      "custom-property-pattern": null,
+      "max-line-length": null,
+      "no-duplicate-selectors": null,
+      "color-function-notation": null,
+      "alpha-value-notation": null
+    }
+  },
+  "dependencies": {
+    "@blockquote-web-components/blockquote-mixin-slot-content": "^1.1.8",
+    "@juggle/resize-observer": "^3.4.0",
+    "@lit-labs/observers": "^1.1.0",
+    "lit": "^2.3.1"
+  },
+  "devDependencies": {
+    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.3.7",
+    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.3.1",
+    "@blockquote-web-components/blockquote-foundations-sass": "^1.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "customElements": "custom-elements.json"
+}
