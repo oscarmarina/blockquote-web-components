@@ -19,7 +19,7 @@
     ]
   },
   "scripts": {
-    "bootstrap": "npm i && lerna bootstrap",
+    "bootstrap": "lerna bootstrap",
     "clean": "rm package-lock.json && lerna clean",
     "clean:packages": "lerna exec -- rm -rf ./node_modules && npm run clean:packages:dev",
     "clean:packages:dev": "lerna exec -- rm -rf ./dev && lerna exec -- rm -rf ./package-lock.json",
