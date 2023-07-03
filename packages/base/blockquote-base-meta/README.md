@@ -20,10 +20,10 @@ But the main difference is that Map allows keys of any type.
 ```js
 import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';
 
- const myDefault = new BlockquoteBaseMeta({
-   key: 'basic',
-   value: 'foo/bar',
- });
+  const myDefault = new BlockquoteBaseMeta({
+    key: 'basic',
+    value: 'foo/bar',
+  });
 
 console.log(myDefault.value); // foo/bar
 ```
@@ -33,13 +33,13 @@ console.log(myDefault.value); // foo/bar
 ```js
 import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';
 
- const myDefault = new BlockquoteBaseMeta({
-   type: 'one',
-   key: 'basic',
-   value: 'foo/bar',
- });
+  const myDefault = new BlockquoteBaseMeta({
+    type: 'one',
+    key: 'basic',
+    value: 'foo/bar',
+  });
 
- console.log(myDefault.objectList); // {basic: 'foo/bar'}
+  console.log(myDefault.objectList); // {basic: 'foo/bar'}
 ```
 
 ## Keys any type - Map
@@ -47,16 +47,16 @@ import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-m
 ```js
 import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';
 
- const keyInfo = { id: 'dsfaskj0' };
- const myDefault = new BlockquoteBaseMeta({
-   type: 'two',
-   key: keyInfo,
-   value: 'foo/bar',
- });
+  const keyInfo = { id: 'dsfaskj0' };
+  const myDefault = new BlockquoteBaseMeta({
+    type: 'two',
+    key: keyInfo,
+    value: 'foo/bar',
+  });
 
 console.log(myDefault.mapList); // {{ id: 'dsfaskj0' }: 'foo/bar'}
 ```
 
 # ## Exports
 
- - BlockquoteBaseMeta
+  - BlockquoteBaseMeta

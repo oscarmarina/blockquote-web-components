@@ -14,12 +14,14 @@
             {
               "kind": "field",
               "name": "types",
-              "static": true
+              "static": true,
+              "readonly": true
             },
             {
               "kind": "field",
               "name": "uuid",
-              "static": true
+              "static": true,
+              "readonly": true
             },
             {
               "kind": "field",
@@ -47,7 +49,8 @@
                 "type": {
                   "text": "Array"
                 }
-              }
+              },
+              "readonly": true
             },
             {
               "kind": "field",
@@ -57,7 +60,8 @@
                 "type": {
                   "text": "Map"
                 }
-              }
+              },
+              "readonly": true
             },
             {
               "kind": "field",
@@ -67,7 +71,8 @@
                 "type": {
                   "text": "Object"
                 }
-              }
+              },
+              "readonly": true
             },
             {
               "kind": "method",
