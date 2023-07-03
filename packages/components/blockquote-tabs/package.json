@@ -14,7 +14,9 @@
     ".": {
       "default": "./index.js"
     },
-    "./package.json": "./package.json",
+    "./package.json": {
+      "default": "./package.json"
+    },
     "./src/BlockquoteTabs.js": {
       "default": "./src/BlockquoteTabs.js"
     },
@@ -28,10 +30,10 @@
       "default": "./src/styles/blockquote-tabs-styles.css.js"
     },
     "./src/tab/styles/blockquote-tab-styles.css.js": {
-      "default": "./src/styles/blockquote-tab-styles.css.js"
+      "default": "./src/tab/styles/blockquote-tab-styles.css.js"
     },
     "./src/tabpanel/styles/blockquote-tabpanel-styles.css.js": {
-      "default": "./src/styles/blockquote-tabpanel-styles.css.js"
+      "default": "./src/tabpanel/styles/blockquote-tabpanel-styles.css.js"
     },
     "./define/blockquote-tabs.js": {
       "default": "./define/blockquote-tabs.js"
