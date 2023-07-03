@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.13.1](https://github.com/oscarmarina/blockquote-web-components/compare/v1.13.0...v1.13.1) (2023-07-03)
+
+
+### Bug Fixes
+
+* **blockquote-base-common-dev-dependencies:** udpate and prune ([8ec494f](https://github.com/oscarmarina/blockquote-web-components/commit/8ec494f1595b425401fa7f0c29d51703345d928b))
+* **blockquote-base-embedded-webview:** exports and lighthouse ([9a04ff2](https://github.com/oscarmarina/blockquote-web-components/commit/9a04ff2394abdf7ce335e5d2a60fa7d425066c28))
+* **blockquote-base-meta:** exports and lighthouse ([06cda75](https://github.com/oscarmarina/blockquote-web-components/commit/06cda750b027d5c6021f6db4d118d53cc46e701b))
+* **blockquote-base-style-helpers:** exports and lighthouse ([e73c7f0](https://github.com/oscarmarina/blockquote-web-components/commit/e73c7f079bbd98eb0d48bf9121bbea8e34c4c7bf))
+* **blockquote-controller-rxjs:** exports and lighthouse ([d83360b](https://github.com/oscarmarina/blockquote-web-components/commit/d83360bc086c9b4e541e2fa4e6d93fda32d3a8c7))
+* **blockquote-directive-svg-to-data-image:** exports and lighthouse ([3b064c1](https://github.com/oscarmarina/blockquote-web-components/commit/3b064c13ec2de7de9ef96d40d8d035e91016595e))
+* **blockquote-mixin-slot-content:** exports and lighthouse ([b81bb10](https://github.com/oscarmarina/blockquote-web-components/commit/b81bb10d2d1616ada9ecfca275ab78506e69f3bb))
+* **blockquote-tabs:** exports and lighthouse ([f4a9bd1](https://github.com/oscarmarina/blockquote-web-components/commit/f4a9bd10858b7caa9b5240c64defc5894fb2e118))
+
 ## [1.13.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.12.3...v1.13.0) (2023-07-02)
 
 
