@@ -14,7 +14,9 @@
     ".": {
       "default": "./index.js"
     },
-    "./package.json": "./package.json",
+    "./package.json": {
+      "default": "./package.json"
+    },
     "./src/getComponentSharedStyles.js": {
       "default": "./src/getComponentSharedStyles.js"
     },
