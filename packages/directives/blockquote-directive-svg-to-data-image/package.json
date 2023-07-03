@@ -17,7 +17,9 @@
     ".": {
       "default": "./index.js"
     },
-    "./package.json": "./package.json",
+    "./package.json": {
+      "default": "./package.json"
+    },
     "./src/BlockquoteDirectiveSvgToDataImage.js": {
       "default": "./src/BlockquoteDirectiveSvgToDataImage.js"
     },
