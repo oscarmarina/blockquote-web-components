@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.19](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-meta@1.0.18...@blockquote-web-components/blockquote-base-meta@1.0.19) (2023-07-03)
+
+### Bug Fixes
+
+- **blockquote-base-meta:** exports and lighthouse ([06cda75](https://github.com/oscarmarina/blockquote-web-components/commit/06cda750b027d5c6021f6db4d118d53cc46e701b))
+
 ## [1.0.18](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-meta@1.0.17...@blockquote-web-components/blockquote-base-meta@1.0.18) (2023-07-02)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-base-meta
