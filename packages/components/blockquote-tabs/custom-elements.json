@@ -349,95 +349,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/tab/BlockquoteTab.js",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "BlockquoteTab",
-          "members": [
-            {
-              "kind": "field",
-              "name": "is",
-              "static": true,
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "_onSlotChanges",
-              "parameters": [
-                {
-                  "name": "ev"
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "__setArrayAttibute",
-              "parameters": [
-                {
-                  "name": "entries",
-                  "default": "[]"
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "selected",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "The tab selected.",
-              "default": "false",
-              "attribute": "selected"
-            },
-            {
-              "kind": "field",
-              "name": "globalRootAttributes",
-              "type": {
-                "text": "object"
-              },
-              "default": "{\n      role: 'tab',\n      slot: 'tab',\n      tabindex: 0,\n    }"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "selected",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "The tab selected.",
-              "default": "false",
-              "fieldName": "selected"
-            }
-          ],
-          "mixins": [
-            {
-              "name": "BlockquoteMixinSlotContent",
-              "package": "@blockquote-web-components/blockquote-mixin-slot-content"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "BlockquoteTab",
-          "declaration": {
-            "name": "BlockquoteTab",
-            "module": "src/tab/BlockquoteTab.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/styles/blockquote-tabs-styles.css.js",
       "declarations": [
         {
@@ -533,21 +444,89 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/tab/styles/blockquote-tab-styles.css.js",
+      "path": "src/tab/BlockquoteTab.js",
       "declarations": [
         {
-          "kind": "variable",
-          "name": "styles",
-          "default": "css`:host {\n  --__color: var(--blockquote-tab-color-dark-mode, var(--blockquote-tab-color-ambient, var(--theme-colors-secondary500, rgb(32, 32, 32))));\n  --_color: var(--blockquote-tab-color, var(--__color));\n  --_selected-border-color: var(--blockquote-tab-selected-border-color, var(--blockquote-tab-selected-border-color-ambient, var(--theme-colors-secondary500, rgb(184, 184, 184))));\n  --_focus-outline-color: var(--blockquote-tab-focus-outline-color, var(--blockquote-tab-focus-outline-color-ambient, var(--theme-colors-secondary500, rgb(184, 184, 184))));\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  white-space: nowrap;\n  color: var(--_color);\n  padding: 1em 0.5em;\n  min-width: 6.25rem;\n  border-bottom: 0.0625rem solid transparent;\n  transition: border-bottom-color 192ms ease-in-out;\n  cursor: pointer;\n}\n\n:host([hidden]),\n[hidden] {\n  display: none !important;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\n:host([aria-selected=true]) {\n  font-weight: 700;\n  border-bottom-color: var(--_selected-border-color);\n}\n\n:host(:focus:not(:focus-visible)) {\n  outline: none;\n}\n\n:host(:focus-visible) {\n  outline: 0.0625rem dashed var(--_focus-outline-color);\n  outline-offset: -0.125rem;\n}\n\nslot::before {\n  content: attr(data-text);\n  display: block;\n  font: inherit;\n  font-weight: 700;\n  width: inherit;\n  height: 0;\n  overflow: hidden;\n  visibility: hidden;\n}`"
+          "kind": "class",
+          "description": "",
+          "name": "BlockquoteTab",
+          "members": [
+            {
+              "kind": "field",
+              "name": "is",
+              "static": true,
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "_onSlotChanges",
+              "parameters": [
+                {
+                  "name": "ev"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "__setArrayAttibute",
+              "parameters": [
+                {
+                  "name": "entries",
+                  "default": "[]"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "The tab selected.",
+              "default": "false",
+              "attribute": "selected"
+            },
+            {
+              "kind": "field",
+              "name": "globalRootAttributes",
+              "type": {
+                "text": "object"
+              },
+              "default": "{\n      role: 'tab',\n      slot: 'tab',\n      tabindex: 0,\n    }"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "The tab selected.",
+              "default": "false",
+              "fieldName": "selected"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "BlockquoteMixinSlotContent",
+              "package": "@blockquote-web-components/blockquote-mixin-slot-content"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "styles",
+          "name": "BlockquoteTab",
           "declaration": {
-            "name": "styles",
-            "module": "src/tab/styles/blockquote-tab-styles.css.js"
+            "name": "BlockquoteTab",
+            "module": "src/tab/BlockquoteTab.js"
           }
         }
       ]
@@ -569,6 +548,27 @@
           "declaration": {
             "name": "styles",
             "module": "src/tabpanel/styles/blockquote-tabpanel-styles.css.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/tab/styles/blockquote-tab-styles.css.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`:host {\n  --__color: var(--blockquote-tab-color-dark-mode, var(--blockquote-tab-color-ambient, var(--theme-colors-secondary500, rgb(32, 32, 32))));\n  --_color: var(--blockquote-tab-color, var(--__color));\n  --_selected-border-color: var(--blockquote-tab-selected-border-color, var(--blockquote-tab-selected-border-color-ambient, var(--theme-colors-secondary500, rgb(184, 184, 184))));\n  --_focus-outline-color: var(--blockquote-tab-focus-outline-color, var(--blockquote-tab-focus-outline-color-ambient, var(--theme-colors-secondary500, rgb(184, 184, 184))));\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  white-space: nowrap;\n  color: var(--_color);\n  padding: 1em 0.5em;\n  min-width: 6.25rem;\n  border-bottom: 0.0625rem solid transparent;\n  transition: border-bottom-color 192ms ease-in-out;\n  cursor: pointer;\n}\n\n:host([hidden]),\n[hidden] {\n  display: none !important;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\n:host([aria-selected=true]) {\n  font-weight: 700;\n  border-bottom-color: var(--_selected-border-color);\n}\n\n:host(:focus:not(:focus-visible)) {\n  outline: none;\n}\n\n:host(:focus-visible) {\n  outline: 0.0625rem dashed var(--_focus-outline-color);\n  outline-offset: -0.125rem;\n}\n\nslot::before {\n  content: attr(data-text);\n  display: block;\n  font: inherit;\n  font-weight: 700;\n  width: inherit;\n  height: 0;\n  overflow: hidden;\n  visibility: hidden;\n}`"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "src/tab/styles/blockquote-tab-styles.css.js"
           }
         }
       ]
