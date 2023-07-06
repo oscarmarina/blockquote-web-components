@@ -1,4 +1,4 @@
-import { html, LitElement } from 'lit';
+import { html, LitElement, render as LitHtmlRender } from 'lit';
 import { styles } from './styles/blockquote-base-embedded-webview-element-styles.css.js';
 /**
   ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
@@ -70,21 +70,26 @@ export class BlockquoteBaseEmbeddedWebviewElement extends LitElement {
     });
 
     this._embeddedElement.addEventListener('load', this._onLoadElement);
-
-    // append element after add listener `load`
-    this.append(this._embeddedElement);
   }
 
   willUpdate(props) {
     super.willUpdate && super.willUpdate(props);
 
-    if (props.has('src') && this.src !== '') {
+    if ((props.has('src') || props.has('embeddedTitle')) && this.src !== '') {
       this._fetch(this.src);
     }
   }
 
   render() {
-    return html` ${this._embeddedTpl} `;
+    return html` ${this._embeddedTpl} ${this._litHtmlRender()} `;
+  }
+
+  _litHtmlRender() {
+    LitHtmlRender(this._lightDomTpl, this);
+  }
+
+  get _lightDomTpl() {
+    return this._embeddedElement;
   }
 
   get _loadResource() {

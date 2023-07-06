@@ -1,4 +1,4 @@
-import { html, LitElement } from 'lit';
+import { html, LitElement, render as LitHtmlRender } from 'lit';
 import { ref, createRef } from 'lit/directives/ref.js';
 import '../define/blockquote-base-embedded-webview-size.js';
 import '../define/blockquote-base-embedded-webview-resize.js';
@@ -195,7 +195,6 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     this._controlBottom = parseFloat(
       window.getComputedStyle(this._embeddedResizeRef.value).paddingBottom,
     );
-    this.append(this.embedded);
   }
 
   _updateSize({ detail }) {
@@ -217,7 +216,15 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
   }
 
   render() {
-    return html` ${this._headerTpl} ${this._mainTpl} `;
+    return html` ${this._headerTpl} ${this._mainTpl} ${this._litHtmlRender()}`;
+  }
+
+  _litHtmlRender() {
+    LitHtmlRender(this._lightDomTpl, this);
+  }
+
+  get _lightDomTpl() {
+    return this.embedded;
   }
 
   get _headerTpl() {

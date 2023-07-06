@@ -32,6 +32,15 @@
               "readonly": true
             },
             {
+              "kind": "method",
+              "name": "_litHtmlRender"
+            },
+            {
+              "kind": "field",
+              "name": "_lightDomTpl",
+              "readonly": true
+            },
+            {
               "kind": "field",
               "name": "_headerTpl",
               "readonly": true
@@ -260,6 +269,15 @@
               "kind": "field",
               "name": "is",
               "static": true,
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "_litHtmlRender"
+            },
+            {
+              "kind": "field",
+              "name": "_lightDomTpl",
               "readonly": true
             },
             {
