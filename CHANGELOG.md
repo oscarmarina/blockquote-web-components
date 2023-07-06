@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.14.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.13.1...v1.14.0) (2023-07-06)
+
+
+### Features
+
+* **blockquote-base-embedded-webview:** refactor append node in light dom ([dacd302](https://github.com/oscarmarina/blockquote-web-components/commit/dacd30221c79cf7807ef674819efc53b47b41594))
+
+
+### Bug Fixes
+
+* **blockquote-tabs:** update custom-elements ([f75de4b](https://github.com/oscarmarina/blockquote-web-components/commit/f75de4b6674c9b1fdd77a28a54790d59dec5689f))
+
 ### [1.13.1](https://github.com/oscarmarina/blockquote-web-components/compare/v1.13.0...v1.13.1) (2023-07-03)
 
 
