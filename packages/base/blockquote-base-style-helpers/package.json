@@ -139,12 +139,12 @@
     }
   },
   "dependencies": {
-    "@blockquote-web-components/blockquote-base-meta": "^1.0.20",
-    "lit": "^2.0.2"
+    "@blockquote-web-components/blockquote-base-meta": "^1.0.20"
   },
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.4.2",
-    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.5.0"
+    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.5.0",
+    "lit": "^2.0.2"
   },
   "publishConfig": {
     "access": "public"
