@@ -1,4 +1,3 @@
-import { css, unsafeCSS } from 'lit';
 import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';
 
 const meta = new BlockquoteBaseMeta({
@@ -8,16 +7,13 @@ const meta = new BlockquoteBaseMeta({
 /**
  * Get styles (as cssResult) already associated to provided ID string (using setComponentSharedStyles helper) and returns them
  * @param {String} id Identifier of styles; usually will be `[component-name]-shared-styles`
- * @returns CSSResult
+ * @returns [CSSResult]
  */
 export const getComponentSharedStyles = id => {
   const sharedStyles = meta.byKey(id);
   if (sharedStyles) {
     const onlyCSSResult = sharedStyles.filter(cssResultObject => cssResultObject.cssText);
-    const onlyUnsafeCssResult = unsafeCSS(onlyCSSResult.join(''));
-    return css`
-      ${onlyUnsafeCssResult}
-    `;
+    return onlyCSSResult;
   }
-  return css``;
+  return [];
 };
