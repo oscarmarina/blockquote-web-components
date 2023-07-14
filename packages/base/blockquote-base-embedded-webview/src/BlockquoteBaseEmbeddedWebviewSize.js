@@ -172,18 +172,19 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
   get _toolbarTpl() {
     return html`
       ${this.screenSizes.map(
-        (item, index) => html`<button
-          @click="${this._setSelected}"
-          id="${item.id}"
-          data-index="${index + 1}"
-          ?data-selected="${this.selected === index + 1}"
-          ?hidden="${!this.showOverflowSize && item.width > this.computedStyleWidth}"
-          style="${this.widthInPercent
-            ? `width: calc(100% / ${index + 1});`
-            : `width: ${item.width}px;`}"
-        >
-          <span>${item.id}</span>
-        </button>`,
+        (item, index) =>
+          html`<button
+            @click="${this._setSelected}"
+            id="${item.id}"
+            data-index="${index + 1}"
+            ?data-selected="${this.selected === index + 1}"
+            ?hidden="${!this.showOverflowSize && item.width > this.computedStyleWidth}"
+            style="${this.widthInPercent
+              ? `width: calc(100% / ${index + 1});`
+              : `width: ${item.width}px;`}"
+          >
+            <span>${item.id}</span>
+          </button>`,
       )}
     `;
   }
