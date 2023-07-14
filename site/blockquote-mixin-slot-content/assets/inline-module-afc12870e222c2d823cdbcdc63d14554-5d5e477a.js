@@ -1,4 +1,4 @@
-var ne=Object.defineProperty,de=Object.defineProperties;var ae=Object.getOwnPropertyDescriptors;var O=Object.getOwnPropertySymbols;var ce=Object.prototype.hasOwnProperty,le=Object.prototype.propertyIsEnumerable;var H=(t,e,i)=>e in t?ne(t,e,{enumerable:!0,configurable:!0,writable:!0,value:i}):t[e]=i,I=(t,e)=>{for(var i in e||(e={}))ce.call(e,i)&&H(t,i,e[i]);if(O)for(var i of O(e))le.call(e,i)&&H(t,i,e[i]);return t},U=(t,e)=>de(t,ae(e));import{A as Y,i as $,s as E,x as d,B as Q}from"./lit-element-04af072e.js";/**
+var ne=Object.defineProperty,de=Object.defineProperties;var ae=Object.getOwnPropertyDescriptors;var O=Object.getOwnPropertySymbols;var ce=Object.prototype.hasOwnProperty,le=Object.prototype.propertyIsEnumerable;var H=(t,e,i)=>e in t?ne(t,e,{enumerable:!0,configurable:!0,writable:!0,value:i}):t[e]=i,I=(t,e)=>{for(var i in e||(e={}))ce.call(e,i)&&H(t,i,e[i]);if(O)for(var i of O(e))le.call(e,i)&&H(t,i,e[i]);return t},U=(t,e)=>de(t,ae(e));import{A as Y,i as $,s as E,x as d,D as Q}from"./lit-element-b05023f2.js";/**
  * @license
  * Copyright 2020 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
@@ -133,15 +133,15 @@ button[data-selected] ~ button:hover {
       </div>
     `}get _toolbarTpl(){return d`
       ${this.screenSizes.map((e,i)=>d`<button
-          @click="${this._setSelected}"
-          id="${e.id}"
-          data-index="${i+1}"
-          ?data-selected="${this.selected===i+1}"
-          ?hidden="${!this.showOverflowSize&&e.width>this.computedStyleWidth}"
-          style="${this.widthInPercent?`width: calc(100% / ${i+1});`:`width: ${e.width}px;`}"
-        >
-          <span>${e.id}</span>
-        </button>`)}
+            @click="${this._setSelected}"
+            id="${e.id}"
+            data-index="${i+1}"
+            ?data-selected="${this.selected===i+1}"
+            ?hidden="${!this.showOverflowSize&&e.width>this.computedStyleWidth}"
+            style="${this.widthInPercent?`width: calc(100% / ${i+1});`:`width: ${e.width}px;`}"
+          >
+            <span>${e.id}</span>
+          </button>`)}
     `}get _visualTextTpl(){return d` <span aria-disabled="${this.disabledSelectedSizeText}" aria-hidden="true"
       >${this.selectedSize.id}</span
     >`}_onResize(e){e.preventDefault(),e.stopPropagation(),window.requestAnimationFrame(()=>{this.requestUpdate()})}_setSelected(e){e.preventDefault(),e.stopPropagation(),this.selected=Number(e.target.dataset.index);const i=new CustomEvent("click",{detail:this.selectedDetail});this.dispatchEvent(i)}}window.customElements.define(X.is,X);/**

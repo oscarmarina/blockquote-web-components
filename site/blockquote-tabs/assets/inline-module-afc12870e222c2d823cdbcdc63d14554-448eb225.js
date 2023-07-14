@@ -1,4 +1,4 @@
-var te=Object.defineProperty,ie=Object.defineProperties;var re=Object.getOwnPropertyDescriptors;var P=Object.getOwnPropertySymbols;var se=Object.prototype.hasOwnProperty,oe=Object.prototype.propertyIsEnumerable;var O=(t,e,i)=>e in t?te(t,e,{enumerable:!0,configurable:!0,writable:!0,value:i}):t[e]=i,A=(t,e)=>{for(var i in e||(e={}))se.call(e,i)&&O(t,i,e[i]);if(P)for(var i of P(e))oe.call(e,i)&&O(t,i,e[i]);return t},N=(t,e)=>ie(t,re(e));import{i as x,s as k,x as d,B as W,e as ne,n as de}from"./ref-2381c9b0.js";const ae=x`:host {
+var te=Object.defineProperty,ie=Object.defineProperties;var re=Object.getOwnPropertyDescriptors;var P=Object.getOwnPropertySymbols;var se=Object.prototype.hasOwnProperty,oe=Object.prototype.propertyIsEnumerable;var O=(t,e,i)=>e in t?te(t,e,{enumerable:!0,configurable:!0,writable:!0,value:i}):t[e]=i,A=(t,e)=>{for(var i in e||(e={}))se.call(e,i)&&O(t,i,e[i]);if(P)for(var i of P(e))oe.call(e,i)&&O(t,i,e[i]);return t},N=(t,e)=>ie(t,re(e));import{i as x,s as k,x as d,D as W,e as ne,n as de}from"./ref-de16070d.js";const ae=x`:host {
   --_host-color: var(--blockquote-base-embedded-webview-size-color, inherit);
   --_rect-height: var(--blockquote-base-embedded-webview-size-rect-height, 1.125rem);
   --_rect-size: var(--blockquote-base-embedded-webview-size-rect-size, 0.6875rem);
@@ -117,15 +117,15 @@ button[data-selected] ~ button:hover {
       </div>
     `}get _toolbarTpl(){return d`
       ${this.screenSizes.map((e,i)=>d`<button
-          @click="${this._setSelected}"
-          id="${e.id}"
-          data-index="${i+1}"
-          ?data-selected="${this.selected===i+1}"
-          ?hidden="${!this.showOverflowSize&&e.width>this.computedStyleWidth}"
-          style="${this.widthInPercent?`width: calc(100% / ${i+1});`:`width: ${e.width}px;`}"
-        >
-          <span>${e.id}</span>
-        </button>`)}
+            @click="${this._setSelected}"
+            id="${e.id}"
+            data-index="${i+1}"
+            ?data-selected="${this.selected===i+1}"
+            ?hidden="${!this.showOverflowSize&&e.width>this.computedStyleWidth}"
+            style="${this.widthInPercent?`width: calc(100% / ${i+1});`:`width: ${e.width}px;`}"
+          >
+            <span>${e.id}</span>
+          </button>`)}
     `}get _visualTextTpl(){return d` <span aria-disabled="${this.disabledSelectedSizeText}" aria-hidden="true"
       >${this.selectedSize.id}</span
     >`}_onResize(e){e.preventDefault(),e.stopPropagation(),window.requestAnimationFrame(()=>{this.requestUpdate()})}_setSelected(e){e.preventDefault(),e.stopPropagation(),this.selected=Number(e.target.dataset.index);const i=new CustomEvent("click",{detail:this.selectedDetail});this.dispatchEvent(i)}}window.customElements.define(H.is,H);/**
