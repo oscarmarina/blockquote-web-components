@@ -116,6 +116,7 @@
     "lint-staged": "^13.2.3",
     "postcss": "^8.4.26",
     "prettier": "^3.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
     "sort-package-json": "^2.5.1",
     "standard-version": "^9.5.0",
     "stylelint": "^15.10.1",
