@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.14.1](https://github.com/oscarmarina/blockquote-web-components/compare/v1.14.0...v1.14.1) (2023-07-14)
+
+
+### Bug Fixes
+
+* **blockquote-base-common-dev-dependencies:** update dependencies ([ab7faab](https://github.com/oscarmarina/blockquote-web-components/commit/ab7faabcf4424aec950478cdf50a03d15f42fff8))
+* **blockquote-base-style-helpers:** remove lit dependency ([fa0438a](https://github.com/oscarmarina/blockquote-web-components/commit/fa0438a40629a3f64a8689d9bf000948c50e0bc8))
+
 ## [1.14.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.13.1...v1.14.0) (2023-07-06)
 
 
