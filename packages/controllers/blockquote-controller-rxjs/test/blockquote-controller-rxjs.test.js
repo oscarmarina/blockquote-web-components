@@ -47,9 +47,9 @@ suite('BlockquoteControllerRxjs', () => {
 
   suite('Default', () => {
     setup(async () => {
-      el = await fixture(
-        html` <blockquote-controller-rxjs-demo></blockquote-controller-rxjs-demo> `,
-      );
+      el = await fixture(html`
+        <blockquote-controller-rxjs-demo></blockquote-controller-rxjs-demo>
+      `);
       await el.updateComplete;
     });
 
