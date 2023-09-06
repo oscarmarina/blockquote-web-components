@@ -1,0 +1,258 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "src/AjaxProvider.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "A class that provides AJAX functionality with event handling capabilities.",
+          "name": "AjaxProvider",
+          "members": [
+            {
+              "kind": "method",
+              "name": "_assignAjaxProviderConfig",
+              "parameters": [
+                {
+                  "name": "config",
+                  "description": "Configuration config to be assigned.",
+                  "type": {
+                    "text": "Object"
+                  }
+                }
+              ],
+              "description": "Assigns configuration options to the AjaxProvider instance."
+            },
+            {
+              "kind": "field",
+              "name": "dispatchEventContext",
+              "description": "The context for dispatching events.",
+              "type": {
+                "text": "AjaxProvider"
+              },
+              "default": "this"
+            },
+            {
+              "kind": "field",
+              "name": "lastResponse",
+              "type": {
+                "text": "Object"
+              },
+              "description": "The last AJAX response object.",
+              "default": "{}"
+            },
+            {
+              "kind": "field",
+              "name": "lastError",
+              "type": {
+                "text": "Object"
+              },
+              "description": "The last error object.",
+              "default": "{}"
+            },
+            {
+              "kind": "field",
+              "name": "customEventPrefix",
+              "type": {
+                "text": "string"
+              },
+              "description": "A custom event prefix for events related to HTTP requests.",
+              "default": "'ajax'"
+            },
+            {
+              "kind": "field",
+              "name": "avoidBoundary",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Set to `true` to stop delegating the use of boundaries for multipart requests to the browser.\nOnly change this to `true` if you know what you are doing.",
+              "default": "false"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "AjaxProviderMixin",
+              "module": "/src/AjaxProviderMixin.js"
+            }
+          ],
+          "superclass": {
+            "name": "EventTarget",
+            "module": "src/AjaxProvider.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "AjaxProvider",
+          "declaration": {
+            "name": "AjaxProvider",
+            "module": "src/AjaxProvider.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/AjaxProviderMixin.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "AjaxProviderMixin",
+          "description": "Mixin for providing AJAX functionality using RxJS. This mixin can be used to enhance classes with AJAX capabilities.",
+          "parameters": [
+            {
+              "description": "The base class to extend.",
+              "name": "Base",
+              "type": {
+                "text": "Class"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "AjaxProviderMixin",
+          "declaration": {
+            "name": "AjaxProviderMixin",
+            "module": "src/AjaxProviderMixin.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/utils.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "isStandardBrowserEnv",
+          "description": "Determines if the code is running in a standard browser environment.\n\nThis function checks for specific conditions that indicate whether the code is\nrunning in a standard browser environment, allowing Axios to work in various\nenvironments like web workers, React Native, or NativeScript.",
+          "return": {
+            "type": {
+              "text": "boolean"
+            }
+          }
+        },
+        {
+          "kind": "variable",
+          "name": "isStandardBrowserWebWorkerEnv",
+          "description": "Determines if the code is running in a standard browser WebWorker environment.\n\nThis function checks for specific conditions that indicate whether the code is\nrunning in a standard browser WebWorker environment. It takes into account the\nlimitations of the `isStandardBrowserEnv` method when working with WebWorkers.",
+          "return": {
+            "type": {
+              "text": "boolean"
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "name": "isFormData",
+          "parameters": [
+            {
+              "name": "thing",
+              "description": "The value to test",
+              "type": {
+                "text": "*"
+              }
+            }
+          ],
+          "description": "Determine if a value is a FormData",
+          "return": {
+            "type": {
+              "text": "boolean"
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "name": "assignIfDefined",
+          "parameters": [
+            {
+              "name": "obj",
+              "description": "The object to which the property will be assigned.",
+              "type": {
+                "text": "Object"
+              }
+            },
+            {
+              "name": "prop",
+              "description": "The property name.",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "name": "value",
+              "description": "The value to assign if it is defined.",
+              "type": {
+                "text": "*"
+              }
+            }
+          ],
+          "description": "Utility function to assign a property to an object if the value is defined."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "isStandardBrowserEnv",
+          "declaration": {
+            "name": "isStandardBrowserEnv",
+            "module": "src/utils.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isStandardBrowserWebWorkerEnv",
+          "declaration": {
+            "name": "isStandardBrowserWebWorkerEnv",
+            "module": "src/utils.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isFormData",
+          "declaration": {
+            "name": "isFormData",
+            "module": "src/utils.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "assignIfDefined",
+          "declaration": {
+            "name": "assignIfDefined",
+            "module": "src/utils.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "index.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "AjaxProvider",
+          "declaration": {
+            "name": "AjaxProvider",
+            "module": "./src/AjaxProvider.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "AjaxProviderMixin",
+          "declaration": {
+            "name": "AjaxProviderMixin",
+            "module": "./src/AjaxProviderMixin.js"
+          }
+        }
+      ]
+    }
+  ]
+}

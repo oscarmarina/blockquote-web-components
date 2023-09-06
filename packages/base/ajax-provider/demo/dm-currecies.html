@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Demo - ajax-provider</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta name="description" content="ajax-provider" />
+    <style>
+      html,
+      body {
+        height: 100%;
+        font-family: sans-serif;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .label {
+        font-family: monospace;
+        font-size: 0.8rem;
+        text-align: center;
+      }
+
+      div {
+        width: 20rem;
+        padding: 0 1em;
+        margin-bottom: 1rem;
+        outline: 1px solid #d6d6d6;
+      }
+
+      json-viewer {
+        --font-family: monospace;
+        --font-size: inherit;
+
+        margin-bottom: 1rem;
+        padding: 0.5em 1em;
+      }
+
+      json-viewer::part(object) {
+        padding: 0;
+        margin: 0;
+      }
+
+      json-viewer::part(property) {
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div>
+        <p class="label">getcurrencies();</p>
+        <json-viewer id="currencies"></json-viewer>
+      </div>
+      <div>
+        <p class="label">getcurrenciesFromCountryCode('MNT);</p>
+        <json-viewer id="currenciesCN"></json-viewer>
+      </div>
+    </main>
+    <script type="module">
+      // eslint-disable-next-line import/no-extraneous-dependencies
+      import sinon from 'sinon';
+      // eslint-disable-next-line import/no-extraneous-dependencies
+      import '@alenaksu/json-viewer/json-viewer.js';
+      import { DmCurrencies } from './DmCurrencies.js';
+
+      // https://gist.github.com/manishtiwari25/0fa055ee14f29ee6a7654d50af20f095
+      const CURRENCIES = {
+        currencies: [
+          {
+            code: 'BGN',
+            name: 'Bulgarian Lev',
+            symbol: 'Лв.',
+            countries: [
+              {
+                code: 'BG',
+                name: 'Bulgaria',
+              },
+            ],
+          },
+          {
+            code: 'JPY',
+            name: 'Japanese Yen',
+            symbol: '¥',
+            countries: [
+              {
+                code: 'JP',
+                name: 'Japan',
+              },
+            ],
+          },
+          {
+            code: 'MNT',
+            name: 'Mongolian Tugrik',
+            symbol: '₮',
+            countries: [
+              {
+                code: 'MN',
+                name: 'Mongolia',
+              },
+            ],
+          },
+        ],
+      };
+
+      const responseHeaders = {
+        json: { 'Content-Type': 'application/json' },
+        plain: { 'Content-Type': 'text/plain' },
+      };
+
+      const server = sinon.fakeServer.create({
+        autoRespond: true,
+      });
+
+      server.respondWith('GET', 'responds_get_with_json', [
+        200,
+        responseHeaders.json,
+        JSON.stringify(CURRENCIES),
+      ]);
+
+      const currencies = document.querySelector('#currencies');
+      const currenciesCN = document.querySelector('#currenciesCN');
+
+      const dm = new DmCurrencies({ url: 'responds_get_with_json' });
+      dm.addEventListener('success-currency', ({ detail }) => console.log(detail), { once: true });
+      dm.addEventListener('success-currency-from-country-code', ({ detail }) =>
+        console.log(detail),
+      );
+      dm.addEventListener('error-currency', ({ detail }) => console.log(detail));
+
+      dm.getCurrencies().then(data => {
+        currencies.data = data;
+      });
+
+      dm.getCurrenciesFromCountryCode('MN').then(data => {
+        currenciesCN.data = data;
+      });
+    </script>
+  </body>
+</html>
