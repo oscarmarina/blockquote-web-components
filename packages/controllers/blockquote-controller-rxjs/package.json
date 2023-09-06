@@ -123,7 +123,7 @@
   },
   "dependencies": {
     "lit": "^2.0.2",
-    "rxjs": "^7.5.5"
+    "rxjs": "^8.0.0-alpha.12"
   },
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.4.3",
