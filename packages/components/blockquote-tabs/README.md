@@ -4,10 +4,10 @@
 
 ## Properties
 
-| Property               | Attribute  | Type      | Default                                  | Description       |
-|------------------------|------------|-----------|------------------------------------------|-------------------|
-| `globalRootAttributes` |            | `object`  | {"role":"tab","slot":"tab","tabindex":0} |                   |
-| `selected`             | `selected` | `boolean` | false                                    | The tab selected. |
+| Property               | Attribute  | Type      | Default                                  | Description                           |
+|------------------------|------------|-----------|------------------------------------------|---------------------------------------|
+| `globalRootAttributes` |            | `object`  | {"role":"tab","slot":"tab","tabindex":0} |                                       |
+| `selected`             | `selected` | `boolean` | false                                    | Whether or not the tab is `selected`. |
 
 ## Events
 
@@ -20,10 +20,10 @@
 
 ## Properties
 
-| Property               | Attribute  | Type      | Default                                          | Description |
-|------------------------|------------|-----------|--------------------------------------------------|-------------|
-| `globalRootAttributes` |            | `object`  | {"role":"tabpanel","slot":"tabpanel","tabindex":0} |             |
-| `selected`             | `selected` | `boolean` | false                                            | The -       |
+| Property               | Attribute  | Type      | Default                                          | Description                                |
+|------------------------|------------|-----------|--------------------------------------------------|--------------------------------------------|
+| `globalRootAttributes` |            | `object`  | {"role":"tabpanel","slot":"tabpanel","tabindex":0} |                                            |
+| `selected`             | `selected` | `boolean` | false                                            | Whether or not the tabpanel is `selected`. |
 
 
 # blockquote-tabs

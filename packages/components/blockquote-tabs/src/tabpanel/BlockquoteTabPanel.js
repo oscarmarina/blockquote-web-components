@@ -9,7 +9,7 @@ export class BlockquoteTabPanel extends LitElement {
   static get properties() {
     return {
       /**
-       * The -
+       * Whether or not the tabpanel is `selected`.
        * @type {boolean}
        */
       selected: {
