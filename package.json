@@ -1,6 +1,6 @@
 {
   "name": "blockquote-web-components",
-  "version": "1.14.1",
+  "version": "1.14.2",
   "private": true,
   "description": "Monorepo - Blockquote Web Components",
   "homepage": "https://github.com/oscarmarina/blockquote-web-components",
@@ -112,7 +112,7 @@
     "eslint": "^8.44.0",
     "husky": "^8.0.3",
     "karma": "^6.4.2",
-    "lerna": "^6.1.0",
+    "lerna": "^7.2.0",
     "lint-staged": "^13.2.3",
     "postcss": "^8.4.26",
     "prettier": "^3.0.0",
