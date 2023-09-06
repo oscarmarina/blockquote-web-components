@@ -78,9 +78,9 @@ suite('BlockquoteControllerRxjs', () => {
       el.setupObservable(stream$);
       stream$.next(1);
       assert.equal(el.streamValues, 1);
-      assert.equal(stream$.currentObservers.length, 1);
+      assert.equal(stream$.currentObservers.size, 1);
       el.remove();
-      assert.isNull(stream$.currentObservers);
+      assert.equal(stream$.currentObservers.size, 0);
     });
 
     test('will unsubscribe when called with a different stream', () => {
@@ -88,9 +88,9 @@ suite('BlockquoteControllerRxjs', () => {
       el.setupObservable(stream$);
       stream$.next(1);
       assert.equal(el.streamValues, 1);
-      assert.equal(stream$.currentObservers.length, 1);
+      assert.equal(stream$.currentObservers.size, 1);
       el.setupObservable(new Subject());
-      assert.isNull(stream$.currentObservers);
+      assert.equal(stream$.currentObservers.size, 0);
     });
 
     test('will ignore calls with the same stream', () => {
@@ -98,9 +98,9 @@ suite('BlockquoteControllerRxjs', () => {
       el.setupObservable(stream$);
       stream$.next(1);
       assert.equal(el.streamValues, 1);
-      assert.equal(stream$.currentObservers.length, 1);
+      assert.equal(stream$.currentObservers.size, 1);
       el.setupObservable(stream$);
-      assert.equal(stream$.currentObservers.length, 1);
+      assert.equal(stream$.currentObservers.size, 1);
     });
   });
 });

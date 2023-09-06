@@ -1,5 +1,4 @@
-import { Subject, isObservable } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Subject, isObservable, takeUntil } from 'rxjs';
 
 const unsubscribe = Symbol('unsubscribe');
 const subscriptions = Symbol('subscriptions');
