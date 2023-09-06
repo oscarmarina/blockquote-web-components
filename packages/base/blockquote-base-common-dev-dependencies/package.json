@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-base-common-dev-dependencies",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Common dev dependencies to develop blockquote web components",
   "dependencies": {
     "@blockquote/coverage-table-reporter": "^1.0.0",
