@@ -32,7 +32,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npx lerna@6.6.2 bootstrap --ci
+          npm ci --legacy-peer-deps
 
       - name: Install playwright
         run: |
@@ -47,5 +47,5 @@ jobs:
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
 
-          npx lerna@6.6.2 version --yes
-          npx lerna@6.6.2 publish from-package --yes
+          npx lerna version --yes
+          npx lerna publish from-package --yes
