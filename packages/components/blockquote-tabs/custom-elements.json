@@ -370,6 +370,80 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/tabpanel/BlockquoteTabPanel.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "BlockquoteTabPanel",
+          "members": [
+            {
+              "kind": "field",
+              "name": "is",
+              "static": true,
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "__setArrayAttibute",
+              "parameters": [
+                {
+                  "name": "entries",
+                  "default": "[]"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Whether or not the tabpanel is `selected`.",
+              "default": "false",
+              "attribute": "selected"
+            },
+            {
+              "kind": "field",
+              "name": "globalRootAttributes",
+              "type": {
+                "text": "object"
+              },
+              "default": "{\n      role: 'tabpanel',\n      slot: 'tabpanel',\n      tabindex: 0,\n    }"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Whether or not the tabpanel is `selected`.",
+              "default": "false",
+              "fieldName": "selected"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "BlockquoteTabPanel",
+          "declaration": {
+            "name": "BlockquoteTabPanel",
+            "module": "src/tabpanel/BlockquoteTabPanel.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/tab/BlockquoteTab.js",
       "declarations": [
         {
@@ -409,7 +483,7 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "The tab selected.",
+              "description": "Whether or not the tab is `selected`.",
               "default": "false",
               "attribute": "selected"
             },
@@ -428,7 +502,7 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "The tab selected.",
+              "description": "Whether or not the tab is `selected`.",
               "default": "false",
               "fieldName": "selected"
             }
@@ -459,74 +533,21 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/tabpanel/BlockquoteTabPanel.js",
+      "path": "src/tabpanel/styles/blockquote-tabpanel-styles.css.js",
       "declarations": [
         {
-          "kind": "class",
-          "description": "",
-          "name": "BlockquoteTabPanel",
-          "members": [
-            {
-              "kind": "field",
-              "name": "is",
-              "static": true,
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "__setArrayAttibute",
-              "parameters": [
-                {
-                  "name": "entries",
-                  "default": "[]"
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "selected",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "The -",
-              "default": "false",
-              "attribute": "selected"
-            },
-            {
-              "kind": "field",
-              "name": "globalRootAttributes",
-              "type": {
-                "text": "object"
-              },
-              "default": "{\n      role: 'tabpanel',\n      slot: 'tabpanel',\n      tabindex: 0,\n    }"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "selected",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "The -",
-              "default": "false",
-              "fieldName": "selected"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`:host {\n  display: block;\n  box-sizing: border-box;\n  padding: 1rem;\n  color: var(--tabpanel, inherit);\n}\n\n:host([hidden]),\n[hidden] {\n  display: none !important;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\n:host([aria-hidden=true]) {\n  display: none;\n}\n\n:host(:focus:not(:focus-visible)) {\n  outline: none;\n}\n\n:host(:focus-visible) {\n  outline: #9e9e9e dashed 0.0625rem;\n  outline-offset: -2px;\n}`"
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "BlockquoteTabPanel",
+          "name": "styles",
           "declaration": {
-            "name": "BlockquoteTabPanel",
-            "module": "src/tabpanel/BlockquoteTabPanel.js"
+            "name": "styles",
+            "module": "src/tabpanel/styles/blockquote-tabpanel-styles.css.js"
           }
         }
       ]
@@ -548,27 +569,6 @@
           "declaration": {
             "name": "styles",
             "module": "src/tab/styles/blockquote-tab-styles.css.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/tabpanel/styles/blockquote-tabpanel-styles.css.js",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "styles",
-          "default": "css`:host {\n  display: block;\n  box-sizing: border-box;\n  padding: 1rem;\n  color: var(--tabpanel, inherit);\n}\n\n:host([hidden]),\n[hidden] {\n  display: none !important;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\n:host([aria-hidden=true]) {\n  display: none;\n}\n\n:host(:focus:not(:focus-visible)) {\n  outline: none;\n}\n\n:host(:focus-visible) {\n  outline: #9e9e9e dashed 0.0625rem;\n  outline-offset: -2px;\n}`"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "styles",
-          "declaration": {
-            "name": "styles",
-            "module": "src/tabpanel/styles/blockquote-tabpanel-styles.css.js"
           }
         }
       ]

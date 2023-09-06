@@ -10,7 +10,7 @@ export class BlockquoteTab extends BlockquoteMixinSlotContent(LitElement) {
   static get properties() {
     return {
       /**
-       * The tab selected.
+       * Whether or not the tab is `selected`.
        * @type {boolean}
        */
       selected: {
