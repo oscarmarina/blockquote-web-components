@@ -4,6 +4,8 @@
       "runner": "nx/tasks-runners/default",
       "options": {
         "cacheableOperations": [
+          "analyze",
+          "analyze:doc",
           "lint:eslint",
           "lint:prettier",
           "lint:stylelint",
