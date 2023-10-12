@@ -1,16 +1,19 @@
 import { html, LitElement } from 'lit';
 import { styles } from './styles/blockquote-tabpanel-styles.css.js';
 
+/**
+ * ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+ *
+ * `<blockquote-tabpanel>`
+ * A tab element that can be used inside a `blockquote-tabs` element.
+ *
+ * @attribute selected
+ */
 export class BlockquoteTabPanel extends LitElement {
-  static get is() {
-    return 'blockquote-tabpanel';
-  }
-
   static get properties() {
     return {
       /**
        * Whether or not the tabpanel is `selected`.
-       * @type {boolean}
        */
       selected: {
         type: Boolean,
@@ -57,7 +60,12 @@ export class BlockquoteTabPanel extends LitElement {
     return html` <slot></slot> `;
   }
 
-  __setArrayAttibute(entries = []) {
+  /**
+   * Sets attributes on the element.
+   *
+   * @param {Record<*, *>} entries
+   */
+  __setArrayAttibute(entries = {}) {
     Object.entries(entries).forEach(([key, value]) => {
       this.setAttribute(key, value);
     });

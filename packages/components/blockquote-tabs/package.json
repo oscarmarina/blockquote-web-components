@@ -108,15 +108,23 @@
     "parserOptions": {
       "ecmaVersion": "latest"
     },
-    "plugins": [
-      "log-filenames"
-    ],
     "extends": [
       "@open-wc",
       "prettier"
     ],
     "rules": {
       "class-methods-use-this": "off",
+      "indent": [
+        "error",
+        2,
+        {
+          "SwitchCase": 1,
+          "ignoredNodes": [
+            "PropertyDefinition",
+            "TemplateLiteral > *"
+          ]
+        }
+      ],
       "no-unused-expressions": [
         "error",
         {
@@ -143,7 +151,8 @@
         }
       ],
       "import/no-unresolved": "off",
-      "import/prefer-default-export": "off"
+      "import/prefer-default-export": "off",
+      "lit/no-native-attributes": "off"
     }
   },
   "stylelint": {
@@ -159,13 +168,13 @@
   "dependencies": {
     "@blockquote-web-components/blockquote-mixin-slot-content": "^1.2.13",
     "@juggle/resize-observer": "^3.4.0",
-    "@lit-labs/observers": "^1.1.0",
-    "lit": "^2.3.1"
+    "@lit-labs/observers": "^2.0.0",
+    "lit": "^2.8.0"
   },
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.4.4",
     "@blockquote-web-components/blockquote-base-embedded-webview": "^1.5.2",
-    "@blockquote-web-components/blockquote-foundations-sass": "^1.0.0"
+    "@blockquote-web-components/blockquote-foundations-sass": "^1.1.0"
   },
   "publishConfig": {
     "access": "public"

@@ -1,7 +1,7 @@
 import { html, LitElement, nothing } from 'lit';
 import { ref, createRef } from 'lit/directives/ref.js';
 import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observer';
-import { ResizeController } from '@lit-labs/observers/resize_controller.js';
+import { ResizeController } from '@lit-labs/observers/resize-controller.js';
 import { BlockquoteMixinSlotContent } from '@blockquote-web-components/blockquote-mixin-slot-content';
 import { styles } from './styles/blockquote-tabs-styles.css.js';
 
@@ -11,52 +11,47 @@ window.ResizeObserver || /* c8 ignore next */ (window.ResizeObserver = ResizeObs
 // https://gist.github.com/ebidel/2d2bb0cdec3f2a16cf519dbaa791ce1b
 // https://darn.es/building-tabs-in-web-components/
 // https://slides.com/daviddarnes/tabs-web-components
+
 /**
-![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
-
-[ARIA patterns](https://www.w3.org/WAI/ARIA/apg/patterns/)
-
-Tabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time. Each tab panel has an associated tab element, that when activated, displays the panel. The list of tab elements is arranged along one edge of the currently displayed panel, most commonly the top edge.
-
-## Usage
-
-```html
-      <blockquote-tabs label="List of tabs">
-        <blockquote-tab id="tab-1">Tab 1</blockquote-tab>
-        <blockquote-tab id="tab-2">Tab 2</blockquote-tab>
-        <blockquote-tab id="tab-3">Tab 3</blockquote-tab>
-        <blockquote-tab id="tab-4">Tab 4</blockquote-tab>
-        <blockquote-tab id="tab-5">Tab 5</blockquote-tab>
-        <blockquote-tab id="tab-6">Tab 6</blockquote-tab>
-        <blockquote-tab id="tab-7">Tab 7</blockquote-tab>
-        <blockquote-tab id="tab-8">Tab 8</blockquote-tab>
-        <blockquote-tab id="tab-9">Tab 9</blockquote-tab>
-        <blockquote-tab id="tab-10">Tab 10</blockquote-tab>
-        <blockquote-tabpanel aria-labelledby="tab-1"><p>Panel 1</p></blockquote-tabpanel>
-        <blockquote-tabpanel aria-labelledby="tab-2"><p>Panel 2</p></blockquote-tabpanel>
-        <blockquote-tabpanel aria-labelledby="tab-3"><p>Panel 3</p></blockquote-tabpanel>
-        <blockquote-tabpanel aria-labelledby="tab-4"><p>Panel 4</p></blockquote-tabpanel>
-        <blockquote-tabpanel aria-labelledby="tab-5"><p>Panel 5</p></blockquote-tabpanel>
-        <blockquote-tabpanel aria-labelledby="tab-6"><p>Panel 6</p></blockquote-tabpanel>
-        <blockquote-tabpanel aria-labelledby="tab-7"><p>Panel 7</p></blockquote-tabpanel>
-        <blockquote-tabpanel aria-labelledby="tab-8"><p>Panel 8</p></blockquote-tabpanel>
-        <blockquote-tabpanel aria-labelledby="tab-9"><p>Panel 9</p></blockquote-tabpanel>
-        <blockquote-tabpanel aria-labelledby="tab-10"><p>Panel 10</p></blockquote-tabpanel>
-      </blockquote-tabs>
-```
-
-## Exports
-
-  - BlockquoteTabs
-
-@tagname blockquote-tabs
-@element blockquote-tabs
-*/
+ * ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+ *
+ * [ARIA patterns](https://www.w3.org/WAI/ARIA/apg/patterns/)
+ *
+ * Tabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time. Each tab panel has an associated tab element, that when activated, displays the panel. The list of tab elements is arranged along one edge of the currently displayed panel, most commonly the top edge.
+ *
+ * ## Usage
+ *
+ * ```html
+ * <blockquote-tabs label="List of tabs">
+ *   <blockquote-tab id="tab-1">Tab 1</blockquote-tab>
+ *   <blockquote-tab id="tab-2">Tab 2</blockquote-tab>
+ *   <blockquote-tab id="tab-3">Tab 3</blockquote-tab>
+ *   <blockquote-tab id="tab-4">Tab 4</blockquote-tab>
+ *   <blockquote-tab id="tab-5">Tab 5</blockquote-tab>
+ *   <blockquote-tab id="tab-6">Tab 6</blockquote-tab>
+ *   <blockquote-tab id="tab-7">Tab 7</blockquote-tab>
+ *   <blockquote-tab id="tab-8">Tab 8</blockquote-tab>
+ *   <blockquote-tab id="tab-9">Tab 9</blockquote-tab>
+ *   <blockquote-tab id="tab-10">Tab 10</blockquote-tab>
+ *   <blockquote-tabpanel aria-labelledby="tab-1"><p>Panel 1</p></blockquote-tabpanel>
+ *   <blockquote-tabpanel aria-labelledby="tab-2"><p>Panel 2</p></blockquote-tabpanel>
+ *   <blockquote-tabpanel aria-labelledby="tab-3"><p>Panel 3</p></blockquote-tabpanel>
+ *   <blockquote-tabpanel aria-labelledby="tab-4"><p>Panel 4</p></blockquote-tabpanel>
+ *   <blockquote-tabpanel aria-labelledby="tab-5"><p>Panel 5</p></blockquote-tabpanel>
+ *   <blockquote-tabpanel aria-labelledby="tab-6"><p>Panel 6</p></blockquote-tabpanel>
+ *   <blockquote-tabpanel aria-labelledby="tab-7"><p>Panel 7</p></blockquote-tabpanel>
+ *   <blockquote-tabpanel aria-labelledby="tab-8"><p>Panel 8</p></blockquote-tabpanel>
+ *   <blockquote-tabpanel aria-labelledby="tab-9"><p>Panel 9</p></blockquote-tabpanel>
+ *   <blockquote-tabpanel aria-labelledby="tab-10"><p>Panel 10</p></blockquote-tabpanel>
+ * </blockquote-tabs>
+ * ```
+ *
+ * @attribute autofocus
+ * @attribute label
+ * @attribute selected
+ * @fires selectedchange
+ */
 export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
-  static get is() {
-    return 'blockquote-tabs';
-  }
-
   static get styles() {
     return [styles];
   }
@@ -65,16 +60,13 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     return {
       /**
        * If present, the tab automatically have focus
-       * @type {Boolean}
        */
-      // eslint-disable-next-line lit/no-native-attributes
       autofocus: {
         type: Boolean,
       },
 
       /**
        * `aria-label` for tabs group
-       * @type {String}
        */
       label: {
         type: String,
@@ -82,7 +74,6 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
 
       /**
        * The tab selected.
-       * @type {Number}
        */
       selected: {
         type: Number,
@@ -123,6 +114,7 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     this._onTabClick = this._onTabClick.bind(this);
     this._onTabKeyDown = this._onTabKeyDown.bind(this);
 
+    // @ts-ignore
     this._resizeControllerObserver = new ResizeController(this, {
       callback: () => {
         this._onResizeObserverChange();
@@ -153,18 +145,18 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
-    this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges.bind(this));
+    this.shadowRoot?.addEventListener('slotchanges', this._onSlotChanges.bind(this));
   }
 
   firstUpdated(props) {
     super.firstUpdated && super.firstUpdated(props);
-    const tabSlot = this.shadowRoot.querySelector('[name="tab"]');
-    const tabpanelSlot = this.shadowRoot.querySelector('[name="tabpanel"]');
+    const tabSlot = this.shadowRoot?.querySelector('[name="tab"]');
+    const tabpanelSlot = this.shadowRoot?.querySelector('[name="tabpanel"]');
 
-    this._slotNodesCount = this.shadowRoot.querySelectorAll('slot');
-    this._tabList = tabSlot.assignedElements();
-    this._tabpanelList = tabpanelSlot.assignedElements();
-    this._indicators = this.shadowRoot.querySelectorAll('.indicator');
+    this._slotNodesCount = this.shadowRoot?.querySelectorAll('slot');
+    this._tabList = /** @type {HTMLSlotElement} */ (tabSlot)?.assignedElements();
+    this._tabpanelList = /** @type {HTMLSlotElement} */ (tabpanelSlot)?.assignedElements();
+    this._indicators = this.shadowRoot?.querySelectorAll('.indicator');
   }
 
   updated(props) {
@@ -204,7 +196,10 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
       this._tabpanelList = assignedNodesList;
     }
 
-    if (this._slotChangesCount > this._slotNodesCount.length) {
+    if (
+      Array.isArray(this._slotNodesCount) &&
+      this._slotChangesCount > this._slotNodesCount.length
+    ) {
       this._requestPropertyUpdate('selected');
     }
   }
@@ -257,6 +252,7 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
   }
 
   _scrollEdge({ target = this._scrollContentRef.value } = {}) {
+    // @ts-ignore
     const { scrollLeft, scrollWidth, offsetWidth } = target;
     const overflowingWidth = scrollWidth - offsetWidth;
     this._hasScrollLeftIndicator = scrollLeft > 0;
@@ -283,12 +279,16 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     switch (ev.key) {
       case 'ArrowLeft':
         ev.preventDefault();
+        // @ts-ignore
         idx = this._selectedTabIndexFromOne - 1;
+        // @ts-ignore
         this.selected = idx <= 0 ? this._getTabListLength : idx;
         break;
       case 'ArrowRight':
         ev.preventDefault();
+        // @ts-ignore
         idx = this._selectedTabIndexFromOne + 1;
+        // @ts-ignore
         this.selected = idx > this._getTabListLength ? 1 : idx;
         break;
       case 'Home':
@@ -346,8 +346,11 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     tabScroller = this._selectedTab,
     behavior = this._observeScrollBehavior ? 'smooth' : 'auto',
   ) {
-    const [rootA, rootB] = this._indicators;
     const scrollContentNode = this._scrollContentRef.value;
+    if (!scrollContentNode) {
+      return;
+    }
+    const [rootA, rootB] = this._indicators || [];
     const { right: boundaryight } = scrollContentNode.getBoundingClientRect();
     const { offsetLeft: scrollerLeft } = tabScroller;
     const {
@@ -367,6 +370,7 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
 
       scrollContentNode.scroll({
         left,
+        // @ts-ignore
         behavior,
       });
     }

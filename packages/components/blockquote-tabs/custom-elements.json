@@ -8,15 +8,9 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "![Lit](https://img.shields.io/badge/lit-2.0.0-blue)\n\n[ARIA patterns](https://www.w3.org/WAI/ARIA/apg/patterns/)\n\nTabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time. Each tab panel has an associated tab element, that when activated, displays the panel. The list of tab elements is arranged along one edge of the currently displayed panel, most commonly the top edge.\n\n## Usage\n\n```html\n     <blockquote-tabs label=\"List of tabs\">\n       <blockquote-tab id=\"tab-1\">Tab 1</blockquote-tab>\n       <blockquote-tab id=\"tab-2\">Tab 2</blockquote-tab>\n       <blockquote-tab id=\"tab-3\">Tab 3</blockquote-tab>\n       <blockquote-tab id=\"tab-4\">Tab 4</blockquote-tab>\n       <blockquote-tab id=\"tab-5\">Tab 5</blockquote-tab>\n       <blockquote-tab id=\"tab-6\">Tab 6</blockquote-tab>\n       <blockquote-tab id=\"tab-7\">Tab 7</blockquote-tab>\n       <blockquote-tab id=\"tab-8\">Tab 8</blockquote-tab>\n       <blockquote-tab id=\"tab-9\">Tab 9</blockquote-tab>\n       <blockquote-tab id=\"tab-10\">Tab 10</blockquote-tab>\n       <blockquote-tabpanel aria-labelledby=\"tab-1\"><p>Panel 1</p></blockquote-tabpanel>\n       <blockquote-tabpanel aria-labelledby=\"tab-2\"><p>Panel 2</p></blockquote-tabpanel>\n       <blockquote-tabpanel aria-labelledby=\"tab-3\"><p>Panel 3</p></blockquote-tabpanel>\n       <blockquote-tabpanel aria-labelledby=\"tab-4\"><p>Panel 4</p></blockquote-tabpanel>\n       <blockquote-tabpanel aria-labelledby=\"tab-5\"><p>Panel 5</p></blockquote-tabpanel>\n       <blockquote-tabpanel aria-labelledby=\"tab-6\"><p>Panel 6</p></blockquote-tabpanel>\n       <blockquote-tabpanel aria-labelledby=\"tab-7\"><p>Panel 7</p></blockquote-tabpanel>\n       <blockquote-tabpanel aria-labelledby=\"tab-8\"><p>Panel 8</p></blockquote-tabpanel>\n       <blockquote-tabpanel aria-labelledby=\"tab-9\"><p>Panel 9</p></blockquote-tabpanel>\n       <blockquote-tabpanel aria-labelledby=\"tab-10\"><p>Panel 10</p></blockquote-tabpanel>\n     </blockquote-tabs>\n```\n\n## Exports\n\n - BlockquoteTabs",
+          "description": "![Lit](https://img.shields.io/badge/lit-2.0.0-blue)\n\n[ARIA patterns](https://www.w3.org/WAI/ARIA/apg/patterns/)\n\nTabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time. Each tab panel has an associated tab element, that when activated, displays the panel. The list of tab elements is arranged along one edge of the currently displayed panel, most commonly the top edge.\n\n## Usage\n\n```html\n<blockquote-tabs label=\"List of tabs\">\n  <blockquote-tab id=\"tab-1\">Tab 1</blockquote-tab>\n  <blockquote-tab id=\"tab-2\">Tab 2</blockquote-tab>\n  <blockquote-tab id=\"tab-3\">Tab 3</blockquote-tab>\n  <blockquote-tab id=\"tab-4\">Tab 4</blockquote-tab>\n  <blockquote-tab id=\"tab-5\">Tab 5</blockquote-tab>\n  <blockquote-tab id=\"tab-6\">Tab 6</blockquote-tab>\n  <blockquote-tab id=\"tab-7\">Tab 7</blockquote-tab>\n  <blockquote-tab id=\"tab-8\">Tab 8</blockquote-tab>\n  <blockquote-tab id=\"tab-9\">Tab 9</blockquote-tab>\n  <blockquote-tab id=\"tab-10\">Tab 10</blockquote-tab>\n  <blockquote-tabpanel aria-labelledby=\"tab-1\"><p>Panel 1</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-2\"><p>Panel 2</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-3\"><p>Panel 3</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-4\"><p>Panel 4</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-5\"><p>Panel 5</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-6\"><p>Panel 6</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-7\"><p>Panel 7</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-8\"><p>Panel 8</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-9\"><p>Panel 9</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-10\"><p>Panel 10</p></blockquote-tabpanel>\n</blockquote-tabs>\n```",
           "name": "BlockquoteTabs",
           "members": [
-            {
-              "kind": "field",
-              "name": "is",
-              "static": true,
-              "readonly": true
-            },
             {
               "kind": "method",
               "name": "_selectedIsInRange",
@@ -279,6 +273,11 @@
               "attribute": "_hasScrollRightIndicator"
             }
           ],
+          "events": [
+            {
+              "name": "selectedchange"
+            }
+          ],
           "attributes": [
             {
               "name": "autofocus",
@@ -374,24 +373,22 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "",
+          "description": "![Lit](https://img.shields.io/badge/lit-2.0.0-blue)\n\n`<blockquote-tabpanel>`\nA tab element that can be used inside a `blockquote-tabs` element.",
           "name": "BlockquoteTabPanel",
           "members": [
-            {
-              "kind": "field",
-              "name": "is",
-              "static": true,
-              "readonly": true
-            },
             {
               "kind": "method",
               "name": "__setArrayAttibute",
               "parameters": [
                 {
                   "name": "entries",
-                  "default": "[]"
+                  "default": "{}",
+                  "type": {
+                    "text": "Record<*, *>"
+                  }
                 }
-              ]
+              ],
+              "description": "Sets attributes on the element."
             },
             {
               "kind": "field",
@@ -428,6 +425,7 @@
             "name": "LitElement",
             "package": "lit"
           },
+          "tagName": "blockquote-tabpanel",
           "customElement": true
         }
       ],
@@ -448,15 +446,9 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "",
+          "description": "![Lit](https://img.shields.io/badge/lit-2.0.0-blue)\n\n`<blockquote-tab>`\nA tab element that can be used inside a `blockquote-tabs` element.",
           "name": "BlockquoteTab",
           "members": [
-            {
-              "kind": "field",
-              "name": "is",
-              "static": true,
-              "readonly": true
-            },
             {
               "kind": "method",
               "name": "_onSlotChanges",
@@ -472,9 +464,13 @@
               "parameters": [
                 {
                   "name": "entries",
-                  "default": "[]"
+                  "default": "{}",
+                  "type": {
+                    "text": "Record<*, *>"
+                  }
                 }
-              ]
+              ],
+              "description": "Sets attributes on the element."
             },
             {
               "kind": "field",
@@ -517,6 +513,7 @@
             "name": "LitElement",
             "package": "lit"
           },
+          "tagName": "blockquote-tab",
           "customElement": true
         }
       ],
@@ -580,6 +577,7 @@
       "exports": [
         {
           "kind": "custom-element-definition",
+          "name": "blockquote-tab",
           "declaration": {
             "name": "BlockquoteTab",
             "module": "/src/tab/BlockquoteTab.js"
@@ -594,6 +592,7 @@
       "exports": [
         {
           "kind": "custom-element-definition",
+          "name": "blockquote-tabpanel",
           "declaration": {
             "name": "BlockquoteTabPanel",
             "module": "/src/tabpanel/BlockquoteTabPanel.js"
@@ -608,6 +607,7 @@
       "exports": [
         {
           "kind": "custom-element-definition",
+          "name": "blockquote-tabs",
           "declaration": {
             "name": "BlockquoteTabs",
             "module": "/src/BlockquoteTabs.js"
