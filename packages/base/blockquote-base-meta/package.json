@@ -34,7 +34,6 @@
   ],
   "scripts": {
     "analyze": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
-    "analyze:doc": "npm run analyze && npx web-component-analyzer \"{src,define}/**/*.{js,ts}\" \"index.js\" \"README.js\" --outFile README.md",
     "build": "echo \"This is not a TypeScript project, so no need to build.\"",
     "dev:vite": "vite build",
     "format": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
@@ -74,6 +73,7 @@
       {
         "files": "*.{scss,css}",
         "options": {
+          "printWidth": 280,
           "singleQuote": false
         }
       }
@@ -83,20 +83,29 @@
     "parserOptions": {
       "ecmaVersion": "latest"
     },
-    "plugins": [
-      "log-filenames"
-    ],
     "extends": [
-      "prettier",
-      "@open-wc"
+      "@open-wc",
+      "prettier"
     ],
     "rules": {
-      "arrow-parens": "off",
       "class-methods-use-this": "off",
-      "object-curly-newline": "off",
-      "operator-linebreak": [
+      "indent": [
         "error",
-        "after"
+        2,
+        {
+          "SwitchCase": 1,
+          "ignoredNodes": [
+            "PropertyDefinition",
+            "TemplateLiteral > *"
+          ]
+        }
+      ],
+      "no-unused-expressions": [
+        "error",
+        {
+          "allowShortCircuit": true,
+          "allowTernary": true
+        }
       ],
       "import/extensions": [
         "error",
@@ -110,24 +119,27 @@
         {
           "devDependencies": [
             "**/test/**/*.{js,ts}",
-            "**/*.config.{js,mjs,cjs}",
-            "**/*.conf.{js,mjs,cjs}"
+            "**/*.config.{js,ts,mjs,cjs}",
+            "**/*.conf.{js,ts,mjs,cjs}"
           ]
         }
       ],
       "import/no-unresolved": "off",
-      "import/prefer-default-export": "off"
+      "import/prefer-default-export": "off",
+      "lit/no-native-attributes": "off"
     }
   },
   "stylelint": {
     "extends": "stylelint-config-standard-scss",
     "rules": {
       "custom-property-pattern": null,
-      "max-line-length": null
+      "no-duplicate-selectors": null,
+      "color-function-notation": null,
+      "alpha-value-notation": null
     }
   },
   "dependencies": {
-    "lit": "^2.0.0"
+    "lit": "^2.8.0"
   },
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.4.4",

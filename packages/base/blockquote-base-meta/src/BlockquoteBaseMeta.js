@@ -27,75 +27,68 @@ window[BLOCKQUOTE] = blockquote;
 // https://www.keithcirkel.co.uk/metaprogramming-in-es6-symbols/
 
 /**
-![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
-
-`BlockquoteBaseMeta` is based on Polymer's `iron-meta`, and it is a generic class that you can use
-for sharing information across the DOM tree.
-It uses [monostate pattern](http://c2.com/cgi/wiki?MonostatePattern) pattern such that any instance
-of it has access to the shared information. You can use `BlockquoteBaseMeta` to share whatever you
-want.
-The `BlockquoteBaseMeta` instances contain your actual data. The only requirement is that you
-create them before you try to access them.
-
-`BlockquoteBaseMeta` uses [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map).
-
-Map is a collection of keyed data items, just like an Object.
-But the main difference is that Map allows keys of any type.
-
-## Usage
-
-```js
-import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';
-
-  const myDefault = new BlockquoteBaseMeta({
-    key: 'basic',
-    value: 'foo/bar',
-  });
-
-console.log(myDefault.value); // foo/bar
-```
-
-## Keys string - Object
-
-```js
-import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';
-
-  const myDefault = new BlockquoteBaseMeta({
-    type: 'one',
-    key: 'basic',
-    value: 'foo/bar',
-  });
-
-  console.log(myDefault.objectList); // {basic: 'foo/bar'}
-```
-
-## Keys any type - Map
-
-```js
-import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';
-
-  const keyInfo = { id: 'dsfaskj0' };
-  const myDefault = new BlockquoteBaseMeta({
-    type: 'two',
-    key: keyInfo,
-    value: 'foo/bar',
-  });
-
-console.log(myDefault.mapList); // {{ id: 'dsfaskj0' }: 'foo/bar'}
-```
-
-# ## Exports
-
-  - BlockquoteBaseMeta
-
-*/
+ * ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+ *
+ * `BlockquoteBaseMeta` is based on Polymer's `iron-meta`, and it is a generic class that you can use for sharing information across the DOM tree.
+ * It uses [monostate pattern](http://c2.com/cgi/wiki?MonostatePattern) pattern such that any instance of it has access to the shared information.
+ * You can use `BlockquoteBaseMeta` to share whatever you want.
+ * The `BlockquoteBaseMeta` instances contain your actual data. The only requirement is that you
+ * create them before you try to access them.
+ *
+ * `BlockquoteBaseMeta` uses [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map).
+ *
+ * Map is a collection of keyed data items, just like an Object.
+ * But the main difference is that Map allows keys of any type.
+ *
+ * ### Usage
+ *
+ * ```js
+ * import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';
+ *
+ *   const myDefault = new BlockquoteBaseMeta({
+ *     key: 'basic',
+ *     value: 'foo/bar',
+ *   });
+ *
+ * console.log(myDefault.value); // foo/bar
+ * ```
+ *
+ * ### Keys string - Object
+ *
+ * ```js
+ * import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';
+ *
+ *   const myDefault = new BlockquoteBaseMeta({
+ *     type: 'one',
+ *     key: 'basic',
+ *     value: 'foo/bar',
+ *   });
+ *
+ *   console.log(myDefault.objectList); // {basic: 'foo/bar'}
+ * ```
+ *
+ * ### Keys any type - Map
+ *
+ * ```js
+ * import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';
+ *
+ *   const keyInfo = { id: 'dsfaskj0' };
+ *   const myDefault = new BlockquoteBaseMeta({
+ *     type: 'two',
+ *     key: keyInfo,
+ *     value: 'foo/bar',
+ *   });
+ *
+ * console.log(myDefault.mapList); // {{ id: 'dsfaskj0' }: 'foo/bar'}
+ * ```
+ */
 export class BlockquoteBaseMeta {
   /**
    * @param {{
-   *   type: *,
-   *   key: *,
-   *   value: *,
-   * }=} options
+   *   type?: *,
+   *   key?: *,
+   *   value?: *
+   * }} [options]
    */
   constructor(options) {
     /**
