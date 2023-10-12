@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { assert, aTimeout } from '@open-wc/testing';
 import sinon from 'sinon';
 import { AjaxProvider } from '../index.js';
@@ -45,6 +46,9 @@ suite('AjaxProvider', () => {
     });
 
     test('Does not send request if `url` is not a string', async () => {
+      /**
+       * @type {import('../index').AjaxProvider}
+       */
       const el = new AjaxProvider({
         url: undefined,
         responseType: 'text',
@@ -189,7 +193,7 @@ suite('AjaxProvider', () => {
       el.generateRequest();
       server.respond();
       await aTimeout(16);
-      assert.notEqual(spy.calledOnce);
+      assert.isAbove(spy.callCount, 1);
     });
 
     test('Requests with a Form Data payload automatically remove the Content-Type header by default', async () => {

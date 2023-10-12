@@ -85,15 +85,23 @@
     "parserOptions": {
       "ecmaVersion": "latest"
     },
-    "plugins": [
-      "log-filenames"
-    ],
     "extends": [
       "@open-wc",
       "prettier"
     ],
     "rules": {
       "class-methods-use-this": "off",
+      "indent": [
+        "error",
+        2,
+        {
+          "SwitchCase": 1,
+          "ignoredNodes": [
+            "PropertyDefinition",
+            "TemplateLiteral > *"
+          ]
+        }
+      ],
       "no-unused-expressions": [
         "error",
         {
@@ -128,6 +136,7 @@
     "extends": "stylelint-config-standard-scss",
     "rules": {
       "custom-property-pattern": null,
+      "max-line-length": null,
       "no-duplicate-selectors": null,
       "color-function-notation": null,
       "alpha-value-notation": null
@@ -140,32 +149,7 @@
   },
   "devDependencies": {
     "@alenaksu/json-viewer": "^2.0.1",
-    "@blockquote/coverage-table-reporter": "^1.0.0",
-    "@blockquote/rollup-plugin-total-bundlesize": "^2.0.1",
-    "@blockquote/sass-style-template": "^3.0.1",
-    "@custom-elements-manifest/analyzer": "^0.8.4",
-    "@open-wc/eslint-config": "^12.0.0",
-    "@open-wc/testing": "^3.2.0",
-    "@ungap/global-this": "^0.4.4",
-    "@web/rollup-plugin-html": "^2.0.1",
-    "@web/test-runner": "^0.17.1",
-    "@web/test-runner-playwright": "^0.10.1",
-    "@webcomponents/shadycss": "^1.11.2",
-    "@webcomponents/webcomponentsjs": "^2.8.0",
-    "concurrently": "^8.2.1",
-    "eslint": "^8.48.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-log-filenames": "^1.0.6",
-    "husky": "^8.0.3",
-    "lint-staged": "^14.0.1",
-    "prettier": "^3.0.3",
-    "rollup-plugin-copy": "^3.4.0",
-    "sinon": "^15.2.0",
-    "sort-package-json": "^2.5.1",
-    "stylelint": "^15.10.3",
-    "stylelint-config-standard-scss": "^10.0.0",
-    "tiny-array-flat-polyfill": "^0.2.1",
-    "vite": "^4.4.9"
+    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.4.4"
   },
   "publishConfig": {
     "access": "public"
