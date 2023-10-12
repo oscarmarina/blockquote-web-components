@@ -1,5 +1,3 @@
-# blockquote-base-style-helpers
-
 ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
 
 `BlockquoteBaseStyleHelpers` offers a set of helper functions for working with CSS.
@@ -52,12 +50,12 @@ import { LitElement, html, css } from 'lit';
 import { getComponentSharedStyles } from 'blockquote-base-style-helpers';
 
 class XFoo extends LitElement {
-static get styles() {
-  return [
-    css`...`,
-    getComponentSharedStyles('x-foo-shared-styles)
-  ];
-}
+  static get styles() {
+    return [
+      css`...`,
+      getComponentSharedStyles('x-foo-shared-styles)
+    ];
+  }
 }
 ```
 
@@ -157,8 +155,6 @@ export default css`
 `;
 ```
 
-![lit-adoptStyles-theme](https://raw.githubusercontent.com/oscarmarina/theme-tokens/main/lit-adoptStyles-theme.png)
-
 #### Demo
 
 - [stackblitz](https://stackblitz.com/github/oscarmarina/theme-tokens?file=src%2FsetDocumentStyles.js&terminal=start)
@@ -169,3 +165,66 @@ export default css`
 
 - support browsers with native `Shadow DOM` but without `adoptedStyleSheets`
 - support browsers with native `Shadow DOM` and `adoptedStyleSheets`
+
+
+### `src/getComponentSharedStyles.js`:
+
+#### Functions
+
+| Name                       | Description                                                                                                                 | Parameters   | Return |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------ | ------ |
+| `getComponentSharedStyles` | Get styles (as cssResult) already associated to provided ID string (using setComponentSharedStyles helper) and returns them | `id: String` |        |
+
+<hr/>
+
+#### Exports
+
+| Kind | Name                       | Declaration              | Module                          | Package |
+| ---- | -------------------------- | ------------------------ | ------------------------------- | ------- |
+| `js` | `README`                   | README                   | src/getComponentSharedStyles.js |         |
+| `js` | `getComponentSharedStyles` | getComponentSharedStyles | src/getComponentSharedStyles.js |         |
+
+### `src/setComponentSharedStyles.js`:
+
+#### Functions
+
+| Name                       | Description                                                                                          | Parameters                      | Return |
+| -------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------- | ------ |
+| `setComponentSharedStyles` | Set styles (as cssResult) associated to provided ID string which can then be retrieved by components | `id: String, styles: CSSResult` |        |
+
+<hr/>
+
+#### Exports
+
+| Kind | Name                       | Declaration              | Module                          | Package |
+| ---- | -------------------------- | ------------------------ | ------------------------------- | ------- |
+| `js` | `setComponentSharedStyles` | setComponentSharedStyles | src/setComponentSharedStyles.js |         |
+
+### `src/setDocumentStyles.js`:
+
+#### Functions
+
+| Name                  | Description | Parameters           | Return |
+| --------------------- | ----------- | -------------------- | ------ |
+| `adoptDocumentStyles` |             | `renderRoot, styles` |        |
+| `setDocumentStyles`   |             | `styles`             |        |
+
+<hr/>
+
+#### Exports
+
+| Kind | Name                  | Declaration         | Module                   | Package |
+| ---- | --------------------- | ------------------- | ------------------------ | ------- |
+| `js` | `adoptDocumentStyles` | adoptDocumentStyles | src/setDocumentStyles.js |         |
+| `js` | `setDocumentStyles`   | setDocumentStyles   | src/setDocumentStyles.js |         |
+
+### `index.js`:
+
+#### Exports
+
+| Kind | Name                       | Declaration              | Module                            | Package |
+| ---- | -------------------------- | ------------------------ | --------------------------------- | ------- |
+| `js` | `setDocumentStyles`        | setDocumentStyles        | ./src/setDocumentStyles.js        |         |
+| `js` | `adoptDocumentStyles`      | adoptDocumentStyles      | ./src/setDocumentStyles.js        |         |
+| `js` | `setComponentSharedStyles` | setComponentSharedStyles | ./src/setComponentSharedStyles.js |         |
+| `js` | `getComponentSharedStyles` | getComponentSharedStyles | ./src/getComponentSharedStyles.js |         |
