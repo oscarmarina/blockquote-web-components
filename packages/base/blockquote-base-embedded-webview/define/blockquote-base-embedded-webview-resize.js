@@ -1,6 +1,6 @@
 import { BlockquoteBaseEmbeddedWebviewResize } from '../src/BlockquoteBaseEmbeddedWebviewResize.js';
 
 window.customElements.define(
-  BlockquoteBaseEmbeddedWebviewResize.is,
+  'blockquote-base-embedded-webview-resize',
   BlockquoteBaseEmbeddedWebviewResize,
 );

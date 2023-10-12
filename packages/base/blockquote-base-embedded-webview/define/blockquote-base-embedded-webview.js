@@ -1,3 +1,3 @@
 import { BlockquoteBaseEmbeddedWebview } from '../src/BlockquoteBaseEmbeddedWebview.js';
 
-window.customElements.define(BlockquoteBaseEmbeddedWebview.is, BlockquoteBaseEmbeddedWebview);
+window.customElements.define('blockquote-base-embedded-webview', BlockquoteBaseEmbeddedWebview);

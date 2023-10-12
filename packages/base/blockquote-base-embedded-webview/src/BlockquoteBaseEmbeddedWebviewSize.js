@@ -3,37 +3,33 @@ import { styles } from './styles/blockquote-base-embedded-webview-size-styles.cs
 // https://source.chromium.org/chromium/chromium/src/+/main:third_party/devtools-frontend/src/front_end/panels/emulation/DeviceModeView.ts;l=164
 
 /**
-  ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
-
-  `blockquote-base-embedded-webview-size` provides a list of ideal screen sizes for responsive designs.
-
-  ```html
-<blockquote-base-embedded-webview-size
-  screen-sizes="[
-    { width: 360, height: 640, id: '360x640' },
-    { width: 360, height: 800, id: '360x800' },
-    { width: 414, height: 896, id: '414x896' },
-    { width: 768, height: 1024, id: '768x1024' },
-    { width: 810, height: 1080, id: '810x1080' },
-    { width: 1280, height: 800, id: '1280x800' },
-    { width: 1366, height: 768, id: '1366x768' },
-    { width: 1536, height: 864, id: '1536x864' },
-    { width: 1920, height: 1080, id: '1920x1080' },
-  ]"
-></blockquote-base-embedded-webview-size>
-  ```
-
-  ## Exports
-
-- BlockquoteBaseEmbeddedWebviewSize
-
-  @tagname blockquote-base-embedded-webview-size
-*/
+ * ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+ *
+ * `blockquote-base-embedded-webview-size` provides a list of ideal screen sizes for responsive designs.
+ * <br>
+ *
+ * ```html
+ * <blockquote-base-embedded-webview-size
+ *   screen-sizes="[
+ *    { width: 360, height: 640, id: '360x640' },
+ *    { width: 360, height: 800, id: '360x800' },
+ *    { width: 414, height: 896, id: '414x896' },
+ *    { width: 768, height: 1024, id: '768x1024' },
+ *    { width: 810, height: 1080, id: '810x1080' },
+ *    { width: 1280, height: 800, id: '1280x800' },
+ *    { width: 1366, height: 768, id: '1366x768' },
+ *    { width: 1536, height: 864, id: '1536x864' },
+ *    { width: 1920, height: 1080, id: '1920x1080' },
+ *   ]"
+ * ></blockquote-base-embedded-webview-size>
+ * ```
+ *
+ * @attribute screen-sizes
+ * @attribute width-in-percent
+ * @attribute show-overflow-size
+ * @attribute disabled-selected-size-text
+ */
 export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
-  static get is() {
-    return 'blockquote-base-embedded-webview-size';
-  }
-
   static get styles() {
     return [styles];
   }
@@ -42,7 +38,6 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
     return {
       /**
        * The screen size options to display
-       * @type {Array}
        */
       screenSizes: {
         type: Array,
@@ -50,7 +45,6 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
       },
       /**
        * The screen size option selected
-       * @type {Number}
        */
       selected: {
         type: Number,
@@ -58,7 +52,6 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
 
       /**
        * Percentage value for the width
-       * @type {Boolean}
        */
       widthInPercent: {
         type: Boolean,
@@ -67,7 +60,6 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
 
       /**
        * Show screen size options that are too large for the container
-       * @type {Boolean}
        */
       showOverflowSize: {
         type: Boolean,
@@ -76,7 +68,6 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
 
       /**
        * If true, selected size text is disabled
-       * @type {Boolean}
        */
       disabledSelectedSizeText: {
         type: Boolean,
