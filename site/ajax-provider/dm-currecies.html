@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"><head>
+    <title>Demo - ajax-provider</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+        <script src="./web_modules/@ungap/global-this/index.js"></script>
+    <meta name="description" content="ajax-provider">
+    <style>
+      html,
+      body {
+        height: 100%;
+        font-family: sans-serif;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .label {
+        font-family: monospace;
+        font-size: 0.8rem;
+        text-align: center;
+      }
+
+      div {
+        width: 20rem;
+        padding: 0 1em;
+        margin-bottom: 1rem;
+        outline: 1px solid #d6d6d6;
+      }
+
+      json-viewer {
+        --font-family: monospace;
+        --font-size: inherit;
+
+        margin-bottom: 1rem;
+        padding: 0.5em 1em;
+      }
+
+      json-viewer::part(object) {
+        padding: 0;
+        margin: 0;
+      }
+
+      json-viewer::part(property) {
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div>
+        <p class="label">getcurrencies();</p>
+        <json-viewer id="currencies"></json-viewer>
+      </div>
+      <div>
+        <p class="label">getcurrenciesFromCountryCode('MNT);</p>
+        <json-viewer id="currenciesCN"></json-viewer>
+      </div>
+    </main>
+    
+  
+
+<script type="module" src="./assets/inline-module-c24adf8b40f7966808530bf6ffc4d4e3-80df4108.js"></script></body></html>
