@@ -26,10 +26,13 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
   /** Amount of test files per browser to test concurrently */
   concurrency: 1,
 
-  reporters: [summaryReporter(), defaultReporter(), coverageTableReporter()],
+  reporters: [summaryReporter({}), defaultReporter(), coverageTableReporter()],
+  
+  preserveSymlinks: true,
 
   coverage: true,
   coverageConfig: {
+    // https://github.com/istanbuljs/v8-to-istanbul#ignoring-uncovered-lines
     reportDir: `${outDir}/test/coverage`,
     reporters: ['lcov', 'lcovonly', 'json'],
     threshold: {
@@ -42,9 +45,10 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
   },
 
   testFramework: {
+    // https://mochajs.org/api/mocha
     config: {
       ui: 'tdd',
-      timeout: 4000,
+      timeout: 4000
     },
   },
 
