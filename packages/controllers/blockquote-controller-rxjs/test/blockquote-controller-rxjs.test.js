@@ -4,43 +4,45 @@ import { from, Subject } from 'rxjs';
 import { LitElement } from 'lit';
 import { BlockquoteControllerRxjs } from '../index.js';
 
-window.customElements.define(
-  'blockquote-controller-rxjs-demo',
-  class BlockquoteControllerRxjsDemo extends LitElement {
-    static get properties() {
-      return {
-        streamValues: {
-          type: Number,
-          attribute: false,
-        },
-      };
-    }
+const RxjsDemo = class BlockquoteControllerRxjsDemo extends LitElement {
+  static get properties() {
+    return {
+      streamValues: {
+        type: Number,
+        attribute: false,
+      },
+    };
+  }
 
-    constructor() {
-      super();
-      this.rx = new BlockquoteControllerRxjs(this);
-      this.streamValues = '';
-      this.streamValuesUpdate = '';
-    }
+  constructor() {
+    super();
+    this.rx = new BlockquoteControllerRxjs(this);
+    this.streamValues = 0;
+    this.streamValuesUpdate = 0;
+  }
 
-    setupObservable(stream$) {
-      this.rx.subscribe('streamValues', stream$);
-    }
+  setupObservable(stream$) {
+    this.rx.subscribe('streamValues', stream$);
+  }
 
-    setupObservableNeedUpdate(stream$) {
-      this.rx.subscribe('streamValuesUpdate', stream$);
-    }
+  setupObservableNeedUpdate(stream$) {
+    this.rx.subscribe('streamValuesUpdate', stream$);
+  }
 
-    render() {
-      return html`
-        <b>${this.streamValues}</b>
-        <i>${this.streamValuesUpdate}</i>
-      `;
-    }
-  },
-);
+  render() {
+    return html`
+      <b>${this.streamValues}</b>
+      <i>${this.streamValuesUpdate}</i>
+    `;
+  }
+};
+
+window.customElements.define('blockquote-controller-rxjs-demo', RxjsDemo);
 
 suite('BlockquoteControllerRxjs', () => {
+  /**
+   * @type {RxjsDemo}
+   */
   let el;
 
   teardown(() => fixtureCleanup());
@@ -54,19 +56,19 @@ suite('BlockquoteControllerRxjs', () => {
     });
 
     test('can handle simple Observable - with Reactive property', async () => {
-      const nodeText = el.shadowRoot.querySelector('b');
+      const nodeText = el.shadowRoot?.querySelector('b');
       el.setupObservable(from([1]));
       assert.equal(el.streamValues, 1);
       await el.updateComplete;
-      assert.equal(nodeText.textContent, 1);
+      assert.equal(nodeText?.textContent, '1');
     });
 
     test('can handle simple Observable - without Reactive property', async () => {
-      const nodeText = el.shadowRoot.querySelector('i');
+      const nodeText = el.shadowRoot?.querySelector('i');
       el.setupObservableNeedUpdate(from([2]));
       assert.equal(el.streamValuesUpdate, 2);
       await el.updateComplete;
-      assert.equal(nodeText.textContent, 2);
+      assert.equal(nodeText?.textContent, '2');
     });
 
     test('can handle invalid input', () => {
@@ -78,8 +80,10 @@ suite('BlockquoteControllerRxjs', () => {
       el.setupObservable(stream$);
       stream$.next(1);
       assert.equal(el.streamValues, 1);
+      // @ts-ignore
       assert.equal(stream$.currentObservers.size, 1);
       el.remove();
+      // @ts-ignore
       assert.equal(stream$.currentObservers.size, 0);
     });
 
@@ -88,8 +92,10 @@ suite('BlockquoteControllerRxjs', () => {
       el.setupObservable(stream$);
       stream$.next(1);
       assert.equal(el.streamValues, 1);
+      // @ts-ignore
       assert.equal(stream$.currentObservers.size, 1);
       el.setupObservable(new Subject());
+      // @ts-ignore
       assert.equal(stream$.currentObservers.size, 0);
     });
 
@@ -98,8 +104,10 @@ suite('BlockquoteControllerRxjs', () => {
       el.setupObservable(stream$);
       stream$.next(1);
       assert.equal(el.streamValues, 1);
+      // @ts-ignore
       assert.equal(stream$.currentObservers.size, 1);
       el.setupObservable(stream$);
+      // @ts-ignore
       assert.equal(stream$.currentObservers.size, 1);
     });
   });
