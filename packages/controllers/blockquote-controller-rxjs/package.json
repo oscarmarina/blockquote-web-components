@@ -74,6 +74,7 @@
       {
         "files": "*.{scss,css}",
         "options": {
+          "printWidth": 280,
           "singleQuote": false
         }
       }
@@ -83,15 +84,30 @@
     "parserOptions": {
       "ecmaVersion": "latest"
     },
-    "plugins": [
-      "log-filenames"
-    ],
     "extends": [
-      "prettier",
-      "@open-wc"
+      "@open-wc",
+      "prettier"
     ],
     "rules": {
       "class-methods-use-this": "off",
+      "indent": [
+        "error",
+        2,
+        {
+          "SwitchCase": 1,
+          "ignoredNodes": [
+            "PropertyDefinition",
+            "TemplateLiteral > *"
+          ]
+        }
+      ],
+      "no-unused-expressions": [
+        "error",
+        {
+          "allowShortCircuit": true,
+          "allowTernary": true
+        }
+      ],
       "object-curly-newline": "off",
       "import/extensions": [
         "error",
@@ -105,24 +121,28 @@
         {
           "devDependencies": [
             "**/test/**/*.{js,ts}",
-            "**/*.config.{js,mjs,cjs}",
-            "**/*.conf.{js,mjs,cjs}"
+            "**/*.config.{js,ts,mjs,cjs}",
+            "**/*.conf.{js,ts,mjs,cjs}"
           ]
         }
       ],
       "import/no-unresolved": "off",
-      "import/prefer-default-export": "off"
+      "import/prefer-default-export": "off",
+      "lit/no-native-attributes": "off"
     }
   },
   "stylelint": {
     "extends": "stylelint-config-standard-scss",
     "rules": {
       "custom-property-pattern": null,
-      "max-line-length": null
+      "max-line-length": null,
+      "no-duplicate-selectors": null,
+      "color-function-notation": null,
+      "alpha-value-notation": null
     }
   },
   "dependencies": {
-    "lit": "^2.0.2",
+    "lit": "^2.8.0",
     "rxjs": "^8.0.0-alpha.12"
   },
   "devDependencies": {
