@@ -2,16 +2,19 @@ import { html, LitElement } from 'lit';
 import { BlockquoteMixinSlotContent } from '@blockquote-web-components/blockquote-mixin-slot-content';
 import { styles } from './styles/blockquote-tab-styles.css.js';
 
+/**
+ * ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+ *
+ * `<blockquote-tab>`
+ * A tab element that can be used inside a `blockquote-tabs` element.
+ *
+ * @attribute selected
+ */
 export class BlockquoteTab extends BlockquoteMixinSlotContent(LitElement) {
-  static get is() {
-    return 'blockquote-tab';
-  }
-
   static get properties() {
     return {
       /**
        * Whether or not the tab is `selected`.
-       * @type {boolean}
        */
       selected: {
         type: Boolean,
@@ -35,7 +38,7 @@ export class BlockquoteTab extends BlockquoteMixinSlotContent(LitElement) {
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
-    this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges.bind(this));
+    this.shadowRoot?.addEventListener('slotchanges', this._onSlotChanges.bind(this));
 
     this.__setArrayAttibute(this.globalRootAttributes);
   }
@@ -67,7 +70,12 @@ export class BlockquoteTab extends BlockquoteMixinSlotContent(LitElement) {
     return html`<slot></slot>`;
   }
 
-  __setArrayAttibute(entries = []) {
+  /**
+   * Sets attributes on the element.
+   *
+   * @param {Record<*, *>} entries
+   */
+  __setArrayAttibute(entries = {}) {
     Object.entries(entries).forEach(([key, value]) => {
       this.setAttribute(key, value);
     });
