@@ -35,7 +35,7 @@
     "release": "npm run bootstrap && npm run test:pre-push && lerna version --no-push",
     "standard": "standard-version",
     "test": "lerna run test --stream --concurrency 1",
-    "analyze": "lerna run analyze:doc --stream --concurrency 1",
+    "analyze": "lerna run analyze --stream --concurrency 1",
     "test:pre-push": "npm run test -- --since",
     "test:scope": "func() { lerna run test --stream --concurrency 1 --scope @blockquote-web-components/${1}; }; func",
     "site": "npm run site:prepare && npm run site:copy",
@@ -60,15 +60,23 @@
     "parserOptions": {
       "ecmaVersion": "latest"
     },
-    "plugins": [
-      "log-filenames"
-    ],
     "extends": [
       "@open-wc",
       "prettier"
     ],
     "rules": {
       "class-methods-use-this": "off",
+      "indent": [
+        "error",
+        2,
+        {
+          "SwitchCase": 1,
+          "ignoredNodes": [
+            "PropertyDefinition",
+            "TemplateLiteral > *"
+          ]
+        }
+      ],
       "no-unused-expressions": [
         "error",
         {
@@ -95,33 +103,35 @@
         }
       ],
       "import/no-unresolved": "off",
-      "import/prefer-default-export": "off"
+      "import/prefer-default-export": "off",
+      "lit/no-native-attributes": "off"
     }
   },
   "devDependencies": {
-    "@babel/core": "^7.22.9",
-    "@babel/eslint-parser": "^7.22.9",
-    "@babel/eslint-plugin": "^7.22.5",
-    "@commitlint/cli": "^17.6.6",
-    "@commitlint/config-conventional": "^17.6.6",
-    "@commitlint/config-lerna-scopes": "^17.6.6",
+    "@babel/core": "^7.23.0",
+    "@babel/eslint-parser": "^7.22.15",
+    "@babel/eslint-plugin": "^7.22.10",
+    "@commitlint/cli": "^17.7.2",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@commitlint/config-lerna-scopes": "^17.7.0",
     "@open-wc/eslint-config": "^12.0.0",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "eslint": "^8.44.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "eslint": "^8.51.0",
     "husky": "^8.0.3",
     "karma": "^6.4.2",
-    "lerna": "^7.2.0",
-    "lint-staged": "^13.2.3",
-    "postcss": "^8.4.26",
-    "prettier": "^3.0.0",
+    "lerna": "^7.3.0",
+    "lint-staged": "^14.0.1",
+    "postcss": "^8.4.31",
+    "prettier": "^3.0.3",
     "eslint-plugin-prettier": "^5.0.0",
-    "sort-package-json": "^2.5.1",
+    "rxjs": "^8.0.0-alpha.12",
+    "sort-package-json": "^2.6.0",
     "standard-version": "^9.5.0",
-    "stylelint": "^15.10.1",
-    "stylelint-config-standard-scss": "^10.0.0",
-    "tslib": "^2.6.0",
-    "typescript": "^5.1.6"
+    "stylelint": "^15.10.3",
+    "stylelint-config-standard-scss": "^11.0.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
