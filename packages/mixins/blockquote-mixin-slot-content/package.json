@@ -86,15 +86,23 @@
     "parserOptions": {
       "ecmaVersion": "latest"
     },
-    "plugins": [
-      "log-filenames"
-    ],
     "extends": [
       "@open-wc",
       "prettier"
     ],
     "rules": {
       "class-methods-use-this": "off",
+      "indent": [
+        "error",
+        2,
+        {
+          "SwitchCase": 1,
+          "ignoredNodes": [
+            "PropertyDefinition",
+            "TemplateLiteral > *"
+          ]
+        }
+      ],
       "no-unused-expressions": [
         "error",
         {
@@ -121,7 +129,8 @@
         }
       ],
       "import/no-unresolved": "off",
-      "import/prefer-default-export": "off"
+      "import/prefer-default-export": "off",
+      "lit/no-native-attributes": "off"
     }
   },
   "stylelint": {
@@ -135,8 +144,8 @@
     }
   },
   "dependencies": {
-    "@blockquote/polymer": "^3.4.1",
-    "lit": "^2.0.2"
+    "@open-wc/dedupe-mixin": "^1.4.0",
+    "lit": "^2.8.0"
   },
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.4.4",

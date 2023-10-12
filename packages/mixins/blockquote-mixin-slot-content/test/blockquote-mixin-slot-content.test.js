@@ -3,15 +3,14 @@ import { html, fixture, assert, fixtureCleanup } from '@open-wc/testing';
 import { LitElement } from 'lit';
 import { BlockquoteMixinSlotContent } from '../index.js';
 
-class slotElement extends BlockquoteMixinSlotContent(LitElement) {
+const slotContentBase = class slotContent extends BlockquoteMixinSlotContent(LitElement) {
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
-
-    this.shadowRoot.addEventListener('slotchanges', ev => {
+    this.shadowRoot?.addEventListener('slotchanges', ev => {
       ev.stopPropagation();
       ev.preventDefault();
       this.setAttribute('propSlot', '');
-      if (ev.detail.assignedNodesContent.assignedNodes.length) {
+      if (/** @type {CustomEvent} */ (ev).detail.assignedNodesContent.assignedNodes.length) {
         this.setAttribute('slotContent', '');
       } else {
         this.removeAttribute('slotContent');
@@ -22,10 +21,14 @@ class slotElement extends BlockquoteMixinSlotContent(LitElement) {
   render() {
     return html` <slot></slot> `;
   }
-}
-customElements.define('slot-element', slotElement);
+};
+
+customElements.define('slot-element', slotContentBase);
 
 suite('BlockquoteMixinSlotContent', () => {
+  /**
+   * @type {slotContentBase}
+   */
   let el;
 
   teardown(() => fixtureCleanup());
@@ -64,7 +67,7 @@ suite('BlockquoteMixinSlotContent', () => {
     test('removing content sends empty array as contentSlots', async () => {
       assert.isTrue(el.hasAttribute('slotContent'));
       const childSpan = el.querySelector('span');
-      childSpan.remove();
+      childSpan?.remove();
       await el.updateComplete;
       assert.isFalse(el.hasAttribute('slotContent'));
     });
