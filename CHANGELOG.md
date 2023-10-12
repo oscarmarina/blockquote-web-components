@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.15.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.14.2...v1.15.0) (2023-10-12)
+
+
+### Features
+
+* **ajax-provider:** new element ([f3f9e84](https://github.com/oscarmarina/blockquote-web-components/commit/f3f9e84cc478da8d0f95780905a066ad2dc4db35))
+* **blockquote-base-common-dev-dependencies:** update dependencies ([a565f49](https://github.com/oscarmarina/blockquote-web-components/commit/a565f49ce590326fb8365009fffe43fbf9856eed))
+
 ### [1.14.2](https://github.com/oscarmarina/blockquote-web-components/compare/v1.14.1...v1.14.2) (2023-09-06)
 
 
