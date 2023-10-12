@@ -1,27 +1,20 @@
 import { html, LitElement } from 'lit';
 import * as Gestures from '@blockquote/polymer/lib/utils/gestures.js';
 import { styles } from './styles/blockquote-base-embedded-webview-resize-styles.css.js';
+
 // https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect#value - window.scrollY to get a bounding rectangle which is independent from the current scrolling position.
 // https://www.browserstack.com/guide/ideal-screen-sizes-for-responsive-design
 // https://stackoverflow.com/questions/26233180/resize-a-div-on-border-drag-and-drop-without-adding-extra-markup
 // https://github.com/ChromeDevTools/devtools-frontend/blob/main/front_end/Images/src/resizeHorizontal.svg
 
 /**
-  ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
-
-  `blockquote-base-embedded-webview-resize`
-
-  ## Exports
-
-  - BlockquoteBaseEmbeddedWebviewResize
-
-  @tagname blockquote-base-embedded-webview-resize
-*/
+ * ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+ *
+ * `blockquote-base-embedded-webview-resize`
+ *
+ * @fires webviewresize - Raised when the element's dimensions changes
+ */
 export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
-  static get is() {
-    return 'blockquote-base-embedded-webview-resize';
-  }
-
   static get styles() {
     return [styles];
   }
@@ -37,25 +30,28 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
     this._createResizerBottomLeft = this._createResizer.bind(this, 'scaleTopRight');
     this._createResizerBottomRight = this._createResizer.bind(this, 'scaleTopLeft');
     this._doubleclickForCssInitialSize = this._doubleclickForCssInitialSize.bind(this);
+
+    this._getBoundingClientRectWidth = 0;
+    this._getBoundingClientRectHeight = 0;
   }
 
   firstUpdated(props) {
     super.firstUpdated && super.firstUpdated(props);
 
-    this.rect = this.shadowRoot.querySelector('.rect');
-    this.bottomRightResizerElement = this.shadowRoot.querySelector('.resizer-se');
-    this.bottomLeftResizerElement = this.shadowRoot.querySelector('.resizer-sw');
-    this.rightResizerElement = this.shadowRoot.querySelector('.resizer-e');
-    this.leftResizerElement = this.shadowRoot.querySelector('.resizer-w');
-    this.bottomResizerElement = this.shadowRoot.querySelector('.resizer-s');
+    this.rect = this.shadowRoot?.querySelector('.rect');
+    this.bottomRightResizerElement = this.shadowRoot?.querySelector('.resizer-se');
+    this.bottomLeftResizerElement = this.shadowRoot?.querySelector('.resizer-sw');
+    this.rightResizerElement = this.shadowRoot?.querySelector('.resizer-e');
+    this.leftResizerElement = this.shadowRoot?.querySelector('.resizer-w');
+    this.bottomResizerElement = this.shadowRoot?.querySelector('.resizer-s');
 
-    this.leftResizerElement.addEventListener('mousedown', this._createResizerLeft);
-    this.rightResizerElement.addEventListener('mousedown', this._createResizerRight);
-    this.bottomResizerElement.addEventListener('mousedown', this._createResizerBottom);
-    this.bottomLeftResizerElement.addEventListener('mousedown', this._createResizerBottomLeft);
-    this.bottomRightResizerElement.addEventListener('mousedown', this._createResizerBottomRight);
+    this.leftResizerElement?.addEventListener('mousedown', this._createResizerLeft);
+    this.rightResizerElement?.addEventListener('mousedown', this._createResizerRight);
+    this.bottomResizerElement?.addEventListener('mousedown', this._createResizerBottom);
+    this.bottomLeftResizerElement?.addEventListener('mousedown', this._createResizerBottomLeft);
+    this.bottomRightResizerElement?.addEventListener('mousedown', this._createResizerBottomRight);
 
-    this.bottomResizerElement.addEventListener('dblclick', this._doubleclickForCssInitialSize);
+    this.bottomResizerElement?.addEventListener('dblclick', this._doubleclickForCssInitialSize);
   }
 
   render() {
@@ -88,13 +84,14 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
     this._getBoundingClientRectHeight = this._getBoundingClientRect('height');
 
     this.setAttribute('resizing', '');
-    Gestures.addListener(document, 'track', this._resizer);
+    Gestures.addListener(document, 'track', /** @type {*} */ (this._resizer));
     document.addEventListener('mouseup', this._removeResizer);
   }
 
   _removeResizer() {
     this.removeAttribute('resizing');
-    Gestures.removeListener(document, 'track', this._resizer);
+
+    Gestures.removeListener(document, 'track', /** @type {*} */ (this._resizer));
     document.removeEventListener('mouseup', this._removeResizer);
     this._dispatchResizeEvent();
   }
@@ -143,11 +140,6 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
   }
 
   _dispatchResizeEvent() {
-    /**
-     * Raised when the element's dimensions changes.
-     *
-     * @event webviewresize
-     */
     const event = new CustomEvent('webviewresize', {
       bubbles: true,
       detail: {
@@ -165,6 +157,6 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
   }
 
   _getBoundingClientRect(DOMRect) {
-    return Math.abs(parseInt(this.rect.getBoundingClientRect()[DOMRect], 10));
+    return Math.abs(parseInt(this.rect?.getBoundingClientRect()[DOMRect], 10));
   }
 }

@@ -107,7 +107,7 @@
       {
         "files": "*.{scss,css}",
         "options": {
-          "printWidth": 220,
+          "printWidth": 280,
           "singleQuote": false
         }
       }
@@ -117,15 +117,23 @@
     "parserOptions": {
       "ecmaVersion": "latest"
     },
-    "plugins": [
-      "log-filenames"
-    ],
     "extends": [
       "@open-wc",
       "prettier"
     ],
     "rules": {
       "class-methods-use-this": "off",
+      "indent": [
+        "error",
+        2,
+        {
+          "SwitchCase": 1,
+          "ignoredNodes": [
+            "PropertyDefinition",
+            "TemplateLiteral > *"
+          ]
+        }
+      ],
       "no-unused-expressions": [
         "error",
         {
@@ -146,13 +154,14 @@
         {
           "devDependencies": [
             "**/test/**/*.{js,ts}",
-            "**/*.config.{js,mjs,cjs}",
-            "**/*.conf.{js,mjs,cjs}"
+            "**/*.config.{js,ts,mjs,cjs}",
+            "**/*.conf.{js,ts,mjs,cjs}"
           ]
         }
       ],
       "import/no-unresolved": "off",
-      "import/prefer-default-export": "off"
+      "import/prefer-default-export": "off",
+      "lit/no-native-attributes": "off"
     }
   },
   "stylelint": {
@@ -167,7 +176,7 @@
   },
   "dependencies": {
     "@blockquote/polymer": "^3.4.1",
-    "lit": "^2.0.2"
+    "lit": "^2.8.0"
   },
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.4.4",

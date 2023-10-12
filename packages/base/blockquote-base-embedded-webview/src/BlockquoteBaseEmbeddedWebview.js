@@ -34,59 +34,56 @@ const openExternallyIcon = html`
 `;
 
 /**
-![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+ * ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+ *
+ * `blockquote-base-embedded-webview` offers a responsive display using individual HTML files as content with different use cases to be displayed.
+ * It will create a `select` tag with the provided demo HTML files and add the `[data-embedded]` attribute to the loaded body tag.
+ *
+ * ## Base usage
+ *
+ * ```html
+ * <blockquote-base-embedded-webview heading="My demo title">
+ *   <template data-src="./base.html" data-option="Base" data-description="base - description"></template>
+ *   <template data-src="./complex.html" data-option="Complex" data-description="complex - description"></template>
+ * </blockquote-base-embedded-webview>
+ * ```
+ *
+ * ## base.html
+ *
+ * ```html
+ * <!DOCTYPE html>
+ * <html lang="en">
+ *   <head>
+ *     <title>Demo Base</title>
+ *     <meta name="viewport" content="width=device-width, initial-scale=1" />
+ *     <meta charset="utf-8" />
+ *     <style>
+ *       :root {
+ *         font: normal medium/1.25 sans-serif;
+ *       }
+ *       body {
+ *         margin: 0;
+ *       }
+ *       [data-embedded] .hidden {
+ *         display: none;
+ *       }
+ *     </style>
+ *   </head>
+ *   <body>
+ *     <h1 class="hidden">Heading</h1>
+ *     <p>Base Demo</p>
+ *   </body>
+ * </html>
+ * ```
+ *
+ * @attribute heading
+ * @attribute selected
+ * @attribute heading-level
+ * @attribute screen-size-selected
+ * @attribute limit-height
+ */
 
-`blockquote-base-embedded-webview` offers a responsive display using individual HTML files as content with the different use cases to be displayed.
-It will create a `select` tag with the provided demo HTML files and add the `[data-embedded]` attribute to the loaded body tag.
-
-## Base usage
-
-```html
-<blockquote-base-embedded-webview heading="My demo title">
-  <template data-src="./base.html" data-option="Base" data-description="base - description"></template>
-  <template data-src="./complex.html" data-option="Complex" data-description="complex - description"></template>
-</blockquote-base-embedded-webview>
-```
-
-## base.html
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Demo Base</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="utf-8" />
-    <style>
-      :root {
-        font: normal medium/1.25 sans-serif;
-      }
-      body {
-        margin: 0;
-      }
-      [data-embedded] .hidden {
-        display: none;
-      }
-    </style>
-  </head>
-  <body>
-    <h1 class="hidden">Heading</h1>
-    <p>Base Demo</p>
-  </body>
-</html>
-```
-
-  ## Exports
-
-  - BlockquoteBaseEmbeddedWebview
-
-  @tagname blockquote-base-embedded-webview
-*/
 export class BlockquoteBaseEmbeddedWebview extends LitElement {
-  static get is() {
-    return 'blockquote-base-embedded-webview';
-  }
-
   static get styles() {
     return [styles];
   }
@@ -95,7 +92,6 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     return {
       /**
        * The heading of the webview.
-       * @type {String}
        */
       heading: {
         type: String,
@@ -103,7 +99,6 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
 
       /**
        * Index of currently srcset file
-       * @type {Number}
        */
       selected: {
         type: Number,
@@ -111,7 +106,6 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
 
       /**
        * Heading level from 1 to 6
-       * @type {Number}
        */
       headingLevel: {
         type: Number,
@@ -121,7 +115,6 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
 
       /**
        * Index of currently screen size selected
-       * @type {Number}
        */
       screenSizeSelected: {
         type: Number,
@@ -130,7 +123,6 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
 
       /**
        * Limit height to 100% available
-       * @type {Boolean}
        */
       limitHeight: {
         type: Boolean,
@@ -148,9 +140,9 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     this.heading = '';
     this.__resetResizing = false;
     this.__selectArrow = chevronDownIcon;
-    this.__readDataPos = { x: 0, y: 0, resizing: false, cursor: '' };
+    this.__readDataPos = { x: '0', y: '0', resizing: false, cursor: '' };
     this.limitHeight = false;
-    this._sources = [{ file: '', option: '', description: '' }];
+    this._sources = [{ src: '', option: '', description: '' }];
     this._updateSize = this._updateSize.bind(this);
     this._embeddedResizeRef = createRef();
   }
@@ -158,13 +150,16 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
 
-    this.shadowRoot.addEventListener('webviewresize', ({ detail }) => {
+    this.shadowRoot?.addEventListener('webviewresize', ev => {
+      const { detail } = /** @type {CustomEvent} */ (ev);
+
       Object.assign(this.__readDataPos, detail);
       this.__resetResizing = true;
+
       if (detail.cursor === 'n' || detail.cursor === 'ne' || detail.cursor === 'nw') {
         // http://makeseleniumeasy.com/2018/03/14/part-7-usages-of-javascripts-in-selenium-difference-among-scrollby-scrollto-and-scroll-methods-of-javascript/
         window.scroll({
-          top: Math.abs(parseInt(this.__readDataPos.y, 10) + this._controlBottom),
+          top: Math.abs(parseInt(this.__readDataPos.y, 10) + (this._controlBottom ?? 0)),
           left: 0,
           behavior: 'smooth',
         });
@@ -176,7 +171,7 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     const _sources = Array.from(this.querySelectorAll('template'));
     if (_sources.length) {
       this._sources = _sources.map(item => {
-        const { src, option, description } = item.dataset;
+        const { src = '', option = '', description = '' } = item.dataset;
         return {
           src,
           option,
@@ -191,18 +186,20 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
   firstUpdated(props) {
     super.firstUpdated && super.firstUpdated(props);
 
-    this.embedded = this.shadowRoot.querySelector('[slot="embedded"]');
-    this._controlBottom = parseFloat(
-      window.getComputedStyle(this._embeddedResizeRef.value).paddingBottom,
-    );
+    this.embedded = this.shadowRoot?.querySelector('[slot="embedded"]');
+    if (this._embeddedResizeRef.value) {
+      this._controlBottom = parseFloat(
+        window.getComputedStyle(this._embeddedResizeRef.value).paddingBottom,
+      );
+    }
   }
 
   _updateSize({ detail }) {
-    this._embeddedResizeRef.value.style.setProperty(
+    /** @type {HTMLElement} */ (this._embeddedResizeRef?.value)?.style.setProperty(
       '--blockquote-base-embedded-webview-resize-rect-width',
       `${detail.width}px`,
     );
-    this._embeddedResizeRef.value.style.setProperty(
+    /** @type {HTMLElement} */ (this._embeddedResizeRef?.value)?.style.setProperty(
       '--blockquote-base-embedded-webview-resize-rect-height',
       this.limitHeight ? '100%' : `${detail.height}px`,
     );
@@ -269,7 +266,7 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
   }
 
   get _externalLinkTpl() {
-    return html`<a href="${this._src}" target="_blank" class="open-externally">
+    return html`<a href="${this._src || '#'}" target="_blank" class="open-externally">
       <span class="sr-only">View demo in a new tab</span
       ><span aria-hidden="true">${openExternallyIcon}</span></a
     >`;
@@ -315,7 +312,7 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
   get _embeddedSlotTpl() {
     return html` <blockquote-base-embedded-webview-element
       slot="embedded"
-      .src="${this._src}"
+      .src="${this._src || ''}"
       .embeddedTitle="${this._sources[this.selected].option || 'Demo'}"
     >
     </blockquote-base-embedded-webview-element>`;

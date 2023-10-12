@@ -1,21 +1,16 @@
 import { html, LitElement, render as LitHtmlRender } from 'lit';
 import { styles } from './styles/blockquote-base-embedded-webview-element-styles.css.js';
+
 /**
-  ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
-
-  `blockquote-base-embedded-webview-element` wraps an `iframe` or `object` and shows it through light dom.
-
-  ## Exports
-
-  - BlockquoteBaseEmbeddedWebviewElement
-
-  @tagname blockquote-base-embedded-webview-element
-*/
+ * ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+ *
+ * `blockquote-base-embedded-webview-element` wraps an `iframe` or `object` and shows it through light dom.
+ *
+ * @attribute embedded-title
+ * @attribute src
+ * @attribute type
+ */
 export class BlockquoteBaseEmbeddedWebviewElement extends LitElement {
-  static get is() {
-    return 'blockquote-base-embedded-webview-element';
-  }
-
   static get styles() {
     return [styles];
   }
@@ -24,7 +19,6 @@ export class BlockquoteBaseEmbeddedWebviewElement extends LitElement {
     return {
       /**
        * The title attribute on an <element> to label its content
-       * @type {string}
        */
       embeddedTitle: {
         type: String,
@@ -33,7 +27,6 @@ export class BlockquoteBaseEmbeddedWebviewElement extends LitElement {
 
       /**
        * The URL of the page to embed
-       * @type {string}
        */
       src: {
         type: String,
@@ -41,7 +34,6 @@ export class BlockquoteBaseEmbeddedWebviewElement extends LitElement {
 
       /**
        * The type of the tag to embed - iframe or object
-       * @type {string}
        */
       type: {
         type: String,
@@ -103,7 +95,7 @@ export class BlockquoteBaseEmbeddedWebviewElement extends LitElement {
   _fetch(resource) {
     if (resource) {
       Object.assign(
-        this._embeddedElement,
+        this._embeddedElement ?? {},
         this.type === 'iframe' && {
           allow: 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture',
           allowFullscreen: true,
@@ -112,11 +104,14 @@ export class BlockquoteBaseEmbeddedWebviewElement extends LitElement {
         this.embeddedTitle && { title: this.embeddedTitle },
       );
 
-      this._embeddedElement[this._loadResource] = resource;
+      Object.assign(this._embeddedElement ?? {}, {
+        [this._loadResource]: resource,
+      });
+
       window.performance.mark('iframestart');
 
       Object.assign(
-        this._embeddedElement.style,
+        this._embeddedElement?.style ?? {},
         resource.indexOf('http') !== 0 && {
           opacity: 0,
         },
