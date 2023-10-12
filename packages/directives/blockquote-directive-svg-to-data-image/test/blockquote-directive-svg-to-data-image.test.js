@@ -35,7 +35,7 @@ const svgTag3 = litHtml`<svg id="${String(
 ${circleTag}
 </svg>`;
 
-class BlockquoteDirectiveSvgToDataImageDemo extends LitElement {
+const SvgToDataImageDemo = class BlockquoteDirectiveSvgToDataImageDemo extends LitElement {
   static get properties() {
     return {
       svgToRender: {
@@ -57,11 +57,14 @@ class BlockquoteDirectiveSvgToDataImageDemo extends LitElement {
       )}') no-repeat center center #e4e4e4"></div>
     `;
   }
-}
+};
 
-customElements.define('svg-to-data-image', BlockquoteDirectiveSvgToDataImageDemo);
+customElements.define('svg-to-data-image', SvgToDataImageDemo);
 
 suite('SVGtoDataImage', () => {
+  /**
+   * @type {SvgToDataImageDemo}
+   */
   let el;
 
   teardown(() => fixtureCleanup());
@@ -73,7 +76,7 @@ suite('SVGtoDataImage', () => {
     });
 
     test('Shadow DOM: SVG string', async () => {
-      el.svgToRender = svg`${svgTag1}`;
+      el.svgToRender = svgTag1;
       await el.updateComplete;
       await assert.shadowDom.equalSnapshot(el);
     });
@@ -91,7 +94,7 @@ suite('SVGtoDataImage', () => {
     });
 
     test('Shadow DOM: non-TemplateResult', async () => {
-      el.svgToRender = circleString;
+      el.svgToRender = /** @type {*} */ (circleString);
       await el.updateComplete;
       await assert.shadowDom.equalSnapshot(el);
     });
