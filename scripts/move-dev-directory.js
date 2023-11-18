@@ -53,8 +53,8 @@ getAllDev().forEach((dev) => {
       const $olNode = $indexHtml('ol').append(
         `<li>
           <ul>
-            <li><a href="${dev.devDirectoryName}/index.html">• ${dev.devDirectoryName}</a></li>
-            <li><a href="https://github.com/oscarmarina/blockquote-web-components/tree/main/packages/${dev.devDirectoryCategory}/${dev.devDirectoryName}/README.md">• readme</a></li>
+            <li><a href="${dev.devDirectoryName}/index.html">⇉ ${dev.devDirectoryName}</a></li>
+            <li><a href="https://github.com/oscarmarina/blockquote-web-components/tree/main/packages/${dev.devDirectoryCategory}/${dev.devDirectoryName}/README.md">↬ readme</a></li>
           </ul>
         </li>`
       );

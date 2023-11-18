@@ -1,4 +1,4 @@
-import{i as r,r as o,s as n,x as c}from"./lit-element-8843654b.js";import{s}from"./getComponentSharedStyles-90487c53.js";const t={main:`
+import{i as r,r as o,s as n,x as c}from"./lit-element-15XwPW2m.js";import{s}from"./getComponentSharedStyles-e1FQfMz9.js";const t={main:`
   @font-face {
     font-family: 'Kaisei HarunoUmi';
     font-style: normal;

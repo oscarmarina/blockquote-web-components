@@ -4,7 +4,8 @@
       "position": 0,
       "hidden": true
     },
-    "base1.html": {
+    "./base1.html": {
+      "label": "Base1",
       "position": 1
     },
     "base2.html": {
@@ -16,11 +17,9 @@
     "src/PePe.js": {
       "position": 3
     },
-
-    "html.js": {
+    "./html.js": {
       "hidden": true
     },
-
     "src/styles/pe-pe-styles.css.js": {
       "label": "Style",
       "position": 4

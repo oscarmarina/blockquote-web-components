@@ -1,0 +1,35 @@
+{
+  "./html.js": {
+    "default": "./html.js"
+  },
+  "./playground.json": {
+    "default": "./playground.json"
+  },
+  "./index.html": {
+    "default": "./index.html"
+  },
+  "./define/pe-pe.js": {
+    "default": "./define/pe-pe.js"
+  },
+  "./base.html": {
+    "default": "./base.html"
+  },
+  "./base1.html": {
+    "default": "./base1.html"
+  },
+  "./index.js": {
+    "default": "./index.js"
+  },
+  "./exports.json": {
+    "default": "./exports.json"
+  },
+  "./base2.html": {
+    "default": "./base2.html"
+  },
+  "./src/styles/pe-pe-styles.css.js": {
+    "default": "./src/styles/pe-pe-styles.css.js"
+  },
+  "./src/PePe.js": {
+    "default": "./src/PePe.js"
+  }
+}
