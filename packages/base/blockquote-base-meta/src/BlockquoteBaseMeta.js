@@ -27,7 +27,7 @@ window[BLOCKQUOTE] = blockquote;
 // https://www.keithcirkel.co.uk/metaprogramming-in-es6-symbols/
 
 /**
- * ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+ * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
  * `BlockquoteBaseMeta` is based on Polymer's `iron-meta`, and it is a generic class that you can use for sharing information across the DOM tree.
  * It uses [monostate pattern](http://c2.com/cgi/wiki?MonostatePattern) pattern such that any instance of it has access to the shared information.
