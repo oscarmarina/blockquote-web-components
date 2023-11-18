@@ -1,7 +1,7 @@
 import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';
 
 /**
- * ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+ * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
  * `BlockquoteBaseStyleHelpers` offers a set of helper functions for working with CSS.
  *
