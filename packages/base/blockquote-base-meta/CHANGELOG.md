@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-meta@1.0.23...@blockquote-web-components/blockquote-base-meta@1.1.0) (2023-11-18)
+
+### Features
+
+- **blockquote-base-meta:** lit3 ([b15cfab](https://github.com/oscarmarina/blockquote-web-components/commit/b15cfab4fef4a3c01e0bbff6e1dca5c8a8dd3ee3))
+
 ## [1.0.23](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-meta@1.0.22...@blockquote-web-components/blockquote-base-meta@1.0.23) (2023-10-12)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-base-meta
