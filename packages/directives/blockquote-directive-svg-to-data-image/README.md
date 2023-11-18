@@ -1,6 +1,6 @@
 # blockquoteDirectiveSvgToDataImage
 
-![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
 This directive receives an `<svg>` HTML element from a [Template Result](https://lit.dev/docs/api/templates/#TemplateResult)
 and returns it as data URI (data:image/svg+xml).
