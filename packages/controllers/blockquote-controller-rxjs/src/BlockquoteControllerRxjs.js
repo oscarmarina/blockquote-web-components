@@ -6,7 +6,7 @@ const subscriptions = Symbol('subscriptions');
 /**
  * # BlockquoteControllerRxjs
  *
- * ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+ * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
  * `BlockquoteControllerRxjs` is a Reactive Controller.
  *
