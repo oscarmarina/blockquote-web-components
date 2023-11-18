@@ -3,7 +3,7 @@ import { BlockquoteMixinSlotContent } from '@blockquote-web-components/blockquot
 import { styles } from './styles/blockquote-tab-styles.css.js';
 
 /**
- * ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+ * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
  * `<blockquote-tab>`
  * A tab element that can be used inside a `blockquote-tabs` element.
