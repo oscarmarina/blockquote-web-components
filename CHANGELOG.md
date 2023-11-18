@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.16.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.15.0...v1.16.0) (2023-11-18)
+
+
+### Features
+
+* **ajax-provider:** lit3 ([eb971d7](https://github.com/oscarmarina/blockquote-web-components/commit/eb971d7ecbd07cb8768ad7b0292bd6160c87c85a))
+* **blockquote-base-common-dev-dependencies:** lit3 ([d2cf837](https://github.com/oscarmarina/blockquote-web-components/commit/d2cf8376a0f620ee18a1bf69e269d9240132c180))
+* **blockquote-base-embedded-webview:** lit3 ([3c528ea](https://github.com/oscarmarina/blockquote-web-components/commit/3c528ea9a875b6066de8e14494f06d504ea46876))
+* **blockquote-base-meta:** lit3 ([b15cfab](https://github.com/oscarmarina/blockquote-web-components/commit/b15cfab4fef4a3c01e0bbff6e1dca5c8a8dd3ee3))
+* **blockquote-base-style-helpers:** lit3 ([887a01f](https://github.com/oscarmarina/blockquote-web-components/commit/887a01fc1b4700e21d51881c26e63e4bbd6ac622))
+* **blockquote-controller-rxjs:** lit3 ([18f5cee](https://github.com/oscarmarina/blockquote-web-components/commit/18f5ceea2061236651f50aeacc53c145aec44b20))
+* **blockquote-directive-svg-to-data-image:** lit3 ([3d9c2d0](https://github.com/oscarmarina/blockquote-web-components/commit/3d9c2d0d9f25a67e54aa551244d1edbfff595705))
+* **blockquote-mixin-slot-content:** lit3 ([386f3f2](https://github.com/oscarmarina/blockquote-web-components/commit/386f3f27b9fa71d471e3aa35bffa4d4feed06179))
+* **blockquote-tabs:** lit3 ([5d3a3dc](https://github.com/oscarmarina/blockquote-web-components/commit/5d3a3dc65f9c7b1a60c70176135e8e1e05c19fd9))
+
 ## [1.15.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.14.2...v1.15.0) (2023-10-12)
 
 
