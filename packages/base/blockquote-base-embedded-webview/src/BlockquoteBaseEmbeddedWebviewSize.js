@@ -3,7 +3,7 @@ import { styles } from './styles/blockquote-base-embedded-webview-size-styles.cs
 // https://source.chromium.org/chromium/chromium/src/+/main:third_party/devtools-frontend/src/front_end/panels/emulation/DeviceModeView.ts;l=164
 
 /**
- * ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+ * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
  * `blockquote-base-embedded-webview-size` provides a list of ideal screen sizes for responsive designs.
  * <br>

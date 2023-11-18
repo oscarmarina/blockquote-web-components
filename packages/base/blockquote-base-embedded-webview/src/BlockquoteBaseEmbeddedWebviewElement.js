@@ -2,7 +2,7 @@ import { html, LitElement, render as LitHtmlRender } from 'lit';
 import { styles } from './styles/blockquote-base-embedded-webview-element-styles.css.js';
 
 /**
- * ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+ * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
  * `blockquote-base-embedded-webview-element` wraps an `iframe` or `object` and shows it through light dom.
  *

@@ -1,4 +1,4 @@
-![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
 `blockquote-base-embedded-webview` offers a responsive display using individual HTML files as content with different use cases to be displayed.
 It will create a `select` tag with the provided demo HTML files and add the `[data-embedded]` attribute to the loaded body tag.
@@ -98,7 +98,7 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 | ---- | ------------------------------- | ----------------------------- | ------------------------------------- | ------- |
 | `js` | `BlockquoteBaseEmbeddedWebview` | BlockquoteBaseEmbeddedWebview | src/BlockquoteBaseEmbeddedWebview\.js |         |
 
-![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
 `blockquote-base-embedded-webview-element` wraps an `iframe` or `object` and shows it through light dom.
 
@@ -142,7 +142,7 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 | ---- | -------------------------------------- | ------------------------------------ | ------------------------------------------- | ------- |
 | `js` | `BlockquoteBaseEmbeddedWebviewElement` | BlockquoteBaseEmbeddedWebviewElement | src/BlockquoteBaseEmbeddedWebviewElement.js |         |
 
-![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
 `blockquote-base-embedded-webview-resize`
 
@@ -190,7 +190,7 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 | ---- | ------------------------------------- | ----------------------------------- | ------------------------------------------ | ------- |
 | `js` | `BlockquoteBaseEmbeddedWebviewResize` | BlockquoteBaseEmbeddedWebviewResize | src/BlockquoteBaseEmbeddedWebviewResize.js |         |
 
-![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
 `blockquote-base-embedded-webview-size` provides a list of ideal screen sizes for responsive designs.
 <br>

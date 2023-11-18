@@ -8,7 +8,7 @@ import { styles } from './styles/blockquote-base-embedded-webview-resize-styles.
 // https://github.com/ChromeDevTools/devtools-frontend/blob/main/front_end/Images/src/resizeHorizontal.svg
 
 /**
- * ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+ * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
  * `blockquote-base-embedded-webview-resize`
  *
