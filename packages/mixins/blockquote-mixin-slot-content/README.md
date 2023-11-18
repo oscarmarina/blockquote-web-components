@@ -1,4 +1,4 @@
-![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
 `BlockquoteMixinSlotContent` is a mixin for managing the flattened set of nodes assigned to a slot when the node(s) contained in some slot change.
 
