@@ -2,7 +2,7 @@ import { html, LitElement } from 'lit';
 import { styles } from './styles/blockquote-tabpanel-styles.css.js';
 
 /**
- * ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+ * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
  * `<blockquote-tabpanel>`
  * A tab element that can be used inside a `blockquote-tabs` element.

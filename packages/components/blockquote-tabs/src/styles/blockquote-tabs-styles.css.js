@@ -59,8 +59,7 @@ export const styles = css`:host {
 
 .scroll-content {
   width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: auto hidden;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   overscroll-behavior: none;
