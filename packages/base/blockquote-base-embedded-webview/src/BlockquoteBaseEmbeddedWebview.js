@@ -34,7 +34,7 @@ const openExternallyIcon = html`
 `;
 
 /**
- * ![Lit](https://img.shields.io/badge/lit-2.0.0-blue)
+ * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
  * `blockquote-base-embedded-webview` offers a responsive display using individual HTML files as content with different use cases to be displayed.
  * It will create a `select` tag with the provided demo HTML files and add the `[data-embedded]` attribute to the loaded body tag.
