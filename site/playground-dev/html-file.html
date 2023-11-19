@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Demo - blk-material</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta name="description" content="blk-material" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --typeface-plain: 'IBM Plex Sans', serif;
+        --typeface-weight-regular: 400;
+        --typeface-line-height: 1.5rem;
+        --typeface-size: 1rem;
+        --typeface-tracking: 0.009rem;
+        --spacing-relative-unit: calc(8 / 16 * 1rem);
+        --background: #fff;
+
+        /* surface roles */
+        --surface-dim: #ded8e1;
+        --surface: #fef7ff;
+        --surface-bright: #fef7ff;
+        /*  surface container roles */
+        --surface-container-lowest: #fff;
+        --surface-container-low: #f7f2fa;
+        --surface-container: #f3edf7;
+        --surface-container-high: #ece6f0;
+        --surface-container-highest: #e6e0e9;
+
+        --body-text-type: var(--typeface-weight-regular) var(--typeface-size) /
+          var(--typeface-line-height) var(--typeface-plain);
+
+        box-sizing: border-box;
+        font: var(--body-text-type);
+        background-color: var(--background);
+      }
+
+      :root[data-prefers-color-scheme='dark'] {
+        --background: #000;
+        /* surface roles */
+        --surface-dim: #141218;
+        --surface: #141218;
+        --surface-bright: #3b383e;
+        /*  surface container roles */
+        --surface-container-lowest: #0f0d13;
+        --surface-container-low: #1d1b20;
+        --surface-container: #211f26;
+        --surface-container-high: #2b2930;
+        --surface-container-highest: #36343b;
+      }
+
+      :root[data-prefers-color-scheme='dark'] label,
+      :root[data-prefers-color-scheme='dark'] .text,
+      :root[data-prefers-color-scheme='dark'] div[data-roles] {
+        color: #fef7ff;
+      }
+
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+
+      @supports (content-visibility: hidden) {
+        blk-material:is(:not(:defined), :has(:not(:defined))) {
+          content-visibility: hidden; /* Light Dom content is visible - bug?? */
+          visibility: hidden;
+        }
+      }
+      @supports not (content-visibility: hidden) {
+        blk-material:not(:defined) {
+          visibility: hidden;
+        }
+      }
+
+      html,
+      body,
+      .fullscreen {
+        margin: 0;
+        padding: 0;
+        block-size: calc(100% + env(safe-area-inset-top) + env(safe-area-inset-bottom));
+      }
+
+      .fullscreen {
+        background-color: rgba(255, 217, 0, 0.414);
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        display: none;
+      }
+
+      main {
+        padding: 2rem 0;
+      }
+
+      hr {
+        border: none;
+        background: linear-gradient(to right, transparent, hsla(0, 0%, 60%, 0.5), transparent);
+        height: 0.0625rem;
+        margin: 0 0 1rem;
+      }
+      blk-material + hr {
+        margin-top: 1rem;
+      }
+      .fieldset div {
+        display: flex;
+        align-items: center;
+      }
+
+      .fieldset div + div {
+        border-bottom: 0.0625rem solid var(--surface-container-high);
+        margin-bottom: 1rem;
+        padding-block-end: 0.5rem;
+      }
+
+      label {
+        display: inline-flex;
+        letter-spacing: var(--typeface-tracking);
+      }
+
+      input[type='checkbox'] {
+        width: 1rem;
+        height: 1rem;
+        margin-inline-end: 0.5rem;
+      }
+
+      .fieldset + section {
+        margin-bottom: 2rem;
+      }
+
+      section:nth-child(1) {
+        background-color: var(--surface);
+        max-width: min(100%, calc(864 / 16 * 1rem));
+        margin: 0 auto 2rem;
+        padding: 1em;
+      }
+
+      section:nth-child(2) {
+        width: 90%;
+        margin: auto;
+      }
+
+      section:nth-child(1)[data-roles~='dim'],
+      section:nth-child(2) [data-roles~='dim'] {
+        background-color: var(--surface-dim);
+      }
+
+      section:nth-child(1)[data-roles~='surface'],
+      section:nth-child(2) [data-roles~='surface'] {
+        background-color: var(--surface);
+      }
+
+      section:nth-child(1)[data-roles~='bright'],
+      section:nth-child(2) [data-roles~='bright'] {
+        background-color: var(--surface-bright);
+      }
+
+      section:nth-child(2) [data-roles] {
+        margin: 0 auto 1rem;
+        min-block-size: 2.5rem;
+        padding: 1em;
+      }
+
+      section:nth-child(2) [data-roles~='lowest'] {
+        background-color: var(--surface-container-lowest);
+      }
+      section:nth-child(2) [data-roles~='low'] {
+        background-color: var(--surface-container-low);
+      }
+      section:nth-child(2) [data-roles~='container'] {
+        background-color: var(--surface-container);
+      }
+      section:nth-child(2) [data-roles~='high'] {
+        background-color: var(--surface-container-high);
+      }
+      section:nth-child(2) [data-roles~='highest'] {
+        background-color: var(--surface-container-highest);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <div class="fieldset">
+          <div>
+            <input type="checkbox" id="tone" />
+            <label for="tone">core surface roles: dim, surface, bright </label>
+          </div>
+          <div>
+            <input type="checkbox" id="dark" />
+            <label for="dark"> prefers-color-scheme: dark </label>
+          </div>
+        </div>
+        <p class="text">[]</p>
+        <blk-material heading="Lit & Material 3"
+          >Lit adds just what you need to be happy and productive: reactivity, declarative templates
+          and a handful of thoughtful features to reduce boilerplate and make your job easier. Every
+          Lit feature is carefully designed with web platform evolution in mind.
+        </blk-material>
+        <hr />
+        <blk-material heading="Nested"
+          >Lit adds just what you need to be happy and productive: reactivity, declarative templates
+          and a handful of thoughtful features to reduce boilerplate and make your job easier. Every
+          Lit feature is carefully designed with web platform evolution in mind.
+          <blk-material style="outline: var(--surface-dim) solid 1px" heading="Inside">
+            Lit adds just what you need to be happy and productive: reactivity, declarative
+            templates and a handful of thoughtful features to reduce boilerplate and make your job
+            easier. Every Lit feature is carefully designed with web platform evolution in
+            mind.</blk-material
+          >
+        </blk-material>
+      </section>
+
+      <section>
+        <div data-roles="dim">
+          <p>Dim</p>
+          <div data-roles="lowest">Surface lowest</div>
+          <div data-roles="low">Surface low</div>
+          <div data-roles="container">Surface container</div>
+          <div data-roles="high">Surface high</div>
+          <div data-roles="highest">Surface highest</div>
+        </div>
+        <hr />
+        <div data-roles="surface">
+          <p>Surface</p>
+          <div data-roles="lowest">Surface lowest</div>
+          <div data-roles="low">Surface low</div>
+          <div data-roles="container">Surface container</div>
+          <div data-roles="high">Surface high</div>
+          <div data-roles="highest">Surface highest</div>
+        </div>
+        <hr />
+        <div data-roles="bright">
+          <p>Bright</p>
+          <div data-roles="lowest">Surface lowest</div>
+          <div data-roles="low">Surface low</div>
+          <div data-roles="container">Surface container</div>
+          <div data-roles="high">Surface high</div>
+          <div data-roles="highest">Surface highest</div>
+        </div>
+      </section>
+    </main>
+    <div class="fullscreen" inert>
+      <div style="margin: auto">
+        <button>HI</button>
+      </div>
+    </div>
+    <script type="module">
+      import './define/blk-material.js';
+      import './src/tokens/dark-color-scheme.js';
+      import { ROLES } from './src/tokens/generate-tokens.js';
+      const sectionTone = document.querySelector('section');
+      const dataTone = document.querySelector('blk-material');
+      const textTone = document.querySelector('.text');
+      const ch = document.querySelector('#tone');
+      const dk = document.querySelector('#dark');
+
+      const getRandomSurface = (() => {
+        let lastValue = null;
+        let remainingStrings = [];
+
+        return strings => {
+          if (remainingStrings.length === 0) {
+            remainingStrings = strings.slice().sort(() => Math.random() - 0.5);
+          }
+          lastValue = remainingStrings.pop();
+          return lastValue;
+        };
+      })();
+
+      ch.addEventListener('change', ({ target }) => {
+        if (target.checked) {
+          const randomString = getRandomSurface(['dim', 'bright']);
+          dataTone.setAttribute(ROLES, randomString);
+          sectionTone.setAttribute(`data-${ROLES}`, randomString);
+          textTone.textContent = `[${randomString}]`;
+        } else {
+          dataTone.removeAttribute(ROLES);
+          sectionTone.removeAttribute(`data-${ROLES}`);
+          textTone.textContent = `[surface]`;
+        }
+      });
+      dk.addEventListener('change', ({ target }) => {
+        if (target.checked) {
+          document.documentElement.setAttribute('data-prefers-color-scheme', 'dark');
+        } else {
+          document.documentElement.removeAttribute('data-prefers-color-scheme');
+        }
+      });
+      </script>
+
+  </body>
+</html>

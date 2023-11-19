@@ -32,6 +32,8 @@
   --yellow-800: hsl(31.8 81% 28.8%);
   --yellow-900: hsl(28.4 72.5% 25.7%);
   --yellow-950: hsl(33.1 69% 13.9%);
+
+  font-family: sans-serif;
 }
 
 html,
@@ -40,29 +42,31 @@ body {
   margin: 0;
 }
 
-html {
-  font-family: sans-serif;
-}
-
 playground-ide {
-  --playground-code-font-family: "Roboto Mono", monospace;
-  --playground-highlight-color: var(--primary-800);
+  --playground-bar-height: 80px;
+  --playground-highlight-color: var(--gray-800);
   --playground-code-linenumber-color: var(--gray-300);
   --playground-tab-bar-background: var(--gray-100);
-  --playground-code-atom-color: rgb(108, 140, 213);
-  --playground-code-attribute-color: rgb(127, 0, 127);
-  --playground-code-builtin-color: rgb(126, 166, 86);
-  --playground-code-comment-color: rgb(0, 128, 255);
-  --playground-code-def-color: rgb(0, 0, 0);
-  --playground-code-keyword-color: rgb(90, 92, 173);
-  --playground-code-meta-color: rgb(202, 129, 56);
-  --playground-code-qualifier-color: rgb(128, 128, 128);
-  --playground-code-string-color: rgb(255, 0, 0);
-  --playground-code-string-2-color: rgb(0, 0, 0);
-  --playground-code-tag-color: rgb(63, 127, 127);
-  --playground-code-type-color: rgb(0, 0, 0);
-  --playground-code-variable-2-color: rgb(0, 0, 0);
-  --playground-code-variable-3-color: rgb(0, 0, 0);
+  --playground-code-cursor-color: rgb(129, 144, 144);
+  --playground-code-gutter-border-right: 0px;
+  --playground-code-atom-color: rgb(211, 54, 130);
+  --playground-code-attribute-color: rgb(42, 161, 152);
+  --playground-code-builtin-color: rgb(211, 54, 130);
+  --playground-code-comment-color: rgb(88, 110, 117);
+  --playground-code-def-color: rgb(42, 161, 152);
+  --playground-code-keyword-color: rgb(203, 75, 22);
+  --playground-code-meta-color: rgb(133, 153, 0);
+  --playground-code-number-color: rgb(211, 54, 130);
+  --playground-code-operator-color: rgb(108, 113, 196);
+  --playground-code-qualifier-color: rgb(181, 137, 0);
+  --playground-code-string-color: rgb(133, 153, 0);
+  --playground-code-string-2-color: rgb(181, 137, 0);
+  --playground-code-tag-color: rgb(147, 161, 161);
+  --playground-code-type-color: rgb(108, 113, 196);
+  --playground-code-variable-color: rgb(131, 148, 150);
+  --playground-code-variable-2-color: rgb(181, 137, 0);
+  --playground-code-variable-3-color: rgb(108, 113, 196);
+  --playground-code-property-color: rgb(42, 161, 152);
 
   min-height: 100%;
 }
