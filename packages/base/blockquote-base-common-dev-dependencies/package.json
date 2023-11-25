@@ -10,6 +10,7 @@
     "@custom-elements-manifest/analyzer": "^0.9.0",
     "@open-wc/eslint-config": "^12.0.2",
     "@open-wc/testing": "^3.2.2",
+    "@types/mocha": "^10.0.4",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
     "@ungap/global-this": "^0.4.4",
