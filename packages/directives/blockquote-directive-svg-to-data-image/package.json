@@ -37,7 +37,6 @@
   ],
   "scripts": {
     "analyze": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
-    "analyze:doc": "npm run analyze && npx web-component-analyzer \"{src,define}/**/*.{js,ts}\" \"index.js\" \"README.js\" --outFile README.md",
     "build": "echo \"This is not a TypeScript project, so no need to build.\"",
     "dev:vite": "vite build",
     "format": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
