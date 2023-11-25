@@ -100,6 +100,6 @@ export class BlockquoteControllerRxjs {
   }
 
   hostDisconnected() {
-    this[unsubscribe].next();
+    this[unsubscribe].next(null);
   }
 }
