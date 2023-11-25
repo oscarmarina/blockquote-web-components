@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-common-dev-dependencies@1.6.0...@blockquote-web-components/blockquote-base-common-dev-dependencies@1.7.0) (2023-11-25)
+
+### Features
+
+- **blockquote-base-common-dev-dependencies:** add mocha types ([80ef47c](https://github.com/oscarmarina/blockquote-web-components/commit/80ef47ccaa67330c794bb7abddac17a178096692))
+
 # [1.6.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-common-dev-dependencies@1.5.0...@blockquote-web-components/blockquote-base-common-dev-dependencies@1.6.0) (2023-11-18)
 
 ### Features

@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-controller-xstate",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0",
   "description": "This controller allows you to subscribe to an XState actor, updating a specified reactive property whenever the state machine transitions.",
   "keywords": [
     "lit",
@@ -136,8 +136,8 @@
     "xstate": "^5.0.0-beta.45"
   },
   "devDependencies": {
-    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.6.0",
-    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.6.0"
+    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.7.0",
+    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.6.1"
   },
   "publishConfig": {
     "access": "public"
