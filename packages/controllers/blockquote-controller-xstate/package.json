@@ -1,0 +1,146 @@
+{
+  "name": "@blockquote-web-components/blockquote-controller-xstate",
+  "version": "1.0.0-rc.1",
+  "description": "This controller allows you to subscribe to an XState actor, updating a specified reactive property whenever the state machine transitions.",
+  "keywords": [
+    "lit",
+    "web-component",
+    "XState",
+    "stately",
+    "state-machine",
+    "statechart",
+    "actor"
+  ],
+  "license": "MIT",
+  "author": "blockquote-controller-xstate",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./index.js"
+    },
+    "./package.json": {
+      "default": "./package.json"
+    },
+    "./src/BlockquoteControllerXstate.js": {
+      "default": "./src/BlockquoteControllerXstate.js"
+    },
+    "./index.js": {
+      "default": "./index.js"
+    }
+  },
+  "files": [
+    "/define/",
+    "/src/",
+    "index.js",
+    "!/**/*.scss"
+  ],
+  "scripts": {
+    "analyze": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
+    "build": "echo \"This is not a TypeScript project, so no need to build.\"",
+    "dev:vite": "vite build",
+    "format": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
+    "format:eslint": "eslint \"**/*.{js,ts,html}\" --fix --ignore-path .eslintignore",
+    "format:prettier": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .eslintignore",
+    "format:stylelint": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .eslintignore",
+    "postinstall": "npm run sort:package",
+    "lint": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
+    "lint:eslint": "eslint \"**/*.{js,ts,html}\" --ignore-path .eslintignore",
+    "lint:prettier": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .eslintignore",
+    "lint:stylelint": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .eslintignore",
+    "preview:vite": "vite preview",
+    "sass:watch": "sass-style-template",
+    "sort:package": "npx sort-package-json",
+    "start": "concurrently -k -r \"npm:sass:watch\" \"npm:vite\"",
+    "test": "wtr --coverage",
+    "test:watch": "wtr --watch",
+    "vite": "vite"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,html}": [
+      "npm run format:eslint"
+    ],
+    "**/*.{js,ts,json,html}": [
+      "npm run format:prettier"
+    ],
+    "**/*.{scss,css}": [
+      "npm run format:stylelint"
+    ]
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "overrides": [
+      {
+        "files": "*.{scss,css}",
+        "options": {
+          "printWidth": 280,
+          "singleQuote": false
+        }
+      }
+    ]
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": "latest"
+    },
+    "extends": [
+      "@open-wc",
+      "prettier"
+    ],
+    "rules": {
+      "class-methods-use-this": "off",
+      "no-unused-expressions": [
+        "error",
+        {
+          "allowShortCircuit": true,
+          "allowTernary": true
+        }
+      ],
+      "object-curly-newline": "off",
+      "import/extensions": [
+        "error",
+        "always",
+        {
+          "ignorePackages": true
+        }
+      ],
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": [
+            "**/test/**/*.{js,ts}",
+            "**/*.config.{js,ts,mjs,cjs}",
+            "**/*.conf.{js,ts,mjs,cjs}"
+          ]
+        }
+      ],
+      "import/no-unresolved": "off",
+      "import/prefer-default-export": "off",
+      "lit/no-classfield-shadowing": "off",
+      "lit/no-native-attributes": "off"
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard-scss",
+    "rules": {
+      "custom-property-pattern": null,
+      "no-duplicate-selectors": null,
+      "color-function-notation": null,
+      "alpha-value-notation": null
+    }
+  },
+  "dependencies": {
+    "lit": "^3.1.0",
+    "xstate": "^5.0.0-beta.45"
+  },
+  "devDependencies": {
+    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.6.0",
+    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "customElements": "custom-elements.json"
+}
