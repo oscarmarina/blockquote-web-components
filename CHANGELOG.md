@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.17.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.16.0...v1.17.0) (2023-11-25)
+
+
+### Features
+
+* **blockquote-base-common-dev-dependencies:** add mocha types ([80ef47c](https://github.com/oscarmarina/blockquote-web-components/commit/80ef47ccaa67330c794bb7abddac17a178096692))
+* **blockquote-controller-xstate:** new element ([aa7a81e](https://github.com/oscarmarina/blockquote-web-components/commit/aa7a81e5ad0b46686dbdf7b4b882e2d036ab8d75))
+
 ## [1.16.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.15.0...v1.16.0) (2023-11-18)
 
 
