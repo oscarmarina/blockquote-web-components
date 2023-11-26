@@ -2,7 +2,11 @@
 
 `BlockquoteMixinSlotContent` is a mixin for managing the flattened set of nodes assigned to a slot when the node(s) contained in some slot change.
 
-## Usage:
+### Demo
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/mixins/blockquote-mixin-slot-content)
+
+### Usage
 
 `BlockquoteMixinSlotContent` implements the event handling pattern called [event delegation](https://javascript.info/event-delegation).
 
