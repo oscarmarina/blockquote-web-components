@@ -28,7 +28,11 @@ import { AjaxProviderMixin } from './AjaxProviderMixin.js';
  * npm install @blockquote-web-components/ajax-provider
  * ```
  *
- * ## Usage
+ * ### Demo
+ *
+ * [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/base/ajax-provider)
+ *
+ * ### Usage
  *
  * ### Creating an Instance
  *
