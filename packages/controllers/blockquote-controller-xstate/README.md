@@ -14,7 +14,7 @@ This controller allows you to subscribe to an XState actor, updating a specified
 
 ### Demo
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/XstateController)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/controllers/blockquote-controller-xstate)
 
 [![Stately.ai](https://img.shields.io/badge/Stately.ai-black.svg)](https://stately.ai/registry/editor/154a7a42-9338-4cc0-8c0c-131c859d8349)
 
@@ -97,7 +97,7 @@ export const counterMachine = createMachine(
 
 ```javascript
 import { html, LitElement } from 'lit';
-import { BlockquoteControllerXstate } from './BlockquoteControllerXstate.js';
+import { BlockquoteControllerXstate } from '@blockquote-web-components/blockquote-controller-xstate';
 import { counterMachine } from './counterMachine.js';
 
 export class XstateCounter extends LitElement {
