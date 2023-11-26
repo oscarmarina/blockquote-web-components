@@ -21,7 +21,11 @@ const subscriptions = Symbol('subscriptions');
  * - It unsubscribes from the old observable if called again on the same property with a different Observable
  * - It unsubscribes when the component is removed
  *
- * ## Usage
+ * ### Demo
+ *
+ * [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/controllers/blockquote-controller-rxjs)
+ *
+ * ### Usage
  *
  * ```js
  * class BlockquoteControllerRxjsDemo extends LitElement {
