@@ -8,7 +8,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n[ARIA patterns](https://www.w3.org/WAI/ARIA/apg/patterns/)\n\nTabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time. Each tab panel has an associated tab element, that when activated, displays the panel. The list of tab elements is arranged along one edge of the currently displayed panel, most commonly the top edge.\n\n## Usage\n\n```html\n<blockquote-tabs label=\"List of tabs\">\n  <blockquote-tab id=\"tab-1\">Tab 1</blockquote-tab>\n  <blockquote-tab id=\"tab-2\">Tab 2</blockquote-tab>\n  <blockquote-tab id=\"tab-3\">Tab 3</blockquote-tab>\n  <blockquote-tab id=\"tab-4\">Tab 4</blockquote-tab>\n  <blockquote-tab id=\"tab-5\">Tab 5</blockquote-tab>\n  <blockquote-tab id=\"tab-6\">Tab 6</blockquote-tab>\n  <blockquote-tab id=\"tab-7\">Tab 7</blockquote-tab>\n  <blockquote-tab id=\"tab-8\">Tab 8</blockquote-tab>\n  <blockquote-tab id=\"tab-9\">Tab 9</blockquote-tab>\n  <blockquote-tab id=\"tab-10\">Tab 10</blockquote-tab>\n  <blockquote-tabpanel aria-labelledby=\"tab-1\"><p>Panel 1</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-2\"><p>Panel 2</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-3\"><p>Panel 3</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-4\"><p>Panel 4</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-5\"><p>Panel 5</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-6\"><p>Panel 6</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-7\"><p>Panel 7</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-8\"><p>Panel 8</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-9\"><p>Panel 9</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-10\"><p>Panel 10</p></blockquote-tabpanel>\n</blockquote-tabs>\n```",
+          "description": "![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n[ARIA patterns](https://www.w3.org/WAI/ARIA/apg/patterns/)\n\nTabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time. Each tab panel has an associated tab element, that when activated, displays the panel. The list of tab elements is arranged along one edge of the currently displayed panel, most commonly the top edge.\n\n### Demo\n\n[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/components/blockquote-tabs)\n\n### Usage\n\n```html\n<blockquote-tabs label=\"List of tabs\">\n  <blockquote-tab id=\"tab-1\">Tab 1</blockquote-tab>\n  <blockquote-tab id=\"tab-2\">Tab 2</blockquote-tab>\n  <blockquote-tab id=\"tab-3\">Tab 3</blockquote-tab>\n  <blockquote-tab id=\"tab-4\">Tab 4</blockquote-tab>\n  <blockquote-tab id=\"tab-5\">Tab 5</blockquote-tab>\n  <blockquote-tab id=\"tab-6\">Tab 6</blockquote-tab>\n  <blockquote-tab id=\"tab-7\">Tab 7</blockquote-tab>\n  <blockquote-tab id=\"tab-8\">Tab 8</blockquote-tab>\n  <blockquote-tab id=\"tab-9\">Tab 9</blockquote-tab>\n  <blockquote-tab id=\"tab-10\">Tab 10</blockquote-tab>\n  <blockquote-tabpanel aria-labelledby=\"tab-1\"><p>Panel 1</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-2\"><p>Panel 2</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-3\"><p>Panel 3</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-4\"><p>Panel 4</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-5\"><p>Panel 5</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-6\"><p>Panel 6</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-7\"><p>Panel 7</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-8\"><p>Panel 8</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-9\"><p>Panel 9</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-10\"><p>Panel 10</p></blockquote-tabpanel>\n</blockquote-tabs>\n```",
           "name": "BlockquoteTabs",
           "members": [
             {
@@ -348,27 +348,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/styles/blockquote-tabs-styles.css.js",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "styles",
-          "default": "css`:host {\n  --_unselected-color: var(--blockquote-tabs-unselected-color, rgb(234 234 234));\n  --_scroll-gradient-start-color: var(--blockquote-tabs-scroll-gradient-start-color, rgba(255, 255, 255, 0));\n  --_scroll-gradient-end-color: var(--blockquote-tabs-scroll-gradient-end-color, rgba(252, 252, 252, 1));\n  --_scroll-arrow-color: var(--blockquote-tabs-scroll-arrow-color, rgb(94, 94, 94));\n  contain: content;\n  display: block;\n  box-sizing: border-box;\n  color: #202020;\n}\n\n:host([hidden]),\n[hidden] {\n  display: none !important;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\n.hold {\n  position: relative;\n  display: flex;\n}\n.hold .separator {\n  position: absolute;\n  z-index: -1;\n  bottom: 0;\n  height: 1px;\n  left: 0;\n  right: 0;\n  background-color: var(--_unselected-color);\n}\n.hold .indicator {\n  position: absolute;\n  width: 1rem;\n  pointer-events: none;\n  top: 0;\n  bottom: 1px;\n  left: 0;\n  box-shadow: rgb(255, 255, 255) 4px 0 12px 4px inset, rgb(210, 210, 210) 4px 0 4px -4px;\n  background-color: rgba(234, 234, 234, 0.5);\n  transition: opacity 92ms ease-in-out;\n  opacity: 0;\n  background-clip: padding-box;\n}\n.hold .indicator.show-indicator {\n  opacity: 1;\n}\n.hold .indicator + .indicator {\n  left: auto;\n  right: 0;\n  transform: scale(-1);\n}\n\n.scroll-content {\n  width: 100%;\n  overflow: auto hidden;\n  -webkit-overflow-scrolling: touch;\n  scrollbar-width: none;\n  overscroll-behavior: none;\n}\n.scroll-content::-webkit-scrollbar {\n  display: none;\n}\n.scroll-content:focus-visible {\n  outline: #9e9e9e dashed 0.0625rem;\n  outline-offset: -2px;\n}\n.scroll-content:focus:not(:focus-visible) {\n  outline: none;\n}\n\n[role=tablist] {\n  display: flex;\n}`"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "styles",
-          "declaration": {
-            "name": "styles",
-            "module": "src/styles/blockquote-tabs-styles.css.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/tab/BlockquoteTab.js",
       "declarations": [
         {
@@ -451,6 +430,27 @@
           "declaration": {
             "name": "BlockquoteTab",
             "module": "src/tab/BlockquoteTab.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/blockquote-tabs-styles.css.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`:host {\n  --_unselected-color: var(--blockquote-tabs-unselected-color, rgb(234 234 234));\n  --_scroll-gradient-start-color: var(--blockquote-tabs-scroll-gradient-start-color, rgba(255, 255, 255, 0));\n  --_scroll-gradient-end-color: var(--blockquote-tabs-scroll-gradient-end-color, rgba(252, 252, 252, 1));\n  --_scroll-arrow-color: var(--blockquote-tabs-scroll-arrow-color, rgb(94, 94, 94));\n  contain: content;\n  display: block;\n  box-sizing: border-box;\n  color: #202020;\n}\n\n:host([hidden]),\n[hidden] {\n  display: none !important;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\n.hold {\n  position: relative;\n  display: flex;\n}\n.hold .separator {\n  position: absolute;\n  z-index: -1;\n  bottom: 0;\n  height: 1px;\n  left: 0;\n  right: 0;\n  background-color: var(--_unselected-color);\n}\n.hold .indicator {\n  position: absolute;\n  width: 1rem;\n  pointer-events: none;\n  top: 0;\n  bottom: 1px;\n  left: 0;\n  box-shadow: rgb(255, 255, 255) 4px 0 12px 4px inset, rgb(210, 210, 210) 4px 0 4px -4px;\n  background-color: rgba(234, 234, 234, 0.5);\n  transition: opacity 92ms ease-in-out;\n  opacity: 0;\n  background-clip: padding-box;\n}\n.hold .indicator.show-indicator {\n  opacity: 1;\n}\n.hold .indicator + .indicator {\n  left: auto;\n  right: 0;\n  transform: scale(-1);\n}\n\n.scroll-content {\n  width: 100%;\n  overflow: auto hidden;\n  -webkit-overflow-scrolling: touch;\n  scrollbar-width: none;\n  overscroll-behavior: none;\n}\n.scroll-content::-webkit-scrollbar {\n  display: none;\n}\n.scroll-content:focus-visible {\n  outline: #9e9e9e dashed 0.0625rem;\n  outline-offset: -2px;\n}\n.scroll-content:focus:not(:focus-visible) {\n  outline: none;\n}\n\n[role=tablist] {\n  display: flex;\n}`"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "src/styles/blockquote-tabs-styles.css.js"
           }
         }
       ]

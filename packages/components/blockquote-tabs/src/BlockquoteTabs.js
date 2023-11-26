@@ -19,7 +19,11 @@ window.ResizeObserver || /* c8 ignore next */ (window.ResizeObserver = ResizeObs
  *
  * Tabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time. Each tab panel has an associated tab element, that when activated, displays the panel. The list of tab elements is arranged along one edge of the currently displayed panel, most commonly the top edge.
  *
- * ## Usage
+ * ### Demo
+ *
+ * [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/components/blockquote-tabs)
+ *
+ * ### Usage
  *
  * ```html
  * <blockquote-tabs label="List of tabs">

@@ -4,7 +4,11 @@
 
 Tabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time. Each tab panel has an associated tab element, that when activated, displays the panel. The list of tab elements is arranged along one edge of the currently displayed panel, most commonly the top edge.
 
-## Usage
+### Demo
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/components/blockquote-tabs)
+
+### Usage
 
 ```html
 <blockquote-tabs label="List of tabs">
@@ -113,22 +117,6 @@ Tabs are a set of layered sections of content, known as tab panels, that display
 | ---- | ---------------- | -------------- | --------------------- | ------- |
 | `js` | `BlockquoteTabs` | BlockquoteTabs | src/BlockquoteTabs.js |         |
 
-### `src/styles/blockquote-tabs-styles.css.js`:
-
-#### Variables
-
-| Name     | Description | Type |
-| -------- | ----------- | ---- |
-| `styles` |             |      |
-
-<hr/>
-
-#### Exports
-
-| Kind | Name     | Declaration | Module                                   | Package |
-| ---- | -------- | ----------- | ---------------------------------------- | ------- |
-| `js` | `styles` | styles      | src/styles/blockquote-tabs-styles.css.js |         |
-
 ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
 `<blockquote-tab>`
@@ -172,6 +160,22 @@ A tab element that can be used inside a `blockquote-tabs` element.
 | Kind | Name            | Declaration   | Module                   | Package |
 | ---- | --------------- | ------------- | ------------------------ | ------- |
 | `js` | `BlockquoteTab` | BlockquoteTab | src/tab/BlockquoteTab.js |         |
+
+### `src/styles/blockquote-tabs-styles.css.js`:
+
+#### Variables
+
+| Name     | Description | Type |
+| -------- | ----------- | ---- |
+| `styles` |             |      |
+
+<hr/>
+
+#### Exports
+
+| Kind | Name     | Declaration | Module                                   | Package |
+| ---- | -------- | ----------- | ---------------------------------------- | ------- |
+| `js` | `styles` | styles      | src/styles/blockquote-tabs-styles.css.js |         |
 
 ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
