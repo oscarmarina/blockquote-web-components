@@ -40,6 +40,10 @@ window[BLOCKQUOTE] = blockquote;
  * Map is a collection of keyed data items, just like an Object.
  * But the main difference is that Map allows keys of any type.
  *
+ * ### Demo
+ *
+ * [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/base/blockquote-base-meta)
+ *
  * ### Usage
  *
  * ```js
