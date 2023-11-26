@@ -7,7 +7,11 @@ and returns it as data URI (data:image/svg+xml).
 
 > [svg-templates](https://lit.dev/tutorials/svg-templates/#1)
 
-## Usage:
+### Demo
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/directives/blockquote-directive-svg-to-data-image)
+
+### Usage
 
 ### Simple SVG
 
