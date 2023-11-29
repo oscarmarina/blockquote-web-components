@@ -30,3 +30,4 @@ build
 *.tgz
 *.tsbuildinfo
 storybook-static
+.nx/cache
