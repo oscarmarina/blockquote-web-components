@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-rxjs@1.1.2...@blockquote-web-components/blockquote-controller-rxjs@1.1.3) (2024-01-01)
+
+### Bug Fixes
+
+- **blockquote-controller-rxjs:** update dependencies ([4fb5d9e](https://github.com/oscarmarina/blockquote-web-components/commit/4fb5d9e79d5f6cfe735be34e29103b1854bfff1a))
+
 ## [1.1.2](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-rxjs@1.1.1...@blockquote-web-components/blockquote-controller-rxjs@1.1.2) (2023-11-26)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-controller-rxjs
