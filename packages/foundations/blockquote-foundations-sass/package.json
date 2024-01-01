@@ -37,7 +37,6 @@
     ],
     "rules": {
       "custom-property-pattern": null,
-      "max-line-length": null,
       "no-duplicate-selectors": null,
       "color-function-notation": null,
       "alpha-value-notation": null,
