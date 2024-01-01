@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.18.1](https://github.com/oscarmarina/blockquote-web-components/compare/v1.18.0...v1.18.1) (2024-01-01)
+
+
+### Bug Fixes
+
+* **ajax-provider:** update dependencies ([eea2574](https://github.com/oscarmarina/blockquote-web-components/commit/eea25740e2cd3f790805eb4d897ab1cad81bef86))
+* **blockquote-base-common-dev-dependencies:** update dependencies ([53046ee](https://github.com/oscarmarina/blockquote-web-components/commit/53046ee3aec1730ae4bbea0e61ec29659cc57c4e))
+* **blockquote-base-embedded-webview:** update dependencies ([69dbe37](https://github.com/oscarmarina/blockquote-web-components/commit/69dbe371d37b8869bd9b3151c289f488becb8583))
+* **blockquote-base-style-helpers:** update dependencies ([eeace82](https://github.com/oscarmarina/blockquote-web-components/commit/eeace82f571a1f41a289eba2e4afed3e7b3f90d6))
+* **blockquote-controller-rxjs:** update dependencies ([4fb5d9e](https://github.com/oscarmarina/blockquote-web-components/commit/4fb5d9e79d5f6cfe735be34e29103b1854bfff1a))
+* **blockquote-controller-xstate:** update dependencies ([0c38979](https://github.com/oscarmarina/blockquote-web-components/commit/0c389792b6a0079fcf458f1ca03a0a32333be9aa))
+* **blockquote-directive-svg-to-data-image:** update dependencies ([4a96a84](https://github.com/oscarmarina/blockquote-web-components/commit/4a96a840e63763b98875c7b4d02813927a968db9))
+* **blockquote-foundations-sass:** update dependencies ([7913ec0](https://github.com/oscarmarina/blockquote-web-components/commit/7913ec03d2f177237bfb5cbc5077fb1e2fd98ce3))
+* **blockquote-mixin-slot-content:** update dependencies ([f08e322](https://github.com/oscarmarina/blockquote-web-components/commit/f08e322136a41d9c181fa860bea1d4589a3bda8d))
+* **blockquote-tabs:** update dependencies ([df61fb7](https://github.com/oscarmarina/blockquote-web-components/commit/df61fb74f5e3e689ed2a23be4ac766aa323074c0))
+
 ## [1.18.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.17.1...v1.18.0) (2023-12-09)
 
 
