@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.5](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.6.4...@blockquote-web-components/blockquote-base-embedded-webview@1.6.5) (2024-01-17)
+
+### Bug Fixes
+
+- **blockquote-base-embedded-webview:** upadate render options ([2a89feb](https://github.com/oscarmarina/blockquote-web-components/commit/2a89febb7ac0c6fb8e55ee508257f4f3874611cf))
+
 ## [1.6.4](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.6.3...@blockquote-web-components/blockquote-base-embedded-webview@1.6.4) (2024-01-16)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-base-embedded-webview

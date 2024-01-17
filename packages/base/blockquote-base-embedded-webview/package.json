@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-base-embedded-webview",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "description": "Webcomponent blockquote-base-embedded-webview following open-wc recommendations",
   "keywords": [
     "lit",
