@@ -1,78 +1,78 @@
 # Blockquote Web Components
 
-## [Netlify - Raw Demo](https://main--adorable-macaron-7c1b61.netlify.app/)
+### [Raw Demo](https://main--adorable-macaron-7c1b61.netlify.app/)
 
 ---
-<br>
 
-## Requisites
+## Usage
 
-You should install **Yarn** (strongly recommended) or **npm** with Node.js version 14.15.0 or higher.
+_**npm** with Node.js version 18.0.0 or higher_
 
-## First steps
-
-### In the _root directory_:
+`In the root directory`
 
 ```bash
-npm run bootstrap
+npm install
 ```
 
-## Development commands
+## Commands
 
-### _In a specific component_
+`In a specific component`
 
-<hr>
-
-#### Serve your WebComponent
+### Serve your WebComponent
 
 ```bash
 npm run start
 ```
 
-#### Test your WebComponent
+### Test your WebComponent
 
 ```bash
 npm run test
-```
-
-or if you prefer to keep your test while you are developing
-
-```bash
+// or
 npm run test:watch
 ```
 
-#### Generate documentation - [custom-elements.json](https://custom-elements-manifest.open-wc.org)
+### Code Style
+
+```js
+npm run lint
+```
+
+```js
+npm run format
+```
+
+```js
+npm run test
+```
+
+### Generate documentation
+
+- [custom-elements.json](https://custom-elements-manifest.open-wc.org)
 
 ```bash
 npm run analyze
 ```
 
 <hr>
-<br>
 
-## Code Style
+## Commands
 
-### _root directory_
+`Monorepo - root directory`
 
-If you want to format, lint and test your code you can run from the root directory:
+If you want to analyze, format, lint and test ALL your code you can run from the root directory:
 
 ```js
+npm run analyze
+// or
 npm run lint
 // or
-npm run lint [component-name]
-```
-
-```js
 npm run format
 // or
-npm run format [component-name]
+npm run test
 ```
 
-```js
-npm run test
-// or
-npm run test:core [component-name]
-```
+<hr>
 
 ### Changelog
 
