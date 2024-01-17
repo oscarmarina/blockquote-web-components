@@ -221,7 +221,7 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
   }
 
   _litHtmlRender() {
-    LitHtmlRender(this._lightDomTpl, this);
+    LitHtmlRender(this._lightDomTpl, this, { host: this });
   }
 
   get _lightDomTpl() {
