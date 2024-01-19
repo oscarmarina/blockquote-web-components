@@ -26,8 +26,6 @@ import { noChange } from 'lit';
  *   return html` <svg
  *     xmlns="htt://www.w3.org/2000/svg"
  *     viewBox="0 0 100 100"
- *     enable-background="new 0 0 100 100"
- *     xml:space="preserve"
  *     height="100px"
  *     width="100px"
  *   >
@@ -87,12 +85,22 @@ import { noChange } from 'lit';
  */
 export class README extends Text {}
 
+/**
+ * Encodes SVG XML to a data URI.
+ * @param {string} url - The SVG XML string.
+ * @returns {string} The encoded data URI.
+ */
 const svgXmlEncode = (url = '') => {
   const svgEncode = encodeURI(url).replace(/#/g, '%23');
-  const svgXml = `data:image/svg+xml;charset=utf-8,${svgEncode}`;
-  return svgXml;
+  return `data:image/svg+xml;charset=utf-8,${svgEncode}`;
 };
 
+/**
+ * Merges two arrays in an alternating pattern.
+ * @param {Array} firstArray - The first array.
+ * @param {Array} secondArray - The second array.
+ * @returns {Array} The merged array.
+ */
 const mergeAlternatingValues = (firstArray = [], secondArray = []) =>
   firstArray.map((strings, index) =>
     [
@@ -103,7 +111,14 @@ const mergeAlternatingValues = (firstArray = [], secondArray = []) =>
     ].join(''),
   );
 
+/**
+ * A Lit directive that converts an SVG template result into a data URI.
+ */
 class BlockquoteDirectiveSvgToDataImage extends Directive {
+  /**
+   * @param {HTMLOrSVGElement} svgNodeInfo - The SVG template result.
+   * @returns {string | *} The data URI.
+   */
   render(svgNodeInfo) {
     if (!svgNodeInfo || !isTemplateResult(svgNodeInfo)) {
       return noChange;
