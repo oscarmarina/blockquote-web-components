@@ -8,7 +8,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n`BlockquoteBaseMeta` is based on Polymer's `iron-meta`, and it is a generic class that you can use for sharing information across the DOM tree.\nIt uses [monostate pattern](http://c2.com/cgi/wiki?MonostatePattern) pattern such that any instance of it has access to the shared information.\nYou can use `BlockquoteBaseMeta` to share whatever you want.\nThe `BlockquoteBaseMeta` instances contain your actual data. The only requirement is that you\ncreate them before you try to access them.\n\n`BlockquoteBaseMeta` uses [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map).\n\nMap is a collection of keyed data items, just like an Object.\nBut the main difference is that Map allows keys of any type.\n\n### Demo\n\n[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/base/blockquote-base-meta)\n\n### Usage\n\n```js\nimport { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';\n\n  const myDefault = new BlockquoteBaseMeta({\n    key: 'basic',\n    value: 'foo/bar',\n  });\n\nconsole.log(myDefault.value); // foo/bar\n```\n\n### Keys string - Object\n\n```js\nimport { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';\n\n  const myDefault = new BlockquoteBaseMeta({\n    type: 'one',\n    key: 'basic',\n    value: 'foo/bar',\n  });\n\n  console.log(myDefault.objectList); // {basic: 'foo/bar'}\n```\n\n### Keys any type - Map\n\n```js\nimport { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';\n\n  const keyInfo = { id: 'dsfaskj0' };\n  const myDefault = new BlockquoteBaseMeta({\n    type: 'two',\n    key: keyInfo,\n    value: 'foo/bar',\n  });\n\nconsole.log(myDefault.mapList); // {{ id: 'dsfaskj0' }: 'foo/bar'}\n```",
+          "description": "![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n`BlockquoteBaseMeta` is a generic class for sharing information across the DOM tree, inspired by Polymer's [`iron-meta`](https://github.com/PolymerElements/iron-meta/blob/master/iron-meta.js).\nIt employs the [monostate pattern](http://c2.com/cgi/wiki?MonostatePattern) to allow any instance to access the shared information.\n\nThe class instances hold the actual data. They must be created before attempting to access them.\n\n`BlockquoteBaseMeta` uses a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) to store the data. Unlike an Object, a Map allows keys of any type.\n\n### Demo\n\n[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/base/blockquote-base-meta)\n\n#### Usage\n\n```js\nimport { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';\n\nconst myDefault = new BlockquoteBaseMeta({\n  key: 'basic',\n  value: 'foo/bar',\n});\n\nconsole.log(myDefault.byKey('basic')); // foo/bar\n```\n\n#### Value Getter - String\n\n```js\nimport { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';\n\nconst myDefault = new BlockquoteBaseMeta({\n  key: 'basic',\n  value: 'foo/bar',\n});\n\nconsole.log(myDefault.value); // foo/bar\n```\n\n#### List Getter - Array\n\nThe `list` getter returns an array of all values stored in the `BlockquoteBaseMeta` instance.\n\n```js\nimport { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';\n\nconst myDefault = new BlockquoteBaseMeta({\n  type: 'three',\n  key: 'basic',\n  value: 'foo/bar',\n});\n\nconsole.log(myDefault.list); // ['foo/bar']\n```\n\n#### ObjectList Getter - Object\n\n```js\nimport { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';\n\nconst myDefault = new BlockquoteBaseMeta({\n  type: 'one',\n  key: 'basic',\n  value: 'foo/bar',\n});\n\nconsole.log(myDefault.objectList); // {basic: 'foo/bar'}\n```\n\n#### MapList Getter - Map\n\n```js\nimport { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';\n\nconst keyInfo = { id: 'dsfaskj0' };\nconst myDefault = new BlockquoteBaseMeta({\n  type: 'two',\n  key: keyInfo,\n  value: 'foo/bar',\n});\n\nconsole.log(myDefault.mapList); // Map(1) { { id: 'dsfaskj0' } => 'foo/bar' }\n```",
           "name": "BlockquoteBaseMeta",
           "members": [
             {
@@ -95,12 +95,14 @@
             {
               "kind": "field",
               "name": "type",
-              "description": "Type of Meta"
+              "description": "Type of Meta",
+              "default": "type"
             },
             {
               "kind": "field",
               "name": "key",
-              "description": "Key for Meta"
+              "description": "Key for Meta",
+              "default": "key"
             }
           ]
         }
