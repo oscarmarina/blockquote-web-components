@@ -1,60 +1,85 @@
 ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
-`BlockquoteBaseMeta` is based on Polymer's `iron-meta`, and it is a generic class that you can use for sharing information across the DOM tree.
-It uses [monostate pattern](http://c2.com/cgi/wiki?MonostatePattern) pattern such that any instance of it has access to the shared information.
-You can use `BlockquoteBaseMeta` to share whatever you want.
-The `BlockquoteBaseMeta` instances contain your actual data. The only requirement is that you
-create them before you try to access them.
+`BlockquoteBaseMeta` is a generic class for sharing information across the DOM tree, inspired by Polymer's [`iron-meta`](https://github.com/PolymerElements/iron-meta/blob/master/iron-meta.js).
+It employs the [monostate pattern](http://c2.com/cgi/wiki?MonostatePattern) to allow any instance to access the shared information.
 
-`BlockquoteBaseMeta` uses [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map).
+The class instances hold the actual data. They must be created before attempting to access them.
 
-Map is a collection of keyed data items, just like an Object.
-But the main difference is that Map allows keys of any type.
+`BlockquoteBaseMeta` uses a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) to store the data. Unlike an Object, a Map allows keys of any type.
 
 ### Demo
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/base/blockquote-base-meta)
 
-### Usage
+#### Usage
 
 ```js
 import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';
 
-  const myDefault = new BlockquoteBaseMeta({
-    key: 'basic',
-    value: 'foo/bar',
-  });
+const myDefault = new BlockquoteBaseMeta({
+  key: 'basic',
+  value: 'foo/bar',
+});
+
+console.log(myDefault.byKey('basic')); // foo/bar
+```
+
+#### Value Getter - String
+
+```js
+import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';
+
+const myDefault = new BlockquoteBaseMeta({
+  key: 'basic',
+  value: 'foo/bar',
+});
 
 console.log(myDefault.value); // foo/bar
 ```
 
-### Keys string - Object
+#### List Getter - Array
+
+The `list` getter returns an array of all values stored in the `BlockquoteBaseMeta` instance.
 
 ```js
 import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';
 
-  const myDefault = new BlockquoteBaseMeta({
-    type: 'one',
-    key: 'basic',
-    value: 'foo/bar',
-  });
+const myDefault = new BlockquoteBaseMeta({
+  type: 'three',
+  key: 'basic',
+  value: 'foo/bar',
+});
 
-  console.log(myDefault.objectList); // {basic: 'foo/bar'}
+console.log(myDefault.list); // ['foo/bar']
 ```
 
-### Keys any type - Map
+#### ObjectList Getter - Object
 
 ```js
 import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';
 
-  const keyInfo = { id: 'dsfaskj0' };
-  const myDefault = new BlockquoteBaseMeta({
-    type: 'two',
-    key: keyInfo,
-    value: 'foo/bar',
-  });
+const myDefault = new BlockquoteBaseMeta({
+  type: 'one',
+  key: 'basic',
+  value: 'foo/bar',
+});
 
-console.log(myDefault.mapList); // {{ id: 'dsfaskj0' }: 'foo/bar'}
+console.log(myDefault.objectList); // {basic: 'foo/bar'}
+```
+
+#### MapList Getter - Map
+
+```js
+import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';
+
+const keyInfo = { id: 'dsfaskj0' };
+const myDefault = new BlockquoteBaseMeta({
+  type: 'two',
+  key: keyInfo,
+  value: 'foo/bar',
+});
+
+console.log(myDefault.mapList); // Map(1) { { id: 'dsfaskj0' } => 'foo/bar' }
 ```
 
 
@@ -77,8 +102,8 @@ console.log(myDefault.mapList); // {{ id: 'dsfaskj0' }: 'foo/bar'}
 | `list`       |         |      |         | Returns a list (Array) of the values for that instance \`type\` |                |
 | `mapList`    |         |      |         | Returns a list (Map) for that instance \`type\`                 |                |
 | `objectList` |         |      |         | Returns a list (Object) for that instance \`type\`              |                |
-| `type`       |         |      |         | Type of Meta                                                    |                |
-| `key`        |         |      |         | Key for Meta                                                    |                |
+| `type`       |         |      | `type`  | Type of Meta                                                    |                |
+| `key`        |         |      | `key`   | Key for Meta                                                    |                |
 
 ##### Methods
 

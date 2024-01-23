@@ -80,6 +80,9 @@
     ]
   },
   "eslintConfig": {
+    "globals": {
+      "globalThis": "readonly"
+    },
     "parserOptions": {
       "ecmaVersion": "latest"
     },
