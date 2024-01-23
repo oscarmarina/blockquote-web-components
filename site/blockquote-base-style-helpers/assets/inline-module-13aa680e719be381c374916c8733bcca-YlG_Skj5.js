@@ -1,12 +1,12 @@
-import{i as e,s as d,x as t}from"./lit-element-15XwPW2m.js";import{B as n,g as c}from"./getComponentSharedStyles-e1FQfMz9.js";const s=(a,o)=>{if(!o.cssText)throw new Error("Value passed to 'setComponentSharedStyles' function must be a 'css' function result");const r=new n({type:"sharedStyles",key:a});r.value=r.value||[],r.value.push(o)};s("shared-element-shared-styles",e`
+import{i as a,s as n,x as l}from"./lit-element-15XwPW2m.js";import{B as t}from"./BlockquoteBaseMeta-5gZ04bSg.js";const o=(s,e)=>{if(!e.cssText)throw new Error("Value passed to 'setComponentSharedStyles' function must be a 'css' function result");const r=new t({type:"sharedStyles",key:s});r.value=r.value||[],r.value.push(e)},c=new t({type:"sharedStyles"}),h=s=>{const e=c.byKey(s);return e?e.filter(d=>d.cssText):[]};o("shared-element-shared-styles",a`
           .shared2 {
             background-color: #e1f3f8;
           }
-        `);s("shared-element-shared-styles",e`
+        `);o("shared-element-shared-styles",a`
           .shared3 {
             background-color: #fad980;
           }
-        `);class l extends d{static get styles(){return[e`
+        `);class u extends n{static get styles(){return[a`
               :host {
                 display: block;
                 box-sizing: border-box;
@@ -29,7 +29,7 @@ import{i as e,s as d,x as t}from"./lit-element-15XwPW2m.js";import{B as n,g as c
               .shared ~ .shared {
                 margin: 1rem 0 0;
               }
-            `,c("shared-element-shared-styles")]}render(){return t`
+            `,h("shared-element-shared-styles")]}render(){return l`
             <pre class="shared shared1">
 <code>
   .shared {
@@ -53,7 +53,7 @@ import{i as e,s as d,x as t}from"./lit-element-15XwPW2m.js";import{B as n,g as c
   }
 </code>
 </pre>
-          `}}customElements.define("shared-element",l);s("shared-element-shared-styles",e`
+          `}}customElements.define("shared-element",u);o("shared-element-shared-styles",a`
           .shared1 {
             background-color: yellow;
           }
