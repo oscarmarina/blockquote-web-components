@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-base-meta",
-  "version": "1.1.5",
+  "version": "1.2.0",
   "description": "Webcomponent blockquote-base-meta following open-wc recommendations",
   "keywords": [
     "lit",
@@ -80,9 +80,6 @@
     ]
   },
   "eslintConfig": {
-    "globals": {
-      "globalThis": "readonly"
-    },
     "parserOptions": {
       "ecmaVersion": "latest"
     },
@@ -131,6 +128,9 @@
       "import/prefer-default-export": "off",
       "lit/no-classfield-shadowing": "off",
       "lit/no-native-attributes": "off"
+    },
+    "globals": {
+      "globalThis": "readonly"
     }
   },
   "stylelint": {

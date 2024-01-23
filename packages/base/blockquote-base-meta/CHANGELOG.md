@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-meta@1.1.5...@blockquote-web-components/blockquote-base-meta@1.2.0) (2024-01-23)
+
+### Features
+
+- **blockquote-base-meta:** add globalThis ([6d436ff](https://github.com/oscarmarina/blockquote-web-components/commit/6d436ff746eabafc0173aab7b624202f1a79ad0d))
+
 ## [1.1.5](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-meta@1.1.4...@blockquote-web-components/blockquote-base-meta@1.1.5) (2024-01-17)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-base-meta
