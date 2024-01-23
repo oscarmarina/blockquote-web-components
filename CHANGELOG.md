@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.19.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.18.4...v1.19.0) (2024-01-23)
+
+
+### Features
+
+* **blockquote-base-meta:** add globalThis ([6d436ff](https://github.com/oscarmarina/blockquote-web-components/commit/6d436ff746eabafc0173aab7b624202f1a79ad0d))
+
 ### [1.18.4](https://github.com/oscarmarina/blockquote-web-components/compare/v1.18.3...v1.18.4) (2024-01-19)
 
 ### [1.18.3](https://github.com/oscarmarina/blockquote-web-components/compare/v1.18.2...v1.18.3) (2024-01-17)
