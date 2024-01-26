@@ -4,6 +4,9 @@ import { track } from '@polymer/iron-test-helpers/mock-interactions.js';
 import '../define/blockquote-base-embedded-webview-resize.js';
 
 suite('BlockquoteBaseEmbeddedWebviewResize', () => {
+  /**
+   * @type {import('../index').BlockquoteBaseEmbeddedWebviewResize}
+   */
   let el;
   let rect;
   let bottomRightResizerElement;
@@ -21,12 +24,12 @@ suite('BlockquoteBaseEmbeddedWebviewResize', () => {
         html` <blockquote-base-embedded-webview-resize></blockquote-base-embedded-webview-resize>`,
       );
       await el.updateComplete;
-      rect = el.shadowRoot.querySelector('.rect');
-      bottomRightResizerElement = el.shadowRoot.querySelector('.resizer-se');
-      bottomLeftResizerElement = el.shadowRoot.querySelector('.resizer-sw');
-      rightResizerElement = el.shadowRoot.querySelector('.resizer-e');
-      leftResizerElement = el.shadowRoot.querySelector('.resizer-w');
-      bottomResizerElement = el.shadowRoot.querySelector('.resizer-s');
+      rect = el.shadowRoot?.querySelector('.rect');
+      bottomRightResizerElement = el.shadowRoot?.querySelector('.resizer-se');
+      bottomLeftResizerElement = el.shadowRoot?.querySelector('.resizer-sw');
+      rightResizerElement = el.shadowRoot?.querySelector('.resizer-e');
+      leftResizerElement = el.shadowRoot?.querySelector('.resizer-w');
+      bottomResizerElement = el.shadowRoot?.querySelector('.resizer-s');
     });
 
     suite('Semantic Dom and a11y', () => {
@@ -62,9 +65,9 @@ suite('BlockquoteBaseEmbeddedWebviewResize', () => {
             --blockquote-base-embedded-webview-resize-rect-height:640px;"
           ></blockquote-base-embedded-webview-resize>`,
         );
-        const bottomResizerElementDblclick = elDblclick.shadowRoot.querySelector('.resizer-s');
+        const bottomResizerElementDblclick = elDblclick.shadowRoot?.querySelector('.resizer-s');
         assert.isTrue(elDblclick.hasAttribute('style'));
-        bottomResizerElementDblclick.dispatchEvent(dblclickEvent);
+        bottomResizerElementDblclick?.dispatchEvent(dblclickEvent);
         assert.isFalse(elDblclick.hasAttribute('style'));
       });
       test('Resize bottomRight', async () => {

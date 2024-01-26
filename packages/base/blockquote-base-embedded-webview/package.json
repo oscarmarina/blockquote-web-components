@@ -174,7 +174,7 @@
     }
   },
   "dependencies": {
-    "@blockquote/polymer": "^3.4.1",
+    "@blockquote/polymer": "^3.4.4",
     "lit": "^3.1.1"
   },
   "devDependencies": {

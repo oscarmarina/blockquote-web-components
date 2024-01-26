@@ -4,6 +4,9 @@ import sinon from 'sinon';
 import '../define/blockquote-base-embedded-webview-size.js';
 
 suite('BlockquoteBaseEmbeddedWebviewSize', () => {
+  /**
+   * @type {import('../index').BlockquoteBaseEmbeddedWebviewSize}
+   */
   let el;
   let screenSizesButtons;
   let buttonSize3;
@@ -25,9 +28,9 @@ suite('BlockquoteBaseEmbeddedWebviewSize', () => {
       );
       await el.updateComplete;
 
-      screenSizesButtons = el.shadowRoot.querySelectorAll('button');
+      screenSizesButtons = el.shadowRoot?.querySelectorAll('button');
       // eslint-disable-next-line prefer-destructuring
-      buttonSize3 = screenSizesButtons[2];
+      buttonSize3 = screenSizesButtons?.[2];
     });
 
     suite('Semantic Dom and a11y', () => {
@@ -65,12 +68,12 @@ suite('BlockquoteBaseEmbeddedWebviewSize', () => {
       });
 
       test('Hidden screen size options that are too large for the container', async () => {
-        assert.strictEqual(el.shadowRoot.querySelectorAll('button[hidden]').length, 2);
+        assert.strictEqual(el.shadowRoot?.querySelectorAll('button[hidden]').length, 2);
         el.style.width = '1024px';
         window.dispatchEvent(new Event('resize'));
         el.requestUpdate();
         await el.updateComplete;
-        assert.strictEqual(el.shadowRoot.querySelectorAll('button[hidden]').length, 1);
+        assert.strictEqual(el.shadowRoot?.querySelectorAll('button[hidden]').length, 1);
       });
     });
   });
