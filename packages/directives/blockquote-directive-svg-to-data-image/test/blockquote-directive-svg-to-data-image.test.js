@@ -53,6 +53,7 @@ const SvgToDataImageDemo = class BlockquoteDirectiveSvgToDataImageDemo extends L
   render() {
     return litHtml`
       <div style="background: url('${blockquoteDirectiveSvgToDataImage(
+        // @ts-ignore
         this.svgToRender,
       )}') no-repeat center center #e4e4e4"></div>
     `;
