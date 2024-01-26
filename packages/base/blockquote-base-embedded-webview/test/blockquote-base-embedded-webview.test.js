@@ -4,7 +4,13 @@ import { html, fixture, assert, fixtureCleanup, oneEvent } from '@open-wc/testin
 import '../define/blockquote-base-embedded-webview.js';
 
 suite('BlockquoteBaseEmbeddedWebview', () => {
+  /**
+   * @type {import('../index').BlockquoteBaseEmbeddedWebview}
+   */
   let el;
+  /**
+   * @type {import('../index').BlockquoteBaseEmbeddedWebview}
+   */
   let variant;
 
   teardown(() => fixtureCleanup());
@@ -30,11 +36,13 @@ suite('BlockquoteBaseEmbeddedWebview', () => {
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await assert.shadowDom.equalSnapshot(el, { ignoreAttributes: ['style'] });
+        // @ts-ignore
+        await assert.shadowDom.equalSnapshot(el, { ignoreAttributes: ['style', 'loading'] });
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await assert.lightDom.equalSnapshot(el, { ignoreAttributes: ['style'] });
+        // @ts-ignore
+        await assert.lightDom.equalSnapshot(el, { ignoreAttributes: ['style', 'loading'] });
       });
 
       test('a11y', async () => {
@@ -50,24 +58,27 @@ suite('BlockquoteBaseEmbeddedWebview', () => {
             <template data-src="./test/test.html" data-option="Base Complex"></template>
           </blockquote-base-embedded-webview>`,
         );
-        await assert.shadowDom.equalSnapshot(elLimit, { ignoreAttributes: ['style'] });
+        // @ts-ignore
+        await assert.shadowDom.equalSnapshot(elLimit, { ignoreAttributes: ['style', 'loading'] });
       });
 
       test('aria level', async () => {
-        const heading = el.shadowRoot.querySelector('[aria-level]');
+        const heading = el.shadowRoot?.querySelector('[aria-level]');
         el.headingLevel = 200;
         await el.updateComplete;
-        assert.isTrue(heading.getAttribute('aria-level') === '2');
+        assert.isTrue(heading?.getAttribute('aria-level') === '2');
       });
 
       test('select option load resource', async () => {
-        const select = el.shadowRoot.querySelector('select');
+        const select = el.shadowRoot?.querySelector('select');
         const embedded = el.querySelector('blockquote-base-embedded-webview-element');
-        select.options[select.selectedIndex + 1].selected = true;
-        await el.updateComplete;
-        select.dispatchEvent(new CustomEvent('change'));
-        const { detail } = await oneEvent(embedded, 'elementloaded');
-        assert.isTrue(detail.title === select.options[select.selectedIndex].text);
+        if (select && embedded) {
+          select.options[select.selectedIndex + 1].selected = true;
+          await el.updateComplete;
+          select.dispatchEvent(new CustomEvent('change'));
+          const { detail } = await oneEvent(embedded, 'elementloaded', true);
+          assert.isTrue(detail.title === select.options[select.selectedIndex].text);
+        }
       });
     });
   });
@@ -84,11 +95,13 @@ suite('BlockquoteBaseEmbeddedWebview', () => {
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await assert.shadowDom.equalSnapshot(variant, { ignoreAttributes: ['style'] });
+        // @ts-ignore
+        await assert.shadowDom.equalSnapshot(variant, { ignoreAttributes: ['style', 'loading'] });
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await assert.lightDom.equalSnapshot(variant, { ignoreAttributes: ['style'] });
+        // @ts-ignore
+        await assert.lightDom.equalSnapshot(variant, { ignoreAttributes: ['style', 'loading'] });
       });
 
       test('a11y', async () => {

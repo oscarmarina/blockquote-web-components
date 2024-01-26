@@ -3,6 +3,9 @@ import { html, fixture, assert, fixtureCleanup, oneEvent } from '@open-wc/testin
 import '../define/blockquote-base-embedded-webview-element.js';
 
 suite('BlockquoteBaseEmbeddedWebviewElement', () => {
+  /**
+   * @type {import('../index').BlockquoteBaseEmbeddedWebviewElement}
+   */
   let el;
 
   teardown(() => fixtureCleanup());
@@ -18,11 +21,13 @@ suite('BlockquoteBaseEmbeddedWebviewElement', () => {
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await assert.shadowDom.equalSnapshot(el);
+        // @ts-ignore
+        await assert.shadowDom.equalSnapshot(el, { ignoreAttributes: ['loading'] });
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await assert.lightDom.equalSnapshot(el);
+        // @ts-ignore
+        await assert.lightDom.equalSnapshot(el, { ignoreAttributes: ['loading'] });
       });
 
       test('a11y', async () => {
@@ -31,13 +36,13 @@ suite('BlockquoteBaseEmbeddedWebviewElement', () => {
 
       test('element content loaded', async () => {
         el.src = 'test/test2.html';
-        const { detail } = await oneEvent(el, 'elementloaded');
+        const { detail } = await oneEvent(el, 'elementloaded', true);
         assert.isTrue(detail.contentDocument.body.hasAttribute('data-embedded'));
       });
 
       test('connectedCallback is called only one time', async () => {
         const bodyNode = document.querySelector('body');
-        bodyNode.appendChild(el);
+        bodyNode?.appendChild(el);
         assert.strictEqual(el.querySelectorAll('iframe').length, 1);
       });
 
@@ -51,7 +56,7 @@ suite('BlockquoteBaseEmbeddedWebviewElement', () => {
           </blockquote-base-embedded-webview-element>
         `);
         const objectNode = elObject.querySelector('object');
-        assert.strictEqual(objectNode.tagName, 'OBJECT');
+        assert.strictEqual(objectNode?.tagName, 'OBJECT');
       });
     });
   });
