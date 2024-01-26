@@ -1,4 +1,4 @@
-import{i as k,s as R,x as a,j as H,e as j,n as V}from"./ref-yfNXvcPo.js";const G=k`:host {
+import{i as k,s as R,x as a,j as H,e as j,n as V}from"./ref-_N0OgTL0.js";const G=k`:host {
   --_host-color: var(--blockquote-base-embedded-webview-size-color, inherit);
   --_rect-height: var(--blockquote-base-embedded-webview-size-rect-height, 1.125rem);
   --_rect-size: var(--blockquote-base-embedded-webview-size-rect-size, 0.6875rem);
