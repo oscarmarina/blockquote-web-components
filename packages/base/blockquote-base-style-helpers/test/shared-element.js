@@ -12,7 +12,7 @@ setComponentSharedStyles(
   `,
 );
 
-class SharedElement extends LitElement {
+export class SharedElement extends LitElement {
   static get styles() {
     return [
       css`

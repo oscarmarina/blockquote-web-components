@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 
-class DocumentElement extends LitElement {
+export class DocumentElement extends LitElement {
   static get styles() {
     return [
       css`
