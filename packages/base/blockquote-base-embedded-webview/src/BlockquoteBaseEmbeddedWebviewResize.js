@@ -1,5 +1,4 @@
 import { html, LitElement } from 'lit';
-import * as Gestures from '@blockquote/polymer/lib/utils/gestures.js';
 import { styles } from './styles/blockquote-base-embedded-webview-resize-styles.css.js';
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect#value - window.scrollY to get a bounding rectangle which is independent from the current scrolling position.
@@ -23,7 +22,6 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
     super();
     this._cursor = '';
     this._resizer = this._resizer.bind(this);
-    this._removeResizer = this._removeResizer.bind(this);
     this._createResizerLeft = this._createResizer.bind(this, 'right');
     this._createResizerRight = this._createResizer.bind(this, 'left');
     this._createResizerBottom = this._createResizer.bind(this, 'top');
@@ -45,11 +43,11 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
     this.leftResizerElement = this.shadowRoot?.querySelector('.resizer-w');
     this.bottomResizerElement = this.shadowRoot?.querySelector('.resizer-s');
 
-    this.leftResizerElement?.addEventListener('mousedown', this._createResizerLeft);
-    this.rightResizerElement?.addEventListener('mousedown', this._createResizerRight);
-    this.bottomResizerElement?.addEventListener('mousedown', this._createResizerBottom);
-    this.bottomLeftResizerElement?.addEventListener('mousedown', this._createResizerBottomLeft);
-    this.bottomRightResizerElement?.addEventListener('mousedown', this._createResizerBottomRight);
+    this.leftResizerElement?.addEventListener('pointerdown', this._createResizerLeft);
+    this.rightResizerElement?.addEventListener('pointerdown', this._createResizerRight);
+    this.bottomResizerElement?.addEventListener('pointerdown', this._createResizerBottom);
+    this.bottomLeftResizerElement?.addEventListener('pointerdown', this._createResizerBottomLeft);
+    this.bottomRightResizerElement?.addEventListener('pointerdown', this._createResizerBottomRight);
 
     this.bottomResizerElement?.addEventListener('dblclick', this._doubleclickForCssInitialSize);
   }
@@ -78,29 +76,52 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
     this.removeAttribute('style');
   }
 
-  _createResizer(DOMRect) {
+  /**
+   * @param {!string} DOMRect
+   * @param {PointerEvent} ev
+   */
+  _createResizer(DOMRect, ev) {
+    this.setAttribute('resizing', '');
+
     this._getBoundingClientRecDOMRect = DOMRect;
     this._getBoundingClientRectWidth = this._getBoundingClientRect('width');
     this._getBoundingClientRectHeight = this._getBoundingClientRect('height');
+    const { target, pointerId, clientX: trackDistanceX, clientY: trackDistanceY } = ev;
 
-    this.setAttribute('resizing', '');
-    Gestures.addListener(document, 'track', /** @type {*} */ (this._resizer));
-    document.addEventListener('mouseup', this._removeResizer);
-  }
+    /** @type {Element} */ (target)?.setPointerCapture(pointerId);
 
-  _removeResizer() {
-    this.removeAttribute('resizing');
+    /**
+     * @param {!PointerEvent} moveEvent
+     */
+    const addResizer = ({ clientX, clientY }) => {
+      const dx = Math.round(clientX - trackDistanceX);
+      const dy = Math.round(clientY - trackDistanceY);
+      this._resizer({ detail: { dx, dy } });
+    };
+    target?.addEventListener(
+      'pointermove',
+      /** @type {EventListenerOrEventListenerObject} */ (addResizer),
+    );
 
-    Gestures.removeListener(document, 'track', /** @type {*} */ (this._resizer));
-    document.removeEventListener('mouseup', this._removeResizer);
-    this._dispatchResizeEvent();
+    const removeResizer = () => {
+      this.removeAttribute('resizing');
+      /** @type {Element} */ (target)?.releasePointerCapture(pointerId);
+      target?.removeEventListener(
+        'pointermove',
+        /** @type {EventListenerOrEventListenerObject} */ (addResizer),
+      );
+      target?.removeEventListener('pointerup', removeResizer);
+
+      this._dispatchResizeEvent();
+    };
+    target?.addEventListener('pointerup', removeResizer);
   }
 
   _resizer({ detail }) {
     let cssOffsetX;
     let cssOffsetY;
-    const dx = Math.floor(detail.dx * 2.02);
-    const dy = Math.floor(detail.dy * 1.02);
+    const dx = Math.floor(detail.dx * 2.04);
+    const dy = Math.floor(detail.dy * 1.04);
     // http://jsfiddle.net/MissoulaLorenzo/gfn6ob3j/
     switch (this._getBoundingClientRecDOMRect) {
       case 'right':
@@ -132,8 +153,7 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
         this.style.setProperty('--blockquote-base-embedded-webview-resize-rect-width', cssOffsetX);
         this.style.setProperty('--blockquote-base-embedded-webview-resize-rect-height', cssOffsetY);
         break;
-      /* c8 ignore next */
-      default:
+      /* c8 ignore next */ default:
     }
 
     this._dispatchResizeEvent();
@@ -156,6 +176,9 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
     this.dispatchEvent(event);
   }
 
+  /**
+   * @param {!string} DOMRect
+   */
   _getBoundingClientRect(DOMRect) {
     return Math.abs(parseInt(this.rect?.getBoundingClientRect()[DOMRect], 10));
   }

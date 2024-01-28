@@ -174,13 +174,11 @@
     }
   },
   "dependencies": {
-    "@blockquote/polymer": "^3.4.4",
     "lit": "^3.1.1"
   },
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.7.3",
-    "@blockquote-web-components/blockquote-foundations-sass": "^1.1.2",
-    "@polymer/iron-test-helpers": "^3.0.1"
+    "@blockquote-web-components/blockquote-foundations-sass": "^1.1.2"
   },
   "publishConfig": {
     "access": "public"

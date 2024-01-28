@@ -1,7 +1,23 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { html, fixture, assert, fixtureCleanup } from '@open-wc/testing';
-import { track } from '@polymer/iron-test-helpers/mock-interactions.js';
 import '../define/blockquote-base-embedded-webview-resize.js';
+
+/**
+ * @param {string} type The type of event
+ * @param {{ x: number, y: number }} xy The (x,y) coordinates event
+ * @param {!Element} node The node to fire the event on.
+ */
+export const makePointerEvent = (type, xy, node) => {
+  const props = {
+    pointerId: 1,
+    bubbles: true,
+    cancelable: true,
+    clientX: xy.x,
+    clientY: xy.y,
+    composed: true,
+  };
+  node.dispatchEvent(new PointerEvent(type, props));
+};
 
 suite('BlockquoteBaseEmbeddedWebviewResize', () => {
   /**
@@ -72,28 +88,40 @@ suite('BlockquoteBaseEmbeddedWebviewResize', () => {
       });
       test('Resize bottomRight', async () => {
         assert.isFalse(el.hasAttribute('style'));
-        track(bottomRightResizerElement, 10, 10);
+        makePointerEvent('pointerdown', { y: 4, x: 4 }, bottomRightResizerElement);
+        makePointerEvent('pointermove', { y: 10, x: 10 }, bottomRightResizerElement);
         assert.isTrue(el.hasAttribute('style'));
       });
       test('Resize bottomLeft', async () => {
         assert.isFalse(el.hasAttribute('style'));
-        track(bottomLeftResizerElement, 10, 10);
+        makePointerEvent('pointerdown', { y: 4, x: 4 }, bottomLeftResizerElement);
+        makePointerEvent('pointermove', { y: 10, x: 10 }, bottomLeftResizerElement);
         assert.isTrue(el.hasAttribute('style'));
       });
       test('Resize right', async () => {
         assert.isFalse(el.hasAttribute('style'));
-        track(rightResizerElement, 10, 0);
+        makePointerEvent('pointerdown', { y: 4, x: 4 }, rightResizerElement);
+        makePointerEvent('pointermove', { y: 10, x: 10 }, rightResizerElement);
         assert.isTrue(el.hasAttribute('style'));
       });
       test('Resize left', async () => {
         assert.isFalse(el.hasAttribute('style'));
-        track(leftResizerElement, 10, 0);
+        makePointerEvent('pointerdown', { y: 4, x: 4 }, leftResizerElement);
+        makePointerEvent('pointermove', { y: 10, x: 10 }, leftResizerElement);
         assert.isTrue(el.hasAttribute('style'));
       });
       test('Resize bottom', async () => {
         assert.isFalse(el.hasAttribute('style'));
-        track(bottomResizerElement, 0, 10);
+        makePointerEvent('pointerdown', { y: 4, x: 4 }, bottomResizerElement);
+        makePointerEvent('pointermove', { y: 10, x: 10 }, bottomResizerElement);
         assert.isTrue(el.hasAttribute('style'));
+      });
+      test('Toogle resizing attribute', async () => {
+        makePointerEvent('pointerdown', { y: 4, x: 4 }, bottomResizerElement);
+        makePointerEvent('pointermove', { y: 10, x: 10 }, bottomResizerElement);
+        assert.isTrue(el.hasAttribute('resizing'));
+        makePointerEvent('pointerup', { y: 10, x: 10 }, bottomResizerElement);
+        assert.isFalse(el.hasAttribute('resizing'));
       });
     });
   });

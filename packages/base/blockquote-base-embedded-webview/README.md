@@ -171,14 +171,13 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 
 ##### Methods
 
-| Name                            | Privacy | Description | Parameters   | Return | Inherited From |
-| ------------------------------- | ------- | ----------- | ------------ | ------ | -------------- |
-| `_doubleclickForCssInitialSize` |         |             |              |        |                |
-| `_createResizer`                |         |             | `DOMRect`    |        |                |
-| `_removeResizer`                |         |             |              |        |                |
-| `_resizer`                      |         |             | `{ detail }` |        |                |
-| `_dispatchResizeEvent`          |         |             |              |        |                |
-| `_getBoundingClientRect`        |         |             | `DOMRect`    |        |                |
+| Name                            | Privacy | Description | Parameters                           | Return | Inherited From |
+| ------------------------------- | ------- | ----------- | ------------------------------------ | ------ | -------------- |
+| `_doubleclickForCssInitialSize` |         |             |                                      |        |                |
+| `_createResizer`                |         |             | `DOMRect: !string, ev: PointerEvent` |        |                |
+| `_resizer`                      |         |             | `{ detail }`                         |        |                |
+| `_dispatchResizeEvent`          |         |             |                                      |        |                |
+| `_getBoundingClientRect`        |         |             | `DOMRect: !string`                   |        |                |
 
 ##### Events
 
