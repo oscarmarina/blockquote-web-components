@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.6.6...@blockquote-web-components/blockquote-base-embedded-webview@1.7.0) (2024-01-28)
+
+### Features
+
+- **blockquote-base-embedded-webview:** pointervents instead of mousevents ([7f3cfc5](https://github.com/oscarmarina/blockquote-web-components/commit/7f3cfc5888fa8f02537baa273f32fb26c1855d33))
+
 ## [1.6.6](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.6.5...@blockquote-web-components/blockquote-base-embedded-webview@1.6.6) (2024-01-26)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-base-embedded-webview
