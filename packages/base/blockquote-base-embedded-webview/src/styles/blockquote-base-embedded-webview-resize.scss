@@ -1,7 +1,5 @@
 :host {
   --__resizer-factor: calc(1.25rem * var(--blockquote-base-embedded-webview-resize-factor, 1));
-
-  // --_rect-transition: var(--blockquote-base-embedded-webview-resize-rect-transition, width 16ms cubic-bezier(0.25, 0.46, 0.45, 0.94), height 16ms cubic-bezier(0.25, 0.46, 0.45, 0.94));
   --_rect-min-width: var(--blockquote-base-embedded-webview-resize-rect-min-width, 18.75rem);
   --_rect-min-height: var(--blockquote-base-embedded-webview-resize-rect-min-height, 9.375rem);
   --_rect-max-width: var(--blockquote-base-embedded-webview-resize-rect-max-width, 100%);
@@ -19,7 +17,7 @@
   align-items: center;
   height: inherit;
   padding: calc(var(--__resizer-factor) * 1) 0 calc(var(--__resizer-factor) * 2) 0;
-}
+} 
 
 :host([hidden]),
 [hidden] {
@@ -42,8 +40,6 @@
   width: var(--_rect-width);
   height: var(--_rect-height);
   transform: translateZ(0);
-
-  // transition: var(--_rect-transition);
 }
 
 .resizer {

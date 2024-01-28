@@ -401,13 +401,18 @@
               "name": "_createResizer",
               "parameters": [
                 {
-                  "name": "DOMRect"
+                  "name": "DOMRect",
+                  "type": {
+                    "text": "!string"
+                  }
+                },
+                {
+                  "name": "ev",
+                  "type": {
+                    "text": "PointerEvent"
+                  }
                 }
               ]
-            },
-            {
-              "kind": "method",
-              "name": "_removeResizer"
             },
             {
               "kind": "method",
@@ -427,7 +432,10 @@
               "name": "_getBoundingClientRect",
               "parameters": [
                 {
-                  "name": "DOMRect"
+                  "name": "DOMRect",
+                  "type": {
+                    "text": "!string"
+                  }
                 }
               ]
             },
