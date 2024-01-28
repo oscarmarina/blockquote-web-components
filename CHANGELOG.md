@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.20.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.19.1...v1.20.0) (2024-01-28)
+
+
+### Features
+
+* **blockquote-base-embedded-webview:** pointervents instead of mousevents ([7f3cfc5](https://github.com/oscarmarina/blockquote-web-components/commit/7f3cfc5888fa8f02537baa273f32fb26c1855d33))
+
 ### [1.19.1](https://github.com/oscarmarina/blockquote-web-components/compare/v1.19.0...v1.19.1) (2024-01-26)
 
 ## [1.19.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.18.4...v1.19.0) (2024-01-23)
