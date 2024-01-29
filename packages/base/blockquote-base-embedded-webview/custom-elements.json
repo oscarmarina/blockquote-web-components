@@ -416,7 +416,7 @@
             },
             {
               "kind": "method",
-              "name": "_resizer",
+              "name": "_resize",
               "parameters": [
                 {
                   "name": "{ detail }"
