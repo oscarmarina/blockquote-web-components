@@ -175,7 +175,7 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 | ------------------------------- | ------- | ----------- | ------------------------------------ | ------ | -------------- |
 | `_doubleclickForCssInitialSize` |         |             |                                      |        |                |
 | `_createResizer`                |         |             | `DOMRect: !string, ev: PointerEvent` |        |                |
-| `_resizer`                      |         |             | `{ detail }`                         |        |                |
+| `_resize`                       |         |             | `{ detail }`                         |        |                |
 | `_dispatchResizeEvent`          |         |             |                                      |        |                |
 | `_getBoundingClientRect`        |         |             | `DOMRect: !string`                   |        |                |
 

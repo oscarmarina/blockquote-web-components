@@ -21,7 +21,7 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
   constructor() {
     super();
     this._cursor = '';
-    this._resizer = this._resizer.bind(this);
+    this._resize = this._resize.bind(this);
     this._createResizerLeft = this._createResizer.bind(this, 'right');
     this._createResizerRight = this._createResizer.bind(this, 'left');
     this._createResizerBottom = this._createResizer.bind(this, 'top');
@@ -94,9 +94,9 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
      * @param {!PointerEvent} moveEvent
      */
     const addResizer = ({ clientX, clientY }) => {
-      const dx = Math.round(clientX - trackDistanceX);
-      const dy = Math.round(clientY - trackDistanceY);
-      this._resizer({ detail: { dx, dy } });
+      const dx = Math.floor(clientX - trackDistanceX);
+      const dy = Math.floor(clientY - trackDistanceY);
+      this._resize({ detail: { dx, dy } });
     };
     target?.addEventListener(
       'pointermove',
@@ -117,7 +117,7 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
     target?.addEventListener('pointerup', removeResizer);
   }
 
-  _resizer({ detail }) {
+  _resize({ detail }) {
     let cssOffsetX;
     let cssOffsetY;
     const dx = Math.floor(detail.dx * 2.04);
