@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.21.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.20.0...v1.21.0) (2024-01-29)
+
+
+### Features
+
+* **blockquote-base-embedded-webview:** use math-floor ([fb53488](https://github.com/oscarmarina/blockquote-web-components/commit/fb5348890cc929fff6ce98dac971d641727a7b0d))
+
 ## [1.20.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.19.1...v1.20.0) (2024-01-28)
 
 
