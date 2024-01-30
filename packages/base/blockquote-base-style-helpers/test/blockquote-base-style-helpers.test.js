@@ -5,11 +5,20 @@ import { setDocumentStyles } from '../index.js';
 import './document-element.js';
 import './shared-element.js';
 
-setDocumentStyles(css`
+const setCss = css`
   .docu-element2 {
     background-color: blue;
   }
-`);
+`;
+
+const setCss2 = css`
+  .docu-element3 {
+    background-color: peru;
+  }
+`;
+
+setDocumentStyles(setCss);
+setDocumentStyles([setCss2]);
 
 suite('BlockquoteBaseStyleHelpers', () => {
   teardown(() => fixtureCleanup());

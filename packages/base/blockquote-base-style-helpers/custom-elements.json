@@ -100,21 +100,35 @@
           "name": "adoptDocumentStyles",
           "parameters": [
             {
-              "name": "renderRoot"
+              "name": "renderRoot",
+              "description": "The root element where styles will be rendered.",
+              "type": {
+                "text": "Document | HTMLElement"
+              }
             },
             {
-              "name": "styles"
+              "name": "styles",
+              "description": "The styles to adopt.",
+              "type": {
+                "text": "Array"
+              }
             }
-          ]
+          ],
+          "description": "Adopts the given styles into the render root."
         },
         {
           "kind": "function",
           "name": "setDocumentStyles",
           "parameters": [
             {
-              "name": "styles"
+              "name": "styles",
+              "description": "The styles to set.",
+              "type": {
+                "text": "!*"
+              }
             }
-          ]
+          ],
+          "description": "Sets the document styles."
         }
       ],
       "exports": [
