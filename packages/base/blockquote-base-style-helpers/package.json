@@ -135,6 +135,9 @@
       "import/prefer-default-export": "off",
       "lit/no-classfield-shadowing": "off",
       "lit/no-native-attributes": "off"
+    },
+    "globals": {
+      "globalThis": "readonly"
     }
   },
   "stylelint": {
