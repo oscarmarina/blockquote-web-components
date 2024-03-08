@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.21.1...v2.0.0) (2024-03-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **blockquote-controller-xstate:** new api xstate/lit
+
+### Features
+
+* **ajax-provider:** use absolute redirect ([7d86203](https://github.com/oscarmarina/blockquote-web-components/commit/7d862036947ce9ab77ce8a08dd3135ef846ec4f7))
+* **blockquote-base-common-dev-dependencies:** update dev dependencies ([d69cdbc](https://github.com/oscarmarina/blockquote-web-components/commit/d69cdbc70194746f44ffb253762cde4584c5e804))
+* **blockquote-base-embedded-webview:** use absolute redirect ([67b821f](https://github.com/oscarmarina/blockquote-web-components/commit/67b821f8881d05f443c4b4e917e7f31b0f215f8c))
+* **blockquote-base-meta:** use absolute redirect ([4cd5cae](https://github.com/oscarmarina/blockquote-web-components/commit/4cd5cae9697e30f2b24b73f1f8f26f5109f0bf29))
+* **blockquote-base-style-helpers:** use absolute redirect ([66011d4](https://github.com/oscarmarina/blockquote-web-components/commit/66011d4611c48d09cd894cbb47cca2c30006b8f8))
+* **blockquote-controller-rxjs:** use absolute redirect ([2e1ae83](https://github.com/oscarmarina/blockquote-web-components/commit/2e1ae83bb4b97c275a4d33d36609c85bfefc6924))
+* **blockquote-controller-xstate:** new api xstate/lit ([69c3866](https://github.com/oscarmarina/blockquote-web-components/commit/69c3866da0f0a15d710d1b0efcab4d7575568701))
+* **blockquote-directive-svg-to-data-image:** use absolute redirect ([2e0dc46](https://github.com/oscarmarina/blockquote-web-components/commit/2e0dc46bf1be46076a71a240c9a41111295ca64f))
+* **blockquote-mixin-slot-content:** use absolute redirect ([8fd15bf](https://github.com/oscarmarina/blockquote-web-components/commit/8fd15bf3de9007cdf1ecd42f74e59bf7511a7750))
+* **blockquote-tabs:** use absolute redirect ([962138e](https://github.com/oscarmarina/blockquote-web-components/commit/962138e88f9e5f22677bab7302db2b4e37f90881))
+
 ### [1.21.1](https://github.com/oscarmarina/blockquote-web-components/compare/v1.21.0...v1.21.1) (2024-01-30)
 
 
