@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-meta@1.2.3...@blockquote-web-components/blockquote-base-meta@1.3.0) (2024-03-08)
+
+### Features
+
+- **blockquote-base-meta:** use absolute redirect ([4cd5cae](https://github.com/oscarmarina/blockquote-web-components/commit/4cd5cae9697e30f2b24b73f1f8f26f5109f0bf29))
+
 ## [1.2.3](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-meta@1.2.2...@blockquote-web-components/blockquote-base-meta@1.2.3) (2024-01-29)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-base-meta

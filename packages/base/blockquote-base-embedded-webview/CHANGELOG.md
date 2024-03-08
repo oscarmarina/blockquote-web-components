@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.8.0...@blockquote-web-components/blockquote-base-embedded-webview@1.9.0) (2024-03-08)
+
+### Features
+
+- **blockquote-base-embedded-webview:** use absolute redirect ([67b821f](https://github.com/oscarmarina/blockquote-web-components/commit/67b821f8881d05f443c4b4e917e7f31b0f215f8c))
+
 # [1.8.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.7.0...@blockquote-web-components/blockquote-base-embedded-webview@1.8.0) (2024-01-29)
 
 ### Features

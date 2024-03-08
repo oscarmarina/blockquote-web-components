@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-tabs@1.1.8...@blockquote-web-components/blockquote-tabs@1.2.0) (2024-03-08)
+
+### Features
+
+- **blockquote-tabs:** use absolute redirect ([962138e](https://github.com/oscarmarina/blockquote-web-components/commit/962138e88f9e5f22677bab7302db2b4e37f90881))
+
 ## [1.1.8](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-tabs@1.1.7...@blockquote-web-components/blockquote-tabs@1.1.8) (2024-01-29)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-tabs

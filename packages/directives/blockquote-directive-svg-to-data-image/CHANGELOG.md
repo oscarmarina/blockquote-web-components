@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-directive-svg-to-data-image@1.2.9...@blockquote-web-components/blockquote-directive-svg-to-data-image@1.3.0) (2024-03-08)
+
+### Features
+
+- **blockquote-directive-svg-to-data-image:** use absolute redirect ([2e0dc46](https://github.com/oscarmarina/blockquote-web-components/commit/2e0dc46bf1be46076a71a240c9a41111295ca64f))
+
 ## [1.2.9](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-directive-svg-to-data-image@1.2.8...@blockquote-web-components/blockquote-directive-svg-to-data-image@1.2.9) (2024-01-29)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-directive-svg-to-data-image

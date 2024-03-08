@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-style-helpers@1.1.10...@blockquote-web-components/blockquote-base-style-helpers@1.2.0) (2024-03-08)
+
+### Features
+
+- **blockquote-base-style-helpers:** use absolute redirect ([66011d4](https://github.com/oscarmarina/blockquote-web-components/commit/66011d4611c48d09cd894cbb47cca2c30006b8f8))
+
 ## [1.1.10](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-style-helpers@1.1.9...@blockquote-web-components/blockquote-base-style-helpers@1.1.10) (2024-01-30)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/ajax-provider@1.1.5...@blockquote-web-components/ajax-provider@1.2.0) (2024-03-08)
+
+### Features
+
+- **ajax-provider:** use absolute redirect ([7d86203](https://github.com/oscarmarina/blockquote-web-components/commit/7d862036947ce9ab77ce8a08dd3135ef846ec4f7))
+
 ## [1.1.5](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/ajax-provider@1.1.4...@blockquote-web-components/ajax-provider@1.1.5) (2024-01-26)
 
 **Note:** Version bump only for package @blockquote-web-components/ajax-provider
