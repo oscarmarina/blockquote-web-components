@@ -16,7 +16,33 @@ export class XstateCounter extends LitElement {
   constructor() {
     super();
     this._xstate = {};
-    this.counterController = new BlockquoteControllerXstate(this, counterMachine, '_xstate');
+    this._inspectEvents = this._inspectEvents.bind(this);
+    this._callbackCounterController = this._callbackCounterController.bind(this);
+
+    this.counterController = new BlockquoteControllerXstate(this, {
+      machine: counterMachine,
+      options: {
+        inspect: this._inspectEvents,
+      },
+      callback: this._callbackCounterController,
+    });
+  }
+
+  /**
+   * @param {import('xstate').SnapshotFrom<typeof this.counterController>} snapshot
+   */
+  _callbackCounterController(snapshot) {
+    this._xstate = snapshot;
+  }
+
+  /**
+   * @param {import('xstate').InspectionEvent} inspEvent
+   */
+
+  _inspectEvents(inspEvent) {
+    if (inspEvent.type === '@xstate.snapshot' && inspEvent.event.type === 'xstate.stop') {
+      this._xstate = {};
+    }
   }
 
   updated(props) {
@@ -32,7 +58,7 @@ export class XstateCounter extends LitElement {
   }
 
   get #disabled() {
-    return this.counterController.state.matches('disabled');
+    return this.counterController.snapshot.matches('disabled');
   }
 
   render() {
@@ -55,7 +81,7 @@ export class XstateCounter extends LitElement {
             Decrement
           </button>
         </span>
-        <p>${this.counterController.state.context.counter}</p>
+        <p>${this.counterController.snapshot.context.counter}</p>
       </div>
       <div>
         <button @click=${() => this.counterController.send({ type: 'TOGGLE' })}>

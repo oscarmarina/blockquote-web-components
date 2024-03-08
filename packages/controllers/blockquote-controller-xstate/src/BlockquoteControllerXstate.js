@@ -1,17 +1,14 @@
 import { createActor } from 'xstate';
-
 /**
  * # BlockquoteControllerXstate
  *
  * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
- * ### Connect XState machines with Lit's reactive property
- * The `BlockquoteControllerXstate` is a Lit Reactive Controller specifically designed for straightforward integration with XState.
- * This controller allows you to subscribe to an XState actor, updating a specified reactive property whenever the state machine transitions.
+ * ### Connect XState machines with Lit
+ * The BlockquoteControllerXstate is a Lit Reactive Controller that is specifically designed to facilitate a integration with XState. This controller provides the capability to subscribe to an XState actor. It also provides a callback function to handle the state changes.
  *
  * - [xstate v5](https://stately.ai/docs/installation)
  * - [xstate v5 - examples](https://stately.ai/docs/examples)
- * - [Original idea](https://codesandbox.io/s/z3o0s?file=/src/toggleMachine.ts)
  *
  * <hr>
  *
@@ -96,12 +93,15 @@ import { createActor } from 'xstate';
  * );
  * ```
  *
- * ***xstate-counter.js***
+ * **`new BlockquoteControllerXstate(this, {machine, options?, callback?})`**
+ *
+ * ***Usage***
  *
  * ```javascript
  * import { html, LitElement } from 'lit';
- * import { BlockquoteControllerXstate } from '@blockquote-web-components/blockquote-controller-xstate';
+ * import { BlockquoteControllerXstate } from '../index.js';
  * import { counterMachine } from './counterMachine.js';
+ * import { styles } from './styles/xstate-counter-styles.css.js';
  *
  * export class XstateCounter extends LitElement {
  *   static properties = {
@@ -111,10 +111,31 @@ import { createActor } from 'xstate';
  *     },
  *   };
  *
+ *   static styles = [styles];
+ *
  *   constructor() {
  *     super();
  *     this._xstate = {};
- *     this.counterController = new BlockquoteControllerXstate(this, counterMachine, '_xstate');
+ *     this._inspectEvents = this._inspectEvents.bind(this);
+ *     this._callbackCounterController = this._callbackCounterController.bind(this);
+ *
+ *     this.counterController = new BlockquoteControllerXstate(this, {
+ *       machine: counterMachine,
+ *       options: {
+ *         inspect: this._inspectEvents,
+ *       },
+ *       callback: this._callbackCounterController,
+ *     });
+ *   }
+ *
+ *   _callbackCounterController(snapshot) {
+ *     this._xstate = snapshot;
+ *   }
+ *
+ *   _inspectEvents(inspEvent) {
+ *     if (inspEvent.type === '@xstate.snapshot' && inspEvent.event.type === 'xstate.stop') {
+ *       this._xstate = {};
+ *     }
  *   }
  *
  *   updated(props) {
@@ -129,70 +150,111 @@ import { createActor } from 'xstate';
  *     }
  *   }
  *
- *   // ...
- *
  *   get #disabled() {
- *     return this.counterController.state.matches('disabled');
+ *     return this.counterController.snapshot.matches('disabled');
  *   }
  *
  *   render() {
  *     return html`
- *       <button
- *         ?disabled="${this.#disabled}"
- *         data-counter="increment"
- *         \@click=${() => this.counterController.send({ type: 'INC' })}
- *       >
- *         Increment
- *       </button>
- *       <button
- *         ?disabled="${this.#disabled}"
- *         data-counter="decrement"
- *         \@click=${() => this.counterController.send({ type: 'DEC' })}
- *       >
- *         Decrement
- *       </button>
+ *       <slot></slot>
+ *       <div aria-disabled="${this.#disabled}">
+ *         <span>
+ *           <button
+ *             ?disabled="${this.#disabled}"
+ *             data-counter="increment"
+ *             \@click=${() => this.counterController.send({ type: 'INC' })}
+ *           >
+ *             Increment
+ *           </button>
+ *           <button
+ *             ?disabled="${this.#disabled}"
+ *             data-counter="decrement"
+ *             \@click=${() => this.counterController.send({ type: 'DEC' })}
+ *           >
+ *             Decrement
+ *           </button>
+ *         </span>
+ *         <p>${this.counterController.snapshot.context.counter}</p>
+ *       </div>
+ *       <div>
+ *         <button \@click=${() => this.counterController.send({ type: 'TOGGLE' })}>
+ *           ${this.#disabled ? 'Enabled counter' : 'Disabled counter'}
+ *         </button>
+ *       </div>
  *     `;
  *   }
- *
- *   // ...
  * }
  * ```
  * <hr>
  */
-export class BlockquoteControllerXstate {
+class UseMachine {
   /**
-   * @param {import('lit').ReactiveElement} host
-   * @param {import('xstate').StateMachine} machine
-   * @param {string} propKey
+   * @param {import('lit').ReactiveElement} host - The host object.
+   * @param {{
+   *   machine: import('xstate').StateMachine,
+   *   options?: import('xstate').ActorOptions,
+   *   callback?: Function
+   * }} arg - The arguments for the constructor.
    */
-  constructor(host, machine, propKey) {
+  constructor(host, { machine, options, callback }) {
+    this.machine = machine;
+    this.options = options;
+    this.callback = callback;
+    this.currentSnapshot = this.snapshot;
+    this.onNext = this.onNext.bind(this);
+
     (this.host = host).addController(this);
-    this.service = createActor(machine).start();
-    this.propKey = propKey;
   }
 
-  get state() {
-    return this.service.getSnapshot();
+  get actor() {
+    return this.actorRef;
+  }
+
+  get snapshot() {
+    return this.actorRef?.getSnapshot?.();
   }
 
   /**
-   * @param {import('xstate').EventObject} ev
+   * @param {import('xstate').EventFrom<typeof this.machine>} ev
    */
   send(ev) {
-    this.service.send(ev);
+    this.actorRef?.send(ev);
+  }
+
+  unsubscribe() {
+    this.subs?.unsubscribe();
+  }
+
+  /**
+   * @param {import('xstate').SnapshotFrom<typeof this.machine>} snapshot
+   */
+  onNext(snapshot) {
+    if (this.currentSnapshot !== snapshot) {
+      this.currentSnapshot = snapshot;
+      this.callback?.(snapshot);
+      this.host.requestUpdate();
+    }
+  }
+
+  startService() {
+    this.actorRef = createActor(this.machine, this.options);
+    if (this.actorRef) {
+      this.subs = this.actorRef.subscribe(this.onNext);
+    }
+    this.actorRef?.start();
+  }
+
+  stopService() {
+    this.actorRef?.stop();
   }
 
   hostConnected() {
-    /* Do not mutate the context object. Instead, you should use the assign(...) action to update context immutably.
-     * https://stately.ai/docs/context#updating-context-with-assign
-     * https://lit.dev/docs/components/properties/#mutating-properties
-     */
-    this.service.subscribe(state => {
-      this.propKey in this.host && (this.host[this.propKey] = state);
-    });
+    this.startService();
   }
 
   hostDisconnected() {
-    this.service.stop();
+    this.stopService();
   }
 }
+
+export { UseMachine as BlockquoteControllerXstate };
