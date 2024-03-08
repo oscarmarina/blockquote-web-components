@@ -17,7 +17,7 @@ suite('BlockquoteControllerXstate', () => {
     });
 
     test('default counter 0', () => {
-      assert.equal(el.counterController.state.context.counter, 0);
+      assert.equal(el.counterController.snapshot.context.counter, 0);
     });
 
     suite('Semantic Dom and a11y', () => {
@@ -42,29 +42,29 @@ suite('BlockquoteControllerXstate', () => {
 
     test('increases the counter on Increment button click', () => {
       el.shadowRoot?.querySelector('button')?.click();
-      assert.equal(el.counterController.state.context.counter, 1);
+      assert.equal(el.counterController.snapshot.context.counter, 1);
     });
 
     test('decreases the counter on Decrement button click', () => {
       el.shadowRoot?.querySelector('button')?.click();
       /** @type {HTMLButtonElement} */ (el.shadowRoot?.querySelector('button + button'))?.click();
-      assert.equal(el.counterController.state.context.counter, 0);
+      assert.equal(el.counterController.snapshot.context.counter, 0);
     });
 
     test('disable the counter on Enabled/Disabled button click', () => {
-      let lastCounter = el.counterController.state.context.counter;
+      let lastCounter = el.counterController.snapshot.context.counter;
       const counterButton = el.shadowRoot?.querySelector('button');
       const disabledButton = el.shadowRoot?.querySelector('div + div button');
 
       counterButton?.click();
-      assert.equal(el.counterController.state.context.counter, lastCounter + 1);
-      lastCounter = el.counterController.state.context.counter;
+      assert.equal(el.counterController.snapshot.context.counter, lastCounter + 1);
+      lastCounter = el.counterController.snapshot.context.counter;
 
       /** @type {HTMLButtonElement} */ (disabledButton)?.click();
-      assert.equal(el.counterController.state.value, 'disabled');
+      assert.equal(el.counterController.snapshot.value, 'disabled');
 
       counterButton?.click();
-      assert.equal(el.counterController.state.context.counter, lastCounter);
+      assert.equal(el.counterController.snapshot.context.counter, lastCounter);
     });
   });
 });

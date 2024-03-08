@@ -2,13 +2,11 @@
 
 ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
-### Connect XState machines with Lit's reactive property
-The `BlockquoteControllerXstate` is a Lit Reactive Controller specifically designed for straightforward integration with XState.
-This controller allows you to subscribe to an XState actor, updating a specified reactive property whenever the state machine transitions.
+### Connect XState machines with Lit
+The BlockquoteControllerXstate is a Lit Reactive Controller that is specifically designed to facilitate a integration with XState. This controller provides the capability to subscribe to an XState actor. It also provides a callback function to handle the state changes.
 
 - [xstate v5](https://stately.ai/docs/installation)
 - [xstate v5 - examples](https://stately.ai/docs/examples)
-- [Original idea](https://codesandbox.io/s/z3o0s?file=/src/toggleMachine.ts)
 
 <hr>
 
@@ -93,12 +91,15 @@ export const counterMachine = createMachine(
 );
 ```
 
-***xstate-counter.js***
+**`new BlockquoteControllerXstate(this, {machine, options?, callback?})`**
+
+***Usage***
 
 ```javascript
 import { html, LitElement } from 'lit';
-import { BlockquoteControllerXstate } from '@blockquote-web-components/blockquote-controller-xstate';
+import { BlockquoteControllerXstate } from '../index.js';
 import { counterMachine } from './counterMachine.js';
+import { styles } from './styles/xstate-counter-styles.css.js';
 
 export class XstateCounter extends LitElement {
   static properties = {
@@ -108,10 +109,31 @@ export class XstateCounter extends LitElement {
     },
   };
 
+  static styles = [styles];
+
   constructor() {
     super();
     this._xstate = {};
-    this.counterController = new BlockquoteControllerXstate(this, counterMachine, '_xstate');
+    this._inspectEvents = this._inspectEvents.bind(this);
+    this._callbackCounterController = this._callbackCounterController.bind(this);
+
+    this.counterController = new BlockquoteControllerXstate(this, {
+      machine: counterMachine,
+      options: {
+        inspect: this._inspectEvents,
+      },
+      callback: this._callbackCounterController,
+    });
+  }
+
+  _callbackCounterController(snapshot) {
+    this._xstate = snapshot;
+  }
+
+  _inspectEvents(inspEvent) {
+    if (inspEvent.type === '@xstate.snapshot' && inspEvent.event.type === 'xstate.stop') {
+      this._xstate = {};
+    }
   }
 
   updated(props) {
@@ -126,32 +148,39 @@ export class XstateCounter extends LitElement {
     }
   }
 
-  // ...
-
   get #disabled() {
-    return this.counterController.state.matches('disabled');
+    return this.counterController.snapshot.matches('disabled');
   }
 
   render() {
     return html`
-      <button
-        ?disabled="${this.#disabled}"
-        data-counter="increment"
-        \@click=${() => this.counterController.send({ type: 'INC' })}
-      >
-        Increment
-      </button>
-      <button
-        ?disabled="${this.#disabled}"
-        data-counter="decrement"
-        \@click=${() => this.counterController.send({ type: 'DEC' })}
-      >
-        Decrement
-      </button>
+      <slot></slot>
+      <div aria-disabled="${this.#disabled}">
+        <span>
+          <button
+            ?disabled="${this.#disabled}"
+            data-counter="increment"
+            \@click=${() => this.counterController.send({ type: 'INC' })}
+          >
+            Increment
+          </button>
+          <button
+            ?disabled="${this.#disabled}"
+            data-counter="decrement"
+            \@click=${() => this.counterController.send({ type: 'DEC' })}
+          >
+            Decrement
+          </button>
+        </span>
+        <p>${this.counterController.snapshot.context.counter}</p>
+      </div>
+      <div>
+        <button \@click=${() => this.counterController.send({ type: 'TOGGLE' })}>
+          ${this.#disabled ? 'Enabled counter' : 'Disabled counter'}
+        </button>
+      </div>
     `;
   }
-
-  // ...
 }
 ```
 <hr>
@@ -159,31 +188,38 @@ export class XstateCounter extends LitElement {
 
 ### `src/BlockquoteControllerXstate.js`:
 
-#### class: `BlockquoteControllerXstate`
+#### class: `UseMachine`
 
 ##### Fields
 
-| Name      | Privacy | Type | Default   | Description | Inherited From |
-| --------- | ------- | ---- | --------- | ----------- | -------------- |
-| `state`   |         |      |           |             |                |
-| `service` |         |      |           |             |                |
-| `propKey` |         |      | `propKey` |             |                |
+| Name              | Privacy | Type | Default    | Description | Inherited From |
+| ----------------- | ------- | ---- | ---------- | ----------- | -------------- |
+| `actor`           |         |      |            |             |                |
+| `snapshot`        |         |      |            |             |                |
+| `machine`         |         |      | `machine`  |             |                |
+| `options`         |         |      | `options`  |             |                |
+| `callback`        |         |      | `callback` |             |                |
+| `currentSnapshot` |         |      |            |             |                |
 
 ##### Methods
 
-| Name               | Privacy | Description | Parameters        | Return | Inherited From |
-| ------------------ | ------- | ----------- | ----------------- | ------ | -------------- |
-| `send`             |         |             | `ev: EventObject` |        |                |
-| `hostConnected`    |         |             |                   |        |                |
-| `hostDisconnected` |         |             |                   |        |                |
+| Name               | Privacy | Description | Parameters                                    | Return | Inherited From |
+| ------------------ | ------- | ----------- | --------------------------------------------- | ------ | -------------- |
+| `send`             |         |             | `ev: EventFrom<typeof this.machine>`          |        |                |
+| `unsubscribe`      |         |             |                                               |        |                |
+| `onNext`           |         |             | `snapshot: SnapshotFrom<typeof this.machine>` |        |                |
+| `startService`     |         |             |                                               |        |                |
+| `stopService`      |         |             |                                               |        |                |
+| `hostConnected`    |         |             |                                               |        |                |
+| `hostDisconnected` |         |             |                                               |        |                |
 
 <hr/>
 
 #### Exports
 
-| Kind | Name                         | Declaration                | Module                            | Package |
-| ---- | ---------------------------- | -------------------------- | --------------------------------- | ------- |
-| `js` | `BlockquoteControllerXstate` | BlockquoteControllerXstate | src/BlockquoteControllerXstate.js |         |
+| Kind | Name                         | Declaration | Module                            | Package |
+| ---- | ---------------------------- | ----------- | --------------------------------- | ------- |
+| `js` | `BlockquoteControllerXstate` | UseMachine  | src/BlockquoteControllerXstate.js |         |
 
 ### `index.js`:
 
