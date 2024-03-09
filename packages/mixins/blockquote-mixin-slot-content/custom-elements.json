@@ -50,7 +50,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "index.js",
+      "path": "src/index.js",
       "declarations": [],
       "exports": [
         {
@@ -58,7 +58,7 @@
           "name": "BlockquoteMixinSlotContent",
           "declaration": {
             "name": "BlockquoteMixinSlotContent",
-            "module": "./src/BlockquoteMixinSlotContent.js"
+            "module": "./BlockquoteMixinSlotContent.js"
           }
         }
       ]

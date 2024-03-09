@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { html, fixture, assert, fixtureCleanup } from '@open-wc/testing';
 import { LitElement } from 'lit';
-import { BlockquoteMixinSlotContent } from '../index.js';
+import { BlockquoteMixinSlotContent } from '../src/index.js';
 
 const slotContentBase = class slotContent extends BlockquoteMixinSlotContent(LitElement) {
   connectedCallback() {
