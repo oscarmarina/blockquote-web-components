@@ -239,10 +239,10 @@ and equally for flattened nodes.
 | ---- | ---------------------------- | -------------------------- | --------------------------------- | ------- |
 | `js` | `BlockquoteMixinSlotContent` | BlockquoteMixinSlotContent | src/BlockquoteMixinSlotContent.js |         |
 
-### `index.js`:
+### `src/index.js`:
 
 #### Exports
 
-| Kind | Name                         | Declaration                | Module                              | Package |
-| ---- | ---------------------------- | -------------------------- | ----------------------------------- | ------- |
-| `js` | `BlockquoteMixinSlotContent` | BlockquoteMixinSlotContent | ./src/BlockquoteMixinSlotContent.js |         |
+| Kind | Name                         | Declaration                | Module                          | Package |
+| ---- | ---------------------------- | -------------------------- | ------------------------------- | ------- |
+| `js` | `BlockquoteMixinSlotContent` | BlockquoteMixinSlotContent | ./BlockquoteMixinSlotContent.js |         |
