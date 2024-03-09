@@ -16,7 +16,7 @@
   "type": "module",
   "exports": {
     ".": {
-      "default": "./index.js"
+      "default": "./src/index.js"
     },
     "./package.json": {
       "default": "./package.json"
@@ -25,7 +25,7 @@
       "default": "./src/BlockquoteControllerXstate.js"
     },
     "./index.js": {
-      "default": "./index.js"
+      "default": "./src/index.js"
     }
   },
   "files": [
