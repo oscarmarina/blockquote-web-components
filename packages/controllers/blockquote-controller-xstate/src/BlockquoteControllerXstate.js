@@ -99,7 +99,7 @@ import { createActor } from 'xstate';
  *
  * ```javascript
  * import { html, LitElement } from 'lit';
- * import { BlockquoteControllerXstate } from '../index.js';
+ * import { BlockquoteControllerXstate } from '@blockquote-web-components/blockquote-controller-xstate';
  * import { counterMachine } from './counterMachine.js';
  * import { styles } from './styles/xstate-counter-styles.css.js';
  *

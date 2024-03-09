@@ -1,5 +1,5 @@
 import { html, LitElement } from 'lit';
-import { BlockquoteControllerXstate } from '../index.js';
+import { BlockquoteControllerXstate } from '../src/index.js';
 import { counterMachine } from './counterMachine.js';
 import { styles } from './styles/xstate-counter-styles.css.js';
 

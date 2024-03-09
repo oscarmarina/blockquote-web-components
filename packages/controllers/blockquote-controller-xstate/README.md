@@ -97,7 +97,7 @@ export const counterMachine = createMachine(
 
 ```javascript
 import { html, LitElement } from 'lit';
-import { BlockquoteControllerXstate } from '../index.js';
+import { BlockquoteControllerXstate } from '@blockquote-web-components/blockquote-controller-xstate';
 import { counterMachine } from './counterMachine.js';
 import { styles } from './styles/xstate-counter-styles.css.js';
 
@@ -221,10 +221,10 @@ export class XstateCounter extends LitElement {
 | ---- | ---------------------------- | ----------- | --------------------------------- | ------- |
 | `js` | `BlockquoteControllerXstate` | UseMachine  | src/BlockquoteControllerXstate.js |         |
 
-### `index.js`:
+### `src/index.js`:
 
 #### Exports
 
-| Kind | Name                         | Declaration                | Module                              | Package |
-| ---- | ---------------------------- | -------------------------- | ----------------------------------- | ------- |
-| `js` | `BlockquoteControllerXstate` | BlockquoteControllerXstate | ./src/BlockquoteControllerXstate.js |         |
+| Kind | Name                         | Declaration                | Module                          | Package |
+| ---- | ---------------------------- | -------------------------- | ------------------------------- | ------- |
+| `js` | `BlockquoteControllerXstate` | BlockquoteControllerXstate | ./BlockquoteControllerXstate.js |         |
