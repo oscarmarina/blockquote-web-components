@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { html, fixture, assert, fixtureCleanup } from '@open-wc/testing';
 import { LitElement, svg, html as litHtml } from 'lit';
-import { blockquoteDirectiveSvgToDataImage } from '../index.js';
+import { blockquoteDirectiveSvgToDataImage } from '../src/index.js';
 
 const svgTag1 = litHtml`<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="50" cy="50" r="50" fill="white" />
