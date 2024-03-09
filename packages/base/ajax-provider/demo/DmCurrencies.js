@@ -1,4 +1,4 @@
-import { AjaxProvider } from '../index.js';
+import { AjaxProvider } from '../src/index.js';
 
 /**
  * A class for managing currency-related operations.
