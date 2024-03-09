@@ -1,4 +1,4 @@
-import{i as r,r as o,s as n,x as c}from"./lit-element-JB1yBwy-.js";import{s}from"./BlockquoteBaseMeta-Uzmt6UKH.js";const t={main:`
+import{i as r,r as o,s as n,x as c}from"./lit-element-ZSkjWwnh.js";import{s}from"./BlockquoteBaseMeta-Uzmt6UKH.js";const t={main:`
   @font-face {
     font-family: 'Kaisei HarunoUmi';
     font-style: normal;

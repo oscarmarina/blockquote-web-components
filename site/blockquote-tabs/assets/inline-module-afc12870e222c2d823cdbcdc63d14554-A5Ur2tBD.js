@@ -1,4 +1,4 @@
-import{i as u,s as m,x as s,j as w,e as v,n as _}from"./ref-_N0OgTL0.js";const z=u`:host {
+import{i as u,s as m,x as s,j as w,e as v,n as _}from"./ref-4VNzxQA9.js";const z=u`:host {
   --_host-color: var(--blockquote-base-embedded-webview-size-color, inherit);
   --_rect-height: var(--blockquote-base-embedded-webview-size-rect-height, 1.125rem);
   --_rect-size: var(--blockquote-base-embedded-webview-size-rect-size, 0.6875rem);

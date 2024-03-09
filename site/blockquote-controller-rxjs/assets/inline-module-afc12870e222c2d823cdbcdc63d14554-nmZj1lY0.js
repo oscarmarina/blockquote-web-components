@@ -1,4 +1,4 @@
-import{T as z,i as m,s as w,x as n,j as f}from"./lit-element-6wL6b2zE.js";/**
+import{T as z,i as m,s as w,x as n,j as f}from"./lit-element-58y1EBFb.js";/**
  * @license
  * Copyright 2020 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
@@ -14,7 +14,7 @@ import{T as z,i as m,s as w,x as n,j as f}from"./lit-element-6wL6b2zE.js";/**
  * @license
  * Copyright 2020 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */const T=()=>new A;class A{}const v=new WeakMap,B=$(class extends S{render(s){return z}update(s,[e]){var i;const t=e!==this.G;return t&&this.G!==void 0&&this.ot(void 0),(t||this.rt!==this.lt)&&(this.G=e,this.ct=(i=s.options)==null?void 0:i.host,this.ot(this.lt=s.element)),z}ot(s){var e;if(typeof this.G=="function"){const t=(e=this.ct)!=null?e:globalThis;let i=v.get(t);i===void 0&&(i=new WeakMap,v.set(t,i)),i.get(this.G)!==void 0&&this.G.call(this.ct,void 0),i.set(this.G,s),s!==void 0&&this.G.call(this.ct,s)}else this.G.value=s}get rt(){var s,e,t;return typeof this.G=="function"?(e=v.get((s=this.ct)!=null?s:globalThis))==null?void 0:e.get(this.G):(t=this.G)==null?void 0:t.value}disconnected(){this.rt===this.lt&&this.ot(void 0)}reconnected(){this.ot(this.lt)}}),L=m`:host {
+ */const T=()=>new A;class A{}const v=new WeakMap,B=$(class extends S{render(s){return z}update(s,[e]){var i;const t=e!==this.Y;return t&&this.Y!==void 0&&this.rt(void 0),(t||this.lt!==this.ct)&&(this.Y=e,this.ht=(i=s.options)==null?void 0:i.host,this.rt(this.ct=s.element)),z}rt(s){var e;if(typeof this.Y=="function"){const t=(e=this.ht)!=null?e:globalThis;let i=v.get(t);i===void 0&&(i=new WeakMap,v.set(t,i)),i.get(this.Y)!==void 0&&this.Y.call(this.ht,void 0),i.set(this.Y,s),s!==void 0&&this.Y.call(this.ht,s)}else this.Y.value=s}get lt(){var s,e,t;return typeof this.Y=="function"?(e=v.get((s=this.ht)!=null?s:globalThis))==null?void 0:e.get(this.Y):(t=this.Y)==null?void 0:t.value}disconnected(){this.lt===this.ct&&this.rt(void 0)}reconnected(){this.rt(this.ct)}}),L=m`:host {
   --_host-color: var(--blockquote-base-embedded-webview-size-color, inherit);
   --_rect-height: var(--blockquote-base-embedded-webview-size-rect-height, 1.125rem);
   --_rect-size: var(--blockquote-base-embedded-webview-size-rect-size, 0.6875rem);
@@ -453,7 +453,7 @@ blockquote-base-embedded-webview-resize {
   stroke-linejoin="round"
 >
   <polyline points="6 9 12 15 18 9" />
-</svg>`,N=n`
+</svg>`,Y=n`
   <svg
     viewBox="0 0 20 20"
     fill-rule="evenodd"
@@ -466,7 +466,7 @@ blockquote-base-embedded-webview-resize {
       d="M4.5 17C4.08333 17 3.72933 16.854 3.438 16.562C3.146 16.2707 3 15.9167 3 15.5V4.5C3 4.08333 3.146 3.72933 3.438 3.438C3.72933 3.146 4.08333 3 4.5 3H10V4.5H4.5V15.5H15.5V10H17V15.5C17 15.9167 16.854 16.2707 16.562 16.562C16.2707 16.854 15.9167 17 15.5 17H4.5ZM8.062 13L7 11.938L14.438 4.5H12V3H17V8H15.5V5.562L8.062 13Z"
     />
   </svg>
-`;class W extends w{static get styles(){return[U]}static get properties(){return{heading:{type:String},selected:{type:Number},headingLevel:{type:Number,attribute:"heading-level",reflect:!0},screenSizeSelected:{type:Number,attribute:"screen-size-selected"},limitHeight:{type:Boolean,attribute:"limit-height",reflect:!0}}}constructor(){super(),this.selected=0,this.screenSizeSelected=0,this.headingLevel=1,this.heading="",this.__resetResizing=!1,this.__selectArrow=O,this.__readDataPos={x:"0",y:"0",resizing:!1,cursor:""},this.limitHeight=!1,this._sources=[{src:"",option:"",description:""}],this._updateSize=this._updateSize.bind(this),this._embeddedResizeRef=T()}connectedCallback(){var t;super.connectedCallback&&super.connectedCallback(),(t=this.shadowRoot)==null||t.addEventListener("webviewresize",i=>{var o;const{detail:r}=i;Object.assign(this.__readDataPos,r),this.__resetResizing=!0,(r.cursor==="n"||r.cursor==="ne"||r.cursor==="nw")&&window.scroll({top:Math.abs(parseInt(this.__readDataPos.y,10)+((o=this._controlBottom)!=null?o:0)),left:0,behavior:"smooth"}),this.requestUpdate()});const e=Array.from(this.querySelectorAll("template"));e.length&&(this._sources=e.map(i=>{const{src:r="",option:o="",description:d=""}=i.dataset;return{src:r,option:o,description:d}}),this._src=this._sources[this.selected].src)}firstUpdated(e){var t;super.firstUpdated&&super.firstUpdated(e),this.embedded=(t=this.shadowRoot)==null?void 0:t.querySelector('[slot="embedded"]'),this._embeddedResizeRef.value&&(this._controlBottom=parseFloat(window.getComputedStyle(this._embeddedResizeRef.value).paddingBottom))}_updateSize({detail:e}){var t,i,r,o;(i=(t=this._embeddedResizeRef)==null?void 0:t.value)==null||i.style.setProperty("--blockquote-base-embedded-webview-resize-rect-width",`${e.width}px`),(o=(r=this._embeddedResizeRef)==null?void 0:r.value)==null||o.style.setProperty("--blockquote-base-embedded-webview-resize-rect-height",this.limitHeight?"100%":`${e.height}px`),this.__resetResizing=!1,this.requestUpdate()}get _headingLevel(){return this.headingLevel>=1&&this.headingLevel<=6?this.headingLevel:2}render(){return n` ${this._headerTpl} ${this._mainTpl} ${this._litHtmlRender()}`}_litHtmlRender(){f(this._lightDomTpl,this,{host:this})}get _lightDomTpl(){return this.embedded}get _headerTpl(){return n`
+`;class N extends w{static get styles(){return[U]}static get properties(){return{heading:{type:String},selected:{type:Number},headingLevel:{type:Number,attribute:"heading-level",reflect:!0},screenSizeSelected:{type:Number,attribute:"screen-size-selected"},limitHeight:{type:Boolean,attribute:"limit-height",reflect:!0}}}constructor(){super(),this.selected=0,this.screenSizeSelected=0,this.headingLevel=1,this.heading="",this.__resetResizing=!1,this.__selectArrow=O,this.__readDataPos={x:"0",y:"0",resizing:!1,cursor:""},this.limitHeight=!1,this._sources=[{src:"",option:"",description:""}],this._updateSize=this._updateSize.bind(this),this._embeddedResizeRef=T()}connectedCallback(){var t;super.connectedCallback&&super.connectedCallback(),(t=this.shadowRoot)==null||t.addEventListener("webviewresize",i=>{var o;const{detail:r}=i;Object.assign(this.__readDataPos,r),this.__resetResizing=!0,(r.cursor==="n"||r.cursor==="ne"||r.cursor==="nw")&&window.scroll({top:Math.abs(parseInt(this.__readDataPos.y,10)+((o=this._controlBottom)!=null?o:0)),left:0,behavior:"smooth"}),this.requestUpdate()});const e=Array.from(this.querySelectorAll("template"));e.length&&(this._sources=e.map(i=>{const{src:r="",option:o="",description:d=""}=i.dataset;return{src:r,option:o,description:d}}),this._src=this._sources[this.selected].src)}firstUpdated(e){var t;super.firstUpdated&&super.firstUpdated(e),this.embedded=(t=this.shadowRoot)==null?void 0:t.querySelector('[slot="embedded"]'),this._embeddedResizeRef.value&&(this._controlBottom=parseFloat(window.getComputedStyle(this._embeddedResizeRef.value).paddingBottom))}_updateSize({detail:e}){var t,i,r,o;(i=(t=this._embeddedResizeRef)==null?void 0:t.value)==null||i.style.setProperty("--blockquote-base-embedded-webview-resize-rect-width",`${e.width}px`),(o=(r=this._embeddedResizeRef)==null?void 0:r.value)==null||o.style.setProperty("--blockquote-base-embedded-webview-resize-rect-height",this.limitHeight?"100%":`${e.height}px`),this.__resetResizing=!1,this.requestUpdate()}get _headingLevel(){return this.headingLevel>=1&&this.headingLevel<=6?this.headingLevel:2}render(){return n` ${this._headerTpl} ${this._mainTpl} ${this._litHtmlRender()}`}_litHtmlRender(){f(this._lightDomTpl,this,{host:this})}get _lightDomTpl(){return this.embedded}get _headerTpl(){return n`
       <header>
         <div>
           ${this._headingTpl} ${this._navigationDemosTpl} ${this._descriptionTpl}
@@ -489,7 +489,7 @@ blockquote-base-embedded-webview-resize {
           `:""}
     `}get _externalLinkTpl(){return n`<a href="${this._src||"#"}" target="_blank" class="open-externally">
       <span class="sr-only">View demo in a new tab</span
-      ><span aria-hidden="true">${N}</span></a
+      ><span aria-hidden="true">${Y}</span></a
     >`}get _descriptionTpl(){return n` <p class="description">${this._sources[this.selected].description}</p>`}get _readDataPosTpl(){return n`
       <div
         aria-hidden="true"
@@ -516,4 +516,4 @@ blockquote-base-embedded-webview-resize {
       .src="${this._src||""}"
       .embeddedTitle="${this._sources[this.selected].option||"Demo"}"
     >
-    </blockquote-base-embedded-webview-element>`}_onChangeFile({target:e}){this.selected=e.selectedIndex,this._src=this._sources[this.selected].src}}window.customElements.define("blockquote-base-embedded-webview",W);
+    </blockquote-base-embedded-webview-element>`}_onChangeFile({target:e}){this.selected=e.selectedIndex,this._src=this._sources[this.selected].src}}window.customElements.define("blockquote-base-embedded-webview",N);

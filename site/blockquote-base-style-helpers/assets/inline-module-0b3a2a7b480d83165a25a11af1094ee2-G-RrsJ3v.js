@@ -1,4 +1,4 @@
-import{i as a,s as n,x as l}from"./lit-element-JB1yBwy-.js";import{B as t}from"./BlockquoteBaseMeta-Uzmt6UKH.js";const o=(s,e)=>{if(!e.cssText)throw new Error("Value passed to 'setComponentSharedStyles' function must be a 'css' function result");const r=new t({type:"sharedStyles",key:s});r.value=r.value||[],r.value.push(e)},c=new t({type:"sharedStyles"}),h=s=>{const e=c.byKey(s);return e?e.filter(d=>d.cssText):[]};o("shared-element-shared-styles",a`
+import{i as a,s as n,x as l}from"./lit-element-ZSkjWwnh.js";import{B as t}from"./BlockquoteBaseMeta-Uzmt6UKH.js";const o=(s,e)=>{if(!e.cssText)throw new Error("Value passed to 'setComponentSharedStyles' function must be a 'css' function result");const r=new t({type:"sharedStyles",key:s});r.value=r.value||[],r.value.push(e)},c=new t({type:"sharedStyles"}),h=s=>{const e=c.byKey(s);return e?e.filter(d=>d.cssText):[]};o("shared-element-shared-styles",a`
           .shared2 {
             background-color: #e1f3f8;
           }
