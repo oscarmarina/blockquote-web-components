@@ -2,7 +2,7 @@
 import { html, fixture, assert, fixtureCleanup } from '@open-wc/testing';
 import { from, Subject } from 'rxjs';
 import { LitElement } from 'lit';
-import { BlockquoteControllerRxjs } from '../index.js';
+import { BlockquoteControllerRxjs } from '../src/index.js';
 
 const RxjsDemo = class BlockquoteControllerRxjsDemo extends LitElement {
   static get properties() {

@@ -91,10 +91,10 @@ class BlockquoteControllerRxjsDemo extends LitElement {
 | ---- | -------------------------- | ------------------------ | ------------------------------- | ------- |
 | `js` | `BlockquoteControllerRxjs` | BlockquoteControllerRxjs | src/BlockquoteControllerRxjs.js |         |
 
-### `index.js`:
+### `src/index.js`:
 
 #### Exports
 
-| Kind | Name                       | Declaration              | Module                            | Package |
-| ---- | -------------------------- | ------------------------ | --------------------------------- | ------- |
-| `js` | `BlockquoteControllerRxjs` | BlockquoteControllerRxjs | ./src/BlockquoteControllerRxjs.js |         |
+| Kind | Name                       | Declaration              | Module                        | Package |
+| ---- | -------------------------- | ------------------------ | ----------------------------- | ------- |
+| `js` | `BlockquoteControllerRxjs` | BlockquoteControllerRxjs | ./BlockquoteControllerRxjs.js |         |
