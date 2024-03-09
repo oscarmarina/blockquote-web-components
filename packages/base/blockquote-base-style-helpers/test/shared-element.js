@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import { getComponentSharedStyles, setComponentSharedStyles } from '../index.js';
+import { getComponentSharedStyles, setComponentSharedStyles } from '../src/index.js';
 
 setComponentSharedStyles(
   'shared-element-shared-styles',

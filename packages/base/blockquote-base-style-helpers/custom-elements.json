@@ -56,6 +56,45 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/index.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "setDocumentStyles",
+          "declaration": {
+            "name": "setDocumentStyles",
+            "module": "./setDocumentStyles.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "adoptDocumentStyles",
+          "declaration": {
+            "name": "adoptDocumentStyles",
+            "module": "./setDocumentStyles.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "setComponentSharedStyles",
+          "declaration": {
+            "name": "setComponentSharedStyles",
+            "module": "./setComponentSharedStyles.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "getComponentSharedStyles",
+          "declaration": {
+            "name": "getComponentSharedStyles",
+            "module": "./getComponentSharedStyles.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/setComponentSharedStyles.js",
       "declarations": [
         {
@@ -146,45 +185,6 @@
           "declaration": {
             "name": "setDocumentStyles",
             "module": "src/setDocumentStyles.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "index.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "setDocumentStyles",
-          "declaration": {
-            "name": "setDocumentStyles",
-            "module": "./src/setDocumentStyles.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "adoptDocumentStyles",
-          "declaration": {
-            "name": "adoptDocumentStyles",
-            "module": "./src/setDocumentStyles.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "setComponentSharedStyles",
-          "declaration": {
-            "name": "setComponentSharedStyles",
-            "module": "./src/setComponentSharedStyles.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "getComponentSharedStyles",
-          "declaration": {
-            "name": "getComponentSharedStyles",
-            "module": "./src/getComponentSharedStyles.js"
           }
         }
       ]

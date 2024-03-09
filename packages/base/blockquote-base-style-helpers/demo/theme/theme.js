@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { css, unsafeCSS } from 'lit';
-import { setDocumentStyles } from '../../index.js';
+import { setDocumentStyles } from '../../src/index.js';
 import { fontFace } from './theme-font-face.js';
 import { tertiary0, tertiary1, tertiary2 } from './theme-base.js';
 
