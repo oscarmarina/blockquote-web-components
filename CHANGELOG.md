@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.0.0...v2.1.0) (2024-03-09)
+
+
+### Features
+
+* **ajax-provider:** move index to src folder ([f7a0907](https://github.com/oscarmarina/blockquote-web-components/commit/f7a090726a908c58dd24794d3400f5753ba954a5))
+* **blockquote-base-embedded-webview:** move index to src folder ([9a5fed2](https://github.com/oscarmarina/blockquote-web-components/commit/9a5fed2ef910b5d3888baf89581232014ae06756))
+* **blockquote-base-meta:** move index to src folder ([fdb6668](https://github.com/oscarmarina/blockquote-web-components/commit/fdb6668d446b9c67a45a337d50cb100394f9e4f0))
+* **blockquote-base-style-helpers:** move index to src folder ([85e646c](https://github.com/oscarmarina/blockquote-web-components/commit/85e646c9ed29d61f09a0664afa440b92a77214ab))
+* **blockquote-controller-rxjs:** move index to src folder ([2480120](https://github.com/oscarmarina/blockquote-web-components/commit/248012099598020521056f36463eb669fd8f8a8e))
+* **blockquote-controller-xstate:** move index to src folder ([38ba595](https://github.com/oscarmarina/blockquote-web-components/commit/38ba5957ed11e87089d742d3560c3729fe8e83bc))
+* **blockquote-directive-svg-to-data-image:** move index to src folder ([ad3cb2b](https://github.com/oscarmarina/blockquote-web-components/commit/ad3cb2b0d937b650a49c86daafc86837a5e7fff7))
+* **blockquote-mixin-slot-content:** move index to src folder ([333c0c5](https://github.com/oscarmarina/blockquote-web-components/commit/333c0c5ad0090cba1d9f1104dc5ea7291b4e2590))
+* **blockquote-tabs:** move index to src folder ([1551306](https://github.com/oscarmarina/blockquote-web-components/commit/1551306c5f920e347f3681d8db1349c08a0d5fe0))
+
 ## [2.0.0](https://github.com/oscarmarina/blockquote-web-components/compare/v1.21.1...v2.0.0) (2024-03-08)
 
 
