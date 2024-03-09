@@ -117,49 +117,15 @@ Tabs are a set of layered sections of content, known as tab panels, that display
 | ---- | ---------------- | -------------- | --------------------- | ------- |
 | `js` | `BlockquoteTabs` | BlockquoteTabs | src/BlockquoteTabs.js |         |
 
-![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
-
-`<blockquote-tab>`
-A tab element that can be used inside a `blockquote-tabs` element.
-
-
-### `src/tab/BlockquoteTab.js`:
-
-#### class: `BlockquoteTab`, `blockquote-tab`
-
-##### Mixins
-
-| Name                         | Module | Package                                                  |
-| ---------------------------- | ------ | -------------------------------------------------------- |
-| `BlockquoteMixinSlotContent` |        | @blockquote-web-components/blockquote-mixin-slot-content |
-
-##### Fields
-
-| Name                   | Privacy | Type      | Default                                                        | Description                             | Inherited From |
-| ---------------------- | ------- | --------- | -------------------------------------------------------------- | --------------------------------------- | -------------- |
-| `selected`             | public  | `boolean` | `false`                                                        | Whether or not the tab is \`selected\`. |                |
-| `globalRootAttributes` |         | `object`  | `{      role: 'tab',      slot: 'tab',      tabindex: 0,    }` |                                         |                |
-
-##### Methods
-
-| Name                 | Privacy | Description                     | Parameters              | Return | Inherited From |
-| -------------------- | ------- | ------------------------------- | ----------------------- | ------ | -------------- |
-| `_onSlotChanges`     |         |                                 | `ev`                    |        |                |
-| `__setArrayAttibute` |         | Sets attributes on the element. | `entries: Record<*, *>` |        |                |
-
-##### Attributes
-
-| Name       | Field    | Inherited From |
-| ---------- | -------- | -------------- |
-| `selected` | selected |                |
-
-<hr/>
+### `src/index.js`:
 
 #### Exports
 
-| Kind | Name            | Declaration   | Module                   | Package |
-| ---- | --------------- | ------------- | ------------------------ | ------- |
-| `js` | `BlockquoteTab` | BlockquoteTab | src/tab/BlockquoteTab.js |         |
+| Kind | Name                 | Declaration        | Module                           | Package |
+| ---- | -------------------- | ------------------ | -------------------------------- | ------- |
+| `js` | `BlockquoteTabs`     | BlockquoteTabs     | ./BlockquoteTabs.js              |         |
+| `js` | `BlockquoteTab`      | BlockquoteTab      | ./tab/BlockquoteTab.js           |         |
+| `js` | `BlockquoteTabPanel` | BlockquoteTabPanel | ./tabpanel/BlockquoteTabPanel.js |         |
 
 ### `src/styles/blockquote-tabs-styles.css.js`:
 
@@ -214,21 +180,49 @@ A tab element that can be used inside a `blockquote-tabs` element.
 | ---- | -------------------- | ------------------ | ---------------------------------- | ------- |
 | `js` | `BlockquoteTabPanel` | BlockquoteTabPanel | src/tabpanel/BlockquoteTabPanel.js |         |
 
-### `src/tab/styles/blockquote-tab-styles.css.js`:
+![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
-#### Variables
+`<blockquote-tab>`
+A tab element that can be used inside a `blockquote-tabs` element.
 
-| Name     | Description | Type |
-| -------- | ----------- | ---- |
-| `styles` |             |      |
+
+### `src/tab/BlockquoteTab.js`:
+
+#### class: `BlockquoteTab`, `blockquote-tab`
+
+##### Mixins
+
+| Name                         | Module | Package                                                  |
+| ---------------------------- | ------ | -------------------------------------------------------- |
+| `BlockquoteMixinSlotContent` |        | @blockquote-web-components/blockquote-mixin-slot-content |
+
+##### Fields
+
+| Name                   | Privacy | Type      | Default                                                        | Description                             | Inherited From |
+| ---------------------- | ------- | --------- | -------------------------------------------------------------- | --------------------------------------- | -------------- |
+| `selected`             | public  | `boolean` | `false`                                                        | Whether or not the tab is \`selected\`. |                |
+| `globalRootAttributes` |         | `object`  | `{      role: 'tab',      slot: 'tab',      tabindex: 0,    }` |                                         |                |
+
+##### Methods
+
+| Name                 | Privacy | Description                     | Parameters              | Return | Inherited From |
+| -------------------- | ------- | ------------------------------- | ----------------------- | ------ | -------------- |
+| `_onSlotChanges`     |         |                                 | `ev`                    |        |                |
+| `__setArrayAttibute` |         | Sets attributes on the element. | `entries: Record<*, *>` |        |                |
+
+##### Attributes
+
+| Name       | Field    | Inherited From |
+| ---------- | -------- | -------------- |
+| `selected` | selected |                |
 
 <hr/>
 
 #### Exports
 
-| Kind | Name     | Declaration | Module                                      | Package |
-| ---- | -------- | ----------- | ------------------------------------------- | ------- |
-| `js` | `styles` | styles      | src/tab/styles/blockquote-tab-styles.css.js |         |
+| Kind | Name            | Declaration   | Module                   | Package |
+| ---- | --------------- | ------------- | ------------------------ | ------- |
+| `js` | `BlockquoteTab` | BlockquoteTab | src/tab/BlockquoteTab.js |         |
 
 ### `src/tabpanel/styles/blockquote-tabpanel-styles.css.js`:
 
@@ -245,6 +239,22 @@ A tab element that can be used inside a `blockquote-tabs` element.
 | Kind | Name     | Declaration | Module                                                | Package |
 | ---- | -------- | ----------- | ----------------------------------------------------- | ------- |
 | `js` | `styles` | styles      | src/tabpanel/styles/blockquote-tabpanel-styles.css.js |         |
+
+### `src/tab/styles/blockquote-tab-styles.css.js`:
+
+#### Variables
+
+| Name     | Description | Type |
+| -------- | ----------- | ---- |
+| `styles` |             |      |
+
+<hr/>
+
+#### Exports
+
+| Kind | Name     | Declaration | Module                                      | Package |
+| ---- | -------- | ----------- | ------------------------------------------- | ------- |
+| `js` | `styles` | styles      | src/tab/styles/blockquote-tab-styles.css.js |         |
 
 ### `define/blockquote-tab.js`:
 
@@ -269,13 +279,3 @@ A tab element that can be used inside a `blockquote-tabs` element.
 | Kind                        | Name              | Declaration    | Module                 | Package |
 | --------------------------- | ----------------- | -------------- | ---------------------- | ------- |
 | `custom-element-definition` | `blockquote-tabs` | BlockquoteTabs | /src/BlockquoteTabs.js |         |
-
-### `index.js`:
-
-#### Exports
-
-| Kind | Name                 | Declaration        | Module                               | Package |
-| ---- | -------------------- | ------------------ | ------------------------------------ | ------- |
-| `js` | `BlockquoteTabs`     | BlockquoteTabs     | ./src/BlockquoteTabs.js              |         |
-| `js` | `BlockquoteTab`      | BlockquoteTab      | ./src/tab/BlockquoteTab.js           |         |
-| `js` | `BlockquoteTabPanel` | BlockquoteTabPanel | ./src/tabpanel/BlockquoteTabPanel.js |         |
