@@ -47,7 +47,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "index.js",
+      "path": "src/index.js",
       "declarations": [],
       "exports": [
         {
@@ -55,7 +55,7 @@
           "name": "BlockquoteControllerRxjs",
           "declaration": {
             "name": "BlockquoteControllerRxjs",
-            "module": "./src/BlockquoteControllerRxjs.js"
+            "module": "./BlockquoteControllerRxjs.js"
           }
         }
       ]
