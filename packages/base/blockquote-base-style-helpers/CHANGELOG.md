@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-style-helpers@1.2.0...@blockquote-web-components/blockquote-base-style-helpers@1.3.0) (2024-03-09)
+
+### Features
+
+- **blockquote-base-style-helpers:** move index to src folder ([85e646c](https://github.com/oscarmarina/blockquote-web-components/commit/85e646c9ed29d61f09a0664afa440b92a77214ab))
+
 # [1.2.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-style-helpers@1.1.10...@blockquote-web-components/blockquote-base-style-helpers@1.2.0) (2024-03-08)
 
 ### Features

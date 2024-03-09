@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-mixin-slot-content@1.4.0...@blockquote-web-components/blockquote-mixin-slot-content@1.5.0) (2024-03-09)
+
+### Features
+
+- **blockquote-mixin-slot-content:** move index to src folder ([333c0c5](https://github.com/oscarmarina/blockquote-web-components/commit/333c0c5ad0090cba1d9f1104dc5ea7291b4e2590))
+
 # [1.4.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-mixin-slot-content@1.3.8...@blockquote-web-components/blockquote-mixin-slot-content@1.4.0) (2024-03-08)
 
 ### Features

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-rxjs@1.2.0...@blockquote-web-components/blockquote-controller-rxjs@1.3.0) (2024-03-09)
+
+### Features
+
+- **blockquote-controller-rxjs:** move index to src folder ([2480120](https://github.com/oscarmarina/blockquote-web-components/commit/248012099598020521056f36463eb669fd8f8a8e))
+
 # [1.2.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-rxjs@1.1.8...@blockquote-web-components/blockquote-controller-rxjs@1.2.0) (2024-03-08)
 
 ### Features

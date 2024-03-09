@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/ajax-provider@1.2.0...@blockquote-web-components/ajax-provider@1.3.0) (2024-03-09)
+
+### Features
+
+- **ajax-provider:** move index to src folder ([f7a0907](https://github.com/oscarmarina/blockquote-web-components/commit/f7a090726a908c58dd24794d3400f5753ba954a5))
+
 # [1.2.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/ajax-provider@1.1.5...@blockquote-web-components/ajax-provider@1.2.0) (2024-03-08)
 
 ### Features

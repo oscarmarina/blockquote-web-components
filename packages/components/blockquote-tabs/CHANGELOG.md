@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-tabs@1.2.0...@blockquote-web-components/blockquote-tabs@1.3.0) (2024-03-09)
+
+### Features
+
+- **blockquote-tabs:** move index to src folder ([1551306](https://github.com/oscarmarina/blockquote-web-components/commit/1551306c5f920e347f3681d8db1349c08a0d5fe0))
+
 # [1.2.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-tabs@1.1.8...@blockquote-web-components/blockquote-tabs@1.2.0) (2024-03-08)
 
 ### Features

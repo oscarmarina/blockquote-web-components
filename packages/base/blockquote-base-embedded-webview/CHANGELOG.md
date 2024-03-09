@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.9.0...@blockquote-web-components/blockquote-base-embedded-webview@1.10.0) (2024-03-09)
+
+### Features
+
+- **blockquote-base-embedded-webview:** move index to src folder ([9a5fed2](https://github.com/oscarmarina/blockquote-web-components/commit/9a5fed2ef910b5d3888baf89581232014ae06756))
+
 # [1.9.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.8.0...@blockquote-web-components/blockquote-base-embedded-webview@1.9.0) (2024-03-08)
 
 ### Features
