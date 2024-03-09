@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { assert, aTimeout } from '@open-wc/testing';
 import sinon from 'sinon';
-import { AjaxProvider } from '../index.js';
+import { AjaxProvider } from '../src/index.js';
 
 suite('AjaxProvider', () => {
   const responseHeaders = {

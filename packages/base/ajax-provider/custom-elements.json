@@ -664,6 +664,29 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/index.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "AjaxProvider",
+          "declaration": {
+            "name": "AjaxProvider",
+            "module": "./AjaxProvider.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "AjaxProviderMixin",
+          "declaration": {
+            "name": "AjaxProviderMixin",
+            "module": "./AjaxProviderMixin.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/utils.js",
       "declarations": [
         {
@@ -765,29 +788,6 @@
           "declaration": {
             "name": "assignIfDefined",
             "module": "src/utils.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "index.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "AjaxProvider",
-          "declaration": {
-            "name": "AjaxProvider",
-            "module": "./src/AjaxProvider.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "AjaxProviderMixin",
-          "declaration": {
-            "name": "AjaxProviderMixin",
-            "module": "./src/AjaxProviderMixin.js"
           }
         }
       ]

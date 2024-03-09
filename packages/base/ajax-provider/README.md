@@ -324,6 +324,15 @@ Mixin for providing AJAX functionality using RxJS. This mixin can be used to enh
 | ---- | ------------------- | ----------------- | ------------------------ | ------- |
 | `js` | `AjaxProviderMixin` | AjaxProviderMixin | src/AjaxProviderMixin.js |         |
 
+### `src/index.js`:
+
+#### Exports
+
+| Kind | Name                | Declaration       | Module                 | Package |
+| ---- | ------------------- | ----------------- | ---------------------- | ------- |
+| `js` | `AjaxProvider`      | AjaxProvider      | ./AjaxProvider.js      |         |
+| `js` | `AjaxProviderMixin` | AjaxProviderMixin | ./AjaxProviderMixin.js |         |
+
 ### `src/utils.js`:
 
 #### Variables
@@ -352,12 +361,3 @@ Mixin for providing AJAX functionality using RxJS. This mixin can be used to enh
 | `js` | `isStandardBrowserWebWorkerEnv` | isStandardBrowserWebWorkerEnv | src/utils.js |         |
 | `js` | `isFormData`                    | isFormData                    | src/utils.js |         |
 | `js` | `assignIfDefined`               | assignIfDefined               | src/utils.js |         |
-
-### `index.js`:
-
-#### Exports
-
-| Kind | Name                | Declaration       | Module                     | Package |
-| ---- | ------------------- | ----------------- | -------------------------- | ------- |
-| `js` | `AjaxProvider`      | AjaxProvider      | ./src/AjaxProvider.js      |         |
-| `js` | `AjaxProviderMixin` | AjaxProviderMixin | ./src/AjaxProviderMixin.js |         |
