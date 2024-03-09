@@ -685,6 +685,45 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/index.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "BlockquoteBaseEmbeddedWebview",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebview",
+            "module": "./BlockquoteBaseEmbeddedWebview.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "BlockquoteBaseEmbeddedWebviewSize",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebviewSize",
+            "module": "./BlockquoteBaseEmbeddedWebviewSize.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "BlockquoteBaseEmbeddedWebviewResize",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebviewResize",
+            "module": "./BlockquoteBaseEmbeddedWebviewResize.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "BlockquoteBaseEmbeddedWebviewElement",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebviewElement",
+            "module": "./BlockquoteBaseEmbeddedWebviewElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/styles/blockquote-base-embedded-webview-element-styles.css.js",
       "declarations": [
         {
@@ -823,45 +862,6 @@
           "declaration": {
             "name": "BlockquoteBaseEmbeddedWebview",
             "module": "/src/BlockquoteBaseEmbeddedWebview.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "index.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "BlockquoteBaseEmbeddedWebview",
-          "declaration": {
-            "name": "BlockquoteBaseEmbeddedWebview",
-            "module": "./src/BlockquoteBaseEmbeddedWebview.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "BlockquoteBaseEmbeddedWebviewSize",
-          "declaration": {
-            "name": "BlockquoteBaseEmbeddedWebviewSize",
-            "module": "./src/BlockquoteBaseEmbeddedWebviewSize.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "BlockquoteBaseEmbeddedWebviewResize",
-          "declaration": {
-            "name": "BlockquoteBaseEmbeddedWebviewResize",
-            "module": "./src/BlockquoteBaseEmbeddedWebviewResize.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "BlockquoteBaseEmbeddedWebviewElement",
-          "declaration": {
-            "name": "BlockquoteBaseEmbeddedWebviewElement",
-            "module": "./src/BlockquoteBaseEmbeddedWebviewElement.js"
           }
         }
       ]
