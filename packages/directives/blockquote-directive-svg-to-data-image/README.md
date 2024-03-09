@@ -94,10 +94,10 @@ render() {
 | `js` | `README`                            | README                            | src/BlockquoteDirectiveSvgToDataImage.js |         |
 | `js` | `blockquoteDirectiveSvgToDataImage` | blockquoteDirectiveSvgToDataImage | src/BlockquoteDirectiveSvgToDataImage.js |         |
 
-### `index.js`:
+### `src/index.js`:
 
 #### Exports
 
-| Kind | Name                                | Declaration                       | Module                                     | Package |
-| ---- | ----------------------------------- | --------------------------------- | ------------------------------------------ | ------- |
-| `js` | `blockquoteDirectiveSvgToDataImage` | blockquoteDirectiveSvgToDataImage | ./src/BlockquoteDirectiveSvgToDataImage.js |         |
+| Kind | Name                                | Declaration                       | Module                                 | Package |
+| ---- | ----------------------------------- | --------------------------------- | -------------------------------------- | ------- |
+| `js` | `blockquoteDirectiveSvgToDataImage` | blockquoteDirectiveSvgToDataImage | ./BlockquoteDirectiveSvgToDataImage.js |         |

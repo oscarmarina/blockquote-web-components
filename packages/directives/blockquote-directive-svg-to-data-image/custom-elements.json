@@ -41,7 +41,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "index.js",
+      "path": "src/index.js",
       "declarations": [],
       "exports": [
         {
@@ -49,7 +49,7 @@
           "name": "blockquoteDirectiveSvgToDataImage",
           "declaration": {
             "name": "blockquoteDirectiveSvgToDataImage",
-            "module": "./src/BlockquoteDirectiveSvgToDataImage.js"
+            "module": "./BlockquoteDirectiveSvgToDataImage.js"
           }
         }
       ]
