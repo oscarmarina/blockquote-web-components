@@ -184,6 +184,17 @@ export default css`
 | `js` | `README`                   | README                   | src/getComponentSharedStyles.js |         |
 | `js` | `getComponentSharedStyles` | getComponentSharedStyles | src/getComponentSharedStyles.js |         |
 
+### `src/index.js`:
+
+#### Exports
+
+| Kind | Name                       | Declaration              | Module                        | Package |
+| ---- | -------------------------- | ------------------------ | ----------------------------- | ------- |
+| `js` | `setDocumentStyles`        | setDocumentStyles        | ./setDocumentStyles.js        |         |
+| `js` | `adoptDocumentStyles`      | adoptDocumentStyles      | ./setDocumentStyles.js        |         |
+| `js` | `setComponentSharedStyles` | setComponentSharedStyles | ./setComponentSharedStyles.js |         |
+| `js` | `getComponentSharedStyles` | getComponentSharedStyles | ./getComponentSharedStyles.js |         |
+
 ### `src/setComponentSharedStyles.js`:
 
 #### Functions
@@ -217,14 +228,3 @@ export default css`
 | ---- | --------------------- | ------------------- | ------------------------ | ------- |
 | `js` | `adoptDocumentStyles` | adoptDocumentStyles | src/setDocumentStyles.js |         |
 | `js` | `setDocumentStyles`   | setDocumentStyles   | src/setDocumentStyles.js |         |
-
-### `index.js`:
-
-#### Exports
-
-| Kind | Name                       | Declaration              | Module                            | Package |
-| ---- | -------------------------- | ------------------------ | --------------------------------- | ------- |
-| `js` | `setDocumentStyles`        | setDocumentStyles        | ./src/setDocumentStyles.js        |         |
-| `js` | `adoptDocumentStyles`      | adoptDocumentStyles      | ./src/setDocumentStyles.js        |         |
-| `js` | `setComponentSharedStyles` | setComponentSharedStyles | ./src/setComponentSharedStyles.js |         |
-| `js` | `getComponentSharedStyles` | getComponentSharedStyles | ./src/getComponentSharedStyles.js |         |
