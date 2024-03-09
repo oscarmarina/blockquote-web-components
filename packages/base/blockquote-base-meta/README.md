@@ -119,10 +119,10 @@ console.log(myDefault.mapList); // Map(1) { { id: 'dsfaskj0' } => 'foo/bar' }
 | ---- | -------------------- | ------------------ | ------------------------- | ------- |
 | `js` | `BlockquoteBaseMeta` | BlockquoteBaseMeta | src/BlockquoteBaseMeta.js |         |
 
-### `index.js`:
+### `src/index.js`:
 
 #### Exports
 
-| Kind | Name                 | Declaration        | Module                      | Package |
-| ---- | -------------------- | ------------------ | --------------------------- | ------- |
-| `js` | `BlockquoteBaseMeta` | BlockquoteBaseMeta | ./src/BlockquoteBaseMeta.js |         |
+| Kind | Name                 | Declaration        | Module                  | Package |
+| ---- | -------------------- | ------------------ | ----------------------- | ------- |
+| `js` | `BlockquoteBaseMeta` | BlockquoteBaseMeta | ./BlockquoteBaseMeta.js |         |

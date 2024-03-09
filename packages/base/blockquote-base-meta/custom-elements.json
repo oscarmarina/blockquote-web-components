@@ -120,7 +120,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "index.js",
+      "path": "src/index.js",
       "declarations": [],
       "exports": [
         {
@@ -128,7 +128,7 @@
           "name": "BlockquoteBaseMeta",
           "declaration": {
             "name": "BlockquoteBaseMeta",
-            "module": "./src/BlockquoteBaseMeta.js"
+            "module": "./BlockquoteBaseMeta.js"
           }
         }
       ]

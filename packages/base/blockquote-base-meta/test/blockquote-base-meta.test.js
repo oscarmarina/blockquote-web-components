@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { assert, fixtureCleanup } from '@open-wc/testing';
-import { BlockquoteBaseMeta } from '../index.js';
+import { BlockquoteBaseMeta } from '../src/index.js';
 
 suite('BlockquoteBaseMeta', () => {
   teardown(() => fixtureCleanup());
