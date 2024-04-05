@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.1.0...v2.2.0) (2024-04-05)
+
+
+### Features
+
+* **blockquote-controller-context-meta:** new element ([b4c332c](https://github.com/oscarmarina/blockquote-web-components/commit/b4c332c26c1be355c75d37dd6e2e9eac0e74ecc9))
+
 ## [2.1.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.0.0...v2.1.0) (2024-03-09)
 
 
