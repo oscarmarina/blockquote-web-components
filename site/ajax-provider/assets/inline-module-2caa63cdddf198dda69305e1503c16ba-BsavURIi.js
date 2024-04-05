@@ -1,4 +1,4 @@
-var l=Object.defineProperty;var c=(a,e,t)=>e in a?l(a,e,{enumerable:!0,configurable:!0,writable:!0,value:t}):a[e]=t;var i=(a,e,t)=>(c(a,typeof e!="symbol"?e+"":e,t),t);import{s as h,i as x,x as g}from"./lit-element-58y1EBFb.js";import{A as b}from"./AjaxProvider-SfJeoDf4.js";class p extends h{firstUpdated(){this.json=this.renderRoot.getElementById("json")}render(){return g`
+var l=Object.defineProperty;var c=(a,e,t)=>e in a?l(a,e,{enumerable:!0,configurable:!0,writable:!0,value:t}):a[e]=t;var i=(a,e,t)=>(c(a,typeof e!="symbol"?e+"":e,t),t);import{s as h,i as x,x as g}from"./lit-element-Q6drvwcE.js";import{A as b}from"./AjaxProvider-CSMTiKx7.js";class p extends h{firstUpdated(){this.json=this.renderRoot.getElementById("json")}render(){return g`
             <label for="selectOption">Testing different HTTP verbs</label>
             <div class="select-dropdown">
               <select id="selectOption" @change=${this._onHandleChange}>
