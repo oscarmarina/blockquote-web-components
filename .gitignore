@@ -9,6 +9,7 @@
 ## npm/yarn
 node_modules
 npm-debug.log
+.npmrc
 *-debug.log
 yarn-error.log
 
@@ -30,4 +31,7 @@ build
 *.tgz
 *.tsbuildinfo
 storybook-static
+.nx/
 .nx/cache
+.nx/workspace-data
+

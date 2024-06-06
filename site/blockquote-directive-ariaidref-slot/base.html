@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="en"><head>
+    <title>Demo - blockquote-directive-ariaidref-slot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="description" content="blockquote-directive-ariaidref-slot">
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 class="sr-only">blockquote-directive-ariaidref-slot</h1>
+      <button id="open-dialog">Open dialog</button>
+
+      <wrapper-dialog>
+        <form method="dialog">
+          <div><button aria-label="close">X</button></div>
+          <h2>Registration</h2>
+          <p>
+            <label>Name:
+              <input type="text" name="name" required="">
+            </label>
+          </p>
+
+          <p>
+            <button value="cancel" type="reset">Cancel</button>
+            <button>Submit</button>
+          </p>
+        </form>
+        <span slot="idref">All fields are required</span>
+      </wrapper-dialog>
+    </main>
+    
+  
+
+<script type="module" src="./assets/inline-module-64bdbed42597b56dc58d39d9e8dea348-D-Od5hv8.js"></script></body></html>
