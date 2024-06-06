@@ -1,0 +1,167 @@
+{
+  "name": "@blockquote-web-components/blockquote-dialog",
+  "version": "1.0.0-rc.1",
+  "description": "Webcomponent blockquote-dialog following open-wc recommendations",
+  "keywords": [
+    "lit",
+    "web-component",
+    "lit-element"
+  ],
+  "license": "MIT",
+  "author": "blockquote-dialog",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.js"
+    },
+    "./package.json": {
+      "default": "./package.json"
+    },
+    "./src/BlockquoteDialog.js": {
+      "default": "./src/BlockquoteDialog.js"
+    },
+    "./define/blockquote-dialog.js": {
+      "default": "./define/blockquote-dialog.js"
+    },
+    "./index.js": {
+      "default": "./src/index.js"
+    },
+    "./src/styles/blockquote-dialog-styles.css.js": {
+      "default": "./src/styles/blockquote-dialog-styles.css.js"
+    }
+  },
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "files": [
+    "/define/",
+    "/src/",
+    "index.js",
+    "!/**/*.scss"
+  ],
+  "scripts": {
+    "analyze": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
+    "build": "echo \"This is not a TypeScript project, so no need to build.\"",
+    "dev:vite": "vite build",
+    "format": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
+    "format:eslint": "eslint \"**/*.{js,ts,html}\" --fix --ignore-path .eslintignore",
+    "format:prettier": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .eslintignore",
+    "format:stylelint": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .eslintignore",
+    "postinstall": "npm run sort:package",
+    "lint": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
+    "lint:eslint": "eslint \"**/*.{js,ts,html}\" --ignore-path .eslintignore",
+    "lint:prettier": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .eslintignore",
+    "lint:stylelint": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .eslintignore",
+    "prepare": "husky",
+    "preview:vite": "vite preview",
+    "sass:watch": "sass-style-template",
+    "sort:package": "npx sort-package-json",
+    "start": "concurrently -k -r \"npm:sass:watch\" \"npm:vite\"",
+    "test": "wtr",
+    "test:watch": "wtr --watch",
+    "vite": "vite"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,html}": [
+      "npm run format:eslint"
+    ],
+    "**/*.{js,ts,json,html}": [
+      "npm run format:prettier"
+    ],
+    "**/*.{scss,css}": [
+      "npm run format:stylelint"
+    ]
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "overrides": [
+      {
+        "files": "*.{scss,css}",
+        "options": {
+          "printWidth": 280,
+          "singleQuote": false
+        }
+      }
+    ]
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": "latest"
+    },
+    "extends": [
+      "@open-wc",
+      "prettier"
+    ],
+    "rules": {
+      "class-methods-use-this": "off",
+      "indent": [
+        "error",
+        2,
+        {
+          "SwitchCase": 1,
+          "ignoredNodes": [
+            "PropertyDefinition",
+            "TemplateLiteral > CallExpression"
+          ]
+        }
+      ],
+      "no-unused-expressions": [
+        "error",
+        {
+          "allowShortCircuit": true,
+          "allowTernary": true
+        }
+      ],
+      "object-curly-newline": "off",
+      "import/extensions": [
+        "error",
+        "always",
+        {
+          "ignorePackages": true
+        }
+      ],
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": [
+            "**/test/**/*.{js,ts}",
+            "**/*.config.{js,ts,mjs,cjs}",
+            "**/*.conf.{js,ts,mjs,cjs}"
+          ]
+        }
+      ],
+      "import/no-unresolved": "off",
+      "import/prefer-default-export": "off",
+      "lit-a11y/click-events-have-key-events": "off",
+      "lit/no-classfield-shadowing": "off",
+      "lit/no-native-attributes": "off"
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard-scss",
+    "rules": {
+      "custom-property-pattern": null,
+      "no-duplicate-selectors": null,
+      "color-function-notation": null,
+      "alpha-value-notation": null
+    }
+  },
+  "dependencies": {
+    "@blockquote-web-components/blockquote-directive-ariaidref-slot": "^1.0.0",
+    "@blockquote-web-components/blockquote-mixin-slot-content": "^1.5.0",
+    "@material/web": "^1.4.1",
+    "lit": "^3.1.3"
+  },
+  "devDependencies": {
+    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.8.0",
+    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.10.0",
+    "@blockquote-web-components/blockquote-foundations-sass": "^1.1.2",
+    "sinon": "^18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "customElements": "custom-elements.json"
+}
