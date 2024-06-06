@@ -1,0 +1,3134 @@
+{
+  "nodes": {
+    "@blockquote-web-components/blockquote-directive-svg-to-data-image": {
+      "name": "@blockquote-web-components/blockquote-directive-svg-to-data-image",
+      "type": "lib",
+      "data": {
+        "root": "packages/directives/blockquote-directive-svg-to-data-image",
+        "targets": {
+          "analyze": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
+              "runCommand": "npm run analyze"
+            },
+            "cache": true,
+            "options": {
+              "script": "analyze"
+            },
+            "configurations": {}
+          },
+          "lint:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --ignore-path .eslintignore",
+              "runCommand": "npm run lint:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:eslint"
+            },
+            "configurations": {}
+          },
+          "lint:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .eslintignore",
+              "runCommand": "npm run lint:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:prettier"
+            },
+            "configurations": {}
+          },
+          "lint:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run lint:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:stylelint"
+            },
+            "configurations": {}
+          },
+          "format:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --fix --ignore-path .eslintignore",
+              "runCommand": "npm run format:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:eslint"
+            },
+            "configurations": {}
+          },
+          "format:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .eslintignore",
+              "runCommand": "npm run format:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:prettier"
+            },
+            "configurations": {}
+          },
+          "format:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run format:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:stylelint"
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "wtr --coverage",
+              "runCommand": "npm run test"
+            },
+            "cache": true,
+            "options": {
+              "script": "test"
+            },
+            "configurations": {}
+          },
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build"
+            },
+            "metadata": {
+              "scriptContent": "echo \"This is not a TypeScript project, so no need to build.\"",
+              "runCommand": "npm run build"
+            },
+            "configurations": {}
+          },
+          "dev:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "dev:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite build",
+              "runCommand": "npm run dev:vite"
+            },
+            "configurations": {}
+          },
+          "format": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "format"
+            },
+            "metadata": {
+              "scriptContent": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
+              "runCommand": "npm run format"
+            },
+            "configurations": {}
+          },
+          "postinstall": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "postinstall"
+            },
+            "metadata": {
+              "scriptContent": "npm run sort:package",
+              "runCommand": "npm run postinstall"
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "lint"
+            },
+            "metadata": {
+              "scriptContent": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
+              "runCommand": "npm run lint"
+            },
+            "configurations": {}
+          },
+          "preview:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "preview:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite preview",
+              "runCommand": "npm run preview:vite"
+            },
+            "configurations": {}
+          },
+          "sass:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sass:watch"
+            },
+            "metadata": {
+              "scriptContent": "sass-style-template",
+              "runCommand": "npm run sass:watch"
+            },
+            "configurations": {}
+          },
+          "sort:package": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sort:package"
+            },
+            "metadata": {
+              "scriptContent": "npx sort-package-json",
+              "runCommand": "npm run sort:package"
+            },
+            "configurations": {}
+          },
+          "start": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "start"
+            },
+            "metadata": {
+              "scriptContent": "concurrently -k -r \"npm:sass:watch\" \"npm:vite\"",
+              "runCommand": "npm run start"
+            },
+            "configurations": {}
+          },
+          "test:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "test:watch"
+            },
+            "metadata": {
+              "scriptContent": "wtr --watch",
+              "runCommand": "npm run test:watch"
+            },
+            "configurations": {}
+          },
+          "vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "vite"
+            },
+            "metadata": {
+              "scriptContent": "vite",
+              "runCommand": "npm run vite"
+            },
+            "configurations": {}
+          },
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          }
+        },
+        "sourceRoot": "packages/directives/blockquote-directive-svg-to-data-image",
+        "name": "@blockquote-web-components/blockquote-directive-svg-to-data-image",
+        "projectType": "library",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "analyze",
+              "build",
+              "dev:vite",
+              "format",
+              "format:eslint",
+              "format:prettier",
+              "format:stylelint",
+              "postinstall",
+              "lint",
+              "lint:eslint",
+              "lint:prettier",
+              "lint:stylelint",
+              "preview:vite",
+              "sass:watch",
+              "sort:package",
+              "start",
+              "test",
+              "test:watch",
+              "vite"
+            ]
+          }
+        },
+        "implicitDependencies": [],
+        "tags": []
+      }
+    },
+    "@blo/blockquote-directive-ariaidref-slot": {
+      "name": "@blo/blockquote-directive-ariaidref-slot",
+      "type": "lib",
+      "data": {
+        "root": "packages/directives/blockquote-directive-ariaidref-slot",
+        "targets": {
+          "analyze": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
+              "runCommand": "npm run analyze"
+            },
+            "cache": true,
+            "options": {
+              "script": "analyze"
+            },
+            "configurations": {}
+          },
+          "lint:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --ignore-path .eslintignore",
+              "runCommand": "npm run lint:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:eslint"
+            },
+            "configurations": {}
+          },
+          "lint:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .eslintignore",
+              "runCommand": "npm run lint:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:prettier"
+            },
+            "configurations": {}
+          },
+          "lint:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run lint:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:stylelint"
+            },
+            "configurations": {}
+          },
+          "format:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --fix --ignore-path .eslintignore",
+              "runCommand": "npm run format:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:eslint"
+            },
+            "configurations": {}
+          },
+          "format:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .eslintignore",
+              "runCommand": "npm run format:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:prettier"
+            },
+            "configurations": {}
+          },
+          "format:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run format:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:stylelint"
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "wtr",
+              "runCommand": "npm run test"
+            },
+            "cache": true,
+            "options": {
+              "script": "test"
+            },
+            "configurations": {}
+          },
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build"
+            },
+            "metadata": {
+              "scriptContent": "echo \"This is not a TypeScript project, so no need to build.\"",
+              "runCommand": "npm run build"
+            },
+            "configurations": {}
+          },
+          "dev:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "dev:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite build",
+              "runCommand": "npm run dev:vite"
+            },
+            "configurations": {}
+          },
+          "format": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "format"
+            },
+            "metadata": {
+              "scriptContent": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
+              "runCommand": "npm run format"
+            },
+            "configurations": {}
+          },
+          "postinstall": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "postinstall"
+            },
+            "metadata": {
+              "scriptContent": "npm run sort:package",
+              "runCommand": "npm run postinstall"
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "lint"
+            },
+            "metadata": {
+              "scriptContent": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
+              "runCommand": "npm run lint"
+            },
+            "configurations": {}
+          },
+          "prepare": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "prepare"
+            },
+            "metadata": {
+              "scriptContent": "husky",
+              "runCommand": "npm run prepare"
+            },
+            "configurations": {}
+          },
+          "preview:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "preview:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite preview",
+              "runCommand": "npm run preview:vite"
+            },
+            "configurations": {}
+          },
+          "sass:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sass:watch"
+            },
+            "metadata": {
+              "scriptContent": "sass-style-template",
+              "runCommand": "npm run sass:watch"
+            },
+            "configurations": {}
+          },
+          "sort:package": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sort:package"
+            },
+            "metadata": {
+              "scriptContent": "npx sort-package-json",
+              "runCommand": "npm run sort:package"
+            },
+            "configurations": {}
+          },
+          "start": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "start"
+            },
+            "metadata": {
+              "scriptContent": "concurrently -k -r \"npm:sass:watch\" \"npm:vite\"",
+              "runCommand": "npm run start"
+            },
+            "configurations": {}
+          },
+          "test:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "test:watch"
+            },
+            "metadata": {
+              "scriptContent": "wtr --watch",
+              "runCommand": "npm run test:watch"
+            },
+            "configurations": {}
+          },
+          "vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "vite"
+            },
+            "metadata": {
+              "scriptContent": "vite",
+              "runCommand": "npm run vite"
+            },
+            "configurations": {}
+          },
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          }
+        },
+        "sourceRoot": "packages/directives/blockquote-directive-ariaidref-slot",
+        "name": "@blo/blockquote-directive-ariaidref-slot",
+        "projectType": "library",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "analyze",
+              "build",
+              "dev:vite",
+              "format",
+              "format:eslint",
+              "format:prettier",
+              "format:stylelint",
+              "postinstall",
+              "lint",
+              "lint:eslint",
+              "lint:prettier",
+              "lint:stylelint",
+              "prepare",
+              "preview:vite",
+              "sass:watch",
+              "sort:package",
+              "start",
+              "test",
+              "test:watch",
+              "vite"
+            ]
+          }
+        },
+        "implicitDependencies": [],
+        "tags": []
+      }
+    },
+    "@blockquote-web-components/blockquote-controller-context-meta": {
+      "name": "@blockquote-web-components/blockquote-controller-context-meta",
+      "type": "lib",
+      "data": {
+        "root": "packages/controllers/blockquote-controller-context-meta",
+        "targets": {
+          "analyze": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
+              "runCommand": "npm run analyze"
+            },
+            "cache": true,
+            "options": {
+              "script": "analyze"
+            },
+            "configurations": {}
+          },
+          "lint:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --ignore-path .eslintignore",
+              "runCommand": "npm run lint:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:eslint"
+            },
+            "configurations": {}
+          },
+          "lint:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .eslintignore",
+              "runCommand": "npm run lint:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:prettier"
+            },
+            "configurations": {}
+          },
+          "lint:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run lint:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:stylelint"
+            },
+            "configurations": {}
+          },
+          "format:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --fix --ignore-path .eslintignore",
+              "runCommand": "npm run format:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:eslint"
+            },
+            "configurations": {}
+          },
+          "format:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .eslintignore",
+              "runCommand": "npm run format:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:prettier"
+            },
+            "configurations": {}
+          },
+          "format:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run format:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:stylelint"
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "wtr",
+              "runCommand": "npm run test"
+            },
+            "cache": true,
+            "options": {
+              "script": "test"
+            },
+            "configurations": {}
+          },
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build"
+            },
+            "metadata": {
+              "scriptContent": "echo \"This is not a TypeScript project, so no need to build.\"",
+              "runCommand": "npm run build"
+            },
+            "configurations": {}
+          },
+          "dev:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "dev:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite build",
+              "runCommand": "npm run dev:vite"
+            },
+            "configurations": {}
+          },
+          "format": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "format"
+            },
+            "metadata": {
+              "scriptContent": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
+              "runCommand": "npm run format"
+            },
+            "configurations": {}
+          },
+          "postinstall": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "postinstall"
+            },
+            "metadata": {
+              "scriptContent": "npm run sort:package",
+              "runCommand": "npm run postinstall"
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "lint"
+            },
+            "metadata": {
+              "scriptContent": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
+              "runCommand": "npm run lint"
+            },
+            "configurations": {}
+          },
+          "prepare": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "prepare"
+            },
+            "metadata": {
+              "scriptContent": "husky",
+              "runCommand": "npm run prepare"
+            },
+            "configurations": {}
+          },
+          "preview:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "preview:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite preview",
+              "runCommand": "npm run preview:vite"
+            },
+            "configurations": {}
+          },
+          "sass:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sass:watch"
+            },
+            "metadata": {
+              "scriptContent": "sass-style-template",
+              "runCommand": "npm run sass:watch"
+            },
+            "configurations": {}
+          },
+          "sort:package": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sort:package"
+            },
+            "metadata": {
+              "scriptContent": "npx sort-package-json",
+              "runCommand": "npm run sort:package"
+            },
+            "configurations": {}
+          },
+          "start": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "start"
+            },
+            "metadata": {
+              "scriptContent": "concurrently -k -r \"npm:sass:watch\" \"npm:vite\"",
+              "runCommand": "npm run start"
+            },
+            "configurations": {}
+          },
+          "test:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "test:watch"
+            },
+            "metadata": {
+              "scriptContent": "wtr --watch",
+              "runCommand": "npm run test:watch"
+            },
+            "configurations": {}
+          },
+          "vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "vite"
+            },
+            "metadata": {
+              "scriptContent": "vite",
+              "runCommand": "npm run vite"
+            },
+            "configurations": {}
+          },
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          }
+        },
+        "sourceRoot": "packages/controllers/blockquote-controller-context-meta",
+        "name": "@blockquote-web-components/blockquote-controller-context-meta",
+        "projectType": "library",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "analyze",
+              "build",
+              "dev:vite",
+              "format",
+              "format:eslint",
+              "format:prettier",
+              "format:stylelint",
+              "postinstall",
+              "lint",
+              "lint:eslint",
+              "lint:prettier",
+              "lint:stylelint",
+              "prepare",
+              "preview:vite",
+              "sass:watch",
+              "sort:package",
+              "start",
+              "test",
+              "test:watch",
+              "vite"
+            ]
+          }
+        },
+        "implicitDependencies": [],
+        "tags": []
+      }
+    },
+    "@blockquote-web-components/blockquote-base-common-dev-dependencies": {
+      "name": "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+      "type": "lib",
+      "data": {
+        "root": "packages/base/blockquote-base-common-dev-dependencies",
+        "targets": {
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          }
+        },
+        "sourceRoot": "packages/base/blockquote-base-common-dev-dependencies",
+        "name": "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+        "projectType": "library",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": []
+          }
+        },
+        "implicitDependencies": [],
+        "tags": []
+      }
+    },
+    "@blockquote-web-components/blockquote-controller-xstate": {
+      "name": "@blockquote-web-components/blockquote-controller-xstate",
+      "type": "lib",
+      "data": {
+        "root": "packages/controllers/blockquote-controller-xstate",
+        "targets": {
+          "analyze": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
+              "runCommand": "npm run analyze"
+            },
+            "cache": true,
+            "options": {
+              "script": "analyze"
+            },
+            "configurations": {}
+          },
+          "lint:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --ignore-path .eslintignore",
+              "runCommand": "npm run lint:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:eslint"
+            },
+            "configurations": {}
+          },
+          "lint:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .eslintignore",
+              "runCommand": "npm run lint:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:prettier"
+            },
+            "configurations": {}
+          },
+          "lint:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run lint:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:stylelint"
+            },
+            "configurations": {}
+          },
+          "format:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --fix --ignore-path .eslintignore",
+              "runCommand": "npm run format:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:eslint"
+            },
+            "configurations": {}
+          },
+          "format:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .eslintignore",
+              "runCommand": "npm run format:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:prettier"
+            },
+            "configurations": {}
+          },
+          "format:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run format:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:stylelint"
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "wtr --coverage",
+              "runCommand": "npm run test"
+            },
+            "cache": true,
+            "options": {
+              "script": "test"
+            },
+            "configurations": {}
+          },
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build"
+            },
+            "metadata": {
+              "scriptContent": "echo \"This is not a TypeScript project, so no need to build.\"",
+              "runCommand": "npm run build"
+            },
+            "configurations": {}
+          },
+          "dev:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "dev:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite build",
+              "runCommand": "npm run dev:vite"
+            },
+            "configurations": {}
+          },
+          "format": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "format"
+            },
+            "metadata": {
+              "scriptContent": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
+              "runCommand": "npm run format"
+            },
+            "configurations": {}
+          },
+          "postinstall": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "postinstall"
+            },
+            "metadata": {
+              "scriptContent": "npm run sort:package",
+              "runCommand": "npm run postinstall"
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "lint"
+            },
+            "metadata": {
+              "scriptContent": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
+              "runCommand": "npm run lint"
+            },
+            "configurations": {}
+          },
+          "preview:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "preview:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite preview",
+              "runCommand": "npm run preview:vite"
+            },
+            "configurations": {}
+          },
+          "sass:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sass:watch"
+            },
+            "metadata": {
+              "scriptContent": "sass-style-template",
+              "runCommand": "npm run sass:watch"
+            },
+            "configurations": {}
+          },
+          "sort:package": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sort:package"
+            },
+            "metadata": {
+              "scriptContent": "npx sort-package-json",
+              "runCommand": "npm run sort:package"
+            },
+            "configurations": {}
+          },
+          "start": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "start"
+            },
+            "metadata": {
+              "scriptContent": "concurrently -k -r \"npm:sass:watch\" \"npm:vite\"",
+              "runCommand": "npm run start"
+            },
+            "configurations": {}
+          },
+          "test:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "test:watch"
+            },
+            "metadata": {
+              "scriptContent": "wtr --watch",
+              "runCommand": "npm run test:watch"
+            },
+            "configurations": {}
+          },
+          "vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "vite"
+            },
+            "metadata": {
+              "scriptContent": "vite",
+              "runCommand": "npm run vite"
+            },
+            "configurations": {}
+          },
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          }
+        },
+        "sourceRoot": "packages/controllers/blockquote-controller-xstate",
+        "name": "@blockquote-web-components/blockquote-controller-xstate",
+        "projectType": "library",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "analyze",
+              "build",
+              "dev:vite",
+              "format",
+              "format:eslint",
+              "format:prettier",
+              "format:stylelint",
+              "postinstall",
+              "lint",
+              "lint:eslint",
+              "lint:prettier",
+              "lint:stylelint",
+              "preview:vite",
+              "sass:watch",
+              "sort:package",
+              "start",
+              "test",
+              "test:watch",
+              "vite"
+            ]
+          }
+        },
+        "implicitDependencies": [],
+        "tags": []
+      }
+    },
+    "@blockquote-web-components/blockquote-foundations-sass": {
+      "name": "@blockquote-web-components/blockquote-foundations-sass",
+      "type": "lib",
+      "data": {
+        "root": "packages/foundations/blockquote-foundations-sass",
+        "targets": {
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          }
+        },
+        "sourceRoot": "packages/foundations/blockquote-foundations-sass",
+        "name": "@blockquote-web-components/blockquote-foundations-sass",
+        "projectType": "library",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": []
+          }
+        },
+        "implicitDependencies": [],
+        "tags": []
+      }
+    },
+    "@blockquote-web-components/blockquote-controller-rxjs": {
+      "name": "@blockquote-web-components/blockquote-controller-rxjs",
+      "type": "lib",
+      "data": {
+        "root": "packages/controllers/blockquote-controller-rxjs",
+        "targets": {
+          "analyze": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
+              "runCommand": "npm run analyze"
+            },
+            "cache": true,
+            "options": {
+              "script": "analyze"
+            },
+            "configurations": {}
+          },
+          "lint:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --ignore-path .eslintignore",
+              "runCommand": "npm run lint:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:eslint"
+            },
+            "configurations": {}
+          },
+          "lint:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .eslintignore",
+              "runCommand": "npm run lint:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:prettier"
+            },
+            "configurations": {}
+          },
+          "lint:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run lint:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:stylelint"
+            },
+            "configurations": {}
+          },
+          "format:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --fix --ignore-path .eslintignore",
+              "runCommand": "npm run format:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:eslint"
+            },
+            "configurations": {}
+          },
+          "format:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .eslintignore",
+              "runCommand": "npm run format:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:prettier"
+            },
+            "configurations": {}
+          },
+          "format:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run format:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:stylelint"
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "wtr --coverage",
+              "runCommand": "npm run test"
+            },
+            "cache": true,
+            "options": {
+              "script": "test"
+            },
+            "configurations": {}
+          },
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build"
+            },
+            "metadata": {
+              "scriptContent": "echo \"This is not a TypeScript project, so no need to build.\"",
+              "runCommand": "npm run build"
+            },
+            "configurations": {}
+          },
+          "dev:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "dev:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite build",
+              "runCommand": "npm run dev:vite"
+            },
+            "configurations": {}
+          },
+          "format": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "format"
+            },
+            "metadata": {
+              "scriptContent": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
+              "runCommand": "npm run format"
+            },
+            "configurations": {}
+          },
+          "postinstall": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "postinstall"
+            },
+            "metadata": {
+              "scriptContent": "npm run sort:package",
+              "runCommand": "npm run postinstall"
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "lint"
+            },
+            "metadata": {
+              "scriptContent": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
+              "runCommand": "npm run lint"
+            },
+            "configurations": {}
+          },
+          "preview:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "preview:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite preview",
+              "runCommand": "npm run preview:vite"
+            },
+            "configurations": {}
+          },
+          "sass:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sass:watch"
+            },
+            "metadata": {
+              "scriptContent": "sass-style-template",
+              "runCommand": "npm run sass:watch"
+            },
+            "configurations": {}
+          },
+          "sort:package": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sort:package"
+            },
+            "metadata": {
+              "scriptContent": "npx sort-package-json",
+              "runCommand": "npm run sort:package"
+            },
+            "configurations": {}
+          },
+          "start": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "start"
+            },
+            "metadata": {
+              "scriptContent": "concurrently -k -r \"npm:sass:watch\" \"npm:vite\"",
+              "runCommand": "npm run start"
+            },
+            "configurations": {}
+          },
+          "test:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "test:watch"
+            },
+            "metadata": {
+              "scriptContent": "wtr --watch",
+              "runCommand": "npm run test:watch"
+            },
+            "configurations": {}
+          },
+          "vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "vite"
+            },
+            "metadata": {
+              "scriptContent": "vite",
+              "runCommand": "npm run vite"
+            },
+            "configurations": {}
+          },
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          }
+        },
+        "sourceRoot": "packages/controllers/blockquote-controller-rxjs",
+        "name": "@blockquote-web-components/blockquote-controller-rxjs",
+        "projectType": "library",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "analyze",
+              "build",
+              "dev:vite",
+              "format",
+              "format:eslint",
+              "format:prettier",
+              "format:stylelint",
+              "postinstall",
+              "lint",
+              "lint:eslint",
+              "lint:prettier",
+              "lint:stylelint",
+              "preview:vite",
+              "sass:watch",
+              "sort:package",
+              "start",
+              "test",
+              "test:watch",
+              "vite"
+            ]
+          }
+        },
+        "implicitDependencies": [],
+        "tags": []
+      }
+    },
+    "@blockquote-web-components/blockquote-base-embedded-webview": {
+      "name": "@blockquote-web-components/blockquote-base-embedded-webview",
+      "type": "lib",
+      "data": {
+        "root": "packages/base/blockquote-base-embedded-webview",
+        "targets": {
+          "analyze": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
+              "runCommand": "npm run analyze"
+            },
+            "cache": true,
+            "options": {
+              "script": "analyze"
+            },
+            "configurations": {}
+          },
+          "lint:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --ignore-path .eslintignore",
+              "runCommand": "npm run lint:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:eslint"
+            },
+            "configurations": {}
+          },
+          "lint:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .eslintignore",
+              "runCommand": "npm run lint:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:prettier"
+            },
+            "configurations": {}
+          },
+          "lint:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run lint:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:stylelint"
+            },
+            "configurations": {}
+          },
+          "format:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --fix --ignore-path .eslintignore",
+              "runCommand": "npm run format:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:eslint"
+            },
+            "configurations": {}
+          },
+          "format:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .eslintignore",
+              "runCommand": "npm run format:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:prettier"
+            },
+            "configurations": {}
+          },
+          "format:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run format:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:stylelint"
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "wtr --coverage",
+              "runCommand": "npm run test"
+            },
+            "cache": true,
+            "options": {
+              "script": "test"
+            },
+            "configurations": {}
+          },
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build"
+            },
+            "metadata": {
+              "scriptContent": "echo \"This is not a TypeScript project, so no need to build.\"",
+              "runCommand": "npm run build"
+            },
+            "configurations": {}
+          },
+          "dev:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "dev:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite build",
+              "runCommand": "npm run dev:vite"
+            },
+            "configurations": {}
+          },
+          "format": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "format"
+            },
+            "metadata": {
+              "scriptContent": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
+              "runCommand": "npm run format"
+            },
+            "configurations": {}
+          },
+          "postinstall": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "postinstall"
+            },
+            "metadata": {
+              "scriptContent": "npm run sort:package",
+              "runCommand": "npm run postinstall"
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "lint"
+            },
+            "metadata": {
+              "scriptContent": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
+              "runCommand": "npm run lint"
+            },
+            "configurations": {}
+          },
+          "preview:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "preview:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite preview",
+              "runCommand": "npm run preview:vite"
+            },
+            "configurations": {}
+          },
+          "sass:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sass:watch"
+            },
+            "metadata": {
+              "scriptContent": "sass-style-template",
+              "runCommand": "npm run sass:watch"
+            },
+            "configurations": {}
+          },
+          "sort:package": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sort:package"
+            },
+            "metadata": {
+              "scriptContent": "npx sort-package-json",
+              "runCommand": "npm run sort:package"
+            },
+            "configurations": {}
+          },
+          "start": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "start"
+            },
+            "metadata": {
+              "scriptContent": "concurrently -k -r \"npm:sass:watch\" \"npm:vite\"",
+              "runCommand": "npm run start"
+            },
+            "configurations": {}
+          },
+          "test:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "test:watch"
+            },
+            "metadata": {
+              "scriptContent": "wtr --watch",
+              "runCommand": "npm run test:watch"
+            },
+            "configurations": {}
+          },
+          "vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "vite"
+            },
+            "metadata": {
+              "scriptContent": "vite",
+              "runCommand": "npm run vite"
+            },
+            "configurations": {}
+          },
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          }
+        },
+        "sourceRoot": "packages/base/blockquote-base-embedded-webview",
+        "name": "@blockquote-web-components/blockquote-base-embedded-webview",
+        "projectType": "library",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "analyze",
+              "build",
+              "dev:vite",
+              "format",
+              "format:eslint",
+              "format:prettier",
+              "format:stylelint",
+              "postinstall",
+              "lint",
+              "lint:eslint",
+              "lint:prettier",
+              "lint:stylelint",
+              "preview:vite",
+              "sass:watch",
+              "sort:package",
+              "start",
+              "test",
+              "test:watch",
+              "vite"
+            ]
+          }
+        },
+        "implicitDependencies": [],
+        "tags": []
+      }
+    },
+    "@blockquote-web-components/blockquote-mixin-slot-content": {
+      "name": "@blockquote-web-components/blockquote-mixin-slot-content",
+      "type": "lib",
+      "data": {
+        "root": "packages/mixins/blockquote-mixin-slot-content",
+        "targets": {
+          "analyze": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
+              "runCommand": "npm run analyze"
+            },
+            "cache": true,
+            "options": {
+              "script": "analyze"
+            },
+            "configurations": {}
+          },
+          "lint:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --ignore-path .eslintignore",
+              "runCommand": "npm run lint:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:eslint"
+            },
+            "configurations": {}
+          },
+          "lint:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .eslintignore",
+              "runCommand": "npm run lint:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:prettier"
+            },
+            "configurations": {}
+          },
+          "lint:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run lint:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:stylelint"
+            },
+            "configurations": {}
+          },
+          "format:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --fix --ignore-path .eslintignore",
+              "runCommand": "npm run format:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:eslint"
+            },
+            "configurations": {}
+          },
+          "format:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .eslintignore",
+              "runCommand": "npm run format:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:prettier"
+            },
+            "configurations": {}
+          },
+          "format:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run format:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:stylelint"
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "wtr --coverage",
+              "runCommand": "npm run test"
+            },
+            "cache": true,
+            "options": {
+              "script": "test"
+            },
+            "configurations": {}
+          },
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build"
+            },
+            "metadata": {
+              "scriptContent": "echo \"This is not a TypeScript project, so no need to build.\"",
+              "runCommand": "npm run build"
+            },
+            "configurations": {}
+          },
+          "dev:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "dev:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite build",
+              "runCommand": "npm run dev:vite"
+            },
+            "configurations": {}
+          },
+          "format": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "format"
+            },
+            "metadata": {
+              "scriptContent": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
+              "runCommand": "npm run format"
+            },
+            "configurations": {}
+          },
+          "postinstall": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "postinstall"
+            },
+            "metadata": {
+              "scriptContent": "npm run sort:package",
+              "runCommand": "npm run postinstall"
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "lint"
+            },
+            "metadata": {
+              "scriptContent": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
+              "runCommand": "npm run lint"
+            },
+            "configurations": {}
+          },
+          "preview:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "preview:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite preview",
+              "runCommand": "npm run preview:vite"
+            },
+            "configurations": {}
+          },
+          "sass:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sass:watch"
+            },
+            "metadata": {
+              "scriptContent": "sass-style-template",
+              "runCommand": "npm run sass:watch"
+            },
+            "configurations": {}
+          },
+          "sort:package": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sort:package"
+            },
+            "metadata": {
+              "scriptContent": "npx sort-package-json",
+              "runCommand": "npm run sort:package"
+            },
+            "configurations": {}
+          },
+          "start": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "start"
+            },
+            "metadata": {
+              "scriptContent": "concurrently -k -r \"npm:sass:watch\" \"npm:vite\"",
+              "runCommand": "npm run start"
+            },
+            "configurations": {}
+          },
+          "test:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "test:watch"
+            },
+            "metadata": {
+              "scriptContent": "wtr --watch",
+              "runCommand": "npm run test:watch"
+            },
+            "configurations": {}
+          },
+          "vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "vite"
+            },
+            "metadata": {
+              "scriptContent": "vite",
+              "runCommand": "npm run vite"
+            },
+            "configurations": {}
+          },
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          }
+        },
+        "sourceRoot": "packages/mixins/blockquote-mixin-slot-content",
+        "name": "@blockquote-web-components/blockquote-mixin-slot-content",
+        "projectType": "library",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "analyze",
+              "build",
+              "dev:vite",
+              "format",
+              "format:eslint",
+              "format:prettier",
+              "format:stylelint",
+              "postinstall",
+              "lint",
+              "lint:eslint",
+              "lint:prettier",
+              "lint:stylelint",
+              "preview:vite",
+              "sass:watch",
+              "sort:package",
+              "start",
+              "test",
+              "test:watch",
+              "vite"
+            ]
+          }
+        },
+        "implicitDependencies": [],
+        "tags": []
+      }
+    },
+    "@blockquote-web-components/blockquote-base-style-helpers": {
+      "name": "@blockquote-web-components/blockquote-base-style-helpers",
+      "type": "lib",
+      "data": {
+        "root": "packages/base/blockquote-base-style-helpers",
+        "targets": {
+          "analyze": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
+              "runCommand": "npm run analyze"
+            },
+            "cache": true,
+            "options": {
+              "script": "analyze"
+            },
+            "configurations": {}
+          },
+          "lint:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --ignore-path .eslintignore",
+              "runCommand": "npm run lint:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:eslint"
+            },
+            "configurations": {}
+          },
+          "lint:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .eslintignore",
+              "runCommand": "npm run lint:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:prettier"
+            },
+            "configurations": {}
+          },
+          "lint:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run lint:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:stylelint"
+            },
+            "configurations": {}
+          },
+          "format:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --fix --ignore-path .eslintignore",
+              "runCommand": "npm run format:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:eslint"
+            },
+            "configurations": {}
+          },
+          "format:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .eslintignore",
+              "runCommand": "npm run format:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:prettier"
+            },
+            "configurations": {}
+          },
+          "format:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run format:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:stylelint"
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "wtr --coverage",
+              "runCommand": "npm run test"
+            },
+            "cache": true,
+            "options": {
+              "script": "test"
+            },
+            "configurations": {}
+          },
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build"
+            },
+            "metadata": {
+              "scriptContent": "echo \"This is not a TypeScript project, so no need to build.\"",
+              "runCommand": "npm run build"
+            },
+            "configurations": {}
+          },
+          "dev:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "dev:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite build",
+              "runCommand": "npm run dev:vite"
+            },
+            "configurations": {}
+          },
+          "format": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "format"
+            },
+            "metadata": {
+              "scriptContent": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
+              "runCommand": "npm run format"
+            },
+            "configurations": {}
+          },
+          "postinstall": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "postinstall"
+            },
+            "metadata": {
+              "scriptContent": "npm run sort:package",
+              "runCommand": "npm run postinstall"
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "lint"
+            },
+            "metadata": {
+              "scriptContent": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
+              "runCommand": "npm run lint"
+            },
+            "configurations": {}
+          },
+          "preview:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "preview:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite preview",
+              "runCommand": "npm run preview:vite"
+            },
+            "configurations": {}
+          },
+          "sass:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sass:watch"
+            },
+            "metadata": {
+              "scriptContent": "sass-style-template",
+              "runCommand": "npm run sass:watch"
+            },
+            "configurations": {}
+          },
+          "sort:package": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sort:package"
+            },
+            "metadata": {
+              "scriptContent": "npx sort-package-json",
+              "runCommand": "npm run sort:package"
+            },
+            "configurations": {}
+          },
+          "start": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "start"
+            },
+            "metadata": {
+              "scriptContent": "concurrently -k -r \"npm:sass:watch\" \"npm:vite\"",
+              "runCommand": "npm run start"
+            },
+            "configurations": {}
+          },
+          "test:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "test:watch"
+            },
+            "metadata": {
+              "scriptContent": "wtr --watch",
+              "runCommand": "npm run test:watch"
+            },
+            "configurations": {}
+          },
+          "vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "vite"
+            },
+            "metadata": {
+              "scriptContent": "vite",
+              "runCommand": "npm run vite"
+            },
+            "configurations": {}
+          },
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          }
+        },
+        "sourceRoot": "packages/base/blockquote-base-style-helpers",
+        "name": "@blockquote-web-components/blockquote-base-style-helpers",
+        "projectType": "library",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "analyze",
+              "build",
+              "dev:vite",
+              "format",
+              "format:eslint",
+              "format:prettier",
+              "format:stylelint",
+              "postinstall",
+              "lint",
+              "lint:eslint",
+              "lint:prettier",
+              "lint:stylelint",
+              "preview:vite",
+              "sass:watch",
+              "sort:package",
+              "start",
+              "test",
+              "test:watch",
+              "vite"
+            ]
+          }
+        },
+        "implicitDependencies": [],
+        "tags": []
+      }
+    },
+    "@blockquote-web-components/blockquote-tabs": {
+      "name": "@blockquote-web-components/blockquote-tabs",
+      "type": "lib",
+      "data": {
+        "root": "packages/components/blockquote-tabs",
+        "targets": {
+          "analyze": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
+              "runCommand": "npm run analyze"
+            },
+            "cache": true,
+            "options": {
+              "script": "analyze"
+            },
+            "configurations": {}
+          },
+          "lint:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --ignore-path .eslintignore",
+              "runCommand": "npm run lint:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:eslint"
+            },
+            "configurations": {}
+          },
+          "lint:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .eslintignore",
+              "runCommand": "npm run lint:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:prettier"
+            },
+            "configurations": {}
+          },
+          "lint:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run lint:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:stylelint"
+            },
+            "configurations": {}
+          },
+          "format:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --fix --ignore-path .eslintignore",
+              "runCommand": "npm run format:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:eslint"
+            },
+            "configurations": {}
+          },
+          "format:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .eslintignore",
+              "runCommand": "npm run format:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:prettier"
+            },
+            "configurations": {}
+          },
+          "format:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run format:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:stylelint"
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "wtr --coverage",
+              "runCommand": "npm run test"
+            },
+            "cache": true,
+            "options": {
+              "script": "test"
+            },
+            "configurations": {}
+          },
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build"
+            },
+            "metadata": {
+              "scriptContent": "echo \"This is not a TypeScript project, so no need to build.\"",
+              "runCommand": "npm run build"
+            },
+            "configurations": {}
+          },
+          "dev:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "dev:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite build",
+              "runCommand": "npm run dev:vite"
+            },
+            "configurations": {}
+          },
+          "format": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "format"
+            },
+            "metadata": {
+              "scriptContent": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
+              "runCommand": "npm run format"
+            },
+            "configurations": {}
+          },
+          "postinstall": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "postinstall"
+            },
+            "metadata": {
+              "scriptContent": "npm run sort:package",
+              "runCommand": "npm run postinstall"
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "lint"
+            },
+            "metadata": {
+              "scriptContent": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
+              "runCommand": "npm run lint"
+            },
+            "configurations": {}
+          },
+          "preview:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "preview:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite preview",
+              "runCommand": "npm run preview:vite"
+            },
+            "configurations": {}
+          },
+          "sass:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sass:watch"
+            },
+            "metadata": {
+              "scriptContent": "sass-style-template",
+              "runCommand": "npm run sass:watch"
+            },
+            "configurations": {}
+          },
+          "sort:package": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sort:package"
+            },
+            "metadata": {
+              "scriptContent": "npx sort-package-json",
+              "runCommand": "npm run sort:package"
+            },
+            "configurations": {}
+          },
+          "start": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "start"
+            },
+            "metadata": {
+              "scriptContent": "concurrently -k -r \"npm:sass:watch\" \"npm:vite\"",
+              "runCommand": "npm run start"
+            },
+            "configurations": {}
+          },
+          "test:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "test:watch"
+            },
+            "metadata": {
+              "scriptContent": "wtr --watch",
+              "runCommand": "npm run test:watch"
+            },
+            "configurations": {}
+          },
+          "vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "vite"
+            },
+            "metadata": {
+              "scriptContent": "vite",
+              "runCommand": "npm run vite"
+            },
+            "configurations": {}
+          },
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          }
+        },
+        "sourceRoot": "packages/components/blockquote-tabs",
+        "name": "@blockquote-web-components/blockquote-tabs",
+        "projectType": "library",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "analyze",
+              "build",
+              "dev:vite",
+              "format",
+              "format:eslint",
+              "format:prettier",
+              "format:stylelint",
+              "postinstall",
+              "lint",
+              "lint:eslint",
+              "lint:prettier",
+              "lint:stylelint",
+              "preview:vite",
+              "sass:watch",
+              "sort:package",
+              "start",
+              "test",
+              "test:watch",
+              "vite"
+            ]
+          }
+        },
+        "implicitDependencies": [],
+        "tags": []
+      }
+    },
+    "@blockquote-web-components/blockquote-base-meta": {
+      "name": "@blockquote-web-components/blockquote-base-meta",
+      "type": "lib",
+      "data": {
+        "root": "packages/base/blockquote-base-meta",
+        "targets": {
+          "analyze": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
+              "runCommand": "npm run analyze"
+            },
+            "cache": true,
+            "options": {
+              "script": "analyze"
+            },
+            "configurations": {}
+          },
+          "lint:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --ignore-path .eslintignore",
+              "runCommand": "npm run lint:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:eslint"
+            },
+            "configurations": {}
+          },
+          "lint:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .eslintignore",
+              "runCommand": "npm run lint:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:prettier"
+            },
+            "configurations": {}
+          },
+          "lint:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run lint:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:stylelint"
+            },
+            "configurations": {}
+          },
+          "format:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --fix --ignore-path .eslintignore",
+              "runCommand": "npm run format:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:eslint"
+            },
+            "configurations": {}
+          },
+          "format:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .eslintignore",
+              "runCommand": "npm run format:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:prettier"
+            },
+            "configurations": {}
+          },
+          "format:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run format:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:stylelint"
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "wtr --coverage",
+              "runCommand": "npm run test"
+            },
+            "cache": true,
+            "options": {
+              "script": "test"
+            },
+            "configurations": {}
+          },
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build"
+            },
+            "metadata": {
+              "scriptContent": "echo \"This is not a TypeScript project, so no need to build.\"",
+              "runCommand": "npm run build"
+            },
+            "configurations": {}
+          },
+          "dev:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "dev:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite build",
+              "runCommand": "npm run dev:vite"
+            },
+            "configurations": {}
+          },
+          "format": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "format"
+            },
+            "metadata": {
+              "scriptContent": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
+              "runCommand": "npm run format"
+            },
+            "configurations": {}
+          },
+          "postinstall": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "postinstall"
+            },
+            "metadata": {
+              "scriptContent": "npm run sort:package",
+              "runCommand": "npm run postinstall"
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "lint"
+            },
+            "metadata": {
+              "scriptContent": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
+              "runCommand": "npm run lint"
+            },
+            "configurations": {}
+          },
+          "preview:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "preview:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite preview",
+              "runCommand": "npm run preview:vite"
+            },
+            "configurations": {}
+          },
+          "sass:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sass:watch"
+            },
+            "metadata": {
+              "scriptContent": "sass-style-template",
+              "runCommand": "npm run sass:watch"
+            },
+            "configurations": {}
+          },
+          "sort:package": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sort:package"
+            },
+            "metadata": {
+              "scriptContent": "npx sort-package-json",
+              "runCommand": "npm run sort:package"
+            },
+            "configurations": {}
+          },
+          "start": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "start"
+            },
+            "metadata": {
+              "scriptContent": "concurrently -k -r \"npm:sass:watch\" \"npm:vite\"",
+              "runCommand": "npm run start"
+            },
+            "configurations": {}
+          },
+          "test:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "test:watch"
+            },
+            "metadata": {
+              "scriptContent": "wtr --watch",
+              "runCommand": "npm run test:watch"
+            },
+            "configurations": {}
+          },
+          "vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "vite"
+            },
+            "metadata": {
+              "scriptContent": "vite",
+              "runCommand": "npm run vite"
+            },
+            "configurations": {}
+          },
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          }
+        },
+        "sourceRoot": "packages/base/blockquote-base-meta",
+        "name": "@blockquote-web-components/blockquote-base-meta",
+        "projectType": "library",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "analyze",
+              "build",
+              "dev:vite",
+              "format",
+              "format:eslint",
+              "format:prettier",
+              "format:stylelint",
+              "postinstall",
+              "lint",
+              "lint:eslint",
+              "lint:prettier",
+              "lint:stylelint",
+              "preview:vite",
+              "sass:watch",
+              "sort:package",
+              "start",
+              "test",
+              "test:watch",
+              "vite"
+            ]
+          }
+        },
+        "implicitDependencies": [],
+        "tags": []
+      }
+    },
+    "@blockquote-web-components/ajax-provider": {
+      "name": "@blockquote-web-components/ajax-provider",
+      "type": "lib",
+      "data": {
+        "root": "packages/base/ajax-provider",
+        "targets": {
+          "analyze": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
+              "runCommand": "npm run analyze"
+            },
+            "cache": true,
+            "options": {
+              "script": "analyze"
+            },
+            "configurations": {}
+          },
+          "lint:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --ignore-path .eslintignore",
+              "runCommand": "npm run lint:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:eslint"
+            },
+            "configurations": {}
+          },
+          "lint:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .eslintignore",
+              "runCommand": "npm run lint:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:prettier"
+            },
+            "configurations": {}
+          },
+          "lint:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run lint:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "lint:stylelint"
+            },
+            "configurations": {}
+          },
+          "format:eslint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "eslint \"**/*.{js,ts,html}\" --fix --ignore-path .eslintignore",
+              "runCommand": "npm run format:eslint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:eslint"
+            },
+            "configurations": {}
+          },
+          "format:prettier": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .eslintignore",
+              "runCommand": "npm run format:prettier"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:prettier"
+            },
+            "configurations": {}
+          },
+          "format:stylelint": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .eslintignore",
+              "runCommand": "npm run format:stylelint"
+            },
+            "cache": true,
+            "options": {
+              "script": "format:stylelint"
+            },
+            "configurations": {}
+          },
+          "test": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "wtr --coverage",
+              "runCommand": "npm run test"
+            },
+            "cache": true,
+            "options": {
+              "script": "test"
+            },
+            "configurations": {}
+          },
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build"
+            },
+            "metadata": {
+              "scriptContent": "echo \"This is not a TypeScript project, so no need to build.\"",
+              "runCommand": "npm run build"
+            },
+            "configurations": {}
+          },
+          "dev:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "dev:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite build",
+              "runCommand": "npm run dev:vite"
+            },
+            "configurations": {}
+          },
+          "format": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "format"
+            },
+            "metadata": {
+              "scriptContent": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
+              "runCommand": "npm run format"
+            },
+            "configurations": {}
+          },
+          "postinstall": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "postinstall"
+            },
+            "metadata": {
+              "scriptContent": "npm run sort:package",
+              "runCommand": "npm run postinstall"
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "lint"
+            },
+            "metadata": {
+              "scriptContent": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
+              "runCommand": "npm run lint"
+            },
+            "configurations": {}
+          },
+          "preview:vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "preview:vite"
+            },
+            "metadata": {
+              "scriptContent": "vite preview",
+              "runCommand": "npm run preview:vite"
+            },
+            "configurations": {}
+          },
+          "sass:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sass:watch"
+            },
+            "metadata": {
+              "scriptContent": "sass-style-template",
+              "runCommand": "npm run sass:watch"
+            },
+            "configurations": {}
+          },
+          "sort:package": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "sort:package"
+            },
+            "metadata": {
+              "scriptContent": "npx sort-package-json",
+              "runCommand": "npm run sort:package"
+            },
+            "configurations": {}
+          },
+          "start": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "start"
+            },
+            "metadata": {
+              "scriptContent": "concurrently -k -r \"npm:sass:watch\" \"npm:vite\"",
+              "runCommand": "npm run start"
+            },
+            "configurations": {}
+          },
+          "test:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "test:watch"
+            },
+            "metadata": {
+              "scriptContent": "wtr --watch",
+              "runCommand": "npm run test:watch"
+            },
+            "configurations": {}
+          },
+          "vite": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "vite"
+            },
+            "metadata": {
+              "scriptContent": "vite",
+              "runCommand": "npm run vite"
+            },
+            "configurations": {}
+          },
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          }
+        },
+        "sourceRoot": "packages/base/ajax-provider",
+        "name": "@blockquote-web-components/ajax-provider",
+        "projectType": "library",
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "analyze",
+              "build",
+              "dev:vite",
+              "format",
+              "format:eslint",
+              "format:prettier",
+              "format:stylelint",
+              "postinstall",
+              "lint",
+              "lint:eslint",
+              "lint:prettier",
+              "lint:stylelint",
+              "preview:vite",
+              "sass:watch",
+              "sort:package",
+              "start",
+              "test",
+              "test:watch",
+              "vite"
+            ]
+          }
+        },
+        "implicitDependencies": [],
+        "tags": []
+      }
+    }
+  },
+  "externalNodes": {},
+  "dependencies": {
+    "@blockquote-web-components/blockquote-directive-svg-to-data-image": [
+      {
+        "source": "@blockquote-web-components/blockquote-directive-svg-to-data-image",
+        "target": "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+        "type": "static"
+      },
+      {
+        "source": "@blockquote-web-components/blockquote-directive-svg-to-data-image",
+        "target": "@blockquote-web-components/blockquote-base-embedded-webview",
+        "type": "static"
+      }
+    ],
+    "@blo/blockquote-directive-ariaidref-slot": [
+      {
+        "source": "@blo/blockquote-directive-ariaidref-slot",
+        "target": "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+        "type": "static"
+      },
+      {
+        "source": "@blo/blockquote-directive-ariaidref-slot",
+        "target": "@blockquote-web-components/blockquote-base-embedded-webview",
+        "type": "static"
+      }
+    ],
+    "@blockquote-web-components/blockquote-controller-context-meta": [
+      {
+        "source": "@blockquote-web-components/blockquote-controller-context-meta",
+        "target": "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+        "type": "static"
+      },
+      {
+        "source": "@blockquote-web-components/blockquote-controller-context-meta",
+        "target": "@blockquote-web-components/blockquote-base-embedded-webview",
+        "type": "static"
+      }
+    ],
+    "@blockquote-web-components/blockquote-base-common-dev-dependencies": [],
+    "@blockquote-web-components/blockquote-controller-xstate": [
+      {
+        "source": "@blockquote-web-components/blockquote-controller-xstate",
+        "target": "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+        "type": "static"
+      },
+      {
+        "source": "@blockquote-web-components/blockquote-controller-xstate",
+        "target": "@blockquote-web-components/blockquote-base-embedded-webview",
+        "type": "static"
+      }
+    ],
+    "@blockquote-web-components/blockquote-foundations-sass": [],
+    "@blockquote-web-components/blockquote-controller-rxjs": [
+      {
+        "source": "@blockquote-web-components/blockquote-controller-rxjs",
+        "target": "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+        "type": "static"
+      },
+      {
+        "source": "@blockquote-web-components/blockquote-controller-rxjs",
+        "target": "@blockquote-web-components/blockquote-base-embedded-webview",
+        "type": "static"
+      }
+    ],
+    "@blockquote-web-components/blockquote-base-embedded-webview": [
+      {
+        "source": "@blockquote-web-components/blockquote-base-embedded-webview",
+        "target": "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+        "type": "static"
+      },
+      {
+        "source": "@blockquote-web-components/blockquote-base-embedded-webview",
+        "target": "@blockquote-web-components/blockquote-foundations-sass",
+        "type": "static"
+      }
+    ],
+    "@blockquote-web-components/blockquote-mixin-slot-content": [
+      {
+        "source": "@blockquote-web-components/blockquote-mixin-slot-content",
+        "target": "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+        "type": "static"
+      },
+      {
+        "source": "@blockquote-web-components/blockquote-mixin-slot-content",
+        "target": "@blockquote-web-components/blockquote-base-embedded-webview",
+        "type": "static"
+      }
+    ],
+    "@blockquote-web-components/blockquote-base-style-helpers": [
+      {
+        "source": "@blockquote-web-components/blockquote-base-style-helpers",
+        "target": "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+        "type": "static"
+      },
+      {
+        "source": "@blockquote-web-components/blockquote-base-style-helpers",
+        "target": "@blockquote-web-components/blockquote-base-embedded-webview",
+        "type": "static"
+      },
+      {
+        "source": "@blockquote-web-components/blockquote-base-style-helpers",
+        "target": "@blockquote-web-components/blockquote-base-meta",
+        "type": "static"
+      }
+    ],
+    "@blockquote-web-components/blockquote-tabs": [
+      {
+        "source": "@blockquote-web-components/blockquote-tabs",
+        "target": "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+        "type": "static"
+      },
+      {
+        "source": "@blockquote-web-components/blockquote-tabs",
+        "target": "@blockquote-web-components/blockquote-base-embedded-webview",
+        "type": "static"
+      },
+      {
+        "source": "@blockquote-web-components/blockquote-tabs",
+        "target": "@blockquote-web-components/blockquote-foundations-sass",
+        "type": "static"
+      },
+      {
+        "source": "@blockquote-web-components/blockquote-tabs",
+        "target": "@blockquote-web-components/blockquote-mixin-slot-content",
+        "type": "static"
+      }
+    ],
+    "@blockquote-web-components/blockquote-base-meta": [
+      {
+        "source": "@blockquote-web-components/blockquote-base-meta",
+        "target": "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+        "type": "static"
+      },
+      {
+        "source": "@blockquote-web-components/blockquote-base-meta",
+        "target": "@blockquote-web-components/blockquote-base-embedded-webview",
+        "type": "static"
+      }
+    ],
+    "@blockquote-web-components/ajax-provider": [
+      {
+        "source": "@blockquote-web-components/ajax-provider",
+        "target": "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+        "type": "static"
+      }
+    ]
+  },
+  "version": "6.0"
+}

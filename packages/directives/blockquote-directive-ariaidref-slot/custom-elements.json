@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "src/BlockquoteDirectiveAriaidrefSlot.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "# blockquoteDirectiveAriaidrefSlot\n\n![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\nThis directive creates a slot element, hidden by default, with a specific name and id.\nThe name and id of this slot should correspond to the 'slot' attribute of an element in the Light DOM.\nIt connects the 'slot', 'name', and 'id' attributes of a slot to be used with ARIA relationships.\n\nThis slot element is used to overcome some limitations of the Shadow DOM.\n\n> [aria attribute reflection](https://web.dev/articles/aria-labels-and-relationships#relationships)\n\n### Demo\n\n[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/directives/blockquote-directive-ariaidref-slot)\n\n### Usage\n\n__Light Dom__:\n\n```html\n<wrapper-dialog>\n  <span slot=\"idref_\">Registration - All fields are required</span>\n</wrapper-dialog>\n```\n\n__Shadow Dom__:\n\n```js\nclass MyDialog extends LitElement {\n  constructor() {\n    super();\n    this.labelledby = 'idref_';\n  }\n\n  get _labeledbyTpl() {\n    return html`${this.labelledby ? blockquoteDirectiveAriaidrefSlot(this.labelledby) : ''}`;\n  }\n\n  render() {\n    return html`\n      <dialog aria-labelledby=\"${this.labelledby || nothing}\"><slot></slot></dialog>\n      // slot is hidden by default\n      ${this._labeledbyTpl} // <slot name=\"idref_\" id=\"idref_\" hidden=\"\"></slot>\n\n      // slot not hidden\n      ${this._labeledbyTpl, false} // <slot name=\"idref_\" id=\"idref_\"></slot>\n    `;\n  }\n}\n```",
+          "name": "README",
+          "superclass": {
+            "name": "Text",
+            "module": "src/BlockquoteDirectiveAriaidrefSlot.js"
+          }
+        },
+        {
+          "kind": "variable",
+          "name": "blockquoteDirectiveAriaidrefSlot"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "README",
+          "declaration": {
+            "name": "README",
+            "module": "src/BlockquoteDirectiveAriaidrefSlot.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "blockquoteDirectiveAriaidrefSlot",
+          "declaration": {
+            "name": "blockquoteDirectiveAriaidrefSlot",
+            "module": "src/BlockquoteDirectiveAriaidrefSlot.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/index.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "blockquoteDirectiveAriaidrefSlot",
+          "declaration": {
+            "name": "blockquoteDirectiveAriaidrefSlot",
+            "module": "./BlockquoteDirectiveAriaidrefSlot.js"
+          }
+        }
+      ]
+    }
+  ]
+}

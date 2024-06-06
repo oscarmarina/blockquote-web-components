@@ -1,0 +1,1584 @@
+{
+  "version": "6.0",
+  "nxVersion": "19.2.0",
+  "deps": {
+    "cheerio": "^1.0.0-rc.12",
+    "recursive-copy": "^2.0.14",
+    "@babel/core": "^7.24.0",
+    "@babel/eslint-parser": "^7.23.10",
+    "@babel/eslint-plugin": "^7.23.5",
+    "@commitlint/cli": "^19.0.3",
+    "@commitlint/config-conventional": "^19.0.3",
+    "@commitlint/config-lerna-scopes": "^19.0.0",
+    "@open-wc/eslint-config": "^12.0.3",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "eslint": "^8.57.0",
+    "husky": "^9.0.11",
+    "karma": "^6.4.3",
+    "lerna": "^8.1.2",
+    "lint-staged": "^15.2.2",
+    "postcss": "^8.4.35",
+    "prettier": "^3.2.5",
+    "eslint-plugin-prettier": "^5.1.3",
+    "rxjs": "^8.0.0-alpha.14",
+    "sort-package-json": "^2.8.0",
+    "standard-version": "^9.5.0",
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard-scss": "^13.0.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.2"
+  },
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {
+      "@blockquote-web-components/blockquote-mixin-slot-content": [
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/.editorconfig",
+          "hash": "3179631592816052163"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/.eslintignore",
+          "hash": "13430571374968959289"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/.gitignore",
+          "hash": "13140520422054870388"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/CHANGELOG.md",
+          "hash": "4782157754823831602"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/LICENSE",
+          "hash": "14335012335619270706"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/README.md",
+          "hash": "915297662018209894"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/custom-elements-manifest.config.js",
+          "hash": "17946350265587485871"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/custom-elements.json",
+          "hash": "200953347265866979"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/demo/base.html",
+          "hash": "11557111562870504265"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/demo/composition-with-slots.html",
+          "hash": "7523450039952116708"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/demo/index.html",
+          "hash": "4933423024208310490"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/demo/slots-on-the-fly.html",
+          "hash": "5283535567865786747"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/index.html",
+          "hash": "8899797879815231360"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/package.json",
+          "hash": "2226640536021492447",
+          "deps": [
+            "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+            "@blockquote-web-components/blockquote-base-embedded-webview"
+          ]
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/src/BlockquoteMixinSlotContent.d.ts",
+          "hash": "4122292298082916846"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/src/BlockquoteMixinSlotContent.js",
+          "hash": "16873573680465315483"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/src/index.js",
+          "hash": "17047003746890564488"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/src/shared.d.ts",
+          "hash": "4661910796323914050"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/test/blockquote-mixin-slot-content.test.js",
+          "hash": "13397887756039455555"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/vite.config.js",
+          "hash": "1369797224887090175"
+        },
+        {
+          "file": "packages/mixins/blockquote-mixin-slot-content/web-test-runner.config.js",
+          "hash": "10134296055709537140"
+        }
+      ],
+      "@blockquote-web-components/blockquote-directive-svg-to-data-image": [
+        {
+          "file": "packages/directives/blockquote-directive-svg-to-data-image/.editorconfig",
+          "hash": "3179631592816052163"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-svg-to-data-image/.eslintignore",
+          "hash": "7723776719947151502"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-svg-to-data-image/.gitignore",
+          "hash": "13140520422054870388"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-svg-to-data-image/CHANGELOG.md",
+          "hash": "14842141407426215569"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-svg-to-data-image/LICENSE",
+          "hash": "14469862276328082891"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-svg-to-data-image/README.md",
+          "hash": "1914971214496688268"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-svg-to-data-image/custom-elements-manifest.config.js",
+          "hash": "17760710416177884860"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-svg-to-data-image/custom-elements.json",
+          "hash": "11723572711737664398"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-svg-to-data-image/demo/base.html",
+          "hash": "10552317308265805868"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-svg-to-data-image/demo/index.html",
+          "hash": "13699810437288210316"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-svg-to-data-image/demo/simple.html",
+          "hash": "385095926593186624"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-svg-to-data-image/index.html",
+          "hash": "11785617345356622599"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-svg-to-data-image/package.json",
+          "hash": "9347915394569041741",
+          "deps": [
+            "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+            "@blockquote-web-components/blockquote-base-embedded-webview"
+          ]
+        },
+        {
+          "file": "packages/directives/blockquote-directive-svg-to-data-image/src/BlockquoteDirectiveSvgToDataImage.js",
+          "hash": "2751952092456697745"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-svg-to-data-image/src/index.js",
+          "hash": "10703469364380958498"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-svg-to-data-image/test/blockquote-directive-svg-to-data-image.test.js",
+          "hash": "6044988702827381873"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-svg-to-data-image/vite.config.js",
+          "hash": "1369797224887090175"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-svg-to-data-image/web-test-runner.config.js",
+          "hash": "10134296055709537140"
+        }
+      ],
+      "@blockquote-web-components/ajax-provider": [
+        {
+          "file": "packages/base/ajax-provider/.editorconfig",
+          "hash": "3179631592816052163"
+        },
+        {
+          "file": "packages/base/ajax-provider/.eslintignore",
+          "hash": "7723776719947151502"
+        },
+        {
+          "file": "packages/base/ajax-provider/.gitignore",
+          "hash": "13140520422054870388"
+        },
+        {
+          "file": "packages/base/ajax-provider/CHANGELOG.md",
+          "hash": "3374327036153751822"
+        },
+        {
+          "file": "packages/base/ajax-provider/LICENSE",
+          "hash": "16404848652041252598"
+        },
+        {
+          "file": "packages/base/ajax-provider/README.md",
+          "hash": "12792055782711635155"
+        },
+        {
+          "file": "packages/base/ajax-provider/custom-elements-manifest.config.js",
+          "hash": "17946350265587485871"
+        },
+        {
+          "file": "packages/base/ajax-provider/custom-elements.json",
+          "hash": "8856374280262896118"
+        },
+        {
+          "file": "packages/base/ajax-provider/demo/DmCurrencies.js",
+          "hash": "5953361519277142598"
+        },
+        {
+          "file": "packages/base/ajax-provider/demo/base.html",
+          "hash": "7164259096914840794"
+        },
+        {
+          "file": "packages/base/ajax-provider/demo/dm-currecies.html",
+          "hash": "7114814434281918540"
+        },
+        {
+          "file": "packages/base/ajax-provider/demo/index.html",
+          "hash": "2315457575775610299"
+        },
+        {
+          "file": "packages/base/ajax-provider/index.html",
+          "hash": "9994665591104280676"
+        },
+        {
+          "file": "packages/base/ajax-provider/package.json",
+          "hash": "2533419234571020321",
+          "deps": [
+            "@blockquote-web-components/blockquote-base-common-dev-dependencies"
+          ]
+        },
+        {
+          "file": "packages/base/ajax-provider/src/AjaxProvider.js",
+          "hash": "8620162782378907487"
+        },
+        {
+          "file": "packages/base/ajax-provider/src/AjaxProviderMixin.js",
+          "hash": "11701612004893686410"
+        },
+        {
+          "file": "packages/base/ajax-provider/src/index.js",
+          "hash": "608134658382890489"
+        },
+        {
+          "file": "packages/base/ajax-provider/src/utils.js",
+          "hash": "17162066543947190242"
+        },
+        {
+          "file": "packages/base/ajax-provider/test/ajax-provider.test.js",
+          "hash": "8499772694126862604"
+        },
+        {
+          "file": "packages/base/ajax-provider/vite.config.js",
+          "hash": "1369797224887090175"
+        },
+        {
+          "file": "packages/base/ajax-provider/web-test-runner.config.js",
+          "hash": "10134296055709537140"
+        }
+      ],
+      "@blockquote-web-components/blockquote-base-style-helpers": [
+        {
+          "file": "packages/base/blockquote-base-style-helpers/.editorconfig",
+          "hash": "3179631592816052163"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/.eslintignore",
+          "hash": "7723776719947151502"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/.gitignore",
+          "hash": "13140520422054870388"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/CHANGELOG.md",
+          "hash": "15183601295565809150"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/LICENSE",
+          "hash": "6389053581132638789"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/README.md",
+          "hash": "8843208795979947371"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/custom-elements-manifest.config.js",
+          "hash": "17760710416177884860"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/custom-elements.json",
+          "hash": "10892056327505232452"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/demo/document-styles.html",
+          "hash": "559553458962065166"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/demo/index.html",
+          "hash": "4454145499688342305"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/demo/shared-styles.html",
+          "hash": "2539764652268506854"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/demo/theme/theme-base-common.js",
+          "hash": "11140675947562250633"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/demo/theme/theme-base.js",
+          "hash": "17165266770879483300"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/demo/theme/theme-font-face.js",
+          "hash": "15887005633283923340"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/demo/theme/theme.js",
+          "hash": "14948687850157002558"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/index.html",
+          "hash": "15940994275140204006"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/package.json",
+          "hash": "11475687969310279370",
+          "deps": [
+            "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+            "@blockquote-web-components/blockquote-base-embedded-webview",
+            "@blockquote-web-components/blockquote-base-meta"
+          ]
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/src/getComponentSharedStyles.js",
+          "hash": "3292601621338456641"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/src/index.js",
+          "hash": "15133788065339391115"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/src/setComponentSharedStyles.js",
+          "hash": "16568507831691886277"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/src/setDocumentStyles.js",
+          "hash": "7077391269336405199"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/test/blockquote-base-style-helpers.test.js",
+          "hash": "10512010709191417887"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/test/document-element.js",
+          "hash": "7302256707269203946"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/test/shared-element.js",
+          "hash": "2229609294686353267"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/vite.config.js",
+          "hash": "1369797224887090175"
+        },
+        {
+          "file": "packages/base/blockquote-base-style-helpers/web-test-runner.config.js",
+          "hash": "10134296055709537140"
+        }
+      ],
+      "@blo/blockquote-directive-ariaidref-slot": [
+        {
+          "file": "packages/directives/blockquote-directive-ariaidref-slot/.editorconfig",
+          "hash": "3179631592816052163"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-ariaidref-slot/.eslintignore",
+          "hash": "15965777299642906912"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-ariaidref-slot/.gitignore",
+          "hash": "13140520422054870388"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-ariaidref-slot/LICENSE",
+          "hash": "16546066878495381424"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-ariaidref-slot/README.md",
+          "hash": "2053403672880776524"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-ariaidref-slot/custom-elements-manifest.config.js",
+          "hash": "17946350265587485871"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-ariaidref-slot/demo/base.html",
+          "hash": "14858486078659087"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-ariaidref-slot/demo/index.html",
+          "hash": "4175118291865327387"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-ariaidref-slot/index.html",
+          "hash": "8660893044816166347"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-ariaidref-slot/package.json",
+          "hash": "15203723709988002391",
+          "deps": [
+            "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+            "@blockquote-web-components/blockquote-base-embedded-webview"
+          ]
+        },
+        {
+          "file": "packages/directives/blockquote-directive-ariaidref-slot/src/BlockquoteDirectiveAriaidrefSlot.js",
+          "hash": "15316587506618348236"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-ariaidref-slot/src/index.js",
+          "hash": "14416028969106514969"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-ariaidref-slot/test/blockquote-directive-ariaidref-slot-component.js",
+          "hash": "13244545940168268043"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-ariaidref-slot/test/blockquote-directive-ariaidref-slot.test.js",
+          "hash": "292123902835759437"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-ariaidref-slot/vite.config.js",
+          "hash": "14336962290164388134"
+        },
+        {
+          "file": "packages/directives/blockquote-directive-ariaidref-slot/web-test-runner.config.js",
+          "hash": "2219936767563793917"
+        }
+      ],
+      "@blockquote-web-components/blockquote-base-embedded-webview": [
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/.editorconfig",
+          "hash": "3179631592816052163"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/.eslintignore",
+          "hash": "7723776719947151502"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/.gitignore",
+          "hash": "13140520422054870388"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/CHANGELOG.md",
+          "hash": "2630997740036107074"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/LICENSE",
+          "hash": "4436375771981531687"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/README.md",
+          "hash": "2330511444069880892"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/custom-elements-manifest.config.js",
+          "hash": "17946350265587485871"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/custom-elements.json",
+          "hash": "5683835360214749684"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/define/blockquote-base-embedded-webview-element.js",
+          "hash": "8046586213411966137"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/define/blockquote-base-embedded-webview-resize.js",
+          "hash": "13815482592924754218"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/define/blockquote-base-embedded-webview-size.js",
+          "hash": "15100112331039091182"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/define/blockquote-base-embedded-webview.js",
+          "hash": "9935644869475209647"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/demo/base.html",
+          "hash": "8406039830197896216"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/demo/index.html",
+          "hash": "7101133116387697195"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/demo/other.html",
+          "hash": "18287823221771441067"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/index.html",
+          "hash": "17678031882428393264"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/package.json",
+          "hash": "14705315996817187593",
+          "deps": [
+            "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+            "@blockquote-web-components/blockquote-foundations-sass"
+          ]
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/src/BlockquoteBaseEmbeddedWebview.js",
+          "hash": "2308369661391736871"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/src/BlockquoteBaseEmbeddedWebviewElement.js",
+          "hash": "9214964168695049431"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/src/BlockquoteBaseEmbeddedWebviewResize.js",
+          "hash": "5062237528263344087"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/src/BlockquoteBaseEmbeddedWebviewSize.js",
+          "hash": "3016793219971863873"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/src/index.js",
+          "hash": "16717768762265984143"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/src/styles/blockquote-base-embedded-webview-element-styles.css.js",
+          "hash": "9660522032514443653"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/src/styles/blockquote-base-embedded-webview-element.scss",
+          "hash": "7321191996168974469"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/src/styles/blockquote-base-embedded-webview-resize-styles.css.js",
+          "hash": "4656261667173181486"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/src/styles/blockquote-base-embedded-webview-resize.scss",
+          "hash": "3260864751123952341"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/src/styles/blockquote-base-embedded-webview-size-styles.css.js",
+          "hash": "7105021824378044558"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/src/styles/blockquote-base-embedded-webview-size.scss",
+          "hash": "10321389020553035089"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/src/styles/blockquote-base-embedded-webview-styles.css.js",
+          "hash": "8313954620613021167"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/src/styles/blockquote-base-embedded-webview.scss",
+          "hash": "1716874805989134935"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/test/blockquote-base-embedded-webview-element.test.js",
+          "hash": "7817856441545088284"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/test/blockquote-base-embedded-webview-resize.test.js",
+          "hash": "5571506672948047243"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/test/blockquote-base-embedded-webview-size.test.js",
+          "hash": "2170438057450455408"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/test/blockquote-base-embedded-webview.test.js",
+          "hash": "4720495981302345539"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/test/test.html",
+          "hash": "13418129029982782013"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/test/test2.html",
+          "hash": "8445794053753697176"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/vite.config.js",
+          "hash": "1369797224887090175"
+        },
+        {
+          "file": "packages/base/blockquote-base-embedded-webview/web-test-runner.config.js",
+          "hash": "10134296055709537140"
+        }
+      ],
+      "@blockquote-web-components/blockquote-controller-xstate": [
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/.editorconfig",
+          "hash": "3179631592816052163"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/.eslintignore",
+          "hash": "13430571374968959289"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/.gitignore",
+          "hash": "13140520422054870388"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/CHANGELOG.md",
+          "hash": "12219846348988810976"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/LICENSE",
+          "hash": "16601897640583742329"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/README.md",
+          "hash": "7363916438495307481"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/custom-elements-manifest.config.js",
+          "hash": "17946350265587485871"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/custom-elements.json",
+          "hash": "2537477505923170496"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/demo/base.html",
+          "hash": "6805813867243930014"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/demo/counterMachine.js",
+          "hash": "15491842360809908700"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/demo/index.html",
+          "hash": "6944716055215786068"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/demo/styles/xstate-counter-styles.css.js",
+          "hash": "6293287631344816060"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/demo/xstate-counter.js",
+          "hash": "16287554898712866969"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/index.html",
+          "hash": "11031486303620058470"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/package.json",
+          "hash": "11576735208287346907",
+          "deps": [
+            "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+            "@blockquote-web-components/blockquote-base-embedded-webview"
+          ]
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/src/BlockquoteControllerXstate.js",
+          "hash": "15683224734955710323"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/src/index.js",
+          "hash": "1695687782645158708"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/test/blockquote-controller-xstate.test.js",
+          "hash": "2835473142957708703"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/vite.config.js",
+          "hash": "1369797224887090175"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-xstate/web-test-runner.config.js",
+          "hash": "10134296055709537140"
+        }
+      ],
+      "@blockquote-web-components/blockquote-base-common-dev-dependencies": [
+        {
+          "file": "packages/base/blockquote-base-common-dev-dependencies/CHANGELOG.md",
+          "hash": "2640804998364207614"
+        },
+        {
+          "file": "packages/base/blockquote-base-common-dev-dependencies/package.json",
+          "hash": "6680557080618290148"
+        }
+      ],
+      "@blockquote-web-components/blockquote-tabs": [
+        {
+          "file": "packages/components/blockquote-tabs/.editorconfig",
+          "hash": "3179631592816052163"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/.eslintignore",
+          "hash": "7723776719947151502"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/.gitignore",
+          "hash": "13140520422054870388"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/CHANGELOG.md",
+          "hash": "3565941873533596347"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/LICENSE",
+          "hash": "3812546581000266539"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/README.md",
+          "hash": "10336781917723136497"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/custom-elements-manifest.config.js",
+          "hash": "17946350265587485871"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/custom-elements.json",
+          "hash": "870106743110519857"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/define/blockquote-tab.js",
+          "hash": "7467818495884515804"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/define/blockquote-tabpanel.js",
+          "hash": "12582127904013704056"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/define/blockquote-tabs.js",
+          "hash": "17616303540624674085"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/demo/autofocus.html",
+          "hash": "13512961749546117671"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/demo/base.html",
+          "hash": "14624094062287760116"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/demo/index.html",
+          "hash": "7214549778189340177"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/index.html",
+          "hash": "7274455906470552247"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/package.json",
+          "hash": "542851718061525592",
+          "deps": [
+            "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+            "@blockquote-web-components/blockquote-base-embedded-webview",
+            "@blockquote-web-components/blockquote-foundations-sass",
+            "@blockquote-web-components/blockquote-mixin-slot-content"
+          ]
+        },
+        {
+          "file": "packages/components/blockquote-tabs/src/BlockquoteTabs.js",
+          "hash": "921982353352067149"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/src/index.js",
+          "hash": "8987156017697035104"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/src/styles/blockquote-tabs-styles.css.js",
+          "hash": "17904720310732705491"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/src/styles/blockquote-tabs.scss",
+          "hash": "11029020746719647179"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/src/tab/BlockquoteTab.js",
+          "hash": "14039630352866269467"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/src/tab/styles/blockquote-tab-styles.css.js",
+          "hash": "10777184816604649803"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/src/tab/styles/blockquote-tab.scss",
+          "hash": "15067927906831237616"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/src/tabpanel/BlockquoteTabPanel.js",
+          "hash": "1816762452770223712"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/src/tabpanel/styles/blockquote-tabpanel-styles.css.js",
+          "hash": "848179940550541164"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/src/tabpanel/styles/blockquote-tabpanel.scss",
+          "hash": "6705275497176471054"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/test/blockquote-tabs.test.js",
+          "hash": "14449482742598148644"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/vite.config.js",
+          "hash": "1369797224887090175"
+        },
+        {
+          "file": "packages/components/blockquote-tabs/web-test-runner.config.js",
+          "hash": "10134296055709537140"
+        }
+      ],
+      "@blockquote-web-components/blockquote-controller-rxjs": [
+        {
+          "file": "packages/controllers/blockquote-controller-rxjs/.editorconfig",
+          "hash": "3179631592816052163"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-rxjs/.eslintignore",
+          "hash": "7723776719947151502"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-rxjs/.gitignore",
+          "hash": "13140520422054870388"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-rxjs/CHANGELOG.md",
+          "hash": "17813731427122563837"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-rxjs/LICENSE",
+          "hash": "16165256968861460106"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-rxjs/README.md",
+          "hash": "14118479763016239891"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-rxjs/custom-elements-manifest.config.js",
+          "hash": "17946350265587485871"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-rxjs/custom-elements.json",
+          "hash": "441398280164874734"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-rxjs/demo/base.html",
+          "hash": "11418633215863031903"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-rxjs/demo/index.html",
+          "hash": "6945664951312460160"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-rxjs/index.html",
+          "hash": "16787840971226427506"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-rxjs/package.json",
+          "hash": "14595426708753008611",
+          "deps": [
+            "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+            "@blockquote-web-components/blockquote-base-embedded-webview"
+          ]
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-rxjs/src/BlockquoteControllerRxjs.js",
+          "hash": "17702225851818894642"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-rxjs/src/index.js",
+          "hash": "14928733404034326572"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-rxjs/test/blockquote-controller-rxjs.test.js",
+          "hash": "18054998762134862817"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-rxjs/vite.config.js",
+          "hash": "1369797224887090175"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-rxjs/web-test-runner.config.mjs",
+          "hash": "10134296055709537140"
+        }
+      ],
+      "@blockquote-web-components/blockquote-foundations-sass": [
+        {
+          "file": "packages/foundations/blockquote-foundations-sass/CHANGELOG.md",
+          "hash": "9967199315971367464"
+        },
+        {
+          "file": "packages/foundations/blockquote-foundations-sass/LICENSE",
+          "hash": "1694994546927680334"
+        },
+        {
+          "file": "packages/foundations/blockquote-foundations-sass/README.md",
+          "hash": "15617179511605119860"
+        },
+        {
+          "file": "packages/foundations/blockquote-foundations-sass/_main.scss",
+          "hash": "3646904261090932376"
+        },
+        {
+          "file": "packages/foundations/blockquote-foundations-sass/_mixins.scss",
+          "hash": "8880114071146980294"
+        },
+        {
+          "file": "packages/foundations/blockquote-foundations-sass/_stringFunctions.scss",
+          "hash": "16235586769373019612"
+        },
+        {
+          "file": "packages/foundations/blockquote-foundations-sass/package.json",
+          "hash": "1315461352433240569"
+        }
+      ],
+      "@blockquote-web-components/blockquote-base-meta": [
+        {
+          "file": "packages/base/blockquote-base-meta/.editorconfig",
+          "hash": "3179631592816052163"
+        },
+        {
+          "file": "packages/base/blockquote-base-meta/.eslintignore",
+          "hash": "7723776719947151502"
+        },
+        {
+          "file": "packages/base/blockquote-base-meta/.gitignore",
+          "hash": "13140520422054870388"
+        },
+        {
+          "file": "packages/base/blockquote-base-meta/CHANGELOG.md",
+          "hash": "10354468680278363911"
+        },
+        {
+          "file": "packages/base/blockquote-base-meta/LICENSE",
+          "hash": "7914151692576856369"
+        },
+        {
+          "file": "packages/base/blockquote-base-meta/README.md",
+          "hash": "12827017044489967314"
+        },
+        {
+          "file": "packages/base/blockquote-base-meta/custom-elements-manifest.config.js",
+          "hash": "17946350265587485871"
+        },
+        {
+          "file": "packages/base/blockquote-base-meta/custom-elements.json",
+          "hash": "16843958129366870934"
+        },
+        {
+          "file": "packages/base/blockquote-base-meta/demo/base.html",
+          "hash": "363517357265226889"
+        },
+        {
+          "file": "packages/base/blockquote-base-meta/demo/index.html",
+          "hash": "15857515897892236866"
+        },
+        {
+          "file": "packages/base/blockquote-base-meta/index.html",
+          "hash": "18187463632055402981"
+        },
+        {
+          "file": "packages/base/blockquote-base-meta/package.json",
+          "hash": "4117870822057524131",
+          "deps": [
+            "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+            "@blockquote-web-components/blockquote-base-embedded-webview"
+          ]
+        },
+        {
+          "file": "packages/base/blockquote-base-meta/src/BlockquoteBaseMeta.js",
+          "hash": "6195246426048613052"
+        },
+        {
+          "file": "packages/base/blockquote-base-meta/src/index.js",
+          "hash": "17831818198272525986"
+        },
+        {
+          "file": "packages/base/blockquote-base-meta/test/blockquote-base-meta.test.js",
+          "hash": "3563107146603622235"
+        },
+        {
+          "file": "packages/base/blockquote-base-meta/vite.config.js",
+          "hash": "1369797224887090175"
+        },
+        {
+          "file": "packages/base/blockquote-base-meta/web-test-runner.config.js",
+          "hash": "10134296055709537140"
+        }
+      ],
+      "@blockquote-web-components/blockquote-controller-context-meta": [
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/.editorconfig",
+          "hash": "3179631592816052163"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/.eslintignore",
+          "hash": "15965777299642906912"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/.gitignore",
+          "hash": "13140520422054870388"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/CHANGELOG.md",
+          "hash": "12746926979000650306"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/LICENSE",
+          "hash": "6832053913794040077"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/README.md",
+          "hash": "2310537121113806719"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/custom-elements-manifest.config.js",
+          "hash": "17946350265587485871"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/custom-elements.json",
+          "hash": "1282098120791530893"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/demo/base.html",
+          "hash": "7611423022671614681"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/demo/index.html",
+          "hash": "14672652694399792957"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/demo/my-app.js",
+          "hash": "1633178408034257084"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/demo/my-heading.js",
+          "hash": "3903839771768571163"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/demo/my-section.js",
+          "hash": "14590189805406649399"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/index.html",
+          "hash": "6439326585820455352"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/package.json",
+          "hash": "7808859122793282438",
+          "deps": [
+            "@blockquote-web-components/blockquote-base-common-dev-dependencies",
+            "@blockquote-web-components/blockquote-base-embedded-webview"
+          ]
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/src/BlockquoteControllerContextMeta.d.ts",
+          "hash": "15779970839013854946"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/src/BlockquoteControllerContextMeta.js",
+          "hash": "11589231985160659686"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/src/index.js",
+          "hash": "17384945313820983294"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/test/blockquote-controller-context-meta.test.js",
+          "hash": "13375869122975063649"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/test/elements.js",
+          "hash": "11394289058914452856"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/vite.config.js",
+          "hash": "14336962290164388134"
+        },
+        {
+          "file": "packages/controllers/blockquote-controller-context-meta/web-test-runner.config.js",
+          "hash": "2219936767563793917"
+        }
+      ]
+    },
+    "nonProjectFiles": [
+      {
+        "file": ".commitlintrc.json",
+        "hash": "5760318972507285477"
+      },
+      {
+        "file": ".editorconfig",
+        "hash": "11888171188084048291"
+      },
+      {
+        "file": ".eslintignore",
+        "hash": "1915548881937302711"
+      },
+      {
+        "file": ".github/workflows/checks.yml",
+        "hash": "14002633864672582901"
+      },
+      {
+        "file": ".github/workflows/publish.yml",
+        "hash": "12703041652190803276"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "5247871492544082970"
+      },
+      {
+        "file": ".husky/commit-msg",
+        "hash": "1407302808277523102"
+      },
+      {
+        "file": ".husky/pre-commit",
+        "hash": "12408957016983573196"
+      },
+      {
+        "file": ".husky/pre-push",
+        "hash": "15171232440413873964"
+      },
+      {
+        "file": ".npmrc",
+        "hash": "6138961496802330875"
+      },
+      {
+        "file": ".versionrc.json",
+        "hash": "4775884719323295002"
+      },
+      {
+        "file": "CHANGELOG.md",
+        "hash": "6318815142806853964"
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "hash": "3973537460541711237"
+      },
+      {
+        "file": "LICENSE",
+        "hash": "8519749660887347042"
+      },
+      {
+        "file": "README.md",
+        "hash": "5785453309831485478"
+      },
+      {
+        "file": "lerna.json",
+        "hash": "1807852439947658905"
+      },
+      {
+        "file": "nx.json",
+        "hash": "3948717223588567258"
+      },
+      {
+        "file": "package.json",
+        "hash": "15323099619588330054"
+      },
+      {
+        "file": "scripts/move-dev-directory.js",
+        "hash": "2096611947164334176"
+      },
+      {
+        "file": "site/ajax-provider/assets/AjaxProvider-CSMTiKx7.js",
+        "hash": "8722175145958376028"
+      },
+      {
+        "file": "site/ajax-provider/assets/inline-module-2caa63cdddf198dda69305e1503c16ba-BsavURIi.js",
+        "hash": "12742568693194055017"
+      },
+      {
+        "file": "site/ajax-provider/assets/inline-module-afc12870e222c2d823cdbcdc63d14554-BN_3gkgA.js",
+        "hash": "7476455299307557251"
+      },
+      {
+        "file": "site/ajax-provider/assets/inline-module-c24adf8b40f7966808530bf6ffc4d4e3-CIrixurm.js",
+        "hash": "5334513909569778736"
+      },
+      {
+        "file": "site/ajax-provider/assets/lit-element-Q6drvwcE.js",
+        "hash": "3585838142358311713"
+      },
+      {
+        "file": "site/ajax-provider/base.html",
+        "hash": "18081328641366132061"
+      },
+      {
+        "file": "site/ajax-provider/dm-currecies.html",
+        "hash": "11039069747079790592"
+      },
+      {
+        "file": "site/ajax-provider/index.html",
+        "hash": "4474230109247541566"
+      },
+      {
+        "file": "site/blockquote-base-embedded-webview/assets/blockquote-base-embedded-webview-D-6nIrGY.js",
+        "hash": "8835922542826027788"
+      },
+      {
+        "file": "site/blockquote-base-embedded-webview/base.html",
+        "hash": "4515182222090192807"
+      },
+      {
+        "file": "site/blockquote-base-embedded-webview/index.html",
+        "hash": "16599310319684889319"
+      },
+      {
+        "file": "site/blockquote-base-embedded-webview/other.html",
+        "hash": "9367404446894353681"
+      },
+      {
+        "file": "site/blockquote-base-meta/assets/inline-module-4af0964d3b8aa54c11bdf0ebd8136c9d-DPBAthkq.js",
+        "hash": "14027958715499681012"
+      },
+      {
+        "file": "site/blockquote-base-meta/assets/inline-module-afc12870e222c2d823cdbcdc63d14554-D-6nIrGY.js",
+        "hash": "8835922542826027788"
+      },
+      {
+        "file": "site/blockquote-base-meta/base.html",
+        "hash": "1646712267815778544"
+      },
+      {
+        "file": "site/blockquote-base-meta/index.html",
+        "hash": "3107951474034655742"
+      },
+      {
+        "file": "site/blockquote-base-style-helpers/assets/BlockquoteBaseMeta-5nwymq77.js",
+        "hash": "8499798124891123201"
+      },
+      {
+        "file": "site/blockquote-base-style-helpers/assets/inline-module-0b3a2a7b480d83165a25a11af1094ee2-f4F7SIV_.js",
+        "hash": "17848534874081980868"
+      },
+      {
+        "file": "site/blockquote-base-style-helpers/assets/inline-module-8e9febac162ee1fcde621decc978d60b-D30HkBi7.js",
+        "hash": "12150979176724690269"
+      },
+      {
+        "file": "site/blockquote-base-style-helpers/assets/inline-module-afc12870e222c2d823cdbcdc63d14554-zM2szToB.js",
+        "hash": "6468590504657490109"
+      },
+      {
+        "file": "site/blockquote-base-style-helpers/assets/lit-element-KX5LVdXd.js",
+        "hash": "1580698057738056970"
+      },
+      {
+        "file": "site/blockquote-base-style-helpers/document-styles.html",
+        "hash": "12404393540689264081"
+      },
+      {
+        "file": "site/blockquote-base-style-helpers/index.html",
+        "hash": "2640016950383851515"
+      },
+      {
+        "file": "site/blockquote-base-style-helpers/shared-styles.html",
+        "hash": "13705173607800805269"
+      },
+      {
+        "file": "site/blockquote-controller-context-meta/assets/directive-Cy4-p_oD.js",
+        "hash": "16871831777942132316"
+      },
+      {
+        "file": "site/blockquote-controller-context-meta/assets/inline-module-afc12870e222c2d823cdbcdc63d14554-Dgql6bPr.js",
+        "hash": "9305979177235016592"
+      },
+      {
+        "file": "site/blockquote-controller-context-meta/assets/my-app-BfvrpQPK.js",
+        "hash": "565203000381990216"
+      },
+      {
+        "file": "site/blockquote-controller-context-meta/base.html",
+        "hash": "6196709442067155206"
+      },
+      {
+        "file": "site/blockquote-controller-context-meta/index.html",
+        "hash": "14996023363486294918"
+      },
+      {
+        "file": "site/blockquote-controller-rxjs/assets/inline-module-541ed4140dec02dac6e0516eaa77c265-1SsgG-hU.js",
+        "hash": "11762367122452175356"
+      },
+      {
+        "file": "site/blockquote-controller-rxjs/assets/inline-module-afc12870e222c2d823cdbcdc63d14554-BN_3gkgA.js",
+        "hash": "7476455299307557251"
+      },
+      {
+        "file": "site/blockquote-controller-rxjs/assets/lit-element-Q6drvwcE.js",
+        "hash": "3585838142358311713"
+      },
+      {
+        "file": "site/blockquote-controller-rxjs/base.html",
+        "hash": "11616639269470837010"
+      },
+      {
+        "file": "site/blockquote-controller-rxjs/index.html",
+        "hash": "8141228624285681113"
+      },
+      {
+        "file": "site/blockquote-controller-xstate/assets/inline-module-afc12870e222c2d823cdbcdc63d14554-BN_3gkgA.js",
+        "hash": "7476455299307557251"
+      },
+      {
+        "file": "site/blockquote-controller-xstate/assets/lit-element-Q6drvwcE.js",
+        "hash": "3585838142358311713"
+      },
+      {
+        "file": "site/blockquote-controller-xstate/assets/xstate-counter-CnRWwxT3.js",
+        "hash": "2373273331302956627"
+      },
+      {
+        "file": "site/blockquote-controller-xstate/base.html",
+        "hash": "6649228559999161847"
+      },
+      {
+        "file": "site/blockquote-controller-xstate/index.html",
+        "hash": "9909052916969392968"
+      },
+      {
+        "file": "site/blockquote-directive-svg-to-data-image/assets/BlockquoteDirectiveSvgToDataImage-S9lm3SsT.js",
+        "hash": "1908532045485941699"
+      },
+      {
+        "file": "site/blockquote-directive-svg-to-data-image/assets/directive-helpers-BkkxK-I7.js",
+        "hash": "18279383055901641819"
+      },
+      {
+        "file": "site/blockquote-directive-svg-to-data-image/assets/inline-module-43b66699c0e1397a411579a742db1ec6-D7eV7Fuv.js",
+        "hash": "14448336420413463271"
+      },
+      {
+        "file": "site/blockquote-directive-svg-to-data-image/assets/inline-module-afc12870e222c2d823cdbcdc63d14554-CS6YomWL.js",
+        "hash": "17209511382060699972"
+      },
+      {
+        "file": "site/blockquote-directive-svg-to-data-image/assets/inline-module-c6e05760e0e72024ca57941be26b9d6c-DeVJy_jg.js",
+        "hash": "5730167574543472303"
+      },
+      {
+        "file": "site/blockquote-directive-svg-to-data-image/base.html",
+        "hash": "16815640623755922768"
+      },
+      {
+        "file": "site/blockquote-directive-svg-to-data-image/index.html",
+        "hash": "9099039947599495838"
+      },
+      {
+        "file": "site/blockquote-directive-svg-to-data-image/simple.html",
+        "hash": "4406875153808104018"
+      },
+      {
+        "file": "site/blockquote-mixin-slot-content/assets/BlockquoteMixinSlotContent-DV3zAdFe.js",
+        "hash": "4368881527918313052"
+      },
+      {
+        "file": "site/blockquote-mixin-slot-content/assets/inline-module-1f72226afcc65298711db6b69d801ce7-CsRM6t7_.js",
+        "hash": "4928680944450495536"
+      },
+      {
+        "file": "site/blockquote-mixin-slot-content/assets/inline-module-2ce4d187790822302aa93b373edb120b-wJfQ_p1K.js",
+        "hash": "5039643984255443435"
+      },
+      {
+        "file": "site/blockquote-mixin-slot-content/assets/inline-module-afc12870e222c2d823cdbcdc63d14554-BN_3gkgA.js",
+        "hash": "7476455299307557251"
+      },
+      {
+        "file": "site/blockquote-mixin-slot-content/assets/inline-module-cabd27146d2a0ce0244664f04fbc6863-DRqln-3k.js",
+        "hash": "8942989717715604282"
+      },
+      {
+        "file": "site/blockquote-mixin-slot-content/assets/lit-element-Q6drvwcE.js",
+        "hash": "3585838142358311713"
+      },
+      {
+        "file": "site/blockquote-mixin-slot-content/base.html",
+        "hash": "3131285278188768842"
+      },
+      {
+        "file": "site/blockquote-mixin-slot-content/composition-with-slots.html",
+        "hash": "3310118572049084958"
+      },
+      {
+        "file": "site/blockquote-mixin-slot-content/index.html",
+        "hash": "10435714613591501239"
+      },
+      {
+        "file": "site/blockquote-mixin-slot-content/slots-on-the-fly.html",
+        "hash": "2756991964207790103"
+      },
+      {
+        "file": "site/blockquote-tabs/assets/blockquote-tabs-Bce2LKY2.js",
+        "hash": "6118020833974117784"
+      },
+      {
+        "file": "site/blockquote-tabs/assets/inline-module-afc12870e222c2d823cdbcdc63d14554-CiwOjgSA.js",
+        "hash": "17165056360641152146"
+      },
+      {
+        "file": "site/blockquote-tabs/assets/ref-LcWTfOIA.js",
+        "hash": "13509679573299578576"
+      },
+      {
+        "file": "site/blockquote-tabs/autofocus.html",
+        "hash": "14677412609156577614"
+      },
+      {
+        "file": "site/blockquote-tabs/base.html",
+        "hash": "15774893440108139103"
+      },
+      {
+        "file": "site/blockquote-tabs/index.html",
+        "hash": "10654178697463511425"
+      },
+      {
+        "file": "site/index.html",
+        "hash": "3283727714139488307"
+      },
+      {
+        "file": "site/playground-dev/README.md",
+        "hash": "15359571934389089020"
+      },
+      {
+        "file": "site/playground-dev/assets/playground-typescript-worker-MiP-3uQq.js",
+        "hash": "9245937197473735474"
+      },
+      {
+        "file": "site/playground-dev/define/blk-button.js",
+        "hash": "16857699364824573469"
+      },
+      {
+        "file": "site/playground-dev/define/blk-material.js",
+        "hash": "16855646232578128163"
+      },
+      {
+        "file": "site/playground-dev/define/blk-ripple.js",
+        "hash": "15702792439931648995"
+      },
+      {
+        "file": "site/playground-dev/html-file.html",
+        "hash": "1555652519782064705"
+      },
+      {
+        "file": "site/playground-dev/index-playground.js",
+        "hash": "14574353932454234716"
+      },
+      {
+        "file": "site/playground-dev/index.html",
+        "hash": "4020486868130198495"
+      },
+      {
+        "file": "site/playground-dev/index.js",
+        "hash": "5264799974333932557"
+      },
+      {
+        "file": "site/playground-dev/playground.json",
+        "hash": "11122920189649815646"
+      },
+      {
+        "file": "site/playground-dev/src/BlkButton.js",
+        "hash": "15174351393263854257"
+      },
+      {
+        "file": "site/playground-dev/src/BlkMaterial.js",
+        "hash": "7923622659689418684"
+      },
+      {
+        "file": "site/playground-dev/src/BlkRipple.js",
+        "hash": "12210822596535073195"
+      },
+      {
+        "file": "site/playground-dev/src/styles/blk-button-styles.css.js",
+        "hash": "10198769834505674435"
+      },
+      {
+        "file": "site/playground-dev/src/styles/blk-button-tokens.js",
+        "hash": "17945282438677757359"
+      },
+      {
+        "file": "site/playground-dev/src/styles/blk-material-styles.css.js",
+        "hash": "14825685400808371903"
+      },
+      {
+        "file": "site/playground-dev/src/styles/blk-material-tokens.js",
+        "hash": "1629402967652240022"
+      },
+      {
+        "file": "site/playground-dev/src/styles/blk-ripple-styles.css.js",
+        "hash": "4110087871637349543"
+      },
+      {
+        "file": "site/playground-dev/src/styles/blk-ripple-tokens.js",
+        "hash": "16703293060875549649"
+      },
+      {
+        "file": "site/playground-dev/src/tokens/blk-ref-alpha.js",
+        "hash": "2542144412160680354"
+      },
+      {
+        "file": "site/playground-dev/src/tokens/blk-ref-palette.js",
+        "hash": "12254966825041003411"
+      },
+      {
+        "file": "site/playground-dev/src/tokens/blk-ref-spacing.js",
+        "hash": "3806741322689767184"
+      },
+      {
+        "file": "site/playground-dev/src/tokens/blk-ref-typeface.js",
+        "hash": "12254295469442880180"
+      },
+      {
+        "file": "site/playground-dev/src/tokens/blk-sys-alpha.js",
+        "hash": "10682438592955288939"
+      },
+      {
+        "file": "site/playground-dev/src/tokens/blk-sys-color.js",
+        "hash": "5764933688892246593"
+      },
+      {
+        "file": "site/playground-dev/src/tokens/blk-sys-spacing.js",
+        "hash": "688786356391367686"
+      },
+      {
+        "file": "site/playground-dev/src/tokens/blk-sys-typescale.js",
+        "hash": "3904516138907988710"
+      },
+      {
+        "file": "site/playground-dev/src/tokens/blk-system.js",
+        "hash": "8747466792339484271"
+      },
+      {
+        "file": "site/playground-dev/src/tokens/dark-color-scheme.js",
+        "hash": "8355426946293407329"
+      },
+      {
+        "file": "site/playground-dev/src/tokens/generate-tokens.js",
+        "hash": "8818090727146007071"
+      },
+      {
+        "file": "site/playground-dev/styles.css",
+        "hash": "9423273879912100153"
+      }
+    ]
+  }
+}
