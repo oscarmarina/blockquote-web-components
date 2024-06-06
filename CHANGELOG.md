@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.2.0...v2.3.0) (2024-06-06)
+
+
+### Features
+
+* **blockquote-directive-ariaidref-slot:** new element ([d1cbc47](https://github.com/oscarmarina/blockquote-web-components/commit/d1cbc47eb7052ab883ed9d34e5561e4674237a78))
+
 ## [2.2.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.1.0...v2.2.0) (2024-04-05)
 
 
