@@ -1,0 +1,732 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "src/BlockquoteDialog.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n[ARIA patterns](https://www.w3.org/WAI/ARIA/apg/patterns/)\n\nA dialog is a window overlaid on either the primary window or another dialog window. Windows under a modal dialog are inert. That is, users cannot interact with content outside an active dialog window.\nInert content outside an active dialog is typically visually obscured or dimmed so it is difficult to discern, and in some implementations, attempts to interact with the inert content cause the dialog to close.\n\n### Demo\n\n[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/components/blockquote-dialog)\n\n### Usage\n\n```html\n<blockquote-dialog>\n  <button form=\"form1\" aria-label=\"close\" formnovalidate>X</button>\n  <p>Fill in your email address to receive our newsletter!</p>\n  <form  id=\"form1 method=\"dialog\">\n    <label for=\"email\">Email (required)</label>\n    <input type=\"email\" name=\"EMAIL\" id=\"email\" placeholder=\"john.doe@gmail.com\" required />\n    <button type=\"submit\" name=\"button\">Sign up</button>\n  </form>\n</blockquote-dialog>\n```",
+          "name": "BlockquoteDialog",
+          "slots": [
+            {
+              "description": "This element has a slot",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "treewalker"
+            },
+            {
+              "kind": "field",
+              "name": "#open",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "dialogRef"
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Opens the dialog when set to `true` and closes it when set to `false`.",
+              "attribute": "open",
+              "reflects": true
+            },
+            {
+              "kind": "method",
+              "name": "getIsConnectedCallbackResolve"
+            },
+            {
+              "kind": "method",
+              "name": "show"
+            },
+            {
+              "kind": "method",
+              "name": "close"
+            },
+            {
+              "kind": "field",
+              "name": "_slotTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_labeledbyTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_contentTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_scrollerTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_firstNodeFocusTrapTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_lastNodeFocusTrapTpl",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "_handleSubmit",
+              "parameters": [
+                {
+                  "name": "ev",
+                  "type": {
+                    "text": "SubmitEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_handleOpen"
+            },
+            {
+              "kind": "method",
+              "name": "_handleClose",
+              "parameters": [
+                {
+                  "name": "ev",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_handleCancel",
+              "parameters": [
+                {
+                  "name": "ev",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_handleDialogClick"
+            },
+            {
+              "kind": "method",
+              "name": "_handleContentClick"
+            },
+            {
+              "kind": "method",
+              "name": "_firstFocusTrap",
+              "parameters": [
+                {
+                  "name": "{ relatedTarget }"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_lastFocusTrap",
+              "parameters": [
+                {
+                  "name": "{ relatedTarget }"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "_isConnectedCallbackResolve"
+            },
+            {
+              "kind": "field",
+              "name": "_isConnectedCallback"
+            },
+            {
+              "kind": "field",
+              "name": "_firstFocusableChild",
+              "default": "undefined"
+            },
+            {
+              "kind": "field",
+              "name": "_lastFocusableChild",
+              "default": "undefined"
+            },
+            {
+              "kind": "field",
+              "name": "_nextClickIsFromContent",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "_overflowRoot"
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "description": "The type of dialog for accessibility. Set this to `alert` to announce a\ndialog as an alert dialog.",
+              "default": "'alert'",
+              "attribute": "type",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "labelledby",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "attribute": "labelledby"
+            },
+            {
+              "kind": "field",
+              "name": "returnValue",
+              "privacy": "public",
+              "description": "Gets or sets the dialog's return value, usually to indicate which button\na user pressed to close it.\n\nhttps://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/returnValue returnValue"
+            }
+          ],
+          "events": [
+            {
+              "name": "open"
+            },
+            {
+              "name": "close"
+            },
+            {
+              "name": "cancel"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Opens the dialog when set to `true` and closes it when set to `false`.",
+              "fieldName": "open"
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "fieldName": "label"
+            },
+            {
+              "name": "labelledby",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "fieldName": "labelledby"
+            },
+            {
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "description": "The type of dialog for accessibility. Set this to `alert` to announce a\ndialog as an alert dialog.",
+              "default": "'alert'",
+              "fieldName": "type"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "blockquote-dialog",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "BlockquoteDialog",
+          "declaration": {
+            "name": "BlockquoteDialog",
+            "module": "src/BlockquoteDialog.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/dom-utils.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "redispatchEvent",
+          "parameters": [
+            {
+              "name": "element",
+              "description": "The element to dispatch the event from.",
+              "type": {
+                "text": "Element"
+              }
+            },
+            {
+              "name": "event",
+              "description": "The event to re-dispatch. If it's a string, a new Event is created.",
+              "type": {
+                "text": "Event|string"
+              }
+            },
+            {
+              "name": "options",
+              "default": "{}",
+              "description": "An object with properties to override in the new event.",
+              "optional": true,
+              "type": {
+                "text": "Object"
+              }
+            }
+          ],
+          "description": "Re-dispatches an event from the provided element.\n\nThis function is useful for forwarding non-composed events, such as `change`\nevents.",
+          "return": {
+            "type": {
+              "text": "boolean"
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "name": "isElementInvisible",
+          "parameters": [
+            {
+              "name": "element",
+              "description": "The DOM element to check.",
+              "type": {
+                "text": "Element"
+              }
+            },
+            {
+              "name": "exceptions",
+              "default": "['dialog', '[popover]']",
+              "description": "Array of Elements to ignore when checking the element.",
+              "optional": true,
+              "type": {
+                "text": "Array"
+              }
+            }
+          ],
+          "description": "Checks if an element should be ignored.",
+          "return": {
+            "type": {
+              "text": "boolean"
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "name": "isFocusable",
+          "parameters": [
+            {
+              "name": "element",
+              "description": "The DOM element to check for focusability.",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ],
+          "description": "Checks if an element is focusable. An element is considered focusable if it matches\nstandard focusable elements criteria (such as buttons, inputs, etc., that are not disabled\nand do not have a negative tabindex) or is a custom element with a shadow root that delegates focus.",
+          "return": {
+            "type": {
+              "text": "boolean"
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "name": "getFirstAndLastFocusableChildren",
+          "parameters": [
+            {
+              "name": "walker",
+              "description": "The TreeWalker object used to traverse the node's children.",
+              "type": {
+                "text": "IterableIterator<HTMLElement>"
+              }
+            }
+          ],
+          "description": "Retrieves the first and last focusable children of a node using a TreeWalker.",
+          "return": {
+            "type": {
+              "text": "[first: HTMLElement|null, last: HTMLElement|null]"
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "name": "walkComposedTree",
+          "parameters": [
+            {
+              "name": "node",
+              "description": "The root node for traversal.",
+              "type": {
+                "text": "Node"
+              }
+            },
+            {
+              "name": "whatToShow",
+              "default": "0",
+              "description": "NodeFilter code for node types to include.",
+              "optional": true,
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "name": "filter",
+              "default": "() => true",
+              "description": "Filters nodes. Child nodes are considered even if parent does not satisfy the filter.",
+              "optional": true,
+              "type": {
+                "text": "function"
+              }
+            },
+            {
+              "name": "skipNode",
+              "default": "() => false",
+              "description": "Determines whether to skip a node and its children.",
+              "optional": true,
+              "type": {
+                "text": "function"
+              }
+            }
+          ],
+          "description": "Traverse the composed tree from the root, selecting elements that meet the provided filter criteria.\nYou can pass [NodeFilter](https://developer.mozilla.org/en-US/docs/Web/API/NodeFilter) or 0 to retrieve all nodes.",
+          "return": {
+            "type": {
+              "text": "IterableIterator<Node>"
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "name": "getDeepActiveElement",
+          "parameters": [
+            {
+              "name": "root",
+              "default": "document",
+              "description": "The root element to start the search from.",
+              "type": {
+                "text": "Document | ShadowRoot"
+              }
+            }
+          ],
+          "description": "Returns the deepest active element, considering Shadow DOM subtrees",
+          "return": {
+            "type": {
+              "text": "Element"
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "name": "deepContains",
+          "parameters": [
+            {
+              "name": "container",
+              "description": "The container to search within.",
+              "type": {
+                "text": "Node"
+              }
+            },
+            {
+              "name": "target",
+              "description": "The node that may be inside the container.",
+              "type": {
+                "text": "Node"
+              }
+            }
+          ],
+          "description": "Returns true if the first node contains the second, even if the second node\nis in a shadow tree.\n\nThe standard Node.contains() function does not account for Shadow DOM, and\nreturns false if the supplied target node is sitting inside a shadow tree\nwithin the container.",
+          "return": {
+            "type": {
+              "text": "boolean"
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "name": "indexOfItemContainingTarget",
+          "parameters": [
+            {
+              "name": "items",
+              "description": "A list element containing a set of items",
+              "type": {
+                "text": "NodeList|Node[]"
+              }
+            },
+            {
+              "name": "target",
+              "description": "A target element that may or may not be an item in the\nlist.",
+              "type": {
+                "text": "Node"
+              }
+            }
+          ],
+          "description": "Search a list element for the item that contains the specified target.\n\nWhen dealing with UI events (e.g., mouse clicks) that may occur in\nsubelements inside a list item, you can use this routine to obtain the\ncontaining list item.",
+          "return": {
+            "type": {
+              "text": "number"
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "name": "composedAncestors",
+          "parameters": [
+            {
+              "name": "node",
+              "type": {
+                "text": "Node"
+              }
+            }
+          ],
+          "description": "Return the ancestors of the given node in the composed tree.\n\nIn the composed tree, the ancestor of a node assigned to a slot is that slot,\nnot the node's DOM ancestor. The ancestor of a shadow root is its host.",
+          "return": {
+            "type": {
+              "text": "Iterable<Node>"
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "name": "isClickInsideRect",
+          "parameters": [
+            {
+              "name": "rect",
+              "description": "The bounding rectangle, typically obtained from `element.getBoundingClientRect()`.",
+              "type": {
+                "text": "DOMRect"
+              }
+            },
+            {
+              "name": "ev",
+              "description": "The click event.",
+              "type": {
+                "text": "PointerEvent"
+              }
+            }
+          ],
+          "description": "Checks if a click event occurred inside a given bounding rectangle.",
+          "return": {
+            "type": {
+              "text": "boolean"
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "name": "randomID",
+          "parameters": [
+            {
+              "name": "length",
+              "default": "10"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "redispatchEvent",
+          "declaration": {
+            "name": "redispatchEvent",
+            "module": "src/dom-utils.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isElementInvisible",
+          "declaration": {
+            "name": "isElementInvisible",
+            "module": "src/dom-utils.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isFocusable",
+          "declaration": {
+            "name": "isFocusable",
+            "module": "src/dom-utils.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "getFirstAndLastFocusableChildren",
+          "declaration": {
+            "name": "getFirstAndLastFocusableChildren",
+            "module": "src/dom-utils.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "walkComposedTree",
+          "declaration": {
+            "name": "walkComposedTree",
+            "module": "src/dom-utils.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "getDeepActiveElement",
+          "declaration": {
+            "name": "getDeepActiveElement",
+            "module": "src/dom-utils.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "deepContains",
+          "declaration": {
+            "name": "deepContains",
+            "module": "src/dom-utils.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "indexOfItemContainingTarget",
+          "declaration": {
+            "name": "indexOfItemContainingTarget",
+            "module": "src/dom-utils.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "composedAncestors",
+          "declaration": {
+            "name": "composedAncestors",
+            "module": "src/dom-utils.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isClickInsideRect",
+          "declaration": {
+            "name": "isClickInsideRect",
+            "module": "src/dom-utils.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "randomID",
+          "declaration": {
+            "name": "randomID",
+            "module": "src/dom-utils.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/index.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "BlockquoteDialog",
+          "declaration": {
+            "name": "BlockquoteDialog",
+            "module": "./BlockquoteDialog.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/blockqoute-dialog-animations-styles.css.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`/* Closed state of the dialog */ dialog { opacity: 0; transform: translateY(16%); transition: opacity 200ms ease-out, transform 200ms ease-out, overlay 200ms ease-out allow-discrete, display 200ms ease-out allow-discrete; /* Equivalent to transition: all 200ms allow-discrete; */ } /* Open state of the dialog */ dialog[open] { opacity: 1; transform: translateY(0); } /* Before-open state */ /* Needs to be after the previous dialog[open] rule to take effect, as the specificity is the same */ @starting-style { dialog[open] { opacity: 0; transform: translateY(16%); } } /* Transition the :backdrop when the dialog modal is promoted to the top layer */ dialog::backdrop { background-color: rgba(120, 120, 120, 0); transition: display 190ms ease-in allow-discrete, overlay 190ms ease-in allow-discrete, background-color 190ms; /* Equivalent to transition: all 190ms allow-discrete; */ } dialog[open]::backdrop { background-color: rgba(120, 120, 120, 0.25); } /* This starting-style rule cannot be nested inside the above selector because the nesting selector cannot represent pseudo-elements. */ @starting-style { dialog[open]::backdrop { background-color: rgba(120, 120, 120, 0); } }`"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "src/styles/blockqoute-dialog-animations-styles.css.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/blockquote-dialog-styles.css.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`:host { --_background-color: var(--blockquote-dialog-background-color, rgb(255, 255, 255)); --_max-height: var(--blockquote-dialog-max-height, min(35rem, calc(100% - 3rem))); --_max-width: var(--blockquote-dialog-max-width, min(35rem, calc(100% - 3rem))); --_min-height: var(--blockquote-dialog-min-height, 8.75rem); --_min-width: var(--blockquote-dialog-min-width, 17.5rem); --_padding: var(--blockquote-padding, 1rem); box-sizing: border-box; display: contents; background-color: var(--_background-color); margin: auto; max-height: var(--_max-height); max-width: var(--_max-width); min-height: var(--_min-height); min-width: var(--_min-width); position: fixed; height: -moz-fit-content; height: fit-content; width: -moz-fit-content; width: fit-content; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } dialog { background: inherit; border: none; border-radius: inherit; flex-direction: column; margin: inherit; height: inherit; width: inherit; max-height: inherit; max-width: inherit; min-height: inherit; min-width: inherit; outline: none; overflow: visible; padding: 0; } :host([open]) dialog { display: flex; } .scroller { overflow-y: auto; min-height: var(--_min-height); } .content { padding: var(--_padding); min-height: inherit; }`"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "src/styles/blockquote-dialog-styles.css.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "define/blockquote-dialog.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "blockquote-dialog",
+          "declaration": {
+            "name": "BlockquoteDialog",
+            "module": "/src/BlockquoteDialog.js"
+          }
+        }
+      ]
+    }
+  ]
+}
