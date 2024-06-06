@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en" dark="_mode"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Demo Labelledby - blockquote-dialog">
+    <title>Labelledby - blockquote-dialog</title>
+    <style>
+      :root {
+        font: normal medium/1.25 sans-serif;
+      }
+      body {
+        margin: 0;
+      }
+
+      .aria-only,
+      [data-embedded] .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      :not(:defined) {
+        visibility: hidden;
+      }
+
+      form div {
+        text-align: right;
+      }
+
+      form p {
+        margin: 1rem 0 0 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 class="sr-only">blockquote-dialog</h1>
+      <button id="open-dialog">Open dialog</button>
+
+      <wrapper-dialog>
+        <blockquote-dialog>
+          <form method="dialog">
+            <div><button aria-label="close" formnovalidate="">X</button></div>
+            <h2>MLW Registration</h2>
+            <p>All fields are required</p>
+            <p>
+              <label>Name:
+                <input autofocus="" type="text" name="name" required="">
+              </label>
+            </p>
+            <p>
+              <label>Warranty:
+                <input type="number" min="0" max="10" step="1" name="warranty" required="">
+              </label>
+            </p>
+            <p>
+              <label>Power source:
+                <select name="powersoure">
+                  <option>AC/DC</option>
+                  <option>Battery</option>
+                  <option>Solar</option>
+                </select>
+              </label>
+            </p>
+            <p>
+              <button value="cancel" type="reset">Cancel</button>
+              <button formmethod="get">Submit</button>
+            </p>
+          </form>
+          <span slot="idref_">MLW Registration - All fields are required</span>
+        </blockquote-dialog>
+      </wrapper-dialog>
+    </main>
+    
+    <script>
+      class WrapperDialog extends HTMLElement {
+        constructor() {
+          super();
+
+          const styles = new CSSStyleSheet();
+          styles.replaceSync(`
+            :host {
+              display: block;
+              box-sizing: border-box;
+            }
+
+            :host([hidden]),
+            [hidden] {
+              display: none !important;
+            }
+
+            *,
+            *::before,
+            *::after {
+              box-sizing: inherit;
+            }`);
+          this.attachShadow({ mode: 'open', delegatesFocus: false });
+          this.shadowRoot.adoptedStyleSheets.push(styles);
+          this.shadowRoot.innerHTML = `<slot></slot>`;
+        }
+      }
+
+      customElements.define('wrapper-dialog', WrapperDialog);
+
+      const openDialog = document.getElementById('open-dialog');
+      const dialog = document.querySelector('blockquote-dialog');
+      dialog.labelledby = 'idref_';
+      const form = document.querySelector('form');
+
+      openDialog.addEventListener('click', () => {
+        dialog.setAttribute('open', '');
+      });
+
+      dialog.addEventListener('open', ev => {
+        console.log('open:', ev);
+      });
+
+      dialog.addEventListener('cancel', ev => {
+        console.log('cancel:', ev);
+      });
+
+      dialog.addEventListener('close', ev => {
+        const returnValueNode = ev.target.returnValue;
+        console.log('close:', ev.target, returnValueNode?.form, returnValueNode);
+      });
+
+      form.addEventListener('submit', ev => {
+        console.log('submit:', ev.target, ev.submitter);
+      });
+    </script>
+  
+
+<script type="module" src="./assets/blockquote-dialog-B4_Yb5fv.js"></script></body></html>
