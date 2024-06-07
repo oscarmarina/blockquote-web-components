@@ -7,7 +7,7 @@ import {
   isFocusable,
   getFirstAndLastFocusableChildren,
   walkComposedTree,
-} from './dom-utils.js';
+} from '@blockquote/dev-utilities';
 import { styles } from './styles/blockquote-dialog-styles.css.js';
 import { styles as animations } from './styles/blockqoute-dialog-animations-styles.css.js';
 

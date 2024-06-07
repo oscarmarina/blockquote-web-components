@@ -151,6 +151,7 @@
   "dependencies": {
     "@blockquote-web-components/blockquote-directive-ariaidref-slot": "^1.0.0",
     "@blockquote-web-components/blockquote-mixin-slot-content": "^1.5.0",
+    "@blockquote/dev-utilities": "^1.0.0",
     "@material/web": "^1.4.1",
     "lit": "^3.1.3"
   },
