@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-dialog@1.0.1...@blockquote-web-components/blockquote-dialog@1.1.0) (2024-06-09)
+
+### Features
+
+- **blockquote-dialog:** add labelledbyVisible property ([4effecd](https://github.com/oscarmarina/blockquote-web-components/commit/4effecd9ef68badca14504f935e11b9f25865534))
+
 ## [1.0.1](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-dialog@1.0.0...@blockquote-web-components/blockquote-dialog@1.0.1) (2024-06-07)
 
 ### Bug Fixes
