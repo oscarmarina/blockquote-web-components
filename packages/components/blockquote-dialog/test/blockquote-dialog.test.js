@@ -141,7 +141,9 @@ suite('BlockquoteDialog', () => {
   suite('Default Open', () => {
     setup(async () => {
       el = await fixture(
-        html`<blockquote-dialog label="aria-label Name" open>${_formTpl}</blockquote-dialog>`,
+        html`<blockquote-dialog labelledby="labelledby" open
+          >${_formTpl} <span slot="labelledby">All fields are required</span></blockquote-dialog
+        >`,
       );
     });
 
