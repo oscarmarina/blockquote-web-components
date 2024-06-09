@@ -44,6 +44,7 @@ import { styles as animations } from './styles/blockqoute-dialog-animations-styl
  * @attribute open
  * @attribute label
  * @attribute labelledby
+ * @attribute labelledbyVisible
  * @attribute type
  * @fires open
  * @fires close
@@ -84,12 +85,30 @@ export class BlockquoteDialog extends LitElement {
       attribute: false,
     },
 
+    /**
+     * The 'label' attribute will be used as the 'aria-label' for the dialog
+     */
     label: {
       type: String,
     },
 
+    /**
+     * The 'labelledby' attribute will be used as the 'aria-labelledby' for the dialog.
+     * It will also be used to create a slot with the same 'id' and 'name'.
+     * This slot is hidden by default and its 'name' and 'id' should correspond to the 'slot' attribute of an element in the Light DOM.
+     * This connects the 'slot', 'name', and 'id' attributes of a slot to be used with ARIA relationships.
+     */
     labelledby: {
       type: String,
+    },
+
+    /**
+     * The 'labelledbyVisible' attribute will control the visibility of the slot created by 'labelledby'.
+     * By default, it is set to 'hidden'.
+     */
+    labelledbyVisible: {
+      type: String,
+      attribute: 'labelledby-visibile',
     },
 
     /**
@@ -131,6 +150,7 @@ export class BlockquoteDialog extends LitElement {
     this.type = 'alert';
     this.label = '';
     this.labelledby = '';
+    this.labelledbyVisible = false;
 
     if (!isServer) {
       this.addEventListener('submit', this._handleSubmit);
@@ -210,7 +230,11 @@ export class BlockquoteDialog extends LitElement {
   }
 
   get _labeledbyTpl() {
-    return html` ${this.labelledby ? blockquoteDirectiveAriaidrefSlot(this.labelledby) : ''} `;
+    return html`
+      ${this.labelledby
+        ? blockquoteDirectiveAriaidrefSlot(this.labelledby, this.labelledbyVisible)
+        : ''}
+    `;
   }
 
   get _contentTpl() {

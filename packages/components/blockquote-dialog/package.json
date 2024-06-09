@@ -103,7 +103,7 @@
           "SwitchCase": 1,
           "ignoredNodes": [
             "PropertyDefinition",
-            "TemplateLiteral > CallExpression"
+            "TemplateLiteral > *"
           ]
         }
       ],

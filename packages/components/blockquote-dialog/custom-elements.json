@@ -202,6 +202,7 @@
               "type": {
                 "text": "string"
               },
+              "description": "The 'label' attribute will be used as the 'aria-label' for the dialog",
               "default": "''",
               "attribute": "label"
             },
@@ -212,8 +213,20 @@
               "type": {
                 "text": "string"
               },
+              "description": "The 'labelledby' attribute will be used as the 'aria-labelledby' for the dialog.\nIt will also be used to create a slot with the same 'id' and 'name'.\nThis slot is hidden by default and its 'name' and 'id' should correspond to the 'slot' attribute of an element in the Light DOM.\nThis connects the 'slot', 'name', and 'id' attributes of a slot to be used with ARIA relationships.",
               "default": "''",
               "attribute": "labelledby"
+            },
+            {
+              "kind": "field",
+              "name": "labelledbyVisible",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "The 'labelledbyVisible' attribute will control the visibility of the slot created by 'labelledby'.\nBy default, it is set to 'hidden'.",
+              "default": "false",
+              "attribute": "labelledby-visibile"
             },
             {
               "kind": "field",
@@ -247,6 +260,7 @@
               "type": {
                 "text": "string"
               },
+              "description": "The 'label' attribute will be used as the 'aria-label' for the dialog",
               "default": "''",
               "fieldName": "label"
             },
@@ -255,8 +269,12 @@
               "type": {
                 "text": "string"
               },
+              "description": "The 'labelledby' attribute will be used as the 'aria-labelledby' for the dialog.\nIt will also be used to create a slot with the same 'id' and 'name'.\nThis slot is hidden by default and its 'name' and 'id' should correspond to the 'slot' attribute of an element in the Light DOM.\nThis connects the 'slot', 'name', and 'id' attributes of a slot to be used with ARIA relationships.",
               "default": "''",
               "fieldName": "labelledby"
+            },
+            {
+              "name": "labelledbyVisible"
             },
             {
               "name": "type",
@@ -266,6 +284,15 @@
               "description": "The type of dialog for accessibility. Set this to `alert` to announce a\ndialog as an alert dialog.",
               "default": "'alert'",
               "fieldName": "type"
+            },
+            {
+              "name": "labelledby-visibile",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "The 'labelledbyVisible' attribute will control the visibility of the slot created by 'labelledby'.\nBy default, it is set to 'hidden'.",
+              "default": "false",
+              "fieldName": "labelledbyVisible"
             }
           ],
           "superclass": {
@@ -283,375 +310,6 @@
           "declaration": {
             "name": "BlockquoteDialog",
             "module": "src/BlockquoteDialog.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/dom-utils.js",
-      "declarations": [
-        {
-          "kind": "function",
-          "name": "redispatchEvent",
-          "parameters": [
-            {
-              "name": "element",
-              "description": "The element to dispatch the event from.",
-              "type": {
-                "text": "Element"
-              }
-            },
-            {
-              "name": "event",
-              "description": "The event to re-dispatch. If it's a string, a new Event is created.",
-              "type": {
-                "text": "Event|string"
-              }
-            },
-            {
-              "name": "options",
-              "default": "{}",
-              "description": "An object with properties to override in the new event.",
-              "optional": true,
-              "type": {
-                "text": "Object"
-              }
-            }
-          ],
-          "description": "Re-dispatches an event from the provided element.\n\nThis function is useful for forwarding non-composed events, such as `change`\nevents.",
-          "return": {
-            "type": {
-              "text": "boolean"
-            }
-          }
-        },
-        {
-          "kind": "function",
-          "name": "isElementInvisible",
-          "parameters": [
-            {
-              "name": "element",
-              "description": "The DOM element to check.",
-              "type": {
-                "text": "Element"
-              }
-            },
-            {
-              "name": "exceptions",
-              "default": "['dialog', '[popover]']",
-              "description": "Array of Elements to ignore when checking the element.",
-              "optional": true,
-              "type": {
-                "text": "Array"
-              }
-            }
-          ],
-          "description": "Checks if an element should be ignored.",
-          "return": {
-            "type": {
-              "text": "boolean"
-            }
-          }
-        },
-        {
-          "kind": "function",
-          "name": "isFocusable",
-          "parameters": [
-            {
-              "name": "element",
-              "description": "The DOM element to check for focusability.",
-              "type": {
-                "text": "Element"
-              }
-            }
-          ],
-          "description": "Checks if an element is focusable. An element is considered focusable if it matches\nstandard focusable elements criteria (such as buttons, inputs, etc., that are not disabled\nand do not have a negative tabindex) or is a custom element with a shadow root that delegates focus.",
-          "return": {
-            "type": {
-              "text": "boolean"
-            }
-          }
-        },
-        {
-          "kind": "function",
-          "name": "getFirstAndLastFocusableChildren",
-          "parameters": [
-            {
-              "name": "walker",
-              "description": "The TreeWalker object used to traverse the node's children.",
-              "type": {
-                "text": "IterableIterator<HTMLElement>"
-              }
-            }
-          ],
-          "description": "Retrieves the first and last focusable children of a node using a TreeWalker.",
-          "return": {
-            "type": {
-              "text": "[first: HTMLElement|null, last: HTMLElement|null]"
-            }
-          }
-        },
-        {
-          "kind": "function",
-          "name": "walkComposedTree",
-          "parameters": [
-            {
-              "name": "node",
-              "description": "The root node for traversal.",
-              "type": {
-                "text": "Node"
-              }
-            },
-            {
-              "name": "whatToShow",
-              "default": "0",
-              "description": "NodeFilter code for node types to include.",
-              "optional": true,
-              "type": {
-                "text": "number"
-              }
-            },
-            {
-              "name": "filter",
-              "default": "() => true",
-              "description": "Filters nodes. Child nodes are considered even if parent does not satisfy the filter.",
-              "optional": true,
-              "type": {
-                "text": "function"
-              }
-            },
-            {
-              "name": "skipNode",
-              "default": "() => false",
-              "description": "Determines whether to skip a node and its children.",
-              "optional": true,
-              "type": {
-                "text": "function"
-              }
-            }
-          ],
-          "description": "Traverse the composed tree from the root, selecting elements that meet the provided filter criteria.\nYou can pass [NodeFilter](https://developer.mozilla.org/en-US/docs/Web/API/NodeFilter) or 0 to retrieve all nodes.",
-          "return": {
-            "type": {
-              "text": "IterableIterator<Node>"
-            }
-          }
-        },
-        {
-          "kind": "function",
-          "name": "getDeepActiveElement",
-          "parameters": [
-            {
-              "name": "root",
-              "default": "document",
-              "description": "The root element to start the search from.",
-              "type": {
-                "text": "Document | ShadowRoot"
-              }
-            }
-          ],
-          "description": "Returns the deepest active element, considering Shadow DOM subtrees",
-          "return": {
-            "type": {
-              "text": "Element"
-            }
-          }
-        },
-        {
-          "kind": "function",
-          "name": "deepContains",
-          "parameters": [
-            {
-              "name": "container",
-              "description": "The container to search within.",
-              "type": {
-                "text": "Node"
-              }
-            },
-            {
-              "name": "target",
-              "description": "The node that may be inside the container.",
-              "type": {
-                "text": "Node"
-              }
-            }
-          ],
-          "description": "Returns true if the first node contains the second, even if the second node\nis in a shadow tree.\n\nThe standard Node.contains() function does not account for Shadow DOM, and\nreturns false if the supplied target node is sitting inside a shadow tree\nwithin the container.",
-          "return": {
-            "type": {
-              "text": "boolean"
-            }
-          }
-        },
-        {
-          "kind": "function",
-          "name": "indexOfItemContainingTarget",
-          "parameters": [
-            {
-              "name": "items",
-              "description": "A list element containing a set of items",
-              "type": {
-                "text": "NodeList|Node[]"
-              }
-            },
-            {
-              "name": "target",
-              "description": "A target element that may or may not be an item in the\nlist.",
-              "type": {
-                "text": "Node"
-              }
-            }
-          ],
-          "description": "Search a list element for the item that contains the specified target.\n\nWhen dealing with UI events (e.g., mouse clicks) that may occur in\nsubelements inside a list item, you can use this routine to obtain the\ncontaining list item.",
-          "return": {
-            "type": {
-              "text": "number"
-            }
-          }
-        },
-        {
-          "kind": "function",
-          "name": "composedAncestors",
-          "parameters": [
-            {
-              "name": "node",
-              "type": {
-                "text": "Node"
-              }
-            }
-          ],
-          "description": "Return the ancestors of the given node in the composed tree.\n\nIn the composed tree, the ancestor of a node assigned to a slot is that slot,\nnot the node's DOM ancestor. The ancestor of a shadow root is its host.",
-          "return": {
-            "type": {
-              "text": "Iterable<Node>"
-            }
-          }
-        },
-        {
-          "kind": "function",
-          "name": "isClickInsideRect",
-          "parameters": [
-            {
-              "name": "rect",
-              "description": "The bounding rectangle, typically obtained from `element.getBoundingClientRect()`.",
-              "type": {
-                "text": "DOMRect"
-              }
-            },
-            {
-              "name": "ev",
-              "description": "The click event.",
-              "type": {
-                "text": "PointerEvent"
-              }
-            }
-          ],
-          "description": "Checks if a click event occurred inside a given bounding rectangle.",
-          "return": {
-            "type": {
-              "text": "boolean"
-            }
-          }
-        },
-        {
-          "kind": "function",
-          "name": "randomID",
-          "parameters": [
-            {
-              "name": "length",
-              "default": "10"
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "redispatchEvent",
-          "declaration": {
-            "name": "redispatchEvent",
-            "module": "src/dom-utils.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "isElementInvisible",
-          "declaration": {
-            "name": "isElementInvisible",
-            "module": "src/dom-utils.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "isFocusable",
-          "declaration": {
-            "name": "isFocusable",
-            "module": "src/dom-utils.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "getFirstAndLastFocusableChildren",
-          "declaration": {
-            "name": "getFirstAndLastFocusableChildren",
-            "module": "src/dom-utils.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "walkComposedTree",
-          "declaration": {
-            "name": "walkComposedTree",
-            "module": "src/dom-utils.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "getDeepActiveElement",
-          "declaration": {
-            "name": "getDeepActiveElement",
-            "module": "src/dom-utils.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "deepContains",
-          "declaration": {
-            "name": "deepContains",
-            "module": "src/dom-utils.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "indexOfItemContainingTarget",
-          "declaration": {
-            "name": "indexOfItemContainingTarget",
-            "module": "src/dom-utils.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "composedAncestors",
-          "declaration": {
-            "name": "composedAncestors",
-            "module": "src/dom-utils.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "isClickInsideRect",
-          "declaration": {
-            "name": "isClickInsideRect",
-            "module": "src/dom-utils.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "randomID",
-          "declaration": {
-            "name": "randomID",
-            "module": "src/dom-utils.js"
           }
         }
       ]
