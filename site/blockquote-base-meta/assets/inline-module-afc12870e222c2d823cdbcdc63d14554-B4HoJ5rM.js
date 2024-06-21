@@ -150,19 +150,22 @@ button[data-selected] ~ button:hover {
         </div>
       </div>
     `}get _toolbarTpl(){return p`
-      ${this.screenSizes.map((e,t)=>p`<button
+      ${this.screenSizes.map((e,t)=>p`
+          <button
             @click="${this._setSelected}"
             id="${e.id}"
             data-index="${t+1}"
             ?data-selected="${this.selected===t+1}"
             ?hidden="${!this.showOverflowSize&&e.width>this.computedStyleWidth}"
-            style="${this.widthInPercent?`width: calc(100% / ${t+1});`:`width: ${e.width}px;`}"
-          >
+            style="${this.widthInPercent?`width: calc(100% / ${t+1});`:`width: ${e.width}px;`}">
             <span>${e.id}</span>
-          </button>`)}
-    `}get _visualTextTpl(){return p` <span aria-disabled="${this.disabledSelectedSizeText}" aria-hidden="true"
-      >${this.selectedSize.id}</span
-    >`}_onResize(e){e.preventDefault(),e.stopPropagation(),window.requestAnimationFrame(()=>{this.requestUpdate()})}_setSelected(e){e.preventDefault(),e.stopPropagation(),this.selected=Number(e.target.dataset.index);const t=new CustomEvent("click",{detail:this.selectedDetail});this.dispatchEvent(t)}}window.customElements.define("blockquote-base-embedded-webview-size",Xe);const Ze=B`:host {
+          </button>
+        `)}
+    `}get _visualTextTpl(){return p`
+      <span aria-disabled="${this.disabledSelectedSizeText}" aria-hidden="true">
+        ${this.selectedSize.id}
+      </span>
+    `}_onResize(e){e.preventDefault(),e.stopPropagation(),window.requestAnimationFrame(()=>{this.requestUpdate()})}_setSelected(e){e.preventDefault(),e.stopPropagation(),this.selected=Number(e.target.dataset.index);const t=new CustomEvent("click",{detail:this.selectedDetail});this.dispatchEvent(t)}}window.customElements.define("blockquote-base-embedded-webview-size",Xe);const Ze=B`:host {
   --__resizer-factor: calc(1.25rem * var(--blockquote-base-embedded-webview-resize-factor, 1));
   --_rect-min-width: var(--blockquote-base-embedded-webview-resize-rect-min-width, 18.75rem);
   --_rect-min-height: var(--blockquote-base-embedded-webview-resize-rect-min-height, 9.375rem);
@@ -179,7 +182,7 @@ button[data-selected] ~ button:hover {
   flex-direction: column;
   align-items: center;
   height: inherit;
-  padding: calc(var(--__resizer-factor) * 1) 0 calc(var(--__resizer-factor) * 2) 0;
+  padding: calc(var(--__resizer-factor) * 1) 0 calc(var(--__resizer-factor) * 2);
 }
 
 :host([hidden]),
@@ -325,7 +328,11 @@ button[data-selected] ~ button:hover {
 *::before,
 *::after {
   box-sizing: inherit;
-}`;class Qe extends v{static get styles(){return[Ke]}static get properties(){return{embeddedTitle:{type:String,attribute:"embedded-title"},src:{type:String},type:{type:String}}}constructor(){super(),this.embeddedTitle="",this.src="",this.type="iframe",this._onLoadElement=this._onLoadElement.bind(this)}connectedCallback(){this._embeddedElement||(super.connectedCallback&&super.connectedCallback(),this._embeddedElement=document.createElement(this.type),Object.assign(this._embeddedElement,{slot:"embedded"}),this._embeddedElement.addEventListener("load",this._onLoadElement))}willUpdate(e){super.willUpdate&&super.willUpdate(e),(e.has("src")||e.has("embeddedTitle"))&&this.src!==""&&this._fetch(this.src)}render(){return p` ${this._embeddedTpl} ${this._litHtmlRender()} `}_litHtmlRender(){F(this._lightDomTpl,this,{host:this})}get _lightDomTpl(){return this._embeddedElement}get _loadResource(){return this.type==="iframe"?"src":"data"}get _embeddedTpl(){return p`<slot name="embedded"></slot>`}_fetch(e){var t,i,s,o;e&&(Object.assign((t=this._embeddedElement)!=null?t:{},this.type==="iframe"&&{allow:"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture",allowFullscreen:!0,loading:"lazy"},this.embeddedTitle&&{title:this.embeddedTitle}),Object.assign((i=this._embeddedElement)!=null?i:{},{[this._loadResource]:e}),window.performance.mark("iframestart"),Object.assign((o=(s=this._embeddedElement)==null?void 0:s.style)!=null?o:{},e.indexOf("http")!==0&&{opacity:0}))}_onLoadElement({target:e}){if(!e.contentDocument||!e.contentDocument.head.childNodes.length)return;Object.assign(e.contentDocument.body.dataset,{embedded:""}),window.performance.mark("iframeend"),window.performance.measure("iframe","iframestart","iframeend"),window.requestAnimationFrame(()=>e.removeAttribute("style"));const t=new CustomEvent("elementloaded",{bubbles:!0,detail:e});this.dispatchEvent(t)}}window.customElements.define("blockquote-base-embedded-webview-element",Qe);const Ge=B`:host {
+}`;class Qe extends v{static get styles(){return[Ke]}static get properties(){return{embeddedTitle:{type:String,attribute:"embedded-title"},src:{type:String},type:{type:String}}}constructor(){super(),this.embeddedTitle="",this.src="",this.type="iframe",this._onLoadElement=this._onLoadElement.bind(this)}connectedCallback(){this._embeddedElement||(super.connectedCallback&&super.connectedCallback(),this._embeddedElement=document.createElement(this.type),Object.assign(this._embeddedElement,{slot:"embedded"}),this._embeddedElement.addEventListener("load",this._onLoadElement))}willUpdate(e){super.willUpdate&&super.willUpdate(e),(e.has("src")||e.has("embeddedTitle"))&&this.src!==""&&this._fetch(this.src)}render(){return p`
+      ${this._embeddedTpl} ${this._litHtmlRender()}
+    `}_litHtmlRender(){F(this._lightDomTpl,this,{host:this})}get _lightDomTpl(){return this._embeddedElement}get _loadResource(){return this.type==="iframe"?"src":"data"}get _embeddedTpl(){return p`
+      <slot name="embedded"></slot>
+    `}_fetch(e){var t,i,s,o;e&&(Object.assign((t=this._embeddedElement)!=null?t:{},this.type==="iframe"&&{allow:"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture",allowFullscreen:!0,loading:"lazy"},this.embeddedTitle&&{title:this.embeddedTitle}),Object.assign((i=this._embeddedElement)!=null?i:{},{[this._loadResource]:e}),window.performance.mark("iframestart"),Object.assign((o=(s=this._embeddedElement)==null?void 0:s.style)!=null?o:{},e.indexOf("http")!==0&&{opacity:0}))}_onLoadElement({target:e}){if(!e.contentDocument||!e.contentDocument.head.childNodes.length)return;Object.assign(e.contentDocument.body.dataset,{embedded:""}),window.performance.mark("iframeend"),window.performance.measure("iframe","iframestart","iframeend"),window.requestAnimationFrame(()=>e.removeAttribute("style"));const t=new CustomEvent("elementloaded",{bubbles:!0,detail:e});this.dispatchEvent(t)}}window.customElements.define("blockquote-base-embedded-webview-element",Qe);const Ge=B`:host {
   --_host-color: var(--blockquote-base-embedded-webview-color, rgb(32, 32, 32));
   --_main-bgcolor: var(--blockquote-base-embedded-webview-main-bgcolor, rgb(250, 250, 250));
   --_select-bgcolor: var(--blockquote-base-embedded-webview-select-bgcolor, rgb(222, 222, 222));
@@ -461,30 +468,31 @@ header > div {
 
 blockquote-base-embedded-webview-resize {
   overflow-x: hidden;
-}`,et=p`<svg
-  aria-hidden="true"
-  viewBox="0 0 24 24"
-  stroke-width="2"
-  stroke="currentcolor"
-  fill="none"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <polyline points="6 9 12 15 18 9" />
-</svg>`,tt=p`
+}`,et=p`
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 24 24"
+    stroke-width="2"
+    stroke="currentcolor"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round">
+    <polyline points="6 9 12 15 18 9" />
+  </svg>
+`,tt=p`
   <svg
     viewBox="0 0 20 20"
     fill-rule="evenodd"
     fill="currentcolor"
     preserveAspectRatio="xMidYMid meet"
     focusable="false"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+    xmlns="http://www.w3.org/2000/svg">
     <path
-      d="M4.5 17C4.08333 17 3.72933 16.854 3.438 16.562C3.146 16.2707 3 15.9167 3 15.5V4.5C3 4.08333 3.146 3.72933 3.438 3.438C3.72933 3.146 4.08333 3 4.5 3H10V4.5H4.5V15.5H15.5V10H17V15.5C17 15.9167 16.854 16.2707 16.562 16.562C16.2707 16.854 15.9167 17 15.5 17H4.5ZM8.062 13L7 11.938L14.438 4.5H12V3H17V8H15.5V5.562L8.062 13Z"
-    />
+      d="M4.5 17C4.08333 17 3.72933 16.854 3.438 16.562C3.146 16.2707 3 15.9167 3 15.5V4.5C3 4.08333 3.146 3.72933 3.438 3.438C3.72933 3.146 4.08333 3 4.5 3H10V4.5H4.5V15.5H15.5V10H17V15.5C17 15.9167 16.854 16.2707 16.562 16.562C16.2707 16.854 15.9167 17 15.5 17H4.5ZM8.062 13L7 11.938L14.438 4.5H12V3H17V8H15.5V5.562L8.062 13Z" />
   </svg>
-`;class it extends v{static get styles(){return[Ge]}static get properties(){return{heading:{type:String},selected:{type:Number},headingLevel:{type:Number,attribute:"heading-level",reflect:!0},screenSizeSelected:{type:Number,attribute:"screen-size-selected"},limitHeight:{type:Boolean,attribute:"limit-height",reflect:!0}}}constructor(){super(),this.selected=0,this.screenSizeSelected=0,this.headingLevel=1,this.heading="",this.__resetResizing=!1,this.__selectArrow=et,this.__readDataPos={x:"0",y:"0",resizing:!1,cursor:""},this.limitHeight=!1,this._sources=[{src:"",option:"",description:""}],this._updateSize=this._updateSize.bind(this),this._embeddedResizeRef=We()}connectedCallback(){var t;super.connectedCallback&&super.connectedCallback(),(t=this.shadowRoot)==null||t.addEventListener("webviewresize",i=>{var o;const{detail:s}=i;Object.assign(this.__readDataPos,s),this.__resetResizing=!0,(s.cursor==="n"||s.cursor==="ne"||s.cursor==="nw")&&window.scroll({top:Math.abs(parseInt(this.__readDataPos.y,10)+((o=this._controlBottom)!=null?o:0)),left:0,behavior:"smooth"}),this.requestUpdate()});const e=Array.from(this.querySelectorAll("template"));e.length&&(this._sources=e.map(i=>{const{src:s="",option:o="",description:n=""}=i.dataset;return{src:s,option:o,description:n}}),this._src=this._sources[this.selected].src)}firstUpdated(e){var t;super.firstUpdated&&super.firstUpdated(e),this.embedded=(t=this.shadowRoot)==null?void 0:t.querySelector('[slot="embedded"]'),this._embeddedResizeRef.value&&(this._controlBottom=parseFloat(window.getComputedStyle(this._embeddedResizeRef.value).paddingBottom))}_updateSize({detail:e}){var t,i,s,o;(i=(t=this._embeddedResizeRef)==null?void 0:t.value)==null||i.style.setProperty("--blockquote-base-embedded-webview-resize-rect-width",`${e.width}px`),(o=(s=this._embeddedResizeRef)==null?void 0:s.value)==null||o.style.setProperty("--blockquote-base-embedded-webview-resize-rect-height",this.limitHeight?"100%":`${e.height}px`),this.__resetResizing=!1,this.requestUpdate()}get _headingLevel(){return this.headingLevel>=1&&this.headingLevel<=6?this.headingLevel:2}render(){return p` ${this._headerTpl} ${this._mainTpl} ${this._litHtmlRender()}`}_litHtmlRender(){F(this._lightDomTpl,this,{host:this})}get _lightDomTpl(){return this.embedded}get _headerTpl(){return p`
+`;class it extends v{static get styles(){return[Ge]}static get properties(){return{heading:{type:String},selected:{type:Number},headingLevel:{type:Number,attribute:"heading-level",reflect:!0},screenSizeSelected:{type:Number,attribute:"screen-size-selected"},limitHeight:{type:Boolean,attribute:"limit-height",reflect:!0}}}constructor(){super(),this.selected=0,this.screenSizeSelected=0,this.headingLevel=1,this.heading="",this.__resetResizing=!1,this.__selectArrow=et,this.__readDataPos={x:"0",y:"0",resizing:!1,cursor:""},this.limitHeight=!1,this._sources=[{src:"",option:"",description:""}],this._updateSize=this._updateSize.bind(this),this._embeddedResizeRef=We()}connectedCallback(){var t;super.connectedCallback&&super.connectedCallback(),(t=this.shadowRoot)==null||t.addEventListener("webviewresize",i=>{var o;const{detail:s}=i;Object.assign(this.__readDataPos,s),this.__resetResizing=!0,(s.cursor==="n"||s.cursor==="ne"||s.cursor==="nw")&&window.scroll({top:Math.abs(parseInt(this.__readDataPos.y,10)+((o=this._controlBottom)!=null?o:0)),left:0,behavior:"smooth"}),this.requestUpdate()});const e=Array.from(this.querySelectorAll("template"));e.length&&(this._sources=e.map(i=>{const{src:s="",option:o="",description:n=""}=i.dataset;return{src:s,option:o,description:n}}),this._src=this._sources[this.selected].src)}firstUpdated(e){var t;super.firstUpdated&&super.firstUpdated(e),this.embedded=(t=this.shadowRoot)==null?void 0:t.querySelector('[slot="embedded"]'),this._embeddedResizeRef.value&&(this._controlBottom=parseFloat(window.getComputedStyle(this._embeddedResizeRef.value).paddingBottom))}_updateSize({detail:e}){var t,i,s,o;(i=(t=this._embeddedResizeRef)==null?void 0:t.value)==null||i.style.setProperty("--blockquote-base-embedded-webview-resize-rect-width",`${e.width}px`),(o=(s=this._embeddedResizeRef)==null?void 0:s.value)==null||o.style.setProperty("--blockquote-base-embedded-webview-resize-rect-height",this.limitHeight?"100%":`${e.height}px`),this.__resetResizing=!1,this.requestUpdate()}get _headingLevel(){return this.headingLevel>=1&&this.headingLevel<=6?this.headingLevel:2}render(){return p`
+      ${this._headerTpl} ${this._mainTpl} ${this._litHtmlRender()}
+    `}_litHtmlRender(){F(this._lightDomTpl,this,{host:this})}get _lightDomTpl(){return this.embedded}get _headerTpl(){return p`
       <header>
         <div>
           ${this._headingTpl} ${this._navigationDemosTpl} ${this._descriptionTpl}
@@ -492,7 +500,11 @@ blockquote-base-embedded-webview-resize {
         </div>
         ${this._screenSizeTpl}
       </header>
-    `}get _headingTpl(){return p`<div aria-level="${this._headingLevel}" role="heading">${this.heading}</div>`}get _navigationDemosTpl(){return p` <div>${this._selectTpl}${this._externalLinkTpl}</div> `}get _selectTpl(){return p`
+    `}get _headingTpl(){return p`
+      <div aria-level="${this._headingLevel}" role="heading">${this.heading}</div>
+    `}get _navigationDemosTpl(){return p`
+      <div>${this._selectTpl}${this._externalLinkTpl}</div>
+    `}get _selectTpl(){return p`
       ${this._sources.some(e=>e.option)?p`
             <div class="select">
               <select @change="${this._onChangeFile}" aria-label="Cases">
@@ -505,33 +517,37 @@ blockquote-base-embedded-webview-resize {
               ${this.__selectArrow}
             </div>
           `:""}
-    `}get _externalLinkTpl(){return p`<a href="${this._src||"#"}" target="_blank" class="open-externally">
-      <span class="sr-only">View demo in a new tab</span
-      ><span aria-hidden="true">${tt}</span></a
-    >`}get _descriptionTpl(){return p` <p class="description">${this._sources[this.selected].description}</p>`}get _readDataPosTpl(){return p`
+    `}get _externalLinkTpl(){return p`
+      <a href="${this._src||"#"}" target="_blank" class="open-externally">
+        <span class="sr-only">View demo in a new tab</span>
+        <span aria-hidden="true">${tt}</span>
+      </a>
+    `}get _descriptionTpl(){return p`
+      <p class="description">${this._sources[this.selected].description}</p>
+    `}get _readDataPosTpl(){return p`
       <div
         aria-hidden="true"
         class="read-data-pos"
-        style="opacity:${this.__readDataPos.resizing?1:0}"
-      >
+        style="opacity:${this.__readDataPos.resizing?1:0}">
         <span>${this.__readDataPos.x}</span>
         <span>x</span>
         <span>${this.__readDataPos.y}</span>
       </div>
-    `}get _screenSizeTpl(){return p` <blockquote-base-embedded-webview-size
-      .disabledSelectedSizeText="${this.__resetResizing}"
-      @click="${this._updateSize}"
-      @selectedchange="${this._updateSize}"
-      .selected="${this.screenSizeSelected}"
-    ></blockquote-base-embedded-webview-size>`}get _mainTpl(){return p`
+    `}get _screenSizeTpl(){return p`
+      <blockquote-base-embedded-webview-size
+        .disabledSelectedSizeText="${this.__resetResizing}"
+        @click="${this._updateSize}"
+        @selectedchange="${this._updateSize}"
+        .selected="${this.screenSizeSelected}"></blockquote-base-embedded-webview-size>
+    `}get _mainTpl(){return p`
       <div class="main">
         <blockquote-base-embedded-webview-resize ${Ye(this._embeddedResizeRef)}>
-          <slot name="embedded"> ${this._embeddedSlotTpl} </slot>
+          <slot name="embedded">${this._embeddedSlotTpl}</slot>
         </blockquote-base-embedded-webview-resize>
       </div>
-    `}get _embeddedSlotTpl(){return p` <blockquote-base-embedded-webview-element
-      slot="embedded"
-      .src="${this._src||""}"
-      .embeddedTitle="${this._sources[this.selected].option||"Demo"}"
-    >
-    </blockquote-base-embedded-webview-element>`}_onChangeFile({target:e}){this.selected=e.selectedIndex,this._src=this._sources[this.selected].src}}window.customElements.define("blockquote-base-embedded-webview",it);
+    `}get _embeddedSlotTpl(){return p`
+      <blockquote-base-embedded-webview-element
+        slot="embedded"
+        .src="${this._src||""}"
+        .embeddedTitle="${this._sources[this.selected].option||"Demo"}"></blockquote-base-embedded-webview-element>
+    `}_onChangeFile({target:e}){this.selected=e.selectedIndex,this._src=this._sources[this.selected].src}}window.customElements.define("blockquote-base-embedded-webview",it);

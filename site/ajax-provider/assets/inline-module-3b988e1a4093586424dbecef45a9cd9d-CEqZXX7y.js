@@ -1,4 +1,4 @@
-var l=Object.defineProperty;var c=(a,e,t)=>e in a?l(a,e,{enumerable:!0,configurable:!0,writable:!0,value:t}):a[e]=t;var i=(a,e,t)=>(c(a,typeof e!="symbol"?e+"":e,t),t);import{s as h,i as x,x as g}from"./lit-element-CH2uaVH_.js";import{A as b}from"./AjaxProvider-CdraDXkQ.js";class p extends h{firstUpdated(){this.json=this.renderRoot.getElementById("json")}render(){return g`
+var l=Object.defineProperty;var c=(a,e,t)=>e in a?l(a,e,{enumerable:!0,configurable:!0,writable:!0,value:t}):a[e]=t;var i=(a,e,t)=>c(a,typeof e!="symbol"?e+"":e,t);import{s as h,i as x,x as g}from"./lit-element-CH2uaVH_.js";import{A as b}from"./AjaxProvider-BNfOK-6P.js";class p extends h{firstUpdated(){this.json=this.renderRoot.getElementById("json")}render(){return g`
             <label for="selectOption">Testing different HTTP verbs</label>
             <div class="select-dropdown">
               <select id="selectOption" @change=${this._onHandleChange}>
@@ -14,9 +14,9 @@ var l=Object.defineProperty;var c=(a,e,t)=>e in a?l(a,e,{enumerable:!0,configura
             </div>
             <p>
               <span>Open DevTools</span>
-              <a target="_blank" rel="noopener" href="https://httpbin.org/#/HTTP_Methods/"
-                >httpbin.org</a
-              >
+              <a target="_blank" rel="noopener" href="https://httpbin.org/#/HTTP_Methods/">
+                httpbin.org
+              </a>
             </p>
             <json-viewer id="json"></json-viewer>
           `}_onHandleChange(e){const t=e.target.value;this._makeRequest(t)}_makeRequest(e){const t=e==="FORMDATA"?"POST":e,d={url:"https://httpbin.org",method:t};let n={};const s=new FormData;switch(s.append("rxjs","Ajax"),s.append("ajax","RxJS"),e){case"GET":n={path:e.toLowerCase()};break;case"POST":n={path:e.toLowerCase(),headers:{"Content-Type":"application/json","rxjs-custom-header":"Rxjs"},body:{rxjs:`Body ${t}`},includeDownloadProgress:!0,includeUploadProgress:!0};break;case"FORMDATA":n={path:"POST".toLowerCase(),headers:{"rxjs-custom-header":"Rxjs"},body:s};break;case"PATCH":n={path:e.toLowerCase(),body:{rxjs:`Body ${t}`}};break;case"PUT":n={path:e.toLowerCase(),body:{rxjs:`Body ${t}`}};break;case"DELETE":n={path:e.toLowerCase(),body:{rxjs:`Body ${t}`},includeDownloadProgress:!0,includeUploadProgress:!0};break;case"ERROR":n={path:"status/500",method:"GET"};break;default:console.error("Invalid HTTP method");return}const r=new b({...d,...n});r.addEventListener("ajaxpresend",({detail:o})=>console.log(`ajaxpresend: ${o}`)),r.addEventListener("ajaxresponse",({detail:o})=>console.log(o)),r.addEventListener("ajaxprogress",({detail:o})=>console.log(o)),r.addEventListener("ajaxresponseend",({detail:o})=>console.log(`ajaxresponseend: ${o}`)),r.addEventListener("ajaxerror",({detail:o})=>console.dir(o)),r.addEventListener("ajaxerrorend",({detail:o})=>console.log(`ajaxerrorend: ${o}`)),r.generateRequest().then(o=>{this.json.data=(o.request={})&&o,console.log(`RESULT ${e}`,o)}).catch(o=>{this.json.data=(o.request={})&&o,console.dir(o)})}}i(p,"styles",x`
