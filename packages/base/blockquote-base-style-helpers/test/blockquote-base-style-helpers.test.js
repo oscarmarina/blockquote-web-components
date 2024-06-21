@@ -74,7 +74,9 @@ suite('BlockquoteBaseStyleHelpers', () => {
      */
     let el;
     setup(async () => {
-      el = await fixture(html` <shared-element></shared-element> `);
+      el = await fixture(html`
+        <shared-element></shared-element>
+      `);
     });
 
     test('`<shared-element>` .shared1 has red background-color - component default styling', () => {

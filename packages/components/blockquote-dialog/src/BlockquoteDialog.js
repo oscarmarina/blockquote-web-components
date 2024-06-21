@@ -226,7 +226,9 @@ export class BlockquoteDialog extends LitElement {
   }
 
   get _slotTpl() {
-    return html` <slot></slot> `;
+    return html`
+      <slot></slot>
+    `;
   }
 
   get _labeledbyTpl() {
@@ -238,11 +240,15 @@ export class BlockquoteDialog extends LitElement {
   }
 
   get _contentTpl() {
-    return html` <div class="content" @click=${this._handleContentClick}>${this._slotTpl}</div>`;
+    return html`
+      <div class="content" @click=${this._handleContentClick}>${this._slotTpl}</div>
+    `;
   }
 
   get _scrollerTpl() {
-    return html` <div class="scroller">${this._contentTpl} ${this._labeledbyTpl}</div> `;
+    return html`
+      <div class="scroller">${this._contentTpl} ${this._labeledbyTpl}</div>
+    `;
   }
 
   get _firstNodeFocusTrapTpl() {
@@ -250,8 +256,7 @@ export class BlockquoteDialog extends LitElement {
       <span
         ?hidden="${!(/** @type {HTMLDialogElement} */ (this.dialogRef.value)?.open)}"
         tabindex="0"
-        @focus="${this._lastFocusTrap}"
-      ></span>
+        @focus="${this._lastFocusTrap}"></span>
     `;
   }
 
@@ -260,8 +265,7 @@ export class BlockquoteDialog extends LitElement {
       <span
         ?hidden="${!(/** @type {HTMLDialogElement} */ (this.dialogRef.value)?.open)}"
         tabindex="0"
-        @focus="${this._firstFocusTrap}"
-      ></span>
+        @focus="${this._firstFocusTrap}"></span>
     `;
   }
 
@@ -278,8 +282,7 @@ export class BlockquoteDialog extends LitElement {
         @click=${this._handleDialogClick}
         @cancel=${this._handleCancel}
         @close=${this._handleClose}
-        .returnValue=${this.returnValue || nothing}
-      >
+        .returnValue=${this.returnValue || nothing}>
         ${this._firstNodeFocusTrapTpl} ${this._scrollerTpl} ${this._lastNodeFocusTrapTpl}
       </dialog>
     `;

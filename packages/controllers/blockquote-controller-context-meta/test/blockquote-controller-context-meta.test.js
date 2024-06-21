@@ -12,11 +12,11 @@ suite('BlockquoteControllerContextMeta', () => {
 
   suite('Default', () => {
     setup(async () => {
-      el = await fixture(
-        html` <provider-el>
+      el = await fixture(html`
+        <provider-el>
           <consumer-el></consumer-el>
-        </provider-el>`,
-      );
+        </provider-el>
+      `);
     });
 
     suite('Semantic Dom', () => {
@@ -32,11 +32,11 @@ suite('BlockquoteControllerContextMeta', () => {
 
   suite('Override ', () => {
     setup(async () => {
-      el = await fixture(
-        html`<provider-el data="specified from attribute">
+      el = await fixture(html`
+        <provider-el data="specified from attribute">
           <consumer-el></consumer-el>
-        </provider-el>`,
-      );
+        </provider-el>
+      `);
     });
     suite('Semantic Dom', () => {
       test('SHADOW DOM - Structure test', async () => {

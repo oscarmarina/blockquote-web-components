@@ -48,7 +48,10 @@ export class ProviderEl extends LitElement {
 
   render() {
     return html`
-      <h3>Provider's data: <code>${this.data}</code></h3>
+      <h3>
+        Provider's data:
+        <code>${this.data}</code>
+      </h3>
       <slot></slot>
     `;
   }
@@ -72,9 +75,14 @@ export class ConsumerEl extends LitElement {
   }
 
   render() {
-    return html`<h3>Consumer data: <code>${this.providedData}</code></h3>
+    return html`
+      <h3>
+        Consumer data:
+        <code>${this.providedData}</code>
+      </h3>
       <hr />
-      <slot></slot>`;
+      <slot></slot>
+    `;
   }
 }
 customElements.define('consumer-el', ConsumerEl);

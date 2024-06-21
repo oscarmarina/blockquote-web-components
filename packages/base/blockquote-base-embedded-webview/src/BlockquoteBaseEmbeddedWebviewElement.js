@@ -73,7 +73,9 @@ export class BlockquoteBaseEmbeddedWebviewElement extends LitElement {
   }
 
   render() {
-    return html` ${this._embeddedTpl} ${this._litHtmlRender()} `;
+    return html`
+      ${this._embeddedTpl} ${this._litHtmlRender()}
+    `;
   }
 
   _litHtmlRender() {
@@ -89,7 +91,9 @@ export class BlockquoteBaseEmbeddedWebviewElement extends LitElement {
   }
 
   get _embeddedTpl() {
-    return html`<slot name="embedded"></slot>`;
+    return html`
+      <slot name="embedded"></slot>
+    `;
   }
 
   _fetch(resource) {

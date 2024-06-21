@@ -12,10 +12,11 @@ suite('BlockquoteBaseEmbeddedWebviewElement', () => {
 
   suite('Default', () => {
     setup(async () => {
-      el = await fixture(
-        html` <blockquote-base-embedded-webview-element src="test/test.html" embedded-title="test">
-        </blockquote-base-embedded-webview-element>`,
-      );
+      el = await fixture(html`
+        <blockquote-base-embedded-webview-element
+          src="test/test.html"
+          embedded-title="test"></blockquote-base-embedded-webview-element>
+      `);
       await el.updateComplete;
     });
 
@@ -51,9 +52,7 @@ suite('BlockquoteBaseEmbeddedWebviewElement', () => {
           <blockquote-base-embedded-webview-element
             type="object"
             src="test/test.html"
-            embedded-title="test"
-          >
-          </blockquote-base-embedded-webview-element>
+            embedded-title="test"></blockquote-base-embedded-webview-element>
         `);
         const objectNode = elObject.querySelector('object');
         assert.strictEqual(objectNode?.tagName, 'OBJECT');

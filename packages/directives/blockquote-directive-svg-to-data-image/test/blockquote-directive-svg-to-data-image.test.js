@@ -72,7 +72,9 @@ suite('SVGtoDataImage', () => {
 
   suite('base', () => {
     setup(async () => {
-      el = await fixture(html` <svg-to-data-image></svg-to-data-image> `);
+      el = await fixture(html`
+        <svg-to-data-image></svg-to-data-image>
+      `);
       await el.updateComplete;
     });
 

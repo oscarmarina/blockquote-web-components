@@ -141,18 +141,22 @@
         }
 
         render() {
-          return html` ${this._slotsTpl} `;
+          return html`
+            ${this._slotsTpl}
+          `;
         }
 
         get _slotsTpl() {
-          return html` ${this._slots.map(
-            (slot, index) => html`
-              <div>
-                <span> == </span>
-                <slot name="slot${index + 1}"></slot>
-              </div>
-            `,
-          )}`;
+          return html`
+            ${this._slots.map(
+              (slot, index) => html`
+                <div>
+                  <span>==</span>
+                  <slot name="slot${index + 1}"></slot>
+                </div>
+              `,
+            )}
+          `;
         }
       }
       customElements.define('slot-element', slotElement);

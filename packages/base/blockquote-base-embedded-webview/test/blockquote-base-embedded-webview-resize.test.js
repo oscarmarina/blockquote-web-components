@@ -36,9 +36,9 @@ suite('BlockquoteBaseEmbeddedWebviewResize', () => {
 
   suite('Default', () => {
     setup(async () => {
-      el = await fixture(
-        html` <blockquote-base-embedded-webview-resize></blockquote-base-embedded-webview-resize>`,
-      );
+      el = await fixture(html`
+        <blockquote-base-embedded-webview-resize></blockquote-base-embedded-webview-resize>
+      `);
       await el.updateComplete;
       rect = el.shadowRoot?.querySelector('.rect');
       bottomRightResizerElement = el.shadowRoot?.querySelector('.resizer-se');
@@ -74,13 +74,12 @@ suite('BlockquoteBaseEmbeddedWebviewResize', () => {
         );
       });
       test('Double click go back initial CSS', async () => {
-        const elDblclick = await fixture(
-          html` <blockquote-base-embedded-webview-resize
+        const elDblclick = await fixture(html`
+          <blockquote-base-embedded-webview-resize
             style="
             --blockquote-base-embedded-webview-resize-rect-width:360px;
-            --blockquote-base-embedded-webview-resize-rect-height:640px;"
-          ></blockquote-base-embedded-webview-resize>`,
-        );
+            --blockquote-base-embedded-webview-resize-rect-height:640px;"></blockquote-base-embedded-webview-resize>
+        `);
         const bottomResizerElementDblclick = elDblclick.shadowRoot?.querySelector('.resizer-s');
         assert.isTrue(elDblclick.hasAttribute('style'));
         bottomResizerElementDblclick?.dispatchEvent(dblclickEvent);

@@ -69,15 +69,13 @@ export class XstateCounter extends LitElement {
           <button
             ?disabled="${this.#disabled}"
             data-counter="increment"
-            @click=${() => this.counterController.send({ type: 'INC' })}
-          >
+            @click=${() => this.counterController.send({ type: 'INC' })}>
             Increment
           </button>
           <button
             ?disabled="${this.#disabled}"
             data-counter="decrement"
-            @click=${() => this.counterController.send({ type: 'DEC' })}
-          >
+            @click=${() => this.counterController.send({ type: 'DEC' })}>
             Decrement
           </button>
         </span>

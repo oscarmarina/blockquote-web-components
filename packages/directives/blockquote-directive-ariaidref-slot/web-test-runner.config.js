@@ -27,7 +27,7 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
   concurrency: 1,
 
   reporters: [summaryReporter({}), defaultReporter(), coverageTableReporter()],
-  
+
   preserveSymlinks: true,
 
   coverage: true,
@@ -48,7 +48,7 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
     // https://mochajs.org/api/mocha
     config: {
       ui: 'tdd',
-      timeout: 4000
+      timeout: 4000,
     },
   },
 

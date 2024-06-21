@@ -21,11 +21,10 @@ suite('BlockquoteBaseEmbeddedWebviewSize', () => {
 
   suite('Default', () => {
     setup(async () => {
-      el = await fixture(
-        html` <blockquote-base-embedded-webview-size
-          .screenSizes="${screenSizes}"
-        ></blockquote-base-embedded-webview-size>`,
-      );
+      el = await fixture(html`
+        <blockquote-base-embedded-webview-size
+          .screenSizes="${screenSizes}"></blockquote-base-embedded-webview-size>
+      `);
       await el.updateComplete;
 
       screenSizesButtons = el.shadowRoot?.querySelectorAll('button');
@@ -80,10 +79,11 @@ suite('BlockquoteBaseEmbeddedWebviewSize', () => {
 
   suite('Custom selected', () => {
     setup(async () => {
-      el = await fixture(
-        html` <blockquote-base-embedded-webview-size selected="3" width-in-percent>
-        </blockquote-base-embedded-webview-size>`,
-      );
+      el = await fixture(html`
+        <blockquote-base-embedded-webview-size
+          selected="3"
+          width-in-percent></blockquote-base-embedded-webview-size>
+      `);
       await el.updateComplete;
     });
     suite('Semantic Dom and a11y', () => {

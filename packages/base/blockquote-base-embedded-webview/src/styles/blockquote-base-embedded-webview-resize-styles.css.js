@@ -17,7 +17,7 @@ export const styles = css`:host {
   flex-direction: column;
   align-items: center;
   height: inherit;
-  padding: calc(var(--__resizer-factor) * 1) 0 calc(var(--__resizer-factor) * 2) 0;
+  padding: calc(var(--__resizer-factor) * 1) 0 calc(var(--__resizer-factor) * 2);
 }
 
 :host([hidden]),
