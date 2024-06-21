@@ -10,7 +10,7 @@ const slotContentBase = class slotContent extends BlockquoteMixinSlotContent(Lit
       ev.stopPropagation();
       ev.preventDefault();
       this.setAttribute('propSlot', '');
-      if (/** @type {CustomEvent} */ (ev).detail.assignedNodesContent.assignedNodes.length) {
+      if (/** @type {CustomEvent} */ (ev).detail.assignedNodesContent.assignedNodes[0]) {
         this.setAttribute('slotContent', '');
       } else {
         this.removeAttribute('slotContent');
@@ -19,7 +19,9 @@ const slotContentBase = class slotContent extends BlockquoteMixinSlotContent(Lit
   }
 
   render() {
-    return html` <slot></slot> `;
+    return html`
+      <slot></slot>
+    `;
   }
 };
 
@@ -35,7 +37,9 @@ suite('BlockquoteMixinSlotContent', () => {
 
   suite('Without content', () => {
     setup(async () => {
-      el = await fixture(html`<slot-element></slot-element>`);
+      el = await fixture(html`
+        <slot-element></slot-element>
+      `);
       await el.updateComplete;
     });
 
@@ -46,7 +50,9 @@ suite('BlockquoteMixinSlotContent', () => {
 
   suite('With content', () => {
     setup(async () => {
-      el = await fixture(html`<slot-element>s</slot-element>`);
+      el = await fixture(html`
+        <slot-element>s</slot-element>
+      `);
       await el.updateComplete;
     });
 
@@ -60,7 +66,9 @@ suite('BlockquoteMixinSlotContent', () => {
   });
   suite('Removing content', () => {
     setup(async () => {
-      el = await fixture(html`<slot-element><span>s</span></slot-element>`);
+      el = await fixture(html`
+        <slot-element><span>s</span></slot-element>
+      `);
       await el.updateComplete;
     });
 
@@ -75,7 +83,9 @@ suite('BlockquoteMixinSlotContent', () => {
 
   suite('Content is a blank space', () => {
     setup(async () => {
-      el = await fixture(html`<slot-element> </slot-element>`);
+      el = await fixture(html`
+        <slot-element>&nbsp;</slot-element>
+      `);
       await el.updateComplete;
     });
 

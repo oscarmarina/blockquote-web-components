@@ -61,14 +61,20 @@
         <h2>Key Query</h2>
         <ul>
           <li>
-            const myDefault = new BlockquoteBaseMeta({ <strong>key: </strong>'basic', value:
-            'foo/bar', });
+            const myDefault = new BlockquoteBaseMeta({
+            <strong>key:</strong>
+            'basic', value: 'foo/bar', });
           </li>
         </ul>
 
         <p>
-          <code>myDefault.byKey('basic')</code><br />
-          The value stored at <strong>key</strong>: <code class="inner-meta-key"></code> is:
+          <code>myDefault.byKey('basic')</code>
+          <br />
+          The value stored at
+          <strong>key</strong>
+          :
+          <code class="inner-meta-key"></code>
+          is:
           <code class="inner-meta-value"></code>
         </p>
       </article>
@@ -77,27 +83,39 @@
         <h2>Type Query</h2>
         <ul>
           <li>
-            const myMeta = new BlockquoteBaseMeta({ <strong>type: </strong>'article', key:
-            'indefinite', value: 'a/an', });
+            const myMeta = new BlockquoteBaseMeta({
+            <strong>type:</strong>
+            'article', key: 'indefinite', value: 'a/an', });
           </li>
           <li>
-            const myMeta2 = new BlockquoteBaseMeta({ <strong>type: </strong> 'article', key:
-            'definite', value: 'the', });
+            const myMeta2 = new BlockquoteBaseMeta({
+            <strong>type:</strong>
+            'article', key: 'definite', value: 'the', });
           </li>
           <li>
-            const myMeta3 = new BlockquoteBaseMeta({ <strong>type: </strong> 'article', key:
-            'negative', value: 'no', });
+            const myMeta3 = new BlockquoteBaseMeta({
+            <strong>type:</strong>
+            'article', key: 'negative', value: 'no', });
           </li>
         </ul>
 
         <p>
-          <code>myMeta.list</code><br />
-          The values stored at <strong>type</strong> <code class="inner-meta-key"></code> is:
+          <code>myMeta.list</code>
+          <br />
+          The values stored at
+          <strong>type</strong>
+          <code class="inner-meta-key"></code>
+          is:
           <code class="inner-meta-value"></code>
         </p>
         <p>
-          <code>myMeta.objectList</code><br />
-          key:value stored at <strong>type</strong>: <code class="inner-meta-keys"></code> is:
+          <code>myMeta.objectList</code>
+          <br />
+          key:value stored at
+          <strong>type</strong>
+          :
+          <code class="inner-meta-keys"></code>
+          is:
           <code class="inner-meta-keys"></code>
           <code class="inner-meta-values"></code>
         </p>

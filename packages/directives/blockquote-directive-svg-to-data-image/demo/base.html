@@ -119,17 +119,18 @@
         }
 
         get _svgTag() {
-          return html`<svg
-            id="${Math.random().toString(36).substring(2, 10)}"
-            xmlns="http://www.w3.org/2000/svg"
-            width="200"
-            height="200"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 200 200"
-          >
-            ${this._bgTpl} ${this._shapeTpl}
-          </svg>`;
+          return html`
+            <svg
+              id="${Math.random().toString(36).substring(2, 10)}"
+              xmlns="http://www.w3.org/2000/svg"
+              width="200"
+              height="200"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 200 200">
+              ${this._bgTpl} ${this._shapeTpl}
+            </svg>
+          `;
         }
 
         render() {
@@ -139,8 +140,7 @@
               rel="noopener noreferrer"
               href="https://accessibility-club.org/"
               style="background-image:var(--bgUrl,
-              url('${blockquoteDirectiveSvgToDataImage(this._svgTag)}'));"
-            >
+              url('${blockquoteDirectiveSvgToDataImage(this._svgTag)}'));">
               <span class="sr-only">Accessibility Club</span>
             </a>
           `;

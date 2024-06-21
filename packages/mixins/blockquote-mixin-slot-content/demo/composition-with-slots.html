@@ -6,8 +6,7 @@
     <meta charset="utf-8" />
     <meta
       name="description"
-      content="Demo Composition with slots - blockquote-mixin-slot-content"
-    />
+      content="Demo Composition with slots - blockquote-mixin-slot-content" />
     <style>
       :root {
         font: normal medium/1.25 sans-serif;
@@ -33,10 +32,10 @@
   <body>
     <main>
       <h1 class="sr-only">blockquote-mixin-slot-content</h1>
-      <slot-element
-        ><p slot="fullName">fullName: Commit Queue</p>
-        <span slot="firstName">firstName: Commit -</span
-        ><span slot="lastName">- lastName: Queue</span>
+      <slot-element>
+        <p slot="fullName">fullName: Commit Queue</p>
+        <span slot="firstName">firstName: Commit -</span>
+        <span slot="lastName">- lastName: Queue</span>
       </slot-element>
       <hr />
       <div class="actions">
@@ -83,9 +82,10 @@
         render() {
           return html`
             <div>
-              <slot name="fullName"
-                ><slot name="firstName"></slot><slot name="lastName"></slot
-              ></slot>
+              <slot name="fullName">
+                <slot name="firstName"></slot>
+                <slot name="lastName"></slot>
+              </slot>
             </div>
           `;
         }

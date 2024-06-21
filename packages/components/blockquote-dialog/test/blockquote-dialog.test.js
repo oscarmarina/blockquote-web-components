@@ -4,45 +4,51 @@ import { html, fixture, assert, expect, fixtureCleanup, aTimeout } from '@open-w
 import sinon from 'sinon';
 import '../define/blockquote-dialog.js';
 
-const _formTpl = html`<form method="dialog">
-  <header>
-    <h2>Dialog header</h2>
-  </header>
-  <div>Dialog content</div>
-  <footer>
-    <menu>
-      <button id="cancel" value="cancel">Cancel</button>
-      <button id="confirm" value="confirm">Confirm</button>
-    </menu>
-  </footer>
-</form>`;
+const _formTpl = html`
+  <form method="dialog">
+    <header>
+      <h2>Dialog header</h2>
+    </header>
+    <div>Dialog content</div>
+    <footer>
+      <menu>
+        <button id="cancel" value="cancel">Cancel</button>
+        <button id="confirm" value="confirm">Confirm</button>
+      </menu>
+    </footer>
+  </form>
+`;
 
-const _formNoDialogTpl = html`<form>
-  <header>
-    <h2>Dialog header</h2>
-  </header>
-  <div>Dialog content</div>
-  <footer>
-    <menu>
-      <button value="cancel">Cancel</button>
-      <button value="confirm">Confirm</button>
-    </menu>
-  </footer>
-</form>`;
+const _formNoDialogTpl = html`
+  <form>
+    <header>
+      <h2>Dialog header</h2>
+    </header>
+    <div>Dialog content</div>
+    <footer>
+      <menu>
+        <button value="cancel">Cancel</button>
+        <button value="confirm">Confirm</button>
+      </menu>
+    </footer>
+  </form>
+`;
 
-const _formAutofocusTpl = html`<form>
-  <header>
-    <h2>Dialog header</h2>
-    <button value="lose">Close</button>
-  </header>
-  <div>Dialog content</div>
-  <div><input autofocus type="text" name="name" /></div>
-  <footer>
-    <menu>
-      <button value="confirm">Confirm</button>
-    </menu>
-  </footer>
-</form>`;
+const _formAutofocusTpl = html`
+  <form>
+    <header>
+      <h2>Dialog header</h2>
+      <button value="lose">Close</button>
+    </header>
+    <div>Dialog content</div>
+    <div><input autofocus type="text" name="name" /></div>
+    <footer>
+      <menu>
+        <button value="confirm">Confirm</button>
+      </menu>
+    </footer>
+  </form>
+`;
 
 suite('BlockquoteDialog', () => {
   /**
@@ -54,7 +60,9 @@ suite('BlockquoteDialog', () => {
 
   suite('Default Close', () => {
     setup(async () => {
-      el = await fixture(html`<blockquote-dialog>${_formTpl}</blockquote-dialog>`);
+      el = await fixture(html`
+        <blockquote-dialog>${_formTpl}</blockquote-dialog>
+      `);
     });
 
     suite('Semantic Dom and a11y', () => {
@@ -82,9 +90,9 @@ suite('BlockquoteDialog', () => {
 
   suite('Default Close with "label"', () => {
     setup(async () => {
-      el = await fixture(
-        html`<blockquote-dialog label="aria-label Name">${_formTpl}</blockquote-dialog>`,
-      );
+      el = await fixture(html`
+        <blockquote-dialog label="aria-label Name">${_formTpl}</blockquote-dialog>
+      `);
     });
 
     suite('Semantic Dom and a11y', () => {
@@ -112,7 +120,9 @@ suite('BlockquoteDialog', () => {
 
   suite('Default Close role dialog', () => {
     setup(async () => {
-      el = await fixture(html`<blockquote-dialog type="">${_formTpl}</blockquote-dialog>`);
+      el = await fixture(html`
+        <blockquote-dialog type="">${_formTpl}</blockquote-dialog>
+      `);
     });
 
     suite('Semantic Dom and a11y', () => {
@@ -140,11 +150,12 @@ suite('BlockquoteDialog', () => {
 
   suite('Default Open', () => {
     setup(async () => {
-      el = await fixture(
-        html`<blockquote-dialog labelledby="labelledby" open
-          >${_formTpl} <span slot="labelledby">All fields are required</span></blockquote-dialog
-        >`,
-      );
+      el = await fixture(html`
+        <blockquote-dialog labelledby="labelledby" open>
+          ${_formTpl}
+          <span slot="labelledby">All fields are required</span>
+        </blockquote-dialog>
+      `);
     });
 
     suite('Semantic Dom and a11y', () => {
@@ -172,9 +183,9 @@ suite('BlockquoteDialog', () => {
 
   suite('Event', () => {
     setup(async () => {
-      el = await fixture(
-        html`<blockquote-dialog open label="aria-label Name">${_formTpl}</blockquote-dialog>`,
-      );
+      el = await fixture(html`
+        <blockquote-dialog open label="aria-label Name">${_formTpl}</blockquote-dialog>
+      `);
     });
 
     test('Dialog should close when "Click" in backdrop', async () => {
@@ -227,9 +238,9 @@ suite('BlockquoteDialog', () => {
 
   suite('Form - with method', () => {
     setup(async () => {
-      el = await fixture(
-        html`<blockquote-dialog label="aria-label Name">${_formTpl}</blockquote-dialog>`,
-      );
+      el = await fixture(html`
+        <blockquote-dialog label="aria-label Name">${_formTpl}</blockquote-dialog>
+      `);
     });
 
     test('The dialog should close when the form has the dialog method', async () => {
@@ -242,11 +253,9 @@ suite('BlockquoteDialog', () => {
 
   suite('Form - without method', () => {
     setup(async () => {
-      el = await fixture(
-        html`<blockquote-dialog open label="aria-label Name"
-          >${_formNoDialogTpl}</blockquote-dialog
-        >`,
-      );
+      el = await fixture(html`
+        <blockquote-dialog open label="aria-label Name">${_formNoDialogTpl}</blockquote-dialog>
+      `);
     });
 
     test('Dialog does not should close when "Form Submit"', async () => {
@@ -261,9 +270,9 @@ suite('BlockquoteDialog', () => {
 
   suite('focus', () => {
     setup(async () => {
-      el = await fixture(
-        html`<blockquote-dialog label="aria-label Name">${_formTpl}</blockquote-dialog>`,
-      );
+      el = await fixture(html`
+        <blockquote-dialog label="aria-label Name">${_formTpl}</blockquote-dialog>
+      `);
     });
 
     test('focus on first focus trap sets focus to last element', async () => {
@@ -322,9 +331,9 @@ suite('BlockquoteDialog', () => {
       /**
        * @type {import('../src/index').BlockquoteDialog}
        */
-      const elAutofocus = await fixture(
-        html`<blockquote-dialog label="aria-label Name">${_formAutofocusTpl}</blockquote-dialog>`,
-      );
+      const elAutofocus = await fixture(html`
+        <blockquote-dialog label="aria-label Name">${_formAutofocusTpl}</blockquote-dialog>
+      `);
 
       elAutofocus.open = true;
       await elAutofocus.updateComplete;

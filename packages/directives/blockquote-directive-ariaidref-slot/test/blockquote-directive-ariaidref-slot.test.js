@@ -9,7 +9,9 @@ suite('BlockquoteDirectiveAriaidrefSlot', () => {
 
   suite('Slot is hidden', () => {
     setup(async () => {
-      el = await fixture(html`<slot-idref-hidden></slot-idref-hidden>`);
+      el = await fixture(html`
+        <slot-idref-hidden></slot-idref-hidden>
+      `);
     });
 
     suite('Semantic Dom', () => {
@@ -21,7 +23,9 @@ suite('BlockquoteDirectiveAriaidrefSlot', () => {
 
   suite('Slot is visible', () => {
     setup(async () => {
-      el = await fixture(html`<slot-idref-visible></slot-idref-visible>`);
+      el = await fixture(html`
+        <slot-idref-visible></slot-idref-visible>
+      `);
     });
 
     suite('Semantic Dom', () => {
@@ -34,7 +38,9 @@ suite('BlockquoteDirectiveAriaidrefSlot', () => {
   suite('Thrown Error', () => {
     test('Error', async () => {
       try {
-        await fixture(html`<slot-idref-error></slot-idref-error>`);
+        await fixture(html`
+          <slot-idref-error></slot-idref-error>
+        `);
         assert.fail('Expected an error to be thrown');
       } catch (error) {
         assert.instanceOf(error, Error);
@@ -44,7 +50,9 @@ suite('BlockquoteDirectiveAriaidrefSlot', () => {
 
   suite('No render', () => {
     setup(async () => {
-      el = await fixture(html`<slot-idref-nothing></slot-idref-nothing>`);
+      el = await fixture(html`
+        <slot-idref-nothing></slot-idref-nothing>
+      `);
     });
 
     suite('Semantic Dom', () => {

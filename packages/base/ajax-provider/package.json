@@ -38,14 +38,14 @@
     "build": "echo \"This is not a TypeScript project, so no need to build.\"",
     "dev:vite": "vite build",
     "format": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
-    "format:eslint": "eslint \"**/*.{js,ts,html}\" --fix --ignore-path .eslintignore",
-    "format:prettier": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .eslintignore",
-    "format:stylelint": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .eslintignore",
+    "format:eslint": "eslint . --fix",
+    "format:prettier": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .prettierignore",
+    "format:stylelint": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .prettierignore",
     "postinstall": "npm run sort:package",
     "lint": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
-    "lint:eslint": "eslint \"**/*.{js,ts,html}\" --ignore-path .eslintignore",
-    "lint:prettier": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .eslintignore",
-    "lint:stylelint": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .eslintignore",
+    "lint:eslint": "eslint .",
+    "lint:prettier": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .prettierignore",
+    "lint:stylelint": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .prettierignore",
     "preview:vite": "vite preview",
     "sass:watch": "sass-style-template",
     "sort:package": "npx sort-package-json",
@@ -67,6 +67,8 @@
   },
   "prettier": {
     "arrowParens": "avoid",
+    "bracketSameLine": true,
+    "htmlWhitespaceSensitivity": "ignore",
     "printWidth": 100,
     "singleQuote": true,
     "trailingComma": "all",
@@ -79,58 +81,6 @@
         }
       }
     ]
-  },
-  "eslintConfig": {
-    "parserOptions": {
-      "ecmaVersion": "latest"
-    },
-    "extends": [
-      "@open-wc",
-      "prettier"
-    ],
-    "rules": {
-      "class-methods-use-this": "off",
-      "indent": [
-        "error",
-        2,
-        {
-          "SwitchCase": 1,
-          "ignoredNodes": [
-            "PropertyDefinition",
-            "TemplateLiteral > *"
-          ]
-        }
-      ],
-      "no-unused-expressions": [
-        "error",
-        {
-          "allowShortCircuit": true,
-          "allowTernary": true
-        }
-      ],
-      "object-curly-newline": "off",
-      "import/extensions": [
-        "error",
-        "always",
-        {
-          "ignorePackages": true
-        }
-      ],
-      "import/no-extraneous-dependencies": [
-        "error",
-        {
-          "devDependencies": [
-            "**/test/**/*.{js,ts}",
-            "**/*.config.{js,ts,mjs,cjs}",
-            "**/*.conf.{js,ts,mjs,cjs}"
-          ]
-        }
-      ],
-      "import/no-unresolved": "off",
-      "import/prefer-default-export": "off",
-      "lit/no-classfield-shadowing": "off",
-      "lit/no-native-attributes": "off"
-    }
   },
   "stylelint": {
     "extends": "stylelint-config-standard-scss",

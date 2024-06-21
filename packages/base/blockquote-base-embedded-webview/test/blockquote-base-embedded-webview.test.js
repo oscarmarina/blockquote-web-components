@@ -17,20 +17,18 @@ suite('BlockquoteBaseEmbeddedWebview', () => {
 
   suite('Default', () => {
     setup(async () => {
-      el = await fixture(
-        html` <blockquote-base-embedded-webview heading="blockquote-base-embedded-webview">
+      el = await fixture(html`
+        <blockquote-base-embedded-webview heading="blockquote-base-embedded-webview">
           <template
             data-src="./test/test.html"
             data-option="Base"
-            data-description="base - description"
-          ></template>
+            data-description="base - description"></template>
           <template
             data-src="./test/test2.html"
             data-option="Other"
-            data-description="other - description"
-          ></template>
-        </blockquote-base-embedded-webview>`,
-      );
+            data-description="other - description"></template>
+        </blockquote-base-embedded-webview>
+      `);
       await el.updateComplete;
     });
 
@@ -50,14 +48,11 @@ suite('BlockquoteBaseEmbeddedWebview', () => {
       });
 
       test('limit height', async () => {
-        const elLimit = await fixture(
-          html` <blockquote-base-embedded-webview
-            limit-height
-            heading="blockquote-base-embedded-webview"
-          >
+        const elLimit = await fixture(html`
+          <blockquote-base-embedded-webview limit-height heading="blockquote-base-embedded-webview">
             <template data-src="./test/test.html" data-option="Base Complex"></template>
-          </blockquote-base-embedded-webview>`,
-        );
+          </blockquote-base-embedded-webview>
+        `);
         // @ts-ignore
         await assert.shadowDom.equalSnapshot(elLimit, { ignoreAttributes: ['style', 'loading'] });
       });
@@ -85,11 +80,11 @@ suite('BlockquoteBaseEmbeddedWebview', () => {
 
   suite('variant', () => {
     setup(async () => {
-      variant = await fixture(
-        html` <blockquote-base-embedded-webview heading="blockquote-base-embedded-webview">
+      variant = await fixture(html`
+        <blockquote-base-embedded-webview heading="blockquote-base-embedded-webview">
           <template data-src="./test/test.html"></template>
-        </blockquote-base-embedded-webview>`,
-      );
+        </blockquote-base-embedded-webview>
+      `);
       await variant.updateComplete;
     });
 

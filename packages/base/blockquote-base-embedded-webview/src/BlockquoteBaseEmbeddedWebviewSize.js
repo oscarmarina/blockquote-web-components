@@ -163,8 +163,8 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
   get _toolbarTpl() {
     return html`
       ${this.screenSizes.map(
-        (item, index) =>
-          html`<button
+        (item, index) => html`
+          <button
             @click="${this._setSelected}"
             id="${item.id}"
             data-index="${index + 1}"
@@ -172,18 +172,20 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
             ?hidden="${!this.showOverflowSize && item.width > this.computedStyleWidth}"
             style="${this.widthInPercent
               ? `width: calc(100% / ${index + 1});`
-              : `width: ${item.width}px;`}"
-          >
+              : `width: ${item.width}px;`}">
             <span>${item.id}</span>
-          </button>`,
+          </button>
+        `,
       )}
     `;
   }
 
   get _visualTextTpl() {
-    return html` <span aria-disabled="${this.disabledSelectedSizeText}" aria-hidden="true"
-      >${this.selectedSize.id}</span
-    >`;
+    return html`
+      <span aria-disabled="${this.disabledSelectedSizeText}" aria-hidden="true">
+        ${this.selectedSize.id}
+      </span>
+    `;
   }
 
   _onResize(ev) {

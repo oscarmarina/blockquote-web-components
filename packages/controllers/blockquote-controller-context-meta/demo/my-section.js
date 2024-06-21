@@ -30,7 +30,9 @@ export class MySection extends LitElement {
   }
 
   render() {
-    return html`<section><slot></slot></section>`;
+    return html`
+      <section><slot></slot></section>
+    `;
   }
 }
 

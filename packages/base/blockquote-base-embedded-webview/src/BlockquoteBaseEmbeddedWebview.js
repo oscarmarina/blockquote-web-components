@@ -5,17 +5,18 @@ import '../define/blockquote-base-embedded-webview-resize.js';
 import '../define/blockquote-base-embedded-webview-element.js';
 import { styles } from './styles/blockquote-base-embedded-webview-styles.css.js';
 
-const chevronDownIcon = html`<svg
-  aria-hidden="true"
-  viewBox="0 0 24 24"
-  stroke-width="2"
-  stroke="currentcolor"
-  fill="none"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <polyline points="6 9 12 15 18 9" />
-</svg>`;
+const chevronDownIcon = html`
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 24 24"
+    stroke-width="2"
+    stroke="currentcolor"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round">
+    <polyline points="6 9 12 15 18 9" />
+  </svg>
+`;
 
 // https://github.com/ChromeDevTools/devtools-frontend/blob/main/front_end/Images/src/open-externally.svg
 const openExternallyIcon = html`
@@ -25,11 +26,9 @@ const openExternallyIcon = html`
     fill="currentcolor"
     preserveAspectRatio="xMidYMid meet"
     focusable="false"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+    xmlns="http://www.w3.org/2000/svg">
     <path
-      d="M4.5 17C4.08333 17 3.72933 16.854 3.438 16.562C3.146 16.2707 3 15.9167 3 15.5V4.5C3 4.08333 3.146 3.72933 3.438 3.438C3.72933 3.146 4.08333 3 4.5 3H10V4.5H4.5V15.5H15.5V10H17V15.5C17 15.9167 16.854 16.2707 16.562 16.562C16.2707 16.854 15.9167 17 15.5 17H4.5ZM8.062 13L7 11.938L14.438 4.5H12V3H17V8H15.5V5.562L8.062 13Z"
-    />
+      d="M4.5 17C4.08333 17 3.72933 16.854 3.438 16.562C3.146 16.2707 3 15.9167 3 15.5V4.5C3 4.08333 3.146 3.72933 3.438 3.438C3.72933 3.146 4.08333 3 4.5 3H10V4.5H4.5V15.5H15.5V10H17V15.5C17 15.9167 16.854 16.2707 16.562 16.562C16.2707 16.854 15.9167 17 15.5 17H4.5ZM8.062 13L7 11.938L14.438 4.5H12V3H17V8H15.5V5.562L8.062 13Z" />
   </svg>
 `;
 
@@ -217,7 +216,9 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
   }
 
   render() {
-    return html` ${this._headerTpl} ${this._mainTpl} ${this._litHtmlRender()}`;
+    return html`
+      ${this._headerTpl} ${this._mainTpl} ${this._litHtmlRender()}
+    `;
   }
 
   _litHtmlRender() {
@@ -241,11 +242,15 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
   }
 
   get _headingTpl() {
-    return html`<div aria-level="${this._headingLevel}" role="heading">${this.heading}</div>`;
+    return html`
+      <div aria-level="${this._headingLevel}" role="heading">${this.heading}</div>
+    `;
   }
 
   get _navigationDemosTpl() {
-    return html` <div>${this._selectTpl}${this._externalLinkTpl}</div> `;
+    return html`
+      <div>${this._selectTpl}${this._externalLinkTpl}</div>
+    `;
   }
 
   get _selectTpl() {
@@ -270,14 +275,18 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
   }
 
   get _externalLinkTpl() {
-    return html`<a href="${this._src || '#'}" target="_blank" class="open-externally">
-      <span class="sr-only">View demo in a new tab</span
-      ><span aria-hidden="true">${openExternallyIcon}</span></a
-    >`;
+    return html`
+      <a href="${this._src || '#'}" target="_blank" class="open-externally">
+        <span class="sr-only">View demo in a new tab</span>
+        <span aria-hidden="true">${openExternallyIcon}</span>
+      </a>
+    `;
   }
 
   get _descriptionTpl() {
-    return html` <p class="description">${this._sources[this.selected].description}</p>`;
+    return html`
+      <p class="description">${this._sources[this.selected].description}</p>
+    `;
   }
 
   get _readDataPosTpl() {
@@ -285,8 +294,7 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
       <div
         aria-hidden="true"
         class="read-data-pos"
-        style="opacity:${this.__readDataPos.resizing ? 1 : 0}"
-      >
+        style="opacity:${this.__readDataPos.resizing ? 1 : 0}">
         <span>${this.__readDataPos.x}</span>
         <span>x</span>
         <span>${this.__readDataPos.y}</span>
@@ -295,31 +303,33 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
   }
 
   get _screenSizeTpl() {
-    return html` <blockquote-base-embedded-webview-size
-      .disabledSelectedSizeText="${this.__resetResizing}"
-      @click="${this._updateSize}"
-      @selectedchange="${this._updateSize}"
-      .selected="${this.screenSizeSelected}"
-    ></blockquote-base-embedded-webview-size>`;
+    return html`
+      <blockquote-base-embedded-webview-size
+        .disabledSelectedSizeText="${this.__resetResizing}"
+        @click="${this._updateSize}"
+        @selectedchange="${this._updateSize}"
+        .selected="${this.screenSizeSelected}"></blockquote-base-embedded-webview-size>
+    `;
   }
 
   get _mainTpl() {
     return html`
       <div class="main">
         <blockquote-base-embedded-webview-resize ${ref(this._embeddedResizeRef)}>
-          <slot name="embedded"> ${this._embeddedSlotTpl} </slot>
+          <slot name="embedded">${this._embeddedSlotTpl}</slot>
         </blockquote-base-embedded-webview-resize>
       </div>
     `;
   }
 
   get _embeddedSlotTpl() {
-    return html` <blockquote-base-embedded-webview-element
-      slot="embedded"
-      .src="${this._src || ''}"
-      .embeddedTitle="${this._sources[this.selected].option || 'Demo'}"
-    >
-    </blockquote-base-embedded-webview-element>`;
+    return html`
+      <blockquote-base-embedded-webview-element
+        slot="embedded"
+        .src="${this._src || ''}"
+        .embeddedTitle="${this._sources[this.selected].option ||
+        'Demo'}"></blockquote-base-embedded-webview-element>
+    `;
   }
 
   _onChangeFile({ target }) {

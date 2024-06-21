@@ -23,14 +23,14 @@
     "clean:packages": "lerna exec -- rm -rf ./node_modules && npm run clean:packages:dev",
     "clean:packages:dev": "lerna exec -- rm -rf ./dev && lerna exec -- rm -rf ./package-lock.json",
     "format": "func() { lerna run format:eslint $1 && lerna run format:prettier $1 && lerna run format:stylelint $1; }; func",
-    "format:eslint": "func() { eslint --fix --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{js,ts,html}\"; }; func",
+    "format:eslint": "func() { eslint --fix \"./packages/**/${1:-*}/**/\"; }; func",
     "format:package": "func() { sort-package-json \"./packages/**/${1:-*}/**/package.json\"; }; func",
-    "format:prettier": "func() { prettier --write --list-different --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{js,ts,json,html}\"; }; func",
-    "format:stylelint": "func() { stylelint --fix --allow-empty-input --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{css,scss}\"; }; func",
+    "format:prettier": "func() { prettier --write --list-different --ignore-path .prettierignore \"./packages/**/${1:-*}/**/*.{js,ts,json,html}\"; }; func",
+    "format:stylelint": "func() { stylelint --fix --allow-empty-input --ignore-path .prettierignore \"./packages/**/${1:-*}/**/*.{css,scss}\"; }; func",
     "lint": "func() { lerna run lint:eslint $1 && lerna run lint:prettier $1 && lerna run lint:stylelint $1; }; func",
-    "lint:eslint": "func() { eslint --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{js,ts,html}\"; }; func",
-    "lint:prettier": "func() { prettier --check --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{js,ts,json,html}\"; }; func",
-    "lint:stylelint": "func() { stylelint --allow-empty-input --ignore-path .eslintignore \"./packages/**/${1:-*}/**/*.{css,scss}\"; }; func",
+    "lint:eslint": "func() { eslint \"./packages/**/${1:-*}/**/\"; }; func",
+    "lint:prettier": "func() { prettier --check --ignore-path .prettierignore \"./packages/**/${1:-*}/**/*.{js,ts,json,html}\"; }; func",
+    "lint:stylelint": "func() { stylelint --allow-empty-input --ignore-path .prettierignore \"./packages/**/${1:-*}/**/*.{css,scss}\"; }; func",
     "push": "git push --follow-tags origin main",
     "release": "npm run bootstrap && npm run test:pre-push && lerna version --no-push",
     "standard": "standard-version",
@@ -56,82 +56,32 @@
     ],
     "**/package.json": "npm run format:package -- *"
   },
-  "eslintConfig": {
-    "parserOptions": {
-      "ecmaVersion": "latest"
-    },
-    "extends": [
-      "@open-wc",
-      "prettier"
-    ],
-    "rules": {
-      "class-methods-use-this": "off",
-      "indent": [
-        "error",
-        2,
-        {
-          "SwitchCase": 1,
-          "ignoredNodes": [
-            "PropertyDefinition",
-            "TemplateLiteral > *"
-          ]
-        }
-      ],
-      "no-unused-expressions": [
-        "error",
-        {
-          "allowShortCircuit": true,
-          "allowTernary": true
-        }
-      ],
-      "object-curly-newline": "off",
-      "import/extensions": [
-        "error",
-        "always",
-        {
-          "ignorePackages": true
-        }
-      ],
-      "import/no-extraneous-dependencies": [
-        "error",
-        {
-          "devDependencies": [
-            "**/test/**/*.{js,ts}",
-            "**/*.config.{js,ts,mjs,cjs}",
-            "**/*.conf.{js,ts,mjs,cjs}"
-          ]
-        }
-      ],
-      "import/no-unresolved": "off",
-      "import/prefer-default-export": "off",
-      "lit/no-native-attributes": "off"
-    }
-  },
   "devDependencies": {
-    "@babel/core": "^7.24.0",
-    "@babel/eslint-parser": "^7.23.10",
-    "@babel/eslint-plugin": "^7.23.5",
-    "@commitlint/cli": "^19.0.3",
-    "@commitlint/config-conventional": "^19.0.3",
+    "@babel/core": "^7.24.7",
+    "@babel/eslint-parser": "^7.24.7",
+    "@babel/eslint-plugin": "^7.24.7",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@commitlint/config-lerna-scopes": "^19.0.0",
+    "@html-eslint/eslint-plugin": "^0.25.0",
+    "@html-eslint/parser": "^0.25.0",
     "@open-wc/eslint-config": "^12.0.3",
-    "@typescript-eslint/eslint-plugin": "^7.1.1",
-    "@typescript-eslint/parser": "^7.1.1",
     "eslint": "^8.57.0",
     "husky": "^9.0.11",
     "karma": "^6.4.3",
-    "lerna": "^8.1.2",
-    "lint-staged": "^15.2.2",
-    "postcss": "^8.4.35",
-    "prettier": "^3.2.5",
+    "lerna": "^8.1.3",
+    "lint-staged": "^15.2.7",
+    "postcss": "^8.4.38",
+    "prettier": "^3.3.2",
     "eslint-plugin-prettier": "^5.1.3",
     "rxjs": "^8.0.0-alpha.14",
-    "sort-package-json": "^2.8.0",
+    "sort-package-json": "^2.10.0",
     "standard-version": "^9.5.0",
-    "stylelint": "^16.2.1",
-    "stylelint-config-standard-scss": "^13.0.0",
-    "tslib": "^2.6.2",
-    "typescript": "^5.4.2"
+    "stylelint": "^16.6.1",
+    "stylelint-config-standard-scss": "^13.1.0",
+    "tslib": "^2.6.3",
+    "typescript": "^5.5.2",
+    "typescript-eslint": "^7.13.1"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",

@@ -17,6 +17,8 @@
   ],
   "prettier": {
     "arrowParens": "avoid",
+    "bracketSameLine": true,
+    "htmlWhitespaceSensitivity": "ignore",
     "printWidth": 100,
     "singleQuote": true,
     "trailingComma": "all",

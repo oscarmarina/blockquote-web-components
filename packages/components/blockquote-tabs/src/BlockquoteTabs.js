@@ -209,50 +209,56 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
   }
 
   get _scrollContentTpl() {
-    return html` <div
-      class="scroll-content"
-      ${ref(this._scrollContentRef)}
-      @scroll="${this._scrollEdge}"
-    >
-      ${this._tablistTpl}
-    </div>`;
+    return html`
+      <div class="scroll-content" ${ref(this._scrollContentRef)} @scroll="${this._scrollEdge}">
+        ${this._tablistTpl}
+      </div>
+    `;
   }
 
   get _tablistTpl() {
-    return html` <div role="tablist" aria-label="${this.label || nothing}">
-      <slot @click="${this._onTabClick}" @keydown="${this._onTabKeyDown}" name="tab"></slot>
-    </div>`;
+    return html`
+      <div role="tablist" aria-label="${this.label || nothing}">
+        <slot @click="${this._onTabClick}" @keydown="${this._onTabKeyDown}" name="tab"></slot>
+      </div>
+    `;
   }
 
   get _separatorTpl() {
-    return html`<span aria-hidden="true" class="separator"></span>`;
+    return html`
+      <span aria-hidden="true" class="separator"></span>
+    `;
   }
 
   get _indicatorsTpl() {
-    return html` <span
-        aria-hidden="true"
-        class="indicator ${this._hasScrollLeftIndicator ? 'show-indicator' : ''}"
-      ></span>
+    return html`
       <span
         aria-hidden="true"
-        class="indicator ${this._hasScrollRightIndicator ? 'show-indicator' : ''}"
-      ></span>`;
+        class="indicator ${this._hasScrollLeftIndicator ? 'show-indicator' : ''}"></span>
+      <span
+        aria-hidden="true"
+        class="indicator ${this._hasScrollRightIndicator ? 'show-indicator' : ''}"></span>
+    `;
   }
 
   get _holdTpl() {
-    return html`<div class="hold">
-      ${this._scrollContentTpl} ${this._separatorTpl} ${this._indicatorsTpl}
-    </div>`;
+    return html`
+      <div class="hold">${this._scrollContentTpl} ${this._separatorTpl} ${this._indicatorsTpl}</div>
+    `;
   }
 
   get _tabpanelTpl() {
-    return html` <div>
-      <slot name="tabpanel"></slot>
-    </div>`;
+    return html`
+      <div>
+        <slot name="tabpanel"></slot>
+      </div>
+    `;
   }
 
   render() {
-    return html` ${this._holdTpl} ${this._tabpanelTpl} `;
+    return html`
+      ${this._holdTpl} ${this._tabpanelTpl}
+    `;
   }
 
   _scrollEdge({ target = this._scrollContentRef.value } = {}) {

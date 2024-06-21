@@ -12,7 +12,9 @@ suite('BlockquoteControllerXstate', () => {
 
   suite('Default', () => {
     setup(async () => {
-      el = await fixture(html` <xstate-counter>light-dom</xstate-counter> `);
+      el = await fixture(html`
+        <xstate-counter>light-dom</xstate-counter>
+      `);
       await el.updateComplete;
     });
 
@@ -36,7 +38,9 @@ suite('BlockquoteControllerXstate', () => {
 
   suite('Events ', () => {
     setup(async () => {
-      el = await fixture(html` <xstate-counter></xstate-counter> `);
+      el = await fixture(html`
+        <xstate-counter></xstate-counter>
+      `);
       await el.updateComplete;
     });
 
