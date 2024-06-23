@@ -58,9 +58,15 @@ class WrapperDialog extends LitElement {
 
   render() {
     return html`
-      <dialog aria-labelledby="${this.labelledby || nothing}"><slot></slot></dialog>
+      <dialog @close=${this._handleClose} aria-labelledby="${this.labelledby || nothing}">
+        <slot></slot>
+      </dialog>
       ${blockquoteDirectiveAriaidrefSlot(this.labelledby)}
     `;
+  }
+
+  _handleClose() {
+    this.open = false;
   }
 
   _handleSubmit() {
