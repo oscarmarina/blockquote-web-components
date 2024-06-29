@@ -27,14 +27,14 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
     this._createResizerBottom = this._createResizer.bind(this, 'top');
     this._createResizerBottomLeft = this._createResizer.bind(this, 'scaleTopRight');
     this._createResizerBottomRight = this._createResizer.bind(this, 'scaleTopLeft');
-    this._doubleclickForCssInitialSize = this._doubleclickForCssInitialSize.bind(this);
 
     this._getBoundingClientRectWidth = 0;
     this._getBoundingClientRectHeight = 0;
   }
 
-  firstUpdated(props) {
-    super.firstUpdated && super.firstUpdated(props);
+  async connectedCallback() {
+    super.connectedCallback?.();
+    await this.updateComplete;
 
     this.rect = this.shadowRoot?.querySelector('.rect');
     this.bottomRightResizerElement = this.shadowRoot?.querySelector('.resizer-se');
@@ -72,9 +72,9 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
     `;
   }
 
-  _doubleclickForCssInitialSize() {
+  _doubleclickForCssInitialSize = () => {
     this.removeAttribute('style');
-  }
+  };
 
   /**
    * @param {!string} DOMRect

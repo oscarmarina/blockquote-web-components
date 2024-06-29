@@ -46,7 +46,6 @@ export class BlockquoteBaseEmbeddedWebviewElement extends LitElement {
     this.embeddedTitle = '';
     this.src = '';
     this.type = 'iframe';
-    this._onLoadElement = this._onLoadElement.bind(this);
   }
 
   connectedCallback() {
@@ -123,7 +122,7 @@ export class BlockquoteBaseEmbeddedWebviewElement extends LitElement {
     }
   }
 
-  _onLoadElement({ target }) {
+  _onLoadElement = ({ target }) => {
     if (!target.contentDocument || !target.contentDocument.head.childNodes.length) {
       return;
     }
@@ -145,5 +144,5 @@ export class BlockquoteBaseEmbeddedWebviewElement extends LitElement {
       detail: target,
     });
     this.dispatchEvent(event);
-  }
+  };
 }

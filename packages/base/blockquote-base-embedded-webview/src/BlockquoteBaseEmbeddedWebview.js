@@ -146,12 +146,12 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     this.__readDataPos = { x: '0', y: '0', resizing: false, cursor: '' };
     this.limitHeight = false;
     this._sources = [{ src: '', option: '', description: '' }];
-    this._updateSize = this._updateSize.bind(this);
     this._embeddedResizeRef = createRef();
   }
 
-  connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
+  async connectedCallback() {
+    super.connectedCallback?.();
+    await this.updateComplete;
 
     this.shadowRoot?.addEventListener('webviewresize', ev => {
       const { detail } = /** @type {CustomEvent} */ (ev);
@@ -184,10 +184,6 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
 
       this._src = this._sources[this.selected].src;
     }
-  }
-
-  firstUpdated(props) {
-    super.firstUpdated && super.firstUpdated(props);
 
     this.embedded = this.shadowRoot?.querySelector('[slot="embedded"]');
     if (this._embeddedResizeRef.value) {
@@ -197,7 +193,7 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     }
   }
 
-  _updateSize({ detail }) {
+  _updateSize = ({ detail }) => {
     /** @type {HTMLElement} */ (this._embeddedResizeRef?.value)?.style.setProperty(
       '--blockquote-base-embedded-webview-resize-rect-width',
       `${detail.width}px`,
@@ -209,7 +205,7 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
 
     this.__resetResizing = false;
     this.requestUpdate();
-  }
+  };
 
   get _headingLevel() {
     return this.headingLevel >= 1 && this.headingLevel <= 6 ? this.headingLevel : 2;
