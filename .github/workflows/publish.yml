@@ -2,7 +2,7 @@ name: Publish
 
 on:
   pull_request:
-    types: [ closed ]
+    types: [closed]
     branches:
       - main
       - master
@@ -38,10 +38,21 @@ jobs:
         run: |
           npm ci --legacy-peer-deps
 
-      - name: Version and publish
+      - name: Check for skip lerna in commit message
+        id: check_skip
+        run: |
+          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          echo "Commit message: $COMMIT_MESSAGE"
+          if [[ "$COMMIT_MESSAGE" == *"[skip lerna]"* ]]; then
+            echo "::set-output name=SKIP_LERNA::true"
+          else
+            echo "::set-output name=SKIP_LERNA::false"
+          fi
+
+      - name: Version and publish with Lerna
+        if: steps.check_skip.outputs.SKIP_LERNA == 'false'
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
-
           npx lerna version --yes
           npx lerna publish from-package --yes
