@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-xstate@2.1.3...@blockquote-web-components/blockquote-controller-xstate@2.2.0) (2024-06-29)
+
+
+### Features
+
+* **blockquote-controller-xstate:** instance field with an arrow function ([0895d67](https://github.com/oscarmarina/blockquote-web-components/commit/0895d6716f98e8594214d8a905b5d1bb9f1c12a1))
+
+
+
+
+
 ## [2.1.3](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-xstate@2.1.2...@blockquote-web-components/blockquote-controller-xstate@2.1.3) (2024-06-23)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-controller-xstate

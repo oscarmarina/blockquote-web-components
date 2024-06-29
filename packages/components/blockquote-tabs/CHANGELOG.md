@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-tabs@1.3.3...@blockquote-web-components/blockquote-tabs@1.4.0) (2024-06-29)
+
+
+### Features
+
+* **blockquote-tabs:** instance field with an arrow function ([facd5d9](https://github.com/oscarmarina/blockquote-web-components/commit/facd5d9d53101b70f7bd68bafde2890bfca18be5))
+
+
+
+
+
 ## [1.3.3](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-tabs@1.3.2...@blockquote-web-components/blockquote-tabs@1.3.3) (2024-06-23)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-tabs
