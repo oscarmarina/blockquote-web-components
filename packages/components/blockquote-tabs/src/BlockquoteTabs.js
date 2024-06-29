@@ -115,8 +115,6 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     this._slotNodesCount = undefined;
 
     this._scrollContentRef = createRef();
-    this._onTabClick = this._onTabClick.bind(this);
-    this._onTabKeyDown = this._onTabKeyDown.bind(this);
 
     // @ts-ignore
     this._resizeControllerObserver = new ResizeController(this, {
@@ -148,8 +146,8 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
   }
 
   connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
-    this.shadowRoot?.addEventListener('slotchanges', this._onSlotChanges.bind(this));
+    super.connectedCallback?.();
+    this.shadowRoot?.addEventListener('slotchanges', this._onSlotChanges);
   }
 
   firstUpdated(props) {
@@ -184,7 +182,7 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     }
   }
 
-  _onSlotChanges(ev) {
+  _onSlotChanges = ev => {
     ev.stopPropagation();
     ev.preventDefault();
 
@@ -206,7 +204,7 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     ) {
       this._requestPropertyUpdate('selected');
     }
-  }
+  };
 
   get _scrollContentTpl() {
     return html`
@@ -269,7 +267,7 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     this._hasScrollRightIndicator = scrollLeft < overflowingWidth;
   }
 
-  _onTabClick(ev) {
+  _onTabClick = ev => {
     const findSelectedTab = ev
       .composedPath()
       .find(tab => tab instanceof Element && tab.slot === 'tab');
@@ -281,9 +279,9 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     }
 
     this.selected = findSelectedTabIdxFromOne;
-  }
+  };
 
-  _onTabKeyDown(ev) {
+  _onTabKeyDown = ev => {
     let idx = '';
 
     switch (ev.key) {
@@ -312,7 +310,7 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
       default:
         break;
     }
-  }
+  };
 
   _selectTab() {
     const newSelectedTab = this._tabList[this._selectedTabIndex];

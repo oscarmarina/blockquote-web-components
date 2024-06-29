@@ -48,43 +48,43 @@ Tabs are a set of layered sections of content, known as tab panels, that display
 
 ##### Fields
 
-| Name                        | Privacy | Type      | Default                                                                                                                            | Description                                  | Inherited From |
-| --------------------------- | ------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | -------------- |
-| `_selectedTab`              |         |           |                                                                                                                                    |                                              |                |
-| `_selectedTabIndex`         |         |           |                                                                                                                                    |                                              |                |
-| `_selectedTabIndexFromOne`  |         |           |                                                                                                                                    |                                              |                |
-| `_getTabListLength`         |         |           |                                                                                                                                    |                                              |                |
-| `_scrollContentTpl`         |         |           |                                                                                                                                    |                                              |                |
-| `_tablistTpl`               |         |           |                                                                                                                                    |                                              |                |
-| `_separatorTpl`             |         |           |                                                                                                                                    |                                              |                |
-| `_indicatorsTpl`            |         |           |                                                                                                                                    |                                              |                |
-| `_holdTpl`                  |         |           |                                                                                                                                    |                                              |                |
-| `_tabpanelTpl`              |         |           |                                                                                                                                    |                                              |                |
-| `autofocus`                 | public  | `boolean` | `false`                                                                                                                            | If present, the tab automatically have focus |                |
-| `label`                     | public  | `string`  | `''`                                                                                                                               | \`aria-label\` for tabs group                |                |
-| `selected`                  | public  | `number`  | `1`                                                                                                                                | The tab selected.                            |                |
-| `_tabList`                  |         | `array`   | `[]`                                                                                                                               |                                              |                |
-| `_tabpanelList`             |         | `array`   | `[]`                                                                                                                               |                                              |                |
-| `_selectTabLast`            |         |           | `undefined`                                                                                                                        |                                              |                |
-| `_selectTabpanelLast`       |         |           | `undefined`                                                                                                                        |                                              |                |
-| `_observedFocus`            |         | `boolean` | `false`                                                                                                                            |                                              |                |
-| `_observeScrollBehavior`    |         | `boolean` | `false`                                                                                                                            |                                              |                |
-| `_slotChangesCount`         |         | `number`  | `0`                                                                                                                                |                                              |                |
-| `_slotNodesCount`           |         |           | `undefined`                                                                                                                        |                                              |                |
-| `_scrollContentRef`         |         |           |                                                                                                                                    |                                              |                |
-| `_resizeControllerObserver` |         |           | `new ResizeController(this, {      callback: () => {        this._onResizeObserverChange();      },      skipInitial: true,    })` |                                              |                |
-| `_hasScrollLeftIndicator`   | public  | `boolean` |                                                                                                                                    |                                              |                |
-| `_hasScrollRightIndicator`  | public  | `boolean` |                                                                                                                                    |                                              |                |
+| Name                        | Privacy | Type      | Default                                                                                                   | Description                                  | Inherited From |
+| --------------------------- | ------- | --------- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------- | -------------- |
+| `_selectedTab`              |         |           |                                                                                                           |                                              |                |
+| `_selectedTabIndex`         |         |           |                                                                                                           |                                              |                |
+| `_selectedTabIndexFromOne`  |         |           |                                                                                                           |                                              |                |
+| `_getTabListLength`         |         |           |                                                                                                           |                                              |                |
+| `_onSlotChanges`            |         |           |                                                                                                           |                                              |                |
+| `_scrollContentTpl`         |         |           |                                                                                                           |                                              |                |
+| `_tablistTpl`               |         |           |                                                                                                           |                                              |                |
+| `_separatorTpl`             |         |           |                                                                                                           |                                              |                |
+| `_indicatorsTpl`            |         |           |                                                                                                           |                                              |                |
+| `_holdTpl`                  |         |           |                                                                                                           |                                              |                |
+| `_tabpanelTpl`              |         |           |                                                                                                           |                                              |                |
+| `_onTabClick`               |         |           |                                                                                                           |                                              |                |
+| `_onTabKeyDown`             |         |           |                                                                                                           |                                              |                |
+| `autofocus`                 | public  | `boolean` | `false`                                                                                                   | If present, the tab automatically have focus |                |
+| `label`                     | public  | `string`  | `''`                                                                                                      | \`aria-label\` for tabs group                |                |
+| `selected`                  | public  | `number`  | `1`                                                                                                       | The tab selected.                            |                |
+| `_tabList`                  |         | `array`   | `[]`                                                                                                      |                                              |                |
+| `_tabpanelList`             |         | `array`   | `[]`                                                                                                      |                                              |                |
+| `_selectTabLast`            |         |           | `undefined`                                                                                               |                                              |                |
+| `_selectTabpanelLast`       |         |           | `undefined`                                                                                               |                                              |                |
+| `_observedFocus`            |         | `boolean` | `false`                                                                                                   |                                              |                |
+| `_observeScrollBehavior`    |         | `boolean` | `false`                                                                                                   |                                              |                |
+| `_slotChangesCount`         |         | `number`  | `0`                                                                                                       |                                              |                |
+| `_slotNodesCount`           |         |           | `undefined`                                                                                               |                                              |                |
+| `_scrollContentRef`         |         |           |                                                                                                           |                                              |                |
+| `_resizeControllerObserver` |         |           | `new ResizeController(this, { callback: () => { this._onResizeObserverChange(); }, skipInitial: true, })` |                                              |                |
+| `_hasScrollLeftIndicator`   | public  | `boolean` |                                                                                                           |                                              |                |
+| `_hasScrollRightIndicator`  | public  | `boolean` |                                                                                                           |                                              |                |
 
 ##### Methods
 
 | Name                        | Privacy | Description | Parameters                                  | Return | Inherited From |
 | --------------------------- | ------- | ----------- | ------------------------------------------- | ------ | -------------- |
 | `_selectedIsInRange`        |         |             | `idx`                                       |        |                |
-| `_onSlotChanges`            |         |             | `ev`                                        |        |                |
 | `_scrollEdge`               |         |             | `{ target = this._scrollContentRef.value }` |        |                |
-| `_onTabClick`               |         |             | `ev`                                        |        |                |
-| `_onTabKeyDown`             |         |             | `ev`                                        |        |                |
 | `_selectTab`                |         |             |                                             |        |                |
 | `_moveFocusSelectedTab`     |         |             | `selectedTab`                               |        |                |
 | `_requestFocusUpdate`       |         |             |                                             |        |                |
@@ -145,6 +145,50 @@ Tabs are a set of layered sections of content, known as tab panels, that display
 
 ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
+`<blockquote-tab>`
+A tab element that can be used inside a `blockquote-tabs` element.
+
+
+### `src/tab/BlockquoteTab.js`:
+
+#### class: `BlockquoteTab`, `blockquote-tab`
+
+##### Mixins
+
+| Name                         | Module | Package                                                  |
+| ---------------------------- | ------ | -------------------------------------------------------- |
+| `BlockquoteMixinSlotContent` |        | @blockquote-web-components/blockquote-mixin-slot-content |
+
+##### Fields
+
+| Name                   | Privacy | Type      | Default                                      | Description                             | Inherited From |
+| ---------------------- | ------- | --------- | -------------------------------------------- | --------------------------------------- | -------------- |
+| `_onSlotChanges`       |         |           |                                              |                                         |                |
+| `selected`             | public  | `boolean` | `false`                                      | Whether or not the tab is \`selected\`. |                |
+| `globalRootAttributes` |         | `object`  | `{ role: 'tab', slot: 'tab', tabindex: 0, }` |                                         |                |
+
+##### Methods
+
+| Name                 | Privacy | Description                     | Parameters              | Return | Inherited From |
+| -------------------- | ------- | ------------------------------- | ----------------------- | ------ | -------------- |
+| `__setArrayAttibute` |         | Sets attributes on the element. | `entries: Record<*, *>` |        |                |
+
+##### Attributes
+
+| Name       | Field    | Inherited From |
+| ---------- | -------- | -------------- |
+| `selected` | selected |                |
+
+<hr/>
+
+#### Exports
+
+| Kind | Name            | Declaration   | Module                   | Package |
+| ---- | --------------- | ------------- | ------------------------ | ------- |
+| `js` | `BlockquoteTab` | BlockquoteTab | src/tab/BlockquoteTab.js |         |
+
+![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
+
 `<blockquote-tabpanel>`
 A tab element that can be used inside a `blockquote-tabs` element.
 
@@ -155,10 +199,10 @@ A tab element that can be used inside a `blockquote-tabs` element.
 
 ##### Fields
 
-| Name                   | Privacy | Type      | Default                                                                  | Description                                  | Inherited From |
-| ---------------------- | ------- | --------- | ------------------------------------------------------------------------ | -------------------------------------------- | -------------- |
-| `selected`             | public  | `boolean` | `false`                                                                  | Whether or not the tabpanel is \`selected\`. |                |
-| `globalRootAttributes` |         | `object`  | `{      role: 'tabpanel',      slot: 'tabpanel',      tabindex: 0,    }` |                                              |                |
+| Name                   | Privacy | Type      | Default                                                | Description                                  | Inherited From |
+| ---------------------- | ------- | --------- | ------------------------------------------------------ | -------------------------------------------- | -------------- |
+| `selected`             | public  | `boolean` | `false`                                                | Whether or not the tabpanel is \`selected\`. |                |
+| `globalRootAttributes` |         | `object`  | `{ role: 'tabpanel', slot: 'tabpanel', tabindex: 0, }` |                                              |                |
 
 ##### Methods
 
@@ -180,49 +224,21 @@ A tab element that can be used inside a `blockquote-tabs` element.
 | ---- | -------------------- | ------------------ | ---------------------------------- | ------- |
 | `js` | `BlockquoteTabPanel` | BlockquoteTabPanel | src/tabpanel/BlockquoteTabPanel.js |         |
 
-![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
+### `src/tab/styles/blockquote-tab-styles.css.js`:
 
-`<blockquote-tab>`
-A tab element that can be used inside a `blockquote-tabs` element.
+#### Variables
 
-
-### `src/tab/BlockquoteTab.js`:
-
-#### class: `BlockquoteTab`, `blockquote-tab`
-
-##### Mixins
-
-| Name                         | Module | Package                                                  |
-| ---------------------------- | ------ | -------------------------------------------------------- |
-| `BlockquoteMixinSlotContent` |        | @blockquote-web-components/blockquote-mixin-slot-content |
-
-##### Fields
-
-| Name                   | Privacy | Type      | Default                                                        | Description                             | Inherited From |
-| ---------------------- | ------- | --------- | -------------------------------------------------------------- | --------------------------------------- | -------------- |
-| `selected`             | public  | `boolean` | `false`                                                        | Whether or not the tab is \`selected\`. |                |
-| `globalRootAttributes` |         | `object`  | `{      role: 'tab',      slot: 'tab',      tabindex: 0,    }` |                                         |                |
-
-##### Methods
-
-| Name                 | Privacy | Description                     | Parameters              | Return | Inherited From |
-| -------------------- | ------- | ------------------------------- | ----------------------- | ------ | -------------- |
-| `_onSlotChanges`     |         |                                 | `ev`                    |        |                |
-| `__setArrayAttibute` |         | Sets attributes on the element. | `entries: Record<*, *>` |        |                |
-
-##### Attributes
-
-| Name       | Field    | Inherited From |
-| ---------- | -------- | -------------- |
-| `selected` | selected |                |
+| Name     | Description | Type |
+| -------- | ----------- | ---- |
+| `styles` |             |      |
 
 <hr/>
 
 #### Exports
 
-| Kind | Name            | Declaration   | Module                   | Package |
-| ---- | --------------- | ------------- | ------------------------ | ------- |
-| `js` | `BlockquoteTab` | BlockquoteTab | src/tab/BlockquoteTab.js |         |
+| Kind | Name     | Declaration | Module                                      | Package |
+| ---- | -------- | ----------- | ------------------------------------------- | ------- |
+| `js` | `styles` | styles      | src/tab/styles/blockquote-tab-styles.css.js |         |
 
 ### `src/tabpanel/styles/blockquote-tabpanel-styles.css.js`:
 
@@ -239,22 +255,6 @@ A tab element that can be used inside a `blockquote-tabs` element.
 | Kind | Name     | Declaration | Module                                                | Package |
 | ---- | -------- | ----------- | ----------------------------------------------------- | ------- |
 | `js` | `styles` | styles      | src/tabpanel/styles/blockquote-tabpanel-styles.css.js |         |
-
-### `src/tab/styles/blockquote-tab-styles.css.js`:
-
-#### Variables
-
-| Name     | Description | Type |
-| -------- | ----------- | ---- |
-| `styles` |             |      |
-
-<hr/>
-
-#### Exports
-
-| Kind | Name     | Declaration | Module                                      | Package |
-| ---- | -------- | ----------- | ------------------------------------------- | ------- |
-| `js` | `styles` | styles      | src/tab/styles/blockquote-tab-styles.css.js |         |
 
 ### `define/blockquote-tab.js`:
 

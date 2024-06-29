@@ -36,7 +36,7 @@ export class BlockquoteTabPanel extends LitElement {
   }
 
   connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
+    super.connectedCallback?.();
     // https://www.scottohara.me/blog/2021/07/23/aria-idl.html
     // https://wpt.fyi/results/html/dom/aria-attribute-reflection.html?label=master&label=experimental&aligned&view=subtest&q=aria-attribute-reflection
     this.__setArrayAttibute(this.globalRootAttributes);

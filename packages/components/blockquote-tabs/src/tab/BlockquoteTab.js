@@ -37,8 +37,8 @@ export class BlockquoteTab extends BlockquoteMixinSlotContent(LitElement) {
   }
 
   connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
-    this.shadowRoot?.addEventListener('slotchanges', this._onSlotChanges.bind(this));
+    super.connectedCallback?.();
+    this.shadowRoot?.addEventListener('slotchanges', this._onSlotChanges);
 
     this.__setArrayAttibute(this.globalRootAttributes);
   }
@@ -58,13 +58,13 @@ export class BlockquoteTab extends BlockquoteMixinSlotContent(LitElement) {
     }
   }
 
-  _onSlotChanges(ev) {
+  _onSlotChanges = ev => {
     const { detail } = ev;
     ev.stopPropagation();
     ev.preventDefault();
     const assignedNodesList = detail.assignedSlotContent.assignedSlot;
     Object.assign(assignedNodesList.dataset, { text: this.textContent });
-  }
+  };
 
   render() {
     return html`
