@@ -110,7 +110,7 @@
 
         connectedCallback() {
           super.connectedCallback && super.connectedCallback();
-          this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges.bind(this));
+          this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges);
         }
 
         update(props) {
@@ -128,7 +128,7 @@
           }
         }
 
-        _onSlotChanges(ev) {
+        _onSlotChanges = ev => {
           const { detail } = ev;
           ev.stopPropagation();
           ev.preventDefault();
@@ -139,7 +139,7 @@
             '-',
             detail.assignedSlotContent.slotName,
           );
-        }
+        };
 
         render() {
           return html`
