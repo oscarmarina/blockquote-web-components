@@ -82,19 +82,17 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
     this.selected = 0;
     this.disabledSelectedSizeText = false;
     this.screenSizes = [
-      { width: 360, height: 640, id: '360x640' },
       { width: 360, height: 800, id: '360x800' },
+      { width: 390, height: 864, id: '390x864' },
       { width: 414, height: 896, id: '414x896' },
       { width: 768, height: 1024, id: '768x1024' },
       { width: 810, height: 1080, id: '810x1080' },
-      { width: 1280, height: 800, id: '1280x800' },
+      { width: 1280, height: 720, id: '1280x800' },
       { width: 1366, height: 768, id: '1366x768' },
       { width: 1536, height: 864, id: '1536x864' },
       { width: 1920, height: 1080, id: '1920x1080' },
     ];
     this.widthInPercent = false;
-
-    this._onResize = this._onResize.bind(this);
   }
 
   get selectedSize() {
@@ -188,13 +186,13 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
     `;
   }
 
-  _onResize(ev) {
+  _onResize = ev => {
     ev.preventDefault();
     ev.stopPropagation();
     window.requestAnimationFrame(() => {
       this.requestUpdate();
     });
-  }
+  };
 
   _setSelected(ev) {
     ev.preventDefault();
