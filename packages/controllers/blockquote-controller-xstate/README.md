@@ -114,9 +114,6 @@ export class XstateCounter extends LitElement {
   constructor() {
     super();
     this._xstate = {};
-    this._inspectEvents = this._inspectEvents.bind(this);
-    this._callbackCounterController = this._callbackCounterController.bind(this);
-
     this.counterController = new BlockquoteControllerXstate(this, {
       machine: counterMachine,
       options: {
@@ -126,15 +123,15 @@ export class XstateCounter extends LitElement {
     });
   }
 
-  _callbackCounterController(snapshot) {
+  _callbackCounterController = snapshot => {
     this._xstate = snapshot;
-  }
+  };
 
-  _inspectEvents(inspEvent) {
+  _inspectEvents = inspEvent => {
     if (inspEvent.type === '@xstate.snapshot' && inspEvent.event.type === 'xstate.stop') {
       this._xstate = {};
     }
-  }
+  };
 
   updated(props) {
     super.updated && super.updated(props);
@@ -196,6 +193,7 @@ export class XstateCounter extends LitElement {
 | ----------------- | ------- | ---- | ---------- | ----------- | -------------- |
 | `actor`           |         |      |            |             |                |
 | `snapshot`        |         |      |            |             |                |
+| `onNext`          |         |      |            |             |                |
 | `machine`         |         |      | `machine`  |             |                |
 | `options`         |         |      | `options`  |             |                |
 | `callback`        |         |      | `callback` |             |                |
@@ -203,15 +201,14 @@ export class XstateCounter extends LitElement {
 
 ##### Methods
 
-| Name               | Privacy | Description | Parameters                                    | Return | Inherited From |
-| ------------------ | ------- | ----------- | --------------------------------------------- | ------ | -------------- |
-| `send`             |         |             | `ev: EventFrom<typeof this.machine>`          |        |                |
-| `unsubscribe`      |         |             |                                               |        |                |
-| `onNext`           |         |             | `snapshot: SnapshotFrom<typeof this.machine>` |        |                |
-| `startService`     |         |             |                                               |        |                |
-| `stopService`      |         |             |                                               |        |                |
-| `hostConnected`    |         |             |                                               |        |                |
-| `hostDisconnected` |         |             |                                               |        |                |
+| Name               | Privacy | Description | Parameters                           | Return | Inherited From |
+| ------------------ | ------- | ----------- | ------------------------------------ | ------ | -------------- |
+| `send`             |         |             | `ev: EventFrom<typeof this.machine>` |        |                |
+| `unsubscribe`      |         |             |                                      |        |                |
+| `startService`     |         |             |                                      |        |                |
+| `stopService`      |         |             |                                      |        |                |
+| `hostConnected`    |         |             |                                      |        |                |
+| `hostDisconnected` |         |             |                                      |        |                |
 
 <hr/>
 
