@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.5.2...v2.6.0) (2024-06-29)
+
+
+### Features
+
+* **blockquote-base-embedded-webview:** instance field with an arrow function ([cadbd79](https://github.com/oscarmarina/blockquote-web-components/commit/cadbd79ec808dc65890788d6ebd2aef3df5b01be))
+* **blockquote-controller-xstate:** instance field with an arrow function ([0895d67](https://github.com/oscarmarina/blockquote-web-components/commit/0895d6716f98e8594214d8a905b5d1bb9f1c12a1))
+* **blockquote-mixin-slot-content:** instance field with an arrow function ([a64bf03](https://github.com/oscarmarina/blockquote-web-components/commit/a64bf03010856bc45f8433412ef8319cfedc0e98))
+* **blockquote-tabs:** instance field with an arrow function ([facd5d9](https://github.com/oscarmarina/blockquote-web-components/commit/facd5d9d53101b70f7bd68bafde2890bfca18be5))
+
 ### [2.5.2](https://github.com/oscarmarina/blockquote-web-components/compare/v2.5.1...v2.5.2) (2024-06-23)
 
 ### [2.5.1](https://github.com/oscarmarina/blockquote-web-components/compare/v2.5.0...v2.5.1) (2024-06-21)
