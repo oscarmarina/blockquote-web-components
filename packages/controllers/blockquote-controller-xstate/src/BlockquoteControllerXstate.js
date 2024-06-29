@@ -116,9 +116,6 @@ import { createActor } from 'xstate';
  *   constructor() {
  *     super();
  *     this._xstate = {};
- *     this._inspectEvents = this._inspectEvents.bind(this);
- *     this._callbackCounterController = this._callbackCounterController.bind(this);
- *
  *     this.counterController = new BlockquoteControllerXstate(this, {
  *       machine: counterMachine,
  *       options: {
@@ -128,15 +125,15 @@ import { createActor } from 'xstate';
  *     });
  *   }
  *
- *   _callbackCounterController(snapshot) {
+ *   _callbackCounterController = snapshot => {
  *     this._xstate = snapshot;
- *   }
+ *   };
  *
- *   _inspectEvents(inspEvent) {
+ *   _inspectEvents = inspEvent => {
  *     if (inspEvent.type === '@xstate.snapshot' && inspEvent.event.type === 'xstate.stop') {
  *       this._xstate = {};
  *     }
- *   }
+ *   };
  *
  *   updated(props) {
  *     super.updated && super.updated(props);
@@ -201,7 +198,6 @@ class UseMachine {
     this.options = options;
     this.callback = callback;
     this.currentSnapshot = this.snapshot;
-    this.onNext = this.onNext.bind(this);
 
     (this.host = host).addController(this);
   }
@@ -228,13 +224,13 @@ class UseMachine {
   /**
    * @param {import('xstate').SnapshotFrom<typeof this.machine>} snapshot
    */
-  onNext(snapshot) {
+  onNext = snapshot => {
     if (this.currentSnapshot !== snapshot) {
       this.currentSnapshot = snapshot;
       this.callback?.(snapshot);
       this.host.requestUpdate();
     }
-  }
+  };
 
   startService() {
     this.actorRef = createActor(this.machine, this.options);

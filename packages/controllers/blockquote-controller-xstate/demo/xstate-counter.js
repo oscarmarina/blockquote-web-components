@@ -16,9 +16,6 @@ export class XstateCounter extends LitElement {
   constructor() {
     super();
     this._xstate = {};
-    this._inspectEvents = this._inspectEvents.bind(this);
-    this._callbackCounterController = this._callbackCounterController.bind(this);
-
     this.counterController = new BlockquoteControllerXstate(this, {
       machine: counterMachine,
       options: {
@@ -29,21 +26,21 @@ export class XstateCounter extends LitElement {
   }
 
   /**
-   * @param {import('xstate').SnapshotFrom<typeof this.counterController>} snapshot
+   * @param {import('xstate').SnapshotFrom<unknown>} snapshot
    */
-  _callbackCounterController(snapshot) {
+  _callbackCounterController = snapshot => {
     this._xstate = snapshot;
-  }
+  };
 
   /**
    * @param {import('xstate').InspectionEvent} inspEvent
    */
 
-  _inspectEvents(inspEvent) {
+  _inspectEvents = inspEvent => {
     if (inspEvent.type === '@xstate.snapshot' && inspEvent.event.type === 'xstate.stop') {
       this._xstate = {};
     }
-  }
+  };
 
   updated(props) {
     super.updated && super.updated(props);
