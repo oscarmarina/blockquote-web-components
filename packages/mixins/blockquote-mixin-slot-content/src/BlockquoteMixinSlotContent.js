@@ -22,7 +22,7 @@ const isIgnorable = nod =>
  * It's necessary to set up the "catch-all" handler on **this.shadowRoot** node.
  *
  * ```js
- * this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges.bind(this));
+ * this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges);
  * ```
  *
  * ### Example:
@@ -32,10 +32,10 @@ const isIgnorable = nod =>
  *   // ...
  *   connectedCallback() {
  *     super.connectedCallback && super.connectedCallback();
- *     this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges.bind(this));
+ *     this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges);
  *   }
  *
- *   _onSlotChanges(ev) {
+ *   _onSlotChanges = (ev) => {
  *     const { detail } = ev;
  *     console.log(detail);
  *   }
@@ -223,13 +223,13 @@ const BlockquoteSlotContentBase = Base =>
   class BlockquoteSlotContent extends Base {
     connectedCallback() {
       super.connectedCallback && super.connectedCallback();
-      this.shadowRoot.addEventListener('slotchange', this._onSlotChange.bind(this));
+      this.shadowRoot.addEventListener('slotchange', this._onSlotChange);
     }
 
     /**
      * @param {Event} ev
      */
-    _onSlotChange(ev) {
+    _onSlotChange = ev => {
       const { target } = ev;
       const slotNode = /** @type {HTMLSlotElement} */ (target);
 
@@ -283,7 +283,7 @@ const BlockquoteSlotContentBase = Base =>
       });
 
       this.shadowRoot.dispatchEvent(event);
-    }
+    };
   };
 
 export const BlockquoteMixinSlotContent = dedupeMixin(BlockquoteSlotContentBase);

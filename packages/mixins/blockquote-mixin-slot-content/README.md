@@ -13,7 +13,7 @@
 It's necessary to set up the "catch-all" handler on **this.shadowRoot** node.
 
 ```js
-this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges.bind(this));
+this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges);
 ```
 
 ### Example:
@@ -23,10 +23,10 @@ class SlotElement extends BlockquoteMixinSlotContent(LitElement) {
   // ...
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
-    this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges.bind(this));
+    this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges);
   }
 
-  _onSlotChanges(ev) {
+  _onSlotChanges = (ev) => {
     const { detail } = ev;
     console.log(detail);
   }
@@ -225,11 +225,11 @@ and equally for flattened nodes.
 | ------ | ---- | ------- | ----------- |
 | `Base` |      |         |             |
 
-##### Methods
+##### Fields
 
-| Name            | Privacy | Description | Parameters  | Return | Inherited From |
-| --------------- | ------- | ----------- | ----------- | ------ | -------------- |
-| `_onSlotChange` |         |             | `ev: Event` |        |                |
+| Name            | Privacy | Type | Default | Description | Inherited From |
+| --------------- | ------- | ---- | ------- | ----------- | -------------- |
+| `_onSlotChange` |         |      |         |             |                |
 
 <hr/>
 
