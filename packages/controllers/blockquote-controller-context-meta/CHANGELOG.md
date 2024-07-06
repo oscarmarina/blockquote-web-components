@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-context-meta@1.0.4...@blockquote-web-components/blockquote-controller-context-meta@1.1.0) (2024-07-06)
+
+
+### Features
+
+* **blockquote-controller-context-meta:** add BaseContextMetaElement ([7156c66](https://github.com/oscarmarina/blockquote-web-components/commit/7156c663148a831e748b7eba476aec448d41fb6e))
+
+
+
+
+
 ## [1.0.4](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-context-meta@1.0.3...@blockquote-web-components/blockquote-controller-context-meta@1.0.4) (2024-06-29)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-controller-context-meta
