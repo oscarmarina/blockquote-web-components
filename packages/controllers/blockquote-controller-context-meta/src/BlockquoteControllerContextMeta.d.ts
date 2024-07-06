@@ -1,5 +1,6 @@
 import { ReactiveController, ReactiveControllerHost } from 'lit';
 import { Context, ContextType } from '@lit/context';
+export declare const contextMetaSymbol = 'context-meta-symbol';
 
 declare class ContextMeta<
   TMeta extends Context<unknown, unknown>,
@@ -7,7 +8,7 @@ declare class ContextMeta<
 > implements ReactiveController
 {
   private host;
-  private context;
+  private context?;
   private initialValue?;
   private callback?;
   private _contextMetaProvider;
@@ -19,7 +20,7 @@ declare class ContextMeta<
       initialValue,
       callback,
     }: {
-      context: string;
+      context?: string;
       initialValue?: ContextType<TMeta>;
       callback?: (v: ContextType<TMeta>, dispose?: () => void) => void;
     },
