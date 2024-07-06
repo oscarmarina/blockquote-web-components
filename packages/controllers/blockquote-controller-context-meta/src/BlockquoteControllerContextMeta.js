@@ -1,5 +1,6 @@
 import { createContext, ContextProvider, ContextConsumer } from '@lit/context';
 
+export const contextMetaSymbol = 'context-meta-symbol';
 /**
  * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
@@ -105,12 +106,12 @@ class ContextMeta {
   /**
    * @param {import('lit').ReactiveElement} host - The host object.
    * @param {{
-   *   context: string,
+   *   context?: string,
    *   initialValue?: import('@lit/context').ContextType<*>,
    *   callback?: (value: import('@lit/context').ContextType<*>, dispose?: () => void) => void
    * }} arg - The arguments for the constructor.
    */
-  constructor(host, { context, initialValue, callback }) {
+  constructor(host, { context = contextMetaSymbol, initialValue, callback }) {
     this.context = createContext(Symbol.for(context));
     this.initialValue = initialValue;
     this.callback = callback;
