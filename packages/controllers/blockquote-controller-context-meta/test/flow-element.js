@@ -2,7 +2,7 @@ import { BaseContextMetaElement } from '../src/index.js';
 
 const consumerContext = 'symbol-for-surface';
 
-export class FlownElement extends BaseContextMetaElement {
+class FlownElement extends BaseContextMetaElement {
   static properties = {
     surface: { reflect: true },
   };
@@ -10,13 +10,13 @@ export class FlownElement extends BaseContextMetaElement {
   constructor() {
     super();
     this.surface = undefined;
-    this.setConsumerContext(consumerContext);
+    this.flowController = this.initOrGetContextProvider(consumerContext);
   }
 
   willUpdate(props) {
     super.willUpdate?.(props);
     if (props.has('surface')) {
-      this.controllerBaseContextMeta?.setValue(this.surface);
+      this.flowController?.setValue(this.surface);
     }
   }
 }
