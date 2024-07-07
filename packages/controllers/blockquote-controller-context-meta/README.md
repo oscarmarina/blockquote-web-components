@@ -1,3 +1,31 @@
+### `src/BaseContextMetaElement.js`:
+
+#### class: `BaseContextMetaElement`
+
+##### Methods
+
+| Name                       | Privacy | Description                                                  | Parameters                           | Return                            | Inherited From |
+| -------------------------- | ------- | ------------------------------------------------------------ | ------------------------------------ | --------------------------------- | -------------- |
+| `initOrGetContextProvider` |         | Initializes or returns the existing context meta controller. | `contextOrOptions: string \| Object` | `BlockquoteControllerContextMeta` |                |
+
+<details><summary>Private API</summary>
+
+##### Fields
+
+| Name                         | Privacy | Type                                           | Default     | Description                             | Inherited From |
+| ---------------------------- | ------- | ---------------------------------------------- | ----------- | --------------------------------------- | -------------- |
+| `#controllerBaseContextMeta` | private | `BlockquoteControllerContextMeta \| undefined` | `undefined` | Stores the context controller instance. |                |
+
+</details>
+
+<hr/>
+
+#### Exports
+
+| Kind | Name                     | Declaration            | Module                        | Package |
+| ---- | ------------------------ | ---------------------- | ----------------------------- | ------- |
+| `js` | `BaseContextMetaElement` | BaseContextMetaElement | src/BaseContextMetaElement.js |         |
+
 ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
 `BlockquoteControllerContextMeta` is a Lit Reactive Controller that encapsulates the controllers provided by
@@ -54,9 +82,11 @@
 <hr>
 
 ### `src/BaseContextMetaElement.js`:
-
-`BaseContextMetaElement` leverages Lit's features and Context API capabilities to facilitate the creation of a component that can be used in place of a standard element, such as a `div`, thus simplifying the use of contexts.
+`BaseContextMetaElement` is inspired by the concept of 'Customized Built-in Elements', focusing on extending native HTML elements like `div` using Lit's features and the Context API.
+ This approach simplifies the integration of context providers into a standard elements, enhancing functionality while preserving the core behavior of standard elements. **[All Structural Roles and Their HTML Equivalents](https://www.w3.org/WAI/ARIA/apg/practices/structural-roles/#allstructuralrolesandtheirhtmlequivalents)**
 > [Is it possible to make normal dom elements context providers?](https://github.com/lit/lit/discussions/4690)
+
+ <hr>
 
 ### Demo
 
@@ -80,22 +110,26 @@ It incorporates functionality to handle context consumption and presentation as 
    ];
    ```
 
-2. The setConsumerContext method allows setting up a context consumer on the element. It creates a new BlockquoteControllerContextMeta if one does not already exist.
+2. The initOrGetContextProvider method allows setting up a context consumer on the element. It creates a new BlockquoteControllerContextMeta if one does not already exist.
    ```js
-   setConsumerContext(cc = symbolContextMeta) {
-     if (!this.controllerBaseContextMeta) {
-       this.controllerBaseContextMeta = new BlockquoteControllerContextMeta(this, {
-         context: cc,
-       });
+     initOrGetContextProvider(contextOrOptions = contextMetaSymbol) {
+       const ctx =
+         contextOrOptions?.context !== undefined
+           ? { ...contextOrOptions }
+           : { context: contextOrOptions };
+
+       if (!this.#controllerBaseContextMeta) {
+         this.#controllerBaseContextMeta = new BlockquoteControllerContextMeta(this, ctx);
+       }
+       return this.#controllerBaseContextMeta;
      }
-   }
    ```
 
 3. Set a default role of 'presentation' to ensure it behaves semantically like a non-interactive container.
    ```js
    connectedCallback() {
      super.connectedCallback?.();
-     Object.assign(this, this.role ? {} : { role: 'presentation' });
+     Object.assign(this, { role: this.role ?? 'presentation' });
    }
    ```
 
@@ -117,12 +151,12 @@ To demonstrate the utility of BaseContextMetaElement, let's create a derived cla
   };
   ```
 
-2. Set Context on Construction: The constructor calls setConsumerContext with a specific context, enabling the element to participate in the context API from its inception.
+2. Set Context on Construction: The constructor calls initOrGetContextProvider with a specific context, enabling the element to participate in the context API from its inception.
   ```js
   constructor() {
     super();
     this.surface = undefined;
-    this.setConsumerContext(consumerContext);
+    this.flowController = this.initOrGetContextProvider(consumerContext);
   }
   ```
 
@@ -131,12 +165,11 @@ To demonstrate the utility of BaseContextMetaElement, let's create a derived cla
   willUpdate(props) {
     super.willUpdate?.(props);
     if (props.has('surface')) {
-      this.controllerBaseContextMeta?.setValue(this.surface);
+      this.flowController?.setValue(this.surface);
     }
   }
   ```
 
-> __Important__: When extending BaseContextMetaElement, it is essential to use this.controllerBaseContextMeta.
 
 ### Usage Example:
 Here's how you might use the FlownElement in your HTML:
@@ -149,21 +182,3 @@ Here's how you might use the FlownElement in your HTML:
 
 With this setup, FlownElement behaves like a [flow element](https://developer.mozilla.org/en-US/docs/Web/HTML/Content_categories#flow_content) but provides the additional benefit of context management via Lit's context API, allowing you to seamlessly integrate context-sensitive behavior without altering the parent element hierarchy.
 
-
-### `src/BaseContextMetaElement.js`:
-
-#### class: `BaseContextMetaElement`
-
-##### Methods
-
-| Name                 | Privacy | Description                                                         | Parameters   | Return | Inherited From |
-| -------------------- | ------- | ------------------------------------------------------------------- | ------------ | ------ | -------------- |
-| `setConsumerContext` |         | Initializes the context consumer controller if not already present. | `cc: string` |        |                |
-
-<hr/>
-
-#### Exports
-
-| Kind | Name                     | Declaration            | Module                        | Package |
-| ---- | ------------------------ | ---------------------- | ----------------------------- | ------- |
-| `js` | `BaseContextMetaElement` | BaseContextMetaElement | src/BaseContextMetaElement.js |         |

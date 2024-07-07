@@ -50,7 +50,7 @@ suite('BlockquoteControllerContextMeta', () => {
     });
   });
 
-  suite('Extend', () => {
+  suite('initOrGetContextProvider', () => {
     setup(async () => {
       el = await fixture(html`
         <flow-element></flow-element>
