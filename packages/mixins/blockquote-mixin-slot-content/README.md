@@ -22,7 +22,7 @@ this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges);
 class SlotElement extends BlockquoteMixinSlotContent(LitElement) {
   // ...
   connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
+    super.connectedCallback?.();
     this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges);
   }
 

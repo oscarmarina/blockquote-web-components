@@ -1,10 +1,20 @@
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 
-const onlyContenlWhiteSpace = nod => !/[^\t\n\r ]/.test(nod.textContent);
+/**
+ * Checks if a node's text content contains only whitespace.
+ *
+ * @param {Node} nod - The node to check.
+ * @returns {boolean} - True if the node's text content contains only whitespace, false otherwise.
+ */
+const onlyContentWhiteSpace = nod => !/[^\t\n\r ]/.test(nod?.textContent ?? '');
 
-const isIgnorable = nod =>
-  nod.nodeType === 8 || // A comment node
-  (nod.nodeType === 3 && onlyContenlWhiteSpace(nod)); // a text node, all white space
+/**
+ * Checks if a node is a comment node or a text node with only whitespace.
+ *
+ * @param {Node} nod - The node to check.
+ * @returns {boolean} - True if the node is ignorable, false otherwise.
+ */
+const isIgnorable = nod => nod.nodeType === 8 || (nod.nodeType === 3 && onlyContentWhiteSpace(nod));
 
 /**
  * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
@@ -31,7 +41,7 @@ const isIgnorable = nod =>
  * class SlotElement extends BlockquoteMixinSlotContent(LitElement) {
  *   // ...
  *   connectedCallback() {
- *     super.connectedCallback && super.connectedCallback();
+ *     super.connectedCallback?.();
  *     this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges);
  *   }
  *
@@ -222,7 +232,7 @@ const isIgnorable = nod =>
 const BlockquoteSlotContentBase = Base =>
   class BlockquoteSlotContent extends Base {
     connectedCallback() {
-      super.connectedCallback && super.connectedCallback();
+      super.connectedCallback?.();
       this.shadowRoot.addEventListener('slotchange', this._onSlotChange);
     }
 
@@ -273,7 +283,7 @@ const BlockquoteSlotContentBase = Base =>
       };
 
       const event = new CustomEvent('slotchanges', {
-        bubbles: true,
+        composed: true,
         detail: {
           assignedSlotContent,
           assignedNodesContent,
