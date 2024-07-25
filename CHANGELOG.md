@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.7.2](https://github.com/oscarmarina/blockquote-web-components/compare/v2.7.1...v2.7.2) (2024-07-25)
+
+
+### Bug Fixes
+
+* **blockquote-mixin-slot-content:** changed event option ([53b63b2](https://github.com/oscarmarina/blockquote-web-components/commit/53b63b21415ebd7a69dd2c5be04be129aa6542e1))
+
 ### [2.7.1](https://github.com/oscarmarina/blockquote-web-components/compare/v2.7.0...v2.7.1) (2024-07-07)
 
 
