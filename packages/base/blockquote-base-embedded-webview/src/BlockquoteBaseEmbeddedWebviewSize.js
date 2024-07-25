@@ -11,17 +11,16 @@ import { styles } from './styles/blockquote-base-embedded-webview-size-styles.cs
  * ```html
  * <blockquote-base-embedded-webview-size
  *   screen-sizes="[
- *    { width: 360, height: 640, id: '360x640' },
- *    { width: 360, height: 800, id: '360x800' },
- *    { width: 414, height: 896, id: '414x896' },
- *    { width: 768, height: 1024, id: '768x1024' },
- *    { width: 810, height: 1080, id: '810x1080' },
- *    { width: 1280, height: 800, id: '1280x800' },
- *    { width: 1366, height: 768, id: '1366x768' },
- *    { width: 1536, height: 864, id: '1536x864' },
- *    { width: 1920, height: 1080, id: '1920x1080' },
- *   ]"
- * ></blockquote-base-embedded-webview-size>
+ *     { width: 360, height: 800, id: '360x800' },
+ *     { width: 390, height: 864, id: '390x864' },
+ *     { width: 414, height: 896, id: '414x896' },
+ *     { width: 768, height: 1024, id: '768x1024' },
+ *     { width: 810, height: 1080, id: '810x1080' },
+ *     { width: 1280, height: 720, id: '1280x800' },
+ *     { width: 1366, height: 768, id: '1366x768' },
+ *     { width: 1536, height: 864, id: '1536x864' },
+ *     { width: 1920, height: 1080, id: '1920x1080' },
+ *   ]"></blockquote-base-embedded-webview-size>
  * ```
  *
  * @attribute screen-sizes
