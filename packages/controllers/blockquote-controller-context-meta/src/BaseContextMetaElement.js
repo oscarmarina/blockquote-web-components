@@ -4,6 +4,8 @@ import {
   contextMetaSymbol,
 } from './BlockquoteControllerContextMeta.js';
 /**
+ * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
+ *
  * `BaseContextMetaElement` is inspired by the concept of 'Customized Built-in Elements', focusing on extending native HTML elements like `div` using Lit's features and the Context API.
  *  This approach simplifies the integration of context providers into a standard elements, enhancing functionality while preserving the core behavior of standard elements. **[All Structural Roles and Their HTML Equivalents](https://www.w3.org/WAI/ARIA/apg/practices/structural-roles/#allstructuralrolesandtheirhtmlequivalents)**
  * > [Is it possible to make normal dom elements context providers?](https://github.com/lit/lit/discussions/4690)
