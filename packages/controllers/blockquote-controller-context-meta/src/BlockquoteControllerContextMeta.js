@@ -4,7 +4,7 @@ export const contextMetaSymbol = 'context-meta-symbol';
 /**
  * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
- * `BlockquoteControllerContextMeta` is a Lit Reactive Controller that encapsulates the controllers provided by @lit/context.
+ * `BlockquoteControllerContextMeta` is a Lit Reactive Controller that encapsulates the controllers provided by [@lit/context](https://lit.dev/docs/data/context/)
  *
  * **Features:**
  * - It enables a component to serve as both a provider and a consumer.
