@@ -505,7 +505,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n`blockquote-base-embedded-webview-size` provides a list of ideal screen sizes for responsive designs.\n<br>\n\n```html\n<blockquote-base-embedded-webview-size\n  screen-sizes=\"[\n   { width: 360, height: 640, id: '360x640' },\n   { width: 360, height: 800, id: '360x800' },\n   { width: 414, height: 896, id: '414x896' },\n   { width: 768, height: 1024, id: '768x1024' },\n   { width: 810, height: 1080, id: '810x1080' },\n   { width: 1280, height: 800, id: '1280x800' },\n   { width: 1366, height: 768, id: '1366x768' },\n   { width: 1536, height: 864, id: '1536x864' },\n   { width: 1920, height: 1080, id: '1920x1080' },\n  ]\"\n></blockquote-base-embedded-webview-size>\n```",
+          "description": "![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n`blockquote-base-embedded-webview-size` provides a list of ideal screen sizes for responsive designs.\n<br>\n\n```html\n<blockquote-base-embedded-webview-size\n  screen-sizes=\"[\n    { width: 360, height: 800, id: '360x800' },\n    { width: 390, height: 864, id: '390x864' },\n    { width: 414, height: 896, id: '414x896' },\n    { width: 768, height: 1024, id: '768x1024' },\n    { width: 810, height: 1080, id: '810x1080' },\n    { width: 1280, height: 720, id: '1280x800' },\n    { width: 1366, height: 768, id: '1366x768' },\n    { width: 1536, height: 864, id: '1536x864' },\n    { width: 1920, height: 1080, id: '1920x1080' },\n  ]\"></blockquote-base-embedded-webview-size>\n```",
           "name": "BlockquoteBaseEmbeddedWebviewSize",
           "members": [
             {
