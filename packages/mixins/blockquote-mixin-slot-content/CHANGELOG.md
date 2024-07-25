@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-mixin-slot-content@1.6.0...@blockquote-web-components/blockquote-mixin-slot-content@1.6.1) (2024-07-25)
+
+
+### Bug Fixes
+
+* **blockquote-mixin-slot-content:** changed event option ([53b63b2](https://github.com/oscarmarina/blockquote-web-components/commit/53b63b21415ebd7a69dd2c5be04be129aa6542e1))
+
+
+
+
+
 # [1.6.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-mixin-slot-content@1.5.3...@blockquote-web-components/blockquote-mixin-slot-content@1.6.0) (2024-06-29)
 
 
