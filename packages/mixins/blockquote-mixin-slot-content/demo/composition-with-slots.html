@@ -67,9 +67,9 @@
       });
 
       class slotElement extends BlockquoteMixinSlotContent(LitElement) {
-        connectedCallback() {
-          super.connectedCallback?.();
-          this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges);
+        constructor() {
+          super();
+          this.addEventListener('slotchanges', this._onSlotChanges);
         }
 
         _onSlotChanges = ev => {

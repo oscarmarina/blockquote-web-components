@@ -106,11 +106,7 @@
         constructor() {
           super();
           this.slots = 0;
-        }
-
-        connectedCallback() {
-          super.connectedCallback?.();
-          this.shadowRoot.addEventListener('slotchanges', this._onSlotChanges);
+          this.addEventListener('slotchanges', this._onSlotChanges);
         }
 
         update(props) {
