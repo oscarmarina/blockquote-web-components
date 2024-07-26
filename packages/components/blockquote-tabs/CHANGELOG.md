@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.4](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-tabs@1.4.3...@blockquote-web-components/blockquote-tabs@1.4.4) (2024-07-26)
+
+
+### Bug Fixes
+
+* **blockquote-tabs:** update event-listeners ([1986199](https://github.com/oscarmarina/blockquote-web-components/commit/1986199d8286cb09aed453e07bddb9799b46e1e4))
+
+
+
+
+
 ## [1.4.3](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-tabs@1.4.2...@blockquote-web-components/blockquote-tabs@1.4.3) (2024-07-26)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-tabs

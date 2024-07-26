@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-dialog",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Webcomponent blockquote-dialog following open-wc recommendations",
   "keywords": [
     "lit",
