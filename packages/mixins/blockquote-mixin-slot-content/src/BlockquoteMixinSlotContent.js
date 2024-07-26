@@ -236,6 +236,11 @@ const BlockquoteSlotContentBase = Base =>
       this.shadowRoot.addEventListener('slotchange', this._onSlotChange);
     }
 
+    disconnectedCallback() {
+      super.disconnectedCallback?.();
+      this.shadowRoot.removeEventListener('slotchange', this._onSlotChange);
+    }
+
     /**
      * @param {Event} ev
      */
