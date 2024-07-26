@@ -123,6 +123,8 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
       },
       skipInitial: true,
     });
+
+    this.addEventListener('slotchanges', this._onSlotChanges);
   }
 
   _selectedIsInRange(idx) {
@@ -143,11 +145,6 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
 
   get _getTabListLength() {
     return this._tabList.length;
-  }
-
-  connectedCallback() {
-    super.connectedCallback?.();
-    this.shadowRoot?.addEventListener('slotchanges', this._onSlotChanges);
   }
 
   firstUpdated(props) {
