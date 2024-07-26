@@ -30,6 +30,8 @@ export class BlockquoteTab extends BlockquoteMixinSlotContent(LitElement) {
       slot: 'tab',
       tabindex: 0,
     };
+
+    this.addEventListener('slotchanges', this._onSlotChanges);
   }
 
   static get styles() {
@@ -38,8 +40,6 @@ export class BlockquoteTab extends BlockquoteMixinSlotContent(LitElement) {
 
   connectedCallback() {
     super.connectedCallback?.();
-    this.shadowRoot?.addEventListener('slotchanges', this._onSlotChanges);
-
     this.__setArrayAttibute(this.globalRootAttributes);
   }
 
