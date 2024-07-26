@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-mixin-slot-content",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "description": "Webcomponent blockquote-mixin-slot-content following open-wc recommendations",
   "keywords": [
     "lit",

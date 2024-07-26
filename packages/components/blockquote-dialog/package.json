@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-dialog",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Webcomponent blockquote-dialog following open-wc recommendations",
   "keywords": [
     "lit",
@@ -99,7 +99,7 @@
   },
   "dependencies": {
     "@blockquote-web-components/blockquote-directive-ariaidref-slot": "^1.1.4",
-    "@blockquote-web-components/blockquote-mixin-slot-content": "^1.6.2",
+    "@blockquote-web-components/blockquote-mixin-slot-content": "^1.7.0",
     "@blockquote/dev-utilities": "^1.0.0",
     "@material/web": "^1.4.1",
     "lit": "^3.1.3"
