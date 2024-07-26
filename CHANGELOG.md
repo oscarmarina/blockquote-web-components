@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.8.1](https://github.com/oscarmarina/blockquote-web-components/compare/v2.8.0...v2.8.1) (2024-07-26)
+
+
+### Bug Fixes
+
+* **blockquote-dialog:** update event-listeners ([41612f6](https://github.com/oscarmarina/blockquote-web-components/commit/41612f63c0547aa29d628f5c6aec7319de58036c))
+* **blockquote-mixin-slot-content:** update event-listeners ([db9a9bd](https://github.com/oscarmarina/blockquote-web-components/commit/db9a9bd7fccd86fa29ad6dd96e35a434cec57543))
+* **blockquote-tabs:** update event-listeners ([1986199](https://github.com/oscarmarina/blockquote-web-components/commit/1986199d8286cb09aed453e07bddb9799b46e1e4))
+
 ## [2.8.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.7.3...v2.8.0) (2024-07-26)
 
 
