@@ -7,9 +7,7 @@
     <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml" />
     <meta name="description" content="Demo DM currencies - ajax-provider" />
     <style>
-      html,
-      body {
-        height: 100%;
+      html {
         font-family: sans-serif;
       }
 
@@ -27,26 +25,14 @@
 
       div {
         width: 20rem;
-        padding: 0 1em;
+        padding: 0.5rem;
         margin-bottom: 1rem;
         outline: 1px solid #d6d6d6;
       }
 
-      json-viewer {
-        --font-family: monospace;
-        --font-size: inherit;
-
-        margin-bottom: 1rem;
-        padding: 0.5em 1em;
-      }
-
-      json-viewer::part(object) {
-        padding: 0;
-        margin: 0;
-      }
-
-      json-viewer::part(property) {
-        line-height: 1.6;
+      ix-object-inspector {
+        padding: 0.5rem;
+        background-color: #fff;
       }
     </style>
   </head>
@@ -54,18 +40,24 @@
     <main>
       <div>
         <p class="label">getcurrencies();</p>
-        <json-viewer id="currencies"></json-viewer>
+        <ix-object-inspector
+          name="object-inspector"
+          expandLevel="3"
+          id="currencies"></ix-object-inspector>
       </div>
       <div>
         <p class="label">getcurrenciesFromCountryCode('MNT);</p>
-        <json-viewer id="currenciesCN"></json-viewer>
+        <ix-object-inspector
+          name="object-inspector"
+          expandLevel="3"
+          id="currenciesCN"></ix-object-inspector>
       </div>
     </main>
     <script type="module">
       // eslint-disable-next-line import/no-extraneous-dependencies
       import sinon from 'sinon';
       // eslint-disable-next-line import/no-extraneous-dependencies
-      import '@alenaksu/json-viewer/json-viewer.js';
+      import 'inspector-elements';
       import { DmCurrencies } from './DmCurrencies.js';
 
       // https://gist.github.com/manishtiwari25/0fa055ee14f29ee6a7654d50af20f095
