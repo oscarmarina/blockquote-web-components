@@ -181,8 +181,8 @@ import { AjaxProviderMixin } from './AjaxProviderMixin.js';
  *
  * - `path`: The path to append to the base URL. _(string)_
  * - `dispatchEventContext`: The context for dispatching events. _(AjaxProvider instance)_
- * - `lastResponse`: The last AJAX response object. _(Object)_
- * - `lastError`: The last error object. _(Object)_
+ * - `lastResponse`: The last AJAX response object. _(Object|undefined)_
+ * - `lastError`: The last error object. _(Object|undefined)_
  * - `customEventPrefix`: A custom event prefix for events related to HTTP requests. _(string)_
  *   - Default value: `ajax`
  * - `avoidBoundary`: Set to `true` to stop delegating the use of [boundaries for multipart requests to the browser](https://github.com/axios/axios/issues/4631). _(boolean)_
@@ -209,13 +209,13 @@ export class AjaxProvider extends AjaxProviderMixin(EventTarget) {
 
     /**
      * The last AJAX response object.
-     * @type {Object}
+     * @type {Object|undefined}
      */
     this.lastResponse = undefined;
 
     /**
      * The last error object.
-     * @type {Object}
+     * @type {Object|undefined}
      */
     this.lastError = undefined;
 
