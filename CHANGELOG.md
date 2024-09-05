@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.8.3](https://github.com/oscarmarina/blockquote-web-components/compare/v2.8.2...v2.8.3) (2024-09-05)
+
+
+### Bug Fixes
+
+* **ajax-provider:** add devDependencies ([d502c17](https://github.com/oscarmarina/blockquote-web-components/commit/d502c17e860f073569ba3ec7c08f8be4e2da04ed))
+* **ajax-provider:** update demo with elematic inspector-element ([698f844](https://github.com/oscarmarina/blockquote-web-components/commit/698f844aea531a5e7a884bda4fefe3564cb586fa))
+
 ### [2.8.2](https://github.com/oscarmarina/blockquote-web-components/compare/v2.8.1...v2.8.2) (2024-09-05)
 
 
