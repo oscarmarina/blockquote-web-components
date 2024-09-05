@@ -39,7 +39,7 @@
               "name": "lastResponse",
               "description": "The last AJAX response object.",
               "type": {
-                "text": "Object"
+                "text": "Object|undefined"
               },
               "default": "undefined"
             },
@@ -48,7 +48,7 @@
               "name": "lastError",
               "description": "The last error object.",
               "type": {
-                "text": "Object"
+                "text": "Object|undefined"
               },
               "default": "undefined"
             },
@@ -232,7 +232,7 @@
                 "text": "Object"
               },
               "description": "The default headers for the request.",
-              "default": "{\n        Accept: 'application/json, text/plain, */*; q=0.01',\n        'Content-Type': 'application/json',\n      }",
+              "default": "{ Accept: 'application/json, text/plain, */*; q=0.01', 'Content-Type': 'application/json', }",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
                 "module": "src/AjaxProviderMixin.js"
@@ -536,7 +536,7 @@
                 "text": "Object"
               },
               "description": "The default headers for the request.",
-              "default": "{\n        Accept: 'application/json, text/plain, */*; q=0.01',\n        'Content-Type': 'application/json',\n      }"
+              "default": "{ Accept: 'application/json, text/plain, */*; q=0.01', 'Content-Type': 'application/json', }"
             },
             {
               "kind": "field",

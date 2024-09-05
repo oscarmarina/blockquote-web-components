@@ -96,8 +96,8 @@
     "rxjs": "^8.0.0-alpha.14"
   },
   "devDependencies": {
-    "@alenaksu/json-viewer": "^2.0.1",
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.9.1",
+    "inspector-elements": "0.1.0",
     "lit": "^3.1.1"
   },
   "publishConfig": {
