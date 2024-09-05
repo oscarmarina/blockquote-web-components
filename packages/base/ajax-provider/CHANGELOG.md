@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.5](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/ajax-provider@1.3.4...@blockquote-web-components/ajax-provider@1.3.5) (2024-09-05)
+
+
+### Bug Fixes
+
+* **ajax-provider:** add devDependencies ([d502c17](https://github.com/oscarmarina/blockquote-web-components/commit/d502c17e860f073569ba3ec7c08f8be4e2da04ed))
+* **ajax-provider:** update demo with elematic inspector-element ([698f844](https://github.com/oscarmarina/blockquote-web-components/commit/698f844aea531a5e7a884bda4fefe3564cb586fa))
+
+
+
+
+
 ## [1.3.4](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/ajax-provider@1.3.3...@blockquote-web-components/ajax-provider@1.3.4) (2024-09-05)
 
 
