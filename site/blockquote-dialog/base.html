@@ -102,7 +102,7 @@
             *::after {
               box-sizing: inherit;
             }`);
-          this.attachShadow({ mode: 'open', delegatesFocus: false });
+          this.attachShadow({mode: 'open', delegatesFocus: false});
           this.shadowRoot.adoptedStyleSheets.push(styles);
           this.shadowRoot.innerHTML = `<slot></slot>`;
         }
@@ -118,20 +118,20 @@
         dialog.setAttribute('open', '');
       });
 
-      dialog.addEventListener('open', ev => {
+      dialog.addEventListener('open', (ev) => {
         console.log('open:', ev);
       });
 
-      dialog.addEventListener('cancel', ev => {
+      dialog.addEventListener('cancel', (ev) => {
         console.log('cancel:', ev);
       });
 
-      dialog.addEventListener('close', ev => {
+      dialog.addEventListener('close', (ev) => {
         const returnValueNode = ev.target.returnValue;
         console.log('close:', ev.target, returnValueNode?.form, returnValueNode);
       });
 
-      form.addEventListener('submit', ev => {
+      form.addEventListener('submit', (ev) => {
         console.log('submit:', ev.target, ev.submitter);
       });
     </script>
