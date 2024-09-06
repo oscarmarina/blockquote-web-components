@@ -1,1 +1,1 @@
-export { blockquoteDirectiveAriaidrefSlot } from './BlockquoteDirectiveAriaidrefSlot.js';
+export {blockquoteDirectiveAriaidrefSlot} from './BlockquoteDirectiveAriaidrefSlot.js';

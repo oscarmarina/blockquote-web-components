@@ -1,4 +1,4 @@
-import { createMachine, assign } from 'xstate';
+import {createMachine, assign} from 'xstate';
 
 /*
  * This state machine represents a simple counter that can be incremented, decremented, and toggled on and off.
@@ -13,22 +13,22 @@ const states = {
 };
 
 const increment = {
-  counter: ({ context }) => context.counter + 1,
-  event: ({ event }) => event,
+  counter: ({context}) => context.counter + 1,
+  event: ({event}) => event,
 };
 const decrement = {
-  counter: ({ context }) => context.counter - 1,
-  event: ({ event }) => event,
+  counter: ({context}) => context.counter - 1,
+  event: ({event}) => event,
 };
 
-const isNotMax = ({ context }) => context.counter < 10;
-const isNotMin = ({ context }) => context.counter > 0;
+const isNotMax = ({context}) => context.counter < 10;
+const isNotMin = ({context}) => context.counter > 0;
 
 export const counterMachine = createMachine(
   {
     /** @xstate-layout N4IgpgJg5mDOIC5QGMD2BXAdgFzAJwDoxMBDAIwBtIBiASQDkBhAbQAYBdRUAB1VgEts-VJi4gAHogAsATgIBGAEzzWMgMwB2AKwAaEAE9E8jQA4CrU-K3XjWy4oC+DvWiy5CxclQjUAIgFEWDjFeASERMUkEWQVlVU1dA0QTeQItJxcMHHwiUkoaABUAeQBxEoAZfzZOJBBQwWFRWqj5ADY1AjVFVjUlRMMERRMNAkU1GVbFGRUZDVZWdOcQV2zCCH5YL0LSiqrg2vrwptAW9s7u3sV+xDHWgg1xrRkTJ+VFMZMnJcxUCDgxFbuEJ8BoRZqIAC08j0AwhrQyyyy7lyWwgwLCjUi0g0MJuGjkrS07XkKjUWisk0WmTcOXWm3yaIOIKOWMGJjurXxrWG1zZigURN6pPJRKuXwcQA */
     id: 'counter',
-    context: { counter: 0, event: undefined },
+    context: {counter: 0, event: undefined},
     initial: 'enabled',
     states: {
       enabled: {
@@ -72,5 +72,5 @@ export const counterMachine = createMachine(
       isNotMax,
       isNotMin,
     },
-  },
+  }
 );

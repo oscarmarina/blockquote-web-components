@@ -1,6 +1,6 @@
-import { html, LitElement, nothing, isServer } from 'lit';
-import { ref, createRef } from 'lit/directives/ref.js';
-import { blockquoteDirectiveAriaidrefSlot } from '@blockquote-web-components/blockquote-directive-ariaidref-slot';
+import {html, LitElement, nothing, isServer} from 'lit';
+import {ref, createRef} from 'lit/directives/ref.js';
+import {blockquoteDirectiveAriaidrefSlot} from '@blockquote-web-components/blockquote-directive-ariaidref-slot';
 import {
   redispatchEvent,
   isElementInvisible,
@@ -8,8 +8,8 @@ import {
   getFirstAndLastFocusableChildren,
   walkComposedTree,
 } from '@blockquote/dev-utilities';
-import { styles } from './styles/blockquote-dialog-styles.css.js';
-import { styles as animations } from './styles/blockqoute-dialog-animations-styles.css.js';
+import {styles} from './styles/blockquote-dialog-styles.css.js';
+import {styles as animations} from './styles/blockqoute-dialog-animations-styles.css.js';
 
 // https://web.dev/learn/html/dialog
 // https://github.com/oscarmarina/material-web/blob/main/dialog/dialog.ts
@@ -158,7 +158,7 @@ export class BlockquoteDialog extends LitElement {
   }
 
   getIsConnectedCallbackResolve() {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       /** @type {unknown} */ (this._isConnectedCallbackResolve) = resolve;
     });
   }
@@ -168,7 +168,7 @@ export class BlockquoteDialog extends LitElement {
     await this.updateComplete;
     this.scroller = this.shadowRoot?.querySelector('.scroller');
     const [first, last] = getFirstAndLastFocusableChildren(
-      /** @type {IterableIterator<HTMLElement>} */ (this.treewalker),
+      /** @type {IterableIterator<HTMLElement>} */ (this.treewalker)
     );
 
     this._firstFocusableChild = first;
@@ -185,7 +185,7 @@ export class BlockquoteDialog extends LitElement {
 
   async show() {
     await this._isConnectedCallback;
-    const { value } = this.dialogRef;
+    const {value} = this.dialogRef;
 
     if (/** @type {HTMLDialogElement} */ (value)?.open) {
       return;
@@ -215,7 +215,7 @@ export class BlockquoteDialog extends LitElement {
   }
 
   close() {
-    const { value } = this.dialogRef;
+    const {value} = this.dialogRef;
     if (!(/** @type {HTMLDialogElement} */ (value)?.open)) {
       return;
     }
@@ -292,7 +292,7 @@ export class BlockquoteDialog extends LitElement {
    * @param {SubmitEvent} ev
    */
   _handleSubmit(ev) {
-    const { target, submitter } = ev;
+    const {target, submitter} = ev;
     const isFormMethodDialog = /** @type {HTMLFormElement} */ (target)?.method === 'dialog';
     const isSubmitterFormMethodDialog =
       /** @type {HTMLButtonElement} */ (submitter)?.formMethod === 'dialog';
@@ -310,7 +310,7 @@ export class BlockquoteDialog extends LitElement {
      * Dispatched when the dialog is open.
      * @event open
      */
-    const preventDefault = redispatchEvent(this, 'open', { cancelable: true });
+    const preventDefault = redispatchEvent(this, 'open', {cancelable: true});
     return preventDefault;
   }
 
@@ -324,7 +324,7 @@ export class BlockquoteDialog extends LitElement {
      * Dispatched when the dialog is close.
      * @event close
      */
-    const preventDefault = !redispatchEvent(this, ev, { cancelable: true });
+    const preventDefault = !redispatchEvent(this, ev, {cancelable: true});
     if (preventDefault) {
       return;
     }
@@ -336,7 +336,7 @@ export class BlockquoteDialog extends LitElement {
    * @param {Event} ev
    */
   _handleCancel(ev) {
-    const { target } = ev;
+    const {target} = ev;
     if (target !== this.dialogRef.value) {
       return;
     }
@@ -345,7 +345,7 @@ export class BlockquoteDialog extends LitElement {
      * Dispatched when the dialog is cancel.
      * @event cancel
      */
-    const preventDefault = !redispatchEvent(this, ev, { cancelable: true });
+    const preventDefault = !redispatchEvent(this, ev, {cancelable: true});
     if (preventDefault) {
       return;
     }
@@ -359,7 +359,7 @@ export class BlockquoteDialog extends LitElement {
       return;
     }
 
-    const { value } = this.dialogRef;
+    const {value} = this.dialogRef;
     value?.dispatchEvent(new Event('cancel'));
   }
 
@@ -367,11 +367,11 @@ export class BlockquoteDialog extends LitElement {
     this._nextClickIsFromContent = true;
   }
 
-  _firstFocusTrap({ relatedTarget }) {
+  _firstFocusTrap({relatedTarget}) {
     (relatedTarget != null ? this._firstFocusableChild : this._lastFocusableChild)?.focus();
   }
 
-  _lastFocusTrap({ relatedTarget }) {
+  _lastFocusTrap({relatedTarget}) {
     (relatedTarget != null ? this._lastFocusableChild : this._firstFocusableChild)?.focus();
   }
 }

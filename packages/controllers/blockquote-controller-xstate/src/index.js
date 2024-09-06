@@ -1,1 +1,1 @@
-export { BlockquoteControllerXstate } from './BlockquoteControllerXstate.js';
+export {BlockquoteControllerXstate} from './BlockquoteControllerXstate.js';

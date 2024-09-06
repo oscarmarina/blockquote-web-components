@@ -1,12 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { assert, aTimeout } from '@open-wc/testing';
+import {assert, aTimeout} from '@open-wc/testing';
 import sinon from 'sinon';
-import { AjaxProvider } from '../src/index.js';
+import {AjaxProvider} from '../src/index.js';
 
 suite('AjaxProvider', () => {
   const responseHeaders = {
-    json: { 'Content-Type': 'application/json' },
-    plain: { 'Content-Type': 'text/plain' },
+    json: {'Content-Type': 'application/json'},
+    plain: {'Content-Type': 'text/plain'},
   };
   let server;
   teardown(() => server.restore());
@@ -47,7 +47,7 @@ suite('AjaxProvider', () => {
 
     test('Does not send request if `url` is not a string', async () => {
       /**
-       * @type {import('../index').AjaxProvider}
+       * @type {import('../src/index').AjaxProvider}
        */
       const el = new AjaxProvider({
         url: undefined,
@@ -56,7 +56,7 @@ suite('AjaxProvider', () => {
           'Content-Type': 'text/plain',
         },
       });
-      el.generateRequest().catch(error => {
+      el.generateRequest().catch((error) => {
         assert.include(error.message, 'required');
       });
       server.respond();
@@ -71,7 +71,7 @@ suite('AjaxProvider', () => {
           'Content-Type': 'text/plain',
         },
       });
-      el.generateRequest().catch(error => {
+      el.generateRequest().catch((error) => {
         assert.include(error.message, 'required');
       });
       server.respond();
@@ -86,7 +86,7 @@ suite('AjaxProvider', () => {
           'Content-Type': 'text/plain',
         },
       });
-      el.generateRequest().then(result => {
+      el.generateRequest().then((result) => {
         assert.equal(result.response, 'Hello');
       });
       server.respond();
@@ -156,8 +156,8 @@ suite('AjaxProvider', () => {
         url: '/responds_to_get_with_502_error_json',
       });
       el.addEventListener('ajaxerror', spy);
-      el.generateRequest().catch(async error => {
-        const errorMessage = JSON.stringify({ message: 'an error has occurred' });
+      el.generateRequest().catch(async (error) => {
+        const errorMessage = JSON.stringify({message: 'an error has occurred'});
         await aTimeout(16);
         assert.ok(spy.calledOnce);
         assert.equal(JSON.stringify(error.response), errorMessage);
@@ -205,7 +205,7 @@ suite('AjaxProvider', () => {
       el.generateRequest();
       server.respond();
       await aTimeout(16);
-      const removeContentType = 'content-type' in el.lastResponse.request.headers;
+      const removeContentType = 'content-type' in (el.lastResponse?.request?.headers ?? {});
       assert.notOk(removeContentType);
     });
 
@@ -219,14 +219,14 @@ suite('AjaxProvider', () => {
       el.generateRequest();
       server.respond();
       await aTimeout(16);
-      const removeContentType = 'content-type' in el.lastResponse.request.headers;
+      const removeContentType = 'content-type' in (el.lastResponse?.request?.headers ?? {});
       assert.ok(removeContentType);
     });
 
     test('Retrieves response/error from lastResponse or lastError', async () => {
-      const successMessage = JSON.stringify({ success: 'true' });
-      const otherMessage = JSON.stringify({ other: 'true' });
-      const errorMessage = JSON.stringify({ message: 'an error has occurred' });
+      const successMessage = JSON.stringify({success: 'true'});
+      const otherMessage = JSON.stringify({other: 'true'});
+      const errorMessage = JSON.stringify({message: 'an error has occurred'});
 
       const el = new AjaxProvider({
         url: '/responds_get_with_json',
@@ -239,7 +239,7 @@ suite('AjaxProvider', () => {
 
       el.url = '/responds_to_get_with_502_error_json';
       el.generateRequest().catch(() => {
-        assert.equal(JSON.stringify(el.lastResponse.response), successMessage);
+        assert.equal(JSON.stringify(el.lastResponse?.response), successMessage);
         assert.equal(JSON.stringify(el.lastError.response), errorMessage);
       });
       server.respond();
@@ -247,7 +247,7 @@ suite('AjaxProvider', () => {
 
       el.url = '/responds_get_with_other_json';
       el.generateRequest().then(() => {
-        assert.equal(JSON.stringify(el.lastResponse.response), otherMessage);
+        assert.equal(JSON.stringify(el.lastResponse?.response), otherMessage);
         assert.equal(JSON.stringify(el.lastError.response), errorMessage);
       });
       server.respond();

@@ -1,4 +1,4 @@
-import { html, LitElement } from 'lit';
+import {html, LitElement} from 'lit';
 import './my-section.js';
 import './my-heading.js';
 

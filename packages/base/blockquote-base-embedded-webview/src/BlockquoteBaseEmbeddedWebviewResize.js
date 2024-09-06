@@ -1,5 +1,5 @@
-import { html, LitElement } from 'lit';
-import { styles } from './styles/blockquote-base-embedded-webview-resize-styles.css.js';
+import {html, LitElement} from 'lit';
+import {styles} from './styles/blockquote-base-embedded-webview-resize-styles.css.js';
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect#value - window.scrollY to get a bounding rectangle which is independent from the current scrolling position.
 // https://www.browserstack.com/guide/ideal-screen-sizes-for-responsive-design
@@ -86,21 +86,21 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
     this._getBoundingClientRecDOMRect = DOMRect;
     this._getBoundingClientRectWidth = this._getBoundingClientRect('width');
     this._getBoundingClientRectHeight = this._getBoundingClientRect('height');
-    const { target, pointerId, clientX: trackDistanceX, clientY: trackDistanceY } = ev;
+    const {target, pointerId, clientX: trackDistanceX, clientY: trackDistanceY} = ev;
 
     /** @type {Element} */ (target)?.setPointerCapture(pointerId);
 
     /**
      * @param {!PointerEvent} moveEvent
      */
-    const addResizer = ({ clientX, clientY }) => {
+    const addResizer = ({clientX, clientY}) => {
       const dx = Math.floor(clientX - trackDistanceX);
       const dy = Math.floor(clientY - trackDistanceY);
-      this._resize({ detail: { dx, dy } });
+      this._resize({detail: {dx, dy}});
     };
     target?.addEventListener(
       'pointermove',
-      /** @type {EventListenerOrEventListenerObject} */ (addResizer),
+      /** @type {EventListenerOrEventListenerObject} */ (addResizer)
     );
 
     const removeResizer = () => {
@@ -108,7 +108,7 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
       /** @type {Element} */ (target)?.releasePointerCapture(pointerId);
       target?.removeEventListener(
         'pointermove',
-        /** @type {EventListenerOrEventListenerObject} */ (addResizer),
+        /** @type {EventListenerOrEventListenerObject} */ (addResizer)
       );
       target?.removeEventListener('pointerup', removeResizer);
 
@@ -117,7 +117,7 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
     target?.addEventListener('pointerup', removeResizer);
   }
 
-  _resize({ detail }) {
+  _resize({detail}) {
     let cssOffsetX;
     let cssOffsetY;
     const dx = Math.floor(detail.dx * 2.04);
@@ -164,10 +164,10 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
       bubbles: true,
       detail: {
         x: getComputedStyle(this).getPropertyValue(
-          '--blockquote-base-embedded-webview-resize-rect-width',
+          '--blockquote-base-embedded-webview-resize-rect-width'
         ),
         y: getComputedStyle(this).getPropertyValue(
-          '--blockquote-base-embedded-webview-resize-rect-height',
+          '--blockquote-base-embedded-webview-resize-rect-height'
         ),
         resizing: this.hasAttribute('resizing'),
         cursor: this._cursor,

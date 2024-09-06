@@ -1,6 +1,6 @@
-import { html, LitElement } from 'lit';
-import { BlockquoteMixinSlotContent } from '@blockquote-web-components/blockquote-mixin-slot-content';
-import { styles } from './styles/blockquote-tab-styles.css.js';
+import {html, LitElement} from 'lit';
+import {BlockquoteMixinSlotContent} from '@blockquote-web-components/blockquote-mixin-slot-content';
+import {styles} from './styles/blockquote-tab-styles.css.js';
 
 /**
  * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
@@ -58,12 +58,12 @@ export class BlockquoteTab extends BlockquoteMixinSlotContent(LitElement) {
     }
   }
 
-  _onSlotChanges = ev => {
-    const { detail } = ev;
+  _onSlotChanges = (ev) => {
+    const {detail} = ev;
     ev.stopPropagation();
     ev.preventDefault();
     const assignedNodesList = detail.assignedSlotContent.assignedSlot;
-    Object.assign(assignedNodesList.dataset, { text: this.textContent });
+    Object.assign(assignedNodesList.dataset, {text: this.textContent});
   };
 
   render() {

@@ -1,6 +1,6 @@
 // eslint-disable-next-line max-classes-per-file
-import { Directive, directive, PartType } from 'lit/directive.js';
-import { noChange } from 'lit';
+import {Directive, directive, PartType} from 'lit/directive.js';
+import {noChange} from 'lit';
 
 /**
  * # blockquoteDirectiveAriaidrefSlot
@@ -81,7 +81,7 @@ class BlockquoteDirectiveAriaidrefSlot extends Directive {
       return noChange;
     }
     const slot = document.createElement('slot');
-    Object.assign(slot, { name: value, id: value, hidden: !isVisible });
+    Object.assign(slot, {name: value, id: value, hidden: !isVisible});
     this.hasSlotNode = true;
     return slot;
   }

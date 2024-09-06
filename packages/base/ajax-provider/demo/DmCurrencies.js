@@ -1,4 +1,4 @@
-import { AjaxProvider } from '../src/index.js';
+import {AjaxProvider} from '../src/index.js';
 
 /**
  * A class for managing currency-related operations.
@@ -38,7 +38,7 @@ export class DmCurrencies extends EventTarget {
       });
 
       const data = await ajaxProvider.generateRequest();
-      const { currencies } = data.response;
+      const {currencies} = data.response;
 
       /**
        * Fired after a successful response.
@@ -60,7 +60,7 @@ export class DmCurrencies extends EventTarget {
        * @type {Object}
        * @property {Error} detail.error - The error object.
        */
-      this._dispatchEvent('error-currency', { error });
+      this._dispatchEvent('error-currency', {error});
 
       throw error; // Re-throw the error to indicate that it wasn't handled here.
     }
@@ -76,9 +76,9 @@ export class DmCurrencies extends EventTarget {
   async getCurrenciesFromCountryCode(countryCode) {
     const currencies = await this.getCurrencies();
 
-    const currency = (currencies || []).find(currentCurrency => {
-      const { countries } = currentCurrency;
-      return countries.some(country => country.code === countryCode);
+    const currency = (currencies || []).find((currentCurrency) => {
+      const {countries} = currentCurrency;
+      return countries.some((country) => country.code === countryCode);
     });
 
     /**
@@ -108,7 +108,7 @@ export class DmCurrencies extends EventTarget {
         detail,
         bubbles: true,
         composed: true,
-      }),
+      })
     );
   }
 }

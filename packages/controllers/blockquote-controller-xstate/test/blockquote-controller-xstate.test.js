@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { html, fixture, assert, expect, fixtureCleanup } from '@open-wc/testing';
+import {html, fixture, assert, expect, fixtureCleanup} from '@open-wc/testing';
 import '../demo/xstate-counter.js';
 
 suite('BlockquoteControllerXstate', () => {
@@ -24,11 +24,11 @@ suite('BlockquoteControllerXstate', () => {
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot({ ignoreAttributes: ['id'] });
+        await expect(el).shadowDom.to.equalSnapshot({ignoreAttributes: ['id']});
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await expect(el).lightDom.to.equalSnapshot({ ignoreAttributes: ['id'] });
+        await expect(el).lightDom.to.equalSnapshot({ignoreAttributes: ['id']});
       });
       test('a11y', async () => {
         await assert.isAccessible(el);

@@ -1,10 +1,10 @@
-import { BaseContextMetaElement } from '../src/index.js';
+import {BaseContextMetaElement} from '../src/index.js';
 
 const consumerContext = 'symbol-for-surface';
 
 class FlownElement extends BaseContextMetaElement {
   static properties = {
-    surface: { reflect: true },
+    surface: {reflect: true},
   };
 
   constructor() {

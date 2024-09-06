@@ -1,9 +1,9 @@
-import { html, LitElement, nothing } from 'lit';
-import { ref, createRef } from 'lit/directives/ref.js';
-import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observer';
-import { ResizeController } from '@lit-labs/observers/resize-controller.js';
-import { BlockquoteMixinSlotContent } from '@blockquote-web-components/blockquote-mixin-slot-content';
-import { styles } from './styles/blockquote-tabs-styles.css.js';
+import {html, LitElement, nothing} from 'lit';
+import {ref, createRef} from 'lit/directives/ref.js';
+import {ResizeObserver as ResizeObserverPolyfill} from '@juggle/resize-observer';
+import {ResizeController} from '@lit-labs/observers/resize-controller.js';
+import {BlockquoteMixinSlotContent} from '@blockquote-web-components/blockquote-mixin-slot-content';
+import {styles} from './styles/blockquote-tabs-styles.css.js';
 
 /* A minimal library which polyfills the ResizeObserver */
 window.ResizeObserver || /* c8 ignore next */ (window.ResizeObserver = ResizeObserverPolyfill);
@@ -179,13 +179,13 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     }
   }
 
-  _onSlotChanges = ev => {
+  _onSlotChanges = (ev) => {
     ev.stopPropagation();
     ev.preventDefault();
 
     this._slotChangesCount += 1;
 
-    const { detail } = ev;
+    const {detail} = ev;
     const assignedNodesList = detail.assignedNodesContent.assignedNodes;
 
     if (detail.assignedSlotContent.slotName === 'tab') {
@@ -256,18 +256,18 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     `;
   }
 
-  _scrollEdge({ target = this._scrollContentRef.value } = {}) {
+  _scrollEdge({target = this._scrollContentRef.value} = {}) {
     // @ts-ignore
-    const { scrollLeft, scrollWidth, offsetWidth } = target;
+    const {scrollLeft, scrollWidth, offsetWidth} = target;
     const overflowingWidth = scrollWidth - offsetWidth;
     this._hasScrollLeftIndicator = scrollLeft > 0;
     this._hasScrollRightIndicator = scrollLeft < overflowingWidth;
   }
 
-  _onTabClick = ev => {
+  _onTabClick = (ev) => {
     const findSelectedTab = ev
       .composedPath()
-      .find(tab => tab instanceof Element && tab.slot === 'tab');
+      .find((tab) => tab instanceof Element && tab.slot === 'tab');
 
     const findSelectedTabIdxFromOne = this._tabList.indexOf(findSelectedTab) + 1;
 
@@ -278,7 +278,7 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     this.selected = findSelectedTabIdxFromOne;
   };
 
-  _onTabKeyDown = ev => {
+  _onTabKeyDown = (ev) => {
     let idx = '';
 
     switch (ev.key) {
@@ -349,23 +349,23 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
 
   _scrollIntoViewWithOffset(
     tabScroller = this._selectedTab,
-    behavior = this._observeScrollBehavior ? 'smooth' : 'auto',
+    behavior = this._observeScrollBehavior ? 'smooth' : 'auto'
   ) {
     const scrollContentNode = this._scrollContentRef.value;
     if (!scrollContentNode) {
       return;
     }
     const [rootA, rootB] = this._indicators || [];
-    const { right: boundaryight } = scrollContentNode.getBoundingClientRect();
-    const { offsetLeft: scrollerLeft } = tabScroller;
+    const {right: boundaryight} = scrollContentNode.getBoundingClientRect();
+    const {offsetLeft: scrollerLeft} = tabScroller;
     const {
       left: tabScrollerXLeft,
       right: tabScrollerXRight,
       width: tabScrollerWidth,
     } = tabScroller.getBoundingClientRect();
 
-    const { right: rootARight } = rootA.getBoundingClientRect();
-    const { width: rootBWidth, left: rootBLeft } = rootB.getBoundingClientRect();
+    const {right: rootARight} = rootA.getBoundingClientRect();
+    const {width: rootBWidth, left: rootBLeft} = rootB.getBoundingClientRect();
 
     if (tabScrollerXRight > rootBLeft || tabScrollerXLeft < rootARight) {
       const left =

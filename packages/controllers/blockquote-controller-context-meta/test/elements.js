@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file */
-import { html, LitElement, css } from 'lit';
-import { BlockquoteControllerContextMeta } from '../src/index.js';
+import {html, LitElement, css} from 'lit';
+import {BlockquoteControllerContextMeta} from '../src/index.js';
 
 export class ProviderEl extends LitElement {
   static styles = css`
@@ -61,7 +61,7 @@ customElements.define('provider-el', ProviderEl);
 export class ConsumerEl extends LitElement {
   _consumer = new BlockquoteControllerContextMeta(this, {
     context: 'contextKey',
-    callback: v => {
+    callback: (v) => {
       this.setAttribute('data-callback', String(v));
     },
   });

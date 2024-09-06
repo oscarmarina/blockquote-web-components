@@ -14,4 +14,4 @@ const fontFace = {
   }
   `,
 };
-export { fontFace };
+export {fontFace};

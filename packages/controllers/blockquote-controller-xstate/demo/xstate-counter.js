@@ -1,7 +1,7 @@
-import { html, LitElement } from 'lit';
-import { BlockquoteControllerXstate } from '../src/index.js';
-import { counterMachine } from './counterMachine.js';
-import { styles } from './styles/xstate-counter-styles.css.js';
+import {html, LitElement} from 'lit';
+import {BlockquoteControllerXstate} from '../src/index.js';
+import {counterMachine} from './counterMachine.js';
+import {styles} from './styles/xstate-counter-styles.css.js';
 
 export class XstateCounter extends LitElement {
   static properties = {
@@ -28,7 +28,7 @@ export class XstateCounter extends LitElement {
   /**
    * @param {import('xstate').SnapshotFrom<unknown>} snapshot
    */
-  _callbackCounterController = snapshot => {
+  _callbackCounterController = (snapshot) => {
     this._xstate = snapshot;
   };
 
@@ -36,7 +36,7 @@ export class XstateCounter extends LitElement {
    * @param {import('xstate').InspectionEvent} inspEvent
    */
 
-  _inspectEvents = inspEvent => {
+  _inspectEvents = (inspEvent) => {
     if (inspEvent.type === '@xstate.snapshot' && inspEvent.event.type === 'xstate.stop') {
       this._xstate = {};
     }
@@ -45,10 +45,10 @@ export class XstateCounter extends LitElement {
   updated(props) {
     super.updated && super.updated(props);
     if (props.has('_xstate')) {
-      const { context, value } = this._xstate;
+      const {context, value} = this._xstate;
       const counterEvent = new CustomEvent('counterchange', {
         bubbles: true,
-        detail: { ...context, value },
+        detail: {...context, value},
       });
       this.dispatchEvent(counterEvent);
     }
@@ -66,20 +66,20 @@ export class XstateCounter extends LitElement {
           <button
             ?disabled="${this.#disabled}"
             data-counter="increment"
-            @click=${() => this.counterController.send({ type: 'INC' })}>
+            @click=${() => this.counterController.send({type: 'INC'})}>
             Increment
           </button>
           <button
             ?disabled="${this.#disabled}"
             data-counter="decrement"
-            @click=${() => this.counterController.send({ type: 'DEC' })}>
+            @click=${() => this.counterController.send({type: 'DEC'})}>
             Decrement
           </button>
         </span>
         <p>${this.counterController.snapshot.context.counter}</p>
       </div>
       <div>
-        <button @click=${() => this.counterController.send({ type: 'TOGGLE' })}>
+        <button @click=${() => this.counterController.send({type: 'TOGGLE'})}>
           ${this.#disabled ? 'Enabled counter' : 'Disabled counter'}
         </button>
       </div>

@@ -1,4 +1,4 @@
-import { Subject, isObservable, takeUntil } from 'rxjs';
+import {Subject, isObservable, takeUntil} from 'rxjs';
 
 const unsubscribe = Symbol('unsubscribe');
 const subscriptions = Symbol('subscriptions');
@@ -93,12 +93,12 @@ export class BlockquoteControllerRxjs {
       existingSubscription?.subscription?.unsubscribe();
     }
 
-    const subscription = stream$.pipe(takeUntil(this[unsubscribe])).subscribe(state => {
+    const subscription = stream$.pipe(takeUntil(this[unsubscribe])).subscribe((state) => {
       propKey in this.host && (this.host[propKey] = state);
       this.host.requestUpdate();
     });
 
-    this[subscriptions].set(propKey, { stream$, subscription });
+    this[subscriptions].set(propKey, {stream$, subscription});
 
     return stream$;
   }

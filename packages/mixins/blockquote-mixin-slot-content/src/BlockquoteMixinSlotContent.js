@@ -1,4 +1,4 @@
-import { dedupeMixin } from '@open-wc/dedupe-mixin';
+import {dedupeMixin} from '@open-wc/dedupe-mixin';
 
 /**
  * Checks if a node's text content contains only whitespace.
@@ -6,7 +6,7 @@ import { dedupeMixin } from '@open-wc/dedupe-mixin';
  * @param {Node} nod - The node to check.
  * @returns {boolean} - True if the node's text content contains only whitespace, false otherwise.
  */
-const onlyContentWhiteSpace = nod => !/[^\t\n\r ]/.test(nod?.textContent ?? '');
+const onlyContentWhiteSpace = (nod) => !/[^\t\n\r ]/.test(nod?.textContent ?? '');
 
 /**
  * Checks if a node is a comment node or a text node with only whitespace.
@@ -14,7 +14,8 @@ const onlyContentWhiteSpace = nod => !/[^\t\n\r ]/.test(nod?.textContent ?? '');
  * @param {Node} nod - The node to check.
  * @returns {boolean} - True if the node is ignorable, false otherwise.
  */
-const isIgnorable = nod => nod.nodeType === 8 || (nod.nodeType === 3 && onlyContentWhiteSpace(nod));
+const isIgnorable = (nod) =>
+  nod.nodeType === 8 || (nod.nodeType === 3 && onlyContentWhiteSpace(nod));
 
 /**
  * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
@@ -221,7 +222,7 @@ const isIgnorable = nod => nod.nodeType === 8 || (nod.nodeType === 3 && onlyCont
  *
  * @fires slotchanges
  */
-const BlockquoteSlotContentBase = Base =>
+const BlockquoteSlotContentBase = (Base) =>
   class BlockquoteSlotContent extends Base {
     connectedCallback() {
       super.connectedCallback?.();
@@ -236,8 +237,8 @@ const BlockquoteSlotContentBase = Base =>
     /**
      * @param {Event} ev
      */
-    _onSlotChange = ev => {
-      const { target } = ev;
+    _onSlotChange = (ev) => {
+      const {target} = ev;
       const slotNode = /** @type {HTMLSlotElement} */ (target);
 
       if (!slotNode) {
@@ -246,11 +247,11 @@ const BlockquoteSlotContentBase = Base =>
 
       const contentSlotName = slotNode.name || slotNode.getAttribute('name') || '';
       const allNodes = [...slotNode.assignedNodes(), ...slotNode.childNodes];
-      const originalAssignedNodes = slotNode.assignedNodes({ flatten: true });
+      const originalAssignedNodes = slotNode.assignedNodes({flatten: true});
       const nodesWithContent = [];
 
       if (allNodes.length) {
-        allNodes.forEach(nod => {
+        allNodes.forEach((nod) => {
           if (!isIgnorable(nod)) {
             nodesWithContent.push({
               flatten: /** @type {*} */ (nod).assignedSlot === null,
@@ -261,17 +262,17 @@ const BlockquoteSlotContentBase = Base =>
         });
       }
 
-      const assignedContent = nodesWithContent.filter(nod => nod.flatten === false);
-      const flattenedContent = nodesWithContent.filter(nod => nod.flatten === true);
+      const assignedContent = nodesWithContent.filter((nod) => nod.flatten === false);
+      const flattenedContent = nodesWithContent.filter((nod) => nod.flatten === true);
 
       const assignedNodesContent = {
         assignedNodesByNode: assignedContent,
-        assignedNodes: assignedContent.map(nod => nod.assignedNodes),
+        assignedNodes: assignedContent.map((nod) => nod.assignedNodes),
       };
 
       const flattenedNodesContent = {
         assignedNodesByNode: flattenedContent,
-        assignedNodes: flattenedContent.map(nod => nod.assignedNodes),
+        assignedNodes: flattenedContent.map((nod) => nod.assignedNodes),
       };
 
       const assignedSlotContent = {
@@ -285,7 +286,7 @@ const BlockquoteSlotContentBase = Base =>
           assignedSlotContent,
           assignedNodesContent,
           flattenedNodesContent,
-          originalEvent: { event: ev, assignedNodes: originalAssignedNodes },
+          originalEvent: {event: ev, assignedNodes: originalAssignedNodes},
         },
       });
 

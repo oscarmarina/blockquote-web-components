@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import {LitElement, html, css} from 'lit';
 import {
   BlockquoteControllerContextMeta,
   contextMetaSymbol,
@@ -132,9 +132,7 @@ export class BaseContextMetaElement extends LitElement {
    */
   initOrGetContextProvider(contextOrOptions = contextMetaSymbol) {
     const ctx =
-      contextOrOptions?.context !== undefined
-        ? { ...contextOrOptions }
-        : { context: contextOrOptions };
+      contextOrOptions?.context !== undefined ? {...contextOrOptions} : {context: contextOrOptions};
 
     if (!this.#controllerBaseContextMeta) {
       this.#controllerBaseContextMeta = new BlockquoteControllerContextMeta(this, ctx);
@@ -144,7 +142,7 @@ export class BaseContextMetaElement extends LitElement {
 
   connectedCallback() {
     super.connectedCallback?.();
-    Object.assign(this, { role: this.role ?? 'presentation' });
+    Object.assign(this, {role: this.role ?? 'presentation'});
   }
 
   render() {

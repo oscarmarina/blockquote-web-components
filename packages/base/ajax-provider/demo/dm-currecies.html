@@ -58,7 +58,7 @@
       import sinon from 'sinon';
       // eslint-disable-next-line import/no-extraneous-dependencies
       import 'inspector-elements';
-      import { DmCurrencies } from './DmCurrencies.js';
+      import {DmCurrencies} from './DmCurrencies.js';
 
       // https://gist.github.com/manishtiwari25/0fa055ee14f29ee6a7654d50af20f095
       const CURRENCIES = {
@@ -100,8 +100,8 @@
       };
 
       const responseHeaders = {
-        json: { 'Content-Type': 'application/json' },
-        plain: { 'Content-Type': 'text/plain' },
+        json: {'Content-Type': 'application/json'},
+        plain: {'Content-Type': 'text/plain'},
       };
 
       const server = sinon.fakeServer.create({
@@ -117,18 +117,16 @@
       const currencies = document.querySelector('#currencies');
       const currenciesCN = document.querySelector('#currenciesCN');
 
-      const dm = new DmCurrencies({ url: 'responds_get_with_json' });
-      dm.addEventListener('success-currency', ({ detail }) => console.log(detail), { once: true });
-      dm.addEventListener('success-currency-from-country-code', ({ detail }) =>
-        console.log(detail),
-      );
-      dm.addEventListener('error-currency', ({ detail }) => console.log(detail));
+      const dm = new DmCurrencies({url: 'responds_get_with_json'});
+      dm.addEventListener('success-currency', ({detail}) => console.log(detail), {once: true});
+      dm.addEventListener('success-currency-from-country-code', ({detail}) => console.log(detail));
+      dm.addEventListener('error-currency', ({detail}) => console.log(detail));
 
-      dm.getCurrencies().then(data => {
+      dm.getCurrencies().then((data) => {
         currencies.data = data;
       });
 
-      dm.getCurrenciesFromCountryCode('MN').then(data => {
+      dm.getCurrenciesFromCountryCode('MN').then((data) => {
         currenciesCN.data = data;
       });
     </script>

@@ -1,12 +1,12 @@
-import { LitElement } from 'lit';
-import { html, literal, unsafeStatic } from 'lit/static-html.js';
-import { styleMap } from 'lit/directives/style-map.js';
-import { BlockquoteControllerContextMeta } from '../src/index.js';
+import {LitElement} from 'lit';
+import {html, literal, unsafeStatic} from 'lit/static-html.js';
+import {styleMap} from 'lit/directives/style-map.js';
+import {BlockquoteControllerContextMeta} from '../src/index.js';
 
 export class MyHeading extends LitElement {
   constructor() {
     super();
-    this._level = new BlockquoteControllerContextMeta(this, { context: 'level' });
+    this._level = new BlockquoteControllerContextMeta(this, {context: 'level'});
   }
 
   get _tag() {
@@ -19,7 +19,7 @@ export class MyHeading extends LitElement {
 
   render() {
     return html`
-      <${this._tag} style=${styleMap({ color: /** @type {{level:number, color:string}} */ (this._level?.value)?.color })}>
+      <${this._tag} style=${styleMap({color: /** @type {{level:number, color:string}} */ (this._level?.value)?.color})}>
         <slot></slot>
       </${this._tag}>`;
   }

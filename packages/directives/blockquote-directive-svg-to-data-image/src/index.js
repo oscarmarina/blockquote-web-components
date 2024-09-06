@@ -1,1 +1,1 @@
-export { blockquoteDirectiveSvgToDataImage } from './BlockquoteDirectiveSvgToDataImage.js';
+export {blockquoteDirectiveSvgToDataImage} from './BlockquoteDirectiveSvgToDataImage.js';

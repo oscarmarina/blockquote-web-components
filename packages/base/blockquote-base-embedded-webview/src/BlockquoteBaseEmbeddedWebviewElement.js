@@ -1,5 +1,5 @@
-import { html, LitElement, render as LitHtmlRender } from 'lit';
-import { styles } from './styles/blockquote-base-embedded-webview-element-styles.css.js';
+import {html, LitElement, render as LitHtmlRender} from 'lit';
+import {styles} from './styles/blockquote-base-embedded-webview-element-styles.css.js';
 
 /**
  * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
@@ -78,7 +78,7 @@ export class BlockquoteBaseEmbeddedWebviewElement extends LitElement {
   }
 
   _litHtmlRender() {
-    LitHtmlRender(this._lightDomTpl, this, { host: this });
+    LitHtmlRender(this._lightDomTpl, this, {host: this});
   }
 
   get _lightDomTpl() {
@@ -104,7 +104,7 @@ export class BlockquoteBaseEmbeddedWebviewElement extends LitElement {
           allowFullscreen: true,
           loading: 'lazy',
         },
-        this.embeddedTitle && { title: this.embeddedTitle },
+        this.embeddedTitle && {title: this.embeddedTitle}
       );
 
       Object.assign(this._embeddedElement ?? {}, {
@@ -117,12 +117,12 @@ export class BlockquoteBaseEmbeddedWebviewElement extends LitElement {
         this._embeddedElement?.style ?? {},
         resource.indexOf('http') !== 0 && {
           opacity: 0,
-        },
+        }
       );
     }
   }
 
-  _onLoadElement = ({ target }) => {
+  _onLoadElement = ({target}) => {
     if (!target.contentDocument || !target.contentDocument.head.childNodes.length) {
       return;
     }

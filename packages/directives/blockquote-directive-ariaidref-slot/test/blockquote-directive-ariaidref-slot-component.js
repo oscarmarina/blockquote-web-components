@@ -1,7 +1,7 @@
 // @ts-nocheck
 /* eslint-disable max-classes-per-file */
-import { LitElement, html } from 'lit';
-import { blockquoteDirectiveAriaidrefSlot } from '../src/index.js';
+import {LitElement, html} from 'lit';
+import {blockquoteDirectiveAriaidrefSlot} from '../src/index.js';
 
 export class SlotIdrefHidden extends LitElement {
   render() {
