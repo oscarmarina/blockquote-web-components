@@ -1,9 +1,9 @@
-import { html, LitElement, render as LitHtmlRender } from 'lit';
-import { ref, createRef } from 'lit/directives/ref.js';
+import {html, LitElement, render as LitHtmlRender} from 'lit';
+import {ref, createRef} from 'lit/directives/ref.js';
 import '../define/blockquote-base-embedded-webview-size.js';
 import '../define/blockquote-base-embedded-webview-resize.js';
 import '../define/blockquote-base-embedded-webview-element.js';
-import { styles } from './styles/blockquote-base-embedded-webview-styles.css.js';
+import {styles} from './styles/blockquote-base-embedded-webview-styles.css.js';
 
 const chevronDownIcon = html`
   <svg
@@ -143,9 +143,9 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     this.heading = '';
     this.__resetResizing = false;
     this.__selectArrow = chevronDownIcon;
-    this.__readDataPos = { x: '0', y: '0', resizing: false, cursor: '' };
+    this.__readDataPos = {x: '0', y: '0', resizing: false, cursor: ''};
     this.limitHeight = false;
-    this._sources = [{ src: '', option: '', description: '' }];
+    this._sources = [{src: '', option: '', description: ''}];
     this._embeddedResizeRef = createRef();
   }
 
@@ -153,8 +153,8 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     super.connectedCallback?.();
     await this.updateComplete;
 
-    this.shadowRoot?.addEventListener('webviewresize', ev => {
-      const { detail } = /** @type {CustomEvent} */ (ev);
+    this.shadowRoot?.addEventListener('webviewresize', (ev) => {
+      const {detail} = /** @type {CustomEvent} */ (ev);
 
       Object.assign(this.__readDataPos, detail);
       this.__resetResizing = true;
@@ -173,8 +173,8 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
 
     const _sources = Array.from(this.querySelectorAll('template'));
     if (_sources.length) {
-      this._sources = _sources.map(item => {
-        const { src = '', option = '', description = '' } = item.dataset;
+      this._sources = _sources.map((item) => {
+        const {src = '', option = '', description = ''} = item.dataset;
         return {
           src,
           option,
@@ -188,19 +188,19 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     this.embedded = this.shadowRoot?.querySelector('[slot="embedded"]');
     if (this._embeddedResizeRef.value) {
       this._controlBottom = parseFloat(
-        window.getComputedStyle(this._embeddedResizeRef.value).paddingBottom,
+        window.getComputedStyle(this._embeddedResizeRef.value).paddingBottom
       );
     }
   }
 
-  _updateSize = ({ detail }) => {
+  _updateSize = ({detail}) => {
     /** @type {HTMLElement} */ (this._embeddedResizeRef?.value)?.style.setProperty(
       '--blockquote-base-embedded-webview-resize-rect-width',
-      `${detail.width}px`,
+      `${detail.width}px`
     );
     /** @type {HTMLElement} */ (this._embeddedResizeRef?.value)?.style.setProperty(
       '--blockquote-base-embedded-webview-resize-rect-height',
-      this.limitHeight ? '100%' : `${detail.height}px`,
+      this.limitHeight ? '100%' : `${detail.height}px`
     );
 
     this.__resetResizing = false;
@@ -218,7 +218,7 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
   }
 
   _litHtmlRender() {
-    LitHtmlRender(this._lightDomTpl, this, { host: this });
+    LitHtmlRender(this._lightDomTpl, this, {host: this});
   }
 
   get _lightDomTpl() {
@@ -251,7 +251,7 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
 
   get _selectTpl() {
     return html`
-      ${this._sources.some(options => options.option)
+      ${this._sources.some((options) => options.option)
         ? html`
             <div class="select">
               <select @change="${this._onChangeFile}" aria-label="Cases">
@@ -260,7 +260,7 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
                     <option ?selected="${this.selected === index}" value="${index}">
                       ${item.option}
                     </option>
-                  `,
+                  `
                 )}
               </select>
               ${this.__selectArrow}
@@ -328,7 +328,7 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     `;
   }
 
-  _onChangeFile({ target }) {
+  _onChangeFile({target}) {
     this.selected = target.selectedIndex;
     this._src = this._sources[this.selected].src;
   }

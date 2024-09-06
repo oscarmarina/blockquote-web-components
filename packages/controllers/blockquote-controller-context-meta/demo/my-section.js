@@ -1,5 +1,5 @@
-import { html, css, LitElement } from 'lit';
-import { BlockquoteControllerContextMeta } from '../src/index.js';
+import {html, css, LitElement} from 'lit';
+import {BlockquoteControllerContextMeta} from '../src/index.js';
 
 const COLORS = ['indianred', 'blue', 'orange', 'green', 'purple'];
 
@@ -18,9 +18,9 @@ export class MySection extends LitElement {
     super();
     this._consumer = new BlockquoteControllerContextMeta(this, {
       context: 'level',
-      initialValue: { level: 1, color: COLORS[0] },
-      callback: v => {
-        const { level } = /** @type {{level:number, color:string}} */ (v);
+      initialValue: {level: 1, color: COLORS[0]},
+      callback: (v) => {
+        const {level} = /** @type {{level:number, color:string}} */ (v);
         this._consumer.setValue({
           level: level + 1,
           color: COLORS[(level + 1) % COLORS.length],

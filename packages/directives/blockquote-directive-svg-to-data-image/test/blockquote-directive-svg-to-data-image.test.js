@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { html, fixture, assert, fixtureCleanup } from '@open-wc/testing';
-import { LitElement, svg, html as litHtml } from 'lit';
-import { blockquoteDirectiveSvgToDataImage } from '../src/index.js';
+import {html, fixture, assert, fixtureCleanup} from '@open-wc/testing';
+import {LitElement, svg, html as litHtml} from 'lit';
+import {blockquoteDirectiveSvgToDataImage} from '../src/index.js';
 
 const svgTag1 = litHtml`<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="50" cy="50" r="50" fill="white" />
@@ -12,7 +12,7 @@ const svgTag1 = litHtml`<svg width="100" height="100" viewBox="0 0 100 100" fill
 </svg>`;
 
 const svgTag2 = litHtml`<svg id="${String(
-  1,
+  1
 )}" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="50" cy="50" r="50" fill="white" />
 <circle cx="50" cy="50" r="40" fill="black" />
@@ -26,7 +26,7 @@ const circleTag = svg`<circle cx="50" cy="50" r="10" fill="pink" />`;
 const circleString = `<circle cx="50" cy="50" r="10" fill="pink" />`;
 
 const svgTag3 = litHtml`<svg id="${String(
-  2,
+  2
 )}" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="50" cy="50" r="50" fill="white" />
 <circle cx="50" cy="50" r="40" fill="black" />
@@ -54,7 +54,7 @@ const SvgToDataImageDemo = class BlockquoteDirectiveSvgToDataImageDemo extends L
     return litHtml`
       <div style="background: url('${blockquoteDirectiveSvgToDataImage(
         // @ts-ignore
-        this.svgToRender,
+        this.svgToRender
       )}') no-repeat center center #e4e4e4"></div>
     `;
   }

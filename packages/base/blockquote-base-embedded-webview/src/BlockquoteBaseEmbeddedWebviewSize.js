@@ -1,5 +1,5 @@
-import { html, LitElement } from 'lit';
-import { styles } from './styles/blockquote-base-embedded-webview-size-styles.css.js';
+import {html, LitElement} from 'lit';
+import {styles} from './styles/blockquote-base-embedded-webview-size-styles.css.js';
 // https://source.chromium.org/chromium/chromium/src/+/main:third_party/devtools-frontend/src/front_end/panels/emulation/DeviceModeView.ts;l=164
 
 /**
@@ -81,15 +81,15 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
     this.selected = 0;
     this.disabledSelectedSizeText = false;
     this.screenSizes = [
-      { width: 360, height: 800, id: '360x800' },
-      { width: 390, height: 864, id: '390x864' },
-      { width: 414, height: 896, id: '414x896' },
-      { width: 768, height: 1024, id: '768x1024' },
-      { width: 810, height: 1080, id: '810x1080' },
-      { width: 1280, height: 720, id: '1280x800' },
-      { width: 1366, height: 768, id: '1366x768' },
-      { width: 1536, height: 864, id: '1536x864' },
-      { width: 1920, height: 1080, id: '1920x1080' },
+      {width: 360, height: 800, id: '360x800'},
+      {width: 390, height: 864, id: '390x864'},
+      {width: 414, height: 896, id: '414x896'},
+      {width: 768, height: 1024, id: '768x1024'},
+      {width: 810, height: 1080, id: '810x1080'},
+      {width: 1280, height: 720, id: '1280x800'},
+      {width: 1366, height: 768, id: '1366x768'},
+      {width: 1536, height: 864, id: '1536x864'},
+      {width: 1920, height: 1080, id: '1920x1080'},
     ];
     this.widthInPercent = false;
   }
@@ -99,7 +99,7 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
   }
 
   get selectedDetail() {
-    return { ...this.selectedSize, ...{ index: this.selected } };
+    return {...this.selectedSize, ...{index: this.selected}};
   }
 
   get computedStyleWidth() {
@@ -172,7 +172,7 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
               : `width: ${item.width}px;`}">
             <span>${item.id}</span>
           </button>
-        `,
+        `
       )}
     `;
   }
@@ -185,7 +185,7 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
     `;
   }
 
-  _onResize = ev => {
+  _onResize = (ev) => {
     ev.preventDefault();
     ev.stopPropagation();
     window.requestAnimationFrame(() => {

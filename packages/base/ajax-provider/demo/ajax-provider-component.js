@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { LitElement, html, css } from 'lit';
+import {LitElement, html, css} from 'lit';
 import 'inspector-elements';
-import { AjaxProvider } from '../src/index.js';
+import {AjaxProvider} from '../src/index.js';
 
 class AjaxProviderComponent extends LitElement {
   static styles = css`
@@ -106,8 +106,8 @@ class AjaxProviderComponent extends LitElement {
     `;
   }
 
-  _onHandleChange({ target }) {
-    const { value } = /** @type {HTMLSelectElement} */ (target);
+  _onHandleChange({target}) {
+    const {value} = /** @type {HTMLSelectElement} */ (target);
     this._makeRequest(value);
   }
 
@@ -190,33 +190,31 @@ class AjaxProviderComponent extends LitElement {
         return;
     }
 
-    const request = new AjaxProvider({ ...baseMethod, ...optionsMethod });
+    const request = new AjaxProvider({...baseMethod, ...optionsMethod});
 
-    request.addEventListener('ajaxpresend', ({ detail }) => {
+    request.addEventListener('ajaxpresend', ({detail}) => {
       if (this.json) {
         this.json.data = undefined;
       }
       console.log(`ajaxpresend: ${detail}`);
     });
 
-    request.addEventListener('ajaxresponse', ({ detail }) => console.log(detail));
-    request.addEventListener('ajaxprogress', ({ detail }) => console.log(detail));
-    request.addEventListener('ajaxresponseend', ({ detail }) =>
-      console.log(`ajaxresponseend: ${detail}`),
+    request.addEventListener('ajaxresponse', ({detail}) => console.log(detail));
+    request.addEventListener('ajaxprogress', ({detail}) => console.log(detail));
+    request.addEventListener('ajaxresponseend', ({detail}) =>
+      console.log(`ajaxresponseend: ${detail}`)
     );
 
-    request.addEventListener('ajaxerror', ({ detail }) => console.dir(detail));
-    request.addEventListener('ajaxerrorend', ({ detail }) =>
-      console.log(`ajaxerrorend: ${detail}`),
-    );
+    request.addEventListener('ajaxerror', ({detail}) => console.dir(detail));
+    request.addEventListener('ajaxerrorend', ({detail}) => console.log(`ajaxerrorend: ${detail}`));
 
     request
       .generateRequest()
-      .then(result => {
+      .then((result) => {
         this.json.data = result;
         console.log(`RESULT ${selectedMethod}`, result);
       })
-      .catch(error => {
+      .catch((error) => {
         this.json.data = error;
         console.dir(error);
       });

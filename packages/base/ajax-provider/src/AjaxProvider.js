@@ -1,4 +1,4 @@
-import { AjaxProviderMixin } from './AjaxProviderMixin.js';
+import {AjaxProviderMixin} from './AjaxProviderMixin.js';
 
 /**
  * # AJAX Provider Documentation

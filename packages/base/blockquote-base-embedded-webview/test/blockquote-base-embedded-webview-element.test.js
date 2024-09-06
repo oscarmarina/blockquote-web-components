@@ -1,10 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { html, fixture, assert, fixtureCleanup, oneEvent } from '@open-wc/testing';
+import {html, fixture, assert, fixtureCleanup, oneEvent} from '@open-wc/testing';
 import '../define/blockquote-base-embedded-webview-element.js';
 
 suite('BlockquoteBaseEmbeddedWebviewElement', () => {
   /**
-   * @type {import('../index').BlockquoteBaseEmbeddedWebviewElement}
+   * @type {import('../src/index').BlockquoteBaseEmbeddedWebviewElement}
    */
   let el;
 
@@ -23,12 +23,12 @@ suite('BlockquoteBaseEmbeddedWebviewElement', () => {
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
         // @ts-ignore
-        await assert.shadowDom.equalSnapshot(el, { ignoreAttributes: ['loading'] });
+        await assert.shadowDom.equalSnapshot(el, {ignoreAttributes: ['loading']});
       });
 
       test('LIGHT DOM - Structure test', async () => {
         // @ts-ignore
-        await assert.lightDom.equalSnapshot(el, { ignoreAttributes: ['loading'] });
+        await assert.lightDom.equalSnapshot(el, {ignoreAttributes: ['loading']});
       });
 
       test('a11y', async () => {
@@ -37,7 +37,7 @@ suite('BlockquoteBaseEmbeddedWebviewElement', () => {
 
       test('element content loaded', async () => {
         el.src = 'test/test2.html';
-        const { detail } = await oneEvent(el, 'elementloaded', true);
+        const {detail} = await oneEvent(el, 'elementloaded', true);
         assert.isTrue(detail.contentDocument.body.hasAttribute('data-embedded'));
       });
 

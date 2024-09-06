@@ -1,1 +1,1 @@
-export { BlockquoteControllerRxjs } from './BlockquoteControllerRxjs.js';
+export {BlockquoteControllerRxjs} from './BlockquoteControllerRxjs.js';

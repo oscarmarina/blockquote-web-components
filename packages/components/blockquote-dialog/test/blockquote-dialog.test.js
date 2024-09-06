@@ -1,6 +1,6 @@
 /* eslint-disable lit-a11y/no-autofocus */
 /* eslint-disable import/no-extraneous-dependencies */
-import { html, fixture, assert, expect, fixtureCleanup, aTimeout } from '@open-wc/testing';
+import {html, fixture, assert, expect, fixtureCleanup, aTimeout} from '@open-wc/testing';
 import sinon from 'sinon';
 import '../define/blockquote-dialog.js';
 
@@ -67,11 +67,11 @@ suite('BlockquoteDialog', () => {
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot({ ignoreAttributes: ['id', 'name'] });
+        await expect(el).shadowDom.to.equalSnapshot({ignoreAttributes: ['id', 'name']});
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await expect(el).lightDom.to.equalSnapshot({ ignoreAttributes: ['id', 'name'] });
+        await expect(el).lightDom.to.equalSnapshot({ignoreAttributes: ['id', 'name']});
       });
 
       test('a11y', async () => {
@@ -97,11 +97,11 @@ suite('BlockquoteDialog', () => {
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot({ ignoreAttributes: ['id', 'name'] });
+        await expect(el).shadowDom.to.equalSnapshot({ignoreAttributes: ['id', 'name']});
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await expect(el).lightDom.to.equalSnapshot({ ignoreAttributes: ['id', 'name'] });
+        await expect(el).lightDom.to.equalSnapshot({ignoreAttributes: ['id', 'name']});
       });
 
       test('a11y', async () => {
@@ -127,11 +127,11 @@ suite('BlockquoteDialog', () => {
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot({ ignoreAttributes: ['id', 'name'] });
+        await expect(el).shadowDom.to.equalSnapshot({ignoreAttributes: ['id', 'name']});
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await expect(el).lightDom.to.equalSnapshot({ ignoreAttributes: ['id', 'name'] });
+        await expect(el).lightDom.to.equalSnapshot({ignoreAttributes: ['id', 'name']});
       });
 
       test('a11y', async () => {
@@ -160,11 +160,11 @@ suite('BlockquoteDialog', () => {
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot({ ignoreAttributes: ['id', 'name'] });
+        await expect(el).shadowDom.to.equalSnapshot({ignoreAttributes: ['id', 'name']});
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await expect(el).lightDom.to.equalSnapshot({ ignoreAttributes: ['id', 'name'] });
+        await expect(el).lightDom.to.equalSnapshot({ignoreAttributes: ['id', 'name']});
       });
 
       test('a11y', async () => {
@@ -212,7 +212,7 @@ suite('BlockquoteDialog', () => {
 
     test('The "cancel" event should not close the dialog if the target is different from the dialog itself', async () => {
       const content = el.shadowRoot?.querySelector('.content');
-      const event = new Event('cancel', { bubbles: true });
+      const event = new Event('cancel', {bubbles: true});
       content?.dispatchEvent(event);
       await el.updateComplete;
       assert.isTrue(el?.hasAttribute('open'));
@@ -231,7 +231,7 @@ suite('BlockquoteDialog', () => {
       button?.click();
       await el.updateComplete;
       await aTimeout(200);
-      const { returnValue } = el;
+      const {returnValue} = el;
       assert.equal(returnValue.tagName, 'BUTTON');
     });
   });
@@ -261,7 +261,7 @@ suite('BlockquoteDialog', () => {
     test('Dialog does not should close when "Form Submit"', async () => {
       const button = el?.querySelector('button');
       const form = el?.querySelector('form');
-      form?.addEventListener('submit', ev => ev.preventDefault());
+      form?.addEventListener('submit', (ev) => ev.preventDefault());
       button?.click();
       await el.updateComplete;
       assert.isTrue(el?.hasAttribute('open'));
@@ -296,7 +296,7 @@ suite('BlockquoteDialog', () => {
       await el.updateComplete;
       const firstFocusTrap = el.shadowRoot?.querySelector('dialog > span:first-of-type');
       /** @type {HTMLElement} */ (firstFocusTrap)?.dispatchEvent(
-        new FocusEvent('focus', { relatedTarget: null }),
+        new FocusEvent('focus', {relatedTarget: null})
       );
       assert.isTrue(spy.called);
     });
@@ -322,7 +322,7 @@ suite('BlockquoteDialog', () => {
       await el.updateComplete;
       const firstFocusTrap = el.shadowRoot?.querySelector('dialog > span:last-of-type');
       /** @type {HTMLElement} */ (firstFocusTrap)?.dispatchEvent(
-        new FocusEvent('focus', { relatedTarget: null }),
+        new FocusEvent('focus', {relatedTarget: null})
       );
       assert.isTrue(spy.called);
     });

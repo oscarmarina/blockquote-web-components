@@ -1,12 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { html, fixture, assert, fixtureCleanup } from '@open-wc/testing';
-import { LitElement } from 'lit';
-import { BlockquoteMixinSlotContent } from '../src/index.js';
+import {html, fixture, assert, fixtureCleanup} from '@open-wc/testing';
+import {LitElement} from 'lit';
+import {BlockquoteMixinSlotContent} from '../src/index.js';
 
 const slotContentBase = class slotContent extends BlockquoteMixinSlotContent(LitElement) {
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
-    this.shadowRoot?.addEventListener('slotchanges', ev => {
+    this.shadowRoot?.addEventListener('slotchanges', (ev) => {
       ev.stopPropagation();
       ev.preventDefault();
       this.setAttribute('propSlot', '');

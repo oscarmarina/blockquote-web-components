@@ -1,12 +1,12 @@
-import { dedupeMixin } from '@open-wc/dedupe-mixin';
-import { lastValueFrom, catchError, tap } from 'rxjs';
-import { ajax } from 'rxjs/ajax';
-import { assignIfDefined, isFormData } from './utils.js';
+import {dedupeMixin} from '@open-wc/dedupe-mixin';
+import {lastValueFrom, catchError, tap} from 'rxjs';
+import {ajax} from 'rxjs/ajax';
+import {assignIfDefined, isFormData} from './utils.js';
 
 /**
  * Mixin for providing AJAX functionality using RxJS. This mixin can be used to enhance classes with AJAX capabilities.
  */
-const AjaxProvider = Base =>
+const AjaxProvider = (Base) =>
   // @ts-ignore
   class AjaxProviderBase extends Base {
     constructor() {
@@ -169,7 +169,7 @@ const AjaxProvider = Base =>
      * @private
      */
     _joinHeaders(formData) {
-      const assignHeaders = { ...this._headers, ...(this.headers || {}) };
+      const assignHeaders = {...this._headers, ...(this.headers || {})};
 
       if (isFormData(formData) && !this.avoidBoundary) {
         delete assignHeaders['Content-Type']; // Let the browser set it
@@ -214,7 +214,7 @@ const AjaxProvider = Base =>
 
       const toPromise$ = await lastValueFrom(
         ajax(this._assignAjaxRxjsConfig()).pipe(
-          tap(response => {
+          tap((response) => {
             const setProgress = {
               type: response.type,
               loaded: response.loaded,
@@ -222,13 +222,13 @@ const AjaxProvider = Base =>
             };
             this._dispatchEvent('progress', setProgress);
           }),
-          catchError(error => {
+          catchError((error) => {
             this._dispatchEvent('error', error);
             this._dispatchEvent('errorend', true);
             this.lastError = error;
             return Promise.reject(error);
-          }),
-        ),
+          })
+        )
       );
 
       this._dispatchEvent('response', toPromise$);

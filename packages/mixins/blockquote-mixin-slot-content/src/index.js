@@ -1,1 +1,1 @@
-export { BlockquoteMixinSlotContent } from './BlockquoteMixinSlotContent.js';
+export {BlockquoteMixinSlotContent} from './BlockquoteMixinSlotContent.js';

@@ -1,35 +1,35 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { assert, fixtureCleanup } from '@open-wc/testing';
-import { BlockquoteBaseMeta } from '../src/index.js';
+import {assert, fixtureCleanup} from '@open-wc/testing';
+import {BlockquoteBaseMeta} from '../src/index.js';
 
 suite('BlockquoteBaseMeta', () => {
   teardown(() => fixtureCleanup());
 
   suite('init', () => {
     test('has types', () => {
-      const meta = new BlockquoteBaseMeta({ key: 'info', value: 'foo/bar' });
+      const meta = new BlockquoteBaseMeta({key: 'info', value: 'foo/bar'});
       assert.isDefined(meta.constructor.types);
     });
 
     test('has metaId', () => {
-      const meta = new BlockquoteBaseMeta({ key: 'info', value: 'foo/bar' });
+      const meta = new BlockquoteBaseMeta({key: 'info', value: 'foo/bar'});
       assert.isDefined(meta.constructor.uuid);
     });
 
     test('byKey', () => {
-      const keyInfo = { id: 'dsfaskj0' };
-      const meta = new BlockquoteBaseMeta({ key: keyInfo, value: 'foo/bar' });
+      const keyInfo = {id: 'dsfaskj0'};
+      const meta = new BlockquoteBaseMeta({key: keyInfo, value: 'foo/bar'});
       assert.equal(meta.byKey(keyInfo), meta.value);
       meta.value = null;
     });
 
     test('list', () => {
-      const meta = new BlockquoteBaseMeta({ key: 'info', value: 'foo/bar' });
+      const meta = new BlockquoteBaseMeta({key: 'info', value: 'foo/bar'});
       assert.equal(meta.list.length, 1);
     });
 
     test('getting `list` does not throw if no objects of the given type exist', () => {
-      const meta = new BlockquoteBaseMeta({ type: 'NO ITEMS OF THIS TYPE' });
+      const meta = new BlockquoteBaseMeta({type: 'NO ITEMS OF THIS TYPE'});
       assert.doesNotThrow(() => {
         // eslint-disable-next-line no-unused-expressions
         meta.list;
@@ -48,7 +48,7 @@ suite('BlockquoteBaseMeta', () => {
     let meta;
 
     setup(() => {
-      meta = new BlockquoteBaseMeta({ key: 'info', value: 'foo/bar' });
+      meta = new BlockquoteBaseMeta({key: 'info', value: 'foo/bar'});
     });
 
     teardown(() => {
@@ -89,14 +89,14 @@ suite('BlockquoteBaseMeta', () => {
     const metas = [];
 
     setup(() => {
-      metas[0] = new BlockquoteBaseMeta({ key: 'default1', value: 'foo/bar1' });
-      metas[1] = new BlockquoteBaseMeta({ key: 'default2', value: 'foo/bar2' });
-      metas[2] = new BlockquoteBaseMeta({ key: 'default3', value: 'foo/bar3' });
+      metas[0] = new BlockquoteBaseMeta({key: 'default1', value: 'foo/bar1'});
+      metas[1] = new BlockquoteBaseMeta({key: 'default2', value: 'foo/bar2'});
+      metas[2] = new BlockquoteBaseMeta({key: 'default3', value: 'foo/bar3'});
     });
 
     teardown(() => {
       // eslint-disable-next-line arrow-parens
-      metas.forEach(meta => {
+      metas.forEach((meta) => {
         const m = meta;
         m.value = null;
         m.key = null;
@@ -104,7 +104,7 @@ suite('BlockquoteBaseMeta', () => {
     });
 
     test('all cache all meta values', () => {
-      metas.forEach(meta => {
+      metas.forEach((meta) => {
         assert.equal(meta.list.length, metas.length);
         assert.operator(meta.list.indexOf(meta.value), '>=', 0);
       });
@@ -143,7 +143,7 @@ suite('BlockquoteBaseMeta', () => {
     });
 
     teardown(() => {
-      metasType.forEach(meta => {
+      metasType.forEach((meta) => {
         const metaSetup = meta;
         metaSetup.value = null;
         metaSetup.key = null;
@@ -160,7 +160,7 @@ suite('BlockquoteBaseMeta', () => {
     });
 
     test('only list values of their type', () => {
-      metasType.forEach(meta => {
+      metasType.forEach((meta) => {
         assert.equal(meta.list.length, 1);
         assert.equal(meta.list[0], meta.value);
       });
@@ -171,12 +171,12 @@ suite('BlockquoteBaseMeta', () => {
     const metaPair = [];
 
     setup(() => {
-      metaPair[0] = new BlockquoteBaseMeta({ key: 'baz', value: 'baz/1' });
-      metaPair[1] = new BlockquoteBaseMeta({ key: 'baz', value: 'baz/2' });
+      metaPair[0] = new BlockquoteBaseMeta({key: 'baz', value: 'baz/1'});
+      metaPair[1] = new BlockquoteBaseMeta({key: 'baz', value: 'baz/2'});
     });
 
     teardown(() => {
-      metaPair.forEach(meta => {
+      metaPair.forEach((meta) => {
         const metaSetup = meta;
         metaSetup.value = null;
         metaSetup.key = null;

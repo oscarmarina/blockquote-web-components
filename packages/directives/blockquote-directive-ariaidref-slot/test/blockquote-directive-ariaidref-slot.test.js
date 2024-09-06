@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { html, fixture, assert, expect, fixtureCleanup } from '@open-wc/testing';
+import {html, fixture, assert, expect, fixtureCleanup} from '@open-wc/testing';
 import './blockquote-directive-ariaidref-slot-component.js';
 
 suite('BlockquoteDirectiveAriaidrefSlot', () => {

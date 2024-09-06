@@ -1,6 +1,6 @@
 /* eslint-disable lit-a11y/no-autofocus */
 /* eslint-disable import/no-extraneous-dependencies */
-import { html, fixture, assert, expect, fixtureCleanup, aTimeout } from '@open-wc/testing';
+import {html, fixture, assert, expect, fixtureCleanup, aTimeout} from '@open-wc/testing';
 
 import '../define/blockquote-tabs.js';
 
@@ -29,12 +29,12 @@ suite('BlockquoteTabs', () => {
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot({ ignoreAttributes: ['id'] });
+        await expect(el).shadowDom.to.equalSnapshot({ignoreAttributes: ['id']});
         await aTimeout(100);
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await expect(el).lightDom.to.equalSnapshot({ ignoreAttributes: ['id'] });
+        await expect(el).lightDom.to.equalSnapshot({ignoreAttributes: ['id']});
         await aTimeout(100);
       });
 
@@ -46,7 +46,7 @@ suite('BlockquoteTabs', () => {
       test('Click on tab updates selected tab', async () => {
         assert.equal(el.selected, 1);
         const tab = el.querySelectorAll('[role="tab"]')[2];
-        tab.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+        tab.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true}));
         await el.updateComplete;
         assert.equal(el.selected, 3);
         await aTimeout(100);
@@ -56,7 +56,7 @@ suite('BlockquoteTabs', () => {
         assert.equal(el.selected, 1);
         const tab = el.querySelector('[role="tab"]');
         tab?.dispatchEvent(
-          new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, cancelable: true }),
+          new KeyboardEvent('keydown', {key: 'ArrowRight', bubbles: true, cancelable: true})
         );
         await el.updateComplete;
         assert.equal(el.selected, 2);
@@ -67,7 +67,7 @@ suite('BlockquoteTabs', () => {
         assert.equal(el.selected, 1);
         const tab = el.querySelector('[role="tab"]');
         tab?.dispatchEvent(
-          new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true, cancelable: true }),
+          new KeyboardEvent('keydown', {key: 'ArrowLeft', bubbles: true, cancelable: true})
         );
         await el.updateComplete;
         assert.equal(el.selected, 3);
@@ -93,12 +93,12 @@ suite('BlockquoteTabs', () => {
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot({ ignoreAttributes: ['id'] });
+        await expect(el).shadowDom.to.equalSnapshot({ignoreAttributes: ['id']});
         await aTimeout(100);
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await expect(el).lightDom.to.equalSnapshot({ ignoreAttributes: ['id'] });
+        await expect(el).lightDom.to.equalSnapshot({ignoreAttributes: ['id']});
         await aTimeout(100);
       });
 
@@ -126,12 +126,12 @@ suite('BlockquoteTabs', () => {
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot({ ignoreAttributes: ['id'] });
+        await expect(el).shadowDom.to.equalSnapshot({ignoreAttributes: ['id']});
         await aTimeout(100);
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await expect(el).lightDom.to.equalSnapshot({ ignoreAttributes: ['id'] });
+        await expect(el).lightDom.to.equalSnapshot({ignoreAttributes: ['id']});
         await aTimeout(100);
       });
 

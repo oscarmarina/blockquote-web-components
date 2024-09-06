@@ -16,7 +16,7 @@ export const isStandardBrowserEnv = (() => {
    * or NativeScript.
    */
   if (typeof navigator !== 'undefined') {
-    const { product } = navigator;
+    const {product} = navigator;
     return !(product === 'ReactNative' || product === 'NativeScript' || product === 'NS');
   }
 
@@ -56,7 +56,7 @@ export const isStandardBrowserWebWorkerEnv = (() =>
  * @param {*} thing The value to test
  * @returns {boolean} True if value is an FormData, otherwise false
  */
-export const isFormData = thing =>
+export const isFormData = (thing) =>
   (thing && thing instanceof FormData) ||
   (typeof thing === 'object' &&
     typeof thing.append === 'function' /* c8 ignore next */ &&

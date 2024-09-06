@@ -44,8 +44,8 @@
       </div>
     </main>
     <script type="module">
-      import { html, LitElement } from 'lit';
-      import { BlockquoteMixinSlotContent } from '../src/index.js';
+      import {html, LitElement} from 'lit';
+      import {BlockquoteMixinSlotContent} from '../src/index.js';
 
       const element = document.querySelector('slot-element');
       function generateRandomString(stringLength) {
@@ -87,8 +87,8 @@
           this.addEventListener('slotchanges', this._onSlotChanges);
         }
 
-        _onSlotChanges = ev => {
-          const { detail } = ev;
+        _onSlotChanges = (ev) => {
+          const {detail} = ev;
           this._contentSlots = detail.assignedNodesContent.assignedNodes;
           this._originalContentSlots = detail.originalEvent.assignedNodes;
           this.counter = this._contentSlots.length;

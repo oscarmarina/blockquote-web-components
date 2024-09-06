@@ -121,7 +121,7 @@ export class BlockquoteBaseMeta {
    *   value?: *
    * }} [options]
    */
-  constructor({ type = 'default', key, value } = {}) {
+  constructor({type = 'default', key, value} = {}) {
     /**
      * Type of Meta
      */

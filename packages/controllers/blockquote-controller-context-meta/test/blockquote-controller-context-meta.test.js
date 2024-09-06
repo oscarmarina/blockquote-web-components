@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { html, fixture, expect, fixtureCleanup } from '@open-wc/testing';
+import {html, fixture, expect, fixtureCleanup} from '@open-wc/testing';
 import './elements.js';
 import './flow-element.js';
 

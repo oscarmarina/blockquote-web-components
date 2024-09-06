@@ -1,1 +1,1 @@
-export { BlockquoteDialog } from './BlockquoteDialog.js';
+export {BlockquoteDialog} from './BlockquoteDialog.js';

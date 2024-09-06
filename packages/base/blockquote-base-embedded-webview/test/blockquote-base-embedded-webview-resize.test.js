@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { html, fixture, assert, fixtureCleanup } from '@open-wc/testing';
+import {html, fixture, assert, fixtureCleanup} from '@open-wc/testing';
 import '../define/blockquote-base-embedded-webview-resize.js';
 
 /**
@@ -21,7 +21,7 @@ export const makePointerEvent = (type, xy, node) => {
 
 suite('BlockquoteBaseEmbeddedWebviewResize', () => {
   /**
-   * @type {import('../index').BlockquoteBaseEmbeddedWebviewResize}
+   * @type {import('../src/index').BlockquoteBaseEmbeddedWebviewResize}
    */
   let el;
   let rect;
@@ -66,11 +66,11 @@ suite('BlockquoteBaseEmbeddedWebviewResize', () => {
       test('Initial size is defined by CSS', async () => {
         assert.strictEqual(
           rect.getBoundingClientRect().width,
-          parseInt(getComputedStyle(rect).width, 10),
+          parseInt(getComputedStyle(rect).width, 10)
         );
         assert.strictEqual(
           rect.getBoundingClientRect().height,
-          parseInt(getComputedStyle(rect).height, 10),
+          parseInt(getComputedStyle(rect).height, 10)
         );
       });
       test('Double click go back initial CSS', async () => {
@@ -87,39 +87,39 @@ suite('BlockquoteBaseEmbeddedWebviewResize', () => {
       });
       test('Resize bottomRight', async () => {
         assert.isFalse(el.hasAttribute('style'));
-        makePointerEvent('pointerdown', { y: 4, x: 4 }, bottomRightResizerElement);
-        makePointerEvent('pointermove', { y: 10, x: 10 }, bottomRightResizerElement);
+        makePointerEvent('pointerdown', {y: 4, x: 4}, bottomRightResizerElement);
+        makePointerEvent('pointermove', {y: 10, x: 10}, bottomRightResizerElement);
         assert.isTrue(el.hasAttribute('style'));
       });
       test('Resize bottomLeft', async () => {
         assert.isFalse(el.hasAttribute('style'));
-        makePointerEvent('pointerdown', { y: 4, x: 4 }, bottomLeftResizerElement);
-        makePointerEvent('pointermove', { y: 10, x: 10 }, bottomLeftResizerElement);
+        makePointerEvent('pointerdown', {y: 4, x: 4}, bottomLeftResizerElement);
+        makePointerEvent('pointermove', {y: 10, x: 10}, bottomLeftResizerElement);
         assert.isTrue(el.hasAttribute('style'));
       });
       test('Resize right', async () => {
         assert.isFalse(el.hasAttribute('style'));
-        makePointerEvent('pointerdown', { y: 4, x: 4 }, rightResizerElement);
-        makePointerEvent('pointermove', { y: 10, x: 10 }, rightResizerElement);
+        makePointerEvent('pointerdown', {y: 4, x: 4}, rightResizerElement);
+        makePointerEvent('pointermove', {y: 10, x: 10}, rightResizerElement);
         assert.isTrue(el.hasAttribute('style'));
       });
       test('Resize left', async () => {
         assert.isFalse(el.hasAttribute('style'));
-        makePointerEvent('pointerdown', { y: 4, x: 4 }, leftResizerElement);
-        makePointerEvent('pointermove', { y: 10, x: 10 }, leftResizerElement);
+        makePointerEvent('pointerdown', {y: 4, x: 4}, leftResizerElement);
+        makePointerEvent('pointermove', {y: 10, x: 10}, leftResizerElement);
         assert.isTrue(el.hasAttribute('style'));
       });
       test('Resize bottom', async () => {
         assert.isFalse(el.hasAttribute('style'));
-        makePointerEvent('pointerdown', { y: 4, x: 4 }, bottomResizerElement);
-        makePointerEvent('pointermove', { y: 10, x: 10 }, bottomResizerElement);
+        makePointerEvent('pointerdown', {y: 4, x: 4}, bottomResizerElement);
+        makePointerEvent('pointermove', {y: 10, x: 10}, bottomResizerElement);
         assert.isTrue(el.hasAttribute('style'));
       });
       test('Toogle resizing attribute', async () => {
-        makePointerEvent('pointerdown', { y: 4, x: 4 }, bottomResizerElement);
-        makePointerEvent('pointermove', { y: 10, x: 10 }, bottomResizerElement);
+        makePointerEvent('pointerdown', {y: 4, x: 4}, bottomResizerElement);
+        makePointerEvent('pointermove', {y: 10, x: 10}, bottomResizerElement);
         assert.isTrue(el.hasAttribute('resizing'));
-        makePointerEvent('pointerup', { y: 10, x: 10 }, bottomResizerElement);
+        makePointerEvent('pointerup', {y: 10, x: 10}, bottomResizerElement);
         assert.isFalse(el.hasAttribute('resizing'));
       });
     });

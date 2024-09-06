@@ -34,9 +34,9 @@
       <blockquote-controller-rxjs-demo></blockquote-controller-rxjs-demo>
     </main>
     <script type="module">
-      import { html, LitElement } from 'lit';
-      import { map, fromEvent } from 'rxjs';
-      import { BlockquoteControllerRxjs } from '../src/index.js';
+      import {html, LitElement} from 'lit';
+      import {map, fromEvent} from 'rxjs';
+      import {BlockquoteControllerRxjs} from '../src/index.js';
 
       class BlockquoteControllerRxjsDemo extends LitElement {
         static get is() {
@@ -55,9 +55,9 @@
         constructor() {
           super();
           this.rx = new BlockquoteControllerRxjs(this);
-          this._pos = { x: 0, y: 0 };
+          this._pos = {x: 0, y: 0};
           this.values$ = fromEvent(window, 'mousemove').pipe(
-            map(({ clientX, clientY }) => ({ x: clientX, y: clientY })),
+            map(({clientX, clientY}) => ({x: clientX, y: clientY}))
           );
         }
 

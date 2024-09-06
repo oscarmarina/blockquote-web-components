@@ -1,20 +1,20 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { html, fixture, assert, fixtureCleanup } from '@open-wc/testing';
+import {html, fixture, assert, fixtureCleanup} from '@open-wc/testing';
 import sinon from 'sinon';
 import '../define/blockquote-base-embedded-webview-size.js';
 
 suite('BlockquoteBaseEmbeddedWebviewSize', () => {
   /**
-   * @type {import('../index').BlockquoteBaseEmbeddedWebviewSize}
+   * @type {import('../src/index').BlockquoteBaseEmbeddedWebviewSize}
    */
   let el;
   let screenSizesButtons;
   let buttonSize3;
 
   const screenSizes = [
-    { width: 360, height: 640, id: '360x640' },
-    { width: 1024, height: 768, id: '1024x768' },
-    { width: 1920, height: 1080, id: '1920x1080' },
+    {width: 360, height: 640, id: '360x640'},
+    {width: 1024, height: 768, id: '1024x768'},
+    {width: 1920, height: 1080, id: '1920x1080'},
   ];
 
   teardown(() => fixtureCleanup());

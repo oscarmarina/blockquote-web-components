@@ -1,5 +1,5 @@
-import { LitElement, html, css, nothing } from 'lit';
-import { blockquoteDirectiveAriaidrefSlot } from '../src/index.js';
+import {LitElement, html, css, nothing} from 'lit';
+import {blockquoteDirectiveAriaidrefSlot} from '../src/index.js';
 
 class WrapperDialog extends LitElement {
   static styles = css`

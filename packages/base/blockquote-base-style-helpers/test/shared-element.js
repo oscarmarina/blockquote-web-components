@@ -1,5 +1,5 @@
-import { LitElement, html, css } from 'lit';
-import { getComponentSharedStyles, setComponentSharedStyles } from '../src/index.js';
+import {LitElement, html, css} from 'lit';
+import {getComponentSharedStyles, setComponentSharedStyles} from '../src/index.js';
 
 setComponentSharedStyles(
   'shared-element-shared-styles',
@@ -9,7 +9,7 @@ setComponentSharedStyles(
       height: 200px;
       background-color: pink;
     }
-  `,
+  `
 );
 
 export class SharedElement extends LitElement {

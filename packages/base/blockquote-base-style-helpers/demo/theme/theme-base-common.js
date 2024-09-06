@@ -25,4 +25,4 @@ const tertiary2 = {
   '--blue-700': '#0f1720',
 };
 
-export { tertiary0, tertiary1, tertiary2 };
+export {tertiary0, tertiary1, tertiary2};

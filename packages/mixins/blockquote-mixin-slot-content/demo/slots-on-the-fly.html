@@ -60,8 +60,8 @@
       </div>
     </main>
     <script type="module">
-      import { html, LitElement } from 'lit';
-      import { BlockquoteMixinSlotContent } from '../src/index.js';
+      import {html, LitElement} from 'lit';
+      import {BlockquoteMixinSlotContent} from '../src/index.js';
 
       const element = document.querySelector('slot-element');
 
@@ -124,14 +124,14 @@
           }
         }
 
-        _onSlotChanges = ev => {
-          const { detail } = ev;
+        _onSlotChanges = (ev) => {
+          const {detail} = ev;
           console.info(detail);
           console.info(
             'assignedNodes ==>',
             detail.assignedNodesContent.assignedNodes,
             '-',
-            detail.assignedSlotContent.slotName,
+            detail.assignedSlotContent.slotName
           );
         };
 
@@ -149,7 +149,7 @@
                   <span>==</span>
                   <slot name="slot${index + 1}"></slot>
                 </div>
-              `,
+              `
             )}
           `;
         }

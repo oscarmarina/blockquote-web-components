@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { html, fixture, assert, fixtureCleanup } from '@open-wc/testing';
-import { css } from 'lit';
-import { setDocumentStyles } from '../src/index.js';
+import {html, fixture, assert, fixtureCleanup} from '@open-wc/testing';
+import {css} from 'lit';
+import {setDocumentStyles} from '../src/index.js';
 import './document-element.js';
 import './shared-element.js';
 

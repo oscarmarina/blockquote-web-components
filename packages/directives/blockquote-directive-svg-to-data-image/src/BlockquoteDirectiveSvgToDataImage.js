@@ -1,7 +1,7 @@
 // eslint-disable-next-line max-classes-per-file
-import { Directive, directive } from 'lit/directive.js';
-import { isTemplateResult } from 'lit/directive-helpers.js';
-import { noChange } from 'lit';
+import {Directive, directive} from 'lit/directive.js';
+import {isTemplateResult} from 'lit/directive-helpers.js';
+import {noChange} from 'lit';
 
 /**
  * # blockquoteDirectiveSvgToDataImage
@@ -108,7 +108,7 @@ const mergeAlternatingValues = (firstArray = [], secondArray = []) =>
       isTemplateResult(secondArray[index])
         ? mergeAlternatingValues(secondArray[index].strings, secondArray[index].values).join('')
         : secondArray[index],
-    ].join(''),
+    ].join('')
   );
 
 /**
@@ -129,7 +129,7 @@ class BlockquoteDirectiveSvgToDataImage extends Directive {
 
     const svgXmlEncodeString = mergeAlternatingValues(
       svgTemplateStrings,
-      svgTemplateResultValues,
+      svgTemplateResultValues
     ).join('');
 
     return svgXmlEncode(svgXmlEncodeString);

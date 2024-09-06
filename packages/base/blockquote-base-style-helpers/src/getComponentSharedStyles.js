@@ -1,4 +1,4 @@
-import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';
+import {BlockquoteBaseMeta} from '@blockquote-web-components/blockquote-base-meta';
 
 /**
  * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
@@ -180,10 +180,10 @@ const meta = new BlockquoteBaseMeta({
  * @param {String} id Identifier of styles; usually will be `[component-name]-shared-styles`
  * @returns [CSSResult]
  */
-export const getComponentSharedStyles = id => {
+export const getComponentSharedStyles = (id) => {
   const sharedStyles = meta.byKey(id);
   if (sharedStyles) {
-    const onlyCSSResult = sharedStyles.filter(cssResultObject => cssResultObject.cssText);
+    const onlyCSSResult = sharedStyles.filter((cssResultObject) => cssResultObject.cssText);
     return onlyCSSResult;
   }
   return [];

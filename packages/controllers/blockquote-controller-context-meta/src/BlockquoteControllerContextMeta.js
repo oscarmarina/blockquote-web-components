@@ -1,4 +1,4 @@
-import { createContext, ContextProvider, ContextConsumer } from '@lit/context';
+import {createContext, ContextProvider, ContextConsumer} from '@lit/context';
 
 export const contextMetaSymbol = 'context-meta-symbol';
 /**
@@ -111,7 +111,7 @@ class ContextMeta {
    *   callback?: (value: import('@lit/context').ContextType<*>, dispose?: () => void) => void
    * }} arg - The arguments for the constructor.
    */
-  constructor(host, { context = contextMetaSymbol, initialValue, callback }) {
+  constructor(host, {context = contextMetaSymbol, initialValue, callback}) {
     this.context = createContext(Symbol.for(context));
     this.initialValue = initialValue;
     this.callback = callback;
@@ -142,4 +142,4 @@ class ContextMeta {
     });
   }
 }
-export { ContextMeta as BlockquoteControllerContextMeta };
+export {ContextMeta as BlockquoteControllerContextMeta};

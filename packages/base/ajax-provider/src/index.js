@@ -1,2 +1,2 @@
-export { AjaxProvider } from './AjaxProvider.js';
-export { AjaxProviderMixin } from './AjaxProviderMixin.js';
+export {AjaxProvider} from './AjaxProvider.js';
+export {AjaxProviderMixin} from './AjaxProviderMixin.js';

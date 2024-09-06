@@ -1,1 +1,1 @@
-export { BlockquoteBaseMeta } from './BlockquoteBaseMeta.js';
+export {BlockquoteBaseMeta} from './BlockquoteBaseMeta.js';

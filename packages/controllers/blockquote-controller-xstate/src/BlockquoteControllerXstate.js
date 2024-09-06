@@ -1,4 +1,4 @@
-import { createActor } from 'xstate';
+import {createActor} from 'xstate';
 /**
  * # BlockquoteControllerXstate
  *
@@ -193,7 +193,7 @@ class UseMachine {
    *   callback?: Function
    * }} arg - The arguments for the constructor.
    */
-  constructor(host, { machine, options, callback }) {
+  constructor(host, {machine, options, callback}) {
     this.machine = machine;
     this.options = options;
     this.callback = callback;
@@ -224,7 +224,7 @@ class UseMachine {
   /**
    * @param {import('xstate').SnapshotFrom<typeof this.machine>} snapshot
    */
-  onNext = snapshot => {
+  onNext = (snapshot) => {
     if (this.currentSnapshot !== snapshot) {
       this.currentSnapshot = snapshot;
       this.callback?.(snapshot);
@@ -253,4 +253,4 @@ class UseMachine {
   }
 }
 
-export { UseMachine as BlockquoteControllerXstate };
+export {UseMachine as BlockquoteControllerXstate};

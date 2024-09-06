@@ -25,7 +25,7 @@ const renderDocumentRoot = supportsAdoptingStyleSheets
  * @param {Array} styles - The styles to flatten.
  * @returns {Array} The flattened styles.
  */
-const flattenStyles = styles => (Array.isArray(styles) ? styles.flat(Infinity) : [styles]);
+const flattenStyles = (styles) => (Array.isArray(styles) ? styles.flat(Infinity) : [styles]);
 
 /**
  * Adopts the given styles into the render root.
@@ -38,10 +38,10 @@ export const adoptDocumentStyles = (renderRoot, styles) => {
     const documentRoot = /** @type {Document} */ (renderRoot);
     documentRoot.adoptedStyleSheets = [
       ...documentRoot.adoptedStyleSheets,
-      ...styles.map(s => (s instanceof CSSStyleSheet ? s : s.styleSheet)),
+      ...styles.map((s) => (s instanceof CSSStyleSheet ? s : s.styleSheet)),
     ];
   } else {
-    styles.forEach(s => {
+    styles.forEach((s) => {
       const style = document.createElement('style');
       style.textContent = s.cssText;
       renderRoot.appendChild(style);
@@ -53,7 +53,7 @@ export const adoptDocumentStyles = (renderRoot, styles) => {
  * Sets the document styles.
  * @param {!*} styles - The styles to set.
  */
-export const setDocumentStyles = styles => {
+export const setDocumentStyles = (styles) => {
   const flattenedArray = flattenStyles(styles);
   adoptDocumentStyles(renderDocumentRoot, flattenedArray);
 };

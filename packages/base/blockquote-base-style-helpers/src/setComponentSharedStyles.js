@@ -1,4 +1,4 @@
-import { BlockquoteBaseMeta } from '@blockquote-web-components/blockquote-base-meta';
+import {BlockquoteBaseMeta} from '@blockquote-web-components/blockquote-base-meta';
 
 /**
  * Set styles (as cssResult) associated to provided ID string which can then be retrieved by components
@@ -9,7 +9,7 @@ export const setComponentSharedStyles = (id, styles) => {
   /* c8 ignore if */
   if (!styles.cssText) {
     throw new Error(
-      `Value passed to 'setComponentSharedStyles' function must be a 'css' function result`,
+      `Value passed to 'setComponentSharedStyles' function must be a 'css' function result`
     );
   }
   const meta = new BlockquoteBaseMeta({
