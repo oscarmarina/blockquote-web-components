@@ -55,19 +55,19 @@ Inert content outside an active dialog is typically visually obscured or dimmed 
 
 ##### Methods
 
-| Name                            | Privacy | Description | Parameters          | Return | Inherited From |
-| ------------------------------- | ------- | ----------- | ------------------- | ------ | -------------- |
-| `getIsConnectedCallbackResolve` |         |             |                     |        |                |
-| `show`                          |         |             |                     |        |                |
-| `close`                         |         |             |                     |        |                |
-| `_handleSubmit`                 |         |             | `ev: SubmitEvent`   |        |                |
-| `_handleOpen`                   |         |             |                     |        |                |
-| `_handleClose`                  |         |             | `ev: Event`         |        |                |
-| `_handleCancel`                 |         |             | `ev: Event`         |        |                |
-| `_handleDialogClick`            |         |             |                     |        |                |
-| `_handleContentClick`           |         |             |                     |        |                |
-| `_firstFocusTrap`               |         |             | `{ relatedTarget }` |        |                |
-| `_lastFocusTrap`                |         |             | `{ relatedTarget }` |        |                |
+| Name                            | Privacy | Description | Parameters        | Return | Inherited From |
+| ------------------------------- | ------- | ----------- | ----------------- | ------ | -------------- |
+| `getIsConnectedCallbackResolve` |         |             |                   |        |                |
+| `show`                          |         |             |                   |        |                |
+| `close`                         |         |             |                   |        |                |
+| `_handleSubmit`                 |         |             | `ev: SubmitEvent` |        |                |
+| `_handleOpen`                   |         |             |                   |        |                |
+| `_handleClose`                  |         |             | `ev: Event`       |        |                |
+| `_handleCancel`                 |         |             | `ev: Event`       |        |                |
+| `_handleDialogClick`            |         |             |                   |        |                |
+| `_handleContentClick`           |         |             |                   |        |                |
+| `_firstFocusTrap`               |         |             | `{relatedTarget}` |        |                |
+| `_lastFocusTrap`                |         |             | `{relatedTarget}` |        |                |
 
 ##### Events
 

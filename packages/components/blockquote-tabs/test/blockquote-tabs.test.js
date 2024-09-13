@@ -6,7 +6,7 @@ import '../define/blockquote-tabs.js';
 
 suite('BlockquoteTabs', () => {
   /**
-   * @type {import('../index').BlockquoteTabs}
+   * @type {import('../src/index').BlockquoteTabs}
    */
   let el;
 

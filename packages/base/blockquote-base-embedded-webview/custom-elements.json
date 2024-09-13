@@ -84,7 +84,7 @@
               "name": "_onChangeFile",
               "parameters": [
                 {
-                  "name": "{ target }"
+                  "name": "{target}"
                 }
               ]
             },
@@ -152,7 +152,7 @@
               "type": {
                 "text": "object"
               },
-              "default": "{ x: '0', y: '0', resizing: false, cursor: '' }"
+              "default": "{x: '0', y: '0', resizing: false, cursor: ''}"
             },
             {
               "kind": "field",
@@ -172,7 +172,7 @@
               "type": {
                 "text": "array"
               },
-              "default": "[{ src: '', option: '', description: '' }]"
+              "default": "[{src: '', option: '', description: ''}]"
             },
             {
               "kind": "field",
@@ -409,7 +409,7 @@
               "name": "_resize",
               "parameters": [
                 {
-                  "name": "{ detail }"
+                  "name": "{detail}"
                 }
               ]
             },
@@ -587,7 +587,7 @@
                 "text": "array"
               },
               "description": "The screen size options to display",
-              "default": "[ { width: 360, height: 800, id: '360x800' }, { width: 390, height: 864, id: '390x864' }, { width: 414, height: 896, id: '414x896' }, { width: 768, height: 1024, id: '768x1024' }, { width: 810, height: 1080, id: '810x1080' }, { width: 1280, height: 720, id: '1280x800' }, { width: 1366, height: 768, id: '1366x768' }, { width: 1536, height: 864, id: '1536x864' }, { width: 1920, height: 1080, id: '1920x1080' }, ]",
+              "default": "[ {width: 360, height: 800, id: '360x800'}, {width: 390, height: 864, id: '390x864'}, {width: 414, height: 896, id: '414x896'}, {width: 768, height: 1024, id: '768x1024'}, {width: 810, height: 1080, id: '810x1080'}, {width: 1280, height: 720, id: '1280x800'}, {width: 1366, height: 768, id: '1366x768'}, {width: 1536, height: 864, id: '1536x864'}, {width: 1920, height: 1080, id: '1920x1080'}, ]",
               "attribute": "screen-sizes"
             },
             {
@@ -609,7 +609,7 @@
                 "text": "array"
               },
               "description": "The screen size options to display",
-              "default": "[ { width: 360, height: 800, id: '360x800' }, { width: 390, height: 864, id: '390x864' }, { width: 414, height: 896, id: '414x896' }, { width: 768, height: 1024, id: '768x1024' }, { width: 810, height: 1080, id: '810x1080' }, { width: 1280, height: 720, id: '1280x800' }, { width: 1366, height: 768, id: '1366x768' }, { width: 1536, height: 864, id: '1536x864' }, { width: 1920, height: 1080, id: '1920x1080' }, ]",
+              "default": "[ {width: 360, height: 800, id: '360x800'}, {width: 390, height: 864, id: '390x864'}, {width: 414, height: 896, id: '414x896'}, {width: 768, height: 1024, id: '768x1024'}, {width: 810, height: 1080, id: '810x1080'}, {width: 1280, height: 720, id: '1280x800'}, {width: 1366, height: 768, id: '1366x768'}, {width: 1536, height: 864, id: '1536x864'}, {width: 1920, height: 1080, id: '1920x1080'}, ]",
               "fieldName": "screenSizes"
             },
             {
