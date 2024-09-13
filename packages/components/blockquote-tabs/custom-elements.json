@@ -79,7 +79,7 @@
               "name": "_scrollEdge",
               "parameters": [
                 {
-                  "name": "{ target = this._scrollContentRef.value }",
+                  "name": "{target = this._scrollContentRef.value}",
                   "default": "{}"
                 }
               ]

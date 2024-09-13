@@ -81,17 +81,17 @@ Tabs are a set of layered sections of content, known as tab panels, that display
 
 ##### Methods
 
-| Name                        | Privacy | Description | Parameters                                  | Return | Inherited From |
-| --------------------------- | ------- | ----------- | ------------------------------------------- | ------ | -------------- |
-| `_selectedIsInRange`        |         |             | `idx`                                       |        |                |
-| `_scrollEdge`               |         |             | `{ target = this._scrollContentRef.value }` |        |                |
-| `_selectTab`                |         |             |                                             |        |                |
-| `_moveFocusSelectedTab`     |         |             | `selectedTab`                               |        |                |
-| `_requestFocusUpdate`       |         |             |                                             |        |                |
-| `_scrollIntoView`           |         |             |                                             |        |                |
-| `_scrollIntoViewWithOffset` |         |             | `tabScroller, behavior`                     |        |                |
-| `_requestPropertyUpdate`    |         |             | `prop`                                      |        |                |
-| `_onResizeObserverChange`   |         |             |                                             |        |                |
+| Name                        | Privacy | Description | Parameters                                | Return | Inherited From |
+| --------------------------- | ------- | ----------- | ----------------------------------------- | ------ | -------------- |
+| `_selectedIsInRange`        |         |             | `idx`                                     |        |                |
+| `_scrollEdge`               |         |             | `{target = this._scrollContentRef.value}` |        |                |
+| `_selectTab`                |         |             |                                           |        |                |
+| `_moveFocusSelectedTab`     |         |             | `selectedTab`                             |        |                |
+| `_requestFocusUpdate`       |         |             |                                           |        |                |
+| `_scrollIntoView`           |         |             |                                           |        |                |
+| `_scrollIntoViewWithOffset` |         |             | `tabScroller, behavior`                   |        |                |
+| `_requestPropertyUpdate`    |         |             | `prop`                                    |        |                |
+| `_onResizeObserverChange`   |         |             |                                           |        |                |
 
 ##### Events
 

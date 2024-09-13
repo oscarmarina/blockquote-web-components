@@ -140,7 +140,7 @@
               "name": "_firstFocusTrap",
               "parameters": [
                 {
-                  "name": "{ relatedTarget }"
+                  "name": "{relatedTarget}"
                 }
               ]
             },
@@ -149,7 +149,7 @@
               "name": "_lastFocusTrap",
               "parameters": [
                 {
-                  "name": "{ relatedTarget }"
+                  "name": "{relatedTarget}"
                 }
               ]
             },

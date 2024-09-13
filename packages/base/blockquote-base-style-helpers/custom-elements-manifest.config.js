@@ -1,5 +1,5 @@
-import { cemToMarkdownReadme } from '@blockquote/cem-to-markdown-readme';
+import {cemToMarkdownReadme} from '@blockquote/cem-to-markdown-readme';
 
 export default {
-  plugins: [...cemToMarkdownReadme({ classNameFilter: () => `  ` })],
+  plugins: [...cemToMarkdownReadme({classNameFilter: () => `  `})],
 };
