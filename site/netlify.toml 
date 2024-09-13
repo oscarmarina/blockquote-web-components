@@ -3,4 +3,4 @@
   [headers.values]
     X-XSS-Protection = "0"
     X-Content-Type-Options = "nosniff"
-    Content-Security-Policy = "default-src 'self'; style-src 'self' 'unsafe-inline'; form-action 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; base-uri 'self';"
+    Content-Security-Policy = "default-src 'self'; style-src 'self' 'unsafe-inline'; form-action 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; base-uri 'self'; frame-src 'self' https://unpkg.com;"
