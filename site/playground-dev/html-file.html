@@ -1,16 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Demo - blk-material</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:image/x-icon;base64,B" />
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="blk-material" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
     <style>
       :root {
         --typeface-plain: 'IBM Plex Sans', serif;
@@ -190,30 +190,29 @@
         <div class="fieldset">
           <div>
             <input type="checkbox" id="tone" />
-            <label for="tone">core surface roles: dim, surface, bright </label>
+            <label for="tone">core surface roles: dim, surface, bright</label>
           </div>
           <div>
             <input type="checkbox" id="dark" />
-            <label for="dark"> prefers-color-scheme: dark </label>
+            <label for="dark">prefers-color-scheme: dark</label>
           </div>
         </div>
         <p class="text">[]</p>
-        <blk-material heading="Lit & Material 3"
-          >Lit adds just what you need to be happy and productive: reactivity, declarative templates
+        <blk-material heading="Lit & Material 3">
+          Lit adds just what you need to be happy and productive: reactivity, declarative templates
           and a handful of thoughtful features to reduce boilerplate and make your job easier. Every
           Lit feature is carefully designed with web platform evolution in mind.
         </blk-material>
         <hr />
-        <blk-material heading="Nested"
-          >Lit adds just what you need to be happy and productive: reactivity, declarative templates
+        <blk-material heading="Nested">
+          Lit adds just what you need to be happy and productive: reactivity, declarative templates
           and a handful of thoughtful features to reduce boilerplate and make your job easier. Every
           Lit feature is carefully designed with web platform evolution in mind.
           <blk-material style="outline: var(--surface-dim) solid 1px" heading="Inside">
             Lit adds just what you need to be happy and productive: reactivity, declarative
             templates and a handful of thoughtful features to reduce boilerplate and make your job
-            easier. Every Lit feature is carefully designed with web platform evolution in
-            mind.</blk-material
-          >
+            easier. Every Lit feature is carefully designed with web platform evolution in mind.
+          </blk-material>
         </blk-material>
       </section>
 
@@ -254,7 +253,7 @@
     <script type="module">
       import './define/blk-material.js';
       import './src/tokens/dark-color-scheme.js';
-      import { ROLES } from './src/tokens/generate-tokens.js';
+      import {ROLES} from './src/tokens/generate-tokens.js';
       const sectionTone = document.querySelector('section');
       const dataTone = document.querySelector('blk-material');
       const textTone = document.querySelector('.text');
@@ -265,7 +264,7 @@
         let lastValue = null;
         let remainingStrings = [];
 
-        return strings => {
+        return (strings) => {
           if (remainingStrings.length === 0) {
             remainingStrings = strings.slice().sort(() => Math.random() - 0.5);
           }
@@ -274,7 +273,7 @@
         };
       })();
 
-      ch.addEventListener('change', ({ target }) => {
+      ch.addEventListener('change', ({target}) => {
         if (target.checked) {
           const randomString = getRandomSurface(['dim', 'bright']);
           dataTone.setAttribute(ROLES, randomString);
@@ -286,14 +285,13 @@
           textTone.textContent = `[surface]`;
         }
       });
-      dk.addEventListener('change', ({ target }) => {
+      dk.addEventListener('change', ({target}) => {
         if (target.checked) {
           document.documentElement.setAttribute('data-prefers-color-scheme', 'dark');
         } else {
           document.documentElement.removeAttribute('data-prefers-color-scheme');
         }
       });
-      </script>
-
+    </script>
   </body>
 </html>

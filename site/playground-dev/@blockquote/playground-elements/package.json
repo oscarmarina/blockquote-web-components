@@ -1,0 +1,33 @@
+{
+  "name": "@blockquote/playground-elements",
+  "version": "1.0.0",
+  "description": "A Rollup configuration for building a Playground Element.",
+  "type": "module",
+  "author": "Google LLC",
+  "license": "BSD-3-Clause",
+  "scripts": {
+    "build": "rm -rf dist && rollup -c"
+  },
+  "files": [
+    "/dist/"
+  ],
+  "exports": {
+    ".": {
+      "default": "./dist/playground-ide.js"
+    },
+    "./playground-ide.js": {
+      "default": "./dist/playground-ide.js"
+    }
+  },
+  "main": "./dist/playground-ide.js",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@web/rollup-plugin-import-meta-assets": "^2.2.1",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup": "^4.21.2"
+  },
+  "dependencies": {
+    "playground-elements": "^0.19.1"
+  }
+}
