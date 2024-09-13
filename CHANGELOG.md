@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.8.6](https://github.com/oscarmarina/blockquote-web-components/compare/v2.8.5...v2.8.6) (2024-09-13)
+
 ### [2.8.5](https://github.com/oscarmarina/blockquote-web-components/compare/v2.8.4...v2.8.5) (2024-09-13)
 
 ### [2.8.4](https://github.com/oscarmarina/blockquote-web-components/compare/v2.8.3...v2.8.4) (2024-09-06)
