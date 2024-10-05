@@ -30,13 +30,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Conf .npmrc
-        run: |
-          echo "legacy-peer-deps=true" > .npmrc
-
       - name: Install dependencies
         run: |
-          npm ci --legacy-peer-deps
+          npm ci
 
       - name: Check for skip lerna in commit message
         id: check_skip

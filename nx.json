@@ -1,28 +1,19 @@
 {
-  "targetDefaults": {
-    "analyze": {
-      "cache": true
-    },
-    "lint:eslint": {
-      "cache": true
-    },
-    "lint:prettier": {
-      "cache": true
-    },
-    "lint:stylelint": {
-      "cache": true
-    },
-    "format:eslint": {
-      "cache": true
-    },
-    "format:prettier": {
-      "cache": true
-    },
-    "format:stylelint": {
-      "cache": true
-    },
-    "test": {
-      "cache": true
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "test",
+          "analyze",
+          "lint:eslint",
+          "lint:prettier",
+          "lint:stylelint",
+          "format:eslint",
+          "format:prettier",
+          "format:stylelint"
+        ]
+      }
     }
   },
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
