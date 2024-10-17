@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-dialog",
-  "version": "1.1.11",
+  "version": "1.1.12",
   "description": "Webcomponent blockquote-dialog following open-wc recommendations",
   "keywords": [
     "lit",
@@ -98,14 +98,14 @@
     }
   },
   "dependencies": {
-    "@blockquote-web-components/blockquote-directive-ariaidref-slot": "^1.1.8",
+    "@blockquote-web-components/blockquote-directive-ariaidref-slot": "^1.1.9",
     "@blockquote/dev-utilities": "^1.0.0",
     "@material/web": "^1.4.1",
     "lit": "^3.2.0"
   },
   "devDependencies": {
-    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.10.0",
-    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.11.5",
+    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.10.1",
+    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.11.6",
     "@blockquote-web-components/blockquote-foundations-sass": "^1.1.5",
     "sinon": "^18.0.0"
   },

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.10](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/ajax-provider@1.3.9...@blockquote-web-components/ajax-provider@1.3.10) (2024-10-17)
+
+**Note:** Version bump only for package @blockquote-web-components/ajax-provider
+
+
+
+
+
 ## [1.3.9](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/ajax-provider@1.3.8...@blockquote-web-components/ajax-provider@1.3.9) (2024-10-05)
 
 **Note:** Version bump only for package @blockquote-web-components/ajax-provider
