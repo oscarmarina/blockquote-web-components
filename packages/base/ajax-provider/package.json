@@ -98,7 +98,7 @@
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.10.0",
     "@blockquote-web-components/blockquote-base-embedded-webview": "^1.11.5",
-    "inspector-elements": "0.1.0",
+    "inspector-elements": "^0.1.0",
     "lit": "^3.2.0"
   },
   "publishConfig": {
