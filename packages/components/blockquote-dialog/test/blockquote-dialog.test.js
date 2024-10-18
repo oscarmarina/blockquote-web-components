@@ -1,7 +1,6 @@
-/* eslint-disable lit-a11y/no-autofocus */
 /* eslint-disable import/no-extraneous-dependencies */
 import {html, fixture, assert, expect, fixtureCleanup, aTimeout} from '@open-wc/testing';
-import sinon from 'sinon';
+import {spy} from 'sinon';
 import '../define/blockquote-dialog.js';
 
 const _formTpl = html`
@@ -279,52 +278,52 @@ suite('BlockquoteDialog', () => {
       el.open = true;
       await el.updateComplete;
       const lastButton = el.querySelector('#confirm');
-      const spy = sinon.spy(/** @type {HTMLButtonElement} */ (lastButton), 'focus');
-      assert.isTrue(spy.notCalled);
+      const spyFocus = spy(/** @type {HTMLButtonElement} */ (lastButton), 'focus');
+      assert.isTrue(spyFocus.notCalled);
       await el.updateComplete;
       const firstFocusTrap = el.shadowRoot?.querySelector('dialog > span:first-of-type');
       /** @type {HTMLElement} */ (firstFocusTrap)?.focus();
-      assert.isTrue(spy.called);
+      assert.isTrue(spyFocus.called);
     });
 
     test('focus on first focus trap sets focus to first element when relatedTarget is undefined', async () => {
       el.open = true;
       await el.updateComplete;
       const firstButton = el.querySelector('#cancel');
-      const spy = sinon.spy(/** @type {HTMLButtonElement} */ (firstButton), 'focus');
-      assert.isTrue(spy.notCalled);
+      const spyFocus = spy(/** @type {HTMLButtonElement} */ (firstButton), 'focus');
+      assert.isTrue(spyFocus.notCalled);
       await el.updateComplete;
       const firstFocusTrap = el.shadowRoot?.querySelector('dialog > span:first-of-type');
       /** @type {HTMLElement} */ (firstFocusTrap)?.dispatchEvent(
         new FocusEvent('focus', {relatedTarget: null})
       );
-      assert.isTrue(spy.called);
+      assert.isTrue(spyFocus.called);
     });
 
     test('focus on last focus trap sets focus to first element', async () => {
       el.open = true;
       await el.updateComplete;
       const firstButton = el.querySelector('#cancel');
-      const spy = sinon.spy(/** @type {HTMLButtonElement} */ (firstButton), 'focus');
-      assert.isTrue(spy.notCalled);
+      const spyFocus = spy(/** @type {HTMLButtonElement} */ (firstButton), 'focus');
+      assert.isTrue(spyFocus.notCalled);
       await el.updateComplete;
       const lastFocusTrap = el.shadowRoot?.querySelector('dialog > span:last-of-type');
       /** @type {HTMLElement} */ (lastFocusTrap)?.focus();
-      assert.isTrue(spy.called);
+      assert.isTrue(spyFocus.called);
     });
 
     test('focus on last focus trap sets focus to last element when relatedTarget is undefined', async () => {
       el.open = true;
       await el.updateComplete;
       const lastButton = el.querySelector('#confirm');
-      const spy = sinon.spy(/** @type {HTMLButtonElement} */ (lastButton), 'focus');
-      assert.isTrue(spy.notCalled);
+      const spyFocus = spy(/** @type {HTMLButtonElement} */ (lastButton), 'focus');
+      assert.isTrue(spyFocus.notCalled);
       await el.updateComplete;
       const firstFocusTrap = el.shadowRoot?.querySelector('dialog > span:last-of-type');
       /** @type {HTMLElement} */ (firstFocusTrap)?.dispatchEvent(
         new FocusEvent('focus', {relatedTarget: null})
       );
-      assert.isTrue(spy.called);
+      assert.isTrue(spyFocus.called);
     });
 
     test('autofocus', async () => {

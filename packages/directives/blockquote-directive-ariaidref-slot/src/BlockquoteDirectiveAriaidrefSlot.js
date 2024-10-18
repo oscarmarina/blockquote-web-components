@@ -1,4 +1,3 @@
-// eslint-disable-next-line max-classes-per-file
 import {Directive, directive, PartType} from 'lit/directive.js';
 import {noChange} from 'lit';
 

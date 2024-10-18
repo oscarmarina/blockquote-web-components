@@ -8,12 +8,12 @@ suite('BlockquoteBaseMeta', () => {
   suite('init', () => {
     test('has types', () => {
       const meta = new BlockquoteBaseMeta({key: 'info', value: 'foo/bar'});
-      assert.isDefined(meta.constructor.types);
+      assert.isDefined(/** @type {*} */ (meta.constructor).types);
     });
 
     test('has metaId', () => {
       const meta = new BlockquoteBaseMeta({key: 'info', value: 'foo/bar'});
-      assert.isDefined(meta.constructor.uuid);
+      assert.isDefined(/** @type {*} */ (meta.constructor).uuid);
     });
 
     test('byKey', () => {
@@ -31,14 +31,12 @@ suite('BlockquoteBaseMeta', () => {
     test('getting `list` does not throw if no objects of the given type exist', () => {
       const meta = new BlockquoteBaseMeta({type: 'NO ITEMS OF THIS TYPE'});
       assert.doesNotThrow(() => {
-        // eslint-disable-next-line no-unused-expressions
         meta.list;
       });
     });
 
     test('constructor with no arguments', () => {
       assert.doesNotThrow(() => {
-        // eslint-disable-next-line no-new
         new BlockquoteBaseMeta();
       });
     });
@@ -95,7 +93,6 @@ suite('BlockquoteBaseMeta', () => {
     });
 
     teardown(() => {
-      // eslint-disable-next-line arrow-parens
       metas.forEach((meta) => {
         const m = meta;
         m.value = null;

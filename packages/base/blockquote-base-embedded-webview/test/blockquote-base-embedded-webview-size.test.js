@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import {html, fixture, assert, fixtureCleanup} from '@open-wc/testing';
-import sinon from 'sinon';
+import {spy} from 'sinon';
 import '../define/blockquote-base-embedded-webview-size.js';
 
 suite('BlockquoteBaseEmbeddedWebviewSize', () => {
@@ -28,7 +28,6 @@ suite('BlockquoteBaseEmbeddedWebviewSize', () => {
       await el.updateComplete;
 
       screenSizesButtons = el.shadowRoot?.querySelectorAll('button');
-      // eslint-disable-next-line prefer-destructuring
       buttonSize3 = screenSizesButtons?.[2];
     });
 
@@ -46,19 +45,19 @@ suite('BlockquoteBaseEmbeddedWebviewSize', () => {
       });
 
       test('selectedchange event is raised', async () => {
-        const spy = sinon.spy();
-        el.addEventListener('selectedchange', spy);
+        const spyEvent = spy();
+        el.addEventListener('selectedchange', spyEvent);
         el.selected = 1;
         await el.updateComplete;
-        assert.isTrue(spy.called, 'selectedchange event is raised');
+        assert.isTrue(spyEvent.called, 'selectedchange event is raised');
       });
 
       test('click event is raised', async () => {
-        const spy = sinon.spy();
-        el.addEventListener('click', spy);
+        const spyEvent = spy();
+        el.addEventListener('click', spyEvent);
         buttonSize3.click();
         await el.updateComplete;
-        assert.isTrue(spy.called, 'click event is raised');
+        assert.isTrue(spyEvent.called, 'click event is raised');
       });
 
       test('screen-sizes array are sorted in descending order (by width)', () => {
