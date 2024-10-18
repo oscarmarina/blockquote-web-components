@@ -1,4 +1,3 @@
-/* eslint-disable max-classes-per-file */
 import {html, LitElement, css} from 'lit';
 import {BlockquoteControllerContextMeta} from '../src/index.js';
 

@@ -1,4 +1,3 @@
-/* eslint-disable lit-a11y/no-autofocus */
 /* eslint-disable import/no-extraneous-dependencies */
 import {html, fixture, assert, expect, fixtureCleanup, aTimeout} from '@open-wc/testing';
 

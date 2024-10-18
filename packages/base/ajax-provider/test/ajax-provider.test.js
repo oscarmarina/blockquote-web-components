@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import {assert, aTimeout} from '@open-wc/testing';
-import sinon from 'sinon';
+import {fakeServer, spy} from 'sinon';
 import {AjaxProvider} from '../src/index.js';
 
 suite('AjaxProvider', () => {
@@ -13,7 +13,7 @@ suite('AjaxProvider', () => {
 
   suite('Default', () => {
     setup(() => {
-      server = sinon.fakeServer.create();
+      server = fakeServer.create();
       server.respondWith('GET', '/responds_get_with_json', [
         200,
         responseHeaders.json,
@@ -93,93 +93,93 @@ suite('AjaxProvider', () => {
     });
 
     test('The `ajaxpresend` event gets fired', async () => {
-      const spy = sinon.spy();
+      const spyEvent = spy();
       const el = new AjaxProvider({
         url: '/responds_get_with_json',
       });
-      el.addEventListener('ajaxpresend', spy);
+      el.addEventListener('ajaxpresend', spyEvent);
       el.generateRequest();
-      assert.ok(spy.calledOnce);
+      assert.ok(spyEvent.calledOnce);
     });
 
     test('The `ajaxprogress` event gets fired', async () => {
-      const spy = sinon.spy();
+      const spyEvent = spy();
       const el = new AjaxProvider({
         url: '/responds_get_with_json',
       });
-      el.addEventListener('ajaxprogress', spy);
+      el.addEventListener('ajaxprogress', spyEvent);
       el.generateRequest();
       server.respond();
       await aTimeout(16);
-      assert.ok(spy.calledOnce);
+      assert.ok(spyEvent.calledOnce);
     });
 
     test('The `ajaxresponse` event gets fired', async () => {
-      const spy = sinon.spy();
+      const spyEvent = spy();
       const el = new AjaxProvider({
         url: '/responds_get_with_json',
       });
-      el.addEventListener('ajaxresponse', spy);
+      el.addEventListener('ajaxresponse', spyEvent);
       el.generateRequest();
       server.respond();
       await aTimeout(16);
-      assert.ok(spy.calledOnce);
+      assert.ok(spyEvent.calledOnce);
     });
 
     test('The `ajaxresponseend` event gets fired', async () => {
-      const spy = sinon.spy();
+      const spyEvent = spy();
       const el = new AjaxProvider({
         url: '/responds_get_with_json',
       });
-      el.addEventListener('ajaxresponseend', spy);
+      el.addEventListener('ajaxresponseend', spyEvent);
       el.generateRequest();
       server.respond();
       await aTimeout(16);
-      assert.ok(spy.calledOnce);
+      assert.ok(spyEvent.calledOnce);
     });
 
     test('Response like a promise', async () => {
-      const spy = sinon.spy();
+      const spyEvent = spy();
       const el = new AjaxProvider({
         url: '/responds_get_with_json',
       });
 
-      el.generateRequest().then(spy);
+      el.generateRequest().then(spyEvent);
       server.respond();
       await aTimeout(16);
-      assert.ok(spy.calledOnce);
+      assert.ok(spyEvent.calledOnce);
     });
 
     test('The `ajaxerror` event gets fired', async () => {
-      const spy = sinon.spy();
+      const spyEvent = spy();
       const el = new AjaxProvider({
         url: '/responds_to_get_with_502_error_json',
       });
-      el.addEventListener('ajaxerror', spy);
+      el.addEventListener('ajaxerror', spyEvent);
       el.generateRequest().catch(async (error) => {
         const errorMessage = JSON.stringify({message: 'an error has occurred'});
         await aTimeout(16);
-        assert.ok(spy.calledOnce);
+        assert.ok(spyEvent.calledOnce);
         assert.equal(JSON.stringify(error.response), errorMessage);
       });
       server.respond();
     });
 
     test('The `ajaxerrorend` event gets fired', async () => {
-      const spy = sinon.spy();
+      const spyEvent = spy();
       const el = new AjaxProvider({
         url: '/responds_to_get_with_502_error_json',
       });
-      el.addEventListener('ajaxerrorend', spy);
+      el.addEventListener('ajaxerrorend', spyEvent);
       el.generateRequest().catch(async () => {
         await aTimeout(16);
-        assert.ok(spy.calledOnce);
+        assert.ok(spyEvent.calledOnce);
       });
       server.respond();
     });
 
     test('With includeDownloadProgress or includeUploadProgress, the ajaxprogress event can be triggered multiple times', async () => {
-      const spy = sinon.spy();
+      const spyEvent = spy();
       const el = new AjaxProvider({
         url: '/responds_to_post_with_json',
         method: 'POST',
@@ -189,11 +189,11 @@ suite('AjaxProvider', () => {
         includeDownloadProgress: true,
         includeUploadProgress: true,
       });
-      el.addEventListener('ajaxprogress', spy);
+      el.addEventListener('ajaxprogress', spyEvent);
       el.generateRequest();
       server.respond();
       await aTimeout(16);
-      assert.isAbove(spy.callCount, 1);
+      assert.isAbove(spyEvent.callCount, 1);
     });
 
     test('Requests with a Form Data payload automatically remove the Content-Type header by default', async () => {

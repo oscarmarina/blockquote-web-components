@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* c8 ignore start */
 
 /**
@@ -43,9 +44,8 @@ export const isStandardBrowserWebWorkerEnv = (() =>
    * These conditions are typical of a standard browser WebWorker environment.
    */
   typeof WorkerGlobalScope !== 'undefined' &&
-  // eslint-disable-next-line no-undef, no-restricted-globals
+  // eslint-disable-next-line no-undef
   self instanceof WorkerGlobalScope &&
-  // eslint-disable-next-line no-restricted-globals
   typeof self.importScripts === 'function')();
 
 /* c8 ignore stop */
@@ -71,7 +71,6 @@ export const isFormData = (thing) =>
  */
 export const assignIfDefined = (obj, prop, value) => {
   if (value) {
-    // eslint-disable-next-line no-param-reassign
     obj[prop] = value;
   }
 };
