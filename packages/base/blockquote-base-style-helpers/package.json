@@ -17,13 +17,13 @@
     "./package.json": {
       "default": "./package.json"
     },
-    "./src/getComponentSharedStyles.js": {
+    "./getComponentSharedStyles.js": {
       "default": "./src/getComponentSharedStyles.js"
     },
-    "./src/setComponentSharedStyles.js": {
+    "./setComponentSharedStyles.js": {
       "default": "./src/setComponentSharedStyles.js"
     },
-    "./src/setDocumentStyles.js": {
+    "./setDocumentStyles.js": {
       "default": "./src/setDocumentStyles.js"
     },
     "./index.js": {
@@ -33,9 +33,7 @@
   "main": "src/index.js",
   "module": "src/index.js",
   "files": [
-    "/define/",
     "/src/",
-    "index.js",
     "!/**/*.scss"
   ],
   "scripts": {
