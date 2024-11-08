@@ -21,7 +21,7 @@
     "./package.json": {
       "default": "./package.json"
     },
-    "./src/BlockquoteControllerXstate.js": {
+    "./BlockquoteControllerXstate.js": {
       "default": "./src/BlockquoteControllerXstate.js"
     },
     "./index.js": {
@@ -29,10 +29,7 @@
     }
   },
   "files": [
-    "/define/",
-    "/src/",
-    "index.js",
-    "!/**/*.scss"
+    "/src/"
   ],
   "scripts": {
     "analyze": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
