@@ -24,6 +24,7 @@
 **/dev
 **/build
 **/.tmp
+**/.wireit
 **/*.tgz
 **/*.tsbuildinfo
 **/storybook-static
@@ -31,8 +32,8 @@
 
 ## specific prettierignore
 **/*.d.ts
-**/*.config.*
 **/package-lock.json
 **/*.min.js
-**/*-styles.*
+**/*-styles*.js
+**/*-styles*.ts
 **/CHANGELOG.md
