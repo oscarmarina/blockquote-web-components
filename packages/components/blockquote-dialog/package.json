@@ -17,25 +17,23 @@
     "./package.json": {
       "default": "./package.json"
     },
-    "./src/BlockquoteDialog.js": {
+    "./BlockquoteDialog.js": {
       "default": "./src/BlockquoteDialog.js"
     },
-    "./define/blockquote-dialog.js": {
+    "./blockquote-dialog.js": {
       "default": "./define/blockquote-dialog.js"
     },
     "./index.js": {
       "default": "./src/index.js"
     },
-    "./src/styles/blockquote-dialog-styles.css.js": {
+    "./blockquote-dialog-styles.css.js": {
       "default": "./src/styles/blockquote-dialog-styles.css.js"
     }
   },
   "main": "src/index.js",
   "module": "src/index.js",
   "files": [
-    "/define/",
     "/src/",
-    "index.js",
     "!/**/*.scss"
   ],
   "scripts": {

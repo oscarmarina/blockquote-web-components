@@ -120,6 +120,14 @@ Inert content outside an active dialog is typically visually obscured or dimmed 
 | ---- | ------------------ | ---------------- | --------------------- | ------- |
 | `js` | `BlockquoteDialog` | BlockquoteDialog | ./BlockquoteDialog.js |         |
 
+### `src/define/blockquote-dialog.js`:
+
+#### Exports
+
+| Kind                        | Name                | Declaration      | Module                   | Package |
+| --------------------------- | ------------------- | ---------------- | ------------------------ | ------- |
+| `custom-element-definition` | `blockquote-dialog` | BlockquoteDialog | /src/BlockquoteDialog.js |         |
+
 ### `src/styles/blockqoute-dialog-animations-styles.css.js`:
 
 #### Variables
@@ -151,11 +159,3 @@ Inert content outside an active dialog is typically visually obscured or dimmed 
 | Kind | Name     | Declaration | Module                                     | Package |
 | ---- | -------- | ----------- | ------------------------------------------ | ------- |
 | `js` | `styles` | styles      | src/styles/blockquote-dialog-styles.css.js |         |
-
-### `define/blockquote-dialog.js`:
-
-#### Exports
-
-| Kind                        | Name                | Declaration      | Module                   | Package |
-| --------------------------- | ------------------- | ---------------- | ------------------------ | ------- |
-| `custom-element-definition` | `blockquote-dialog` | BlockquoteDialog | /src/BlockquoteDialog.js |         |
