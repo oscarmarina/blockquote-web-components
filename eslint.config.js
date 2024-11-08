@@ -143,7 +143,8 @@ export default [
       '**/*.config.*',
       '**/*.d.ts',
       '**/*.min.js',
-      '**/*-styles.*',
+      '**/*-styles*.js',
+      '**/*-styles*.ts',
       '**/*.workspace.*',
     ],
   },
@@ -167,7 +168,7 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.mocha,
-      }
+      },
     },
 
     rules: {
