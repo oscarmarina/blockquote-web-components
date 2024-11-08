@@ -21,7 +21,7 @@
     "./package.json": {
       "default": "./package.json"
     },
-    "./src/BlockquoteDirectiveAriaidrefSlot.js": {
+    "./BlockquoteDirectiveAriaidrefSlot.js": {
       "default": "./src/BlockquoteDirectiveAriaidrefSlot.js"
     },
     "./index.js": {
@@ -31,10 +31,7 @@
   "main": "src/index.js",
   "module": "src/index.js",
   "files": [
-    "/define/",
-    "/src/",
-    "index.js",
-    "!/**/*.scss"
+    "/src/"
   ],
   "scripts": {
     "analyze": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
