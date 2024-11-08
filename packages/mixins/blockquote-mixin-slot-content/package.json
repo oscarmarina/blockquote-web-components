@@ -19,7 +19,7 @@
     "./package.json": {
       "default": "./package.json"
     },
-    "./src/BlockquoteMixinSlotContent.js": {
+    "./BlockquoteMixinSlotContent.js": {
       "default": "./src/BlockquoteMixinSlotContent.js"
     },
     "./index.js": {
