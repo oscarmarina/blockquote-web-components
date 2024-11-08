@@ -4,7 +4,8 @@
     <title>Shared styles - blockquote-base-style-helpers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml">    <meta name="description" content="Demo Shared styles - blockquote-base-style-helpers" />
+    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml" />
+    <meta name="description" content="Demo Shared styles - blockquote-base-style-helpers" />
     <style>
       :root {
         font: normal medium/1.25 sans-serif;
@@ -34,8 +35,8 @@
     </main>
 
     <script type="module">
-      import { LitElement, html, css } from 'lit';
-      import { getComponentSharedStyles, setComponentSharedStyles } from '../src/index.js';
+      import {LitElement, html, css} from 'lit';
+      import {getComponentSharedStyles, setComponentSharedStyles} from '../src/index.js';
 
       setComponentSharedStyles(
         'shared-element-shared-styles',
@@ -43,7 +44,7 @@
           .shared2 {
             background-color: #e1f3f8;
           }
-        `,
+        `
       );
 
       setComponentSharedStyles(
@@ -52,7 +53,7 @@
           .shared3 {
             background-color: #fad980;
           }
-        `,
+        `
       );
 
       class SharedElement extends LitElement {
@@ -123,7 +124,7 @@
           .shared1 {
             background-color: yellow;
           }
-        `,
+        `
       );
     </script>
   </body>

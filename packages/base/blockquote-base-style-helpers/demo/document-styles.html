@@ -4,7 +4,8 @@
     <title>Document styles - blockquote-base-style-helpers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml">    <meta name="description" content="Demo Document styles - blockquote-base-style-helpers" />
+    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml" />
+    <meta name="description" content="Demo Document styles - blockquote-base-style-helpers" />
     <style>
       :root {
         font: normal medium/1.25 sans-serif;
@@ -33,7 +34,7 @@
       <document-element></document-element>
     </main>
     <script type="module">
-      import { LitElement, html, css } from 'lit';
+      import {LitElement, html, css} from 'lit';
       import './theme/theme.js';
 
       class DocumentElement extends LitElement {
@@ -79,7 +80,12 @@
 
         render() {
           return html`
-            <p>From <span>Design tokens</span> to <span>CSS</span></p>
+            <p>
+              From
+              <span>Design tokens</span>
+              to
+              <span>CSS</span>
+            </p>
             <pre>
 <code>
   const theme = {
