@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.10.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.9.3...v2.10.0) (2024-11-08)
+
+
+### Features
+
+* **ajax-provider:** update exports ([f789f14](https://github.com/oscarmarina/blockquote-web-components/commit/f789f141e175a5d6f703c1df08531b98ee18a537))
+* **blockquote-base-embedded-webview:** update exports ([a396f9f](https://github.com/oscarmarina/blockquote-web-components/commit/a396f9f3436a5a514d7a8f6f9b38c18e6bafd89e))
+* **blockquote-base-meta:** update exports ([8b7ed1e](https://github.com/oscarmarina/blockquote-web-components/commit/8b7ed1eb98620a0701071702378cf39b87231ce6))
+* **blockquote-base-style-helpers:** update exports ([b57f4ac](https://github.com/oscarmarina/blockquote-web-components/commit/b57f4ac2592d965440ba48d0e7c320741d31ac9b))
+* **blockquote-controller-context-meta:** update exports ([eb0e9b8](https://github.com/oscarmarina/blockquote-web-components/commit/eb0e9b8be07e6cb895fe1db55d0499671de28b60))
+* **blockquote-controller-rxjs:** update exports ([1665db4](https://github.com/oscarmarina/blockquote-web-components/commit/1665db43fe6952ab225d227130471ab8160883c2))
+* **blockquote-controller-xstate:** update exports ([943ff3f](https://github.com/oscarmarina/blockquote-web-components/commit/943ff3fa91c595e3fdca7fd8061c6fda77690441))
+* **blockquote-dialog:** update exports ([f5150a8](https://github.com/oscarmarina/blockquote-web-components/commit/f5150a8ff7e94cf554e90d2ff0e2173027084f93))
+* **blockquote-directive-ariaidref-slot:** update exports ([5b0bfe7](https://github.com/oscarmarina/blockquote-web-components/commit/5b0bfe7a696fe2ed361ee043e1cf8409ee88225c))
+* **blockquote-directive-svg-to-data-image:** update exports ([4b22fb7](https://github.com/oscarmarina/blockquote-web-components/commit/4b22fb7d96fb696972bc02ce57bab1f10a57de6d))
+* **blockquote-mixin-slot-content:** update exports ([42b26b7](https://github.com/oscarmarina/blockquote-web-components/commit/42b26b758a48a2bec30c490106c506cb8e68fe7a))
+* **blockquote-tabs:** update exports ([15254db](https://github.com/oscarmarina/blockquote-web-components/commit/15254db93682ddb12d7d83044a304a587fa32eb1))
+
 ### [2.9.3](https://github.com/oscarmarina/blockquote-web-components/compare/v2.9.2...v2.9.3) (2024-11-08)
 
 
