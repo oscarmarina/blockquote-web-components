@@ -1,4 +1,4 @@
-import {BlockquoteBaseEmbeddedWebviewElement} from '../src/BlockquoteBaseEmbeddedWebviewElement.js';
+import {BlockquoteBaseEmbeddedWebviewElement} from '../BlockquoteBaseEmbeddedWebviewElement.js';
 
 window.customElements.define(
   'blockquote-base-embedded-webview-element',

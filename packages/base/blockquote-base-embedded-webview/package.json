@@ -17,52 +17,50 @@
     "./package.json": {
       "default": "./package.json"
     },
-    "./src/BlockquoteBaseEmbeddedWebview.js": {
+    "./BlockquoteBaseEmbeddedWebview.js": {
       "default": "./src/BlockquoteBaseEmbeddedWebview.js"
     },
-    "./src/BlockquoteBaseEmbeddedWebviewElement.js": {
+    "./BlockquoteBaseEmbeddedWebviewElement.js": {
       "default": "./src/BlockquoteBaseEmbeddedWebviewElement.js"
     },
-    "./src/BlockquoteBaseEmbeddedWebviewResize.js": {
+    "./BlockquoteBaseEmbeddedWebviewResize.js": {
       "default": "./src/BlockquoteBaseEmbeddedWebviewResize.js"
     },
-    "./src/BlockquoteBaseEmbeddedWebviewSize.js": {
+    "./BlockquoteBaseEmbeddedWebviewSize.js": {
       "default": "./src/BlockquoteBaseEmbeddedWebviewSize.js"
     },
-    "./define/blockquote-base-embedded-webview-element.js": {
-      "default": "./define/blockquote-base-embedded-webview-element.js"
+    "./blockquote-base-embedded-webview-element.js": {
+      "default": "./src/define/blockquote-base-embedded-webview-element.js"
     },
-    "./define/blockquote-base-embedded-webview-resize.js": {
-      "default": "./define/blockquote-base-embedded-webview-resize.js"
+    "./blockquote-base-embedded-webview-resize.js": {
+      "default": "./src/define/blockquote-base-embedded-webview-resize.js"
     },
-    "./define/blockquote-base-embedded-webview-size.js": {
-      "default": "./define/blockquote-base-embedded-webview-size.js"
+    "./blockquote-base-embedded-webview-size.js": {
+      "default": "./src/define/blockquote-base-embedded-webview-size.js"
     },
-    "./define/blockquote-base-embedded-webview.js": {
-      "default": "./define/blockquote-base-embedded-webview.js"
+    "./blockquote-base-embedded-webview.js": {
+      "default": "./src/define/blockquote-base-embedded-webview.js"
     },
     "./index.js": {
       "default": "./src/index.js"
     },
-    "./src/styles/blockquote-base-embedded-webview-styles.css.js": {
+    "./blockquote-base-embedded-webview-styles.css.js": {
       "default": "./src/styles/blockquote-base-embedded-webview-styles.css.js"
     },
-    "./src/styles/blockquote-base-embedded-webview-element-styles.css.js": {
+    "./blockquote-base-embedded-webview-element-styles.css.js": {
       "default": "./src/styles/blockquote-base-embedded-webview-element-styles.css.js"
     },
-    "./src/styles/blockquote-base-embedded-webview-resize-styles.css.js": {
+    "./blockquote-base-embedded-webview-resize-styles.css.js": {
       "default": "./src/styles/blockquote-base-embedded-webview-resize-styles.css.js"
     },
-    "./src/styles/blockquote-base-embedded-webview-size-styles.css.js": {
+    "./blockquote-base-embedded-webview-size-styles.css.js": {
       "default": "./src/styles/blockquote-base-embedded-webview-size-styles.css.js"
     }
   },
   "main": "src/index.js",
   "module": "src/index.js",
   "files": [
-    "/define/",
     "/src/",
-    "index.js",
     "!/**/*.scss"
   ],
   "scripts": {

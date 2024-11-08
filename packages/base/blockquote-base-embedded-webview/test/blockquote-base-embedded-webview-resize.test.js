@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import {html, fixture, assert, fixtureCleanup} from '@open-wc/testing';
-import '../define/blockquote-base-embedded-webview-resize.js';
+import '../src/define/blockquote-base-embedded-webview-resize.js';
 
 /**
  * @param {string} type The type of event

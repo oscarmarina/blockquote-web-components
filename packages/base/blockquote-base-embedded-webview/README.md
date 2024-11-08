@@ -269,6 +269,38 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 | `js` | `BlockquoteBaseEmbeddedWebviewResize`  | BlockquoteBaseEmbeddedWebviewResize  | ./BlockquoteBaseEmbeddedWebviewResize.js  |         |
 | `js` | `BlockquoteBaseEmbeddedWebviewElement` | BlockquoteBaseEmbeddedWebviewElement | ./BlockquoteBaseEmbeddedWebviewElement.js |         |
 
+### `src/define/blockquote-base-embedded-webview-element.js`:
+
+#### Exports
+
+| Kind                        | Name                                       | Declaration                          | Module                                       | Package |
+| --------------------------- | ------------------------------------------ | ------------------------------------ | -------------------------------------------- | ------- |
+| `custom-element-definition` | `blockquote-base-embedded-webview-element` | BlockquoteBaseEmbeddedWebviewElement | /src/BlockquoteBaseEmbeddedWebviewElement.js |         |
+
+### `src/define/blockquote-base-embedded-webview-resize.js`:
+
+#### Exports
+
+| Kind                        | Name                                      | Declaration                         | Module                                      | Package |
+| --------------------------- | ----------------------------------------- | ----------------------------------- | ------------------------------------------- | ------- |
+| `custom-element-definition` | `blockquote-base-embedded-webview-resize` | BlockquoteBaseEmbeddedWebviewResize | /src/BlockquoteBaseEmbeddedWebviewResize.js |         |
+
+### `src/define/blockquote-base-embedded-webview-size.js`:
+
+#### Exports
+
+| Kind                        | Name                                    | Declaration                       | Module                                    | Package |
+| --------------------------- | --------------------------------------- | --------------------------------- | ----------------------------------------- | ------- |
+| `custom-element-definition` | `blockquote-base-embedded-webview-size` | BlockquoteBaseEmbeddedWebviewSize | /src/BlockquoteBaseEmbeddedWebviewSize.js |         |
+
+### `src/define/blockquote-base-embedded-webview.js`:
+
+#### Exports
+
+| Kind                        | Name                               | Declaration                   | Module                                 | Package |
+| --------------------------- | ---------------------------------- | ----------------------------- | -------------------------------------- | ------- |
+| `custom-element-definition` | `blockquote-base-embedded-webview` | BlockquoteBaseEmbeddedWebview | /src/BlockquoteBaseEmbeddedWebview\.js |         |
+
 ### `src/styles/blockquote-base-embedded-webview-element-styles.css.js`:
 
 #### Variables
@@ -332,35 +364,3 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 | Kind | Name     | Declaration | Module                                                    | Package |
 | ---- | -------- | ----------- | --------------------------------------------------------- | ------- |
 | `js` | `styles` | styles      | src/styles/blockquote-base-embedded-webview-styles.css.js |         |
-
-### `define/blockquote-base-embedded-webview-element.js`:
-
-#### Exports
-
-| Kind                        | Name                                       | Declaration                          | Module                                       | Package |
-| --------------------------- | ------------------------------------------ | ------------------------------------ | -------------------------------------------- | ------- |
-| `custom-element-definition` | `blockquote-base-embedded-webview-element` | BlockquoteBaseEmbeddedWebviewElement | /src/BlockquoteBaseEmbeddedWebviewElement.js |         |
-
-### `define/blockquote-base-embedded-webview-resize.js`:
-
-#### Exports
-
-| Kind                        | Name                                      | Declaration                         | Module                                      | Package |
-| --------------------------- | ----------------------------------------- | ----------------------------------- | ------------------------------------------- | ------- |
-| `custom-element-definition` | `blockquote-base-embedded-webview-resize` | BlockquoteBaseEmbeddedWebviewResize | /src/BlockquoteBaseEmbeddedWebviewResize.js |         |
-
-### `define/blockquote-base-embedded-webview-size.js`:
-
-#### Exports
-
-| Kind                        | Name                                    | Declaration                       | Module                                    | Package |
-| --------------------------- | --------------------------------------- | --------------------------------- | ----------------------------------------- | ------- |
-| `custom-element-definition` | `blockquote-base-embedded-webview-size` | BlockquoteBaseEmbeddedWebviewSize | /src/BlockquoteBaseEmbeddedWebviewSize.js |         |
-
-### `define/blockquote-base-embedded-webview.js`:
-
-#### Exports
-
-| Kind                        | Name                               | Declaration                   | Module                                 | Package |
-| --------------------------- | ---------------------------------- | ----------------------------- | -------------------------------------- | ------- |
-| `custom-element-definition` | `blockquote-base-embedded-webview` | BlockquoteBaseEmbeddedWebview | /src/BlockquoteBaseEmbeddedWebview\.js |         |

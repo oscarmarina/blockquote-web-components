@@ -709,6 +709,66 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/define/blockquote-base-embedded-webview-element.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "blockquote-base-embedded-webview-element",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebviewElement",
+            "module": "/src/BlockquoteBaseEmbeddedWebviewElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/blockquote-base-embedded-webview-resize.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "blockquote-base-embedded-webview-resize",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebviewResize",
+            "module": "/src/BlockquoteBaseEmbeddedWebviewResize.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/blockquote-base-embedded-webview-size.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "blockquote-base-embedded-webview-size",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebviewSize",
+            "module": "/src/BlockquoteBaseEmbeddedWebviewSize.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/blockquote-base-embedded-webview.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "blockquote-base-embedded-webview",
+          "declaration": {
+            "name": "BlockquoteBaseEmbeddedWebview",
+            "module": "/src/BlockquoteBaseEmbeddedWebview.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/styles/blockquote-base-embedded-webview-element-styles.css.js",
       "declarations": [
         {
@@ -787,66 +847,6 @@
           "declaration": {
             "name": "styles",
             "module": "src/styles/blockquote-base-embedded-webview-styles.css.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "define/blockquote-base-embedded-webview-element.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "blockquote-base-embedded-webview-element",
-          "declaration": {
-            "name": "BlockquoteBaseEmbeddedWebviewElement",
-            "module": "/src/BlockquoteBaseEmbeddedWebviewElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "define/blockquote-base-embedded-webview-resize.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "blockquote-base-embedded-webview-resize",
-          "declaration": {
-            "name": "BlockquoteBaseEmbeddedWebviewResize",
-            "module": "/src/BlockquoteBaseEmbeddedWebviewResize.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "define/blockquote-base-embedded-webview-size.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "blockquote-base-embedded-webview-size",
-          "declaration": {
-            "name": "BlockquoteBaseEmbeddedWebviewSize",
-            "module": "/src/BlockquoteBaseEmbeddedWebviewSize.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "define/blockquote-base-embedded-webview.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "blockquote-base-embedded-webview",
-          "declaration": {
-            "name": "BlockquoteBaseEmbeddedWebview",
-            "module": "/src/BlockquoteBaseEmbeddedWebview.js"
           }
         }
       ]
