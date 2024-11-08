@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-style-helpers@1.3.12...@blockquote-web-components/blockquote-base-style-helpers@1.4.0) (2024-11-08)
+
+
+### Features
+
+* **blockquote-base-style-helpers:** update exports ([b57f4ac](https://github.com/oscarmarina/blockquote-web-components/commit/b57f4ac2592d965440ba48d0e7c320741d31ac9b))
+
+
+
+
+
 ## [1.3.12](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-style-helpers@1.3.11...@blockquote-web-components/blockquote-base-style-helpers@1.3.12) (2024-11-08)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-base-style-helpers
