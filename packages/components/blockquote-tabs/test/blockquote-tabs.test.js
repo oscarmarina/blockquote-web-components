@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import {html, fixture, assert, expect, fixtureCleanup, aTimeout} from '@open-wc/testing';
 
-import '../define/blockquote-tabs.js';
+import '../src/define/blockquote-tabs.js';
 
 suite('BlockquoteTabs', () => {
   /**
