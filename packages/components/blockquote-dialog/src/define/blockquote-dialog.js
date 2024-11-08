@@ -1,3 +1,3 @@
-import {BlockquoteDialog} from '../src/BlockquoteDialog.js';
+import {BlockquoteDialog} from '../BlockquoteDialog.js';
 
 window.customElements.define('blockquote-dialog', BlockquoteDialog);

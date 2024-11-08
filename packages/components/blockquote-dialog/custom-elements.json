@@ -331,6 +331,21 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/define/blockquote-dialog.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "blockquote-dialog",
+          "declaration": {
+            "name": "BlockquoteDialog",
+            "module": "/src/BlockquoteDialog.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/styles/blockqoute-dialog-animations-styles.css.js",
       "declarations": [
         {
@@ -367,21 +382,6 @@
           "declaration": {
             "name": "styles",
             "module": "src/styles/blockquote-dialog-styles.css.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "define/blockquote-dialog.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "blockquote-dialog",
-          "declaration": {
-            "name": "BlockquoteDialog",
-            "module": "/src/BlockquoteDialog.js"
           }
         }
       ]
