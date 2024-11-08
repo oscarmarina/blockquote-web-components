@@ -17,11 +17,8 @@
     "./package.json": {
       "default": "./package.json"
     },
-    "./src/AjaxProviderMixin.js": {
+    "./AjaxProviderMixin.js": {
       "default": "./src/AjaxProviderMixin.js"
-    },
-    "./define/ajax-provider.js": {
-      "default": "./define/ajax-provider.js"
     },
     "./index.js": {
       "default": "./src/index.js"
@@ -30,8 +27,7 @@
   "main": "src/index.js",
   "module": "src/index.js",
   "files": [
-    "/src/",
-    "index.js"
+    "/src/"
   ],
   "scripts": {
     "analyze": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
