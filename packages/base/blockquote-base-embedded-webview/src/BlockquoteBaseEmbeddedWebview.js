@@ -1,8 +1,8 @@
 import {html, LitElement, render as LitHtmlRender} from 'lit';
 import {ref, createRef} from 'lit/directives/ref.js';
-import '../define/blockquote-base-embedded-webview-size.js';
-import '../define/blockquote-base-embedded-webview-resize.js';
-import '../define/blockquote-base-embedded-webview-element.js';
+import './define/blockquote-base-embedded-webview-size.js';
+import './define/blockquote-base-embedded-webview-resize.js';
+import './define/blockquote-base-embedded-webview-element.js';
 import {styles} from './styles/blockquote-base-embedded-webview-styles.css.js';
 
 const chevronDownIcon = html`

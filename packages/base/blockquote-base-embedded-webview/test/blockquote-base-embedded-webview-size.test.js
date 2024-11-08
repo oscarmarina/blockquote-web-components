@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import {html, fixture, assert, fixtureCleanup} from '@open-wc/testing';
 import {spy} from 'sinon';
-import '../define/blockquote-base-embedded-webview-size.js';
+import '../src/define/blockquote-base-embedded-webview-size.js';
 
 suite('BlockquoteBaseEmbeddedWebviewSize', () => {
   /**

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import {html, fixture, assert, fixtureCleanup, oneEvent} from '@open-wc/testing';
-import '../define/blockquote-base-embedded-webview-element.js';
+import '../src/define/blockquote-base-embedded-webview-element.js';
 
 suite('BlockquoteBaseEmbeddedWebviewElement', () => {
   /**

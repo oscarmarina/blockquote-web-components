@@ -1,4 +1,4 @@
-import {BlockquoteBaseEmbeddedWebviewResize} from '../src/BlockquoteBaseEmbeddedWebviewResize.js';
+import {BlockquoteBaseEmbeddedWebviewResize} from '../BlockquoteBaseEmbeddedWebviewResize.js';
 
 window.customElements.define(
   'blockquote-base-embedded-webview-resize',
