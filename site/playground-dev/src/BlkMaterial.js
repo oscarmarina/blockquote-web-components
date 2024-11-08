@@ -2,7 +2,7 @@ import { html, LitElement, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { styleTokens } from './styles/blk-material-tokens.js';
 import { styles } from './styles/blk-material-styles.css.js';
-import '../define/blk-button.js';
+import '../src/define/blk-button.js';
 
 const SVG =
   '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 180 180"><path fill="#F1F3F4" d="M0 20C0 8.954 8.954 0 20 0h140c11.046 0 20 8.954 20 20v140c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20V20Z"/><g clip-path="url(#a)"><circle cx="90" cy="90" r="45" fill="#757575"/><path fill="#BDBDBD" d="M58.848 58.846h62.308v61.615H58.848z"/><path fill="#fff" d="M89.999 120.462 58.845 58.846h62.307l-31.153 61.616Z"/></g><defs><clipPath id="a"><path fill="#fff" d="M45 45h90v90H45z"/></clipPath></defs></svg>';

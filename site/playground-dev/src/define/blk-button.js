@@ -1,3 +1,3 @@
-import { BlkButton } from '../src/BlkButton.js';
+import { BlkButton } from '../BlkButton.js';
 
 window.customElements.define('blk-button', BlkButton);

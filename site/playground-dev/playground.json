@@ -1,8 +1,8 @@
 {
   "files": {
-    "define/blk-material.js": { "hidden": true },
-    "define/blk-ripple.js": { "hidden": true },
-    "define/blk-button.js": { "hidden": true },
+    "src/define/blk-material.js": { "hidden": true },
+    "src/define/blk-ripple.js": { "hidden": true },
+    "src/define/blk-button.js": { "hidden": true },
     "index.js": {
       "hidden": true
     },

@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
 import { styleTokens } from './styles/blk-button-tokens.js';
 import { styles } from './styles/blk-button-styles.css.js';
-import '../define/blk-ripple.js';
+import '../src/define/blk-ripple.js';
 
 export class BlkButton extends LitElement {
   /**

@@ -73,7 +73,12 @@ ${e.fontFace.main}
               color: var(--red-700, #c04545);
             }
           `}render(){return s`
-            <p>From <span>Design tokens</span> to <span>CSS</span></p>
+            <p>
+              From
+              <span>Design tokens</span>
+              to
+              <span>CSS</span>
+            </p>
             <pre>
 <code>
   const theme = {
