@@ -127,6 +127,30 @@ Tabs are a set of layered sections of content, known as tab panels, that display
 | `js` | `BlockquoteTab`      | BlockquoteTab      | ./tab/BlockquoteTab.js           |         |
 | `js` | `BlockquoteTabPanel` | BlockquoteTabPanel | ./tabpanel/BlockquoteTabPanel.js |         |
 
+### `src/define/blockquote-tab.js`:
+
+#### Exports
+
+| Kind                        | Name             | Declaration   | Module                    | Package |
+| --------------------------- | ---------------- | ------------- | ------------------------- | ------- |
+| `custom-element-definition` | `blockquote-tab` | BlockquoteTab | /src/tab/BlockquoteTab.js |         |
+
+### `src/define/blockquote-tabpanel.js`:
+
+#### Exports
+
+| Kind                        | Name                  | Declaration        | Module                              | Package |
+| --------------------------- | --------------------- | ------------------ | ----------------------------------- | ------- |
+| `custom-element-definition` | `blockquote-tabpanel` | BlockquoteTabPanel | /src/tabpanel/BlockquoteTabPanel.js |         |
+
+### `src/define/blockquote-tabs.js`:
+
+#### Exports
+
+| Kind                        | Name              | Declaration    | Module                 | Package |
+| --------------------------- | ----------------- | -------------- | ---------------------- | ------- |
+| `custom-element-definition` | `blockquote-tabs` | BlockquoteTabs | /src/BlockquoteTabs.js |         |
+
 ### `src/styles/blockquote-tabs-styles.css.js`:
 
 #### Variables
@@ -142,6 +166,43 @@ Tabs are a set of layered sections of content, known as tab panels, that display
 | Kind | Name     | Declaration | Module                                   | Package |
 | ---- | -------- | ----------- | ---------------------------------------- | ------- |
 | `js` | `styles` | styles      | src/styles/blockquote-tabs-styles.css.js |         |
+
+![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
+
+`<blockquote-tabpanel>`
+A tab element that can be used inside a `blockquote-tabs` element.
+
+
+### `src/tabpanel/BlockquoteTabPanel.js`:
+
+#### class: `BlockquoteTabPanel`, `blockquote-tabpanel`
+
+##### Fields
+
+| Name                   | Privacy | Type      | Default                                                | Description                                  | Inherited From |
+| ---------------------- | ------- | --------- | ------------------------------------------------------ | -------------------------------------------- | -------------- |
+| `selected`             | public  | `boolean` | `false`                                                | Whether or not the tabpanel is \`selected\`. |                |
+| `globalRootAttributes` |         | `object`  | `{ role: 'tabpanel', slot: 'tabpanel', tabindex: 0, }` |                                              |                |
+
+##### Methods
+
+| Name                 | Privacy | Description                     | Parameters              | Return | Inherited From |
+| -------------------- | ------- | ------------------------------- | ----------------------- | ------ | -------------- |
+| `__setArrayAttibute` |         | Sets attributes on the element. | `entries: Record<*, *>` |        |                |
+
+##### Attributes
+
+| Name       | Field    | Inherited From |
+| ---------- | -------- | -------------- |
+| `selected` | selected |                |
+
+<hr/>
+
+#### Exports
+
+| Kind | Name                 | Declaration        | Module                             | Package |
+| ---- | -------------------- | ------------------ | ---------------------------------- | ------- |
+| `js` | `BlockquoteTabPanel` | BlockquoteTabPanel | src/tabpanel/BlockquoteTabPanel.js |         |
 
 ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
@@ -187,59 +248,6 @@ A tab element that can be used inside a `blockquote-tabs` element.
 | ---- | --------------- | ------------- | ------------------------ | ------- |
 | `js` | `BlockquoteTab` | BlockquoteTab | src/tab/BlockquoteTab.js |         |
 
-![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
-
-`<blockquote-tabpanel>`
-A tab element that can be used inside a `blockquote-tabs` element.
-
-
-### `src/tabpanel/BlockquoteTabPanel.js`:
-
-#### class: `BlockquoteTabPanel`, `blockquote-tabpanel`
-
-##### Fields
-
-| Name                   | Privacy | Type      | Default                                                | Description                                  | Inherited From |
-| ---------------------- | ------- | --------- | ------------------------------------------------------ | -------------------------------------------- | -------------- |
-| `selected`             | public  | `boolean` | `false`                                                | Whether or not the tabpanel is \`selected\`. |                |
-| `globalRootAttributes` |         | `object`  | `{ role: 'tabpanel', slot: 'tabpanel', tabindex: 0, }` |                                              |                |
-
-##### Methods
-
-| Name                 | Privacy | Description                     | Parameters              | Return | Inherited From |
-| -------------------- | ------- | ------------------------------- | ----------------------- | ------ | -------------- |
-| `__setArrayAttibute` |         | Sets attributes on the element. | `entries: Record<*, *>` |        |                |
-
-##### Attributes
-
-| Name       | Field    | Inherited From |
-| ---------- | -------- | -------------- |
-| `selected` | selected |                |
-
-<hr/>
-
-#### Exports
-
-| Kind | Name                 | Declaration        | Module                             | Package |
-| ---- | -------------------- | ------------------ | ---------------------------------- | ------- |
-| `js` | `BlockquoteTabPanel` | BlockquoteTabPanel | src/tabpanel/BlockquoteTabPanel.js |         |
-
-### `src/tab/styles/blockquote-tab-styles.css.js`:
-
-#### Variables
-
-| Name     | Description | Type |
-| -------- | ----------- | ---- |
-| `styles` |             |      |
-
-<hr/>
-
-#### Exports
-
-| Kind | Name     | Declaration | Module                                      | Package |
-| ---- | -------- | ----------- | ------------------------------------------- | ------- |
-| `js` | `styles` | styles      | src/tab/styles/blockquote-tab-styles.css.js |         |
-
 ### `src/tabpanel/styles/blockquote-tabpanel-styles.css.js`:
 
 #### Variables
@@ -256,26 +264,18 @@ A tab element that can be used inside a `blockquote-tabs` element.
 | ---- | -------- | ----------- | ----------------------------------------------------- | ------- |
 | `js` | `styles` | styles      | src/tabpanel/styles/blockquote-tabpanel-styles.css.js |         |
 
-### `define/blockquote-tab.js`:
+### `src/tab/styles/blockquote-tab-styles.css.js`:
+
+#### Variables
+
+| Name     | Description | Type |
+| -------- | ----------- | ---- |
+| `styles` |             |      |
+
+<hr/>
 
 #### Exports
 
-| Kind                        | Name             | Declaration   | Module                    | Package |
-| --------------------------- | ---------------- | ------------- | ------------------------- | ------- |
-| `custom-element-definition` | `blockquote-tab` | BlockquoteTab | /src/tab/BlockquoteTab.js |         |
-
-### `define/blockquote-tabpanel.js`:
-
-#### Exports
-
-| Kind                        | Name                  | Declaration        | Module                              | Package |
-| --------------------------- | --------------------- | ------------------ | ----------------------------------- | ------- |
-| `custom-element-definition` | `blockquote-tabpanel` | BlockquoteTabPanel | /src/tabpanel/BlockquoteTabPanel.js |         |
-
-### `define/blockquote-tabs.js`:
-
-#### Exports
-
-| Kind                        | Name              | Declaration    | Module                 | Package |
-| --------------------------- | ----------------- | -------------- | ---------------------- | ------- |
-| `custom-element-definition` | `blockquote-tabs` | BlockquoteTabs | /src/BlockquoteTabs.js |         |
+| Kind | Name     | Declaration | Module                                      | Package |
+| ---- | -------- | ----------- | ------------------------------------------- | ------- |
+| `js` | `styles` | styles      | src/tab/styles/blockquote-tab-styles.css.js |         |
