@@ -40,13 +40,13 @@ jobs:
           COMMIT_MESSAGE=$(git log -1 --pretty=%B)
           echo "Commit message: $COMMIT_MESSAGE"
           if [[ "$COMMIT_MESSAGE" == *"[skip lerna]"* ]]; then
-            echo "::set-output name=SKIP_LERNA::true"
+            echo "SKIP_LERNA=true" >> $GITHUB_ENV
           else
-            echo "::set-output name=SKIP_LERNA::false"
+            echo "SKIP_LERNA=false" >> $GITHUB_ENV
           fi
 
       - name: Version and publish with Lerna
-        if: steps.check_skip.outputs.SKIP_LERNA == 'false'
+        if: env.SKIP_LERNA == 'false'
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
