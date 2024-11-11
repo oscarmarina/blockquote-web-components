@@ -99,7 +99,7 @@
     "@blockquote-web-components/blockquote-directive-ariaidref-slot": "^1.2.0",
     "@blockquote/dev-utilities": "^1.0.0",
     "@material/web": "^1.4.1",
-    "lit": "^3.2.0"
+    "lit": "^3.2.1"
   },
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.10.3",

@@ -122,7 +122,7 @@
     }
   },
   "dependencies": {
-    "lit": "^3.2.0"
+    "lit": "^3.2.1"
   },
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.10.3",
