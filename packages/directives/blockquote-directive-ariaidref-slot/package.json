@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-directive-ariaidref-slot",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "This directive creates a slot element, hidden by default, with a specific name and id",
   "keywords": [
     "lit",
@@ -96,8 +96,8 @@
     "lit": "^3.2.1"
   },
   "devDependencies": {
-    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.10.3",
-    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.12.0"
+    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.10.4",
+    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.12.1"
   },
   "publishConfig": {
     "access": "public"
