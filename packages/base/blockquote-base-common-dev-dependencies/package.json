@@ -7,7 +7,7 @@
     "@blockquote/coverage-table-reporter": "^1.2.0",
     "@blockquote/rollup-plugin-externalize-source-dependencies": "^1.0.0",
     "@blockquote/rollup-plugin-total-bundlesize": "^2.1.2",
-    "@blockquote/sass-style-template": "^3.0.5",
+    "@blockquote/sass-style-template": "^4.0.0",
     "@custom-elements-manifest/analyzer": "^0.10.3",
     "@html-eslint/eslint-plugin": "^0.27.0",
     "@html-eslint/parser": "^0.27.0",
