@@ -7,7 +7,6 @@
       "npmClientArgs": ["--no-package-lock"]
     },
     "version": {
-      "ammend": true,
       "conventionalCommits": true,
       "conventionalGraduate": true,
       "message": "chore: publish"

@@ -38,7 +38,7 @@
     "site": "npm run site:prepare && npm run site:copy",
     "site:copy": "rm -rf ./site/**/* && node scripts/move-dev-directory.js",
     "site:prepare": "npm run clean:packages:dev && lerna run dev:vite",
-    "standard": "standard-version",
+    "standard": "commit-and-tag-version",
     "test": "lerna run test --stream --concurrency 1",
     "test:pre-push": "npm run test -- --since",
     "test:scope": "func() { lerna run test --stream --concurrency 1 --scope @blockquote-web-components/${1}; }; func",
@@ -69,6 +69,7 @@
     "@commitlint/config-lerna-scopes": "^19.5.0",
     "@html-eslint/eslint-plugin": "^0.27.0",
     "@html-eslint/parser": "^0.27.0",
+    "commit-and-tag-version": "^12.5.0",
     "eslint": "^9.14.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.31.0",
@@ -79,15 +80,14 @@
     "husky": "^9.1.6",
     "lerna": "^8.1.9",
     "lint-staged": "^15.2.10",
-    "postcss": "^8.4.47",
+    "postcss": "^8.4.49",
     "prettier": "^3.3.3",
     "sort-package-json": "^2.10.1",
-    "standard-version": "^9.5.0",
     "stylelint": "^16.10.0",
     "stylelint-config-standard-scss": "^13.1.0",
     "tslib": "^2.8.1",
     "typescript": "^5.6.3",
-    "typescript-eslint": "^8.13.0"
+    "typescript-eslint": "^8.14.0"
   },
   "overrides": {
     "lerna": "^8.1.9"
