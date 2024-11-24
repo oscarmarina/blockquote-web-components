@@ -12,28 +12,27 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-
     steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Use Node 22
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
       - name: Setup npm
         run: |
           npm set "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
-        run: |
-          npm ci
-
+        run: npm ci
       - name: Check for skip lerna in commit message
         id: check_skip
         run: |
@@ -44,7 +43,6 @@ jobs:
           else
             echo "SKIP_LERNA=false" >> $GITHUB_ENV
           fi
-
       - name: Version and publish with Lerna
         if: env.SKIP_LERNA == 'false'
         run: |

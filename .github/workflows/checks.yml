@@ -8,26 +8,25 @@ on:
 jobs:
   checks:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Use Node 22
-        uses: actions/setup-node@v4
+      - name: Cache node modules
+        uses: actions/cache@v4
         with:
-          node-version: '22'
-
+          path: node_modules
+          key: ${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
-        run: |
-          npm ci
-
+        run: npm ci
       - name: Install playwright
         run: |
           npx playwright install chromium webkit --with-deps
-
       - name: Format and test
         run: |
           npm run format
