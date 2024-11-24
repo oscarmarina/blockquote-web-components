@@ -1,4 +1,4 @@
-var l=Object.defineProperty;var c=(r,e,t)=>e in r?l(r,e,{enumerable:!0,configurable:!0,writable:!0,value:t}):r[e]=t;var i=(r,e,t)=>c(r,typeof e!="symbol"?e+"":e,t);import{r as h,a as x,x as u}from"./directive-ezkwLk_9.js";import{A as b}from"./AjaxProvider-BpYZd_bF.js";class p extends h{async connectedCallback(){var e,t;(e=super.connectedCallback)==null||e.call(this),await this.updateComplete,this.json=(t=this.shadowRoot)==null?void 0:t.getElementById("json")}render(){return u`
+var l=Object.defineProperty;var c=(r,e,t)=>e in r?l(r,e,{enumerable:!0,configurable:!0,writable:!0,value:t}):r[e]=t;var i=(r,e,t)=>c(r,typeof e!="symbol"?e+"":e,t);import{r as h,a as x,x as u}from"./directive-ezkwLk_9.js";import{A as b}from"./AjaxProvider-CrvxugMO.js";class p extends h{async connectedCallback(){var e,t;(e=super.connectedCallback)==null||e.call(this),await this.updateComplete,this.json=(t=this.shadowRoot)==null?void 0:t.getElementById("json")}render(){return u`
       <label for="selectOption">
         Testing different HTTP Verbs
         <a target="_blank" rel="noopener" href="https://httpbin.org/#/HTTP_Methods/">
