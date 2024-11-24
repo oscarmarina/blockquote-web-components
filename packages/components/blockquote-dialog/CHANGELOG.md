@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-dialog@1.2.1...@blockquote-web-components/blockquote-dialog@1.3.0) (2024-11-24)
+
+
+### Features
+
+* **blockquote-dialog:** update utilities ([6537d11](https://github.com/oscarmarina/blockquote-web-components/commit/6537d118b5eada5a9c178f9efcf727e9c15675ea))
+
+
+
+
+
 ## [1.2.1](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-dialog@1.2.0...@blockquote-web-components/blockquote-dialog@1.2.1) (2024-11-11)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-dialog
