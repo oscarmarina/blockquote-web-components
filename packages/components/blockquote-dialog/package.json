@@ -97,15 +97,13 @@
   },
   "dependencies": {
     "@blockquote-web-components/blockquote-directive-ariaidref-slot": "^1.2.1",
-    "@blockquote/dev-utilities": "^1.0.0",
-    "@material/web": "^1.4.1",
+    "@blockquote/frontend-utilities": "^1.0.2",
     "lit": "^3.2.1"
   },
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.10.4",
     "@blockquote-web-components/blockquote-base-embedded-webview": "^1.12.1",
-    "@blockquote-web-components/blockquote-foundations-sass": "^1.1.5",
-    "sinon": "^18.0.0"
+    "@blockquote-web-components/blockquote-foundations-sass": "^1.1.5"
   },
   "publishConfig": {
     "access": "public"
