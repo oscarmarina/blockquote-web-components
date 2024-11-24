@@ -5,9 +5,9 @@ import {
   redispatchEvent,
   isElementInvisible,
   isFocusable,
-  getFirstAndLastFocusableChildren,
+  getFirstAndLastItems as getFirstAndLastFocusableChildren,
   walkComposedTree,
-} from '@blockquote/dev-utilities';
+} from '@blockquote/frontend-utilities';
 import {styles} from './styles/blockquote-dialog-styles.css.js';
 import {styles as animations} from './styles/blockqoute-dialog-animations-styles.css.js';
 
@@ -52,7 +52,12 @@ import {styles as animations} from './styles/blockqoute-dialog-animations-styles
  * @slot - This element has a slot
  */
 export class BlockquoteDialog extends LitElement {
-  treewalker = walkComposedTree(this, NodeFilter.SHOW_ELEMENT, isFocusable, isElementInvisible);
+  treewalker = walkComposedTree({
+    root: this,
+    whatToShow: NodeFilter.SHOW_ELEMENT,
+    filterAccept: isFocusable,
+    filterReject: isElementInvisible,
+  });
 
   #open = false;
 
