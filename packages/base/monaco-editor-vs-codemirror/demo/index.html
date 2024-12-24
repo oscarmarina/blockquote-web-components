@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Demo - monaco-editor-component</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:image/x-icon;base64,B" />
+    <meta name="description" content="monaco-editor-component" />
+    <!--     <script type="importmap">
+      {
+      "imports": {
+      "lit": "https://esm.run/lit@3",
+      "lit/decorators.js": "https://esm.run/lit@3/decorators.js",
+      "lit/directives/class-map.js": "https://esm.run/lit@3/directives/class-map.js",
+      "lit/directives/ref.js": "https://esm.run/lit@3/directives/ref.js",
+      "monaco-editor": "https://esm.run/monaco-editor@0.47.0",
+      "prettier": "https://esm.run//prettier@3",
+      "codemirror": "https://esm.run//codemirror@6"
+      }
+      }
+      </script> -->
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        font-family: sans-serif;
+      }
+      section {
+        display: flex;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <template>
+      <main>
+        <h1 class="sr-only">blockquote-dialog</h1>
+        <button id="open-dialog">Open dialog</button>
+        <wrapper-dialog>
+          <blockquote-dialog label="All fields are required">
+            <form method="dialog">
+              <div>
+                <button aria-label="close" formnovalidate>X</button>
+              </div>
+              <h2>MLW Registration</h2>
+              <p>All fields are required</p>
+              <p>
+                <label>
+                  Name:
+                  <input autofocus type="text" name="name" required />
+                </label>
+              </p>
+              <p>
+                <label>
+                  Warranty:
+                  <input type="number" min="0" max="10" step="1" name="warranty" required />
+                </label>
+              </p>
+              <p>
+                <label>
+                  Power source:
+                  <select n2me="powersoure">
+                    <option>AC/DC</option>
+                    <option>Battery</option>
+                    <option>Solar</option>
+                  </select>
+                </label>
+              </p>
+              <p>
+                <button value="cancel" type="reset">Cancel</button>
+                <button formmethod="get">Submit</button>
+              </p>
+            </form>
+          </blockquote-dialog>
+        </wrapper-dialog>
+      </main>
+    </template>
+    <section>
+      <monaco-editor-component id="monaco"></monaco-editor-component>
+      <hr />
+      <codemirror-component id="codemirror"></codemirror-component>
+    </section>
+    <script type="module" src="./entry.js"></script>
+    <script type="module">
+      const monaco = document.querySelector('#monaco');
+      const codemirror = document.querySelector('#codemirror');
+      const templateMonacoEditor = document.querySelector('template');
+      monaco.code = templateMonacoEditor.innerHTML;
+      monaco.options = {
+        fontSize: 13,
+      };
+      codemirror.code = templateMonacoEditor.innerHTML;
+    </script>
+  </body>
+</html>

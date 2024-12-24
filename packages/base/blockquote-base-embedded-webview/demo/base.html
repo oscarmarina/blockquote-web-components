@@ -32,6 +32,34 @@
     <main>
       <h1 class="sr-only">blockquote-base-embedded-webview</h1>
       <p>base.html</p>
+      <simple-greeting role="timer"></simple-greeting>
     </main>
+    <script type="_module">
+      import {html, css, LitElement} from './entry.js';
+
+      export class SimpleGreeting extends LitElement {
+        static styles = css`
+          p {
+            color: blue;
+          }
+        `;
+
+        static properties = {
+          name: {type: String},
+        };
+
+        constructor() {
+          super();
+          this.name = 'Somebody';
+        }
+
+        render() {
+          return html`
+            <p>Hello, ${this.name}!</p>
+          `;
+        }
+      }
+      customElements.define('simple-greeting', SimpleGreeting);
+    </script>
   </body>
 </html>

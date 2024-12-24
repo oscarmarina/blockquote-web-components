@@ -1,0 +1,163 @@
+{
+  "name": "@blockquote-playground/monaco-editor-vs-codemirror",
+  "version": "1.0.0-rc.1",
+  "description": "This project is a playground to compare the CodeMirror and Monaco Editor libraries. It uses Vite to generate the bundle, providing a fast and optimized development experience.",
+  "keywords": [
+    "lit",
+    "web-component",
+    "lit-element"
+  ],
+  "license": "MIT",
+  "author": "monaco-editor-component",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./dist/index.js"
+    },
+    "./package.json": {
+      "default": "./package.json"
+    },
+    "./MonacoEditorComponent.js": {
+      "default": "./dist/MonacoEditorComponent.js"
+    },
+    "./CodemirrorComponent.js": {
+      "default": "./dist/CodemirrorComponent.js"
+    },
+    "./monaco-editor-component.js": {
+      "default": "./dist/define/monaco-editor-component.js"
+    },
+    "./codemirror-component.js": {
+      "default": "./dist/define/codemirror-component.js"
+    },
+    "./index.js": {
+      "default": "./dist/index.js"
+    },
+    "./monaco-editor-component-styles.css.js": {
+      "default": "./dist/styles/monaco-editor-component-styles.css.js"
+    },
+    "./codemirror-component-styles.css.js": {
+      "default": "./dist/styles/codemirror-component-styles.css.js"
+    }
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "/src/",
+    "/dist/"
+  ],
+  "scripts": {
+    "analyze": "_cem analyze --litelement --globs \"src/**/*.{js,ts}\" \"index.js\"",
+    "build": "npm run dev:vite && npm run build:lib && npm run build:tsc",
+    "build:lib": "vite build --config vite.lib.config.js",
+    "build:tsc": "tsc",
+    "dev:vite": "vite build",
+    "format": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
+    "format:eslint": "eslint . --fix",
+    "format:prettier": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .prettierignore",
+    "format:stylelint": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .prettierignore",
+    "postinstall": "npm run sort:package",
+    "lint": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
+    "lint:eslint": "eslint .",
+    "lint:prettier": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .prettierignore",
+    "lint:stylelint": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .prettierignore",
+    "prepare": "husky",
+    "preview:vite": "vite preview",
+    "sass:watch": "sass-style-template -j ts",
+    "sort:package": "npx sort-package-json",
+    "start": "concurrently -k -r \"npm:vite\" \"npm:sass:watch\"",
+    "test": "vitest",
+    "vite": "vite"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,html}": [
+      "npm run format:eslint"
+    ],
+    "**/*.{js,ts,json,html}": [
+      "npm run format:prettier"
+    ],
+    "**/*.{scss,css}": [
+      "npm run format:stylelint"
+    ]
+  },
+  "prettier": {
+    "bracketSameLine": true,
+    "bracketSpacing": false,
+    "htmlWhitespaceSensitivity": "ignore",
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "overrides": [
+      {
+        "files": "*.{scss,css}",
+        "options": {
+          "printWidth": 280,
+          "singleQuote": false
+        }
+      }
+    ]
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard-scss",
+    "rules": {
+      "custom-property-pattern": null,
+      "no-duplicate-selectors": null,
+      "color-function-notation": null,
+      "alpha-value-notation": null
+    }
+  },
+  "dependencies": {
+    "@codemirror/commands": "^6.7.1",
+    "@codemirror/lang-html": "^6.4.9",
+    "@codemirror/theme-one-dark": "^6.1.2",
+    "@codemirror/view": "^6.36.1",
+    "codemirror": "^6.0.1",
+    "lit": "^3.2.1",
+    "monaco-editor": "0.47.0",
+    "prettier": "^3.4.2"
+  },
+  "devDependencies": {
+    "@blockquote/cem-to-markdown-readme": "^1.0.0",
+    "@blockquote/rollup-plugin-externalize-source-dependencies": "^1.0.0",
+    "@blockquote/rollup-plugin-total-bundlesize": "^2.2.0",
+    "@blockquote/sass-style-template": "^4.1.0",
+    "@custom-elements-manifest/analyzer": "^0.10.4",
+    "@html-eslint/eslint-plugin": "^0.31.1",
+    "@html-eslint/parser": "^0.31.0",
+    "@open-wc/semantic-dom-diff": "^0.20.1",
+    "@open-wc/testing": "^4.0.0",
+    "@rollup/plugin-multi-entry": "^6.0.1",
+    "@types/mocha": "^10.0.10",
+    "@typescript-eslint/parser": "^8.18.1",
+    "@vitest/browser": "^3.0.0-beta.3",
+    "@vitest/coverage-istanbul": "^3.0.0-beta.3",
+    "@vitest/coverage-v8": "^3.0.0-beta.3",
+    "@vitest/ui": "^3.0.0-beta.3",
+    "concurrently": "^9.1.0",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-lit": "^1.15.0",
+    "eslint-plugin-lit-a11y": "^4.1.4",
+    "eslint-plugin-wc": "^2.2.0",
+    "globals": "^15.14.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.11",
+    "playwright": "^1.49.1",
+    "prettier": "^3.4.2",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-node-externals": "^8.0.0",
+    "sort-package-json": "^2.12.0",
+    "stylelint": "^16.12.0",
+    "stylelint-config-standard-scss": "^14.0.0",
+    "tinyglobby": "^0.2.10",
+    "tslib": "^2.8.1",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.1",
+    "vite": "^6.0.5",
+    "vitest": "^3.0.0-beta.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "customElements": "custom-elements.json"
+}

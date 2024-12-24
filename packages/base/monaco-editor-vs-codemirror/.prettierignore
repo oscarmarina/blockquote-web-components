@@ -1,0 +1,39 @@
+## editors
+**/.idea
+**/.vscode
+**/.code-workspace
+
+## system files
+**/.DS_Store
+
+## npm/yarn
+**/node_modules
+**/npm-debug.log
+**/*-debug.log
+**/yarn-error.log
+
+## testing
+**/coverage
+**/reports
+**/*screenshots*
+**/*snapshots*
+
+## build
+**/_site
+**/dist
+**/dev
+**/build
+**/.tmp
+**/.wireit
+**/*.tgz
+**/*.tsbuildinfo
+**/storybook-static
+## end gitignore
+
+## specific prettierignore
+**/*.d.ts
+**/package-lock.json
+**/*.min.js
+**/*-styles*.js
+**/*-styles*.ts
+**/CHANGELOG.md

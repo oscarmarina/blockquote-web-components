@@ -3,6 +3,7 @@ import {ref, createRef} from 'lit/directives/ref.js';
 import './define/blockquote-base-embedded-webview-size.js';
 import './define/blockquote-base-embedded-webview-resize.js';
 import './define/blockquote-base-embedded-webview-element.js';
+import '@blockquote-playground/monaco-editor-vs-codemirror/codemirror-component.js';
 import {styles} from './styles/blockquote-base-embedded-webview-styles.css.js';
 
 const chevronDownIcon = html`
@@ -147,6 +148,8 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     this.limitHeight = false;
     this._sources = [{src: '', option: '', description: ''}];
     this._embeddedResizeRef = createRef();
+    this._monacoEditorRef = createRef();
+    this.addEventListener('elementloaded', this._onLoadIframe);
   }
 
   async connectedCallback() {
@@ -310,6 +313,13 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
 
   get _mainTpl() {
     return html`
+      <div style="height: 400px;">
+        <codemirror-component
+          tabindex="0"
+          style="height: 400px;"
+          ${ref(this._monacoEditorRef)}
+          @change="${this._onCodeChange}"></codemirror-component>
+      </div>
       <div class="main">
         <blockquote-base-embedded-webview-resize ${ref(this._embeddedResizeRef)}>
           <slot name="embedded">${this._embeddedSlotTpl}</slot>
@@ -332,4 +342,18 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     this.selected = target.selectedIndex;
     this._src = this._sources[this.selected].src;
   }
+
+  _onLoadIframe = (ev) => {
+    const _monacoEditorRef = this._monacoEditorRef.value;
+    if (_monacoEditorRef) {
+      this._kk = ev.detail;
+      _monacoEditorRef.code = ev.detail.contentDocument.body.innerHTML;
+    }
+  };
+  _onCodeChange = (ev) => {
+    const iframeContent = this._kk.contentDocument;
+    iframeContent.body.innerHTML = ev.detail.doc;
+    const srcDoc = iframeContent.documentElement.innerHTML;
+    this._kk.srcdoc = srcDoc;
+  };
 }
