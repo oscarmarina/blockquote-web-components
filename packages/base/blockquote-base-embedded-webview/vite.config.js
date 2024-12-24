@@ -25,6 +25,48 @@ const entries = Object.fromEntries(
 // https://vitejs.dev/config/
 // https://vite-rollup-plugins.patak.dev/
 
+function myCustomPlugin() {
+  return [
+    {
+      name: 'my-custom-plugin',
+      order: 'pre',
+      apply: 'serve',
+      config(_, _env) {
+        console.log('config', _, _env);
+      },
+      transformIndexHtml: {
+        order: 'pre',
+        apply: 'serve',
+        async handler(html, {path}) {
+          if (path.includes('/demo/') && !path.endsWith('/index.html')) {
+            console.log('Applying pre-transform to:', path);
+            return html.replace(/type=["']module["']/g, 'type="nomodule"');
+          }
+          console.log('NO applying pre-transform to:', path);
+          return html;
+        },
+      },
+    },
+    {
+      name: 'my-custom-plugin:post',
+      order: 'post',
+      apply: 'serve',
+      transformIndexHtml: {
+        order: 'post',
+        apply: 'serve',
+        async handler(html, {path}) {
+          if (path.includes('/demo/') && !path.endsWith('/index.html')) {
+            console.log('Applying post-transform to:', path);
+            return html.replace(/type=["']nomodule["']/g, 'type="module"');
+          }
+          console.log('NO applying post-transform to:', path);
+          return html;
+        },
+      },
+    },
+  ];
+}
+
 export default defineConfig({
   test: {
     onConsoleLog(log, type) {
@@ -68,6 +110,7 @@ export default defineConfig({
     externalizeSourceDependencies(['/__web-dev-server__web-socket.js']),
     copy(copyConfig),
     totalBundlesize(),
+    myCustomPlugin(),
   ],
   optimizeDeps: {
     exclude: ['lit', 'lit-html'],
