@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.5](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-context-meta@1.2.4...@blockquote-web-components/blockquote-controller-context-meta@1.2.5) (2024-12-26)
+
+
+### Bug Fixes
+
+* **blockquote-controller-context-meta:** update dependencies ([ae1a945](https://github.com/oscarmarina/blockquote-web-components/commit/ae1a9459769ca9a288659cf014e327deabedc70b))
+
+
+
+
+
 ## [1.2.4](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-context-meta@1.2.3...@blockquote-web-components/blockquote-controller-context-meta@1.2.4) (2024-12-06)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-controller-context-meta
