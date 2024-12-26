@@ -117,7 +117,7 @@
   "dependencies": {
     "@blockquote-web-components/blockquote-mixin-slot-content": "^1.8.4",
     "@juggle/resize-observer": "^3.4.0",
-    "@lit-labs/observers": "^2.0.0",
+    "@lit-labs/observers": "^2.0.4",
     "lit": "^3.2.1"
   },
   "devDependencies": {
