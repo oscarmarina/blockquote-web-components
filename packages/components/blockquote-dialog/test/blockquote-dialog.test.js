@@ -1,6 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {html, fixture, assert, expect, fixtureCleanup, aTimeout} from '@open-wc/testing';
-import {spy} from 'sinon';
+import {suite, test, assert, expect, beforeAll, beforeEach} from 'vitest';
+import {assert as a11y, fixture, fixtureCleanup, aTimeout} from '@open-wc/testing';
+import {getDiffableHTML} from '@open-wc/semantic-dom-diff';
+import {html} from 'lit';
 import '../src/define/blockquote-dialog.js';
 
 const _formTpl = html`
@@ -54,27 +56,35 @@ suite('BlockquoteDialog', () => {
    * @type {import('../src/index').BlockquoteDialog}
    */
   let el;
-
-  teardown(() => fixtureCleanup());
+  let elShadowRoot;
 
   suite('Default Close', () => {
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <blockquote-dialog>${_formTpl}</blockquote-dialog>
       `);
+      elShadowRoot = el?.shadowRoot?.innerHTML;
+
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot({ignoreAttributes: ['id', 'name']});
+        expect(getDiffableHTML(elShadowRoot, {ignoreAttributes: ['id', 'name']})).toMatchSnapshot(
+          'SHADOW DOM'
+        );
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await expect(el).lightDom.to.equalSnapshot({ignoreAttributes: ['id', 'name']});
+        expect(getDiffableHTML(el, {ignoreAttributes: ['id', 'name']})).toMatchSnapshot(
+          'LIGHT DOM'
+        );
       });
 
       test('a11y', async () => {
-        await assert.isAccessible(el);
+        await a11y.isAccessible(el);
       });
     });
 
@@ -88,23 +98,31 @@ suite('BlockquoteDialog', () => {
   });
 
   suite('Default Close with "label"', () => {
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <blockquote-dialog label="aria-label Name">${_formTpl}</blockquote-dialog>
       `);
+
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot({ignoreAttributes: ['id', 'name']});
+        expect(getDiffableHTML(elShadowRoot, {ignoreAttributes: ['id', 'name']})).toMatchSnapshot(
+          'SHADOW DOM'
+        );
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await expect(el).lightDom.to.equalSnapshot({ignoreAttributes: ['id', 'name']});
+        expect(getDiffableHTML(el, {ignoreAttributes: ['id', 'name']})).toMatchSnapshot(
+          'LIGHT DOM'
+        );
       });
 
       test('a11y', async () => {
-        await assert.isAccessible(el);
+        await a11y.isAccessible(el);
       });
     });
 
@@ -118,23 +136,31 @@ suite('BlockquoteDialog', () => {
   });
 
   suite('Default Close role dialog', () => {
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <blockquote-dialog type="">${_formTpl}</blockquote-dialog>
       `);
+
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot({ignoreAttributes: ['id', 'name']});
+        expect(getDiffableHTML(elShadowRoot, {ignoreAttributes: ['id', 'name']})).toMatchSnapshot(
+          'SHADOW DOM'
+        );
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await expect(el).lightDom.to.equalSnapshot({ignoreAttributes: ['id', 'name']});
+        expect(getDiffableHTML(el, {ignoreAttributes: ['id', 'name']})).toMatchSnapshot(
+          'LIGHT DOM'
+        );
       });
 
       test('a11y', async () => {
-        await assert.isAccessible(el);
+        await a11y.isAccessible(el);
       });
     });
 
@@ -148,26 +174,34 @@ suite('BlockquoteDialog', () => {
   });
 
   suite('Default Open', () => {
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <blockquote-dialog labelledby="labelledby" open>
           ${_formTpl}
           <span slot="labelledby">All fields are required</span>
         </blockquote-dialog>
       `);
+
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot({ignoreAttributes: ['id', 'name']});
+        expect(getDiffableHTML(elShadowRoot, {ignoreAttributes: ['id', 'name']})).toMatchSnapshot(
+          'SHADOW DOM'
+        );
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await expect(el).lightDom.to.equalSnapshot({ignoreAttributes: ['id', 'name']});
+        expect(getDiffableHTML(el, {ignoreAttributes: ['id', 'name']})).toMatchSnapshot(
+          'LIGHT DOM'
+        );
       });
 
       test('a11y', async () => {
-        await assert.isAccessible(el);
+        await a11y.isAccessible(el);
       });
     });
 
@@ -181,10 +215,14 @@ suite('BlockquoteDialog', () => {
   });
 
   suite('Event', () => {
-    setup(async () => {
+    beforeEach(async () => {
       el = await fixture(html`
         <blockquote-dialog open label="aria-label Name">${_formTpl}</blockquote-dialog>
       `);
+
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     test('Dialog should close when "Click" in backdrop', async () => {
@@ -236,7 +274,7 @@ suite('BlockquoteDialog', () => {
   });
 
   suite('Form - with method', () => {
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <blockquote-dialog label="aria-label Name">${_formTpl}</blockquote-dialog>
       `);
@@ -251,10 +289,14 @@ suite('BlockquoteDialog', () => {
   });
 
   suite('Form - without method', () => {
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <blockquote-dialog open label="aria-label Name">${_formNoDialogTpl}</blockquote-dialog>
       `);
+
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     test('Dialog does not should close when "Form Submit"', async () => {
@@ -268,62 +310,58 @@ suite('BlockquoteDialog', () => {
   });
 
   suite('focus', () => {
-    setup(async () => {
+    beforeEach(async () => {
       el = await fixture(html`
         <blockquote-dialog label="aria-label Name">${_formTpl}</blockquote-dialog>
       `);
+
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     test('focus on first focus trap sets focus to last element', async () => {
       el.open = true;
       await el.updateComplete;
       const lastButton = el.querySelector('#confirm');
-      const spyFocus = spy(/** @type {HTMLButtonElement} */ (lastButton), 'focus');
-      assert.isTrue(spyFocus.notCalled);
+      assert.notStrictEqual(document.activeElement, lastButton);
       await el.updateComplete;
       const firstFocusTrap = el.shadowRoot?.querySelector('dialog > span:first-of-type');
       /** @type {HTMLElement} */ (firstFocusTrap)?.focus();
-      assert.isTrue(spyFocus.called);
+      expect(document.activeElement).to.equal(lastButton);
     });
 
     test('focus on first focus trap sets focus to first element when relatedTarget is undefined', async () => {
       el.open = true;
       await el.updateComplete;
       const firstButton = el.querySelector('#cancel');
-      const spyFocus = spy(/** @type {HTMLButtonElement} */ (firstButton), 'focus');
-      assert.isTrue(spyFocus.notCalled);
-      await el.updateComplete;
       const firstFocusTrap = el.shadowRoot?.querySelector('dialog > span:first-of-type');
       /** @type {HTMLElement} */ (firstFocusTrap)?.dispatchEvent(
         new FocusEvent('focus', {relatedTarget: null})
       );
-      assert.isTrue(spyFocus.called);
+      assert.strictEqual(document.activeElement, firstButton);
     });
 
     test('focus on last focus trap sets focus to first element', async () => {
       el.open = true;
       await el.updateComplete;
       const firstButton = el.querySelector('#cancel');
-      const spyFocus = spy(/** @type {HTMLButtonElement} */ (firstButton), 'focus');
-      assert.isTrue(spyFocus.notCalled);
-      await el.updateComplete;
       const lastFocusTrap = el.shadowRoot?.querySelector('dialog > span:last-of-type');
       /** @type {HTMLElement} */ (lastFocusTrap)?.focus();
-      assert.isTrue(spyFocus.called);
+      assert.strictEqual(document.activeElement, firstButton);
     });
 
     test('focus on last focus trap sets focus to last element when relatedTarget is undefined', async () => {
       el.open = true;
       await el.updateComplete;
       const lastButton = el.querySelector('#confirm');
-      const spyFocus = spy(/** @type {HTMLButtonElement} */ (lastButton), 'focus');
-      assert.isTrue(spyFocus.notCalled);
+      assert.notStrictEqual(document.activeElement, lastButton);
       await el.updateComplete;
       const firstFocusTrap = el.shadowRoot?.querySelector('dialog > span:last-of-type');
       /** @type {HTMLElement} */ (firstFocusTrap)?.dispatchEvent(
         new FocusEvent('focus', {relatedTarget: null})
       );
-      assert.isTrue(spyFocus.called);
+      assert.strictEqual(document.activeElement, lastButton);
     });
 
     test('autofocus', async () => {

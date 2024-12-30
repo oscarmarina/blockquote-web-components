@@ -1,5 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {html, fixture, assert, expect, fixtureCleanup} from '@open-wc/testing';
+import {suite, test, assert, expect, beforeAll, beforeEach} from 'vitest';
+import {assert as a11y, fixture, fixtureCleanup} from '@open-wc/testing';
+import {getDiffableHTML} from '@open-wc/semantic-dom-diff';
+import {html} from 'lit';
 import '../demo/xstate-counter.js';
 
 suite('BlockquoteControllerXstate', () => {
@@ -7,15 +10,18 @@ suite('BlockquoteControllerXstate', () => {
    * * @type {import('../demo/xstate-counter').XstateCounter}
    */
   let el;
-
-  teardown(() => fixtureCleanup());
+  let elShadowRoot;
 
   suite('Default', () => {
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <xstate-counter>light-dom</xstate-counter>
       `);
-      await el.updateComplete;
+      elShadowRoot = el?.shadowRoot?.innerHTML;
+
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     test('default counter 0', () => {
@@ -24,24 +30,30 @@ suite('BlockquoteControllerXstate', () => {
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot({ignoreAttributes: ['id']});
+        expect(getDiffableHTML(elShadowRoot, {ignoreAttributes: ['id']})).toMatchSnapshot(
+          'SHADOW DOM'
+        );
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await expect(el).lightDom.to.equalSnapshot({ignoreAttributes: ['id']});
+        expect(getDiffableHTML(el, {ignoreAttributes: ['id']})).toMatchSnapshot('LIGHT DOM');
       });
+
       test('a11y', async () => {
-        await assert.isAccessible(el);
+        await a11y.isAccessible(el);
       });
     });
   });
 
   suite('Events ', () => {
-    setup(async () => {
+    beforeEach(async () => {
       el = await fixture(html`
         <xstate-counter></xstate-counter>
       `);
-      await el.updateComplete;
+
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     test('increases the counter on Increment button click', () => {

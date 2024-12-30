@@ -1,36 +1,50 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {html, fixture, assert, expect, fixtureCleanup} from '@open-wc/testing';
+import {suite, test, assert, expect, beforeAll} from 'vitest';
+import {fixture, fixtureCleanup} from '@open-wc/testing';
+import {getDiffableHTML} from '@open-wc/semantic-dom-diff';
+import {html} from 'lit';
+
 import './blockquote-directive-ariaidref-slot-component.js';
 
 suite('BlockquoteDirectiveAriaidrefSlot', () => {
   let el;
-
-  teardown(() => fixtureCleanup());
+  let elShadowRoot;
 
   suite('Slot is hidden', () => {
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <slot-idref-hidden></slot-idref-hidden>
       `);
+      elShadowRoot = el?.shadowRoot?.innerHTML;
+
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     suite('Semantic Dom', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot();
+        expect(getDiffableHTML(elShadowRoot)).toMatchSnapshot('SHADOW DOM');
       });
     });
   });
 
   suite('Slot is visible', () => {
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <slot-idref-visible></slot-idref-visible>
       `);
+
+      elShadowRoot = el?.shadowRoot?.innerHTML;
+
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     suite('Semantic Dom', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot();
+        expect(getDiffableHTML(elShadowRoot)).toMatchSnapshot('SHADOW DOM');
       });
     });
   });
@@ -49,15 +63,20 @@ suite('BlockquoteDirectiveAriaidrefSlot', () => {
   });
 
   suite('No render', () => {
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <slot-idref-nothing></slot-idref-nothing>
       `);
+      elShadowRoot = el?.shadowRoot?.innerHTML;
+
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     suite('Semantic Dom', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot();
+        expect(getDiffableHTML(elShadowRoot)).toMatchSnapshot('SHADOW DOM');
       });
     });
   });

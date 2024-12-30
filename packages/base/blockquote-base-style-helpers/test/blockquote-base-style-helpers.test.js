@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {html, fixture, assert, fixtureCleanup} from '@open-wc/testing';
-import {css} from 'lit';
+import {suite, test, assert, beforeAll} from 'vitest';
+import {fixture, fixtureCleanup} from '@open-wc/testing';
+import {html, css} from 'lit';
 import {setDocumentStyles} from '../src/index.js';
 import './document-element.js';
 import './shared-element.js';
@@ -21,7 +22,6 @@ setDocumentStyles(setCss);
 setDocumentStyles([setCss2]);
 
 suite('BlockquoteBaseStyleHelpers', () => {
-  teardown(() => fixtureCleanup());
   suite('document styles', () => {
     /**
      * @type {import('./document-element').DocumentElement | null}
@@ -30,7 +30,7 @@ suite('BlockquoteBaseStyleHelpers', () => {
     let fixtureNode;
     let outerShared;
 
-    setup(async () => {
+    beforeAll(async () => {
       fixtureNode = await fixture(html`
         <div>
           <document-element></document-element>
@@ -39,6 +39,10 @@ suite('BlockquoteBaseStyleHelpers', () => {
       `);
       el = fixtureNode.querySelector('document-element');
       outerShared = fixtureNode.querySelector('.docu-element2');
+
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     test('`<document-element>` .docu-element1 has red background-color - component default styles', () => {
@@ -73,10 +77,14 @@ suite('BlockquoteBaseStyleHelpers', () => {
      * @type {import('./shared-element').SharedElement}
      */
     let el;
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <shared-element></shared-element>
       `);
+
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     test('`<shared-element>` .shared1 has red background-color - component default styling', () => {

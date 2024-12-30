@@ -1,6 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {html, fixture, assert, fixtureCleanup, oneEvent} from '@open-wc/testing';
-
+import {suite, test, assert, expect, beforeAll} from 'vitest';
+import {assert as a11y, fixture, fixtureCleanup, oneEvent} from '@open-wc/testing';
+import {getDiffableHTML} from '@open-wc/semantic-dom-diff';
+import {html} from 'lit';
 import '../src/define/blockquote-base-embedded-webview.js';
 
 suite('BlockquoteBaseEmbeddedWebview', () => {
@@ -8,100 +10,131 @@ suite('BlockquoteBaseEmbeddedWebview', () => {
    * @type {import('../src/index').BlockquoteBaseEmbeddedWebview}
    */
   let el;
+  let elShadowRoot;
   /**
    * @type {import('../src/index').BlockquoteBaseEmbeddedWebview}
    */
   let variant;
-
-  teardown(() => fixtureCleanup());
+  let variantShadowRoot;
 
   suite('Default', () => {
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <blockquote-base-embedded-webview heading="blockquote-base-embedded-webview">
           <template
-            data-src="./test/test.html"
+            data-src="/test/test.html"
             data-option="Base"
             data-description="base - description"></template>
           <template
-            data-src="./test/test2.html"
+            data-src="/test/test2.html"
             data-option="Other"
             data-description="other - description"></template>
         </blockquote-base-embedded-webview>
       `);
-      await el.updateComplete;
+      elShadowRoot = el?.shadowRoot?.innerHTML;
+
+      return () => {
+        fixtureCleanup();
+      };
     });
 
-    suite('Semantic Dom and a11y', () => {
-      test('SHADOW DOM - Structure test', async () => {
-        // @ts-ignore
-        await assert.shadowDom.equalSnapshot(el, {ignoreAttributes: ['style', 'loading']});
-      });
+    test('SHADOW DOM - Structure test', () => {
+      expect(
+        getDiffableHTML(elShadowRoot, {ignoreAttributes: ['style', 'loading']})
+      ).toMatchSnapshot('SHADOW DOM');
+    });
 
-      test('LIGHT DOM - Structure test', async () => {
-        // @ts-ignore
-        await assert.lightDom.equalSnapshot(el, {ignoreAttributes: ['style', 'loading']});
-      });
+    test('LIGHT DOM - Structure test', () => {
+      expect(getDiffableHTML(el, {ignoreAttributes: ['style', 'loading']})).toMatchSnapshot(
+        'LIGHT DOM'
+      );
+    });
 
-      test('a11y', async () => {
-        await assert.isAccessible(el);
-      });
+    test('a11y', async () => {
+      await a11y.isAccessible(el);
+    });
+  });
 
-      test('limit height', async () => {
-        const elLimit = await fixture(html`
-          <blockquote-base-embedded-webview limit-height heading="blockquote-base-embedded-webview">
-            <template data-src="./test/test.html" data-option="Base Complex"></template>
-          </blockquote-base-embedded-webview>
-        `);
-        // @ts-ignore
-        await assert.shadowDom.equalSnapshot(elLimit, {ignoreAttributes: ['style', 'loading']});
-      });
+  suite('Behavior', () => {
+    beforeAll(async () => {
+      el = await fixture(html`
+        <blockquote-base-embedded-webview heading="blockquote-base-embedded-webview">
+          <template
+            data-src="/test/test.html"
+            data-option="Base"
+            data-description="base - description"></template>
+          <template
+            data-src="/test/test2.html"
+            data-option="Other"
+            data-description="other - description"></template>
+        </blockquote-base-embedded-webview>
+      `);
 
-      test('aria level', async () => {
-        const heading = el.shadowRoot?.querySelector('[aria-level]');
-        el.headingLevel = 200;
+      return () => {
+        fixtureCleanup();
+      };
+    });
+
+    test('limit height', async () => {
+      const elLimit = await fixture(html`
+        <blockquote-base-embedded-webview limit-height heading="blockquote-base-embedded-webview">
+          <template data-src="/test/test.html" data-option="Base Complex"></template>
+        </blockquote-base-embedded-webview>
+      `);
+      const elLimitShadowRoot = elLimit?.shadowRoot?.innerHTML || '';
+      expect(
+        getDiffableHTML(elLimitShadowRoot, {ignoreAttributes: ['style', 'loading']})
+      ).toMatchSnapshot('SHADOW DOM');
+    });
+
+    test('aria level', async () => {
+      const heading = el.shadowRoot?.querySelector('[aria-level]');
+      el.headingLevel = 200;
+      await el.updateComplete;
+      assert.isTrue(heading?.getAttribute('aria-level') === '2');
+    });
+
+    test('select option load resource', async () => {
+      const select = el.shadowRoot?.querySelector('select');
+      const embedded = el.querySelector('blockquote-base-embedded-webview-element');
+      if (select && embedded) {
+        select.options[select.selectedIndex + 1].selected = true;
         await el.updateComplete;
-        assert.isTrue(heading?.getAttribute('aria-level') === '2');
-      });
-
-      test('select option load resource', async () => {
-        const select = el.shadowRoot?.querySelector('select');
-        const embedded = el.querySelector('blockquote-base-embedded-webview-element');
-        if (select && embedded) {
-          select.options[select.selectedIndex + 1].selected = true;
-          await el.updateComplete;
-          select.dispatchEvent(new CustomEvent('change'));
-          const {detail} = await oneEvent(embedded, 'elementloaded', true);
-          assert.isTrue(detail.title === select.options[select.selectedIndex].text);
-        }
-      });
+        select.dispatchEvent(new CustomEvent('change'));
+        const {detail} = await oneEvent(embedded, 'elementloaded');
+        assert.isTrue(detail.title === select.options[select.selectedIndex].text);
+      }
     });
   });
 
   suite('variant', () => {
-    setup(async () => {
+    beforeAll(async () => {
       variant = await fixture(html`
         <blockquote-base-embedded-webview heading="blockquote-base-embedded-webview">
-          <template data-src="./test/test.html"></template>
+          <template data-src="/test/test.html"></template>
         </blockquote-base-embedded-webview>
       `);
-      await variant.updateComplete;
+      variantShadowRoot = el?.shadowRoot?.innerHTML;
+
+      return () => {
+        fixtureCleanup();
+      };
     });
 
-    suite('Semantic Dom and a11y', () => {
-      test('SHADOW DOM - Structure test', async () => {
-        // @ts-ignore
-        await assert.shadowDom.equalSnapshot(variant, {ignoreAttributes: ['style', 'loading']});
-      });
+    test('SHADOW DOM - Structure test', () => {
+      expect(
+        getDiffableHTML(variantShadowRoot, {ignoreAttributes: ['style', 'loading']})
+      ).toMatchSnapshot('VARIANT - SHADOW DOM');
+    });
 
-      test('LIGHT DOM - Structure test', async () => {
-        // @ts-ignore
-        await assert.lightDom.equalSnapshot(variant, {ignoreAttributes: ['style', 'loading']});
-      });
+    test('LIGHT DOM - Structure test', () => {
+      expect(getDiffableHTML(variant, {ignoreAttributes: ['style', 'loading']})).toMatchSnapshot(
+        'VARIANT - LIGHT DOM'
+      );
+    });
 
-      test('a11y', async () => {
-        await assert.isAccessible(variant);
-      });
+    test('a11y', async () => {
+      await a11y.isAccessible(variant);
     });
   });
 });

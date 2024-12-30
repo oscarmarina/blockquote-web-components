@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {html, fixture, assert, fixtureCleanup} from '@open-wc/testing';
-import {LitElement} from 'lit';
+import {suite, test, assert, beforeAll} from 'vitest';
+import {fixture, fixtureCleanup} from '@open-wc/testing';
+import {html, LitElement} from 'lit';
 import {BlockquoteMixinSlotContent} from '../src/index.js';
 
 const slotContentBase = class slotContent extends BlockquoteMixinSlotContent(LitElement) {
@@ -33,14 +34,14 @@ suite('BlockquoteMixinSlotContent', () => {
    */
   let el;
 
-  teardown(() => fixtureCleanup());
-
   suite('Without content', () => {
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <slot-element></slot-element>
       `);
-      await el.updateComplete;
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     test('slotchanges event is not fired', () => {
@@ -49,11 +50,13 @@ suite('BlockquoteMixinSlotContent', () => {
   });
 
   suite('With content', () => {
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <slot-element>s</slot-element>
       `);
-      await el.updateComplete;
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     test('slotchanges event is fired', () => {
@@ -65,11 +68,13 @@ suite('BlockquoteMixinSlotContent', () => {
     });
   });
   suite('Removing content', () => {
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <slot-element><span>s</span></slot-element>
       `);
-      await el.updateComplete;
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     test('removing content sends empty array as contentSlots', async () => {
@@ -82,11 +87,13 @@ suite('BlockquoteMixinSlotContent', () => {
   });
 
   suite('Content is a blank space', () => {
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <slot-element>&nbsp;</slot-element>
       `);
-      await el.updateComplete;
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     test('slotchanges event is fired', () => {

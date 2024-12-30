@@ -1,10 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {assert, fixtureCleanup} from '@open-wc/testing';
+import {suite, test, assert, beforeAll, beforeEach} from 'vitest';
 import {BlockquoteBaseMeta} from '../src/index.js';
 
 suite('BlockquoteBaseMeta', () => {
-  teardown(() => fixtureCleanup());
-
   suite('init', () => {
     test('has types', () => {
       const meta = new BlockquoteBaseMeta({key: 'info', value: 'foo/bar'});
@@ -45,12 +43,12 @@ suite('BlockquoteBaseMeta', () => {
   suite('basic behavior', () => {
     let meta;
 
-    setup(() => {
+    beforeEach(() => {
       meta = new BlockquoteBaseMeta({key: 'info', value: 'foo/bar'});
-    });
 
-    teardown(() => {
-      meta.value = null;
+      return () => {
+        meta.value = null;
+      };
     });
 
     test('can be assigned alternative values', () => {
@@ -86,18 +84,18 @@ suite('BlockquoteBaseMeta', () => {
   suite('many same-typed metas', () => {
     const metas = [];
 
-    setup(() => {
+    beforeAll(() => {
       metas[0] = new BlockquoteBaseMeta({key: 'default1', value: 'foo/bar1'});
       metas[1] = new BlockquoteBaseMeta({key: 'default2', value: 'foo/bar2'});
       metas[2] = new BlockquoteBaseMeta({key: 'default3', value: 'foo/bar3'});
-    });
 
-    teardown(() => {
-      metas.forEach((meta) => {
-        const m = meta;
-        m.value = null;
-        m.key = null;
-      });
+      return () => {
+        metas.forEach((meta) => {
+          const m = meta;
+          m.value = null;
+          m.key = null;
+        });
+      };
     });
 
     test('all cache all meta values', () => {
@@ -126,7 +124,7 @@ suite('BlockquoteBaseMeta', () => {
   suite('different-typed metas', () => {
     const metasType = [];
 
-    setup(() => {
+    beforeAll(() => {
       metasType[0] = new BlockquoteBaseMeta({
         type: 'foo',
         key: 'foobarKey',
@@ -137,14 +135,14 @@ suite('BlockquoteBaseMeta', () => {
         key: 'foobarKey',
         value: 'type/bar',
       });
-    });
 
-    teardown(() => {
-      metasType.forEach((meta) => {
-        const metaSetup = meta;
-        metaSetup.value = null;
-        metaSetup.key = null;
-      });
+      return () => {
+        metasType.forEach((meta) => {
+          const metaSetup = meta;
+          metaSetup.value = null;
+          metaSetup.key = null;
+        });
+      };
     });
 
     test('cache their values separately', () => {
@@ -167,17 +165,17 @@ suite('BlockquoteBaseMeta', () => {
   suite('metas with clashing keys', () => {
     const metaPair = [];
 
-    setup(() => {
+    beforeAll(() => {
       metaPair[0] = new BlockquoteBaseMeta({key: 'baz', value: 'baz/1'});
       metaPair[1] = new BlockquoteBaseMeta({key: 'baz', value: 'baz/2'});
-    });
 
-    teardown(() => {
-      metaPair.forEach((meta) => {
-        const metaSetup = meta;
-        metaSetup.value = null;
-        metaSetup.key = null;
-      });
+      return () => {
+        metaPair.forEach((meta) => {
+          const metaSetup = meta;
+          metaSetup.value = null;
+          metaSetup.key = null;
+        });
+      };
     });
 
     test('let the last value win registration against the key', () => {
