@@ -1,0 +1,286 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BlockquoteTabs > Autofocus > Semantic Dom and a11y > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
+"<blockquote-tabs
+  autofocus=""
+  selected="1"
+>
+  <blockquote-tab
+    aria-selected="true"
+    role="tab"
+    slot="tab"
+    tabindex="0"
+  >
+    Tab 1
+  </blockquote-tab>
+  <blockquote-tab
+    aria-selected="false"
+    role="tab"
+    slot="tab"
+    tabindex="-1"
+  >
+    Tab 2
+  </blockquote-tab>
+  <blockquote-tab
+    aria-selected="false"
+    role="tab"
+    slot="tab"
+    tabindex="-1"
+  >
+    Tab 3
+  </blockquote-tab>
+  <blockquote-tabpanel
+    aria-hidden="false"
+    aria-labelledby="tab-1"
+    role="tabpanel"
+    slot="tabpanel"
+    tabindex="0"
+  >
+    <p>
+      Panel 1
+    </p>
+  </blockquote-tabpanel>
+  <blockquote-tabpanel
+    aria-hidden="true"
+    aria-labelledby="tab-2"
+    role="tabpanel"
+    slot="tabpanel"
+    tabindex="0"
+  >
+    <p>
+      Panel 2
+    </p>
+  </blockquote-tabpanel>
+  <blockquote-tabpanel
+    aria-hidden="true"
+    aria-labelledby="tab-3"
+    role="tabpanel"
+    slot="tabpanel"
+    tabindex="0"
+  >
+    <p>
+      Panel 3
+    </p>
+  </blockquote-tabpanel>
+</blockquote-tabs>
+"
+`;
+
+exports[`BlockquoteTabs > Autofocus > Semantic Dom and a11y > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
+"<div class="hold">
+  <div class="scroll-content">
+    <div role="tablist">
+      <slot name="tab">
+      </slot>
+    </div>
+  </div>
+  <span
+    aria-hidden="true"
+    class="separator"
+  >
+  </span>
+  <span
+    aria-hidden="true"
+    class="indicator"
+  >
+  </span>
+  <span
+    aria-hidden="true"
+    class="indicator"
+  >
+  </span>
+</div>
+<div>
+  <slot name="tabpanel">
+  </slot>
+</div>
+"
+`;
+
+exports[`BlockquoteTabs > Default > Semantic Dom and a11y > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
+"<blockquote-tabs selected="1">
+  <blockquote-tab
+    aria-selected="true"
+    role="tab"
+    slot="tab"
+    tabindex="0"
+  >
+    Tab 1
+  </blockquote-tab>
+  <blockquote-tab
+    aria-selected="false"
+    role="tab"
+    slot="tab"
+    tabindex="-1"
+  >
+    Tab 2
+  </blockquote-tab>
+  <blockquote-tab
+    aria-selected="false"
+    role="tab"
+    slot="tab"
+    tabindex="-1"
+  >
+    Tab 3
+  </blockquote-tab>
+  <blockquote-tabpanel
+    aria-hidden="false"
+    aria-labelledby="tab-1"
+    role="tabpanel"
+    slot="tabpanel"
+    tabindex="0"
+  >
+    <p>
+      Panel 1
+    </p>
+  </blockquote-tabpanel>
+  <blockquote-tabpanel
+    aria-hidden="true"
+    aria-labelledby="tab-2"
+    role="tabpanel"
+    slot="tabpanel"
+    tabindex="0"
+  >
+    <p>
+      Panel 2
+    </p>
+  </blockquote-tabpanel>
+  <blockquote-tabpanel
+    aria-hidden="true"
+    aria-labelledby="tab-3"
+    role="tabpanel"
+    slot="tabpanel"
+    tabindex="0"
+  >
+    <p>
+      Panel 3
+    </p>
+  </blockquote-tabpanel>
+</blockquote-tabs>
+"
+`;
+
+exports[`BlockquoteTabs > Default > Semantic Dom and a11y > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
+"<div class="hold">
+  <div class="scroll-content">
+    <div role="tablist">
+      <slot name="tab">
+      </slot>
+    </div>
+  </div>
+  <span
+    aria-hidden="true"
+    class="separator"
+  >
+  </span>
+  <span
+    aria-hidden="true"
+    class="indicator"
+  >
+  </span>
+  <span
+    aria-hidden="true"
+    class="indicator"
+  >
+  </span>
+</div>
+<div>
+  <slot name="tabpanel">
+  </slot>
+</div>
+"
+`;
+
+exports[`BlockquoteTabs > Selected > Semantic Dom and a11y > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
+"<blockquote-tabs selected="2">
+  <blockquote-tab
+    aria-selected="false"
+    role="tab"
+    slot="tab"
+    tabindex="-1"
+  >
+    Tab 1
+  </blockquote-tab>
+  <blockquote-tab
+    aria-selected="true"
+    role="tab"
+    slot="tab"
+    tabindex="0"
+  >
+    Tab 2
+  </blockquote-tab>
+  <blockquote-tab
+    aria-selected="false"
+    role="tab"
+    slot="tab"
+    tabindex="-1"
+  >
+    Tab 3
+  </blockquote-tab>
+  <blockquote-tabpanel
+    aria-hidden="true"
+    aria-labelledby="tab-1"
+    role="tabpanel"
+    slot="tabpanel"
+    tabindex="0"
+  >
+    <p>
+      Panel 1
+    </p>
+  </blockquote-tabpanel>
+  <blockquote-tabpanel
+    aria-hidden="false"
+    aria-labelledby="tab-2"
+    role="tabpanel"
+    slot="tabpanel"
+    tabindex="0"
+  >
+    <p>
+      Panel 2
+    </p>
+  </blockquote-tabpanel>
+  <blockquote-tabpanel
+    aria-hidden="true"
+    aria-labelledby="tab-3"
+    role="tabpanel"
+    slot="tabpanel"
+    tabindex="0"
+  >
+    <p>
+      Panel 3
+    </p>
+  </blockquote-tabpanel>
+</blockquote-tabs>
+"
+`;
+
+exports[`BlockquoteTabs > Selected > Semantic Dom and a11y > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
+"<div class="hold">
+  <div class="scroll-content">
+    <div role="tablist">
+      <slot name="tab">
+      </slot>
+    </div>
+  </div>
+  <span
+    aria-hidden="true"
+    class="separator"
+  >
+  </span>
+  <span
+    aria-hidden="true"
+    class="indicator"
+  >
+  </span>
+  <span
+    aria-hidden="true"
+    class="indicator"
+  >
+  </span>
+</div>
+<div>
+  <slot name="tabpanel">
+  </slot>
+</div>
+"
+`;

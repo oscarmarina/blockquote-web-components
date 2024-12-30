@@ -15,7 +15,7 @@
 ## testing
 **/coverage
 **/reports
-**/__snapshots__
+!**/__snapshots__
 **/screenshots
 
 ## build

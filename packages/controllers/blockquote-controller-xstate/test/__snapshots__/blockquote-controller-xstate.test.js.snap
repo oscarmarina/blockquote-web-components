@@ -1,0 +1,32 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BlockquoteControllerXstate > Default > Semantic Dom and a11y > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
+"<xstate-counter>
+  light-dom
+</xstate-counter>
+"
+`;
+
+exports[`BlockquoteControllerXstate > Default > Semantic Dom and a11y > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
+"<slot>
+</slot>
+<div aria-disabled="false">
+  <span>
+    <button data-counter="increment">
+      Increment
+    </button>
+    <button data-counter="decrement">
+      Decrement
+    </button>
+  </span>
+  <p>
+    0
+  </p>
+</div>
+<div>
+  <button>
+    Disabled counter
+  </button>
+</div>
+"
+`;

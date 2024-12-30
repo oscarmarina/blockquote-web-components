@@ -1,0 +1,211 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BlockquoteDialog > Default Close > Semantic Dom and a11y > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
+"<blockquote-dialog
+  role="presentation"
+  type="alert"
+>
+  <form method="dialog">
+    <header>
+      <h2>
+        Dialog header
+      </h2>
+    </header>
+    <div>
+      Dialog content
+    </div>
+    <footer>
+      <menu>
+        <button value="cancel">
+          Cancel
+        </button>
+        <button value="confirm">
+          Confirm
+        </button>
+      </menu>
+    </footer>
+  </form>
+</blockquote-dialog>
+"
+`;
+
+exports[`BlockquoteDialog > Default Close > Semantic Dom and a11y > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
+"<dialog role="alertdialog">
+  <span
+    hidden=""
+    tabindex="0"
+  >
+  </span>
+  <div class="scroller">
+    <div class="content">
+      <slot>
+      </slot>
+    </div>
+  </div>
+  <span
+    hidden=""
+    tabindex="0"
+  >
+  </span>
+</dialog>
+"
+`;
+
+exports[`BlockquoteDialog > Default Close role dialog > Semantic Dom and a11y > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
+"<blockquote-dialog
+  role="presentation"
+  type=""
+>
+  <form method="dialog">
+    <header>
+      <h2>
+        Dialog header
+      </h2>
+    </header>
+    <div>
+      Dialog content
+    </div>
+    <footer>
+      <menu>
+        <button value="cancel">
+          Cancel
+        </button>
+        <button value="confirm">
+          Confirm
+        </button>
+      </menu>
+    </footer>
+  </form>
+</blockquote-dialog>
+"
+`;
+
+exports[`BlockquoteDialog > Default Close role dialog > Semantic Dom and a11y > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
+"<dialog role="alertdialog">
+  <span
+    hidden=""
+    tabindex="0"
+  >
+  </span>
+  <div class="scroller">
+    <div class="content">
+      <slot>
+      </slot>
+    </div>
+  </div>
+  <span
+    hidden=""
+    tabindex="0"
+  >
+  </span>
+</dialog>
+"
+`;
+
+exports[`BlockquoteDialog > Default Close with "label" > Semantic Dom and a11y > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
+"<blockquote-dialog
+  label="aria-label Name"
+  role="presentation"
+  type="alert"
+>
+  <form method="dialog">
+    <header>
+      <h2>
+        Dialog header
+      </h2>
+    </header>
+    <div>
+      Dialog content
+    </div>
+    <footer>
+      <menu>
+        <button value="cancel">
+          Cancel
+        </button>
+        <button value="confirm">
+          Confirm
+        </button>
+      </menu>
+    </footer>
+  </form>
+</blockquote-dialog>
+"
+`;
+
+exports[`BlockquoteDialog > Default Close with "label" > Semantic Dom and a11y > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
+"<dialog role="alertdialog">
+  <span
+    hidden=""
+    tabindex="0"
+  >
+  </span>
+  <div class="scroller">
+    <div class="content">
+      <slot>
+      </slot>
+    </div>
+  </div>
+  <span
+    hidden=""
+    tabindex="0"
+  >
+  </span>
+</dialog>
+"
+`;
+
+exports[`BlockquoteDialog > Default Open > Semantic Dom and a11y > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
+"<blockquote-dialog
+  labelledby="labelledby"
+  open=""
+  role="presentation"
+  type="alert"
+>
+  <form method="dialog">
+    <header>
+      <h2>
+        Dialog header
+      </h2>
+    </header>
+    <div>
+      Dialog content
+    </div>
+    <footer>
+      <menu>
+        <button value="cancel">
+          Cancel
+        </button>
+        <button value="confirm">
+          Confirm
+        </button>
+      </menu>
+    </footer>
+  </form>
+  <span slot="labelledby">
+    All fields are required
+  </span>
+</blockquote-dialog>
+"
+`;
+
+exports[`BlockquoteDialog > Default Open > Semantic Dom and a11y > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
+"<dialog role="alertdialog">
+  <span
+    hidden=""
+    tabindex="0"
+  >
+  </span>
+  <div class="scroller">
+    <div class="content">
+      <slot>
+      </slot>
+    </div>
+  </div>
+  <span
+    hidden=""
+    tabindex="0"
+  >
+  </span>
+</dialog>
+"
+`;
