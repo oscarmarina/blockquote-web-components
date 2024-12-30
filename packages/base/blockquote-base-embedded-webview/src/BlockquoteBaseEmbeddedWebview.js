@@ -153,7 +153,7 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     super.connectedCallback?.();
     await this.updateComplete;
 
-    this.shadowRoot?.addEventListener('webviewresize', (ev) => {
+    this.addEventListener('webviewresize', (ev) => {
       const {detail} = /** @type {CustomEvent} */ (ev);
 
       Object.assign(this.__readDataPos, detail);

@@ -1,6 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {html, fixture, assert, fixtureCleanup} from '@open-wc/testing';
-import {spy} from 'sinon';
+import {suite, test, assert, expect, beforeAll, vi} from 'vitest';
+import {assert as a11y, fixture, fixtureCleanup} from '@open-wc/testing';
+import {getDiffableHTML} from '@open-wc/semantic-dom-diff';
+import {html} from 'lit';
 import '../src/define/blockquote-base-embedded-webview-size.js';
 
 suite('BlockquoteBaseEmbeddedWebviewSize', () => {
@@ -8,6 +10,7 @@ suite('BlockquoteBaseEmbeddedWebviewSize', () => {
    * @type {import('../src/index').BlockquoteBaseEmbeddedWebviewSize}
    */
   let el;
+  let elShadowRoot;
   let screenSizesButtons;
   let buttonSize3;
 
@@ -17,86 +20,104 @@ suite('BlockquoteBaseEmbeddedWebviewSize', () => {
     {width: 1920, height: 1080, id: '1920x1080'},
   ];
 
-  teardown(() => fixtureCleanup());
-
   suite('Default', () => {
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <blockquote-base-embedded-webview-size
           .screenSizes="${screenSizes}"></blockquote-base-embedded-webview-size>
       `);
-      await el.updateComplete;
+      elShadowRoot = el?.shadowRoot?.innerHTML;
 
-      screenSizesButtons = el.shadowRoot?.querySelectorAll('button');
-      buttonSize3 = screenSizesButtons?.[2];
+      return () => {
+        fixtureCleanup();
+      };
     });
 
-    suite('Semantic Dom and a11y', () => {
-      test('SHADOW DOM - Structure test', async () => {
-        await assert.shadowDom.equalSnapshot(el);
-      });
+    test('SHADOW DOM - Structure test', () => {
+      expect(getDiffableHTML(elShadowRoot, {ignoreAttributes: ['loading']})).toMatchSnapshot(
+        'SHADOW DOM'
+      );
+    });
 
-      test('LIGHT DOM - Structure test', async () => {
-        await assert.lightDom.equalSnapshot(el);
-      });
+    test('LIGHT DOM - Structure test', () => {
+      expect(getDiffableHTML(el, {ignoreAttributes: ['loading']})).toMatchSnapshot('LIGHT DOM');
+    });
 
-      test('a11y', async () => {
-        await assert.isAccessible(el);
-      });
+    test('a11y', async () => {
+      await a11y.isAccessible(el);
+    });
+  });
 
-      test('selectedchange event is raised', async () => {
-        const spyEvent = spy();
-        el.addEventListener('selectedchange', spyEvent);
-        el.selected = 1;
-        await el.updateComplete;
-        assert.isTrue(spyEvent.called, 'selectedchange event is raised');
-      });
+  suite('Behavior', () => {
+    beforeAll(async () => {
+      el = await fixture(html`
+        <blockquote-base-embedded-webview-size
+          .screenSizes="${screenSizes}"></blockquote-base-embedded-webview-size>
+      `);
+      elShadowRoot = el?.shadowRoot;
+      screenSizesButtons = elShadowRoot?.querySelectorAll('button');
+      buttonSize3 = screenSizesButtons?.[2];
 
-      test('click event is raised', async () => {
-        const spyEvent = spy();
-        el.addEventListener('click', spyEvent);
-        buttonSize3.click();
-        await el.updateComplete;
-        assert.isTrue(spyEvent.called, 'click event is raised');
-      });
+      return () => {
+        fixtureCleanup();
+      };
+    });
 
-      test('screen-sizes array are sorted in descending order (by width)', () => {
-        const lastIndex = Number(buttonSize3.dataset.index);
-        assert.isTrue(lastIndex === screenSizesButtons.length);
-      });
+    test('selectedchange event is raised', async () => {
+      const spyEvent = vi.fn();
+      el.addEventListener('selectedchange', spyEvent);
+      el.selected = 1;
+      await el.updateComplete;
+      expect(spyEvent).toHaveBeenCalled();
+    });
 
-      test('Hidden screen size options that are too large for the container', async () => {
-        assert.strictEqual(el.shadowRoot?.querySelectorAll('button[hidden]').length, 2);
-        el.style.width = '1024px';
-        window.dispatchEvent(new Event('resize'));
-        el.requestUpdate();
-        await el.updateComplete;
-        assert.strictEqual(el.shadowRoot?.querySelectorAll('button[hidden]').length, 1);
-      });
+    test('click event is raised', () => {
+      const spyEvent = vi.fn();
+      el.addEventListener('click', spyEvent);
+      buttonSize3.click();
+      expect(spyEvent).toHaveBeenCalled();
+    });
+
+    test('screen-sizes array are sorted in descending order (by width)', () => {
+      const lastIndex = Number(buttonSize3.dataset.index);
+      assert.isTrue(lastIndex === screenSizesButtons.length);
+    });
+
+    test('Hidden screen size options that are too large for the container', async () => {
+      assert.strictEqual(el.shadowRoot?.querySelectorAll('button[hidden]').length, 2);
+      el.style.width = '1024px';
+      window.dispatchEvent(new Event('resize'));
+      el.requestUpdate();
+      await el.updateComplete;
+      assert.strictEqual(el.shadowRoot?.querySelectorAll('button[hidden]').length, 1);
     });
   });
 
   suite('Custom selected', () => {
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <blockquote-base-embedded-webview-size
           selected="3"
           width-in-percent></blockquote-base-embedded-webview-size>
       `);
-      await el.updateComplete;
+      elShadowRoot = el?.shadowRoot?.innerHTML;
+      return () => {
+        fixtureCleanup();
+      };
     });
-    suite('Semantic Dom and a11y', () => {
-      test('SHADOW DOM - Structure test', async () => {
-        await assert.shadowDom.equalSnapshot(el);
-      });
 
-      test('LIGHT DOM - Structure test', async () => {
-        await assert.lightDom.equalSnapshot(el);
-      });
+    test('SHADOW DOM - Structure test', () => {
+      expect(getDiffableHTML(elShadowRoot, {ignoreAttributes: ['loading']})).toMatchSnapshot(
+        'SHADOW DOM'
+      );
+    });
 
-      test('a11y', async () => {
-        await assert.isAccessible(el);
-      });
+    test('LIGHT DOM - Structure test', () => {
+      expect(getDiffableHTML(el, {ignoreAttributes: ['loading']})).toMatchSnapshot('LIGHT DOM');
+    });
+
+    test('a11y', async () => {
+      await a11y.isAccessible(el);
     });
   });
 });

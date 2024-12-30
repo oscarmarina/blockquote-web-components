@@ -54,9 +54,7 @@
       </div>
     </main>
     <script type="module">
-      import sinon from 'sinon';
-      import 'inspector-elements';
-      import {DmCurrencies} from './DmCurrencies.js';
+      import {DmCurrencies, fakeServer} from './entry.js';
 
       // https://gist.github.com/manishtiwari25/0fa055ee14f29ee6a7654d50af20f095
       const CURRENCIES = {
@@ -102,7 +100,7 @@
         plain: {'Content-Type': 'text/plain'},
       };
 
-      const server = sinon.fakeServer.create({
+      const server = fakeServer.create({
         autoRespond: true,
       });
 

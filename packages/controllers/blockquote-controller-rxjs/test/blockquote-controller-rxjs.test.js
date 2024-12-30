@@ -1,7 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {html, fixture, assert, fixtureCleanup} from '@open-wc/testing';
 import {from, Subject} from 'rxjs';
-import {LitElement} from 'lit';
+import {suite, test, assert, beforeAll} from 'vitest';
+import {fixture, fixtureCleanup} from '@open-wc/testing';
+import {html, LitElement} from 'lit';
 import {BlockquoteControllerRxjs} from '../src/index.js';
 
 const RxjsDemo = class BlockquoteControllerRxjsDemo extends LitElement {
@@ -45,14 +46,14 @@ suite('BlockquoteControllerRxjs', () => {
    */
   let el;
 
-  teardown(() => fixtureCleanup());
-
   suite('Default', () => {
-    setup(async () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <blockquote-controller-rxjs-demo></blockquote-controller-rxjs-demo>
       `);
-      await el.updateComplete;
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     test('can handle simple Observable - with Reactive property', async () => {

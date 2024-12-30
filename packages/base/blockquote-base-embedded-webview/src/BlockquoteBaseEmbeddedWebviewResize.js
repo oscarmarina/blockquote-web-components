@@ -161,7 +161,7 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
 
   _dispatchResizeEvent() {
     const event = new CustomEvent('webviewresize', {
-      bubbles: true,
+      composed: true,
       detail: {
         x: getComputedStyle(this).getPropertyValue(
           '--blockquote-base-embedded-webview-resize-rect-width'

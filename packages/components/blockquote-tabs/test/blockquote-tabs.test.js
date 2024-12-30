@@ -1,5 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {html, fixture, assert, expect, fixtureCleanup, aTimeout} from '@open-wc/testing';
+import {suite, test, assert, expect, beforeEach} from 'vitest';
+import {assert as a11y, fixture, fixtureCleanup} from '@open-wc/testing';
+import {getDiffableHTML} from '@open-wc/semantic-dom-diff';
+import {html} from 'lit';
 
 import '../src/define/blockquote-tabs.js';
 
@@ -8,11 +11,10 @@ suite('BlockquoteTabs', () => {
    * @type {import('../src/index').BlockquoteTabs}
    */
   let el;
-
-  teardown(() => fixtureCleanup());
+  let elShadowRoot;
 
   suite('Default', () => {
-    setup(async () => {
+    beforeEach(async () => {
       el = await fixture(html`
         <blockquote-tabs>
           <blockquote-tab id="tab-1">Tab 1</blockquote-tab>
@@ -23,23 +25,26 @@ suite('BlockquoteTabs', () => {
           <blockquote-tabpanel aria-labelledby="tab-3"><p>Panel 3</p></blockquote-tabpanel>
         </blockquote-tabs>
       `);
-      await el.updateComplete;
+      elShadowRoot = el?.shadowRoot?.innerHTML;
+
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot({ignoreAttributes: ['id']});
-        await aTimeout(100);
+        expect(getDiffableHTML(elShadowRoot, {ignoreAttributes: ['id']})).toMatchSnapshot(
+          'SHADOW DOM'
+        );
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await expect(el).lightDom.to.equalSnapshot({ignoreAttributes: ['id']});
-        await aTimeout(100);
+        expect(getDiffableHTML(el, {ignoreAttributes: ['id']})).toMatchSnapshot('LIGHT DOM');
       });
 
       test('a11y', async () => {
-        await assert.isAccessible(el);
-        await aTimeout(100);
+        await a11y.isAccessible(el);
       });
 
       test('Click on tab updates selected tab', async () => {
@@ -48,7 +53,6 @@ suite('BlockquoteTabs', () => {
         tab.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true}));
         await el.updateComplete;
         assert.equal(el.selected, 3);
-        await aTimeout(100);
       });
 
       test('ArrowRight on tab updates selected tab', async () => {
@@ -59,7 +63,6 @@ suite('BlockquoteTabs', () => {
         );
         await el.updateComplete;
         assert.equal(el.selected, 2);
-        await aTimeout(100);
       });
 
       test('ArrowLeft on tab updates selected tab', async () => {
@@ -70,13 +73,12 @@ suite('BlockquoteTabs', () => {
         );
         await el.updateComplete;
         assert.equal(el.selected, 3);
-        await aTimeout(100);
       });
     });
   });
 
   suite('Autofocus', () => {
-    setup(async () => {
+    beforeEach(async () => {
       el = await fixture(html`
         <blockquote-tabs autofocus>
           <blockquote-tab id="tab-1">Tab 1</blockquote-tab>
@@ -87,29 +89,31 @@ suite('BlockquoteTabs', () => {
           <blockquote-tabpanel aria-labelledby="tab-3"><p>Panel 3</p></blockquote-tabpanel>
         </blockquote-tabs>
       `);
-      await el.updateComplete;
+      elShadowRoot = el?.shadowRoot?.innerHTML;
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot({ignoreAttributes: ['id']});
-        await aTimeout(100);
+        expect(getDiffableHTML(elShadowRoot, {ignoreAttributes: ['id']})).toMatchSnapshot(
+          'SHADOW DOM'
+        );
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await expect(el).lightDom.to.equalSnapshot({ignoreAttributes: ['id']});
-        await aTimeout(100);
+        expect(getDiffableHTML(el, {ignoreAttributes: ['id']})).toMatchSnapshot('LIGHT DOM');
       });
 
       test('a11y', async () => {
-        await assert.isAccessible(el);
-        await aTimeout(100);
+        await a11y.isAccessible(el);
       });
     });
   });
 
   suite('Selected', () => {
-    setup(async () => {
+    beforeEach(async () => {
       el = await fixture(html`
         <blockquote-tabs selected="2">
           <blockquote-tab id="tab-1">Tab 1</blockquote-tab>
@@ -120,23 +124,25 @@ suite('BlockquoteTabs', () => {
           <blockquote-tabpanel aria-labelledby="tab-3"><p>Panel 3</p></blockquote-tabpanel>
         </blockquote-tabs>
       `);
-      await el.updateComplete;
+      elShadowRoot = el?.shadowRoot?.innerHTML;
+      return () => {
+        fixtureCleanup();
+      };
     });
 
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot({ignoreAttributes: ['id']});
-        await aTimeout(100);
+        expect(getDiffableHTML(elShadowRoot, {ignoreAttributes: ['id']})).toMatchSnapshot(
+          'SHADOW DOM'
+        );
       });
 
       test('LIGHT DOM - Structure test', async () => {
-        await expect(el).lightDom.to.equalSnapshot({ignoreAttributes: ['id']});
-        await aTimeout(100);
+        expect(getDiffableHTML(el, {ignoreAttributes: ['id']})).toMatchSnapshot('LIGHT DOM');
       });
 
       test('a11y', async () => {
-        await assert.isAccessible(el);
-        await aTimeout(100);
+        await a11y.isAccessible(el);
       });
     });
   });
