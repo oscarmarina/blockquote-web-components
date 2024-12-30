@@ -1,0 +1,53 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BlockquoteControllerContextMeta > Default > Semantic Dom > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
+"<provider-el>
+  <consumer-el data-callback="Initial">
+  </consumer-el>
+</provider-el>
+"
+`;
+
+exports[`BlockquoteControllerContextMeta > Default > Semantic Dom > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
+"<h3>
+  Provider's data:
+  <code>
+    Initial
+  </code>
+</h3>
+<slot>
+</slot>
+"
+`;
+
+exports[`BlockquoteControllerContextMeta > Override  > Semantic Dom > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
+"<provider-el data="specified from attribute">
+  <consumer-el data-callback="specified from attribute">
+  </consumer-el>
+</provider-el>
+"
+`;
+
+exports[`BlockquoteControllerContextMeta > Override  > Semantic Dom > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
+"<h3>
+  Provider's data:
+  <code>
+    specified from attribute
+  </code>
+</h3>
+<slot>
+</slot>
+"
+`;
+
+exports[`BlockquoteControllerContextMeta > initOrGetContextProvider > Semantic Dom > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
+"<flow-element role="presentation">
+</flow-element>
+"
+`;
+
+exports[`BlockquoteControllerContextMeta > initOrGetContextProvider > Semantic Dom > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
+"<slot>
+</slot>
+"
+`;

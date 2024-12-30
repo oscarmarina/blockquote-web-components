@@ -1,0 +1,244 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BlockquoteBaseEmbeddedWebview > Behavior > limit height > SHADOW DOM 1`] = `
+"<header>
+  <div>
+    <div
+      aria-level="1"
+      role="heading"
+    >
+      blockquote-base-embedded-webview
+    </div>
+    <div>
+      <div class="select">
+        <select aria-label="Cases">
+          <option
+            selected=""
+            value="0"
+          >
+            Base Complex
+          </option>
+        </select>
+      </div>
+      <a
+        class="open-externally"
+        href="/test/test.html"
+        target="_blank"
+      >
+        <span class="sr-only">
+          View demo in a new tab
+        </span>
+        <span aria-hidden="true">
+        </span>
+      </a>
+    </div>
+    <p class="description">
+    </p>
+    <div
+      aria-hidden="true"
+      class="read-data-pos"
+    >
+      <span>
+        0
+      </span>
+      <span>
+        x
+      </span>
+      <span>
+        0
+      </span>
+    </div>
+  </div>
+  <blockquote-base-embedded-webview-size>
+  </blockquote-base-embedded-webview-size>
+</header>
+<div class="main">
+  <blockquote-base-embedded-webview-resize>
+    <slot name="embedded">
+    </slot>
+  </blockquote-base-embedded-webview-resize>
+</div>
+"
+`;
+
+exports[`BlockquoteBaseEmbeddedWebview > Default > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
+"<blockquote-base-embedded-webview
+  heading="blockquote-base-embedded-webview"
+  heading-level="1"
+>
+  <template
+    data-description="base - description"
+    data-option="Base"
+    data-src="/test/test.html"
+  >
+  </template>
+  <template
+    data-description="other - description"
+    data-option="Other"
+    data-src="/test/test2.html"
+  >
+  </template>
+  <blockquote-base-embedded-webview-element slot="embedded">
+    <iframe
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen=""
+      slot="embedded"
+      src="/test/test.html"
+      title="Base"
+    >
+    </iframe>
+  </blockquote-base-embedded-webview-element>
+</blockquote-base-embedded-webview>
+"
+`;
+
+exports[`BlockquoteBaseEmbeddedWebview > Default > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
+"<header>
+  <div>
+    <div
+      aria-level="1"
+      role="heading"
+    >
+      blockquote-base-embedded-webview
+    </div>
+    <div>
+      <div class="select">
+        <select aria-label="Cases">
+          <option
+            selected=""
+            value="0"
+          >
+            Base
+          </option>
+          <option value="1">
+            Other
+          </option>
+        </select>
+      </div>
+      <a
+        class="open-externally"
+        href="/test/test.html"
+        target="_blank"
+      >
+        <span class="sr-only">
+          View demo in a new tab
+        </span>
+        <span aria-hidden="true">
+        </span>
+      </a>
+    </div>
+    <p class="description">
+      base - description
+    </p>
+    <div
+      aria-hidden="true"
+      class="read-data-pos"
+    >
+      <span>
+        0
+      </span>
+      <span>
+        x
+      </span>
+      <span>
+        0
+      </span>
+    </div>
+  </div>
+  <blockquote-base-embedded-webview-size>
+  </blockquote-base-embedded-webview-size>
+</header>
+<div class="main">
+  <blockquote-base-embedded-webview-resize>
+    <slot name="embedded">
+    </slot>
+  </blockquote-base-embedded-webview-resize>
+</div>
+"
+`;
+
+exports[`BlockquoteBaseEmbeddedWebview > variant > LIGHT DOM - Structure test > VARIANT - LIGHT DOM 1`] = `
+"<blockquote-base-embedded-webview
+  heading="blockquote-base-embedded-webview"
+  heading-level="1"
+>
+  <template data-src="/test/test.html">
+  </template>
+  <blockquote-base-embedded-webview-element slot="embedded">
+    <iframe
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen=""
+      slot="embedded"
+      src="/test/test.html"
+      title="Demo"
+    >
+    </iframe>
+  </blockquote-base-embedded-webview-element>
+</blockquote-base-embedded-webview>
+"
+`;
+
+exports[`BlockquoteBaseEmbeddedWebview > variant > SHADOW DOM - Structure test > VARIANT - SHADOW DOM 1`] = `
+"<header>
+  <div>
+    <div
+      aria-level="2"
+      role="heading"
+    >
+      blockquote-base-embedded-webview
+    </div>
+    <div>
+      <div class="select">
+        <select aria-label="Cases">
+          <option value="0">
+            Base
+          </option>
+          <option
+            selected=""
+            value="1"
+          >
+            Other
+          </option>
+        </select>
+      </div>
+      <a
+        class="open-externally"
+        href="/test/test2.html"
+        target="_blank"
+      >
+        <span class="sr-only">
+          View demo in a new tab
+        </span>
+        <span aria-hidden="true">
+        </span>
+      </a>
+    </div>
+    <p class="description">
+      other - description
+    </p>
+    <div
+      aria-hidden="true"
+      class="read-data-pos"
+    >
+      <span>
+        0
+      </span>
+      <span>
+        x
+      </span>
+      <span>
+        0
+      </span>
+    </div>
+  </div>
+  <blockquote-base-embedded-webview-size>
+  </blockquote-base-embedded-webview-size>
+</header>
+<div class="main">
+  <blockquote-base-embedded-webview-resize>
+    <slot name="embedded">
+    </slot>
+  </blockquote-base-embedded-webview-resize>
+</div>
+"
+`;
