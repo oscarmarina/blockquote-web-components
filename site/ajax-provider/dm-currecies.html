@@ -1,9 +1,11 @@
-<!DOCTYPE html><html lang="en"><head>
+<!doctype html>
+<html lang="en">
+  <head>
     <title>Demo - ajax-provider</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <link rel="icon" href="assets/favicon.svg" sizes="any" type="image/svg+xml">
-    <meta name="description" content="Demo DM currencies - ajax-provider">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml" />
+    <meta name="description" content="Demo DM currencies - ajax-provider" />
     <style>
       html {
         font-family: sans-serif;
@@ -38,14 +40,91 @@
     <main>
       <div>
         <p class="label">getcurrencies();</p>
-        <ix-object-inspector name="object-inspector" expandlevel="3" id="currencies"></ix-object-inspector>
+        <ix-object-inspector
+          name="object-inspector"
+          expandLevel="3"
+          id="currencies"></ix-object-inspector>
       </div>
       <div>
         <p class="label">getcurrenciesFromCountryCode('MNT);</p>
-        <ix-object-inspector name="object-inspector" expandlevel="3" id="currenciesCN"></ix-object-inspector>
+        <ix-object-inspector
+          name="object-inspector"
+          expandLevel="3"
+          id="currenciesCN"></ix-object-inspector>
       </div>
     </main>
-    
-  
+    <script type="module">
+      import {DmCurrencies, fakeServer} from './entry.js';
 
-<script type="module" src="./assets/inline-module-80c63174c352ece31c5dc8c30dcab1a8-BjJnChR8.js"></script></body></html>
+      // https://gist.github.com/manishtiwari25/0fa055ee14f29ee6a7654d50af20f095
+      const CURRENCIES = {
+        currencies: [
+          {
+            code: 'BGN',
+            name: 'Bulgarian Lev',
+            symbol: 'Лв.',
+            countries: [
+              {
+                code: 'BG',
+                name: 'Bulgaria',
+              },
+            ],
+          },
+          {
+            code: 'JPY',
+            name: 'Japanese Yen',
+            symbol: '¥',
+            countries: [
+              {
+                code: 'JP',
+                name: 'Japan',
+              },
+            ],
+          },
+          {
+            code: 'MNT',
+            name: 'Mongolian Tugrik',
+            symbol: '₮',
+            countries: [
+              {
+                code: 'MN',
+                name: 'Mongolia',
+              },
+            ],
+          },
+        ],
+      };
+
+      const responseHeaders = {
+        json: {'Content-Type': 'application/json'},
+        plain: {'Content-Type': 'text/plain'},
+      };
+
+      const server = fakeServer.create({
+        autoRespond: true,
+      });
+
+      server.respondWith('GET', 'responds_get_with_json', [
+        200,
+        responseHeaders.json,
+        JSON.stringify(CURRENCIES),
+      ]);
+
+      const currencies = document.querySelector('#currencies');
+      const currenciesCN = document.querySelector('#currenciesCN');
+
+      const dm = new DmCurrencies({url: 'responds_get_with_json'});
+      dm.addEventListener('success-currency', ({detail}) => console.log(detail), {once: true});
+      dm.addEventListener('success-currency-from-country-code', ({detail}) => console.log(detail));
+      dm.addEventListener('error-currency', ({detail}) => console.log(detail));
+
+      dm.getCurrencies().then((data) => {
+        currencies.data = data;
+      });
+
+      dm.getCurrenciesFromCountryCode('MN').then((data) => {
+        currenciesCN.data = data;
+      });
+    </script>
+  </body>
+</html>

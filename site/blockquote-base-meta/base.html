@@ -1,9 +1,11 @@
-<!DOCTYPE html><html lang="en"><head>
+<!doctype html>
+<html lang="en">
+  <head>
     <title>Base - blockquote-base-meta</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <link rel="icon" href="assets/favicon.svg" sizes="any" type="image/svg+xml">
-    <meta name="description" content="Demo Base - blockquote-base-meta">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml" />
+    <meta name="description" content="Demo Base - blockquote-base-meta" />
     <style>
       :root {
         font: normal medium/1.25 sans-serif;
@@ -68,7 +70,7 @@
 
         <p>
           <code>myDefault.byKey('basic')</code>
-          <br>
+          <br />
           The value stored at
           <strong>key</strong>
           :
@@ -100,7 +102,7 @@
 
         <p>
           <code>myMeta.list</code>
-          <br>
+          <br />
           The values stored at
           <strong>type</strong>
           <code class="inner-meta-key"></code>
@@ -109,7 +111,7 @@
         </p>
         <p>
           <code>myMeta.objectList</code>
-          <br>
+          <br />
           key:value stored at
           <strong>type</strong>
           :
@@ -120,8 +122,59 @@
         </p>
       </article>
 
-      
-    </main>
-  
+      <script type="module">
+        import {BlockquoteBaseMeta} from './entry.js';
 
-<script type="module" src="./assets/inline-module-76c49bd9e51f5f97f151ccf06b2af6cd-DPBAthkq.js"></script></body></html>
+        const myDefault = new BlockquoteBaseMeta({
+          key: 'basic',
+          value: 'foo/bar',
+        });
+        const myMeta = new BlockquoteBaseMeta({
+          type: 'article',
+          key: 'indefinite',
+          value: 'a/an',
+        });
+        // eslint-disable-next-line no-unused-vars
+        const myMeta2 = new BlockquoteBaseMeta({
+          type: 'article',
+          key: 'definite',
+          value: 'the',
+        });
+        // eslint-disable-next-line no-unused-vars
+        const myMeta3 = new BlockquoteBaseMeta({
+          type: 'article',
+          key: 'negative',
+          value: 'no',
+        });
+
+        const metaTextKey = document.querySelector('.meta-key .inner-meta-key');
+        const metaTextValue = document.querySelector('.meta-key .inner-meta-value');
+        metaTextKey.textContent = `${myDefault.key}`;
+        metaTextValue.textContent = `${myDefault.byKey('basic')}`;
+
+        const metaTextQueryList = document.querySelector('.meta-query .inner-meta-key');
+        const metaTextQueryValue = document.querySelector('.meta-query .inner-meta-value');
+        metaTextQueryList.textContent = `${myMeta.type}`;
+        metaTextQueryValue.textContent = `${JSON.stringify(myMeta.list)}`;
+
+        const metaTextQueryKeyList = document.querySelector('.meta-query .inner-meta-keys');
+        const metaTextQueryValues = document.querySelector('.meta-query .inner-meta-values');
+        metaTextQueryKeyList.textContent = `${myMeta.type}`;
+        metaTextQueryValues.textContent = `${JSON.stringify(myMeta.objectList)}`;
+
+        console.info('objectList: ', myMeta.objectList);
+        console.info('mapList: ', myMeta.mapList);
+
+        // use complex key
+        const keyInfoMap = {id: 'dsfaskj0'};
+        const myDefaultMap = new BlockquoteBaseMeta({
+          type: 'two',
+          key: keyInfoMap,
+          value: 'foo/bar',
+        });
+        console.info(myDefaultMap.mapList);
+        console.info(myDefaultMap.byKey(keyInfoMap));
+      </script>
+    </main>
+  </body>
+</html>

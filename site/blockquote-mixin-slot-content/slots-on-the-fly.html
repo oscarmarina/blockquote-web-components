@@ -1,9 +1,11 @@
-<!DOCTYPE html><html lang="en"><head>
+<!doctype html>
+<html lang="en">
+  <head>
     <title>Slots on the fly - blockquote-mixin-slot-content</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <link rel="icon" href="assets/favicon.svg" sizes="any" type="image/svg+xml">
-    <meta name="description" content="Demo Slots on the fly - blockquote-mixin-slot-content">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml" />
+    <meta name="description" content="Demo Slots on the fly - blockquote-mixin-slot-content" />
     <style>
       :root {
         font: normal medium/1.25 sans-serif;
@@ -52,12 +54,106 @@
       </slot-element>
       <div class="actions">
         <button id="add-group">Add group</button>
-        <hr>
+        <hr />
         <button id="add">Add item in random group</button>
         <button id="remove">Remove item in random group</button>
       </div>
     </main>
-    
-  
+    <script type="module">
+      import {html, LitElement, BlockquoteMixinSlotContent} from './entry.js';
 
-<script type="module" src="./assets/inline-module-b7a981cb75568e63a07d45744f247eb3-CZZwTKiN.js"></script></body></html>
+      const element = document.querySelector('slot-element');
+
+      document.getElementById('add').addEventListener('click', () => {
+        const newElementP = document.createElement('p');
+        const randomSlot = Math.floor(Math.random() * Number(element.getAttribute('slots')) + 1);
+        Object.assign(newElementP, {
+          slot: `slot${randomSlot}`,
+          textContent: `Slot-Random-Group-${randomSlot}`,
+        });
+        element.appendChild(newElementP);
+      });
+
+      document.getElementById('remove').addEventListener('click', () => {
+        const childElements = element.children;
+        const randomSlot = Math.floor(Math.random() * Number(element.getAttribute('slots')) + 1);
+        if (childElements[randomSlot]) {
+          element.removeChild(childElements[randomSlot]);
+        }
+      });
+
+      document.getElementById('add-group').addEventListener('click', () => {
+        const newElementP = document.createElement('p');
+        element.slots += 1;
+        Object.assign(newElementP, {
+          slot: `slot${element.slots}`,
+          textContent: `Slot-New-Group ${element.slots}-1`,
+        });
+        element.appendChild(newElementP);
+      });
+
+      class slotElement extends BlockquoteMixinSlotContent(LitElement) {
+        static get properties() {
+          return {
+            slots: {
+              type: Number,
+              reflect: true,
+            },
+          };
+        }
+
+        constructor() {
+          super();
+          this.slots = 0;
+          this.addEventListener('slotchanges', this._onSlotChanges);
+        }
+
+        update(props) {
+          if (props.has('slots')) {
+            this._initializeSlots();
+          }
+
+          super.update && super.update(props);
+        }
+
+        _initializeSlots() {
+          this._slots = [];
+          for (let i = 0; i < this.slots; i += 1) {
+            this._slots[i] = [];
+          }
+        }
+
+        _onSlotChanges = (ev) => {
+          const {detail} = ev;
+          console.info(detail);
+          console.info(
+            'assignedNodes ==>',
+            detail.assignedNodesContent.assignedNodes,
+            '-',
+            detail.assignedSlotContent.slotName
+          );
+        };
+
+        render() {
+          return html`
+            ${this._slotsTpl}
+          `;
+        }
+
+        get _slotsTpl() {
+          return html`
+            ${this._slots.map(
+              (slot, index) => html`
+                <div>
+                  <span>==</span>
+                  <slot name="slot${index + 1}"></slot>
+                </div>
+              `
+            )}
+          `;
+        }
+      }
+      customElements.define('slot-element', slotElement);
+    </script>
+  </body>
+</html>

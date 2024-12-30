@@ -1,9 +1,11 @@
-<!DOCTYPE html><html lang="en"><head>
+<!doctype html>
+<html lang="en">
+  <head>
     <title>Base - blockquote-mixin-slot-content</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <link rel="icon" href="assets/favicon.svg" sizes="any" type="image/svg+xml">
-    <meta name="description" content="Demo Base - blockquote-mixin-slot-content">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml" />
+    <meta name="description" content="Demo Base - blockquote-mixin-slot-content" />
     <style>
       :root {
         font: normal medium/1.25 sans-serif;
@@ -35,13 +37,78 @@
         <p>ramd5</p>
         <p>domep</p>
       </slot-element>
-      <hr>
+      <hr />
       <div class="actions">
         <button id="add">Add item</button>
         <button id="remove">Remove item</button>
       </div>
     </main>
-    
-  
+    <script type="module">
+      import {html, LitElement, BlockquoteMixinSlotContent} from './entry.js';
 
-<script type="module" src="./assets/inline-module-ed4e6842673e6c56d90a778033b91157-aVIWMwOZ.js"></script></body></html>
+      const element = document.querySelector('slot-element');
+      function generateRandomString(stringLength) {
+        let randomString = '';
+        let randomAscii;
+        // eslint-disable-next-line no-plusplus
+        for (let i = 0; i < stringLength; i++) {
+          randomAscii = Math.floor(Math.random() * 25 + 97);
+          randomString += String.fromCharCode(randomAscii);
+        }
+        return randomString;
+      }
+      document.getElementById('add').addEventListener('click', () => {
+        const newElement = document.createElement('p');
+        newElement.textContent = generateRandomString(5);
+        element.appendChild(newElement);
+      });
+      document.getElementById('remove').addEventListener('click', () => {
+        const childElements = element.children;
+        if (childElements[childElements.length - 1]) {
+          element.removeChild(childElements[childElements.length - 1]);
+        }
+      });
+
+      class slotElement extends BlockquoteMixinSlotContent(LitElement) {
+        static get properties() {
+          return {
+            counter: {
+              type: Number,
+            },
+            originalCounter: {
+              type: Number,
+            },
+          };
+        }
+
+        constructor() {
+          super();
+          this.addEventListener('slotchanges', this._onSlotChanges);
+        }
+
+        _onSlotChanges = (ev) => {
+          const {detail} = ev;
+          this._contentSlots = detail.assignedNodesContent.assignedNodes;
+          this._originalContentSlots = detail.originalEvent.assignedNodes;
+          this.counter = this._contentSlots.length;
+          this.originalCounter = this._originalContentSlots.length;
+          console.info(detail);
+          console.info('assignedNodes ==>', this._contentSlots);
+        };
+
+        render() {
+          return html`
+            <p>
+              <strong>contentSlots:</strong>
+              ${this.counter} -
+              <span style="font-size: 90%;">(originalEvent: ${this.originalCounter})</span>
+            </p>
+            <hr />
+            <slot></slot>
+          `;
+        }
+      }
+      customElements.define('slot-element', slotElement);
+    </script>
+  </body>
+</html>

@@ -1,9 +1,11 @@
-<!DOCTYPE html><html lang="en"><head>
+<!doctype html>
+<html lang="en">
+  <head>
     <title>Shared styles - blockquote-base-style-helpers</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <link rel="icon" href="assets/favicon.svg" sizes="any" type="image/svg+xml">
-    <meta name="description" content="Demo Shared styles - blockquote-base-style-helpers">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml" />
+    <meta name="description" content="Demo Shared styles - blockquote-base-style-helpers" />
     <style>
       :root {
         font: normal medium/1.25 sans-serif;
@@ -32,7 +34,103 @@
       <shared-element></shared-element>
     </main>
 
-    
-  
+    <script type="module">
+      import {
+        LitElement,
+        html,
+        css,
+        getComponentSharedStyles,
+        setComponentSharedStyles,
+      } from './entry.js';
 
-<script type="module" src="./assets/inline-module-54b3a232056371a5933d71e0eab62f68-CRAVoZUx.js"></script></body></html>
+      setComponentSharedStyles(
+        'shared-element-shared-styles',
+        css`
+          .shared2 {
+            background-color: #e1f3f8;
+          }
+        `
+      );
+
+      setComponentSharedStyles(
+        'shared-element-shared-styles',
+        css`
+          .shared3 {
+            background-color: #fad980;
+          }
+        `
+      );
+
+      class SharedElement extends LitElement {
+        static get styles() {
+          return [
+            css`
+              :host {
+                display: block;
+                box-sizing: border-box;
+                color: #212121;
+              }
+
+              pre {
+                margin: 0;
+                padding: 1em;
+                white-space: break-spaces;
+                line-height: 1.1;
+              }
+              code {
+                font-weight: 700;
+              }
+              .shared {
+                background-color: #e4e2e0;
+              }
+
+              .shared ~ .shared {
+                margin: 1rem 0 0;
+              }
+            `,
+            getComponentSharedStyles('shared-element-shared-styles'),
+          ];
+        }
+
+        render() {
+          return html`
+            <pre class="shared shared1">
+<code>
+  .shared {
+    background-color: #212121;
+  }
+</code>
+</pre>
+
+            <pre class="shared shared2">
+<code>
+  .shared2 {
+    background-color: #e1f3f8;
+  }
+</code>
+</pre>
+
+            <pre class="shared shared3">
+<code>
+  .shared3 {
+    background-color: #fad980;
+  }
+</code>
+</pre>
+          `;
+        }
+      }
+      customElements.define('shared-element', SharedElement);
+
+      /* Shared styles created after component definition won't have any effect */
+      setComponentSharedStyles(
+        'shared-element-shared-styles',
+        css`
+          .shared1 {
+            background-color: yellow;
+          }
+        `
+      );
+    </script>
+  </body>
+</html>

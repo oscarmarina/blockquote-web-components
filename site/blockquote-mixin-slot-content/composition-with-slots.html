@@ -1,9 +1,13 @@
-<!DOCTYPE html><html lang="en"><head>
+<!doctype html>
+<html lang="en">
+  <head>
     <title>Composition with slots - blockquote-mixin-slot-content</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <link rel="icon" href="assets/favicon.svg" sizes="any" type="image/svg+xml">
-    <meta name="description" content="Demo Composition with slots - blockquote-mixin-slot-content">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml" />
+    <meta
+      name="description"
+      content="Demo Composition with slots - blockquote-mixin-slot-content" />
     <style>
       :root {
         font: normal medium/1.25 sans-serif;
@@ -34,13 +38,57 @@
         <span slot="firstName">firstName: Commit -</span>
         <span slot="lastName">- lastName: Queue</span>
       </slot-element>
-      <hr>
+      <hr />
       <div class="actions">
         <button id="add">Add fullName</button>
         <button id="remove">Remove fullName</button>
       </div>
     </main>
-    
-  
+    <script type="module">
+      import {html, LitElement, BlockquoteMixinSlotContent} from './entry.js';
 
-<script type="module" src="./assets/inline-module-5d89f2b9c4c65ff2f3ad3ca789e71579-C61MulV_.js"></script></body></html>
+      const element = document.querySelector('slot-element');
+
+      document.getElementById('add').addEventListener('click', () => {
+        if (element.querySelector('[slot="fullName"]')) {
+          return;
+        }
+        const newElementP = document.createElement('p');
+        Object.assign(newElementP, {slot: 'fullName', textContent: 'Commit Queue'});
+        element.appendChild(newElementP);
+      });
+
+      document.getElementById('remove').addEventListener('click', () => {
+        const childElements = element.querySelector('[slot="fullName"]');
+        if (childElements) {
+          element.removeChild(childElements);
+        }
+      });
+
+      class slotElement extends BlockquoteMixinSlotContent(LitElement) {
+        constructor() {
+          super();
+          this.addEventListener('slotchanges', this._onSlotChanges);
+        }
+
+        _onSlotChanges = (ev) => {
+          const {detail} = ev;
+          console.info(detail);
+          console.info('assignedNodes ==>', detail.assignedNodesContent.assignedNodes);
+        };
+
+        render() {
+          return html`
+            <div>
+              <slot name="fullName">
+                <slot name="firstName"></slot>
+                <slot name="lastName"></slot>
+              </slot>
+            </div>
+          `;
+        }
+      }
+      customElements.define('slot-element', slotElement);
+    </script>
+  </body>
+</html>

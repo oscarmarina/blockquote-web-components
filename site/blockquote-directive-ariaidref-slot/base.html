@@ -1,15 +1,29 @@
-<!DOCTYPE html><html lang="en"><head>
+<!doctype html>
+<html lang="en">
+  <head>
     <title>Demo - blockquote-directive-ariaidref-slot</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <link rel="icon" href="assets/favicon.svg" sizes="any" type="image/svg+xml">
-    <meta name="description" content="blockquote-directive-ariaidref-slot">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml" />
+    <meta name="description" content="blockquote-directive-ariaidref-slot" />
     <style>
       html,
       body {
         height: 100%;
         margin: 0;
         font-family: sans-serif;
+      }
+
+      [data-embedded] .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
       }
     </style>
   </head>
@@ -21,13 +35,13 @@
       <wrapper-dialog>
         <form method="dialog">
           <div>
-            <button formnovalidate="" aria-label="close">X</button>
+            <button formnovalidate aria-label="close">X</button>
           </div>
           <h2>Registration</h2>
           <p>
             <label>
               Name:
-              <input type="text" name="name" required="">
+              <input type="text" name="name" required />
             </label>
           </p>
 
@@ -39,7 +53,16 @@
         <span slot="idref">All fields are required</span>
       </wrapper-dialog>
     </main>
-    
-  
+    <script type="module">
+      import './entry.js';
 
-<script type="module" src="./assets/inline-module-64bdbed42597b56dc58d39d9e8dea348-D6Dt_y2I.js"></script></body></html>
+      const openDialog = document.getElementById('open-dialog');
+
+      const dialog = document.querySelector('wrapper-dialog');
+      dialog.labelledby = 'idref';
+      openDialog.addEventListener('click', () => {
+        dialog.setAttribute('open', '');
+      });
+    </script>
+  </body>
+</html>

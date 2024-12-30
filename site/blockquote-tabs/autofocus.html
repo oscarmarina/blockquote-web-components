@@ -1,8 +1,10 @@
-<!DOCTYPE html><html lang="en"><head>
-    <meta charset="utf-8">
-    <link rel="icon" href="assets/favicon.svg" sizes="any" type="image/svg+xml">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Demo Autofocus - blockquote-tabs">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Demo Autofocus - blockquote-tabs" />
     <title>Autofocus - blockquote-tabs</title>
     <style>
       :root {
@@ -31,7 +33,7 @@
   <body>
     <main>
       <h1 class="sr-only">blockquote-tabs</h1>
-      <blockquote-tabs selected="5" autofocus="" label="List of tabs">
+      <blockquote-tabs selected="5" autofocus label="List of tabs">
         <blockquote-tab id="tab-1">Tab 1</blockquote-tab>
         <blockquote-tab id="tab-2">Tab 2</blockquote-tab>
         <blockquote-tab id="tab-3">Tab 3</blockquote-tab>
@@ -76,10 +78,9 @@
         </blockquote-tabpanel>
       </blockquote-tabs>
     </main>
-    
+    <script type="module" src="./entry.js"></script>
     <script>
       document.addEventListener('selectedchange', ({detail}) => console.log(detail));
     </script>
-  
-
-<script type="module" src="./assets/blockquote-tabs-CeOTBXIH.js"></script></body></html>
+  </body>
+</html>

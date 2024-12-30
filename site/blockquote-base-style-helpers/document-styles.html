@@ -1,9 +1,11 @@
-<!DOCTYPE html><html lang="en"><head>
+<!doctype html>
+<html lang="en">
+  <head>
     <title>Document styles - blockquote-base-style-helpers</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <link rel="icon" href="assets/favicon.svg" sizes="any" type="image/svg+xml">
-    <meta name="description" content="Demo Document styles - blockquote-base-style-helpers">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml" />
+    <meta name="description" content="Demo Document styles - blockquote-base-style-helpers" />
     <style>
       :root {
         font: normal medium/1.25 sans-serif;
@@ -31,7 +33,103 @@
       <h1 class="sr-only">blockquote-base-style-helpers</h1>
       <document-element></document-element>
     </main>
-    
-  
+    <script type="module">
+      import {LitElement, html, css} from './entry.js';
 
-<script type="module" src="./assets/inline-module-4d0076b399caa7b0970fca44ac42ae67-DF4JxLzJ.js"></script></body></html>
+      class DocumentElement extends LitElement {
+        static get styles() {
+          return css`
+            :host {
+              box-sizing: border-box;
+              display: block;
+              color: var(--blue-700, #0f1720);
+            }
+
+            * {
+              box-sizing: inherit;
+            }
+
+            p {
+              font-size: 1.5rem;
+              margin: 0;
+            }
+
+            pre {
+              background-color: #f8f9f9;
+              padding: 0 1em;
+              margin: 0.5rem 0;
+              white-space: break-spaces;
+              line-height: 1.06;
+            }
+
+            code {
+              color: var(--blue-300, #0f3058);
+              font-size: 0.875rem;
+            }
+
+            span:first-of-type {
+              color: var(--green-700, #689f38);
+            }
+
+            span {
+              color: var(--red-700, #c04545);
+            }
+          `;
+        }
+
+        render() {
+          return html`
+            <p>
+              From
+              <span>Design tokens</span>
+              to
+              <span>CSS</span>
+            </p>
+            <pre>
+<code>
+  const theme = {
+    fontFace: {
+      ...fontFace,
+    },
+    fonts: {
+      main: 'Kaisei HarunoUmi, sans-serif',
+    },
+    colors: {
+      ...tertiary0,
+      ...tertiary1,
+      ...tertiary2,
+    },
+};
+</code>
+</pre>
+            <pre>
+<code>
+:root {
+  font: normal medium/1.25 "Kaisei HarunoUmi", sans-serif;
+  --red-300: #e57373;
+  --red-400: #ef5350;
+  --red-500: #f44336;
+  --red-600: #e53935;
+  --red-700: #c04545;
+
+  --green-300: #aed581;
+  --green-400: #9ccc65;
+  --green-500: #8bc34a;
+  --green-600: #7cb342;
+  --green-700: #689f38;
+  --blue-300: #0f3058;
+
+  --blue-400: #102a4c;
+  --blue-500: #10243e;
+  --blue-600: #0f1b2d;
+  --blue-700: #0f1720;
+}
+  </code>
+  </pre>
+          `;
+        }
+      }
+      customElements.define('document-element', DocumentElement);
+    </script>
+  </body>
+</html>

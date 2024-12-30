@@ -1,8 +1,10 @@
-<!DOCTYPE html><html lang="en"><head>
-    <meta charset="utf-8">
-    <link rel="icon" href="assets/favicon.svg" sizes="any" type="image/svg+xml">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Demo Base - blockquote-controller-rxjs">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Demo Base - blockquote-controller-rxjs" />
     <title>Base - blockquote-controller-rxjs</title>
     <style>
       :root {
@@ -31,7 +33,50 @@
       <h1 class="sr-only">blockquote-controller-rxjs-demo</h1>
       <blockquote-controller-rxjs-demo></blockquote-controller-rxjs-demo>
     </main>
-    
-  
+    <script type="module">
+      import {html, LitElement, map, fromEvent, BlockquoteControllerRxjs} from './entry.js';
 
-<script type="module" src="./assets/inline-module-e2e41fd39aab9d28a26585a060d3d087-mOGGukDP.js"></script></body></html>
+      class BlockquoteControllerRxjsDemo extends LitElement {
+        static get is() {
+          return 'blockquote-controller-rxjs-demo';
+        }
+
+        static get properties() {
+          return {
+            _pos: {
+              type: Object,
+              attribute: false,
+            },
+          };
+        }
+
+        constructor() {
+          super();
+          this.rx = new BlockquoteControllerRxjs(this);
+          this._pos = {x: 0, y: 0};
+          this.values$ = fromEvent(window, 'mousemove').pipe(
+            map(({clientX, clientY}) => ({x: clientX, y: clientY}))
+          );
+        }
+
+        connectedCallback() {
+          super.connectedCallback();
+          this.rx.subscribe('_pos', this.values$);
+        }
+
+        render() {
+          return html`
+            <p>The mouse is at:</p>
+            <pre>
+              x: ${this._pos.x}
+              y: ${this._pos.y}
+            </pre
+            >
+          `;
+        }
+      }
+
+      window.customElements.define(BlockquoteControllerRxjsDemo.is, BlockquoteControllerRxjsDemo);
+    </script>
+  </body>
+</html>
