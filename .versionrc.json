@@ -1,7 +1,0 @@
-{
-  "releaseCommitMessageFormat": "chore: release {{currentTag}}",
-  "commitUrlFormat": "{{host}}/oscarmarina/blockquote-web-components/commit/{{hash}}",
-  "compareUrlFormat": "{{host}}/oscarmarina/blockquote-web-components/compare/{{previousTag}}...{{currentTag}}"
-}
-
-
