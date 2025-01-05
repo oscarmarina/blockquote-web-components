@@ -347,12 +347,14 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
     const _monacoEditorRef = this._monacoEditorRef.value;
     if (_monacoEditorRef) {
       this._kk = ev.detail;
+      // @ts-ignore
       _monacoEditorRef.code = ev.detail.contentDocument.body.innerHTML;
     }
   };
   _onCodeChange = (ev) => {
     const iframeContent = this._kk.contentDocument;
-    iframeContent.body.innerHTML = ev.detail.doc;
+    iframeContent.body.innerHTML = ev.detail;
+
     const srcDoc = iframeContent.documentElement.innerHTML;
     this._kk.srcdoc = srcDoc;
   };

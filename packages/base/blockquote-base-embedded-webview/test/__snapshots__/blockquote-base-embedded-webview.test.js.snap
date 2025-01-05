@@ -52,6 +52,10 @@ exports[`BlockquoteBaseEmbeddedWebview > Behavior > limit height > SHADOW DOM 1`
   <blockquote-base-embedded-webview-size>
   </blockquote-base-embedded-webview-size>
 </header>
+<div>
+  <codemirror-component tabindex="0">
+  </codemirror-component>
+</div>
 <div class="main">
   <blockquote-base-embedded-webview-resize>
     <slot name="embedded">
@@ -148,6 +152,10 @@ exports[`BlockquoteBaseEmbeddedWebview > Default > SHADOW DOM - Structure test >
   <blockquote-base-embedded-webview-size>
   </blockquote-base-embedded-webview-size>
 </header>
+<div>
+  <codemirror-component tabindex="0">
+  </codemirror-component>
+</div>
 <div class="main">
   <blockquote-base-embedded-webview-resize>
     <slot name="embedded">
@@ -234,6 +242,10 @@ exports[`BlockquoteBaseEmbeddedWebview > variant > SHADOW DOM - Structure test >
   <blockquote-base-embedded-webview-size>
   </blockquote-base-embedded-webview-size>
 </header>
+<div>
+  <codemirror-component tabindex="0">
+  </codemirror-component>
+</div>
 <div class="main">
   <blockquote-base-embedded-webview-resize>
     <slot name="embedded">

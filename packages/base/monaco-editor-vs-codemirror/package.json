@@ -65,7 +65,6 @@
     "sass:watch": "sass-style-template -j ts",
     "sort:package": "npx sort-package-json",
     "start": "concurrently -k -r \"npm:vite\" \"npm:sass:watch\"",
-    "test": "vitest",
     "vite": "vite"
   },
   "lint-staged": {
