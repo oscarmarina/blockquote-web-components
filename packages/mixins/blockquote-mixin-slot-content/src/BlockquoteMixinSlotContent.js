@@ -6,7 +6,7 @@ import {dedupeMixin} from '@open-wc/dedupe-mixin';
  * @param {Node} nod - The node to check.
  * @returns {boolean} - True if the node's text content contains only whitespace, false otherwise.
  */
-const onlyContentWhiteSpace = (nod) => !/[^\t\n\r ]/.test(nod?.textContent ?? '');
+const hasOnlyWhitespace = (nod) => !/[^\t\n\r ]/.test(nod?.textContent ?? '');
 
 /**
  * Checks if a node is a comment node or a text node with only whitespace.
@@ -14,8 +14,8 @@ const onlyContentWhiteSpace = (nod) => !/[^\t\n\r ]/.test(nod?.textContent ?? ''
  * @param {Node} nod - The node to check.
  * @returns {boolean} - True if the node is ignorable, false otherwise.
  */
-const isIgnorable = (nod) =>
-  nod.nodeType === 8 || (nod.nodeType === 3 && onlyContentWhiteSpace(nod));
+const isIgnorableNode = (nod) =>
+  nod.nodeType === Node.COMMENT_NODE || (nod.nodeType === Node.TEXT_NODE && hasOnlyWhitespace(nod));
 
 /**
  * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
@@ -224,74 +224,77 @@ const isIgnorable = (nod) =>
  */
 const BlockquoteSlotContentBase = (Base) =>
   class BlockquoteSlotContent extends Base {
-    connectedCallback() {
-      super.connectedCallback?.();
-      this.shadowRoot.addEventListener('slotchange', this._onSlotChange);
+    /**
+     * @param {HTMLSlotElement} slotNode
+     */
+    #processSlotContent(slotNode) {
+      const allNodes = [...slotNode.assignedNodes(), ...slotNode.childNodes];
+      const nodesWithContent = allNodes
+        .filter((nod) => !isIgnorableNode(nod))
+        .map((nod) => ({
+          isFlattened: /** @type {*} */ (nod).assignedSlot === null,
+          assignedNodes: nod.nodeType === Node.TEXT_NODE ? nod.textContent?.trim() : nod,
+          assignedSlot: /** @type {*} */ (nod).assignedSlot,
+        }));
+
+      return {
+        assignedContent: nodesWithContent.filter((nod) => nod.isFlattened === false),
+        flattenedContent: nodesWithContent.filter((nod) => nod.isFlattened === true),
+      };
     }
 
-    disconnectedCallback() {
-      super.disconnectedCallback?.();
-      this.shadowRoot.removeEventListener('slotchange', this._onSlotChange);
+    /**
+     * @param {*} content
+     */
+    #createContentStructure(content) {
+      return {
+        assignedNodesByNode: content,
+        assignedNodes: content.map((/** @type {*} */ nod) => nod.assignedNodes),
+      };
     }
 
     /**
      * @param {Event} ev
      */
-    _onSlotChange = (ev) => {
-      const {target} = ev;
-      const slotNode = /** @type {HTMLSlotElement} */ (target);
+    #onSlotChange = (ev) => {
+      const slotNode = /** @type {HTMLSlotElement} */ (ev.target);
 
-      if (!slotNode) {
-        return;
-      }
+      if (slotNode) {
+        const contentSlotName = slotNode.name || slotNode.getAttribute('name') || '';
+        const originalAssignedNodes = slotNode.assignedNodes({flatten: true});
+        const contentSlots = this.#processSlotContent(slotNode);
 
-      const contentSlotName = slotNode.name || slotNode.getAttribute('name') || '';
-      const allNodes = [...slotNode.assignedNodes(), ...slotNode.childNodes];
-      const originalAssignedNodes = slotNode.assignedNodes({flatten: true});
-      const nodesWithContent = [];
+        const detail = {
+          assignedSlotContent: {
+            slotName: contentSlotName,
+            assignedSlot: contentSlots.assignedContent[0]?.assignedSlot || null,
+          },
+          assignedNodesContent: this.#createContentStructure(contentSlots.assignedContent),
+          flattenedNodesContent: this.#createContentStructure(contentSlots.flattenedContent),
+          originalEvent: {
+            event: ev,
+            assignedNodes: originalAssignedNodes,
+          },
+        };
 
-      if (allNodes.length) {
-        allNodes.forEach((nod) => {
-          if (!isIgnorable(nod)) {
-            nodesWithContent.push({
-              flatten: /** @type {*} */ (nod).assignedSlot === null,
-              assignedNodes: nod.nodeType === 3 ? nod.textContent?.trim() : nod,
-              assignedSlot: /** @type {*} */ (nod).assignedSlot,
-            });
-          }
+        const event = new CustomEvent('slotchanges', {
+          composed: true,
+          detail,
         });
+
+        this.shadowRoot?.dispatchEvent(event);
       }
-
-      const assignedContent = nodesWithContent.filter((nod) => nod.flatten === false);
-      const flattenedContent = nodesWithContent.filter((nod) => nod.flatten === true);
-
-      const assignedNodesContent = {
-        assignedNodesByNode: assignedContent,
-        assignedNodes: assignedContent.map((nod) => nod.assignedNodes),
-      };
-
-      const flattenedNodesContent = {
-        assignedNodesByNode: flattenedContent,
-        assignedNodes: flattenedContent.map((nod) => nod.assignedNodes),
-      };
-
-      const assignedSlotContent = {
-        slotName: contentSlotName,
-        assignedSlot: assignedContent[0]?.assignedSlot || null,
-      };
-
-      const event = new CustomEvent('slotchanges', {
-        composed: true,
-        detail: {
-          assignedSlotContent,
-          assignedNodesContent,
-          flattenedNodesContent,
-          originalEvent: {event: ev, assignedNodes: originalAssignedNodes},
-        },
-      });
-
-      this.shadowRoot.dispatchEvent(event);
     };
+
+    connectedCallback() {
+      super.connectedCallback?.();
+      this.shadowRoot?.addEventListener('slotchange', this.#onSlotChange);
+    }
+
+    disconnectedCallback() {
+      super.disconnectedCallback?.();
+      this.shadowRoot?.removeEventListener('slotchange', this.#onSlotChange);
+    }
   };
 
 export const BlockquoteMixinSlotContent = dedupeMixin(BlockquoteSlotContentBase);
