@@ -1,8 +1,23 @@
 :host {
-  --__color: var(--blockquote-tab-color-dark-mode, var(--blockquote-tab-color-ambient, var(--theme-colors-secondary500, rgb(32, 32, 32))));
+  --__color: var(
+    --blockquote-tab-color-dark-mode,
+    var(--blockquote-tab-color-ambient, var(--theme-colors-secondary500, rgb(32, 32, 32)))
+  );
   --_color: var(--blockquote-tab-color, var(--__color));
-  --_selected-border-color: var(--blockquote-tab-selected-border-color, var(--blockquote-tab-selected-border-color-ambient, var(--theme-colors-secondary500, rgb(184, 184, 184))));
-  --_focus-outline-color: var(--blockquote-tab-focus-outline-color, var(--blockquote-tab-focus-outline-color-ambient, var(--theme-colors-secondary500, rgb(184, 184, 184))));
+  --_selected-border-color: var(
+    --blockquote-tab-selected-border-color,
+    var(
+      --blockquote-tab-selected-border-color-ambient,
+      var(--theme-colors-secondary500, rgb(184, 184, 184))
+    )
+  );
+  --_focus-outline-color: var(
+    --blockquote-tab-focus-outline-color,
+    var(
+      --blockquote-tab-focus-outline-color-ambient,
+      var(--theme-colors-secondary500, rgb(184, 184, 184))
+    )
+  );
 
   display: flex;
   flex-direction: column;

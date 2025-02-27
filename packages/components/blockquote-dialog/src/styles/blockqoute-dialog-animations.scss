@@ -18,11 +18,9 @@ dialog[open] {
   transform: translateY(0);
 }
 
-/* Before-open state */
-
-/* Needs to be after the previous dialog[open] rule to take effect,
+/* Before-open state
+ Needs to be after the previous dialog[open] rule to take effect,
 as the specificity is the same */
-
 @starting-style {
   dialog[open] {
     opacity: 0;
@@ -48,7 +46,6 @@ dialog[open]::backdrop {
 
 /* This starting-style rule cannot be nested inside the above selector
 because the nesting selector cannot represent pseudo-elements. */
-
 @starting-style {
   dialog[open]::backdrop {
     background-color: rgb(120 120 120 / 0%);

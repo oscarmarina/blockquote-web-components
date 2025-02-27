@@ -26,6 +26,7 @@ import {
  *        :host {
  *          display: block;
  *        }
+ *
  *        :host([hidden]),
  *        [hidden] {
  *          display: none !important;
@@ -118,6 +119,7 @@ export class BaseContextMetaElement extends LitElement {
       :host {
         display: block;
       }
+
       :host([hidden]),
       [hidden] {
         display: none !important;

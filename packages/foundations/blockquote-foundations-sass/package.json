@@ -38,7 +38,13 @@
       "custom-property-pattern": null,
       "no-duplicate-selectors": null,
       "color-function-notation": null,
-      "alpha-value-notation": null
+      "alpha-value-notation": null,
+      "media-feature-name-no-unknown": null,
+      "comment-empty-line-before": null,
+      "declaration-empty-line-before": null,
+      "property-no-vendor-prefix": null,
+      "selector-attribute-quotes": null,
+      "value-no-vendor-prefix": null
     }
   }
 }
