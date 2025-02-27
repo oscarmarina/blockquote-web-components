@@ -149,7 +149,6 @@ export default [
       '**/*.config.*',
       '**/*.d.ts',
       '**/*.min.js',
-      '**/*-styles.*',
       '**/*.workspace.*',
     ],
   },

@@ -46,7 +46,7 @@ class AjaxProviderComponent extends LitElement {
       outline-offset: 2px;
     }
 
-    .select-dropdown:after {
+    .select-dropdown::after {
       content: ' ';
       pointer-events: none;
       position: absolute;

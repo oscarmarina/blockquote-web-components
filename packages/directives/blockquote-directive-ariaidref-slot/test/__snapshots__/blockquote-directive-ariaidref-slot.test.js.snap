@@ -7,13 +7,6 @@ exports[`BlockquoteDirectiveAriaidrefSlot > No render > Semantic Dom > SHADOW DO
 "
 `;
 
-exports[`BlockquoteDirectiveAriaidrefSlot > No render > Semantic Dom > SHADOW DOM - Structure test 1`] = `
-"<slot>
-</slot>
-<hr>
-"
-`;
-
 exports[`BlockquoteDirectiveAriaidrefSlot > Slot is hidden > Semantic Dom > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
 "<slot>
 </slot>
@@ -27,32 +20,7 @@ exports[`BlockquoteDirectiveAriaidrefSlot > Slot is hidden > Semantic Dom > SHAD
 "
 `;
 
-exports[`BlockquoteDirectiveAriaidrefSlot > Slot is hidden > Semantic Dom > SHADOW DOM - Structure test 1`] = `
-"<slot>
-</slot>
-<hr>
-<slot
-  hidden=""
-  id="hi"
-  name="hi"
->
-</slot>
-"
-`;
-
 exports[`BlockquoteDirectiveAriaidrefSlot > Slot is visible > Semantic Dom > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
-"<slot>
-</slot>
-<hr>
-<slot
-  id="hi"
-  name="hi"
->
-</slot>
-"
-`;
-
-exports[`BlockquoteDirectiveAriaidrefSlot > Slot is visible > Semantic Dom > SHADOW DOM - Structure test 1`] = `
 "<slot>
 </slot>
 <hr>

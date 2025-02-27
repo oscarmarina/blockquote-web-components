@@ -6,7 +6,7 @@ export class ProviderEl extends LitElement {
     slot {
       display: block;
       border: dashed 4px #dadada;
-      padding: 0px 10px;
+      padding: 0 10px;
     }
 
     :host {

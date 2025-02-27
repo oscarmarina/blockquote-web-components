@@ -37,29 +37,26 @@
     "dev:vite": "vite build",
     "format": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
     "format:eslint": "eslint . --fix",
-    "format:prettier": "prettier \"**/*.{js,ts,json,html}\" --write --ignore-path .prettierignore",
-    "format:stylelint": "stylelint \"**/*.{scss,css}\" --fix --allow-empty-input --ignore-path .prettierignore",
+    "format:prettier": "prettier \"**/*.{js,ts,css,scss,html,json}\" --write --ignore-path .prettierignore",
+    "format:stylelint": "stylelint \"{demo,src}/**/*.{js,ts,css,scss,html}\" --fix --ignore-path .prettierignore",
     "postinstall": "npm run sort:package",
-    "lint": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
-    "lint:eslint": "eslint .",
-    "lint:prettier": "prettier \"**/*.{js,ts,json,html}\" --check --ignore-path .prettierignore",
-    "lint:stylelint": "stylelint \"**/*.{scss,css}\" --allow-empty-input --ignore-path .prettierignore",
     "preview:vite": "vite preview",
     "sass:watch": "sass-style-template",
     "sort:package": "npx sort-package-json",
-    "start": "concurrently -k -r \"npm:sass:watch\" \"npm:vite\"",
+    "start": "concurrently -k -r \"npm:vite\" \"npm:sass:watch\"",
     "test": "vitest --run --browser.headless",
     "test:watch": "vitest",
     "vite": "vite"
   },
   "lint-staged": {
     "**/*.{js,ts,html}": [
-      "npm run format:eslint"
+      "npm run format"
     ],
-    "**/*.{js,ts,json,html}": [
+    "**/*.json": [
       "npm run format:prettier"
     ],
     "**/*.{scss,css}": [
+      "npm run format:prettier",
       "npm run format:stylelint"
     ]
   },
@@ -74,20 +71,46 @@
       {
         "files": "*.{scss,css}",
         "options": {
-          "printWidth": 280,
           "singleQuote": false
+        }
+      },
+      {
+        "files": "*.json",
+        "options": {
+          "parser": "json-stringify"
         }
       }
     ]
   },
   "stylelint": {
     "extends": "stylelint-config-standard-scss",
+    "allowEmptyInput": true,
     "rules": {
       "custom-property-pattern": null,
       "no-duplicate-selectors": null,
       "color-function-notation": null,
-      "alpha-value-notation": null
-    }
+      "alpha-value-notation": null,
+      "media-feature-name-no-unknown": null,
+      "comment-empty-line-before": null,
+      "declaration-empty-line-before": null,
+      "property-no-vendor-prefix": null,
+      "selector-attribute-quotes": null,
+      "value-no-vendor-prefix": null
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.html"
+        ],
+        "customSyntax": "postcss-html"
+      },
+      {
+        "files": [
+          "**/*.{ts,js}"
+        ],
+        "customSyntax": "postcss-lit"
+      }
+    ]
   },
   "dependencies": {
     "lit": "^3.2.1",

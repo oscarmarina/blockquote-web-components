@@ -9,6 +9,7 @@ export class MySection extends LitElement {
       display: block;
       text-align: center;
     }
+
     :host([hidden]) {
       display: none;
     }

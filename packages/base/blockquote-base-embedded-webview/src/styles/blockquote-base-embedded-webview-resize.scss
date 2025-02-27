@@ -6,10 +6,32 @@
   --_rect-max-height: var(--blockquote-base-embedded-webview-resize-rect-max-height, 100%);
   --_rect-width: var(--blockquote-base-embedded-webview-resize-rect-width, 40rem);
   --_rect-height: var(--blockquote-base-embedded-webview-resize-rect-height, 22.5rem);
-  --_resizer-bgcolor: var(--blockquote-base-embedded-webview-resize-resizer-bgcolor, rgb(234, 234, 234));
-  --_resizer-bgcolor-hover: var(--blockquote-base-embedded-webview-resize-resizer-bgcolor-hover, rgb(220, 220, 220));
-  --_resizer-bgimage-ew-hover: var(--blockquote-base-embedded-webview-resize-resizer-bgcolor-hover, linear-gradient(0deg, rgba(220, 220, 220, 0.2), rgba(220, 220, 220, 1) 50%, rgba(220, 220, 220, 0.2)));
-  --_resizer-bgimage-s-hover: var(--blockquote-base-embedded-webview-resize-resizer-bgcolor-hover, linear-gradient(90deg, rgba(220, 220, 220, 0.2), rgba(220, 220, 220, 1) 50%, rgba(220, 220, 220, 0.2)));
+  --_resizer-bgcolor: var(
+    --blockquote-base-embedded-webview-resize-resizer-bgcolor,
+    rgb(234, 234, 234)
+  );
+  --_resizer-bgcolor-hover: var(
+    --blockquote-base-embedded-webview-resize-resizer-bgcolor-hover,
+    rgb(220, 220, 220)
+  );
+  --_resizer-bgimage-ew-hover: var(
+    --blockquote-base-embedded-webview-resize-resizer-bgcolor-hover,
+    linear-gradient(
+      0deg,
+      rgba(220, 220, 220, 0.2),
+      rgba(220, 220, 220, 1) 50%,
+      rgba(220, 220, 220, 0.2)
+    )
+  );
+  --_resizer-bgimage-s-hover: var(
+    --blockquote-base-embedded-webview-resize-resizer-bgcolor-hover,
+    linear-gradient(
+      90deg,
+      rgba(220, 220, 220, 0.2),
+      rgba(220, 220, 220, 1) 50%,
+      rgba(220, 220, 220, 0.2)
+    )
+  );
 
   contain: content;
   display: flex;
@@ -17,7 +39,7 @@
   align-items: center;
   height: inherit;
   padding: calc(var(--__resizer-factor) * 1) 0 calc(var(--__resizer-factor) * 2);
-} 
+}
 
 :host([hidden]),
 [hidden] {
@@ -119,7 +141,9 @@
     }
 
     &:hover {
-      background-color: var(--_resizer-bgcolor-hover); // --color-background-highlight: rgb(218, 220, 224);
+      background-color: var(
+        --_resizer-bgcolor-hover
+      ); // --color-background-highlight: rgb(218, 220, 224);
     }
   }
 
@@ -134,7 +158,9 @@
     }
 
     &:hover {
-      background-image: var(--_resizer-bgimage-s-hover); // --color-background-highlight: rgb(218, 220, 224);
+      background-image: var(
+        --_resizer-bgimage-s-hover
+      ); // --color-background-highlight: rgb(218, 220, 224);
     }
   }
 
@@ -144,7 +170,10 @@
     width: var(--__resizer-factor);
 
     &:hover {
-      background-image: var(--_resizer-bgimage-ew-hover); // --color-background-highlight: rgb(218, 220, 224);
+      background-image: var(
+        --_resizer-bgimage-ew-hover
+      ); // --color-background-highlight: rgb(218, 220, 224);
+
       background-position: bottom;
     }
   }
