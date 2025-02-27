@@ -347,7 +347,7 @@ ${r.map((u,e)=>`${e+1}) ${u.toString()}`).join(`
       outline-offset: 2px;
     }
 
-    .select-dropdown:after {
+    .select-dropdown::after {
       content: ' ';
       pointer-events: none;
       position: absolute;

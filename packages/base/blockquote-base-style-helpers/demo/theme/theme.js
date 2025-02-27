@@ -43,6 +43,7 @@ ${theme.fontFace.main}
 
 }`;
 
+// postcss-lit-disable-next-line
 setDocumentStyles(css`
   ${unsafeCSS(THEME)}
 `);
