@@ -120,7 +120,8 @@
       "declaration-empty-line-before": null,
       "property-no-vendor-prefix": null,
       "selector-attribute-quotes": null,
-      "value-no-vendor-prefix": null
+      "value-no-vendor-prefix": null,
+      "no-descending-specificity": null
     },
     "overrides": [
       {

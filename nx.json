@@ -3,28 +3,7 @@
     "analyze": {
       "cache": true
     },
-    "lint": {
-      "cache": true
-    },
-    "lint:eslint": {
-      "cache": true
-    },
-    "lint:prettier": {
-      "cache": true
-    },
-    "lint:stylelint": {
-      "cache": true
-    },
     "format": {
-      "cache": true
-    },
-    "format:eslint": {
-      "cache": true
-    },
-    "format:prettier": {
-      "cache": true
-    },
-    "format:stylelint": {
       "cache": true
     },
     "test": {

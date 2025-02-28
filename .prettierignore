@@ -19,7 +19,7 @@
 **/screenshots
 
 ## build
-**/_site
+**/site
 **/dist
 **/dev
 **/build
