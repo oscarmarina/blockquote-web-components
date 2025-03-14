@@ -6,7 +6,7 @@ import {BlockquoteControllerContextMeta} from '../src/index.js';
 export class MyHeading extends LitElement {
   constructor() {
     super();
-    this._level = new BlockquoteControllerContextMeta(this, {context: 'level'});
+    this._level = new BlockquoteControllerContextMeta(this, {context: Symbol.for('level')});
   }
 
   get _tag() {

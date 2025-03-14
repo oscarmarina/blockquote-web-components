@@ -20,6 +20,12 @@
     "./BlockquoteControllerContextMeta.js": {
       "default": "./src/BlockquoteControllerContextMeta.js"
     },
+    "./BaseContextMetaElement.js": {
+      "default": "./src/BaseContextMetaElement.js"
+    },
+    "./contextMetaProvider.js": {
+      "default": "./directives/context-meta-provider.js"
+    },
     "./index.js": {
       "default": "./src/index.js"
     }
