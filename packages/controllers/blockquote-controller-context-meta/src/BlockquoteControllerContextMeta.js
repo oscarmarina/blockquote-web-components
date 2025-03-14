@@ -1,6 +1,6 @@
 import {createContext, ContextProvider, ContextConsumer} from '@lit/context';
 
-export const contextMetaSymbol = 'context-meta-symbol';
+export const contextMetaSymbol = Symbol.for('context-meta-symbol');
 /**
  * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
@@ -50,7 +50,7 @@ export const contextMetaSymbol = 'context-meta-symbol';
  *   constructor() {
  *     super();
  *     this._provider = new BlockquoteControllerContextMeta(this, {
- *       context: 'contextKey', // String used as key in Symbol.for when creating context with createContext(Symbol.for(context))
+ *       context: Symbol.for('contextKey')
  *     });
  *
  *     this.data = 'Initial';
@@ -77,7 +77,7 @@ export const contextMetaSymbol = 'context-meta-symbol';
  *
  * export class ConsumerEl extends LitElement {
  *   _consumer = new BlockquoteControllerContextMeta(this, {
- *     context: 'contextKey', // String used as key in Symbol.for when creating context with createContext(Symbol.for(context))
+ *     context: Symbol.for('contextKey')
  *     callback: (v) => {
  *       this.setAttribute('data-callback', v);
  *     },
@@ -106,13 +106,13 @@ class ContextMeta {
   /**
    * @param {import('lit').ReactiveElement} host - The host object.
    * @param {{
-   *   context?: string,
+   *   context?: *,
    *   initialValue?: import('@lit/context').ContextType<*>,
    *   callback?: (value: import('@lit/context').ContextType<*>, dispose?: () => void) => void
    * }} arg - The arguments for the constructor.
    */
   constructor(host, {context = contextMetaSymbol, initialValue, callback}) {
-    this.context = createContext(Symbol.for(context));
+    this.context = createContext(context);
     this.initialValue = initialValue;
     this.callback = callback;
     this.host = host;

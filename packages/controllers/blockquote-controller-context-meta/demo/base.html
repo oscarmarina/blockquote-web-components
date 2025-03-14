@@ -26,25 +26,36 @@
       body {
         background-color: #fff;
       }
+
+      ul {
+        background-color: rgb(243, 243, 243);
+        font-size: 0.9375rem;
+      }
+
+      li {
+        padding: 0.25em 0;
+      }
     </style>
   </head>
   <body>
     <main>
       <h1 class="sr-only">blockquote-controller-context-meta-demo</h1>
-      <p>
-        Example inspired by:
-        <a href="https://react.dev/learn/passing-data-deeply-with-context" target="_blank">
-          https://react.dev/learn/passing-data-deeply-with-context
-        </a>
-      </p>
-      <p>
-        Orginal example from lit.dev:
-        <a
-          href="https://lit.dev/playground/#sample=examples/context-consume-provide"
-          target="_blank">
-          https://lit.dev/playground/#sample=examples/context-consume-provide
-        </a>
-      </p>
+      <ul>
+        <li>
+          Example inspired by:
+          <a href="https://react.dev/learn/passing-data-deeply-with-context" target="_blank">
+            https://react.dev/learn/passing-data-deeply-with-context
+          </a>
+        </li>
+        <li>
+          Orginal example from lit.dev:
+          <a
+            href="https://lit.dev/playground/#sample=examples/context-consume-provide"
+            target="_blank">
+            https://lit.dev/playground/#sample=examples/context-consume-provide
+          </a>
+        </li>
+      </ul>
       <my-app></my-app>
     </main>
     <script type="module" src="./entry.js"></script>

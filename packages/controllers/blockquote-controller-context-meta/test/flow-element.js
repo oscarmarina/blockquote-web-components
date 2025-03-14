@@ -1,22 +1,21 @@
-import {BaseContextMetaElement} from '../src/index.js';
-
-const consumerContext = 'symbol-for-surface';
+import {BlockquoteControllerContextMeta, BaseContextMetaElement} from '../src/index.js';
+import {consumerContext} from './elements.js';
 
 class FlownElement extends BaseContextMetaElement {
   static properties = {
-    surface: {reflect: true},
+    data: {reflect: true},
   };
 
   constructor() {
     super();
-    this.surface = undefined;
-    this.flowController = this.initOrGetContextProvider(consumerContext);
+    this.data = undefined;
+    this.flowController = new BlockquoteControllerContextMeta(this, {context: consumerContext});
   }
 
   willUpdate(props) {
     super.willUpdate?.(props);
-    if (props.has('surface')) {
-      this.flowController?.setValue(this.surface);
+    if (props.has('data')) {
+      this.flowController?.setValue(this.data);
     }
   }
 }

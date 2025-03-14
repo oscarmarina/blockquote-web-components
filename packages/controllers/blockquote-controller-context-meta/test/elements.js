@@ -1,5 +1,8 @@
 import {html, LitElement, css} from 'lit';
-import {BlockquoteControllerContextMeta} from '../src/index.js';
+import {BlockquoteControllerContextMeta, contextMetaProvider} from '../src/index.js';
+import './flow-element.js';
+
+export const consumerContext = Symbol.for('symbol-for-surface');
 
 export class ProviderEl extends LitElement {
   static styles = css`
@@ -21,16 +24,16 @@ export class ProviderEl extends LitElement {
   `;
 
   static properties = {
-    data: {},
+    data: {reflect: true},
   };
 
   constructor() {
     super();
     this._provider = new BlockquoteControllerContextMeta(this, {
-      context: 'contextKey',
+      context: consumerContext,
     });
 
-    this.data = 'Initial';
+    this.data = undefined;
   }
 
   /**
@@ -51,6 +54,28 @@ export class ProviderEl extends LitElement {
         Provider's data:
         <code>${this.data}</code>
       </h3>
+      <hr />
+      <consumer-el></consumer-el>
+      <hr />
+      <div
+        data-info="${contextMetaProvider(
+          this.data,
+          // @ts-ignore
+          consumerContext
+        )}">
+        normal element 1
+        <flow-element .data="${this.data}">
+          <consumer-el></consumer-el>
+        </flow-element>
+      </div>
+      <hr />
+      <div
+        ${contextMetaProvider(this.data, {
+          context: consumerContext,
+        })}>
+        normal element 2
+        <consumer-el></consumer-el>
+      </div>
       <slot></slot>
     `;
   }
@@ -59,11 +84,18 @@ customElements.define('provider-el', ProviderEl);
 
 export class ConsumerEl extends LitElement {
   _consumer = new BlockquoteControllerContextMeta(this, {
-    context: 'contextKey',
-    callback: (v) => {
-      this.setAttribute('data-callback', String(v));
-    },
+    context: consumerContext,
+    callback: (v) => v && (this.data = v),
   });
+
+  static properties = {
+    data: {reflect: true},
+  };
+
+  constructor() {
+    super();
+    this.data = undefined;
+  }
 
   /**
    * `providedData` will be populated by the first ancestor element which
@@ -77,10 +109,8 @@ export class ConsumerEl extends LitElement {
     return html`
       <h3>
         Consumer data:
-        <code>${this.providedData}</code>
+        <code>${this._consumer.value}</code>
       </h3>
-      <hr />
-      <slot></slot>
     `;
   }
 }

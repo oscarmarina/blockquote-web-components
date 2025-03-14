@@ -20,7 +20,7 @@ declare class ContextMeta<
       initialValue,
       callback,
     }: {
-      context?: string;
+      context?: unknown;
       initialValue?: ContextType<TMeta>;
       callback?: (v: ContextType<TMeta>, dispose?: () => void) => void;
     },

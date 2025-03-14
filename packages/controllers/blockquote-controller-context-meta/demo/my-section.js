@@ -18,7 +18,7 @@ export class MySection extends LitElement {
   constructor() {
     super();
     this._consumer = new BlockquoteControllerContextMeta(this, {
-      context: 'level',
+      context: Symbol.for('level'),
       initialValue: {level: 1, color: COLORS[0]},
       callback: (v) => {
         const {level} = /** @type {{level:number, color:string}} */ (v);
