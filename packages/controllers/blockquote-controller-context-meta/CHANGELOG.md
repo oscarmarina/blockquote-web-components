@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-context-meta@1.2.8...@blockquote-web-components/blockquote-controller-context-meta@1.3.0) (2025-03-14)
+
+
+### Features
+
+* **blockquote-controller-context-meta:** use original createContext ([dac0c35](https://github.com/oscarmarina/blockquote-web-components/commit/dac0c35e6ae4aa653e939a48c9006a5688c9a8ed))
+
+
+
+
+
 ## [1.2.8](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-context-meta@1.2.7...@blockquote-web-components/blockquote-controller-context-meta@1.2.8) (2025-02-27)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-controller-context-meta
