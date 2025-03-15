@@ -74,6 +74,46 @@ suite('BlockquoteTabs', () => {
         await el.updateComplete;
         assert.equal(el.selected, 3);
       });
+
+      test('Home Key', async () => {
+        assert.equal(el.selected, 1);
+        const tabs = el.querySelectorAll('[role="tab"]');
+        tabs[0]?.dispatchEvent(
+          new KeyboardEvent('keydown', {key: 'ArrowLeft', bubbles: true, cancelable: true})
+        );
+        await el.updateComplete;
+        assert.equal(el.selected, 3);
+        tabs[el.selected - 1]?.dispatchEvent(
+          new KeyboardEvent('keydown', {key: 'Home', bubbles: true, cancelable: true})
+        );
+        await el.updateComplete;
+        assert.equal(el.selected, 1);
+      });
+
+      test('End Key', async () => {
+        assert.equal(el.selected, 1);
+        const tabs = el.querySelectorAll('[role="tab"]');
+        tabs[el.selected - 1]?.dispatchEvent(
+          new KeyboardEvent('keydown', {key: 'End', bubbles: true, cancelable: true})
+        );
+        await el.updateComplete;
+        assert.equal(el.selected, 3);
+      });
+
+      test('Default Key', async () => {
+        assert.equal(el.selected, 1);
+        const tabs = el.querySelectorAll('[role="tab"]');
+        tabs[0]?.dispatchEvent(
+          new KeyboardEvent('keydown', {key: 'ArrowLeft', bubbles: true, cancelable: true})
+        );
+        await el.updateComplete;
+        assert.equal(el.selected, 3);
+        tabs[el.selected - 1]?.dispatchEvent(
+          new KeyboardEvent('keydown', {key: 'PageUp', bubbles: true, cancelable: true})
+        );
+        await el.updateComplete;
+        assert.equal(el.selected, 3);
+      });
     });
   });
 
