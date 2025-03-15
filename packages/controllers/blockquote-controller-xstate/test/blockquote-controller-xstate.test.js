@@ -28,6 +28,10 @@ suite('BlockquoteControllerXstate', () => {
       assert.equal(el.counterController.snapshot.context.counter, 0);
     });
 
+    test('should get an instance of actor', () => {
+      assert.isObject(el.counterController.actor);
+    });
+
     suite('Semantic Dom and a11y', () => {
       test('SHADOW DOM - Structure test', async () => {
         expect(getDiffableHTML(elShadowRoot, {ignoreAttributes: ['id']})).toMatchSnapshot(
