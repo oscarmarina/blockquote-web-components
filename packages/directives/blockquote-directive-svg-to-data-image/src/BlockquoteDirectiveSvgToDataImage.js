@@ -100,7 +100,10 @@ const svgXmlEncode = (url = '') => {
  * @param {Array} secondArray - The second array.
  * @returns {Array} The merged array.
  */
-const mergeAlternatingValues = (firstArray = [], secondArray = []) =>
+const mergeAlternatingValues = (
+  /* istanbul ignore next */ firstArray = [],
+  /* istanbul ignore next */ secondArray = []
+) =>
   firstArray.map((strings, index) =>
     [
       strings,

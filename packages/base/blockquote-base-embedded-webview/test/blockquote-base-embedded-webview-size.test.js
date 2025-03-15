@@ -59,7 +59,7 @@ suite('BlockquoteBaseEmbeddedWebviewSize', () => {
       buttonSize3 = screenSizesButtons?.[2];
 
       return () => {
-        fixtureCleanup();
+        //fixtureCleanup();
       };
     });
 

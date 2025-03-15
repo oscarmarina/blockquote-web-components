@@ -153,7 +153,7 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
         this.style.setProperty('--blockquote-base-embedded-webview-resize-rect-width', cssOffsetX);
         this.style.setProperty('--blockquote-base-embedded-webview-resize-rect-height', cssOffsetY);
         break;
-      /* c8 ignore next */ default:
+      /* istanbul ignore next */ default:
     }
 
     this._dispatchResizeEvent();

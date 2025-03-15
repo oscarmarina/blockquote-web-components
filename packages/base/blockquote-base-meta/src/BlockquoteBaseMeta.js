@@ -9,7 +9,7 @@ part of the polymer project is also subject to an additional IP rights grant
 found at http://polymer.github.io/PATENTS.txt
 */
 
-const globalThisOrWindow = globalThis /* c8 ignore next */ || window;
+const globalThisOrWindow = globalThis /* istanbul ignore next */ || window;
 
 const BLOCKQUOTE = Symbol.for('BLOCKQUOTE');
 const blockquoteBaseMeta = Symbol.for('blockquoteBaseMeta');

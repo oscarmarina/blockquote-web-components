@@ -67,7 +67,7 @@ export class BlockquoteTabPanel extends LitElement {
    *
    * @param {Record<*, *>} entries
    */
-  __setArrayAttibute(entries = {}) {
+  __setArrayAttibute(/* istanbul ignore next */ entries = {}) {
     Object.entries(entries).forEach(([key, value]) => {
       this.setAttribute(key, value);
     });

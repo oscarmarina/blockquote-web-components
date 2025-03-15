@@ -6,7 +6,7 @@ import {BlockquoteBaseMeta} from '@blockquote-web-components/blockquote-base-met
  * @param {CSSResult} styles Styles to add, wrapper in a Lit css tagged template literal
  */
 export const setComponentSharedStyles = (id, styles) => {
-  /* c8 ignore if */
+  /* istanbul ignore if */
   if (!styles.cssText) {
     throw new Error(
       `Value passed to 'setComponentSharedStyles' function must be a 'css' function result`

@@ -1,5 +1,5 @@
 // @ts-nocheck
-/* c8 ignore start */
+/* istanbul ignore file */
 
 /**
  * Determines if the code is running in a standard browser environment.
@@ -48,7 +48,7 @@ export const isStandardBrowserWebWorkerEnv = (() =>
   self instanceof WorkerGlobalScope &&
   typeof self.importScripts === 'function')();
 
-/* c8 ignore stop */
+/* istanbul ignore stop */
 
 /**
  * Determine if a value is a FormData
@@ -59,7 +59,7 @@ export const isStandardBrowserWebWorkerEnv = (() =>
 export const isFormData = (thing) =>
   (thing && thing instanceof FormData) ||
   (typeof thing === 'object' &&
-    typeof thing.append === 'function' /* c8 ignore next */ &&
+    typeof thing.append === 'function' /* istanbul ignore next */ &&
     Object.prototype.toString.call(thing) === '[object FormData]');
 
 /**

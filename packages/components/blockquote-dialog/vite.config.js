@@ -36,7 +36,6 @@ export default defineConfig({
     browser: {
       enabled: true,
       headless: false,
-      name: 'chromium',
       provider: 'playwright',
       screenshotFailures: false,
       instances: [
@@ -46,11 +45,17 @@ export default defineConfig({
             devtools: true,
             args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu'],
           },
+          context: {},
+        },
+        {
+          browser: 'webkit',
+          launch: {},
+          context: {},
         },
       ],
     },
     coverage: {
-      provider: 'v8',
+      provider: 'istanbul',
       reportsDirectory: 'test/coverage/',
       reporter: ['lcov', 'json', 'text-summary', 'html'],
       enabled: true,

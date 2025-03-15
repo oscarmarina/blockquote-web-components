@@ -6,7 +6,8 @@ import {BlockquoteMixinSlotContent} from '@blockquote-web-components/blockquote-
 import {styles} from './styles/blockquote-tabs-styles.css.js';
 
 /* A minimal library which polyfills the ResizeObserver */
-window.ResizeObserver || /* c8 ignore next */ (window.ResizeObserver = ResizeObserverPolyfill);
+window.ResizeObserver ||
+  /* istanbul ignore next */ (window.ResizeObserver = ResizeObserverPolyfill);
 
 // https://gist.github.com/ebidel/2d2bb0cdec3f2a16cf519dbaa791ce1b
 // https://darn.es/building-tabs-in-web-components/

@@ -234,6 +234,7 @@ class UseMachine {
 
   startService() {
     this.actorRef = createActor(this.machine, this.options);
+    /* istanbul ignore else*/
     if (this.actorRef) {
       this.subs = this.actorRef.subscribe(this.onNext);
     }

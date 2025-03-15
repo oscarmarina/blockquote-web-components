@@ -1,4 +1,4 @@
-const globalThisOrWindow = globalThis /* c8 ignore next */ || window;
+const globalThisOrWindow = globalThis /* istanbul ignore next */ || window;
 
 /**
  * Checks if the current environment supports adopting style sheets.
@@ -7,7 +7,7 @@ const globalThisOrWindow = globalThis /* c8 ignore next */ || window;
 const supportsAdoptingStyleSheets =
   globalThisOrWindow.ShadowRoot &&
   // @ts-ignore
-  (globalThisOrWindow.ShadyCSS === undefined /* c8 ignore next */ ||
+  (globalThisOrWindow.ShadyCSS === undefined /* istanbul ignore next */ ||
     globalThisOrWindow.ShadyCSS.nativeShadow) &&
   'adoptedStyleSheets' in Document.prototype &&
   'replace' in CSSStyleSheet.prototype;
@@ -18,7 +18,7 @@ const supportsAdoptingStyleSheets =
  */
 const renderDocumentRoot = supportsAdoptingStyleSheets
   ? document
-  : /* c8 ignore next */ document.head;
+  : /* istanbul ignore next */ document.head;
 
 /**
  * Flattens the styles array.
@@ -33,6 +33,7 @@ const flattenStyles = (styles) => (Array.isArray(styles) ? styles.flat(Infinity)
  * @param {Array} styles - The styles to adopt.
  */
 export const adoptDocumentStyles = (renderRoot, styles) => {
+  /* istanbul ignore else */
   if (supportsAdoptingStyleSheets) {
     // https://github.com/lit/lit/issues/2984#issuecomment-1150224373
     const documentRoot = /** @type {Document} */ (renderRoot);
