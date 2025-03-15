@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.13.1](https://github.com/oscarmarina/blockquote-web-components/compare/v2.13.0...v2.13.1) (2025-03-15)
+
+
+### Bug Fixes
+
+* **blockquote-controller-context-meta:** preserve possible async in the host element lifecycle ([e25076e](https://github.com/oscarmarina/blockquote-web-components/commit/e25076e3f6a565c17e89b8150cb530ba35192b89))
+* **blockquote-controller-xstate:** add test ([aedbea8](https://github.com/oscarmarina/blockquote-web-components/commit/aedbea82eb6cc38292ce632a19e6d0cb28eb463f))
+* **blockquote-tabs:** add test ([547cac4](https://github.com/oscarmarina/blockquote-web-components/commit/547cac47600a4a10d629678ea43f4f6199283d57))
+
 ## [2.13.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.12.1...v2.13.0) (2025-03-14)
 
 
