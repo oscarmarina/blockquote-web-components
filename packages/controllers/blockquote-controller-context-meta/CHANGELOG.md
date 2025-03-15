@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-context-meta@1.3.0...@blockquote-web-components/blockquote-controller-context-meta@1.3.1) (2025-03-15)
+
+
+### Bug Fixes
+
+* **blockquote-controller-context-meta:** preserve possible async in the host element lifecycle ([e25076e](https://github.com/oscarmarina/blockquote-web-components/commit/e25076e3f6a565c17e89b8150cb530ba35192b89))
+
+
+
+
+
 # [1.3.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-context-meta@1.2.8...@blockquote-web-components/blockquote-controller-context-meta@1.3.0) (2025-03-14)
 
 
