@@ -135,10 +135,12 @@ class ContextMeta {
 
   async hostConnected() {
     await this.host.updateComplete;
-    this._contextMetaConsumer = new ContextConsumer(this.host, {
-      context: this.context,
-      subscribe: true,
-      callback: this.callback,
+    window.queueMicrotask(() => {
+      this._contextMetaConsumer = new ContextConsumer(this.host, {
+        context: this.context,
+        subscribe: true,
+        callback: this.callback,
+      });
     });
   }
 }
