@@ -3,30 +3,29 @@ import {noChange} from 'lit';
 import {cacheContextMetaProvider, contextMetaKeyProvider} from './cache-context-meta-provider.js';
 
 /**
- * `contextMetaProviderDirective` is a Lit directive that allows you to make normal DOM elements context providers.
- * This directive can be used in both attribute and element bindings in Lit templates.
+ * `contextMetaProviderDirective` is a Lit directive that enables normal DOM elements to act as context providers.
+ * You can use this directive in both attribute and element bindings in Lit templates.
  *
  * > https://github.com/lit/lit/discussions/4690
  *
  * Usage:
- * This directive converts a DOM element into a Lit context provider using the BlockquoteControllerContextMeta class, which is a
- * Lit Reactive Controller that encapsulates the controllers provided by [@lit/context](https://lit.dev/docs/data/context/).
+ * This directive transforms a DOM element into a Lit context provider using the BlockquoteControllerContextMeta class, a
+ * Lit Reactive Controller that encapsulates controllers provided by [@lit/context](https://lit.dev/docs/data/context/).
  *
  * ## Features
- * - Allows non-Lit elements to provide context.
+ * - Enables non-Lit elements to provide context.
  * - Works seamlessly with [`@lit/context`](https://lit.dev/docs/data/context/).
  * - Utilizes `BlockquoteControllerContextMeta`, a Lit Reactive Controller for managing context.
-
  *
  * js```
  *   <div ${contextMetaProviderDirective(myContext, someValue)}>
  *     <!-- Children can consume the provided context -->
  *   </div>
- *  //
- * <div data-info="${contextMetaProviderDirective(myContext, someValue)}"">
+ *   //
+ *   <div data-info="${contextMetaProviderDirective(myContext, someValue)}">
  *     <!-- Children can consume the provided context -->
  *   </div>
- * ```;
+ * ```
  */
 class ContextMetaProviderDirective extends Directive {
   /** @type {*} */
