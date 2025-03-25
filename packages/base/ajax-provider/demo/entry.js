@@ -2,5 +2,5 @@
 import './ajax-provider-component.js';
 import 'inspector-elements';
 
-export {fakeServer} from 'sinon';
+export {fakeServer} from 'nise';
 export {DmCurrencies} from './DmCurrencies.js';
