@@ -7,10 +7,8 @@ export const contextMetaSymbol = Symbol.for('context-meta-symbol');
  * `BlockquoteControllerContextMeta` is a Lit Reactive Controller that encapsulates the controllers provided by [@lit/context](https://lit.dev/docs/data/context/)
  *
  * **Features:**
- * - It enables a component to serve as both a provider and a consumer.
- * - It places the consumer after the first update to reduce the chance of a consumer in LightDOM requesting a context that currently lacks a provider.
- * - Create a context object using a global symbol (Symbol.for('my-context')).
- *
+ * - Allows a component to act simultaneously as a provider and a consumer.
+ * - Delays consumer initialization until after the first update, minimizing the risk of a consumer in the Light DOM requesting a context before a provider is available.
  * <hr>
  *
  * ### Demo
@@ -135,6 +133,7 @@ class ContextMeta {
 
   async hostConnected() {
     await this.host.updateComplete;
+    // Await possible asynchronous completion of the host's update lifecycle
     window.queueMicrotask(() => {
       this._contextMetaConsumer = new ContextConsumer(this.host, {
         context: this.context,

@@ -3,8 +3,7 @@ import {LitElement, html, css} from 'lit';
 /**
  * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
- * `BaseContextMetaElement` simulates the behavior of a `div` using ARIA roles,
- * preserving standard HTML behaviors while enhancing functionality.
+ * `BaseContextMetaElement` emulates the behavior of a flow element using ARIA, preserving standard HTML functionality while enhancing its features.
  *
  * ## Demo
  *
@@ -35,6 +34,7 @@ export class BaseContextMetaElement extends LitElement {
     :host {
       display: block;
     }
+
     :host([hidden]),
     [hidden] {
       display: none !important;
