@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-base-meta",
-  "version": "1.5.9",
+  "version": "1.5.10",
   "description": "Webcomponent blockquote-base-meta following open-wc recommendations",
   "keywords": [
     "lit",
@@ -114,8 +114,8 @@
     "lit": "^3.2.1"
   },
   "devDependencies": {
-    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.11.2",
-    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.12.9"
+    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.11.3",
+    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.12.10"
   },
   "publishConfig": {
     "access": "public"
