@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.13.2](https://github.com/oscarmarina/blockquote-web-components/compare/v2.13.1...v2.13.2) (2025-03-25)
+
+
+### Bug Fixes
+
+* **blockquote-base-common-dev-dependencies:** update dependencies ([8050f38](https://github.com/oscarmarina/blockquote-web-components/commit/8050f388482516f46f1ab8250c341de241b8c2d7))
+* **blockquote-base-common-dev-dependencies:** update dependencies ([48a075c](https://github.com/oscarmarina/blockquote-web-components/commit/48a075cd3018fa774bf5f122d275f1916341451b))
+
 ## [2.13.1](https://github.com/oscarmarina/blockquote-web-components/compare/v2.13.0...v2.13.1) (2025-03-15)
 
 
