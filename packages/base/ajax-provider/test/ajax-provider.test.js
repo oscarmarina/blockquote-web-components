@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import {suite, test, assert, expect, beforeAll, vi} from 'vitest';
-import {fakeServer} from 'sinon';
+import {fakeServer} from 'nise';
 import {AjaxProvider} from '../src/index.js';
 
 export function aTimeout(ms) {
