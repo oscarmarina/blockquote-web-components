@@ -120,7 +120,7 @@
   "dependencies": {
     "@blockquote-web-components/blockquote-directive-ariaidref-slot": "^1.2.10",
     "@blockquote/frontend-utilities": "^1.0.2",
-    "lit": "^3.2.1"
+    "lit": "^3.3.0"
   },
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.11.3",
