@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/ajax-provider",
-  "version": "1.4.10",
+  "version": "1.4.11",
   "description": "Webcomponent ajax-provider following open-wc recommendations",
   "keywords": [
     "lit",
@@ -115,8 +115,8 @@
     "rxjs": "^8.0.0-alpha.14"
   },
   "devDependencies": {
-    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.11.3",
-    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.12.10",
+    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.11.4",
+    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.12.11",
     "inspector-elements": "^0.1.0",
     "lit": "^3.3.0"
   },
