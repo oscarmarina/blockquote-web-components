@@ -82,6 +82,7 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
       selected: {
         type: Number,
         reflect: true,
+        useDefault: true,
       },
 
       _hasScrollLeftIndicator: {
