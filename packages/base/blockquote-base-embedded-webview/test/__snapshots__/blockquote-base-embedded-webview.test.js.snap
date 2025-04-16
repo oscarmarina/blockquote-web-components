@@ -62,10 +62,7 @@ exports[`BlockquoteBaseEmbeddedWebview > Behavior > limit height > SHADOW DOM 1`
 `;
 
 exports[`BlockquoteBaseEmbeddedWebview > Default > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
-"<blockquote-base-embedded-webview
-  heading="blockquote-base-embedded-webview"
-  heading-level="1"
->
+"<blockquote-base-embedded-webview heading="blockquote-base-embedded-webview">
   <template
     data-description="base - description"
     data-option="Base"
@@ -158,10 +155,7 @@ exports[`BlockquoteBaseEmbeddedWebview > Default > SHADOW DOM - Structure test >
 `;
 
 exports[`BlockquoteBaseEmbeddedWebview > variant > LIGHT DOM - Structure test > VARIANT - LIGHT DOM 1`] = `
-"<blockquote-base-embedded-webview
-  heading="blockquote-base-embedded-webview"
-  heading-level="1"
->
+"<blockquote-base-embedded-webview heading="blockquote-base-embedded-webview">
   <template data-src="/test/test.html">
   </template>
   <blockquote-base-embedded-webview-element slot="embedded">
