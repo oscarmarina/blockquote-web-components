@@ -1,10 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`BlockquoteDialog > Default Close > Semantic Dom and a11y > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
-"<blockquote-dialog
-  role="presentation"
-  type="alert"
->
+"<blockquote-dialog role="presentation">
   <form method="dialog">
     <header>
       <h2>
@@ -106,7 +103,6 @@ exports[`BlockquoteDialog > Default Close with "label" > Semantic Dom and a11y >
 "<blockquote-dialog
   label="aria-label Name"
   role="presentation"
-  type="alert"
 >
   <form method="dialog">
     <header>
@@ -159,7 +155,6 @@ exports[`BlockquoteDialog > Default Open > Semantic Dom and a11y > LIGHT DOM - S
   labelledby="labelledby"
   open=""
   role="presentation"
-  type="alert"
 >
   <form method="dialog">
     <header>
