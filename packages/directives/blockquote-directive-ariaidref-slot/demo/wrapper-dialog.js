@@ -24,6 +24,7 @@ class WrapperDialog extends LitElement {
     open: {
       type: Boolean,
       reflect: true,
+      useDefault: true,
     },
 
     labelledby: {
