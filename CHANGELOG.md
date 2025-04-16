@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.14.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.13.3...v2.14.0) (2025-04-16)
+
+
+### Features
+
+* **blockquote-base-embedded-webview:** add useDefault ([4a151b2](https://github.com/oscarmarina/blockquote-web-components/commit/4a151b2f465769704f487a8c3b92eaf88cc5de1d))
+* **blockquote-dialog:** add useDefault ([4e0930c](https://github.com/oscarmarina/blockquote-web-components/commit/4e0930cec35ccdaadbad7cb88a8c512c1bfc4b50))
+* **blockquote-directive-ariaidref-slot:** add useDefault ([68bd12b](https://github.com/oscarmarina/blockquote-web-components/commit/68bd12bf7f1c13d7361c47f13340afee9c0b5fd2))
+* **blockquote-mixin-slot-content:** add useDefault ([a4f3efa](https://github.com/oscarmarina/blockquote-web-components/commit/a4f3efae2afcb3aba297cc56ea81f304b2638788))
+* **blockquote-tabs:** add useDefault ([63f1086](https://github.com/oscarmarina/blockquote-web-components/commit/63f1086034a1bd049eefd34d85751ec4d8ba9801))
+
 ## [2.13.3](https://github.com/oscarmarina/blockquote-web-components/compare/v2.13.2...v2.13.3) (2025-04-15)
 
 ## [2.13.2](https://github.com/oscarmarina/blockquote-web-components/compare/v2.13.1...v2.13.2) (2025-03-25)
