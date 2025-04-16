@@ -21,6 +21,7 @@
 **/screenshots
 
 ## build
+**/.env
 **/_site
 **/dist
 **/dev
