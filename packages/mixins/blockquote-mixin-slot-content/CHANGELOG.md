@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-mixin-slot-content@1.8.11...@blockquote-web-components/blockquote-mixin-slot-content@1.9.0) (2025-04-16)
+
+
+### Features
+
+* **blockquote-mixin-slot-content:** add useDefault ([a4f3efa](https://github.com/oscarmarina/blockquote-web-components/commit/a4f3efae2afcb3aba297cc56ea81f304b2638788))
+
+
+
+
+
 ## [1.8.11](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-mixin-slot-content@1.8.10...@blockquote-web-components/blockquote-mixin-slot-content@1.8.11) (2025-04-15)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-mixin-slot-content

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.12.11...@blockquote-web-components/blockquote-base-embedded-webview@1.13.0) (2025-04-16)
+
+
+### Features
+
+* **blockquote-base-embedded-webview:** add useDefault ([4a151b2](https://github.com/oscarmarina/blockquote-web-components/commit/4a151b2f465769704f487a8c3b92eaf88cc5de1d))
+
+
+
+
+
 ## [1.12.11](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-embedded-webview@1.12.10...@blockquote-web-components/blockquote-base-embedded-webview@1.12.11) (2025-04-15)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-base-embedded-webview
