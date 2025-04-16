@@ -114,6 +114,7 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
         type: Number,
         attribute: 'heading-level',
         reflect: true,
+        useDefault: true,
       },
 
       /**
@@ -131,6 +132,7 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
         type: Boolean,
         attribute: 'limit-height',
         reflect: true,
+        useDefault: true,
       },
     };
   }
