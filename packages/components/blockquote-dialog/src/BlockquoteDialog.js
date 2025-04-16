@@ -78,6 +78,7 @@ export class BlockquoteDialog extends LitElement {
     open: {
       type: Boolean,
       reflect: true,
+      useDefault: true,
     },
 
     /**
@@ -122,7 +123,6 @@ export class BlockquoteDialog extends LitElement {
      */
     type: {
       type: String,
-      reflect: true,
     },
   };
 
