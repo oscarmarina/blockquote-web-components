@@ -189,26 +189,26 @@ export class XstateCounter extends LitElement {
 
 ##### Fields
 
-| Name              | Privacy | Type | Default    | Description | Inherited From |
-| ----------------- | ------- | ---- | ---------- | ----------- | -------------- |
-| `actor`           |         |      |            |             |                |
-| `snapshot`        |         |      |            |             |                |
-| `onNext`          |         |      |            |             |                |
-| `machine`         |         |      | `machine`  |             |                |
-| `options`         |         |      | `options`  |             |                |
-| `callback`        |         |      | `callback` |             |                |
-| `currentSnapshot` |         |      |            |             |                |
+| Name              | Privacy | Type | Default    | Description                              | Inherited From |
+| ----------------- | ------- | ---- | ---------- | ---------------------------------------- | -------------- |
+| `actor`           |         |      |            | The underlying ActorRef from XState      |                |
+| `snapshot`        |         |      |            | The latest snapshot of the actor's state |                |
+| `onNext`          |         |      |            | Internal subscriber for state changes    |                |
+| `machine`         |         |      | `machine`  |                                          |                |
+| `options`         |         |      | `options`  |                                          |                |
+| `callback`        |         |      | `callback` |                                          |                |
+| `currentSnapshot` |         |      |            |                                          |                |
 
 ##### Methods
 
-| Name               | Privacy | Description | Parameters                           | Return | Inherited From |
-| ------------------ | ------- | ----------- | ------------------------------------ | ------ | -------------- |
-| `send`             |         |             | `ev: EventFrom<typeof this.machine>` |        |                |
-| `unsubscribe`      |         |             |                                      |        |                |
-| `startService`     |         |             |                                      |        |                |
-| `stopService`      |         |             |                                      |        |                |
-| `hostConnected`    |         |             |                                      |        |                |
-| `hostDisconnected` |         |             |                                      |        |                |
+| Name               | Privacy | Description                        | Parameters                           | Return | Inherited From |
+| ------------------ | ------- | ---------------------------------- | ------------------------------------ | ------ | -------------- |
+| `send`             |         | Send an event to the actor service | `ev: EventFrom<typeof this.machine>` |        |                |
+| `unsubscribe`      |         |                                    |                                      |        |                |
+| `startService`     |         |                                    |                                      |        |                |
+| `stopService`      |         |                                    |                                      |        |                |
+| `hostConnected`    |         |                                    |                                      |        |                |
+| `hostDisconnected` |         |                                    |                                      |        |                |
 
 <hr/>
 
