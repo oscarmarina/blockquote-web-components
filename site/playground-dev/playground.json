@@ -1,37 +1,37 @@
 {
   "files": {
-    "src/define/blk-material.js": { "hidden": true },
-    "src/define/blk-ripple.js": { "hidden": true },
-    "src/define/blk-button.js": { "hidden": true },
+    "src/define/blk-material.js": {"hidden": true},
+    "src/define/blk-ripple.js": {"hidden": true},
+    "src/define/blk-button.js": {"hidden": true},
     "index.js": {
       "hidden": true
     },
     "html-file.html": {
       "position": 0
     },
-    "src/BlkMaterial.js": { "label": "BlkMaterial" },
-    "src/BlkButton.js": { "label": "BlkButton" },
-    "src/BlkRipple.js": { "label": "BlkRipple" },
+    "src/BlkMaterial.js": {"label": "BlkMaterial"},
+    "src/BlkButton.js": {"label": "BlkButton"},
+    "src/BlkRipple.js": {"label": "BlkRipple"},
 
-    "src/styles/blk-material-tokens.js": { "label": "blk-material-tokens" },
-    "src/styles/blk-button-tokens.js": { "label": "blk-button-tokens" },
-    "src/styles/blk-ripple-tokens.js": { "label": "blk-ripple-tokens" },
+    "src/styles/blk-material-tokens.js": {"label": "blk-material-tokens"},
+    "src/styles/blk-button-tokens.js": {"label": "blk-button-tokens"},
+    "src/styles/blk-ripple-tokens.js": {"label": "blk-ripple-tokens"},
 
-    "src/styles/blk-button-styles.css.js": { "label": "blk-button-styles" },
-    "src/styles/blk-ripple-styles.css.js": { "label": "blk-ripple-styles" },
-    "src/styles/blk-material-styles.css.js": { "label": "blk-material-styles" },
+    "src/styles/blk-button-styles.css.js": {"label": "blk-button-styles"},
+    "src/styles/blk-ripple-styles.css.js": {"label": "blk-ripple-styles"},
+    "src/styles/blk-material-styles.css.js": {"label": "blk-material-styles"},
 
-    "src/tokens/blk-ref-palette.js": { "label": "blk-ref-palette" },
-    "src/tokens/blk-ref-typeface.js": { "label": "blk-ref-typeface" },
-    "src/tokens/blk-ref-spacing.js": { "label": "blk-ref-spacing" },
-    "src/tokens/blk-ref-alpha.js": { "label": "blk-ref-alpha" },
-    "src/tokens/blk-sys-color.js": { "label": "blk-sys-color" },
-    "src/tokens/blk-sys-typescale.js": { "label": "blk-sys-typescale" },
-    "src/tokens/blk-sys-spacing.js": { "label": "blk-sys-spacing" },
-    "src/tokens/blk-sys-alpha.js": { "label": "blk-sys-alpha" },
+    "src/tokens/blk-ref-palette.js": {"label": "blk-ref-palette"},
+    "src/tokens/blk-ref-typeface.js": {"label": "blk-ref-typeface"},
+    "src/tokens/blk-ref-spacing.js": {"label": "blk-ref-spacing"},
+    "src/tokens/blk-ref-alpha.js": {"label": "blk-ref-alpha"},
+    "src/tokens/blk-sys-color.js": {"label": "blk-sys-color"},
+    "src/tokens/blk-sys-typescale.js": {"label": "blk-sys-typescale"},
+    "src/tokens/blk-sys-spacing.js": {"label": "blk-sys-spacing"},
+    "src/tokens/blk-sys-alpha.js": {"label": "blk-sys-alpha"},
 
-    "src/tokens/blk-system.js": { "label": "blk-system" },
-    "src/tokens/dark-color-scheme.js": { "label": "dark-color-scheme" },
-    "src/tokens/generate-tokens.js": { "label": "generate-tokens" }
+    "src/tokens/blk-system.js": {"label": "blk-system"},
+    "src/tokens/dark-color-scheme.js": {"label": "dark-color-scheme"},
+    "src/tokens/generate-tokens.js": {"label": "generate-tokens"}
   }
 }
