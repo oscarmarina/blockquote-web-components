@@ -14,11 +14,13 @@
             {
               "kind": "field",
               "name": "actor",
+              "description": "The underlying ActorRef from XState",
               "readonly": true
             },
             {
               "kind": "field",
               "name": "snapshot",
+              "description": "The latest snapshot of the actor's state",
               "readonly": true
             },
             {
@@ -31,7 +33,8 @@
                     "text": "EventFrom<typeof this.machine>"
                   }
                 }
-              ]
+              ],
+              "description": "Send an event to the actor service"
             },
             {
               "kind": "method",
@@ -40,6 +43,7 @@
             {
               "kind": "field",
               "name": "onNext",
+              "description": "Internal subscriber for state changes",
               "parameters": [
                 {
                   "name": "snapshot",
