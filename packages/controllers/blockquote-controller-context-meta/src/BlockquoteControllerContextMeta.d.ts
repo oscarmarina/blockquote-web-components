@@ -24,6 +24,7 @@ declare class ContextMeta<
       initialValue?: ContextType<TMeta>;
       callback?: (v: ContextType<TMeta>, dispose?: () => void) => void;
     },
+    isConsumerOnly?: boolean,
   );
   get value(): ContextType<TMeta> | undefined;
   setValue(v: ContextType<TMeta>, force?: boolean): void;
