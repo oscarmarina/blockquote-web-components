@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.15.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.14.1...v2.15.0) (2025-04-24)
+
+
+### Features
+
+* **blockquote-controller-context-meta:** add isConsumerOnly flag ([873f12f](https://github.com/oscarmarina/blockquote-web-components/commit/873f12f51740c96d037aa63df9f66c38e3715b0c))
+
 ## [2.14.1](https://github.com/oscarmarina/blockquote-web-components/compare/v2.14.0...v2.14.1) (2025-04-19)
 
 ## [2.14.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.13.3...v2.14.0) (2025-04-16)
