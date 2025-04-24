@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.15.1](https://github.com/oscarmarina/blockquote-web-components/compare/v2.15.0...v2.15.1) (2025-04-24)
+
+
+### Bug Fixes
+
+* **blockquote-controller-context-meta:** update d.ts ([b372c2b](https://github.com/oscarmarina/blockquote-web-components/commit/b372c2be36d9b984e8cd00fd6b1e5f0787b405fb))
+
 ## [2.15.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.14.1...v2.15.0) (2025-04-24)
 
 
