@@ -108,17 +108,20 @@ class ContextMeta {
    *   initialValue?: import('@lit/context').ContextType<*>,
    *   callback?: (value: import('@lit/context').ContextType<*>, dispose?: () => void) => void
    * }} arg - The arguments for the constructor.
+   * @param {boolean} isConsumerOnly - If true, the controller will only be a consumer. Default is false.
    */
-  constructor(host, {context = contextMetaSymbol, initialValue, callback}) {
+  constructor(host, {context = contextMetaSymbol, initialValue, callback}, isConsumerOnly = false) {
     this.context = createContext(context);
     this.initialValue = initialValue;
     this.callback = callback;
     this.host = host;
 
-    this._contextMetaProvider = new ContextProvider(this.host, {
-      context: this.context,
-      initialValue: this.initialValue,
-    });
+    if (!isConsumerOnly) {
+      this._contextMetaProvider = new ContextProvider(this.host, {
+        context: this.context,
+        initialValue: this.initialValue,
+      });
+    }
 
     this.host.addController?.(this);
   }

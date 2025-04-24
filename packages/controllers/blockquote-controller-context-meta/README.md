@@ -103,14 +103,13 @@ customElements.define('consumer-el', ConsumerEl);
 
 ##### Fields
 
-| Name                   | Privacy | Type | Default                                                                                       | Description | Inherited From |
-| ---------------------- | ------- | ---- | --------------------------------------------------------------------------------------------- | ----------- | -------------- |
-| `value`                |         |      |                                                                                               |             |                |
-| `context`              |         |      |                                                                                               |             |                |
-| `initialValue`         |         |      | `initialValue`                                                                                |             |                |
-| `callback`             |         |      | `callback`                                                                                    |             |                |
-| `host`                 |         |      | `host`                                                                                        |             |                |
-| `_contextMetaProvider` |         |      | `new ContextProvider(this.host, { context: this.context, initialValue: this.initialValue, })` |             |                |
+| Name           | Privacy | Type | Default        | Description | Inherited From |
+| -------------- | ------- | ---- | -------------- | ----------- | -------------- |
+| `value`        |         |      |                |             |                |
+| `context`      |         |      |                |             |                |
+| `initialValue` |         |      | `initialValue` |             |                |
+| `callback`     |         |      | `callback`     |             |                |
+| `host`         |         |      | `host`         |             |                |
 
 ##### Methods
 

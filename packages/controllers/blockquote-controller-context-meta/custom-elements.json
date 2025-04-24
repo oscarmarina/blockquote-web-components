@@ -8,7 +8,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n`BaseContextMetaElement` simulates the behavior of a flow element using ARIA, preserving standard HTML functionality while enhancing its features.\n\n## Demo\n\n[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/flow-element)\n\n## Features\n- Acts as a structural element that follows HTML flow content rules.\n- Provides a default ARIA role (`none`) to avoid unintended semantics.\n- Can be used as a wrapper for contextual metadata.\n\n## Accessibility\nBy default, `BaseContextMetaElement` [assigns the role=\"none\"](https://github.com/w3c/aria/pull/2383),\nensuring that it does not introduce unintended semantics in assistive technologies.\nThis behavior can be overridden by explicitly setting a different role.\n\n**Related:** [ARIA Structural Roles](https://www.w3.org/WAI/ARIA/apg/practices/structural-roles/#allstructuralrolesandtheirhtmlequivalents)\n\n> Inspired by the discussion: [Is it possible to make normal DOM elements context providers?](https://github.com/lit/lit/discussions/4690)\n**See Also:** [contextmeta provider directive](https://github.com/oscarmarina/blockquote-web-components/tree/main/packages/controllers/blockquote-controller-context-meta/src/directives/context-meta-provider.js)\n\nWith this setup, `BaseContextMetaElement` behaves like a [flow element](https://developer.mozilla.org/en-US/docs/Web/HTML/Content_categories#flow_content).\n\n\n<hr>",
+          "description": "![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n`BaseContextMetaElement` emulates the behavior of a flow element using ARIA, preserving standard HTML functionality while enhancing its features.\n\n## Demo\n\n[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/flow-element)\n\n## Features\n- Acts as a structural element that follows HTML flow content rules.\n- Provides a default ARIA role (`none`) to avoid unintended semantics.\n- Can be used as a wrapper for contextual metadata.\n\n## Accessibility\nBy default, `BaseContextMetaElement` [assigns the role=\"none\"](https://github.com/w3c/aria/pull/2383),\nensuring that it does not introduce unintended semantics in assistive technologies.\nThis behavior can be overridden by explicitly setting a different role.\n\n**Related:** [ARIA Structural Roles](https://www.w3.org/WAI/ARIA/apg/practices/structural-roles/#allstructuralrolesandtheirhtmlequivalents)\n\n> Inspired by the discussion: [Is it possible to make normal DOM elements context providers?](https://github.com/lit/lit/discussions/4690)\n**See Also:** [contextmeta provider directive](https://github.com/oscarmarina/blockquote-web-components/tree/main/packages/controllers/blockquote-controller-context-meta/src/directives/context-meta-provider.js)\n\nWith this setup, `BaseContextMetaElement` behaves like a [flow element](https://developer.mozilla.org/en-US/docs/Web/HTML/Content_categories#flow_content).\n\n\n<hr>",
           "name": "BaseContextMetaElement",
           "members": [],
           "superclass": {
@@ -91,11 +91,6 @@
               "kind": "field",
               "name": "host",
               "default": "host"
-            },
-            {
-              "kind": "field",
-              "name": "_contextMetaProvider",
-              "default": "new ContextProvider(this.host, { context: this.context, initialValue: this.initialValue, })"
             }
           ]
         }
