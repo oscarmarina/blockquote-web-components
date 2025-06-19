@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-base-common-dev-dependencies",
-  "version": "1.11.4",
+  "version": "1.12.0",
   "description": "Common dev dependencies to develop blockquote web components",
   "dependencies": {
     "@blockquote/cem-to-markdown-readme": "^1.0.0",

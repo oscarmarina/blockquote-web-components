@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-common-dev-dependencies@1.11.4...@blockquote-web-components/blockquote-base-common-dev-dependencies@1.12.0) (2025-06-19)
+
+
+### Features
+
+* **blockquote-base-common-dev-dependencies:** update dependencies ([c697b81](https://github.com/oscarmarina/blockquote-web-components/commit/c697b81b3552096980eb49d9b440adbaaf520ffa))
+
+
+
+
+
 ## [1.11.4](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-common-dev-dependencies@1.11.3...@blockquote-web-components/blockquote-base-common-dev-dependencies@1.11.4) (2025-04-15)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-base-common-dev-dependencies
