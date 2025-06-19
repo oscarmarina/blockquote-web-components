@@ -114,7 +114,7 @@
   },
   "dependencies": {
     "lit": "^3.3.0",
-    "xstate": "^5.19.2"
+    "xstate": "^5.19.4"
   },
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.11.4",
