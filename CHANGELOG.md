@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.16.1](https://github.com/oscarmarina/blockquote-web-components/compare/v2.16.0...v2.16.1) (2025-07-11)
+
+
+### Bug Fixes
+
+* **ajax-provider:** update all non-major dependencies ([0a48ce9](https://github.com/oscarmarina/blockquote-web-components/commit/0a48ce977ab5d45a1f94db5ad7b03dad6c1c3b3b))
+* **blockquote-base-common-dev-dependencies:** update all non-major dependencies ([f7a1c26](https://github.com/oscarmarina/blockquote-web-components/commit/f7a1c26eebd9e85c2f7097df6296e3a8f059aa9d))
+* **blockquote-base-embedded-webview:** update all non-major dependencies ([aee3dbb](https://github.com/oscarmarina/blockquote-web-components/commit/aee3dbb3dea8758523922b1ea627845b51da42ef))
+* **blockquote-base-embedded-webview:** update all non-major dependencies ([33e9053](https://github.com/oscarmarina/blockquote-web-components/commit/33e90533c7fbc562bbe13d6ad0e1562a31b8eb03))
+* **blockquote-base-meta:** update all non-major dependencies ([30bbcca](https://github.com/oscarmarina/blockquote-web-components/commit/30bbccac38edaaf3085ec6f92dcebcfb346de033))
+* **blockquote-base-style-helpers:** update all non-major dependencies ([3ee3621](https://github.com/oscarmarina/blockquote-web-components/commit/3ee3621b01f33b345360e699ff8f11bab20a028f))
+* **blockquote-controller-context-meta:** update all non-major dependencies ([caa4104](https://github.com/oscarmarina/blockquote-web-components/commit/caa4104a9302f8916b24d33d8220a12c16d4b8dc))
+* **blockquote-controller-rxjs:** update all non-major dependencies ([f8d0a16](https://github.com/oscarmarina/blockquote-web-components/commit/f8d0a16e8e61ed2a49d450e8ee1f6214e6ffaee0))
+* **blockquote-controller-xstate:** update all non-major dependencies ([0975e14](https://github.com/oscarmarina/blockquote-web-components/commit/0975e145ba3f6db52db765a79ba918160cb9d3f6))
+* **blockquote-dialog:** update all non-major dependencies ([e5403a7](https://github.com/oscarmarina/blockquote-web-components/commit/e5403a745656f6c5a856a399a2eeb18662dfb6de))
+* **blockquote-directive-ariaidref-slot:** update all non-major dependencies ([19b9470](https://github.com/oscarmarina/blockquote-web-components/commit/19b947078e6f573aca2d9d6df9513df5f0b6e6a0))
+* **blockquote-directive-svg-to-data-image:** update all non-major dependencies ([a26f52c](https://github.com/oscarmarina/blockquote-web-components/commit/a26f52c72e32afa8ae981a6364d1ee2874d3bf93))
+* **blockquote-mixin-slot-content:** update all non-major dependencies ([89c8711](https://github.com/oscarmarina/blockquote-web-components/commit/89c871179e7c4456b7def404b3fce9bdbf49712d))
+* **blockquote-tabs:** update all non-major dependencies ([497c66b](https://github.com/oscarmarina/blockquote-web-components/commit/497c66b9d07729e376646ca7e7223f49ca6e87d3))
+
 ## [2.16.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.15.1...v2.16.0) (2025-06-19)
 
 
