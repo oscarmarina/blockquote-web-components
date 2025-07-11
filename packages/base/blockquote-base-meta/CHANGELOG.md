@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.14](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-meta@1.5.13...@blockquote-web-components/blockquote-base-meta@1.5.14) (2025-07-11)
+
+
+### Bug Fixes
+
+* **blockquote-base-meta:** update all non-major dependencies ([30bbcca](https://github.com/oscarmarina/blockquote-web-components/commit/30bbccac38edaaf3085ec6f92dcebcfb346de033))
+
+
+
+
+
 ## [1.5.13](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-base-meta@1.5.12...@blockquote-web-components/blockquote-base-meta@1.5.13) (2025-06-19)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-base-meta
