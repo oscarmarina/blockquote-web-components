@@ -126,7 +126,7 @@ var Te=Object.defineProperty;var Pe=(r,e,t)=>e in r?Te(r,e,{enumerable:!0,config
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0));
+    background-image: linear-gradient(90deg, rgb(0, 0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0, 0));
   }
 
   button {
@@ -211,18 +211,18 @@ var Te=Object.defineProperty;var Pe=(r,e,t)=>e in r?Te(r,e,{enumerable:!0,config
       --blockquote-base-embedded-webview-resize-resizer-bgcolor-hover,
       linear-gradient(
         0deg,
-        rgba(220, 220, 220, 0.2),
-        rgba(220, 220, 220, 1) 50%,
-        rgba(220, 220, 220, 0.2)
+        rgb(220, 220, 220, 0.2),
+        rgb(220, 220, 220, 1) 50%,
+        rgb(220, 220, 220, 0.2)
       )
     );
     --_resizer-bgimage-s-hover: var(
       --blockquote-base-embedded-webview-resize-resizer-bgcolor-hover,
       linear-gradient(
         90deg,
-        rgba(220, 220, 220, 0.2),
-        rgba(220, 220, 220, 1) 50%,
-        rgba(220, 220, 220, 0.2)
+        rgb(220, 220, 220, 0.2),
+        rgb(220, 220, 220, 1) 50%,
+        rgb(220, 220, 220, 0.2)
       )
     );
     contain: content;
@@ -660,7 +660,7 @@ var Te=Object.defineProperty;var Pe=(r,e,t)=>e in r?Te(r,e,{enumerable:!0,config
  * @license
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */class _t extends Event{constructor(e,t){super("context-provider",{bubbles:!0,composed:!0}),this.context=e,this.contextTarget=t}}let vt=class extends gt{constructor(e,t,s){var i,n;super(t.context!==void 0?t.initialValue:s),this.onContextRequest=o=>{var a;if(o.context!==this.context)return;const h=(a=o.contextTarget)!=null?a:o.composedPath()[0];h!==this.host&&(o.stopPropagation(),this.addCallback(o.callback,h,o.subscribe))},this.onProviderRequest=o=>{var a;if(o.context!==this.context||((a=o.contextTarget)!=null?a:o.composedPath()[0])===this.host)return;const h=new Set;for(const[d,{consumerHost:l}]of this.subscriptions)h.has(d)||(h.add(d),l.dispatchEvent(new Ee(this.context,l,d,!0)));o.stopPropagation()},this.host=e,t.context!==void 0?this.context=t.context:this.context=t,this.attachListeners(),(n=(i=this.host).addController)==null||n.call(i,this)}attachListeners(){this.host.addEventListener("context-request",this.onContextRequest),this.host.addEventListener("context-provider",this.onProviderRequest)}hostConnected(){this.host.dispatchEvent(new _t(this.context,this.host))}};const ft=Symbol.for("context-meta-symbol");class Ce{constructor(e,{context:t=ft,initialValue:s,callback:i}){var n,o;this.context=t,this.initialValue=s,this.callback=i,this.host=e,this._contextMetaProvider=new vt(this.host,{context:this.context,initialValue:this.initialValue}),(o=(n=this.host).addController)==null||o.call(n,this)}get value(){var e;return(e=this._contextMetaConsumer)==null?void 0:e.value}setValue(e,t=!1){var s,i;(i=(s=this._contextMetaProvider)==null?void 0:s.setValue)==null||i.call(s,e,t)}async hostConnected(){await this.host.updateComplete,window.queueMicrotask(()=>{this._contextMetaConsumer=new mt(this.host,{context:this.context,subscribe:!0,callback:this.callback})})}}class ke extends g{connectedCallback(){var e;(e=super.connectedCallback)==null||e.call(this),this.hasAttribute("role")||this.setAttribute("role","none")}render(){return u`
+ */class _t extends Event{constructor(e,t){super("context-provider",{bubbles:!0,composed:!0}),this.context=e,this.contextTarget=t}}let vt=class extends gt{constructor(e,t,s){var i,n;super(t.context!==void 0?t.initialValue:s),this.onContextRequest=o=>{var a;if(o.context!==this.context)return;const h=(a=o.contextTarget)!=null?a:o.composedPath()[0];h!==this.host&&(o.stopPropagation(),this.addCallback(o.callback,h,o.subscribe))},this.onProviderRequest=o=>{var a;if(o.context!==this.context||((a=o.contextTarget)!=null?a:o.composedPath()[0])===this.host)return;const h=new Set;for(const[d,{consumerHost:l}]of this.subscriptions)h.has(d)||(h.add(d),l.dispatchEvent(new Ee(this.context,l,d,!0)));o.stopPropagation()},this.host=e,t.context!==void 0?this.context=t.context:this.context=t,this.attachListeners(),(n=(i=this.host).addController)==null||n.call(i,this)}attachListeners(){this.host.addEventListener("context-request",this.onContextRequest),this.host.addEventListener("context-provider",this.onProviderRequest)}hostConnected(){this.host.dispatchEvent(new _t(this.context,this.host))}};const ft=Symbol.for("context-meta-symbol");class Ce{constructor(e,{context:t=ft,initialValue:s,callback:i},n=!1){var o,h;this.context=t,this.initialValue=s,this.callback=i,this.host=e,n||(this._contextMetaProvider=new vt(this.host,{context:this.context,initialValue:this.initialValue})),(h=(o=this.host).addController)==null||h.call(o,this)}get value(){var e;return(e=this._contextMetaConsumer)==null?void 0:e.value}setValue(e,t=!1){var s,i;(i=(s=this._contextMetaProvider)==null?void 0:s.setValue)==null||i.call(s,e,t)}async hostConnected(){await this.host.updateComplete,window.queueMicrotask(()=>{this._contextMetaConsumer=new mt(this.host,{context:this.context,subscribe:!0,callback:this.callback})})}}class ke extends g{connectedCallback(){var e;(e=super.connectedCallback)==null||e.call(this),this.hasAttribute("role")||this.setAttribute("role","none")}render(){return u`
       <slot></slot>
     `}}w(ke,"styles",k`
     :host {

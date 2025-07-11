@@ -126,7 +126,7 @@ var wt=Object.defineProperty;var Ee=i=>{throw TypeError(i)};var yt=(i,e,t)=>e in
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0));
+    background-image: linear-gradient(90deg, rgb(0, 0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0, 0));
   }
 
   button {
@@ -211,18 +211,18 @@ var wt=Object.defineProperty;var Ee=i=>{throw TypeError(i)};var yt=(i,e,t)=>e in
       --blockquote-base-embedded-webview-resize-resizer-bgcolor-hover,
       linear-gradient(
         0deg,
-        rgba(220, 220, 220, 0.2),
-        rgba(220, 220, 220, 1) 50%,
-        rgba(220, 220, 220, 0.2)
+        rgb(220, 220, 220, 0.2),
+        rgb(220, 220, 220, 1) 50%,
+        rgb(220, 220, 220, 0.2)
       )
     );
     --_resizer-bgimage-s-hover: var(
       --blockquote-base-embedded-webview-resize-resizer-bgcolor-hover,
       linear-gradient(
         90deg,
-        rgba(220, 220, 220, 0.2),
-        rgba(220, 220, 220, 1) 50%,
-        rgba(220, 220, 220, 0.2)
+        rgb(220, 220, 220, 0.2),
+        rgb(220, 220, 220, 1) 50%,
+        rgb(220, 220, 220, 0.2)
       )
     );
     contain: content;
@@ -649,11 +649,11 @@ var wt=Object.defineProperty;var Ee=i=>{throw TypeError(i)};var yt=(i,e,t)=>e in
     --_unselected-color: var(--blockquote-tabs-unselected-color, rgb(234 234 234));
     --_scroll-gradient-start-color: var(
       --blockquote-tabs-scroll-gradient-start-color,
-      rgba(255, 255, 255, 0)
+      rgb(255, 255, 255, 0)
     );
     --_scroll-gradient-end-color: var(
       --blockquote-tabs-scroll-gradient-end-color,
-      rgba(252, 252, 252, 1)
+      rgb(252, 252, 252, 1)
     );
     --_scroll-arrow-color: var(--blockquote-tabs-scroll-arrow-color, rgb(94, 94, 94));
     contain: content;
@@ -698,7 +698,7 @@ var wt=Object.defineProperty;var Ee=i=>{throw TypeError(i)};var yt=(i,e,t)=>e in
     box-shadow:
       rgb(255, 255, 255) 4px 0 12px 4px inset,
       rgb(210, 210, 210) 4px 0 4px -4px;
-    background-color: rgba(234, 234, 234, 0.5);
+    background-color: rgb(234, 234, 234, 0.5);
     transition: opacity 92ms ease-in-out;
     opacity: 0;
     background-clip: padding-box;
