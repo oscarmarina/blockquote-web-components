@@ -94,7 +94,7 @@ export const styles = css`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0));
+    background-image: linear-gradient(90deg, rgb(0, 0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0, 0));
   }
 
   button {
