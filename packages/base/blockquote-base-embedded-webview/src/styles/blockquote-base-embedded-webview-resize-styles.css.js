@@ -21,18 +21,18 @@ export const styles = css`
       --blockquote-base-embedded-webview-resize-resizer-bgcolor-hover,
       linear-gradient(
         0deg,
-        rgba(220, 220, 220, 0.2),
-        rgba(220, 220, 220, 1) 50%,
-        rgba(220, 220, 220, 0.2)
+        rgb(220, 220, 220, 0.2),
+        rgb(220, 220, 220, 1) 50%,
+        rgb(220, 220, 220, 0.2)
       )
     );
     --_resizer-bgimage-s-hover: var(
       --blockquote-base-embedded-webview-resize-resizer-bgcolor-hover,
       linear-gradient(
         90deg,
-        rgba(220, 220, 220, 0.2),
-        rgba(220, 220, 220, 1) 50%,
-        rgba(220, 220, 220, 0.2)
+        rgb(220, 220, 220, 0.2),
+        rgb(220, 220, 220, 1) 50%,
+        rgb(220, 220, 220, 0.2)
       )
     );
     contain: content;
