@@ -5,11 +5,11 @@ export const styles = css`
     --_unselected-color: var(--blockquote-tabs-unselected-color, rgb(234 234 234));
     --_scroll-gradient-start-color: var(
       --blockquote-tabs-scroll-gradient-start-color,
-      rgba(255, 255, 255, 0)
+      rgb(255, 255, 255, 0)
     );
     --_scroll-gradient-end-color: var(
       --blockquote-tabs-scroll-gradient-end-color,
-      rgba(252, 252, 252, 1)
+      rgb(252, 252, 252, 1)
     );
     --_scroll-arrow-color: var(--blockquote-tabs-scroll-arrow-color, rgb(94, 94, 94));
     contain: content;
@@ -54,7 +54,7 @@ export const styles = css`
     box-shadow:
       rgb(255, 255, 255) 4px 0 12px 4px inset,
       rgb(210, 210, 210) 4px 0 4px -4px;
-    background-color: rgba(234, 234, 234, 0.5);
+    background-color: rgb(234, 234, 234, 0.5);
     transition: opacity 92ms ease-in-out;
     opacity: 0;
     background-clip: padding-box;
