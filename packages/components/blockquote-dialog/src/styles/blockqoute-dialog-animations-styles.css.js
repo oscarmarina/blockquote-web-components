@@ -32,7 +32,7 @@ export const styles = css`
 
   /* Transition the :backdrop when the dialog modal is promoted to the top layer */
   dialog::backdrop {
-    background-color: rgba(120, 120, 120, 0);
+    background-color: rgb(120, 120, 120, 0);
     transition:
       display 190ms ease-in allow-discrete,
       overlay 190ms ease-in allow-discrete,
@@ -42,14 +42,14 @@ export const styles = css`
   }
 
   dialog[open]::backdrop {
-    background-color: rgba(120, 120, 120, 0.25);
+    background-color: rgb(120, 120, 120, 0.25);
   }
 
   /* This starting-style rule cannot be nested inside the above selector
   because the nesting selector cannot represent pseudo-elements. */
   @starting-style {
     dialog[open]::backdrop {
-      background-color: rgba(120, 120, 120, 0);
+      background-color: rgb(120, 120, 120, 0);
     }
   }
 `;
