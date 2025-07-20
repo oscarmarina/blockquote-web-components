@@ -123,7 +123,7 @@
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.12.1",
     "@blockquote-web-components/blockquote-base-embedded-webview": "^1.13.2",
-    "lit": "^3.3.0"
+    "lit": "^3.3.1"
   },
   "publishConfig": {
     "access": "public"
