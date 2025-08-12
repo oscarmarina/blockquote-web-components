@@ -242,9 +242,7 @@ class UseMachine {
 
   startService() {
     this.actorRef = createActor(this.machine, this.options);
-    if (this.actorRef) {
-      this.subs = this.actorRef.subscribe(this.onNext);
-    }
+    this.subs = this.actorRef?.subscribe(this.onNext);
     this.actorRef?.start();
   }
 
