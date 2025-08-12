@@ -9,14 +9,12 @@
   box-sizing: border-box;
   display: contents;
   background-color: var(--_background-color);
-  margin: auto;
-  max-height: var(--_max-height);
-  max-width: var(--_max-width);
-  min-height: var(--_min-height);
-  min-width: var(--_min-width);
-  position: fixed;
-  height: fit-content;
-  width: fit-content;
+  margin-block: auto;
+  margin-inline: auto;
+  max-block-size: var(--_max-height);
+  max-inline-size: var(--_max-width);
+  min-block-size: var(--_min-height);
+  min-inline-size: var(--_min-width);
 }
 
 :host([hidden]),
@@ -31,32 +29,34 @@
 }
 
 dialog {
+  inset: 0;
   background: inherit;
   border: none;
   border-radius: inherit;
-  flex-direction: column;
-  margin: inherit;
-  height: inherit;
-  width: inherit;
-  max-height: inherit;
-  max-width: inherit;
-  min-height: inherit;
-  min-width: inherit;
+  margin-block: inherit;
+  margin-inline: inherit;
+  max-block-size: inherit;
+  max-inline-size: inherit;
+  min-block-size: inherit;
+  min-inline-size: inherit;
   outline: none;
   overflow: visible;
   padding: 0;
 }
 
-:host([open]) dialog {
+dialog[open],
+.scroller,
+.content {
   display: flex;
+  flex-direction: column;
 }
 
 .scroller {
   overflow-y: auto;
-  min-height: var(--_min-height);
+  overflow-block: auto;
 }
 
 .content {
-  padding: var(--_padding);
-  min-height: inherit;
+  padding-block: var(--_padding);
+  padding-inline: var(--_padding);
 }
