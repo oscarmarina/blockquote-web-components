@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-controller-context-meta",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "Webcomponent blockquote-controller-context-meta following open-wc recommendations",
   "keywords": [
     "lit",
@@ -121,8 +121,8 @@
     "lit": "^3.3.0"
   },
   "devDependencies": {
-    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.12.2",
-    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.13.3"
+    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.12.3",
+    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.13.4"
   },
   "publishConfig": {
     "access": "public"

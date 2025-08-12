@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.17](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-xstate@2.3.16...@blockquote-web-components/blockquote-controller-xstate@2.3.17) (2025-08-12)
+
+
+### Bug Fixes
+
+* **blockquote-controller-xstate:** use nullish ([c79660c](https://github.com/oscarmarina/blockquote-web-components/commit/c79660c098e99bb013ed1507958fbc00e1037726))
+
+
+
+
+
 ## [2.3.16](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-xstate@2.3.15...@blockquote-web-components/blockquote-controller-xstate@2.3.16) (2025-07-20)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-controller-xstate

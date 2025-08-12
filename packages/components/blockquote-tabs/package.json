@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-tabs",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "description": "Webcomponent blockquote-tabs following open-wc recommendations",
   "keywords": [
     "lit",
@@ -139,14 +139,14 @@
     ]
   },
   "dependencies": {
-    "@blockquote-web-components/blockquote-mixin-slot-content": "^1.9.3",
+    "@blockquote-web-components/blockquote-mixin-slot-content": "^1.9.4",
     "@juggle/resize-observer": "^3.4.0",
     "@lit-labs/observers": "^2.0.6",
     "lit": "^3.3.0"
   },
   "devDependencies": {
-    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.12.2",
-    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.13.3",
+    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.12.3",
+    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.13.4",
     "@blockquote-web-components/blockquote-foundations-sass": "^1.1.6"
   },
   "publishConfig": {
