@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.16.6](https://github.com/oscarmarina/blockquote-web-components/compare/v2.16.5...v2.16.6) (2025-08-13)
+
+
+### Bug Fixes
+
+* **blockquote-base-embedded-webview:** css logical properties ([b05c303](https://github.com/oscarmarina/blockquote-web-components/commit/b05c3033864a305cff9f353f81f1975931ceda6e))
+
 ## [2.16.5](https://github.com/oscarmarina/blockquote-web-components/compare/v2.16.4...v2.16.5) (2025-08-13)
 
 
