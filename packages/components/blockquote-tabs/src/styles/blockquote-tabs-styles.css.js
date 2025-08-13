@@ -37,20 +37,18 @@ export const styles = css`
   .hold .separator {
     position: absolute;
     z-index: -1;
-    bottom: 0;
-    height: 1px;
-    left: 0;
-    right: 0;
+    inset-block-end: 0;
+    block-size: 1px;
+    inset-inline: 0;
     background-color: var(--_unselected-color);
   }
 
   .hold .indicator {
     position: absolute;
-    width: 1rem;
+    inline-size: 1rem;
     pointer-events: none;
-    top: 0;
-    bottom: 1px;
-    left: 0;
+    inset-block: 0 1px;
+    inset-inline-start: 0;
     box-shadow:
       rgb(255, 255, 255) 4px 0 12px 4px inset,
       rgb(210, 210, 210) 4px 0 4px -4px;
@@ -65,13 +63,12 @@ export const styles = css`
   }
 
   .hold .indicator + .indicator {
-    left: auto;
-    right: 0;
+    inset-inline: auto 0;
     transform: scale(-1);
   }
 
   .scroll-content {
-    width: 100%;
+    inline-size: 100%;
     overflow: auto hidden;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;

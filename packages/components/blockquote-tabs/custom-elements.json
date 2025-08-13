@@ -130,15 +130,6 @@
             },
             {
               "kind": "method",
-              "name": "_requestPropertyUpdate",
-              "parameters": [
-                {
-                  "name": "prop"
-                }
-              ]
-            },
-            {
-              "kind": "method",
               "name": "_onResizeObserverChange"
             },
             {
@@ -414,7 +405,7 @@
         {
           "kind": "variable",
           "name": "styles",
-          "default": "css`:host { --_unselected-color: var(--blockquote-tabs-unselected-color, rgb(234 234 234)); --_scroll-gradient-start-color: var(--blockquote-tabs-scroll-gradient-start-color, rgba(255, 255, 255, 0)); --_scroll-gradient-end-color: var(--blockquote-tabs-scroll-gradient-end-color, rgba(252, 252, 252, 1)); --_scroll-arrow-color: var(--blockquote-tabs-scroll-arrow-color, rgb(94, 94, 94)); contain: content; display: block; box-sizing: border-box; color: #202020; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } .hold { position: relative; display: flex; } .hold .separator { position: absolute; z-index: -1; bottom: 0; height: 1px; left: 0; right: 0; background-color: var(--_unselected-color); } .hold .indicator { position: absolute; width: 1rem; pointer-events: none; top: 0; bottom: 1px; left: 0; box-shadow: rgb(255, 255, 255) 4px 0 12px 4px inset, rgb(210, 210, 210) 4px 0 4px -4px; background-color: rgba(234, 234, 234, 0.5); transition: opacity 92ms ease-in-out; opacity: 0; background-clip: padding-box; } .hold .indicator.show-indicator { opacity: 1; } .hold .indicator + .indicator { left: auto; right: 0; transform: scale(-1); } .scroll-content { width: 100%; overflow: auto hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; overscroll-behavior: none; } .scroll-content::-webkit-scrollbar { display: none; } .scroll-content:focus-visible { outline: #9e9e9e dashed 0.0625rem; outline-offset: -2px; } .scroll-content:focus:not(:focus-visible) { outline: none; } [role=tablist] { display: flex; }`"
+          "default": "css` :host { --_unselected-color: var(--blockquote-tabs-unselected-color, rgb(234 234 234)); --_scroll-gradient-start-color: var( --blockquote-tabs-scroll-gradient-start-color, rgb(255, 255, 255, 0) ); --_scroll-gradient-end-color: var( --blockquote-tabs-scroll-gradient-end-color, rgb(252, 252, 252, 1) ); --_scroll-arrow-color: var(--blockquote-tabs-scroll-arrow-color, rgb(94, 94, 94)); contain: content; display: block; box-sizing: border-box; color: #202020; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } .hold { position: relative; display: flex; } .hold .separator { position: absolute; z-index: -1; inset-block-end: 0; block-size: 1px; inset-inline: 0; background-color: var(--_unselected-color); } .hold .indicator { position: absolute; inline-size: 1rem; pointer-events: none; inset-block: 0 1px; inset-inline-start: 0; box-shadow: rgb(255, 255, 255) 4px 0 12px 4px inset, rgb(210, 210, 210) 4px 0 4px -4px; background-color: rgb(234, 234, 234, 0.5); transition: opacity 92ms ease-in-out; opacity: 0; background-clip: padding-box; } .hold .indicator.show-indicator { opacity: 1; } .hold .indicator + .indicator { inset-inline: auto 0; transform: scale(-1); } .scroll-content { inline-size: 100%; overflow: auto hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; overscroll-behavior: none; } .scroll-content::-webkit-scrollbar { display: none; } .scroll-content:focus-visible { outline: #9e9e9e dashed 0.0625rem; outline-offset: -2px; } .scroll-content:focus:not(:focus-visible) { outline: none; } [role='tablist'] { display: flex; } `"
         }
       ],
       "exports": [
@@ -591,7 +582,7 @@
         {
           "kind": "variable",
           "name": "styles",
-          "default": "css`:host { --__color: var(--blockquote-tab-color-dark-mode, var(--blockquote-tab-color-ambient, var(--theme-colors-secondary500, rgb(32, 32, 32)))); --_color: var(--blockquote-tab-color, var(--__color)); --_selected-border-color: var(--blockquote-tab-selected-border-color, var(--blockquote-tab-selected-border-color-ambient, var(--theme-colors-secondary500, rgb(184, 184, 184)))); --_focus-outline-color: var(--blockquote-tab-focus-outline-color, var(--blockquote-tab-focus-outline-color-ambient, var(--theme-colors-secondary500, rgb(184, 184, 184)))); display: flex; flex-direction: column; justify-content: center; white-space: nowrap; color: var(--_color); padding: 1em 0.5em; min-width: 6.25rem; border-bottom: 0.0625rem solid transparent; transition: border-bottom-color 192ms ease-in-out; cursor: pointer; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } :host([aria-selected=true]) { font-weight: 700; border-bottom-color: var(--_selected-border-color); } :host(:focus:not(:focus-visible)) { outline: none; } :host(:focus-visible) { outline: 0.0625rem dashed var(--_focus-outline-color); outline-offset: -0.125rem; } slot::before { content: attr(data-text); display: block; font: inherit; font-weight: 700; width: inherit; height: 0; overflow: hidden; visibility: hidden; }`"
+          "default": "css` :host { --__color: var( --blockquote-tab-color-dark-mode, var(--blockquote-tab-color-ambient, var(--theme-colors-secondary500, rgb(32, 32, 32))) ); --_color: var(--blockquote-tab-color, var(--__color)); --_selected-border-color: var( --blockquote-tab-selected-border-color, var( --blockquote-tab-selected-border-color-ambient, var(--theme-colors-secondary500, rgb(184, 184, 184)) ) ); --_focus-outline-color: var( --blockquote-tab-focus-outline-color, var( --blockquote-tab-focus-outline-color-ambient, var(--theme-colors-secondary500, rgb(184, 184, 184)) ) ); display: flex; flex-direction: column; justify-content: center; white-space: nowrap; color: var(--_color); padding-block: 1em; padding-inline: 0.5em; min-inline-size: 6.25rem; border-block-end: 0.0625rem solid transparent; transition: border-block-end-color 192ms ease-in-out; cursor: pointer; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } :host([aria-selected='true']) { font-weight: 700; border-block-end-color: var(--_selected-border-color); } :host(:focus:not(:focus-visible)) { outline: none; } :host(:focus-visible) { outline: 0.0625rem dashed var(--_focus-outline-color); outline-offset: -0.125rem; } slot::before { content: attr(data-text); display: block; font: inherit; font-weight: 700; inline-size: inherit; block-size: 0; overflow: hidden; visibility: hidden; } `"
         }
       ],
       "exports": [
@@ -612,7 +603,7 @@
         {
           "kind": "variable",
           "name": "styles",
-          "default": "css`:host { display: block; box-sizing: border-box; padding: 1rem; color: var(--tabpanel, inherit); } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } :host([aria-hidden=true]) { display: none; } :host(:focus:not(:focus-visible)) { outline: none; } :host(:focus-visible) { outline: #9e9e9e dashed 0.0625rem; outline-offset: -2px; }`"
+          "default": "css` :host { display: block; box-sizing: border-box; padding-block: 1rem; padding-inline: 1rem; color: var(--tabpanel, inherit); } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } :host([aria-hidden='true']) { display: none; } :host(:focus:not(:focus-visible)) { outline: none; } :host(:focus-visible) { outline: #9e9e9e dashed 0.0625rem; outline-offset: -2px; } `"
         }
       ],
       "exports": [

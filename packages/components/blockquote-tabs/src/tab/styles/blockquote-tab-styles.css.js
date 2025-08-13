@@ -26,10 +26,11 @@ export const styles = css`
     justify-content: center;
     white-space: nowrap;
     color: var(--_color);
-    padding: 1em 0.5em;
-    min-width: 6.25rem;
-    border-bottom: 0.0625rem solid transparent;
-    transition: border-bottom-color 192ms ease-in-out;
+    padding-block: 1em;
+    padding-inline: 0.5em;
+    min-inline-size: 6.25rem;
+    border-block-end: 0.0625rem solid transparent;
+    transition: border-block-end-color 192ms ease-in-out;
     cursor: pointer;
   }
 
@@ -46,7 +47,7 @@ export const styles = css`
 
   :host([aria-selected='true']) {
     font-weight: 700;
-    border-bottom-color: var(--_selected-border-color);
+    border-block-end-color: var(--_selected-border-color);
   }
 
   :host(:focus:not(:focus-visible)) {
@@ -63,8 +64,8 @@ export const styles = css`
     display: block;
     font: inherit;
     font-weight: 700;
-    width: inherit;
-    height: 0;
+    inline-size: inherit;
+    block-size: 0;
     overflow: hidden;
     visibility: hidden;
   }
