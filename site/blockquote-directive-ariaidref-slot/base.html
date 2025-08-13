@@ -9,15 +9,15 @@
     <style>
       html,
       body {
-        height: 100%;
+        block-size: 100%;
         margin: 0;
         font-family: sans-serif;
       }
 
       [data-embedded] .sr-only {
         position: absolute;
-        width: 1px;
-        height: 1px;
+        inline-size: 1px;
+        block-size: 1px;
         padding: 0;
         margin: -1px;
         overflow: hidden;
@@ -35,13 +35,13 @@
       <wrapper-dialog>
         <form method="dialog">
           <div>
-            <button formnovalidate aria-label="close">X</button>
+            <button formnovalidate="" aria-label="close">X</button>
           </div>
           <h2>Registration</h2>
           <p>
             <label>
               Name:
-              <input type="text" name="name" required />
+              <input type="text" name="name" required="" />
             </label>
           </p>
 
