@@ -5,8 +5,8 @@ export const styles = css`
   ::slotted([slot='embedded']) {
     display: block;
     box-sizing: border-box;
-    width: 100%;
-    height: 100%;
+    inline-size: 100%;
+    block-size: 100%;
     margin: 0;
     border: 0;
   }

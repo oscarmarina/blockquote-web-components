@@ -39,7 +39,7 @@ export const styles = css`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: inherit;
+    block-size: inherit;
     padding: calc(var(--__resizer-factor) * 1) 0 calc(var(--__resizer-factor) * 2);
   }
 
@@ -57,12 +57,12 @@ export const styles = css`
   .rect {
     position: relative;
     align-self: center;
-    min-width: var(--_rect-min-width);
-    min-height: var(--_rect-min-height);
-    max-width: var(--_rect-max-width);
-    max-height: var(--_rect-max-height);
-    width: var(--_rect-width);
-    height: var(--_rect-height);
+    min-inline-size: var(--_rect-min-width);
+    min-block-size: var(--_rect-min-height);
+    max-inline-size: var(--_rect-max-width);
+    max-block-size: var(--_rect-max-height);
+    inline-size: var(--_rect-width);
+    block-size: var(--_rect-height);
     transform: translateZ(0);
   }
 
@@ -71,8 +71,8 @@ export const styles = css`
     display: block;
     position: absolute;
     background-color: var(--_resizer-bgcolor);
-    width: 100%;
-    height: 100%;
+    inline-size: 100%;
+    block-size: 100%;
   }
 
   .resizer::after {
@@ -84,10 +84,10 @@ export const styles = css`
   }
 
   .resizer-n {
-    height: calc(var(--__resizer-factor) / 4);
+    block-size: calc(var(--__resizer-factor) / 4);
     inset-block-start: calc(var(--__resizer-factor) / 4 * -1);
     inset-inline-start: calc(var(--__resizer-factor) * -1);
-    width: calc(100% + var(--__resizer-factor) * 2);
+    inline-size: calc(100% + var(--__resizer-factor) * 2);
     border-start-start-radius: calc(var(--__resizer-factor) / 10);
     border-start-end-radius: calc(var(--__resizer-factor) / 10);
   }
@@ -132,8 +132,8 @@ export const styles = css`
 
   .resizer-se,
   .resizer-sw {
-    height: var(--__resizer-factor);
-    width: var(--__resizer-factor);
+    block-size: var(--__resizer-factor);
+    inline-size: var(--__resizer-factor);
   }
 
   .resizer-se::after,
@@ -148,7 +148,7 @@ export const styles = css`
 
   .resizer-s {
     cursor: ns-resize;
-    height: var(--__resizer-factor);
+    block-size: var(--__resizer-factor);
   }
 
   .resizer-s::after {
@@ -163,7 +163,7 @@ export const styles = css`
   .resizer-e,
   .resizer-w {
     cursor: ew-resize;
-    width: var(--__resizer-factor);
+    inline-size: var(--__resizer-factor);
   }
 
   .resizer-e:hover,

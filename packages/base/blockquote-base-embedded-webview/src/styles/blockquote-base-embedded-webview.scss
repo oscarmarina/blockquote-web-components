@@ -15,8 +15,8 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  width: 100%;
-  height: 100%;
+  inline-size: 100%;
+  block-size: 100%;
   color: var(--_host-color);
 }
 
@@ -37,7 +37,7 @@
 
 :host([limit-height]) {
   & .main {
-    height: inherit;
+    block-size: inherit;
   }
 }
 
@@ -49,14 +49,14 @@
 
 header > div {
   position: relative;
-  max-width: 80rem;
+  max-inline-size: 80rem;
   margin: 0 auto;
   padding: 0.5rem 1.5rem;
 }
 
 [role="heading"] {
   font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+  margin-block-end: 0.5rem;
 }
 
 [role="heading"] + div {
@@ -65,7 +65,7 @@ header > div {
 }
 
 .open-externally {
-  width: 1rem;
+  inline-size: 1rem;
   display: inline-block;
   margin-inline-start: 1rem;
   color: inherit;
@@ -85,7 +85,7 @@ header > div {
   }
 
   svg {
-    width: 0.875rem;
+    inline-size: 0.875rem;
     justify-self: end;
     pointer-events: none;
   }
@@ -99,12 +99,12 @@ header > div {
     border-block-end: 0.125rem solid var(--_select-bgcolor);
     padding: 0.25em 1em 0.25em 0;
     margin: 0;
-    width: 100%;
+    inline-size: 100%;
     cursor: pointer;
     outline: none;
     border-radius: 0;
-    min-width: 10ch;
-    max-width: 18ch;
+    min-inline-size: 10ch;
+    max-inline-size: 18ch;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -112,7 +112,7 @@ header > div {
 
     &:hover,
     &:focus {
-      border-bottom-color: currentcolor;
+      border-block-end-color: currentcolor;
     }
   }
 }
@@ -138,5 +138,5 @@ header > div {
 }
 
 blockquote-base-embedded-webview-resize {
-  overflow-x: hidden;
+  overflow-inline: hidden;
 }

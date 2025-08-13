@@ -15,8 +15,8 @@ export const styles = css`
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    width: 100%;
-    height: 100%;
+    inline-size: 100%;
+    block-size: 100%;
     color: var(--_host-color);
   }
 
@@ -27,8 +27,8 @@ export const styles = css`
 
   .sr-only {
     position: absolute;
-    width: 1px;
-    height: 1px;
+    inline-size: 1px;
+    block-size: 1px;
     padding: 0;
     margin: -1px;
     overflow: hidden;
@@ -44,7 +44,7 @@ export const styles = css`
   }
 
   :host([limit-height]) .main {
-    height: inherit;
+    block-size: inherit;
   }
 
   *,
@@ -55,14 +55,14 @@ export const styles = css`
 
   header > div {
     position: relative;
-    max-width: 80rem;
+    max-inline-size: 80rem;
     margin: 0 auto;
     padding: 0.5rem 1.5rem;
   }
 
   [role='heading'] {
     font-size: 1.25rem;
-    margin-bottom: 0.5rem;
+    margin-block-end: 0.5rem;
   }
 
   [role='heading'] + div {
@@ -71,7 +71,7 @@ export const styles = css`
   }
 
   .open-externally {
-    width: 1rem;
+    inline-size: 1rem;
     display: inline-block;
     margin-inline-start: 1rem;
     color: inherit;
@@ -92,7 +92,7 @@ export const styles = css`
   }
 
   .select svg {
-    width: 0.875rem;
+    inline-size: 0.875rem;
     justify-self: end;
     pointer-events: none;
   }
@@ -108,12 +108,12 @@ export const styles = css`
     border-block-end: 0.125rem solid var(--_select-bgcolor);
     padding: 0.25em 1em 0.25em 0;
     margin: 0;
-    width: 100%;
+    inline-size: 100%;
     cursor: pointer;
     outline: none;
     border-radius: 0;
-    min-width: 10ch;
-    max-width: 18ch;
+    min-inline-size: 10ch;
+    max-inline-size: 18ch;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -122,7 +122,7 @@ export const styles = css`
 
   .select select:hover,
   .select select:focus {
-    border-bottom-color: currentcolor;
+    border-block-end-color: currentcolor;
   }
 
   .description {
@@ -146,6 +146,6 @@ export const styles = css`
   }
 
   blockquote-base-embedded-webview-resize {
-    overflow-x: hidden;
+    overflow-inline: hidden;
   }
 `;
