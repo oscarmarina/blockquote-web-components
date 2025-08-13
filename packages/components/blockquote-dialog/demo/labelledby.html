@@ -18,8 +18,8 @@
       .aria-only,
       [data-embedded] .sr-only {
         position: absolute;
-        width: 1px;
-        height: 1px;
+        inline-size: 1px;
+        block-size: 1px;
         padding: 0;
         margin: -1px;
         overflow: hidden;
@@ -33,7 +33,7 @@
       }
 
       form div {
-        text-align: right;
+        text-align: end;
       }
 
       form p {
@@ -50,20 +50,20 @@
         <blockquote-dialog>
           <form method="dialog">
             <div>
-              <button aria-label="close" formnovalidate>X</button>
+              <button aria-label="close" formnovalidate="">X</button>
             </div>
             <h2>MLW Registration</h2>
             <p>All fields are required</p>
             <p>
               <label>
                 Name:
-                <input autofocus type="text" name="name" required />
+                <input autofocus="" type="text" name="name" required="" />
               </label>
             </p>
             <p>
               <label>
                 Warranty:
-                <input type="number" min="0" max="10" step="1" name="warranty" required />
+                <input type="number" min="0" max="10" step="1" name="warranty" required="" />
               </label>
             </p>
             <p>
