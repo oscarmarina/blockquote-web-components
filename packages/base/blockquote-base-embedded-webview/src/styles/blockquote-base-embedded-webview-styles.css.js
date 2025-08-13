@@ -73,7 +73,7 @@ export const styles = css`
   .open-externally {
     width: 1rem;
     display: inline-block;
-    margin-left: 1rem;
+    margin-inline-start: 1rem;
     color: inherit;
   }
 
@@ -105,7 +105,7 @@ export const styles = css`
     font: inherit;
     background-color: transparent;
     border: none;
-    border-bottom: 0.125rem solid var(--_select-bgcolor);
+    border-block-end: 0.125rem solid var(--_select-bgcolor);
     padding: 0.25em 1em 0.25em 0;
     margin: 0;
     width: 100%;
@@ -139,8 +139,8 @@ export const styles = css`
     letter-spacing: 0.0156rem;
     position: fixed;
     z-index: 1;
-    right: 0.375rem;
-    top: 0.3125rem;
+    inset-inline-end: 0.375rem;
+    inset-block-start: 0.3125rem;
     opacity: 0;
     transition: opacity 90ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }

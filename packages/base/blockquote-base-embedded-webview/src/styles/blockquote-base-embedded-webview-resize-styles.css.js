@@ -78,18 +78,18 @@ export const styles = css`
   .resizer::after {
     content: url("data:image/svg+xml,%0A%3Csvg width='6' height='26' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='2' height='26' rx='1' fill='%23848282'/%3E%3Crect x='4' width='2' height='26' rx='1' fill='%23848282'/%3E%3C/svg%3E");
     position: absolute;
-    top: 50%;
-    left: 50%;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
     transform: translateX(-50%);
   }
 
   .resizer-n {
     height: calc(var(--__resizer-factor) / 4);
-    top: calc(var(--__resizer-factor) / 4 * -1);
-    left: calc(var(--__resizer-factor) * -1);
+    inset-block-start: calc(var(--__resizer-factor) / 4 * -1);
+    inset-inline-start: calc(var(--__resizer-factor) * -1);
     width: calc(100% + var(--__resizer-factor) * 2);
-    border-top-left-radius: calc(var(--__resizer-factor) / 10);
-    border-top-right-radius: calc(var(--__resizer-factor) / 10);
+    border-start-start-radius: calc(var(--__resizer-factor) / 10);
+    border-start-end-radius: calc(var(--__resizer-factor) / 10);
   }
 
   .resizer-n::after {
@@ -98,7 +98,7 @@ export const styles = css`
 
   .resizer-se {
     cursor: nwse-resize;
-    border-bottom-right-radius: calc(var(--__resizer-factor) / 10);
+    border-end-end-radius: calc(var(--__resizer-factor) / 10);
   }
 
   .resizer-se::after {
@@ -107,7 +107,7 @@ export const styles = css`
 
   .resizer-sw {
     cursor: nesw-resize;
-    border-bottom-left-radius: calc(var(--__resizer-factor) / 10);
+    border-end-start-radius: calc(var(--__resizer-factor) / 10);
   }
 
   .resizer-sw::after {
@@ -116,18 +116,18 @@ export const styles = css`
 
   .resizer-se,
   .resizer-e {
-    right: calc(var(--__resizer-factor) * -1);
+    inset-inline-end: calc(var(--__resizer-factor) * -1);
   }
 
   .resizer-se,
   .resizer-sw,
   .resizer-s {
-    bottom: calc(var(--__resizer-factor) * -1);
+    inset-block-end: calc(var(--__resizer-factor) * -1);
   }
 
   .resizer-w,
   .resizer-sw {
-    left: calc(var(--__resizer-factor) * -1);
+    inset-inline-start: calc(var(--__resizer-factor) * -1);
   }
 
   .resizer-se,
