@@ -1,12 +1,15 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`BlockquoteTabs > Autofocus > Semantic Dom and a11y > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
-"<blockquote-tabs autofocus="">
+"<blockquote-tabs
+  autofocus=""
+  selected="1"
+>
   <blockquote-tab
-    aria-selected="false"
+    aria-selected="true"
     role="tab"
     slot="tab"
-    tabindex="-1"
+    tabindex="0"
   >
     Tab 1
   </blockquote-tab>
@@ -27,7 +30,7 @@ exports[`BlockquoteTabs > Autofocus > Semantic Dom and a11y > LIGHT DOM - Struct
     Tab 3
   </blockquote-tab>
   <blockquote-tabpanel
-    aria-hidden="true"
+    aria-hidden="false"
     aria-labelledby="tab-1"
     role="tabpanel"
     slot="tabpanel"
@@ -95,12 +98,12 @@ exports[`BlockquoteTabs > Autofocus > Semantic Dom and a11y > SHADOW DOM - Struc
 `;
 
 exports[`BlockquoteTabs > Default > Semantic Dom and a11y > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
-"<blockquote-tabs>
+"<blockquote-tabs selected="1">
   <blockquote-tab
-    aria-selected="false"
+    aria-selected="true"
     role="tab"
     slot="tab"
-    tabindex="-1"
+    tabindex="0"
   >
     Tab 1
   </blockquote-tab>
@@ -121,7 +124,7 @@ exports[`BlockquoteTabs > Default > Semantic Dom and a11y > LIGHT DOM - Structur
     Tab 3
   </blockquote-tab>
   <blockquote-tabpanel
-    aria-hidden="true"
+    aria-hidden="false"
     aria-labelledby="tab-1"
     role="tabpanel"
     slot="tabpanel"

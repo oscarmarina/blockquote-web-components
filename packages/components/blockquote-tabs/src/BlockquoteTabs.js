@@ -82,7 +82,6 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
       selected: {
         type: Number,
         reflect: true,
-        useDefault: true,
       },
 
       _hasScrollLeftIndicator: {
@@ -117,7 +116,6 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
 
     this._scrollContentRef = createRef();
 
-    // @ts-ignore
     this._resizeControllerObserver = new ResizeController(this, {
       callback: () => {
         this._onResizeObserverChange();
@@ -194,13 +192,6 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     }
     if (detail.assignedSlotContent.slotName === 'tabpanel') {
       this._tabpanelList = assignedNodesList;
-    }
-
-    if (
-      Array.isArray(this._slotNodesCount) &&
-      this._slotChangesCount > this._slotNodesCount.length
-    ) {
-      this._requestPropertyUpdate('selected');
     }
   };
 
@@ -382,12 +373,6 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     }
 
     // tabScroller.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
-  }
-
-  _requestPropertyUpdate(prop) {
-    const oldVal = this[prop];
-    this[prop] = undefined;
-    this[prop] = oldVal;
   }
 
   _onResizeObserverChange() {

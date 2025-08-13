@@ -4,7 +4,8 @@ export const styles = css`
   :host {
     display: block;
     box-sizing: border-box;
-    padding: 1rem;
+    padding-block: 1rem;
+    padding-inline: 1rem;
     color: var(--tabpanel, inherit);
   }
 
