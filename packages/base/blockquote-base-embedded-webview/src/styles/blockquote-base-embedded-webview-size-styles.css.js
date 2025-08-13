@@ -51,19 +51,19 @@ export const styles = css`
     font: inherit;
     margin: 0;
     padding: 0;
-    height: inherit;
+    block-size: inherit;
     text-align: inherit;
     text-decoration: none;
     text-transform: inherit;
     text-shadow: inherit;
     letter-spacing: inherit;
     word-spacing: inherit;
-    width: auto;
+    inline-size: auto;
   }
 
   .rect {
     overflow: hidden;
-    height: var(--_rect-height);
+    block-size: var(--_rect-height);
     position: relative;
     display: flex;
     justify-content: center;
@@ -88,8 +88,8 @@ export const styles = css`
   .rect [aria-disabled='true']::after {
     content: '';
     display: block;
-    height: 1px;
-    width: calc(100% + 2rem);
+    block-size: 1px;
+    inline-size: calc(100% + 2rem);
     position: absolute;
     inset-inline-start: 50%;
     inset-block-start: 50%;
