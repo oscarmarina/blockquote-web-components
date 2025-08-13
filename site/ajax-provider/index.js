@@ -1,4 +1,4 @@
-var $=Object.defineProperty;var R=(i,r,e)=>r in i?$(i,r,{enumerable:!0,configurable:!0,writable:!0,value:e}):i[r]=e;var h=(i,r,e)=>R(i,typeof r!="symbol"?r+"":r,e);import{b as C,t as E,e as q,E as y,a as v,i as _,x as n,B as k}from"./assets/directive-CaIFY9P1.js";/**
+var $=Object.defineProperty;var R=(i,r,e)=>r in i?$(i,r,{enumerable:!0,configurable:!0,writable:!0,value:e}):i[r]=e;var h=(i,r,e)=>R(i,typeof r!="symbol"?r+"":r,e);import{b as C,t as E,e as q,E as y,a as v,i as _,x as n,B as k}from"./assets/directive-CUjJm68n.js";/**
  * @license
  * Copyright 2020 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
@@ -101,8 +101,8 @@ var $=Object.defineProperty;var R=(i,r,e)=>r in i?$(i,r,{enumerable:!0,configura
     height: 1px;
     width: calc(100% + 2rem);
     position: absolute;
-    left: 50%;
-    top: 50%;
+    inset-inline-start: 50%;
+    inset-block-start: 50%;
     transform: translate(-50%, -50%);
     background-image: linear-gradient(90deg, rgb(0, 0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0, 0));
   }
@@ -110,8 +110,8 @@ var $=Object.defineProperty;var R=(i,r,e)=>r in i?$(i,r,{enumerable:!0,configura
   button {
     position: absolute;
     background-color: var(--_button-bgcolor);
-    border-left: 1px solid var(--_button-border-color);
-    border-right: 1px solid var(--_button-border-color);
+    border-inline-start: 1px solid var(--_button-border-color);
+    border-inline-end: 1px solid var(--_button-border-color);
   }
 
   button span {
@@ -246,18 +246,18 @@ var $=Object.defineProperty;var R=(i,r,e)=>r in i?$(i,r,{enumerable:!0,configura
   .resizer::after {
     content: url("data:image/svg+xml,%0A%3Csvg width='6' height='26' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='2' height='26' rx='1' fill='%23848282'/%3E%3Crect x='4' width='2' height='26' rx='1' fill='%23848282'/%3E%3C/svg%3E");
     position: absolute;
-    top: 50%;
-    left: 50%;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
     transform: translateX(-50%);
   }
 
   .resizer-n {
     height: calc(var(--__resizer-factor) / 4);
-    top: calc(var(--__resizer-factor) / 4 * -1);
-    left: calc(var(--__resizer-factor) * -1);
+    inset-block-start: calc(var(--__resizer-factor) / 4 * -1);
+    inset-inline-start: calc(var(--__resizer-factor) * -1);
     width: calc(100% + var(--__resizer-factor) * 2);
-    border-top-left-radius: calc(var(--__resizer-factor) / 10);
-    border-top-right-radius: calc(var(--__resizer-factor) / 10);
+    border-start-start-radius: calc(var(--__resizer-factor) / 10);
+    border-start-end-radius: calc(var(--__resizer-factor) / 10);
   }
 
   .resizer-n::after {
@@ -266,7 +266,7 @@ var $=Object.defineProperty;var R=(i,r,e)=>r in i?$(i,r,{enumerable:!0,configura
 
   .resizer-se {
     cursor: nwse-resize;
-    border-bottom-right-radius: calc(var(--__resizer-factor) / 10);
+    border-end-end-radius: calc(var(--__resizer-factor) / 10);
   }
 
   .resizer-se::after {
@@ -275,7 +275,7 @@ var $=Object.defineProperty;var R=(i,r,e)=>r in i?$(i,r,{enumerable:!0,configura
 
   .resizer-sw {
     cursor: nesw-resize;
-    border-bottom-left-radius: calc(var(--__resizer-factor) / 10);
+    border-end-start-radius: calc(var(--__resizer-factor) / 10);
   }
 
   .resizer-sw::after {
@@ -284,18 +284,18 @@ var $=Object.defineProperty;var R=(i,r,e)=>r in i?$(i,r,{enumerable:!0,configura
 
   .resizer-se,
   .resizer-e {
-    right: calc(var(--__resizer-factor) * -1);
+    inset-inline-end: calc(var(--__resizer-factor) * -1);
   }
 
   .resizer-se,
   .resizer-sw,
   .resizer-s {
-    bottom: calc(var(--__resizer-factor) * -1);
+    inset-block-end: calc(var(--__resizer-factor) * -1);
   }
 
   .resizer-w,
   .resizer-sw {
-    left: calc(var(--__resizer-factor) * -1);
+    inset-inline-start: calc(var(--__resizer-factor) * -1);
   }
 
   .resizer-se,
@@ -461,7 +461,7 @@ var $=Object.defineProperty;var R=(i,r,e)=>r in i?$(i,r,{enumerable:!0,configura
   .open-externally {
     width: 1rem;
     display: inline-block;
-    margin-left: 1rem;
+    margin-inline-start: 1rem;
     color: inherit;
   }
 
@@ -493,7 +493,7 @@ var $=Object.defineProperty;var R=(i,r,e)=>r in i?$(i,r,{enumerable:!0,configura
     font: inherit;
     background-color: transparent;
     border: none;
-    border-bottom: 0.125rem solid var(--_select-bgcolor);
+    border-block-end: 0.125rem solid var(--_select-bgcolor);
     padding: 0.25em 1em 0.25em 0;
     margin: 0;
     width: 100%;
@@ -527,8 +527,8 @@ var $=Object.defineProperty;var R=(i,r,e)=>r in i?$(i,r,{enumerable:!0,configura
     letter-spacing: 0.0156rem;
     position: fixed;
     z-index: 1;
-    right: 0.375rem;
-    top: 0.3125rem;
+    inset-inline-end: 0.375rem;
+    inset-block-start: 0.3125rem;
     opacity: 0;
     transition: opacity 90ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }

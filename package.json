@@ -21,8 +21,9 @@
   "scripts": {
     "analyze": "lerna run analyze --stream --concurrency 1",
     "clean": "rm package-lock.json && lerna clean",
-    "clean:packages": "lerna exec -- rm -rf ./node_modules && npm run clean:packages:dev",
+    "clean:packages": "lerna exec -- rm -rf ./node_modules && npm run clean:packages:dev && npm run clean:packages:coverage",
     "clean:packages:dev": "lerna exec -- rm -rf ./dev && lerna exec -- rm -rf ./package-lock.json",
+    "clean:packages:coverage": "lerna exec -- rm -rf ./test/coverage",
     "eslint": "eslint --fix 'packages/**/*.*'",
     "format": "lerna run format --stream --concurrency 1",
     "lint": "npm run eslint && npm run prettier && npm run stylelint",
