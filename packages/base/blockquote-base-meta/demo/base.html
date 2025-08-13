@@ -13,8 +13,8 @@
 
       [data-embedded] .sr-only {
         position: absolute;
-        width: 1px;
-        height: 1px;
+        inline-size: 1px;
+        block-size: 1px;
         padding: 0;
         margin: -1px;
         overflow: hidden;
@@ -29,17 +29,17 @@
 
       h1,
       h2 {
-        margin-top: 0;
+        margin-block-start: 0;
       }
 
       h1 {
         font-size: 1.5rem;
-        margin-bottom: 1rem;
+        margin-block-end: 1rem;
       }
 
       h2 {
         font-size: 1.125rem;
-        margin-bottom: 0.5rem;
+        margin-block-end: 0.5rem;
       }
 
       p {
@@ -51,7 +51,7 @@
 
       code:not([class]) {
         display: inline-block;
-        margin-bottom: 0.5rem;
+        margin-block-end: 0.5rem;
       }
     </style>
   </head>
