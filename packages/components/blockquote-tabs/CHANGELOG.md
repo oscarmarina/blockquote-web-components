@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.5](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-tabs@1.6.4...@blockquote-web-components/blockquote-tabs@1.6.5) (2025-08-13)
+
+
+### Bug Fixes
+
+* **blockquote-tabs:** css logical properties ([db60988](https://github.com/oscarmarina/blockquote-web-components/commit/db60988becceb072eca29c74d6330227263d3d00))
+
+
+
+
+
 ## [1.6.4](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-tabs@1.6.3...@blockquote-web-components/blockquote-tabs@1.6.4) (2025-08-12)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-tabs

@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-tabs",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "description": "Webcomponent blockquote-tabs following open-wc recommendations",
   "keywords": [
     "lit",
