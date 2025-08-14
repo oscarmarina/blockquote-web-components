@@ -40,7 +40,7 @@ export const styles = css`
     flex-direction: column;
     align-items: center;
     block-size: inherit;
-    padding: calc(var(--__resizer-factor) * 1) 0 calc(var(--__resizer-factor) * 2);
+    padding-block: calc(var(--__resizer-factor) * 1) calc(var(--__resizer-factor) * 2);
   }
 
   :host([hidden]),
