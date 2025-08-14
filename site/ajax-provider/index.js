@@ -208,7 +208,7 @@ var $=Object.defineProperty;var R=(i,r,e)=>r in i?$(i,r,{enumerable:!0,configura
     flex-direction: column;
     align-items: center;
     block-size: inherit;
-    padding: calc(var(--__resizer-factor) * 1) 0 calc(var(--__resizer-factor) * 2);
+    padding-block: calc(var(--__resizer-factor) * 1) calc(var(--__resizer-factor) * 2);
   }
 
   :host([hidden]),
@@ -445,7 +445,8 @@ var $=Object.defineProperty;var R=(i,r,e)=>r in i?$(i,r,{enumerable:!0,configura
     position: relative;
     max-inline-size: 80rem;
     margin: 0 auto;
-    padding: 0.5rem 1.5rem;
+    padding-block: 0.5rem;
+    padding-inline: 1.5rem;
   }
 
   [role='heading'] {
@@ -494,7 +495,8 @@ var $=Object.defineProperty;var R=(i,r,e)=>r in i?$(i,r,{enumerable:!0,configura
     background-color: transparent;
     border: none;
     border-block-end: 0.125rem solid var(--_select-bgcolor);
-    padding: 0.25em 1em 0.25em 0;
+    padding-block: 0.25em;
+    padding-inline: 0 1em;
     margin: 0;
     inline-size: 100%;
     cursor: pointer;
@@ -514,7 +516,8 @@ var $=Object.defineProperty;var R=(i,r,e)=>r in i?$(i,r,{enumerable:!0,configura
   }
 
   .description {
-    margin: 0.5rem 0 1rem;
+    margin-inline: 0;
+    margin-block: 0.5rem 1rem;
     font-size: 0.875rem;
   }
 
@@ -534,6 +537,7 @@ var $=Object.defineProperty;var R=(i,r,e)=>r in i?$(i,r,{enumerable:!0,configura
   }
 
   blockquote-base-embedded-webview-resize {
+    overflow-x: hidden;
     overflow-inline: hidden;
   }
 `,U=n`
@@ -575,7 +579,7 @@ var $=Object.defineProperty;var R=(i,r,e)=>r in i?$(i,r,{enumerable:!0,configura
     `}get _selectTpl(){return n`
       ${this._sources.some(e=>e.option)?n`
             <div class="select">
-              <select @change="${this._onChangeFile}" aria-label="Cases">
+              <select id="select-sources" @change="${this._onChangeFile}" aria-label="Cases">
                 ${this._sources.map((e,t)=>n`
                     <option ?selected="${this.selected===t}" value="${t}">
                       ${e.option}

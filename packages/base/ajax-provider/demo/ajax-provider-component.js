@@ -184,7 +184,9 @@ class AjaxProviderComponent extends LitElement {
     const request = new AjaxProvider({...baseMethod, ...optionsMethod});
 
     request.addEventListener('ajaxpresend', ({detail}) => {
-      if (this.json) this.json.data = undefined;
+      if (this.json) {
+        this.json.data = undefined;
+      }
       console.log(`ajaxpresend: ${detail}`);
     });
 
@@ -200,11 +202,15 @@ class AjaxProviderComponent extends LitElement {
     request
       .generateRequest()
       .then((result) => {
-        if (this.json) this.json.data = result;
+        if (this.json) {
+          this.json.data = result;
+        }
         console.log(`RESULT ${selectedMethod}`, result);
       })
       .catch((error) => {
-        if (this.json) this.json.data = error;
+        if (this.json) {
+          this.json.data = error;
+        }
         console.dir(error);
       });
   }

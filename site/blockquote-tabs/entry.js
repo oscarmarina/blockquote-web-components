@@ -230,7 +230,7 @@ var wt=Object.defineProperty;var Ee=i=>{throw TypeError(i)};var zt=(i,e,t)=>e in
     flex-direction: column;
     align-items: center;
     block-size: inherit;
-    padding: calc(var(--__resizer-factor) * 1) 0 calc(var(--__resizer-factor) * 2);
+    padding-block: calc(var(--__resizer-factor) * 1) calc(var(--__resizer-factor) * 2);
   }
 
   :host([hidden]),
@@ -467,7 +467,8 @@ var wt=Object.defineProperty;var Ee=i=>{throw TypeError(i)};var zt=(i,e,t)=>e in
     position: relative;
     max-inline-size: 80rem;
     margin: 0 auto;
-    padding: 0.5rem 1.5rem;
+    padding-block: 0.5rem;
+    padding-inline: 1.5rem;
   }
 
   [role='heading'] {
@@ -516,7 +517,8 @@ var wt=Object.defineProperty;var Ee=i=>{throw TypeError(i)};var zt=(i,e,t)=>e in
     background-color: transparent;
     border: none;
     border-block-end: 0.125rem solid var(--_select-bgcolor);
-    padding: 0.25em 1em 0.25em 0;
+    padding-block: 0.25em;
+    padding-inline: 0 1em;
     margin: 0;
     inline-size: 100%;
     cursor: pointer;
@@ -536,7 +538,8 @@ var wt=Object.defineProperty;var Ee=i=>{throw TypeError(i)};var zt=(i,e,t)=>e in
   }
 
   .description {
-    margin: 0.5rem 0 1rem;
+    margin-inline: 0;
+    margin-block: 0.5rem 1rem;
     font-size: 0.875rem;
   }
 
@@ -556,6 +559,7 @@ var wt=Object.defineProperty;var Ee=i=>{throw TypeError(i)};var zt=(i,e,t)=>e in
   }
 
   blockquote-base-embedded-webview-resize {
+    overflow-x: hidden;
     overflow-inline: hidden;
   }
 `,ss=u`
@@ -597,7 +601,7 @@ var wt=Object.defineProperty;var Ee=i=>{throw TypeError(i)};var zt=(i,e,t)=>e in
     `}get _selectTpl(){return u`
       ${this._sources.some(t=>t.option)?u`
             <div class="select">
-              <select @change="${this._onChangeFile}" aria-label="Cases">
+              <select id="select-sources" @change="${this._onChangeFile}" aria-label="Cases">
                 ${this._sources.map((t,s)=>u`
                     <option ?selected="${this.selected===s}" value="${s}">
                       ${t.option}
