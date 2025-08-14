@@ -57,7 +57,8 @@ export const styles = css`
     position: relative;
     max-inline-size: 80rem;
     margin: 0 auto;
-    padding: 0.5rem 1.5rem;
+    padding-block: 0.5rem;
+    padding-inline: 1.5rem;
   }
 
   [role='heading'] {
@@ -106,7 +107,8 @@ export const styles = css`
     background-color: transparent;
     border: none;
     border-block-end: 0.125rem solid var(--_select-bgcolor);
-    padding: 0.25em 1em 0.25em 0;
+    padding-block: 0.25em;
+    padding-inline: 0 1em;
     margin: 0;
     inline-size: 100%;
     cursor: pointer;
@@ -126,7 +128,8 @@ export const styles = css`
   }
 
   .description {
-    margin: 0.5rem 0 1rem;
+    margin-inline: 0;
+    margin-block: 0.5rem 1rem;
     font-size: 0.875rem;
   }
 
@@ -146,6 +149,7 @@ export const styles = css`
   }
 
   blockquote-base-embedded-webview-resize {
+    overflow-x: hidden;
     overflow-inline: hidden;
   }
 `;

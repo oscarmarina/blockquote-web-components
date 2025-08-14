@@ -11,7 +11,10 @@ exports[`BlockquoteBaseEmbeddedWebview > Behavior > limit height > SHADOW DOM 1`
     </div>
     <div>
       <div class="select">
-        <select aria-label="Cases">
+        <select
+          aria-label="Cases"
+          id="select-sources"
+        >
           <option
             selected=""
             value="0"
@@ -100,7 +103,10 @@ exports[`BlockquoteBaseEmbeddedWebview > Default > SHADOW DOM - Structure test >
     </div>
     <div>
       <div class="select">
-        <select aria-label="Cases">
+        <select
+          aria-label="Cases"
+          id="select-sources"
+        >
           <option
             selected=""
             value="0"
@@ -183,7 +189,10 @@ exports[`BlockquoteBaseEmbeddedWebview > variant > SHADOW DOM - Structure test >
     </div>
     <div>
       <div class="select">
-        <select aria-label="Cases">
+        <select
+          aria-label="Cases"
+          id="select-sources"
+        >
           <option value="0">
             Base
           </option>
