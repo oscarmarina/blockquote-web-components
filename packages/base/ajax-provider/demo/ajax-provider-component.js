@@ -8,8 +8,9 @@ class AjaxProviderComponent extends LitElement {
     :host {
       display: flex;
       flex-direction: column;
-      width: clamp(45ch, 50%, 75ch);
-      margin: 0 auto;
+      inline-size: clamp(45ch, 50%, 75ch);
+      margin-block: 0;
+      margin-inline: auto;
       padding: 2rem;
     }
 
@@ -19,19 +20,20 @@ class AjaxProviderComponent extends LitElement {
 
     label {
       display: inline-block;
-      margin-bottom: 1rem;
+      margin-block-end: 1rem;
     }
 
     .select-dropdown {
       position: relative;
       background-color: #e6e6e6;
-      margin-bottom: 1rem;
+      margin-block-end: 1rem;
     }
 
     .select-dropdown select {
       font: inherit;
-      width: 100%;
-      padding: 12px 30px 12px 10px;
+      inline-size: 100%;
+      padding-block: 12px;
+      padding-inline: 10px 30px;
       border: none;
       background-color: transparent;
       -moz-appearance: none;
@@ -50,14 +52,14 @@ class AjaxProviderComponent extends LitElement {
       content: ' ';
       pointer-events: none;
       position: absolute;
-      top: 50%;
-      margin-top: -0.1rem;
-      right: 0.75rem;
+      inset-block-start: 50%;
+      margin-block-start: -0.1rem;
+      inset-inline-end: 0.75rem;
       width: 0;
       height: 0;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-top: 5px solid #aaa;
+      border-inline-start: 5px solid transparent;
+      border-inline-end: 5px solid transparent;
+      border-block-start: 5px solid #aaa;
     }
 
     p,
@@ -78,7 +80,9 @@ class AjaxProviderComponent extends LitElement {
   async connectedCallback() {
     super.connectedCallback?.();
     await this.updateComplete;
-    this.json = /** @type {*} */ (this.shadowRoot?.getElementById('json'));
+    this.json = /** @type {(HTMLElement & { data?: any }) | null} */ (
+      this.shadowRoot?.getElementById('json')
+    );
   }
 
   render() {
@@ -126,9 +130,7 @@ class AjaxProviderComponent extends LitElement {
 
     switch (selectedMethod) {
       case 'GET':
-        optionsMethod = {
-          path: selectedMethod.toLowerCase(),
-        };
+        optionsMethod = {path: selectedMethod.toLowerCase()};
         break;
       case 'POST':
         optionsMethod = {
@@ -137,9 +139,7 @@ class AjaxProviderComponent extends LitElement {
             'Content-Type': 'application/json',
             'rxjs-custom-header': 'Rxjs',
           },
-          body: {
-            rxjs: `Body ${method}`,
-          },
+          body: {rxjs: `Body ${method}`},
           includeDownloadProgress: true,
           includeUploadProgress: true,
         };
@@ -147,9 +147,7 @@ class AjaxProviderComponent extends LitElement {
       case 'FORMDATA':
         optionsMethod = {
           path: 'post',
-          headers: {
-            'rxjs-custom-header': 'Rxjs',
-          },
+          headers: {'rxjs-custom-header': 'Rxjs'},
           body: formData,
         };
         break;
@@ -164,26 +162,19 @@ class AjaxProviderComponent extends LitElement {
       case 'PUT':
         optionsMethod = {
           path: selectedMethod.toLowerCase(),
-          body: {
-            rxjs: `Body ${method}`,
-          },
+          body: {rxjs: `Body ${method}`},
         };
         break;
       case 'DELETE':
         optionsMethod = {
           path: selectedMethod.toLowerCase(),
-          body: {
-            rxjs: `Body ${method}`,
-          },
+          body: {rxjs: `Body ${method}`},
           includeDownloadProgress: true,
           includeUploadProgress: true,
         };
         break;
       case 'ERROR':
-        optionsMethod = {
-          path: 'status/500',
-          method: 'GET',
-        };
+        optionsMethod = {path: 'status/500', method: 'GET'};
         break;
       default:
         console.error('Invalid HTTP method');
@@ -193,9 +184,7 @@ class AjaxProviderComponent extends LitElement {
     const request = new AjaxProvider({...baseMethod, ...optionsMethod});
 
     request.addEventListener('ajaxpresend', ({detail}) => {
-      if (this.json) {
-        this.json.data = undefined;
-      }
+      if (this.json) this.json.data = undefined;
       console.log(`ajaxpresend: ${detail}`);
     });
 
@@ -211,11 +200,11 @@ class AjaxProviderComponent extends LitElement {
     request
       .generateRequest()
       .then((result) => {
-        this.json.data = result;
+        if (this.json) this.json.data = result;
         console.log(`RESULT ${selectedMethod}`, result);
       })
       .catch((error) => {
-        this.json.data = error;
+        if (this.json) this.json.data = error;
         console.dir(error);
       });
   }

@@ -56,7 +56,8 @@ export const styles = css`
     display: flex;
     align-items: center;
     max-width: 25rem;
-    padding: 1em 2em;
+    padding-block: 1em;
+    padding-inline: 2em;
     margin: auto;
     background-color: rgb(238, 238, 238);
     border: 0.0625rem solid var(--_mark-color);

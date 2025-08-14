@@ -12,8 +12,35 @@
           "name": "BlockquoteMixinSlotContent",
           "members": [
             {
+              "kind": "method",
+              "name": "#processSlotContent",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "slotNode",
+                  "type": {
+                    "text": "HTMLSlotElement"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "#createContentStructure",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "content",
+                  "type": {
+                    "text": "*"
+                  }
+                }
+              ]
+            },
+            {
               "kind": "field",
-              "name": "_onSlotChange",
+              "name": "#onSlotChange",
+              "privacy": "private",
               "parameters": [
                 {
                   "name": "ev",

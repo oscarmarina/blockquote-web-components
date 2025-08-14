@@ -217,11 +217,22 @@ and equally for flattened nodes.
 | ------ | ---- | ------- | ----------- |
 | `Base` |      |         |             |
 
+<details><summary>Private API</summary>
+
 ##### Fields
 
 | Name            | Privacy | Type | Default | Description | Inherited From |
 | --------------- | ------- | ---- | ------- | ----------- | -------------- |
-| `_onSlotChange` |         |      |         |             |                |
+| `#onSlotChange` | private |      |         |             |                |
+
+##### Methods
+
+| Name                      | Privacy | Description | Parameters                  | Return | Inherited From |
+| ------------------------- | ------- | ----------- | --------------------------- | ------ | -------------- |
+| `#processSlotContent`     | private |             | `slotNode: HTMLSlotElement` |        |                |
+| `#createContentStructure` | private |             | `content: *`                |        |                |
+
+</details>
 
 <hr/>
 
