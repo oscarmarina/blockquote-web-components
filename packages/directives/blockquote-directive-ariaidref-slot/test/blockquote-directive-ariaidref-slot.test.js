@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import {suite, test, assert, expect, beforeAll} from 'vitest';
-import {fixture, fixtureCleanup} from '@open-wc/testing';
-import {getDiffableHTML} from '@open-wc/semantic-dom-diff';
+import {fixture, fixtureCleanup} from '@open-wc/testing-helpers';
+import {getDiffableHTML} from '@open-wc/semantic-dom-diff/get-diffable-html.js';
 import {html} from 'lit';
 
 import './blockquote-directive-ariaidref-slot-component.js';

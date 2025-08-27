@@ -1,9 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {suite, test, assert, expect, beforeAll, beforeEach} from 'vitest';
-import {assert as a11y, fixture, fixtureCleanup} from '@open-wc/testing';
-import {getDiffableHTML} from '@open-wc/semantic-dom-diff';
+import {suite, test, assert, expect, beforeAll, beforeEach, chai} from 'vitest';
+import {fixture, fixtureCleanup} from '@open-wc/testing-helpers';
+import {chaiA11yAxe} from 'chai-a11y-axe';
+import {getDiffableHTML} from '@open-wc/semantic-dom-diff/get-diffable-html.js';
 import {html} from 'lit';
 import '../demo/xstate-counter.js';
+
+chai.use(chaiA11yAxe);
 
 suite('BlockquoteControllerXstate', () => {
   /**
@@ -44,7 +47,7 @@ suite('BlockquoteControllerXstate', () => {
       });
 
       test('a11y', async () => {
-        await a11y.isAccessible(el);
+        await assert.isAccessible(el);
       });
     });
   });

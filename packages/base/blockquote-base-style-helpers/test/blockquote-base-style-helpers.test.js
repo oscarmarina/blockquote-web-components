@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import {suite, test, assert, beforeAll} from 'vitest';
-import {fixture, fixtureCleanup} from '@open-wc/testing';
+import {fixture, fixtureCleanup} from '@open-wc/testing-helpers';
 import {html, css} from 'lit';
 import {setDocumentStyles} from '../src/index.js';
 import './document-element.js';

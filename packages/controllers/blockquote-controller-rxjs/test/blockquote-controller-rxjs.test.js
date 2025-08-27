@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import {from, Subject} from 'rxjs';
 import {suite, test, assert, beforeAll} from 'vitest';
-import {fixture, fixtureCleanup} from '@open-wc/testing';
+import {fixture, fixtureCleanup} from '@open-wc/testing-helpers';
 import {html, LitElement} from 'lit';
 import {BlockquoteControllerRxjs} from '../src/index.js';
 
