@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-controller-rxjs",
-  "version": "1.4.19",
+  "version": "1.4.20",
   "description": "Webcomponent blockquote-controller-rxjs following open-wc recommendations",
   "keywords": [
     "lit",
@@ -115,8 +115,8 @@
     "rxjs": "^8.0.0-alpha.14"
   },
   "devDependencies": {
-    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.12.3",
-    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.13.7"
+    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.12.4",
+    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.13.8"
   },
   "publishConfig": {
     "access": "public"
