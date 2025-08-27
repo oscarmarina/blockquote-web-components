@@ -1,9 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {suite, test, assert, expect, beforeAll, beforeEach} from 'vitest';
-import {assert as a11y, fixture, fixtureCleanup, aTimeout} from '@open-wc/testing';
-import {getDiffableHTML} from '@open-wc/semantic-dom-diff';
+import {suite, test, assert, expect, beforeAll, beforeEach, chai} from 'vitest';
+import {fixture, fixtureCleanup, aTimeout} from '@open-wc/testing-helpers';
+import {chaiA11yAxe} from 'chai-a11y-axe';
+import {getDiffableHTML} from '@open-wc/semantic-dom-diff/get-diffable-html.js';
 import {html} from 'lit';
 import '../src/define/blockquote-dialog.js';
+
+chai.use(chaiA11yAxe);
 
 const _formTpl = html`
   <form method="dialog">
@@ -84,7 +87,7 @@ suite('BlockquoteDialog', () => {
       });
 
       test('a11y', async () => {
-        await a11y.isAccessible(el);
+        await assert.isAccessible(el);
       });
     });
 
@@ -122,7 +125,7 @@ suite('BlockquoteDialog', () => {
       });
 
       test('a11y', async () => {
-        await a11y.isAccessible(el);
+        await assert.isAccessible(el);
       });
     });
 
@@ -160,7 +163,7 @@ suite('BlockquoteDialog', () => {
       });
 
       test('a11y', async () => {
-        await a11y.isAccessible(el);
+        await assert.isAccessible(el);
       });
     });
 
@@ -201,7 +204,7 @@ suite('BlockquoteDialog', () => {
       });
 
       test('a11y', async () => {
-        await a11y.isAccessible(el);
+        await assert.isAccessible(el);
       });
     });
 

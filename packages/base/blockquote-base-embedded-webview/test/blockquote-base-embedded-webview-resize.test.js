@@ -1,9 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {suite, test, assert, expect, beforeAll} from 'vitest';
-import {assert as a11y, fixture, fixtureCleanup} from '@open-wc/testing';
-import {getDiffableHTML} from '@open-wc/semantic-dom-diff';
+import {suite, test, assert, expect, beforeAll, chai} from 'vitest';
+import {fixture, fixtureCleanup} from '@open-wc/testing-helpers';
+import {chaiA11yAxe} from 'chai-a11y-axe';
+import {getDiffableHTML} from '@open-wc/semantic-dom-diff/get-diffable-html.js';
 import {html} from 'lit';
 import '../src/define/blockquote-base-embedded-webview-resize.js';
+
+chai.use(chaiA11yAxe);
 
 /**
  * @param {string} type The type of event
@@ -57,7 +60,7 @@ suite('BlockquoteBaseEmbeddedWebviewResize', () => {
     });
 
     test('a11y', async () => {
-      await a11y.isAccessible(el);
+      await assert.isAccessible(el);
     });
   });
 

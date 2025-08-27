@@ -1,8 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {suite, test, assert, expect, beforeEach} from 'vitest';
-import {assert as a11y, fixture, fixtureCleanup} from '@open-wc/testing';
-import {getDiffableHTML} from '@open-wc/semantic-dom-diff';
+import {suite, test, assert, expect, beforeEach, chai} from 'vitest';
+import {fixture, fixtureCleanup} from '@open-wc/testing-helpers';
+import {chaiA11yAxe} from 'chai-a11y-axe';
+import {getDiffableHTML} from '@open-wc/semantic-dom-diff/get-diffable-html.js';
 import {html} from 'lit';
+
+chai.use(chaiA11yAxe);
 
 import '../src/define/blockquote-tabs.js';
 
@@ -44,7 +47,7 @@ suite('BlockquoteTabs', () => {
       });
 
       test('a11y', async () => {
-        await a11y.isAccessible(el);
+        await assert.isAccessible(el);
       });
 
       test('Click on tab updates selected tab', async () => {
@@ -147,7 +150,7 @@ suite('BlockquoteTabs', () => {
       });
 
       test('a11y', async () => {
-        await a11y.isAccessible(el);
+        await assert.isAccessible(el);
       });
     });
   });
@@ -182,7 +185,7 @@ suite('BlockquoteTabs', () => {
       });
 
       test('a11y', async () => {
-        await a11y.isAccessible(el);
+        await assert.isAccessible(el);
       });
     });
   });
