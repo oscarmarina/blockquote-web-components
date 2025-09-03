@@ -23,7 +23,7 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 <html lang="en">
   <head>
     <title>Demo Base</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content" />
     <meta charset="utf-8" />
     <style>
       :root {
