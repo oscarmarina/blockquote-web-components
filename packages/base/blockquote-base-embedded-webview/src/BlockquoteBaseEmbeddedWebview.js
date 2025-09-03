@@ -58,7 +58,7 @@ const openExternallyIcon = html`
  * <html lang="en">
  *   <head>
  *     <title>Demo Base</title>
- *     <meta name="viewport" content="width=device-width, initial-scale=1" />
+ *     <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content" />
  *     <meta charset="utf-8" />
  *     <style>
  *       :root {
