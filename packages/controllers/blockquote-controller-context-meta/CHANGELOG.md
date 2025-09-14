@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-context-meta@1.4.11...@blockquote-web-components/blockquote-controller-context-meta@1.5.0) (2025-09-14)
+
+
+### Features
+
+* **blockquote-controller-context-meta:** allow multiple contexts on the same DOM element ([d5a99b8](https://github.com/oscarmarina/blockquote-web-components/commit/d5a99b891823f3a6a56d0f932046635f7e6389e3))
+
+
+
+
+
 ## [1.4.11](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-context-meta@1.4.10...@blockquote-web-components/blockquote-controller-context-meta@1.4.11) (2025-09-03)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-controller-context-meta
