@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.17.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.16.10...v2.17.0) (2025-09-14)
+
+
+### Features
+
+* **blockquote-controller-context-meta:** allow multiple contexts on the same DOM element ([d5a99b8](https://github.com/oscarmarina/blockquote-web-components/commit/d5a99b891823f3a6a56d0f932046635f7e6389e3))
+
 ## [2.16.10](https://github.com/oscarmarina/blockquote-web-components/compare/v2.16.9...v2.16.10) (2025-09-03)
 
 ## [2.16.9](https://github.com/oscarmarina/blockquote-web-components/compare/v2.16.8...v2.16.9) (2025-09-03)
