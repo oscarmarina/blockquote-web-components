@@ -150,14 +150,6 @@
             "name": "cacheContextMetaProvider",
             "module": "./directives/cache-context-meta-provider.js"
           }
-        },
-        {
-          "kind": "js",
-          "name": "contextMetaKeyProvider",
-          "declaration": {
-            "name": "contextMetaKeyProvider",
-            "module": "./directives/cache-context-meta-provider.js"
-          }
         }
       ]
     },
@@ -166,31 +158,31 @@
       "path": "src/directives/cache-context-meta-provider.js",
       "declarations": [
         {
-          "kind": "variable",
-          "name": "contextMetaKeyProvider"
-        },
-        {
           "kind": "function",
           "name": "cacheContextMetaProvider",
           "parameters": [
             {
-              "name": "element"
+              "name": "element",
+              "description": "element",
+              "type": {
+                "text": "HTMLElement|*"
+              }
             },
             {
-              "name": "contextOrOptions"
+              "name": "{context = contextMetaSymbol, initialValue}"
+            },
+            {
+              "description": "options for the context provider.",
+              "name": "arg",
+              "type": {
+                "text": "{\n *   context?: *,\n *   initialValue?: ContextType<*>,\n * }"
+              }
             }
-          ]
+          ],
+          "description": "Return or create a cached BlockquoteControllerContextMeta for (element, context).\n\nThis function memoizes BlockquoteControllerContextMeta instances per (element, contextKey).\nIf a BlockquoteControllerContextMeta already exists for the given element and context, it is\nreturned; otherwise a new BlockquoteControllerContextMeta is created, cached and returned."
         }
       ],
       "exports": [
-        {
-          "kind": "js",
-          "name": "contextMetaKeyProvider",
-          "declaration": {
-            "name": "contextMetaKeyProvider",
-            "module": "src/directives/cache-context-meta-provider.js"
-          }
-        },
         {
           "kind": "js",
           "name": "cacheContextMetaProvider",
@@ -206,11 +198,28 @@
       "path": "src/directives/context-meta-provider.js",
       "declarations": [
         {
+          "kind": "class",
+          "description": "![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n`contextMetaProviderDirective` is a Lit directive that enables normal DOM elements to act as context providers.\nYou can use this directive in both attribute and element bindings in Lit templates.\n\n> https://github.com/lit/lit/discussions/4690\n\nUsage:\nThis directive transforms a DOM element into a Lit context provider using the BlockquoteControllerContextMeta class, a\nLit Reactive Controller that encapsulates controllers provided by [@lit/context](https://lit.dev/docs/data/context/).\n\n## Features\n- Enables non-Lit elements to provide context.\n- Works seamlessly with [`@lit/context`](https://lit.dev/docs/data/context/).\n- Utilizes `BlockquoteControllerContextMeta`, a Lit Reactive Controller for managing context.\n\n```js\n  <div ${contextMetaProviderDirective(someValue, myContext)}>\n    <!-- Children can consume the provided context -->\n  </div>\n  //\n  <div data-info=\"${contextMetaProviderDirective(someValue, myContext)}\">\n    <!-- Children can consume the provided context -->\n  </div>\n```",
+          "name": "README",
+          "superclass": {
+            "name": "Text",
+            "module": "src/directives/context-meta-provider.js"
+          }
+        },
+        {
           "kind": "variable",
           "name": "contextMetaProvider"
         }
       ],
       "exports": [
+        {
+          "kind": "js",
+          "name": "README",
+          "declaration": {
+            "name": "README",
+            "module": "src/directives/context-meta-provider.js"
+          }
+        },
         {
           "kind": "js",
           "name": "contextMetaProvider",

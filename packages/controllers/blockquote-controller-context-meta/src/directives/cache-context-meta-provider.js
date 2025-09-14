@@ -1,15 +1,50 @@
-import {BlockquoteControllerContextMeta} from '../BlockquoteControllerContextMeta.js';
+import {
+  BlockquoteControllerContextMeta,
+  contextMetaSymbol,
+} from '../BlockquoteControllerContextMeta.js';
 
-export const contextMetaKeyProvider = Symbol();
+const metaByElement = new WeakMap();
 
-export const cacheContextMetaProvider = (element, contextOrOptions) => {
-  if (element[contextMetaKeyProvider]) {
-    return element[contextMetaKeyProvider];
+/**
+ * Get or create the per-element Map that holds ContextMeta instances for
+ * different context keys.
+ *
+ * The per-element map is stored in the private WeakMap `metaByElement`.
+ *
+ * @param {HTMLElement|*} element - target used as WeakMap key
+ */
+const getPerElementMap = (element) => {
+  let per = metaByElement.get(element);
+  if (!per) {
+    per = new Map();
+    metaByElement.set(element, per);
+  }
+  return per;
+};
+
+/**
+ * Return or create a cached BlockquoteControllerContextMeta for (element, context).
+ *
+ * This function memoizes BlockquoteControllerContextMeta instances per (element, contextKey).
+ * If a BlockquoteControllerContextMeta already exists for the given element and context, it is
+ * returned; otherwise a new BlockquoteControllerContextMeta is created, cached and returned.
+ *
+ * @param {HTMLElement|*} element - element
+ *  @param {{
+ *   context?: *,
+ *   initialValue?: import('@lit/context').ContextType<*>,
+ * }} arg - options for the context provider.
+ */
+export const cacheContextMetaProvider = (element, {context = contextMetaSymbol, initialValue}) => {
+  const options = {context, initialValue};
+  const contextKey = options.context;
+  const perElement = getPerElementMap(element);
+  let meta = perElement.get(contextKey);
+
+  if (!meta) {
+    meta = new BlockquoteControllerContextMeta(element, options);
+    perElement.set(contextKey, meta);
   }
 
-  const ctx =
-    contextOrOptions?.context !== undefined ? {...contextOrOptions} : {context: contextOrOptions};
-
-  element[contextMetaKeyProvider] = new BlockquoteControllerContextMeta(element, ctx);
-  return element[contextMetaKeyProvider];
+  return meta;
 };

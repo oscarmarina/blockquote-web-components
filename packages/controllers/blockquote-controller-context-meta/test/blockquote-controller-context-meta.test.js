@@ -40,6 +40,8 @@ suite('BlockquoteControllerContextMeta', () => {
         el.setAttribute('data', 'bar');
         await el.updateComplete;
         assert.isTrue(el.children[0]?.getAttribute('data') === 'bar');
+        el.requestUpdate();
+        assert.isTrue(el.children[0]?.getAttribute('data') === 'bar');
       });
     });
   });

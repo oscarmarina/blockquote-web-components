@@ -145,34 +145,40 @@ customElements.define('consumer-el', ConsumerEl);
 | `js` | `BaseContextMetaElement`          | BaseContextMetaElement          | ./BaseContextMetaElement.js                 |         |
 | `js` | `contextMetaProvider`             | contextMetaProvider             | ./directives/context-meta-provider.js       |         |
 | `js` | `cacheContextMetaProvider`        | cacheContextMetaProvider        | ./directives/cache-context-meta-provider.js |         |
-| `js` | `contextMetaKeyProvider`          | contextMetaKeyProvider          | ./directives/cache-context-meta-provider.js |         |
 
-### `src/directives/cache-context-meta-provider.js`:
 
-#### Variables
+![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
-| Name                     | Description | Type |
-| ------------------------ | ----------- | ---- |
-| `contextMetaKeyProvider` |             |      |
+`contextMetaProviderDirective` is a Lit directive that enables normal DOM elements to act as context providers.
+You can use this directive in both attribute and element bindings in Lit templates.
 
-<hr/>
+> https://github.com/lit/lit/discussions/4690
 
-#### Functions
+Usage:
+This directive transforms a DOM element into a Lit context provider using the BlockquoteControllerContextMeta class, a
+Lit Reactive Controller that encapsulates controllers provided by [@lit/context](https://lit.dev/docs/data/context/).
 
-| Name                       | Description | Parameters                  | Return |
-| -------------------------- | ----------- | --------------------------- | ------ |
-| `cacheContextMetaProvider` |             | `element, contextOrOptions` |        |
+## Features
+- Enables non-Lit elements to provide context.
+- Works seamlessly with [`@lit/context`](https://lit.dev/docs/data/context/).
+- Utilizes `BlockquoteControllerContextMeta`, a Lit Reactive Controller for managing context.
 
-<hr/>
+```js
+  <div ${contextMetaProviderDirective(someValue, myContext)}>
+    <!-- Children can consume the provided context -->
+  </div>
+  //
+  <div data-info="${contextMetaProviderDirective(someValue, myContext)}">
+    <!-- Children can consume the provided context -->
+  </div>
+```
 
-#### Exports
-
-| Kind | Name                       | Declaration              | Module                                        | Package |
-| ---- | -------------------------- | ------------------------ | --------------------------------------------- | ------- |
-| `js` | `contextMetaKeyProvider`   | contextMetaKeyProvider   | src/directives/cache-context-meta-provider.js |         |
-| `js` | `cacheContextMetaProvider` | cacheContextMetaProvider | src/directives/cache-context-meta-provider.js |         |
 
 ### `src/directives/context-meta-provider.js`:
+
+#### class: `README`
+
+<hr/>
 
 #### Variables
 
@@ -186,9 +192,24 @@ customElements.define('consumer-el', ConsumerEl);
 
 | Kind | Name                  | Declaration         | Module                                  | Package |
 | ---- | --------------------- | ------------------- | --------------------------------------- | ------- |
+| `js` | `README`              | README              | src/directives/context-meta-provider.js |         |
 | `js` | `contextMetaProvider` | contextMetaProvider | src/directives/context-meta-provider.js |         |
 
----
+### `src/directives/cache-context-meta-provider.js`:
+
+#### Functions
+
+| Name                       | Description                                                                                                                                                                                                                                                                                                                                                                            | Parameters                                                                                                                                | Return |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| `cacheContextMetaProvider` | Return or create a cached BlockquoteControllerContextMeta for (element, context).&#xA;&#xA;This function memoizes BlockquoteControllerContextMeta instances per (element, contextKey).&#xA;If a BlockquoteControllerContextMeta already exists for the given element and context, it is&#xA;returned; otherwise a new BlockquoteControllerContextMeta is created, cached and returned. | `element: HTMLElement\|*, {context = contextMetaSymbol, initialValue}, arg: {  *   context?: *,  *   initialValue?: ContextType<*>,  * }` |        |
+
+<hr/>
+
+#### Exports
+
+| Kind | Name                       | Declaration              | Module                                        | Package |
+| ---- | -------------------------- | ------------------------ | --------------------------------------------- | ------- |
+| `js` | `cacheContextMetaProvider` | cacheContextMetaProvider | src/directives/cache-context-meta-provider.js |         |
 
 ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 

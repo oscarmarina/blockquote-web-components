@@ -58,11 +58,9 @@ export class ProviderEl extends LitElement {
       <consumer-el></consumer-el>
       <hr />
       <div
-        data-info="${contextMetaProvider(
-          this.data,
-          // @ts-ignore
-          consumerContext
-        )}">
+        data-info="${contextMetaProvider(this.data, {
+          context: consumerContext,
+        })}">
         normal element 1
         <flow-element .data="${this.data}">
           <consumer-el></consumer-el>
