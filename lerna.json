@@ -1,10 +1,14 @@
 {
   "version": "independent",
-  "packages": ["packages/**/*"],
+  "packages": [
+    "packages/**/*"
+  ],
   "npmClient": "npm",
   "command": {
     "bootstrap": {
-      "npmClientArgs": ["--no-package-lock"]
+      "npmClientArgs": [
+        "--no-package-lock"
+      ]
     },
     "version": {
       "conventionalCommits": true,

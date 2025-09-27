@@ -24,6 +24,8 @@
 **/dev
 **/build
 **/.tmp
+**/.nx/cache
+**/.nx/workspace-data
 **/.wireit
 **/*.tgz
 **/*.tsbuildinfo
