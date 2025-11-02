@@ -1,29 +1,34 @@
 import {defineConfig} from 'vite';
-import {preventRewriteImportsTypeModule} from '@blockquote/vite-plugin-prevent-rewrite-imports-type-module';
+import {playwright} from '@vitest/browser-playwright';
+import {globSync} from 'tinyglobby';
 import copy from 'rollup-plugin-copy';
 import totalBundlesize from '@blockquote/rollup-plugin-total-bundlesize';
+
+const OUT_DIR = 'dev';
+const ENTRIES_DIR = 'demo';
+const ENTRIES_GLOB = [`${ENTRIES_DIR}/**/*.js`];
 
 const copyConfig = {
   targets: [
     {
-      src: 'demo/*.html',
-      dest: 'dev/',
+      src: [`${ENTRIES_DIR}/**/*.*`, `!${ENTRIES_GLOB}`],
+      dest: OUT_DIR,
     },
   ],
   hook: 'writeBundle',
 };
 
-const demoDir = 'demo';
-const demoGlob = [`${demoDir}/entry.js`];
+// https://github.com/vitejs/vite/discussions/1736#discussioncomment-5126923
 const entries = Object.fromEntries(
-  demoGlob.map((file) => {
-    const [key] = file.match(new RegExp(`(?<=${demoDir}\/).*`)) || [];
+  globSync(ENTRIES_GLOB).map((file) => {
+    const [key] = file.match(new RegExp(`(?<=${ENTRIES_DIR}/).*`)) || [];
     return [key?.replace(/\.[^.]*$/, ''), file];
   })
 );
 
 // https://vitejs.dev/config/
 // https://vite-rollup-plugins.patak.dev/
+// https://github.com/vitest-dev/vitest/commit/78b62ffe#diff-d3e264f3679867e205ed7eeb7622aa3b62bb0c4b1a4aa5a5983cb3aa118fcf3c
 
 export default defineConfig({
   test: {
@@ -36,16 +41,17 @@ export default defineConfig({
     browser: {
       enabled: true,
       headless: false,
-      name: 'chromium',
-      provider: 'playwright',
+      provider: playwright(),
       screenshotFailures: false,
       instances: [
         {
           browser: 'chromium',
-          launch: {
-            devtools: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu'],
-          },
+          provider: playwright({
+            launchOptions: {
+              devtools: true,
+              args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu'],
+            },
+          }),
         },
       ],
     },
@@ -61,21 +67,21 @@ export default defineConfig({
         lines: 80,
       },
       include: ['**/src/**/*'],
-      exclude: ['**/src/**/index.*', '**/src/styles/'],
+      exclude: ['**/src/**/index.*', '**/src/styles/', '**/src/utils.*'],
     },
   },
-  plugins: [preventRewriteImportsTypeModule(), copy(copyConfig), totalBundlesize()],
+  plugins: [copy(copyConfig), totalBundlesize()],
   optimizeDeps: {
     exclude: ['lit', 'lit-html'],
   },
   build: {
     target: ['chrome71'],
-    outDir: 'dev',
+    outDir: OUT_DIR,
     rollupOptions: {
       preserveEntrySignatures: 'exports-only',
       input: entries,
       output: {
-        dir: 'dev/',
+        dir: OUT_DIR,
         entryFileNames: '[name].js',
         format: 'es',
       },
