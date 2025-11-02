@@ -1,19 +1,20 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {suite, test, assert, expect, beforeAll} from 'vitest';
+import {describe, it, expect, beforeAll} from 'vitest';
 import {fixture, fixtureCleanup} from '@open-wc/testing-helpers';
 import {contextMetaProvider} from '../src/index.js';
 import {consumerContext} from './elements.js';
 import {getDiffableHTML} from '@open-wc/semantic-dom-diff/get-diffable-html.js';
 import {html} from 'lit';
 
-suite('BlockquoteControllerContextMeta', () => {
+describe('BlockquoteControllerContextMeta', () => {
   /**
    * @type {import('./elements').ProviderEl}
    */
   let el;
+  /** @type {string | null | undefined} */
   let elShadowRoot;
 
-  suite('Default', () => {
+  describe('Default', () => {
     beforeAll(async () => {
       el = await fixture(html`
         <provider-el data="foo">
@@ -27,27 +28,27 @@ suite('BlockquoteControllerContextMeta', () => {
       };
     });
 
-    suite('Default value', () => {
-      test('SHADOW DOM', async () => {
-        expect(getDiffableHTML(elShadowRoot)).toMatchSnapshot('SHADOW DOM');
+    describe('Default value', () => {
+      it('SHADOW DOM', async () => {
+        expect(getDiffableHTML(elShadowRoot || '')).toMatchSnapshot('SHADOW DOM');
       });
 
-      test('LIGHT DOM', async () => {
+      it('LIGHT DOM', async () => {
         expect(getDiffableHTML(el)).toMatchSnapshot('LIGHT DOM');
       });
 
-      test('New value', async () => {
+      it('New value', async () => {
         el.setAttribute('data', 'bar');
         await el.updateComplete;
-        assert.isTrue(el.children[0]?.getAttribute('data') === 'bar');
+        expect(el.children[0]?.getAttribute('data')).toBe('bar');
         el.requestUpdate();
-        assert.isTrue(el.children[0]?.getAttribute('data') === 'bar');
+        expect(el.children[0]?.getAttribute('data')).toBe('bar');
       });
     });
   });
 
-  suite('Thrown Error', () => {
-    test('Error', async () => {
+  describe('Thrown Error', () => {
+    it('Error', async () => {
       try {
         await fixture(html`
           <div>
@@ -56,9 +57,9 @@ suite('BlockquoteControllerContextMeta', () => {
             })}
           </div>
         `);
-        assert.fail('Expected an error to be thrown');
+        expect.fail('Expected an error to be thrown');
       } catch (err) {
-        assert.instanceOf(err, Error);
+        expect(err).toBeInstanceOf(Error);
       }
     });
   });
