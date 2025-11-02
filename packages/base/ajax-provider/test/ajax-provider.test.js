@@ -1,22 +1,26 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {suite, test, assert, expect, beforeAll, vi} from 'vitest';
+import {describe, it, expect, beforeAll, vi} from 'vitest';
 import {fakeServer} from 'nise';
 import {AjaxProvider} from '../src/index.js';
 
+/**
+ * @param {number | undefined} ms
+ */
 export function aTimeout(ms) {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
 }
 
-suite('AjaxProvider', () => {
+describe('AjaxProvider', () => {
   const responseHeaders = {
     json: {'Content-Type': 'application/json'},
     plain: {'Content-Type': 'text/plain'},
   };
+  /** @type {import('nise').FakeServer} */
   let server;
 
-  suite('Default', () => {
+  describe('Default', () => {
     beforeAll(async () => {
       server = fakeServer.create();
       server.respondWith('GET', '/responds_get_with_json', [
@@ -54,7 +58,7 @@ suite('AjaxProvider', () => {
       };
     });
 
-    test('Does not send request if `url` is not a string', async () => {
+    it('Does not send request if `url` is not a string', async () => {
       /**
        * @type {import('../src/index').AjaxProvider}
        */
@@ -66,12 +70,12 @@ suite('AjaxProvider', () => {
         },
       });
       el.generateRequest().catch((error) => {
-        assert.include(error.message, 'required');
+        expect(error.message).toContain('required');
       });
       server.respond();
     });
 
-    test('Does not send request if `path` is not a string', async () => {
+    it('Does not send request if `path` is not a string', async () => {
       const el = new AjaxProvider({
         url: '/responds_to_get_with_text',
         path: undefined,
@@ -81,12 +85,12 @@ suite('AjaxProvider', () => {
         },
       });
       el.generateRequest().catch((error) => {
-        assert.include(error.message, 'required');
+        expect(error.message).toContain('required');
       });
       server.respond();
     });
 
-    test('Joins `url` and `path` to create the complete URL', async () => {
+    it('Joins `url` and `path` to create the complete URL', async () => {
       const el = new AjaxProvider({
         url: '/responds_to_get_with_text',
         path: 'and_with_path',
@@ -96,12 +100,12 @@ suite('AjaxProvider', () => {
         },
       });
       el.generateRequest().then((result) => {
-        assert.equal(result.response, 'Hello');
+        expect(result.response).toBe('Hello');
       });
       server.respond();
     });
 
-    test('The `ajaxpresend` event gets fired', async () => {
+    it('The `ajaxpresend` event gets fired', async () => {
       const spyEvent = vi.fn();
       const el = new AjaxProvider({
         url: '/responds_get_with_json',
@@ -111,7 +115,7 @@ suite('AjaxProvider', () => {
       expect(spyEvent).toHaveBeenCalledTimes(1);
     });
 
-    test('The `ajaxprogress` event gets fired', async () => {
+    it('The `ajaxprogress` event gets fired', async () => {
       const spyEvent = vi.fn();
       const el = new AjaxProvider({
         url: '/responds_get_with_json',
@@ -123,7 +127,7 @@ suite('AjaxProvider', () => {
       expect(spyEvent).toHaveBeenCalledTimes(1);
     });
 
-    test('The `ajaxresponse` event gets fired', async () => {
+    it('The `ajaxresponse` event gets fired', async () => {
       const spyEvent = vi.fn();
       const el = new AjaxProvider({
         url: '/responds_get_with_json',
@@ -135,7 +139,7 @@ suite('AjaxProvider', () => {
       expect(spyEvent).toHaveBeenCalledTimes(1);
     });
 
-    test('The `ajaxresponseend` event gets fired', async () => {
+    it('The `ajaxresponseend` event gets fired', async () => {
       const spyEvent = vi.fn();
       const el = new AjaxProvider({
         url: '/responds_get_with_json',
@@ -147,7 +151,7 @@ suite('AjaxProvider', () => {
       expect(spyEvent).toHaveBeenCalledTimes(1);
     });
 
-    test('Response like a promise', async () => {
+    it('Response like a promise', async () => {
       const spyEvent = vi.fn();
       const el = new AjaxProvider({
         url: '/responds_get_with_json',
@@ -159,7 +163,7 @@ suite('AjaxProvider', () => {
       expect(spyEvent).toHaveBeenCalledTimes(1);
     });
 
-    test('The `ajaxerror` event gets fired', async () => {
+    it('The `ajaxerror` event gets fired', async () => {
       const spyEvent = vi.fn();
       const el = new AjaxProvider({
         url: '/responds_to_get_with_502_error_json',
@@ -169,12 +173,12 @@ suite('AjaxProvider', () => {
         const errorMessage = JSON.stringify({message: 'an error has occurred'});
         await aTimeout(16);
         expect(spyEvent).toHaveBeenCalledTimes(1);
-        assert.equal(JSON.stringify(error.response), errorMessage);
+        expect(JSON.stringify(error.response)).toBe(errorMessage);
       });
       server.respond();
     });
 
-    test('The `ajaxerrorend` event gets fired', async () => {
+    it('The `ajaxerrorend` event gets fired', async () => {
       const spyEvent = vi.fn();
       const el = new AjaxProvider({
         url: '/responds_to_get_with_502_error_json',
@@ -187,7 +191,7 @@ suite('AjaxProvider', () => {
       server.respond();
     });
 
-    test('With includeDownloadProgress or includeUploadProgress, the ajaxprogress event can be triggered multiple times', async () => {
+    it('With includeDownloadProgress or includeUploadProgress, the ajaxprogress event can be triggered multiple times', async () => {
       const spyEvent = vi.fn();
       const el = new AjaxProvider({
         url: '/responds_to_post_with_json',
@@ -205,7 +209,7 @@ suite('AjaxProvider', () => {
       expect(spyEvent).toHaveBeenCalledTimes(5);
     });
 
-    test('Requests with a Form Data payload automatically remove the Content-Type header by default', async () => {
+    it('Requests with a Form Data payload automatically remove the Content-Type header by default', async () => {
       const el = new AjaxProvider({
         url: '/responds_to_post_with_json',
         method: 'POST',
@@ -215,10 +219,10 @@ suite('AjaxProvider', () => {
       server.respond();
       await aTimeout(16);
       const removeContentType = 'content-type' in (el.lastResponse?.request?.headers ?? {});
-      assert.notOk(removeContentType);
+      expect(removeContentType).toBe(false);
     });
 
-    test('Setting the avoidBoundary property to `true` does not remove the Content-Type header.', async () => {
+    it('Setting the avoidBoundary property to `true` does not remove the Content-Type header.', async () => {
       const el = new AjaxProvider({
         url: '/responds_to_post_with_json',
         method: 'POST',
@@ -229,10 +233,10 @@ suite('AjaxProvider', () => {
       server.respond();
       await aTimeout(16);
       const removeContentType = 'content-type' in (el.lastResponse?.request?.headers ?? {});
-      assert.ok(removeContentType);
+      expect(removeContentType).toBe(true);
     });
 
-    test('Retrieves response/error from lastResponse or lastError', async () => {
+    it('Retrieves response/error from lastResponse or lastError', async () => {
       const successMessage = JSON.stringify({success: 'true'});
       const otherMessage = JSON.stringify({other: 'true'});
       const errorMessage = JSON.stringify({message: 'an error has occurred'});
@@ -244,20 +248,20 @@ suite('AjaxProvider', () => {
       server.respond();
       await aTimeout(16);
 
-      assert.isUndefined(el.lastError?.response);
+      expect(el.lastError?.response).toBeUndefined();
 
       el.url = '/responds_to_get_with_502_error_json';
       el.generateRequest().catch(() => {
-        assert.equal(JSON.stringify(el.lastResponse?.response), successMessage);
-        assert.equal(JSON.stringify(el.lastError.response), errorMessage);
+        expect(JSON.stringify(el.lastResponse?.response)).toBe(successMessage);
+        expect(JSON.stringify(el.lastError?.response)).toBe(errorMessage);
       });
       server.respond();
       await aTimeout(16);
 
       el.url = '/responds_get_with_other_json';
       el.generateRequest().then(() => {
-        assert.equal(JSON.stringify(el.lastResponse?.response), otherMessage);
-        assert.equal(JSON.stringify(el.lastError.response), errorMessage);
+        expect(JSON.stringify(el.lastResponse?.response)).toBe(otherMessage);
+        expect(JSON.stringify(el.lastError?.response)).toBe(errorMessage);
       });
       server.respond();
     });
