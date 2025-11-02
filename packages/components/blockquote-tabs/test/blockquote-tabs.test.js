@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {suite, test, assert, expect, beforeEach, chai} from 'vitest';
+import {describe, it, expect, beforeEach, chai} from 'vitest';
 import {fixture, fixtureCleanup} from '@open-wc/testing-helpers';
 import {chaiA11yAxe} from 'chai-a11y-axe';
 import {getDiffableHTML} from '@open-wc/semantic-dom-diff/get-diffable-html.js';
@@ -9,14 +9,15 @@ chai.use(chaiA11yAxe);
 
 import '../src/define/blockquote-tabs.js';
 
-suite('BlockquoteTabs', () => {
+describe('BlockquoteTabs', () => {
   /**
    * @type {import('../src/index').BlockquoteTabs}
    */
   let el;
+  /** @type {string | null | undefined} */
   let elShadowRoot;
 
-  suite('Default', () => {
+  describe('Default', () => {
     beforeEach(async () => {
       el = await fixture(html`
         <blockquote-tabs>
@@ -35,92 +36,92 @@ suite('BlockquoteTabs', () => {
       };
     });
 
-    suite('Semantic Dom and a11y', () => {
-      test('SHADOW DOM - Structure test', async () => {
-        expect(getDiffableHTML(elShadowRoot, {ignoreAttributes: ['id']})).toMatchSnapshot(
+    describe('Semantic Dom and a11y', () => {
+      it('SHADOW DOM - Structure test', async () => {
+        expect(getDiffableHTML(elShadowRoot || '', {ignoreAttributes: ['id']})).toMatchSnapshot(
           'SHADOW DOM'
         );
       });
 
-      test('LIGHT DOM - Structure test', async () => {
+      it('LIGHT DOM - Structure test', async () => {
         expect(getDiffableHTML(el, {ignoreAttributes: ['id']})).toMatchSnapshot('LIGHT DOM');
       });
 
-      test('a11y', async () => {
-        await assert.isAccessible(el);
+      it('a11y', async () => {
+        await expect(el).accessible();
       });
 
-      test('Click on tab updates selected tab', async () => {
-        assert.equal(el.selected, 1);
+      it('Click on tab updates selected tab', async () => {
+        expect(el.selected).toBe(1);
         const tab = el.querySelectorAll('[role="tab"]')[2];
         tab.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true}));
         await el.updateComplete;
-        assert.equal(el.selected, 3);
+        expect(el.selected).toBe(3);
       });
 
-      test('ArrowRight on tab updates selected tab', async () => {
-        assert.equal(el.selected, 1);
+      it('ArrowRight on tab updates selected tab', async () => {
+        expect(el.selected).toBe(1);
         const tab = el.querySelector('[role="tab"]');
         tab?.dispatchEvent(
           new KeyboardEvent('keydown', {key: 'ArrowRight', bubbles: true, cancelable: true})
         );
         await el.updateComplete;
-        assert.equal(el.selected, 2);
+        expect(el.selected).toBe(2);
       });
 
-      test('ArrowLeft on tab updates selected tab', async () => {
-        assert.equal(el.selected, 1);
+      it('ArrowLeft on tab updates selected tab', async () => {
+        expect(el.selected).toBe(1);
         const tab = el.querySelector('[role="tab"]');
         tab?.dispatchEvent(
           new KeyboardEvent('keydown', {key: 'ArrowLeft', bubbles: true, cancelable: true})
         );
         await el.updateComplete;
-        assert.equal(el.selected, 3);
+        expect(el.selected).toBe(3);
       });
 
-      test('Home Key', async () => {
-        assert.equal(el.selected, 1);
+      it('Home Key', async () => {
+        expect(el.selected).toBe(1);
         const tabs = el.querySelectorAll('[role="tab"]');
         tabs[0]?.dispatchEvent(
           new KeyboardEvent('keydown', {key: 'ArrowLeft', bubbles: true, cancelable: true})
         );
         await el.updateComplete;
-        assert.equal(el.selected, 3);
+        expect(el.selected).toBe(3);
         tabs[el.selected - 1]?.dispatchEvent(
           new KeyboardEvent('keydown', {key: 'Home', bubbles: true, cancelable: true})
         );
         await el.updateComplete;
-        assert.equal(el.selected, 1);
+        expect(el.selected).toBe(1);
       });
 
-      test('End Key', async () => {
-        assert.equal(el.selected, 1);
+      it('End Key', async () => {
+        expect(el.selected).toBe(1);
         const tabs = el.querySelectorAll('[role="tab"]');
         tabs[el.selected - 1]?.dispatchEvent(
           new KeyboardEvent('keydown', {key: 'End', bubbles: true, cancelable: true})
         );
         await el.updateComplete;
-        assert.equal(el.selected, 3);
+        expect(el.selected).toBe(3);
       });
 
-      test('Default Key', async () => {
-        assert.equal(el.selected, 1);
+      it('Default Key', async () => {
+        expect(el.selected).toBe(1);
         const tabs = el.querySelectorAll('[role="tab"]');
         tabs[0]?.dispatchEvent(
           new KeyboardEvent('keydown', {key: 'ArrowLeft', bubbles: true, cancelable: true})
         );
         await el.updateComplete;
-        assert.equal(el.selected, 3);
+        expect(el.selected).toBe(3);
         tabs[el.selected - 1]?.dispatchEvent(
           new KeyboardEvent('keydown', {key: 'PageUp', bubbles: true, cancelable: true})
         );
         await el.updateComplete;
-        assert.equal(el.selected, 3);
+        expect(el.selected).toBe(3);
       });
     });
   });
 
-  suite('Autofocus', () => {
+  describe('Autofocus', () => {
     beforeEach(async () => {
       el = await fixture(html`
         <blockquote-tabs autofocus>
@@ -138,24 +139,24 @@ suite('BlockquoteTabs', () => {
       };
     });
 
-    suite('Semantic Dom and a11y', () => {
-      test('SHADOW DOM - Structure test', async () => {
-        expect(getDiffableHTML(elShadowRoot, {ignoreAttributes: ['id']})).toMatchSnapshot(
+    describe('Semantic Dom and a11y', () => {
+      it('SHADOW DOM - Structure test', async () => {
+        expect(getDiffableHTML(elShadowRoot || '', {ignoreAttributes: ['id']})).toMatchSnapshot(
           'SHADOW DOM'
         );
       });
 
-      test('LIGHT DOM - Structure test', async () => {
+      it('LIGHT DOM - Structure test', async () => {
         expect(getDiffableHTML(el, {ignoreAttributes: ['id']})).toMatchSnapshot('LIGHT DOM');
       });
 
-      test('a11y', async () => {
-        await assert.isAccessible(el);
+      it('a11y', async () => {
+        await expect(el).accessible();
       });
     });
   });
 
-  suite('Selected', () => {
+  describe('Selected', () => {
     beforeEach(async () => {
       el = await fixture(html`
         <blockquote-tabs selected="2">
@@ -173,19 +174,19 @@ suite('BlockquoteTabs', () => {
       };
     });
 
-    suite('Semantic Dom and a11y', () => {
-      test('SHADOW DOM - Structure test', async () => {
-        expect(getDiffableHTML(elShadowRoot, {ignoreAttributes: ['id']})).toMatchSnapshot(
+    describe('Semantic Dom and a11y', () => {
+      it('SHADOW DOM - Structure test', async () => {
+        expect(getDiffableHTML(elShadowRoot || '', {ignoreAttributes: ['id']})).toMatchSnapshot(
           'SHADOW DOM'
         );
       });
 
-      test('LIGHT DOM - Structure test', async () => {
+      it('LIGHT DOM - Structure test', async () => {
         expect(getDiffableHTML(el, {ignoreAttributes: ['id']})).toMatchSnapshot('LIGHT DOM');
       });
 
-      test('a11y', async () => {
-        await assert.isAccessible(el);
+      it('a11y', async () => {
+        await expect(el).accessible();
       });
     });
   });
