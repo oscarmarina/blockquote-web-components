@@ -67,7 +67,7 @@ export default defineConfig({
         lines: 80,
       },
       include: ['**/src/**/*'],
-      exclude: ['**/src/**/index.*', '**/src/styles/', '**/src/utils.*'],
+      exclude: ['**/src/**/index.*', '**/src/styles/'],
     },
   },
   plugins: [copy(copyConfig), totalBundlesize()],
