@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {suite, test, expect, beforeAll} from 'vitest';
+import {describe, it, expect, beforeAll} from 'vitest';
 import {fixture, fixtureCleanup} from '@open-wc/testing-helpers';
 import {getDiffableHTML} from '@open-wc/semantic-dom-diff/get-diffable-html.js';
 import {LitElement, svg, html} from 'lit';
@@ -84,14 +84,15 @@ const SvgToDataImageDemo = class BlockquoteDirectiveSvgToDataImageDemo extends L
 
 customElements.define('svg-to-data-image', SvgToDataImageDemo);
 
-suite('SVGtoDataImage', () => {
+describe('SVGtoDataImage', () => {
   /**
    * @type {SvgToDataImageDemo}
    */
   let el;
+  /** @type {string | null | undefined} */
   let elShadowRoot;
 
-  suite('base', () => {
+  describe('base', () => {
     beforeAll(async () => {
       el = await fixture(html`
         <svg-to-data-image></svg-to-data-image>
@@ -103,28 +104,28 @@ suite('SVGtoDataImage', () => {
       };
     });
 
-    test('Shadow DOM: SVG string', async () => {
+    it('Shadow DOM: SVG string', async () => {
       el.svgToRender = svgTag1;
       await el.updateComplete;
-      expect(getDiffableHTML(elShadowRoot)).toMatchSnapshot('SHADOW DOM');
+      expect(getDiffableHTML(elShadowRoot || '')).toMatchSnapshot('SHADOW DOM');
     });
 
-    test('Shadow DOM: SVG with interpolation', async () => {
+    it('Shadow DOM: SVG with interpolation', async () => {
       el.svgToRender = svgTag2;
       await el.updateComplete;
-      expect(getDiffableHTML(elShadowRoot)).toMatchSnapshot('SHADOW DOM');
+      expect(getDiffableHTML(elShadowRoot || '')).toMatchSnapshot('SHADOW DOM');
     });
 
-    test('Shadow DOM: SVG with interpolation 2', async () => {
+    it('Shadow DOM: SVG with interpolation 2', async () => {
       el.svgToRender = svgTag3;
       await el.updateComplete;
-      expect(getDiffableHTML(elShadowRoot)).toMatchSnapshot('SHADOW DOM');
+      expect(getDiffableHTML(elShadowRoot || '')).toMatchSnapshot('SHADOW DOM');
     });
 
-    test('Shadow DOM: non-TemplateResult', async () => {
+    it('Shadow DOM: non-TemplateResult', async () => {
       el.svgToRender = /** @type {*} */ (circleString);
       await el.updateComplete;
-      expect(getDiffableHTML(elShadowRoot)).toMatchSnapshot('SHADOW DOM');
+      expect(getDiffableHTML(elShadowRoot || '')).toMatchSnapshot('SHADOW DOM');
     });
   });
 });
