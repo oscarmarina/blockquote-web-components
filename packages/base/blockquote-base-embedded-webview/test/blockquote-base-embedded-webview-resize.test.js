@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {suite, test, assert, expect, beforeAll, chai} from 'vitest';
+import {describe, it, expect, beforeAll, chai} from 'vitest';
 import {fixture, fixtureCleanup} from '@open-wc/testing-helpers';
 import {chaiA11yAxe} from 'chai-a11y-axe';
 import {getDiffableHTML} from '@open-wc/semantic-dom-diff/get-diffable-html.js';
@@ -25,75 +25,67 @@ export const makePointerEvent = (type, xy = {x: 0, y: 0}, node) => {
   node.dispatchEvent(new PointerEvent(type, props));
 };
 
-suite('BlockquoteBaseEmbeddedWebviewResize', () => {
+describe('BlockquoteBaseEmbeddedWebviewResize', () => {
   /**
    * @type {import('../src/index').BlockquoteBaseEmbeddedWebviewResize}
    */
   let el;
-  let elShadowRoot;
-  let rect;
-  let bottomRightResizerElement;
-  let bottomLeftResizerElement;
-  let rightResizerElement;
-  let leftResizerElement;
-  let bottomResizerElement;
+  /** @type {string | null | undefined} */
+  let elShadowRootHTML;
 
   const dblclickEvent = new MouseEvent('dblclick');
 
-  suite('Default', () => {
+  describe('Default', () => {
     beforeAll(async () => {
       el = await fixture(html`
         <blockquote-base-embedded-webview-resize></blockquote-base-embedded-webview-resize>
       `);
-      elShadowRoot = el?.shadowRoot?.innerHTML;
+      elShadowRootHTML = el?.shadowRoot?.innerHTML;
       return () => {
         fixtureCleanup();
       };
     });
 
-    test('SHADOW DOM - Structure test', () => {
-      expect(getDiffableHTML(elShadowRoot)).toMatchSnapshot('SHADOW DOM');
+    it('SHADOW DOM - Structure test', () => {
+      if (elShadowRootHTML == null) {
+        throw new Error('Expected shadow root HTML content');
+      }
+      expect(getDiffableHTML(elShadowRootHTML)).toMatchSnapshot('SHADOW DOM');
     });
 
-    test('LIGHT DOM - Structure test', () => {
+    it('LIGHT DOM - Structure test', () => {
       expect(getDiffableHTML(el)).toMatchSnapshot('LIGHT DOM');
     });
 
-    test('a11y', async () => {
-      await assert.isAccessible(el);
+    it('a11y', async () => {
+      await expect(el).accessible();
     });
   });
 
-  suite('Resizing', () => {
+  describe('Resizing', () => {
     beforeAll(async () => {
       el = await fixture(html`
         <blockquote-base-embedded-webview-resize></blockquote-base-embedded-webview-resize>
       `);
-      elShadowRoot = el?.shadowRoot;
-      rect = elShadowRoot?.querySelector('.rect');
-      bottomRightResizerElement = elShadowRoot?.querySelector('.resizer-se');
-      bottomLeftResizerElement = elShadowRoot?.querySelector('.resizer-sw');
-      rightResizerElement = elShadowRoot?.querySelector('.resizer-e');
-      leftResizerElement = elShadowRoot?.querySelector('.resizer-w');
-      bottomResizerElement = elShadowRoot?.querySelector('.resizer-s');
-
       return () => {
         fixtureCleanup();
       };
     });
 
-    test('Initial size is defined by CSS', () => {
-      assert.strictEqual(
-        rect.getBoundingClientRect().width,
-        parseInt(getComputedStyle(rect).width, 10)
+    it('Initial size is defined by CSS', () => {
+      const rectEl = el.shadowRoot?.querySelector('.rect');
+      if (!rectEl) {
+        throw new Error('Expected resizable element');
+      }
+      expect(rectEl.getBoundingClientRect().width).toBe(
+        parseInt(getComputedStyle(rectEl).width, 10)
       );
-      assert.strictEqual(
-        rect.getBoundingClientRect().height,
-        parseInt(getComputedStyle(rect).height, 10)
+      expect(rectEl.getBoundingClientRect().height).toBe(
+        parseInt(getComputedStyle(rectEl).height, 10)
       );
     });
 
-    test('Double click go back initial CSS', async () => {
+    it('Double click go back initial CSS', async () => {
       const elDblclick = await fixture(html`
         <blockquote-base-embedded-webview-resize
           id="dblclick"
@@ -102,52 +94,76 @@ suite('BlockquoteBaseEmbeddedWebviewResize', () => {
             --blockquote-base-embedded-webview-resize-rect-height:640px;"></blockquote-base-embedded-webview-resize>
       `);
       const bottomResizerElementDblclick = elDblclick.shadowRoot?.querySelector('.resizer-s');
-      assert.isTrue(elDblclick.hasAttribute('style'));
+      expect(elDblclick.hasAttribute('style')).toBe(true);
       bottomResizerElementDblclick?.dispatchEvent(dblclickEvent);
-      assert.isFalse(elDblclick.hasAttribute('style'));
+      expect(elDblclick.hasAttribute('style')).toBe(false);
     });
 
-    test('Resize bottomRight', () => {
-      assert.isFalse(el.hasAttribute('resizing'));
-      makePointerEvent('pointerdown', {y: 4, x: 4}, bottomRightResizerElement);
-      makePointerEvent('pointermove', {y: 10, x: 10}, bottomRightResizerElement);
-      assert.isTrue(el.hasAttribute('resizing'));
-      makePointerEvent('pointerup', {y: 10, x: 10}, bottomRightResizerElement);
+    it('Resize bottomRight', () => {
+      const bottomRight = el.shadowRoot?.querySelector('.resizer-se');
+      if (!bottomRight) {
+        throw new Error('Expected bottom-right resizer element');
+      }
+      expect(el.hasAttribute('resizing')).toBe(false);
+      makePointerEvent('pointerdown', {y: 4, x: 4}, bottomRight);
+      makePointerEvent('pointermove', {y: 10, x: 10}, bottomRight);
+      expect(el.hasAttribute('resizing')).toBe(true);
+      makePointerEvent('pointerup', {y: 10, x: 10}, bottomRight);
     });
-    test('Resize bottomLeft', () => {
-      assert.isFalse(el.hasAttribute('resizing'));
-      makePointerEvent('pointerdown', {y: 4, x: 4}, bottomLeftResizerElement);
-      makePointerEvent('pointermove', {y: 10, x: 10}, bottomLeftResizerElement);
-      assert.isTrue(el.hasAttribute('resizing'));
-      makePointerEvent('pointerup', {y: 10, x: 10}, bottomLeftResizerElement);
+    it('Resize bottomLeft', () => {
+      const bottomLeft = el.shadowRoot?.querySelector('.resizer-sw');
+      if (!bottomLeft) {
+        throw new Error('Expected bottom-left resizer element');
+      }
+      expect(el.hasAttribute('resizing')).toBe(false);
+      makePointerEvent('pointerdown', {y: 4, x: 4}, bottomLeft);
+      makePointerEvent('pointermove', {y: 10, x: 10}, bottomLeft);
+      expect(el.hasAttribute('resizing')).toBe(true);
+      makePointerEvent('pointerup', {y: 10, x: 10}, bottomLeft);
     });
-    test('Resize right', () => {
-      assert.isFalse(el.hasAttribute('resizing'));
-      makePointerEvent('pointerdown', {y: 4, x: 4}, rightResizerElement);
-      makePointerEvent('pointermove', {y: 10, x: 10}, rightResizerElement);
-      assert.isTrue(el.hasAttribute('resizing'));
-      makePointerEvent('pointerup', {y: 10, x: 10}, rightResizerElement);
+    it('Resize right', () => {
+      const rightResizer = el.shadowRoot?.querySelector('.resizer-e');
+      if (!rightResizer) {
+        throw new Error('Expected right resizer element');
+      }
+      expect(el.hasAttribute('resizing')).toBe(false);
+      makePointerEvent('pointerdown', {y: 4, x: 4}, rightResizer);
+      makePointerEvent('pointermove', {y: 10, x: 10}, rightResizer);
+      expect(el.hasAttribute('resizing')).toBe(true);
+      makePointerEvent('pointerup', {y: 10, x: 10}, rightResizer);
     });
-    test('Resize left', () => {
-      assert.isFalse(el.hasAttribute('resizing'));
-      makePointerEvent('pointerdown', {y: 4, x: 4}, leftResizerElement);
-      makePointerEvent('pointermove', {y: 10, x: 10}, leftResizerElement);
-      assert.isTrue(el.hasAttribute('resizing'));
-      makePointerEvent('pointerup', {y: 10, x: 10}, leftResizerElement);
+    it('Resize left', () => {
+      const leftResizer = el.shadowRoot?.querySelector('.resizer-w');
+      if (!leftResizer) {
+        throw new Error('Expected left resizer element');
+      }
+      expect(el.hasAttribute('resizing')).toBe(false);
+      makePointerEvent('pointerdown', {y: 4, x: 4}, leftResizer);
+      makePointerEvent('pointermove', {y: 10, x: 10}, leftResizer);
+      expect(el.hasAttribute('resizing')).toBe(true);
+      makePointerEvent('pointerup', {y: 10, x: 10}, leftResizer);
     });
-    test('Resize bottom', () => {
-      assert.isFalse(el.hasAttribute('resizing'));
-      makePointerEvent('pointerdown', {y: 4, x: 4}, bottomResizerElement);
-      makePointerEvent('pointermove', {y: 10, x: 10}, bottomResizerElement);
-      assert.isTrue(el.hasAttribute('resizing'));
-      makePointerEvent('pointerup', {y: 10, x: 10}, bottomResizerElement);
+    it('Resize bottom', () => {
+      const bottomResizer = el.shadowRoot?.querySelector('.resizer-s');
+      if (!bottomResizer) {
+        throw new Error('Expected bottom resizer element');
+      }
+      expect(el.hasAttribute('resizing')).toBe(false);
+      makePointerEvent('pointerdown', {y: 4, x: 4}, bottomResizer);
+      makePointerEvent('pointermove', {y: 10, x: 10}, bottomResizer);
+      expect(el.hasAttribute('resizing')).toBe(true);
+      makePointerEvent('pointerup', {y: 10, x: 10}, bottomResizer);
     });
-    test('Toogle resizing attribute', () => {
-      makePointerEvent('pointerdown', {y: 4, x: 4}, bottomResizerElement);
-      makePointerEvent('pointermove', {y: 10, x: 10}, bottomResizerElement);
-      assert.isTrue(el.hasAttribute('resizing'));
-      makePointerEvent('pointerup', {y: 10, x: 10}, bottomResizerElement);
-      assert.isFalse(el.hasAttribute('resizing'));
+    it('Toogle resizing attribute', () => {
+      const bottomResizer = el.shadowRoot?.querySelector('.resizer-s');
+      if (!bottomResizer) {
+        throw new Error('Expected bottom resizer element');
+      }
+      makePointerEvent('pointerdown', {y: 4, x: 4}, bottomResizer);
+      makePointerEvent('pointermove', {y: 10, x: 10}, bottomResizer);
+      expect(el.hasAttribute('resizing')).toBe(true);
+      makePointerEvent('pointerup', {y: 10, x: 10}, bottomResizer);
+      expect(el.hasAttribute('resizing')).toBe(false);
     });
   });
 });

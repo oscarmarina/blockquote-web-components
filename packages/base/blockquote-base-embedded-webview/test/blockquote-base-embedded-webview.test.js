@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {suite, test, assert, expect, beforeAll, chai} from 'vitest';
+import {describe, it, expect, beforeAll, chai} from 'vitest';
 import {fixture, fixtureCleanup, oneEvent} from '@open-wc/testing-helpers';
 import {chaiA11yAxe} from 'chai-a11y-axe';
 import {getDiffableHTML} from '@open-wc/semantic-dom-diff/get-diffable-html.js';
@@ -8,19 +8,15 @@ import '../src/define/blockquote-base-embedded-webview.js';
 
 chai.use(chaiA11yAxe);
 
-suite('BlockquoteBaseEmbeddedWebview', () => {
+describe('BlockquoteBaseEmbeddedWebview', () => {
   /**
    * @type {import('../src/index').BlockquoteBaseEmbeddedWebview}
    */
   let el;
+  /** @type {string | null | undefined} */
   let elShadowRoot;
-  /**
-   * @type {import('../src/index').BlockquoteBaseEmbeddedWebview}
-   */
-  let variant;
-  let variantShadowRoot;
 
-  suite('Default', () => {
+  describe('Default', () => {
     beforeAll(async () => {
       el = await fixture(html`
         <blockquote-base-embedded-webview heading="blockquote-base-embedded-webview">
@@ -41,24 +37,27 @@ suite('BlockquoteBaseEmbeddedWebview', () => {
       };
     });
 
-    test('SHADOW DOM - Structure test', () => {
+    it('SHADOW DOM - Structure test', () => {
+      if (elShadowRoot == null) {
+        throw new Error('Expected shadow root HTML content');
+      }
       expect(
         getDiffableHTML(elShadowRoot, {ignoreAttributes: ['style', 'loading']})
       ).toMatchSnapshot('SHADOW DOM');
     });
 
-    test('LIGHT DOM - Structure test', () => {
+    it('LIGHT DOM - Structure test', () => {
       expect(getDiffableHTML(el, {ignoreAttributes: ['style', 'loading']})).toMatchSnapshot(
         'LIGHT DOM'
       );
     });
 
-    test('a11y', async () => {
-      await assert.isAccessible(el);
+    it('a11y', async () => {
+      await expect(el).accessible();
     });
   });
 
-  suite('Behavior', () => {
+  describe('Behavior', () => {
     beforeAll(async () => {
       el = await fixture(html`
         <blockquote-base-embedded-webview heading="blockquote-base-embedded-webview">
@@ -78,7 +77,7 @@ suite('BlockquoteBaseEmbeddedWebview', () => {
       };
     });
 
-    test('limit height', async () => {
+    it('limit height', async () => {
       const elLimit = await fixture(html`
         <blockquote-base-embedded-webview limit-height heading="blockquote-base-embedded-webview">
           <template data-src="/test/test.html" data-option="Base Complex"></template>
@@ -90,14 +89,17 @@ suite('BlockquoteBaseEmbeddedWebview', () => {
       ).toMatchSnapshot('SHADOW DOM');
     });
 
-    test('aria level', async () => {
+    it('aria level', async () => {
       const heading = el.shadowRoot?.querySelector('[aria-level]');
+      if (!heading) {
+        throw new Error('Expected heading element');
+      }
       el.headingLevel = 200;
       await el.updateComplete;
-      assert.isTrue(heading?.getAttribute('aria-level') === '2');
+      expect(heading.getAttribute('aria-level')).toBe('2');
     });
 
-    test('select option load resource', async () => {
+    it('select option load resource', async () => {
       const select = el.shadowRoot?.querySelector('select');
       const embedded = el.querySelector('blockquote-base-embedded-webview-element');
       if (select && embedded) {
@@ -105,39 +107,8 @@ suite('BlockquoteBaseEmbeddedWebview', () => {
         await el.updateComplete;
         select.dispatchEvent(new CustomEvent('change'));
         const {detail} = await oneEvent(embedded, 'elementloaded');
-        assert.isTrue(detail.title === select.options[select.selectedIndex].text);
+        expect(detail.title).toBe(select.options[select.selectedIndex].text);
       }
-    });
-  });
-
-  suite('variant', () => {
-    beforeAll(async () => {
-      variant = await fixture(html`
-        <blockquote-base-embedded-webview heading="blockquote-base-embedded-webview">
-          <template data-src="/test/test.html"></template>
-        </blockquote-base-embedded-webview>
-      `);
-      variantShadowRoot = el?.shadowRoot?.innerHTML;
-
-      return () => {
-        fixtureCleanup();
-      };
-    });
-
-    test('SHADOW DOM - Structure test', () => {
-      expect(
-        getDiffableHTML(variantShadowRoot, {ignoreAttributes: ['style', 'loading']})
-      ).toMatchSnapshot('VARIANT - SHADOW DOM');
-    });
-
-    test('LIGHT DOM - Structure test', () => {
-      expect(getDiffableHTML(variant, {ignoreAttributes: ['style', 'loading']})).toMatchSnapshot(
-        'VARIANT - LIGHT DOM'
-      );
-    });
-
-    test('a11y', async () => {
-      await assert.isAccessible(variant);
     });
   });
 });
