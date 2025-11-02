@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {suite, test, assert, beforeAll} from 'vitest';
+import {describe, it, expect, beforeAll} from 'vitest';
 import {fixture, fixtureCleanup} from '@open-wc/testing-helpers';
 import {html, css} from 'lit';
 import {setDocumentStyles} from '../src/index.js';
@@ -21,13 +21,15 @@ const setCss2 = css`
 setDocumentStyles(setCss);
 setDocumentStyles([setCss2]);
 
-suite('BlockquoteBaseStyleHelpers', () => {
-  suite('document styles', () => {
+describe('BlockquoteBaseStyleHelpers', () => {
+  describe('document styles', () => {
     /**
      * @type {import('./document-element').DocumentElement | null}
      */
     let el;
+    /** @type {HTMLElement} */
     let fixtureNode;
+    /** @type {HTMLElement | null} */
     let outerShared;
 
     beforeAll(async () => {
@@ -45,34 +47,37 @@ suite('BlockquoteBaseStyleHelpers', () => {
       };
     });
 
-    test('`<document-element>` .docu-element1 has red background-color - component default styles', () => {
+    it('`<document-element>` .docu-element1 has red background-color - component default styles', () => {
       const docuElement1 = el?.shadowRoot?.querySelector('.docu-element1');
       if (docuElement1) {
-        assert.equal(window.getComputedStyle(docuElement1).backgroundColor, 'rgb(255, 0, 0)');
+        expect(window.getComputedStyle(docuElement1).backgroundColor).toBe('rgb(255, 0, 0)');
       }
     });
 
-    test('`<document-element>` .docu-element1 has pink background-color - document-level styles', () => {
+    it('`<document-element>` .docu-element1 has pink background-color - document-level styles', () => {
       fixtureNode.style.cssText = '--docu-element1-bg: pink;';
       const docuElement1 = el?.shadowRoot?.querySelector('.docu-element1');
       if (docuElement1) {
-        assert.equal(window.getComputedStyle(docuElement1).backgroundColor, 'rgb(255, 192, 203)');
+        expect(window.getComputedStyle(docuElement1).backgroundColor).toBe('rgb(255, 192, 203)');
       }
     });
 
-    test('`<document-element>` .docu-element2 has green background-color - component default styles', () => {
+    it('`<document-element>` .docu-element2 has green background-color - component default styles', () => {
       const docuElement2 = el?.shadowRoot?.querySelector('.docu-element2');
       if (docuElement2) {
-        assert.equal(window.getComputedStyle(docuElement2).backgroundColor, 'rgb(0, 128, 0)');
+        expect(window.getComputedStyle(docuElement2).backgroundColor).toBe('rgb(0, 128, 0)');
       }
     });
 
-    test('`<div class="docu-element2">` .docu-element2 has blue background-color - document-level styles', () => {
-      assert.equal(window.getComputedStyle(outerShared).backgroundColor, 'rgb(0, 0, 255)');
+    it('`<div class="docu-element2">` .docu-element2 has blue background-color - document-level styles', () => {
+      if (!outerShared) {
+        throw new Error('Expected outer shared element to exist');
+      }
+      expect(window.getComputedStyle(outerShared).backgroundColor).toBe('rgb(0, 0, 255)');
     });
   });
 
-  suite('shared styles', () => {
+  describe('shared styles', () => {
     /**
      * @type {import('./shared-element').SharedElement}
      */
@@ -87,17 +92,17 @@ suite('BlockquoteBaseStyleHelpers', () => {
       };
     });
 
-    test('`<shared-element>` .shared1 has red background-color - component default styling', () => {
+    it('`<shared-element>` .shared1 has red background-color - component default styling', () => {
       const shared1 = el?.shadowRoot?.querySelector('.shared1');
       if (shared1) {
-        assert.equal(window.getComputedStyle(shared1).backgroundColor, 'rgb(255, 0, 0)');
+        expect(window.getComputedStyle(shared1).backgroundColor).toBe('rgb(255, 0, 0)');
       }
     });
 
-    test('`<shared-element>` .shared2 has pink background-color - component shared styles', () => {
+    it('`<shared-element>` .shared2 has pink background-color - component shared styles', () => {
       const shared2 = el?.shadowRoot?.querySelector('.shared2');
       if (shared2) {
-        assert.equal(window.getComputedStyle(shared2).backgroundColor, 'rgb(255, 192, 203)');
+        expect(window.getComputedStyle(shared2).backgroundColor).toBe('rgb(255, 192, 203)');
       }
     });
   });
