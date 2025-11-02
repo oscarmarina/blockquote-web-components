@@ -1,46 +1,49 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {suite, test, assert, beforeAll, beforeEach} from 'vitest';
+import {describe, it, expect, beforeAll, beforeEach} from 'vitest';
 import {BlockquoteBaseMeta} from '../src/index.js';
 
-suite('BlockquoteBaseMeta', () => {
-  suite('init', () => {
-    test('has types', () => {
+describe('BlockquoteBaseMeta', () => {
+  describe('init', () => {
+    it('has types', () => {
       const meta = new BlockquoteBaseMeta({key: 'info', value: 'foo/bar'});
-      assert.isDefined(/** @type {*} */ (meta.constructor).types);
+      const metaCtor = /** @type {any} */ (meta.constructor);
+      expect(metaCtor.types).toBeDefined();
     });
 
-    test('has metaId', () => {
+    it('has metaId', () => {
       const meta = new BlockquoteBaseMeta({key: 'info', value: 'foo/bar'});
-      assert.isDefined(/** @type {*} */ (meta.constructor).uuid);
+      const metaCtor = /** @type {any} */ (meta.constructor);
+      expect(metaCtor.uuid).toBeDefined();
     });
 
-    test('byKey', () => {
+    it('byKey', () => {
       const keyInfo = {id: 'dsfaskj0'};
       const meta = new BlockquoteBaseMeta({key: keyInfo, value: 'foo/bar'});
-      assert.equal(meta.byKey(keyInfo), meta.value);
+      expect(meta.byKey(keyInfo)).toBe(meta.value);
       meta.value = null;
     });
 
-    test('list', () => {
+    it('list', () => {
       const meta = new BlockquoteBaseMeta({key: 'info', value: 'foo/bar'});
-      assert.equal(meta.list.length, 1);
+      expect(meta.list).toHaveLength(1);
     });
 
-    test('getting `list` does not throw if no objects of the given type exist', () => {
+    it('getting `list` does not throw if no objects of the given type exist', () => {
       const meta = new BlockquoteBaseMeta({type: 'NO ITEMS OF THIS TYPE'});
-      assert.doesNotThrow(() => {
-        meta.list;
-      });
+      expect(() => {
+        void meta.list;
+      }).not.toThrow();
     });
 
-    test('constructor with no arguments', () => {
-      assert.doesNotThrow(() => {
+    it('constructor with no arguments', () => {
+      expect(() => {
         new BlockquoteBaseMeta();
-      });
+      }).not.toThrow();
     });
   });
 
-  suite('basic behavior', () => {
+  describe('basic behavior', () => {
+    /** @type {BlockquoteBaseMeta} */
     let meta;
 
     beforeEach(() => {
@@ -51,37 +54,41 @@ suite('BlockquoteBaseMeta', () => {
       };
     });
 
-    test('can be assigned alternative values', () => {
+    it('can be assigned alternative values', () => {
       meta.value = 'foobar';
       meta.value = 'barfoo';
-      assert.equal(meta.list[0], 'barfoo');
+      expect(meta.list[0]).toBe('barfoo');
     });
 
-    test('can access same-type meta values by key', () => {
-      assert.equal(meta.byKey(meta.key), meta.value);
+    it('can access same-type meta values by key', () => {
+      expect(meta.byKey(meta.key)).toBe(meta.value);
     });
 
-    test('yields a list of same-type meta data', () => {
-      assert.isArray(meta.list);
-      assert.equal(meta.list.length, 1);
-      assert.equal(meta.list[0], 'foo/bar');
+    it('yields a list of same-type meta data', () => {
+      expect(Array.isArray(meta.list)).toBe(true);
+      expect(meta.list).toHaveLength(1);
+      expect(meta.list[0]).toBe('foo/bar');
     });
 
-    test('yields of same-type like Object', () => {
-      assert.deepEqual(meta.objectList, {
+    it('yields of same-type like Object', () => {
+      expect(meta.objectList).toEqual({
         info: 'foo/bar',
       });
     });
 
-    test('yields of same-type like Map', () => {
+    it('yields of same-type like Map', () => {
       const iterableListValue = meta.mapList.entries().next().value;
-      assert.isArray(iterableListValue);
-      assert.equal(iterableListValue[0], 'info');
-      assert.equal(iterableListValue[1], 'foo/bar');
+      expect(Array.isArray(iterableListValue)).toBe(true);
+      if (!iterableListValue) {
+        throw new Error('Expected iterable map entry');
+      }
+      expect(iterableListValue[0]).toBe('info');
+      expect(iterableListValue[1]).toBe('foo/bar');
     });
   });
 
-  suite('many same-typed metas', () => {
+  describe('many same-typed metas', () => {
+    /** @type {BlockquoteBaseMeta[]} */
     const metas = [];
 
     beforeAll(() => {
@@ -98,30 +105,31 @@ suite('BlockquoteBaseMeta', () => {
       };
     });
 
-    test('all cache all meta values', () => {
+    it('all cache all meta values', () => {
       metas.forEach((meta) => {
-        assert.equal(meta.list.length, metas.length);
-        assert.operator(meta.list.indexOf(meta.value), '>=', 0);
+        expect(meta.list).toHaveLength(metas.length);
+        expect(meta.list.indexOf(meta.value)).toBeGreaterThanOrEqual(0);
       });
     });
 
-    test('can be unregistered individually', () => {
+    it('can be unregistered individually', () => {
       metas[0].value = null;
-      assert.equal(metas[0].list.length, 2);
-      assert.includeMembers(metas[0].list, ['foo/bar2', 'foo/bar3']);
+      expect(metas[0].list).toHaveLength(2);
+      expect(metas[0].list).toEqual(expect.arrayContaining(['foo/bar2', 'foo/bar3']));
     });
 
-    test('can access each others value (same type) by key', () => {
-      assert.equal(metas[2].byKey('default2'), metas[1].value);
+    it('can access each others value (same type) by key', () => {
+      expect(metas[2].byKey('default2')).toBe(metas[1].value);
     });
 
-    test('when access to other value (same type) by key, not lose your own value', () => {
-      assert.equal(metas[2].byKey('default1'), metas[0].value);
-      assert.equal(metas[2].value, 'foo/bar3');
+    it('when access to other value (same type) by key, not lose your own value', () => {
+      expect(metas[2].byKey('default1')).toBe(metas[0].value);
+      expect(metas[2].value).toBe('foo/bar3');
     });
   });
 
-  suite('different-typed metas', () => {
+  describe('different-typed metas', () => {
+    /** @type {BlockquoteBaseMeta[]} */
     const metasType = [];
 
     beforeAll(() => {
@@ -145,24 +153,25 @@ suite('BlockquoteBaseMeta', () => {
       };
     });
 
-    test('cache their values separately', () => {
+    it('cache their values separately', () => {
       const fooMeta = metasType[0];
       const barMeta = metasType[1];
 
-      assert.notEqual(fooMeta.value, barMeta.value);
-      assert.equal(fooMeta.byKey('foobarKey'), fooMeta.value);
-      assert.equal(barMeta.byKey('foobarKey'), barMeta.value);
+      expect(fooMeta.value).not.toBe(barMeta.value);
+      expect(fooMeta.byKey('foobarKey')).toBe(fooMeta.value);
+      expect(barMeta.byKey('foobarKey')).toBe(barMeta.value);
     });
 
-    test('only list values of their type', () => {
+    it('only list values of their type', () => {
       metasType.forEach((meta) => {
-        assert.equal(meta.list.length, 1);
-        assert.equal(meta.list[0], meta.value);
+        expect(meta.list).toHaveLength(1);
+        expect(meta.list[0]).toBe(meta.value);
       });
     });
   });
 
-  suite('metas with clashing keys', () => {
+  describe('metas with clashing keys', () => {
+    /** @type {BlockquoteBaseMeta[]} */
     const metaPair = [];
 
     beforeAll(() => {
@@ -178,12 +187,12 @@ suite('BlockquoteBaseMeta', () => {
       };
     });
 
-    test('let the last value win registration against the key', () => {
+    it('let the last value win registration against the key', () => {
       const registeredValue = metaPair[0].byKey(metaPair[0].key);
       const firstValue = metaPair[0].value;
       const secondValue = metaPair[1].value;
-      assert.equal(firstValue, secondValue);
-      assert.equal(registeredValue, secondValue);
+      expect(firstValue).toBe(secondValue);
+      expect(registeredValue).toBe(secondValue);
     });
   });
 });
