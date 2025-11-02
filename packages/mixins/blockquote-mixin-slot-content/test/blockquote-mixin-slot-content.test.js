@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {suite, test, assert, beforeAll} from 'vitest';
+import {describe, it, expect, beforeAll} from 'vitest';
 import {fixture, fixtureCleanup} from '@open-wc/testing-helpers';
 import {html, LitElement} from 'lit';
 import {BlockquoteMixinSlotContent} from '../src/index.js';
@@ -28,13 +28,13 @@ const slotContentBase = class slotContent extends BlockquoteMixinSlotContent(Lit
 
 customElements.define('slot-element', slotContentBase);
 
-suite('BlockquoteMixinSlotContent', () => {
+describe('BlockquoteMixinSlotContent', () => {
   /**
    * @type {slotContentBase}
    */
   let el;
 
-  suite('Without content', () => {
+  describe('Without content', () => {
     beforeAll(async () => {
       el = await fixture(html`
         <slot-element></slot-element>
@@ -44,12 +44,12 @@ suite('BlockquoteMixinSlotContent', () => {
       };
     });
 
-    test('slotchanges event is not fired', () => {
-      assert.isFalse(el.hasAttribute('propSlot'));
+    it('slotchanges event is not fired', () => {
+      expect(el.hasAttribute('propSlot')).toBe(false);
     });
   });
 
-  suite('With content', () => {
+  describe('With content', () => {
     beforeAll(async () => {
       el = await fixture(html`
         <slot-element>s</slot-element>
@@ -59,15 +59,15 @@ suite('BlockquoteMixinSlotContent', () => {
       };
     });
 
-    test('slotchanges event is fired', () => {
-      assert.isTrue(el.hasAttribute('propSlot'));
+    it('slotchanges event is fired', () => {
+      expect(el.hasAttribute('propSlot')).toBe(true);
     });
 
-    test('slotchanges event has content for the slot', () => {
-      assert.isTrue(el.hasAttribute('slotContent'));
+    it('slotchanges event has content for the slot', () => {
+      expect(el.hasAttribute('slotContent')).toBe(true);
     });
   });
-  suite('Removing content', () => {
+  describe('Removing content', () => {
     beforeAll(async () => {
       el = await fixture(html`
         <slot-element><span>s</span></slot-element>
@@ -77,16 +77,16 @@ suite('BlockquoteMixinSlotContent', () => {
       };
     });
 
-    test('removing content sends empty array as contentSlots', async () => {
-      assert.isTrue(el.hasAttribute('slotContent'));
+    it('removing content sends empty array as contentSlots', async () => {
+      expect(el.hasAttribute('slotContent')).toBe(true);
       const childSpan = el.querySelector('span');
       childSpan?.remove();
       await el.updateComplete;
-      assert.isFalse(el.hasAttribute('slotContent'));
+      expect(el.hasAttribute('slotContent')).toBe(false);
     });
   });
 
-  suite('Content is a blank space', () => {
+  describe('Content is a blank space', () => {
     beforeAll(async () => {
       el = await fixture(html`
         <slot-element>&nbsp;</slot-element>
@@ -96,12 +96,12 @@ suite('BlockquoteMixinSlotContent', () => {
       };
     });
 
-    test('slotchanges event is fired', () => {
-      assert.isTrue(el.hasAttribute('propSlot'));
+    it('slotchanges event is fired', () => {
+      expect(el.hasAttribute('propSlot')).toBe(true);
     });
 
-    test('slotchanges event has not content for the slot', () => {
-      assert.isFalse(el.hasAttribute('slotContent'));
+    it('slotchanges event has not content for the slot', () => {
+      expect(el.hasAttribute('slotContent')).toBe(false);
     });
   });
 });
