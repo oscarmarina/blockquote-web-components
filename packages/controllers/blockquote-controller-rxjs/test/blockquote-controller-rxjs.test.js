@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import {from, Subject} from 'rxjs';
-import {suite, test, assert, beforeAll} from 'vitest';
+import {describe, it, expect, beforeAll} from 'vitest';
 import {fixture, fixtureCleanup} from '@open-wc/testing-helpers';
 import {html, LitElement} from 'lit';
 import {BlockquoteControllerRxjs} from '../src/index.js';
@@ -22,10 +22,22 @@ const RxjsDemo = class BlockquoteControllerRxjsDemo extends LitElement {
     this.streamValuesUpdate = 0;
   }
 
+  /**
+   * @typedef {import('rxjs').Observable<number>} StreamObservable
+   */
+
+  /**
+   * @param {StreamObservable} stream$
+   * @returns {void}
+   */
   setupObservable(stream$) {
     this.rx.subscribe('streamValues', stream$);
   }
 
+  /**
+   * @param {StreamObservable} stream$
+   * @returns {void}
+   */
   setupObservableNeedUpdate(stream$) {
     this.rx.subscribe('streamValuesUpdate', stream$);
   }
@@ -40,13 +52,13 @@ const RxjsDemo = class BlockquoteControllerRxjsDemo extends LitElement {
 
 window.customElements.define('blockquote-controller-rxjs-demo', RxjsDemo);
 
-suite('BlockquoteControllerRxjs', () => {
+describe('BlockquoteControllerRxjs', () => {
   /**
    * @type {RxjsDemo}
    */
   let el;
 
-  suite('Default', () => {
+  describe('Default', () => {
     beforeAll(async () => {
       el = await fixture(html`
         <blockquote-controller-rxjs-demo></blockquote-controller-rxjs-demo>
@@ -56,60 +68,61 @@ suite('BlockquoteControllerRxjs', () => {
       };
     });
 
-    test('can handle simple Observable - with Reactive property', async () => {
+    it('can handle simple Observable - with Reactive property', async () => {
       const nodeText = el.shadowRoot?.querySelector('b');
       el.setupObservable(from([1]));
-      assert.equal(el.streamValues, 1);
+      expect(el.streamValues).toBe(1);
       await el.updateComplete;
-      assert.equal(nodeText?.textContent, '1');
+      expect(nodeText?.textContent).toBe('1');
     });
 
-    test('can handle simple Observable - without Reactive property', async () => {
+    it('can handle simple Observable - without Reactive property', async () => {
       const nodeText = el.shadowRoot?.querySelector('i');
       el.setupObservableNeedUpdate(from([2]));
-      assert.equal(el.streamValuesUpdate, 2);
+      expect(el.streamValuesUpdate).toBe(2);
       await el.updateComplete;
-      assert.equal(nodeText?.textContent, '2');
+      expect(nodeText?.textContent).toBe('2');
     });
 
-    test('can handle invalid input', () => {
-      assert.throw(() => el.setupObservable(), 'Invalid Observable!');
+    it('can handle invalid input', () => {
+      // @ts-ignore
+      expect(() => el.setupObservable()).toThrow('Invalid Observable!');
     });
 
-    test('will unsubscribe when destroyed', () => {
+    it('will unsubscribe when destroyed', () => {
       const stream$ = new Subject();
       el.setupObservable(stream$);
       stream$.next(1);
-      assert.equal(el.streamValues, 1);
+      expect(el.streamValues).toBe(1);
       // @ts-ignore
-      assert.equal(stream$.currentObservers.size, 1);
+      expect(stream$.currentObservers.size).toBe(1);
       el.remove();
       // @ts-ignore
-      assert.equal(stream$.currentObservers.size, 0);
+      expect(stream$.currentObservers.size).toBe(0);
     });
 
-    test('will unsubscribe when called with a different stream', () => {
+    it('will unsubscribe when called with a different stream', () => {
       const stream$ = new Subject();
       el.setupObservable(stream$);
       stream$.next(1);
-      assert.equal(el.streamValues, 1);
+      expect(el.streamValues).toBe(1);
       // @ts-ignore
-      assert.equal(stream$.currentObservers.size, 1);
+      expect(stream$.currentObservers.size).toBe(1);
       el.setupObservable(new Subject());
       // @ts-ignore
-      assert.equal(stream$.currentObservers.size, 0);
+      expect(stream$.currentObservers.size).toBe(0);
     });
 
-    test('will ignore calls with the same stream', () => {
+    it('will ignore calls with the same stream', () => {
       const stream$ = new Subject();
       el.setupObservable(stream$);
       stream$.next(1);
-      assert.equal(el.streamValues, 1);
+      expect(el.streamValues).toBe(1);
       // @ts-ignore
-      assert.equal(stream$.currentObservers.size, 1);
+      expect(stream$.currentObservers.size).toBe(1);
       el.setupObservable(stream$);
       // @ts-ignore
-      assert.equal(stream$.currentObservers.size, 1);
+      expect(stream$.currentObservers.size).toBe(1);
     });
   });
 });
