@@ -417,10 +417,8 @@ var $=Object.defineProperty;var R=(i,r,e)=>r in i?$(i,r,{enumerable:!0,configura
     position: absolute;
     inline-size: 1px;
     block-size: 1px;
-    padding: 0;
-    margin: -1px;
     overflow: hidden;
-    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
     white-space: nowrap;
     border: 0;
   }

@@ -1,0 +1,13 @@
+import{x as p,T as m,a as y,C as v}from"./assets/BaseContextMetaElement-bW6Wzad_.js";import{e as g,i as b,t as _}from"./assets/directive-BiCZYpXc.js";/**
+ * @license
+ * Copyright 2020 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */const u=Symbol.for(""),S=s=>{if((s==null?void 0:s.r)===u)return s==null?void 0:s._$litStatic$},w=s=>({_$litStatic$:s,r:u}),x=(s,...t)=>({_$litStatic$:t.reduce(((n,e,r)=>n+(i=>{if(i._$litStatic$!==void 0)return i._$litStatic$;throw Error(`Value passed to 'literal' function must be a 'literal' result: ${i}. Use 'unsafeStatic' to pass non-literal values, but
+            take care to ensure page security.`)})(e)+s[r+1]),s[0]),r:u}),h=new Map,T=s=>(t,...n)=>{const e=n.length;let r,i;const l=[],c=[];let a,o=0,f=!1;for(;o<e;){for(a=t[o];o<e&&(i=n[o],(r=S(i))!==void 0);)a+=r+t[++o],f=!0;o!==e&&c.push(i),l.push(a),o++}if(o===e&&l.push(t[e]),f){const d=l.join("$$lit$$");(t=h.get(d))===void 0&&(l.raw=l,h.set(d,t=l)),n=c}return s(t,...n)},k=T(p);/**
+ * @license
+ * Copyright 2018 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */const $="important",E=" !"+$,M=g(class extends b{constructor(s){var t;if(super(s),s.type!==_.ATTRIBUTE||s.name!=="style"||((t=s.strings)==null?void 0:t.length)>2)throw Error("The `styleMap` directive must be used in the `style` attribute and must be the only part in the attribute.")}render(s){return Object.keys(s).reduce(((t,n)=>{const e=s[n];return e==null?t:t+`${n=n.includes("-")?n:n.replace(/(?:^(webkit|moz|ms|o)|)(?=[A-Z])/g,"-$&").toLowerCase()}:${e};`}),"")}update(s,[t]){const{style:n}=s.element;if(this.ft===void 0)return this.ft=new Set(Object.keys(t)),this.render(t);for(const e of this.ft)t[e]==null&&(this.ft.delete(e),e.includes("-")?n.removeProperty(e):n[e]=null);for(const e in t){const r=t[e];if(r!=null){this.ft.add(e);const i=typeof r=="string"&&r.endsWith(E);e.includes("-")||i?n.setProperty(e,i?r.slice(0,-11):r,i?$:""):n[e]=r}}return m}});class j extends y{constructor(){super(),this._level=new v(this,{context:Symbol.for("level")})}get _tag(){var n,e;const t=(e=(n=this._level)==null?void 0:n.value)==null?void 0:e.level;return typeof t=="number"&&t>=0&&t<=5?w(`h${t}`):x`p`}render(){var t,n;return k`
+      <${this._tag} style=${M({color:(n=(t=this._level)==null?void 0:t.value)==null?void 0:n.color})}>
+        <slot></slot>
+      </${this._tag}>`}}customElements.define("my-heading",j);export{j as MyHeading};
