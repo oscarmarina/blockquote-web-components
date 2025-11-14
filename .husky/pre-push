@@ -1,1 +1,1 @@
-npm test -- --since main
+npm run test:pre-push

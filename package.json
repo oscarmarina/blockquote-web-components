@@ -36,8 +36,8 @@
     "site:prepare": "npm run clean:packages:dev && lerna run dev:vite",
     "standard": "commit-and-tag-version",
     "stylelint": "stylelint -f verbose --ignore-path .prettierignore 'packages/**/*.{js,ts,css,scss,html}'",
-    "test": "lerna run test --stream --concurrency 1",
-    "test:pre-push": "npm run test -- --since",
+    "test": "lerna run test --stream --concurrency 1 -- --run",
+    "test:pre-push": "lerna run test --stream --concurrency 1 --since origin/main -- --run",
     "test:scope": "func() { lerna run test --stream --concurrency 1 --scope @blockquote-web-components/${1}; }; func",
     "postversion": "npm run standard"
   },
