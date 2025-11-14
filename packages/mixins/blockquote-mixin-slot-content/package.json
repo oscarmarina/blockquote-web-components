@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-mixin-slot-content",
-  "version": "1.9.12",
+  "version": "1.9.13",
   "description": "Webcomponent blockquote-mixin-slot-content following open-wc recommendations",
   "keywords": [
     "lit",
@@ -121,7 +121,7 @@
   },
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.12.6",
-    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.13.12"
+    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.13.13"
   },
   "publishConfig": {
     "access": "public"
