@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.17.4](https://github.com/oscarmarina/blockquote-web-components/compare/v2.17.3...v2.17.4) (2025-12-13)
+
+
+### Bug Fixes
+
+* **blockquote-controller-context-meta:** poor performance with tree of providers and consumers using same context ([8f37645](https://github.com/oscarmarina/blockquote-web-components/commit/8f37645d938a9f209e792e356899c7fa26f26d50))
+
 ## [2.17.3](https://github.com/oscarmarina/blockquote-web-components/compare/v2.17.2...v2.17.3) (2025-11-14)
 
 ## [2.17.2](https://github.com/oscarmarina/blockquote-web-components/compare/v2.17.1...v2.17.2) (2025-11-02)
