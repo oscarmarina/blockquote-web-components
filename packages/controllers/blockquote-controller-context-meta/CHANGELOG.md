@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.4](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-context-meta@1.5.3...@blockquote-web-components/blockquote-controller-context-meta@1.5.4) (2025-12-13)
+
+
+### Bug Fixes
+
+* **blockquote-controller-context-meta:** poor performance with tree of providers and consumers using same context ([8f37645](https://github.com/oscarmarina/blockquote-web-components/commit/8f37645d938a9f209e792e356899c7fa26f26d50))
+
+
+
+
+
 ## [1.5.3](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-context-meta@1.5.2...@blockquote-web-components/blockquote-controller-context-meta@1.5.3) (2025-11-14)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-controller-context-meta
