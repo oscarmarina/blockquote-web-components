@@ -6,7 +6,7 @@ export class ProviderEl extends LitElement {
   static styles = css`
     :host {
       display: block;
-      border: 1px solid #adadad;
+      border: 2px solid #adadad;
       padding: 0.5rem;
     }
 
@@ -21,6 +21,15 @@ export class ProviderEl extends LitElement {
     div {
       border: 1px solid #adadad;
       padding: 0.5rem;
+    }
+
+    span {
+      display: block;
+    }
+
+    span,
+    ::slotted(*) {
+      margin-inline-start: 0.5em;
     }
   `;
 
@@ -64,7 +73,10 @@ export class ProviderEl extends LitElement {
         ${contextMetaProvider(`${this.data} #data-info-2`, {
           context: consumerContext,
         })}>
-        <p>Div Element (Provider)</p>
+        <p>
+          Div Element (Provider)
+          <span>with slotted consumer</span>
+        </p>
         <slot></slot>
         <hr />
         <consumer-el></consumer-el>
