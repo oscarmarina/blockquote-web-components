@@ -1,6 +1,44 @@
 import {createContext, ContextProvider, ContextConsumer} from '@lit/context';
 
 export const contextMetaSymbol = Symbol.for('context-meta-symbol');
+
+/**
+ * https://github.com/lit/lit/issues/5116
+ * https://discord.com/channels/1012791295170859069/1424796337433612379/1425587605503869030
+ *
+ * @extends {ContextProvider<*, *>}
+ */
+// @ts-ignore
+class ContextProviderHs extends ContextProvider {
+  // @ts-ignore
+  attachListeners() {
+    this.host.addEventListener('context-request', this.onContextRequest);
+    let pending = false;
+    /* v8 ignore next */
+    this.host.addEventListener('context-provider', (/** @type {*} */ ev) => {
+      if (!this.host.hasUpdated) {
+        return;
+      }
+      // @ts-ignore
+      if (ev.context !== this.context) {
+        return;
+      }
+      const childProviderHost = ev.contextTarget ?? ev.composedPath()[0];
+      if (childProviderHost === this.host) {
+        return;
+      }
+      ev.stopPropagation();
+      if (pending) {
+        return;
+      }
+      pending = true;
+      this.host.updateComplete.then(() => {
+        this.onProviderRequest(ev);
+        pending = false;
+      });
+    });
+  }
+}
 /**
  * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
@@ -117,7 +155,7 @@ class ContextMeta {
     this.host = host;
 
     if (!isConsumerOnly) {
-      this._contextMetaProvider = new ContextProvider(this.host, {
+      this._contextMetaProvider = new ContextProviderHs(this.host, {
         context: this.context,
         initialValue: this.initialValue,
       });
@@ -130,6 +168,10 @@ class ContextMeta {
     return this._contextMetaConsumer?.value;
   }
 
+  /**
+   * @param {any} v
+   * @param {boolean} [force=false]
+   */
   setValue(v, force = false) {
     this._contextMetaProvider?.setValue?.(v, force);
   }
