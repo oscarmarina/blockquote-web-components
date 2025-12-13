@@ -22,8 +22,8 @@
     "analyze": "lerna run analyze --stream --concurrency 1",
     "clean": "rm package-lock.json && lerna clean",
     "clean:packages": "lerna exec -- rm -rf ./node_modules && npm run clean:packages:dev && npm run clean:packages:coverage",
-    "clean:packages:dev": "lerna exec -- rm -rf ./dev && lerna exec -- rm -rf ./package-lock.json",
     "clean:packages:coverage": "lerna exec -- rm -rf ./test/coverage",
+    "clean:packages:dev": "lerna exec -- rm -rf ./dev && lerna exec -- rm -rf ./package-lock.json",
     "eslint": "eslint --fix 'packages/**/*.*'",
     "format": "lerna run format --stream --concurrency 1",
     "lint": "npm run eslint && npm run prettier && npm run stylelint",
@@ -105,6 +105,17 @@
         "customSyntax": "postcss-lit"
       }
     ]
+  },
+  "overrides": {
+    "@npmcli/move-file": "npm:@npmcli/fs@latest",
+    "are-we-there-yet": "npm:noop2@latest",
+    "gauge": "npm:noop2@latest",
+    "glob": "^11.0.0",
+    "inflight": "npm:noop2@latest",
+    "keygrip": "npm:noop2@latest",
+    "npmlog": "npm:noop2@latest",
+    "read-package-json": "npm:@npmcli/package-json@latest",
+    "rimraf": "^6.0.0"
   },
   "dependencies": {
     "cheerio": "^1.1.2",
