@@ -117,7 +117,7 @@
   },
   "dependencies": {
     "@open-wc/dedupe-mixin": "^2.0.1",
-    "lit": "^3.3.1"
+    "lit": "^3.3.2"
   },
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.12.6",

@@ -118,7 +118,7 @@
     "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.12.6",
     "@blockquote-web-components/blockquote-base-embedded-webview": "^1.13.13",
     "inspector-elements": "^0.1.0",
-    "lit": "^3.3.1"
+    "lit": "^3.3.2"
   },
   "publishConfig": {
     "access": "public"
