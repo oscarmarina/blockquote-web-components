@@ -36,6 +36,15 @@
             },
             {
               "kind": "field",
+              "name": "shadowRootOptions",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ ...LitElement.shadowRootOptions, referenceTarget: 'inner-dialog', }"
+            },
+            {
+              "kind": "field",
               "name": "open",
               "privacy": "public",
               "type": {
@@ -96,6 +105,15 @@
                   "type": {
                     "text": "SubmitEvent"
                   }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_handleNativeOpen",
+              "parameters": [
+                {
+                  "name": "records"
                 }
               ]
             },
@@ -182,6 +200,11 @@
             {
               "kind": "field",
               "name": "_overflowRoot"
+            },
+            {
+              "kind": "field",
+              "name": "_nativeDialogOpenObserver",
+              "default": "undefined"
             },
             {
               "kind": "field",

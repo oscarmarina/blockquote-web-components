@@ -1,5 +1,6 @@
 import {html, LitElement, nothing, isServer} from 'lit';
 import {ref, createRef} from 'lit/directives/ref.js';
+import {MutationController} from '@lit-labs/observers/mutation-controller.js';
 import {blockquoteDirectiveAriaidrefSlot} from '@blockquote-web-components/blockquote-directive-ariaidref-slot';
 import {
   redispatchEvent,
@@ -14,6 +15,7 @@ import {styles as animations} from './styles/blockqoute-dialog-animations-styles
 // https://web.dev/learn/html/dialog
 // https://github.com/oscarmarina/material-web/blob/main/dialog/dialog.ts
 // https://a11y-dialog.netlify.app/
+// https://blogs.igalia.com/alice/reference-target-having-your-encapsulation-and-eating-it-too/
 
 /**
  * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
@@ -66,6 +68,14 @@ export class BlockquoteDialog extends LitElement {
   /**
    * @override
    */
+  static shadowRootOptions = {
+    ...LitElement.shadowRootOptions,
+    referenceTarget: 'inner-dialog',
+  };
+
+  /**
+   * @override
+   */
   static styles = [styles, animations];
 
   /**
@@ -113,7 +123,7 @@ export class BlockquoteDialog extends LitElement {
      * By default, it is set to 'hidden'.
      */
     labelledbyVisible: {
-      type: String,
+      type: Boolean,
       attribute: 'labelledby-visibile',
     },
 
@@ -152,6 +162,7 @@ export class BlockquoteDialog extends LitElement {
     this._lastFocusableChild = undefined;
     this._nextClickIsFromContent = false;
     this._overflowRoot = document.body;
+    this._nativeDialogOpenObserver = undefined;
     this.type = 'alert';
     this.label = '';
     this.labelledby = '';
@@ -172,6 +183,7 @@ export class BlockquoteDialog extends LitElement {
     super.connectedCallback?.();
     await this.updateComplete;
     this.scroller = this.shadowRoot?.querySelector('.scroller');
+    const {value} = this.dialogRef;
     const [first, last] = getFirstAndLastFocusableChildren(
       /** @type {IterableIterator<HTMLElement>} */ (this.treewalker)
     );
@@ -180,28 +192,30 @@ export class BlockquoteDialog extends LitElement {
     this._lastFocusableChild = last;
     this.role = 'presentation';
 
+    this._nativeDialogOpenObserver = new MutationController(this, {
+      target: value,
+      config: {attributes: true},
+      skipInitial: true,
+      callback: this._handleNativeOpen.bind(this),
+    });
+
     this._isConnectedCallbackResolve();
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.isConnectedPromise = this.getIsConnectedCallbackResolve();
+    this._isConnectedCallback = this.getIsConnectedCallbackResolve();
   }
 
   async show() {
     await this._isConnectedCallback;
     const {value} = this.dialogRef;
 
-    if (/** @type {HTMLDialogElement} */ (value)?.open) {
-      return;
-    }
-
     const preventDefault = !this._handleOpen();
     if (preventDefault) {
       this.open = false;
       return;
     }
-
     /** @type {HTMLDialogElement} */ (value)?.showModal();
     this.requestUpdate();
 
@@ -280,14 +294,15 @@ export class BlockquoteDialog extends LitElement {
   render() {
     return html`
       <dialog
+        id="inner-dialog"
         ${ref(this.dialogRef)}
-        aria-label=${this.label || nothing}
+        aria-label="${this.label || nothing}"
         aria-labelledby="${this.labelledby || nothing}"
-        role=${this.type === 'alert' ? 'alertdialog' : nothing}
-        @click=${this._handleDialogClick}
-        @cancel=${this._handleCancel}
-        @close=${this._handleClose}
-        .returnValue=${this.returnValue || nothing}>
+        role="${this.type === 'alert' ? 'alertdialog' : nothing}"
+        @click="${this._handleDialogClick}"
+        @cancel="${this._handleCancel}"
+        @close="${this._handleClose}"
+        .returnValue="${this.returnValue || nothing}">
         ${this._firstNodeFocusTrapTpl} ${this._scrollerTpl} ${this._lastNodeFocusTrapTpl}
       </dialog>
     `;
@@ -308,6 +323,18 @@ export class BlockquoteDialog extends LitElement {
 
     this._submitter = submitter;
     this.open = false;
+  }
+
+  _handleNativeOpen(/** @type {MutationRecord[]} */ records) {
+    const openMutation = records.find((record) => record.attributeName === 'open');
+    if (!openMutation) {
+      return;
+    }
+
+    const {value} = this.dialogRef;
+    if (/** @type {HTMLDialogElement} */ (value)?.open && !this.open) {
+      this.open = true;
+    }
   }
 
   _handleOpen() {
@@ -372,11 +399,11 @@ export class BlockquoteDialog extends LitElement {
     this._nextClickIsFromContent = true;
   }
 
-  _firstFocusTrap({relatedTarget}) {
+  _firstFocusTrap(/** @type {*} */ {relatedTarget}) {
     (relatedTarget != null ? this._firstFocusableChild : this._lastFocusableChild)?.focus();
   }
 
-  _lastFocusTrap({relatedTarget}) {
+  _lastFocusTrap(/** @type {*} */ {relatedTarget}) {
     (relatedTarget != null ? this._lastFocusableChild : this._firstFocusableChild)?.focus();
   }
 }
