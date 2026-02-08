@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-dialog@1.4.14...@blockquote-web-components/blockquote-dialog@1.5.0) (2026-02-08)
+
+
+### Features
+
+* **blockquote-dialog:** add referenceTarget ([76169f3](https://github.com/oscarmarina/blockquote-web-components/commit/76169f3354de2830634fdd9cf70af837a989a422))
+
+
+
+
+
 ## [1.4.14](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-dialog@1.4.13...@blockquote-web-components/blockquote-dialog@1.4.14) (2026-01-10)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-dialog
