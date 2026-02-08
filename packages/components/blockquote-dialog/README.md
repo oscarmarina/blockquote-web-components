@@ -28,6 +28,12 @@ Inert content outside an active dialog is typically visually obscured or dimmed 
 
 #### class: `BlockquoteDialog`, `blockquote-dialog`
 
+##### Static Fields
+
+| Name                | Privacy | Type     | Default                                                                 | Description | Inherited From |
+| ------------------- | ------- | -------- | ----------------------------------------------------------------------- | ----------- | -------------- |
+| `shadowRootOptions` |         | `object` | `{ ...LitElement.shadowRootOptions, referenceTarget: 'inner-dialog', }` |             |                |
+
 ##### Fields
 
 | Name                          | Privacy | Type      | Default     | Description                                                                                                                                                                                                                                                                                                                                                                                            | Inherited From |
@@ -47,6 +53,7 @@ Inert content outside an active dialog is typically visually obscured or dimmed 
 | `_lastFocusableChild`         |         |           | `undefined` |                                                                                                                                                                                                                                                                                                                                                                                                        |                |
 | `_nextClickIsFromContent`     |         | `boolean` | `false`     |                                                                                                                                                                                                                                                                                                                                                                                                        |                |
 | `_overflowRoot`               |         |           |             |                                                                                                                                                                                                                                                                                                                                                                                                        |                |
+| `_nativeDialogOpenObserver`   |         |           | `undefined` |                                                                                                                                                                                                                                                                                                                                                                                                        |                |
 | `type`                        | public  | `string`  | `'alert'`   | The type of dialog for accessibility. Set this to \`alert\` to announce a&#xA;dialog as an alert dialog.                                                                                                                                                                                                                                                                                               |                |
 | `label`                       | public  | `string`  | `''`        | The 'label' attribute will be used as the 'aria-label' for the dialog                                                                                                                                                                                                                                                                                                                                  |                |
 | `labelledby`                  | public  | `string`  | `''`        | The 'labelledby' attribute will be used as the 'aria-labelledby' for the dialog.&#xA;It will also be used to create a slot with the same 'id' and 'name'.&#xA;This slot is hidden by default and its 'name' and 'id' should correspond to the 'slot' attribute of an element in the Light DOM.&#xA;This connects the 'slot', 'name', and 'id' attributes of a slot to be used with ARIA relationships. |                |
@@ -61,6 +68,7 @@ Inert content outside an active dialog is typically visually obscured or dimmed 
 | `show`                          |         |             |                   |        |                |
 | `close`                         |         |             |                   |        |                |
 | `_handleSubmit`                 |         |             | `ev: SubmitEvent` |        |                |
+| `_handleNativeOpen`             |         |             | `records`         |        |                |
 | `_handleOpen`                   |         |             |                   |        |                |
 | `_handleClose`                  |         |             | `ev: Event`       |        |                |
 | `_handleCancel`                 |         |             | `ev: Event`       |        |                |
