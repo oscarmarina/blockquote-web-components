@@ -43,9 +43,15 @@
   <body>
     <main>
       <h1 class="sr-only">blockquote-dialog</h1>
-      <button id="open-dialog">Open dialog</button>
+      <p>
+        <button id="open-dialog">Open dialog (a.k.a JS)</button>
+        |
+        <button commandfor="settings-dialog" command="show-modal">
+          Open dialog (a.k.a commandfor)
+        </button>
+      </p>
       <wrapper-dialog>
-        <blockquote-dialog label="All fields are required">
+        <blockquote-dialog id="settings-dialog" label="All fields are required">
           <form method="dialog">
             <div>
               <button aria-label="close" formnovalidate="">X</button>

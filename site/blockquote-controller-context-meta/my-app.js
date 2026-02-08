@@ -1,4 +1,4 @@
-import{a as e,x as i}from"./assets/BaseContextMetaElement-BQnl_GnJ.js";import"./my-section.js";import"./my-heading.js";import"./assets/directive-BfKz1_qq.js";class n extends e{render(){return i`
+import{a as e,b as i}from"./assets/BaseContextMetaElement-BHhKyWvZ.js";import"./my-section.js";import"./my-heading.js";import"./assets/directive-BfKz1_qq.js";class n extends e{render(){return i`
       <my-section id="root-1">
         <my-heading>Heading level 1</my-heading>
         <my-section id="1">
