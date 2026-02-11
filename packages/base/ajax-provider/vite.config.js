@@ -28,9 +28,8 @@ const entries = Object.fromEntries(
 
 // https://vitejs.dev/config/
 // https://vite-rollup-plugins.patak.dev/
-// https://github.com/vitest-dev/vitest/commit/78b62ffe#diff-d3e264f3679867e205ed7eeb7622aa3b62bb0c4b1a4aa5a5983cb3aa118fcf3c
 
-export default defineConfig({
+export default defineConfig(({command}) => ({
   test: {
     onConsoleLog(log, type) {
       if (type === 'stderr' && log.includes('in dev mode')) {
@@ -70,7 +69,7 @@ export default defineConfig({
       exclude: ['**/src/**/index.*', '**/src/styles/', '**/src/utils.*'],
     },
   },
-  plugins: [copy(copyConfig), totalBundlesize()],
+  plugins: [...(command === 'build' ? [copy(copyConfig), totalBundlesize()] : [])],
   optimizeDeps: {
     exclude: ['lit', 'lit-html'],
   },
@@ -87,4 +86,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));
