@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.28](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-directive-svg-to-data-image@1.5.27...@blockquote-web-components/blockquote-directive-svg-to-data-image@1.5.28) (2026-02-11)
+
+**Note:** Version bump only for package @blockquote-web-components/blockquote-directive-svg-to-data-image
+
+
+
+
+
 ## [1.5.27](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-directive-svg-to-data-image@1.5.26...@blockquote-web-components/blockquote-directive-svg-to-data-image@1.5.27) (2026-02-08)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-directive-svg-to-data-image

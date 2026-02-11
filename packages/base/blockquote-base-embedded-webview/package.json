@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-base-embedded-webview",
-  "version": "1.13.15",
+  "version": "1.13.16",
   "description": "Webcomponent blockquote-base-embedded-webview following open-wc recommendations",
   "keywords": [
     "lit",
@@ -148,7 +148,7 @@
     "lit": "^3.3.2"
   },
   "devDependencies": {
-    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.12.8",
+    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.12.9",
     "@blockquote-web-components/blockquote-foundations-sass": "^1.1.8"
   },
   "publishConfig": {

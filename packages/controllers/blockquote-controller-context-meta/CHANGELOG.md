@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.7](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-context-meta@1.5.6...@blockquote-web-components/blockquote-controller-context-meta@1.5.7) (2026-02-11)
+
+**Note:** Version bump only for package @blockquote-web-components/blockquote-controller-context-meta
+
+
+
+
+
 ## [1.5.6](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-controller-context-meta@1.5.5...@blockquote-web-components/blockquote-controller-context-meta@1.5.6) (2026-02-08)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-controller-context-meta
