@@ -1,4 +1,4 @@
-@use "../../../../../node_modules/@blockquote-web-components/blockquote-foundations-sass/main" as *;
+@use "@blockquote-web-components/blockquote-foundations-sass/main" as *;
 
 :host {
   --_host-color: var(--blockquote-base-embedded-webview-color, rgb(32, 32, 32));
