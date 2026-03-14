@@ -25,6 +25,7 @@ const baseConfig = [
       sourceType: 'module',
       globals: {
         ...globals.browser,
+        ...globals.es2023,
         ...globals.mocha,
       },
     },
@@ -42,6 +43,9 @@ const importFilesConfig = [importPlugin.recommended, importPlugin.typescript].ma
   languageOptions: {
     ...conf.languageOptions,
     parser: tsParser,
+    parserOptions: {
+      tsconfigRootDir: import.meta.dirname,
+    },
   },
 }));
 
@@ -145,6 +149,7 @@ const tsFilesConfig = [...tseslint.strict, ...tseslint.stylistic].map((conf) => 
             `*.conf.${fileTypes}`,
           ],
         },
+        tsconfigRootDir: import.meta.dirname,
       },
     },
   }),
