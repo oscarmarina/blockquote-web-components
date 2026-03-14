@@ -1,4 +1,4 @@
-var $=Object.defineProperty;var R=(s,i,e)=>i in s?$(s,i,{enumerable:!0,configurable:!0,writable:!0,value:e}):s[i]=e;var h=(s,i,e)=>R(s,typeof i!="symbol"?i+"":i,e);import{A as k,i as w,a as _,b as n,D as y}from"./assets/xstate-counter-styles.css-Cve7lvfW.js";import"./xstate-counter.js";import"./assets/counterMachine-CFIe7BBL.js";const C=s=>s.strings===void 0;const E={CHILD:2},q=s=>(...i)=>({_$litDirective$:s,values:i});class S{constructor(i){}get _$AU(){return this._$AM._$AU}_$AT(i,e,t){this._$Ct=i,this._$AM=e,this._$Ci=t}_$AS(i,e){return this.update(i,e)}update(i,e){return this.render(...e)}}const b=(s,i)=>{var t;const e=s._$AN;if(e===void 0)return!1;for(const r of e)(t=r._$AO)==null||t.call(r,i,!1),b(r,i);return!0},v=s=>{let i,e;do{if((i=s._$AM)===void 0)break;e=i._$AN,e.delete(s),s=i}while((e==null?void 0:e.size)===0)},x=s=>{for(let i;i=s._$AM;s=i){let e=i._$AN;if(e===void 0)i._$AN=e=new Set;else if(e.has(s))break;e.add(s),B(i)}};function T(s){this._$AN!==void 0?(v(this),this._$AM=s,x(this)):this._$AM=s}function A(s,i=!1,e=0){const t=this._$AH,r=this._$AN;if(r!==void 0&&r.size!==0)if(i)if(Array.isArray(t))for(let o=e;o<t.length;o++)b(t[o],!1),v(t[o]);else t!=null&&(b(t,!1),v(t));else b(this,s)}const B=s=>{var i,e;s.type==E.CHILD&&((i=s._$AP)!=null||(s._$AP=A),(e=s._$AQ)!=null||(s._$AQ=T))};class L extends S{constructor(){super(...arguments),this._$AN=void 0}_$AT(i,e,t){super._$AT(i,e,t),x(this),this.isConnected=i._$AU}_$AO(i,e=!0){var t,r;i!==this.isConnected&&(this.isConnected=i,i?(t=this.reconnected)==null||t.call(this):(r=this.disconnected)==null||r.call(this)),e&&(b(this,i),v(this))}setValue(i){if(C(this._$Ct))this._$Ct._$AI(i,this);else{const e=[...this._$Ct._$AH];e[this._$Ci]=i,this._$Ct._$AI(e,this,0)}}disconnected(){}reconnected(){}}const D=()=>new P;class P{}const z=new WeakMap,H=q(class extends L{render(s){return k}update(s,[i]){var t;const e=i!==this.G;return e&&this.G!==void 0&&this.rt(void 0),(e||this.lt!==this.ct)&&(this.G=i,this.ht=(t=s.options)==null?void 0:t.host,this.rt(this.ct=s.element)),k}rt(s){var i;if(this.isConnected||(s=void 0),typeof this.G=="function"){const e=(i=this.ht)!=null?i:globalThis;let t=z.get(e);t===void 0&&(t=new WeakMap,z.set(e,t)),t.get(this.G)!==void 0&&this.G.call(this.ht,void 0),t.set(this.G,s),s!==void 0&&this.G.call(this.ht,s)}else this.G.value=s}get lt(){var s,i,e;return typeof this.G=="function"?(i=z.get((s=this.ht)!=null?s:globalThis))==null?void 0:i.get(this.G):(e=this.G)==null?void 0:e.value}disconnected(){this.lt===this.ct&&this.rt(void 0)}reconnected(){this.rt(this.ct)}}),M=w`
+import"./assets/counterMachine-DM7uL9DF.js";import{a as e,i as t,n,o as r,r as i,s as a}from"./assets/xstate-counter-styles.css-mU2TAGVr.js";import{n as o}from"./assets/xstate-counter-Ds2LfRUv.js";var{I:s}=r,c=e=>e.strings===void 0,l={ATTRIBUTE:1,CHILD:2,PROPERTY:3,BOOLEAN_ATTRIBUTE:4,EVENT:5,ELEMENT:6},u=e=>(...t)=>({_$litDirective$:e,values:t}),d=class{constructor(e){}get _$AU(){return this._$AM._$AU}_$AT(e,t,n){this._$Ct=e,this._$AM=t,this._$Ci=n}_$AS(e,t){return this.update(e,t)}update(e,t){return this.render(...t)}},f=(e,t)=>{var n;let r=e._$AN;if(r===void 0)return!1;for(let e of r)(n=e._$AO)==null||n.call(e,t,!1),f(e,t);return!0},p=e=>{let t,n;do{if((t=e._$AM)===void 0)break;n=t._$AN,n.delete(e),e=t}while((n==null?void 0:n.size)===0)},m=e=>{for(let t;t=e._$AM;e=t){let n=t._$AN;if(n===void 0)t._$AN=n=new Set;else if(n.has(e))break;n.add(e),_(t)}};function h(e){this._$AN===void 0?this._$AM=e:(p(this),this._$AM=e,m(this))}function g(e,t=!1,n=0){let r=this._$AH,i=this._$AN;if(i!==void 0&&i.size!==0)if(t)if(Array.isArray(r))for(let e=n;e<r.length;e++)f(r[e],!1),p(r[e]);else r!=null&&(f(r,!1),p(r));else f(this,e)}var _=e=>{e.type==l.CHILD&&(e._$AP!=null||(e._$AP=g),e._$AQ!=null||(e._$AQ=h))},v=class extends d{constructor(){super(...arguments),this._$AN=void 0}_$AT(e,t,n){super._$AT(e,t,n),m(this),this.isConnected=e._$AU}_$AO(e,t=!0){var n,r;e!==this.isConnected&&(this.isConnected=e,e?(n=this.reconnected)==null||n.call(this):(r=this.disconnected)==null||r.call(this)),t&&(f(this,e),p(this))}setValue(e){if(c(this._$Ct))this._$Ct._$AI(e,this);else{let t=[...this._$Ct._$AH];t[this._$Ci]=e,this._$Ct._$AI(t,this,0)}}disconnected(){}reconnected(){}},y=()=>new b,b=class{},x=new WeakMap,S=u(class extends v{render(e){return i}update(e,[t]){var n;let r=t!==this.G;return r&&this.G!==void 0&&this.rt(void 0),(r||this.lt!==this.ct)&&(this.G=t,this.ht=(n=e.options)==null?void 0:n.host,this.rt(this.ct=e.element)),i}rt(e){if(this.isConnected||(e=void 0),typeof this.G==`function`){var t;let n=(t=this.ht)==null?globalThis:t,r=x.get(n);r===void 0&&(r=new WeakMap,x.set(n,r)),r.get(this.G)!==void 0&&this.G.call(this.ht,void 0),r.set(this.G,e),e!==void 0&&this.G.call(this.ht,e)}else this.G.value=e}get lt(){var e,t,n;return typeof this.G==`function`?(e=x.get((t=this.ht)==null?globalThis:t))==null?void 0:e.get(this.G):(n=this.G)==null?void 0:n.value}disconnected(){this.lt===this.ct&&this.rt(void 0)}reconnected(){this.rt(this.ct)}}),C=a`
   :host {
     --_host-color: var(--blockquote-base-embedded-webview-size-color, inherit);
     --_rect-height: var(--blockquote-base-embedded-webview-size-rect-height, 1.125rem);
@@ -134,29 +134,29 @@ var $=Object.defineProperty;var R=(s,i,e)=>i in s?$(s,i,{enumerable:!0,configura
   button[data-selected] ~ button:hover {
     background-color: var(--_button-bgcolor-selected-hover);
   }
-`;class I extends _{constructor(){super();h(this,"_onResize",e=>{e.preventDefault(),e.stopPropagation(),window.requestAnimationFrame(()=>{this.requestUpdate()})});this.showOverflowSize=!1,this.selected=0,this.disabledSelectedSizeText=!1,this.screenSizes=[{width:360,height:800,id:"360x800"},{width:390,height:864,id:"390x864"},{width:414,height:896,id:"414x896"},{width:768,height:1024,id:"768x1024"},{width:810,height:1080,id:"810x1080"},{width:1280,height:720,id:"1280x800"},{width:1366,height:768,id:"1366x768"},{width:1536,height:864,id:"1536x864"},{width:1920,height:1080,id:"1920x1080"}],this.widthInPercent=!1}static get styles(){return[M]}static get properties(){return{screenSizes:{type:Array,attribute:"screen-sizes"},selected:{type:Number},widthInPercent:{type:Boolean,attribute:"width-in-percent"},showOverflowSize:{type:Boolean,attribute:"show-overflow-size"},disabledSelectedSizeText:{type:Boolean,attribute:"disabled-selected-size-text"}}}get selectedSize(){return this.screenSizes[this.selected-1]}get selectedDetail(){return{...this.selectedSize,index:this.selected}}get computedStyleWidth(){return parseInt(window.getComputedStyle(this).width,10)}connectedCallback(){super.connectedCallback&&super.connectedCallback(),window.addEventListener("resize",this._onResize)}disconnectedCallback(){super.disconnectedCallback&&super.disconnectedCallback(),window.removeEventListener("resize",this._onResize)}willUpdate(e){super.willUpdate&&super.willUpdate(e),e.has("screenSizes")&&this.screenSizes.sort((t,r)=>r.width-t.width),e.has("selected")&&(this.selected>this.screenSizes.length||this.selected===0)&&(this.selected=this.screenSizes.length)}updated(e){if(super.updated&&super.updated(e),e.has("selected")){const t=new CustomEvent("selectedchange",{bubbles:!0,detail:this.selectedDetail});this.dispatchEvent(t)}}render(){return n`
+`,w=class extends n{static get styles(){return[C]}static get properties(){return{screenSizes:{type:Array,attribute:`screen-sizes`},selected:{type:Number},widthInPercent:{type:Boolean,attribute:`width-in-percent`},showOverflowSize:{type:Boolean,attribute:`show-overflow-size`},disabledSelectedSizeText:{type:Boolean,attribute:`disabled-selected-size-text`}}}constructor(){super(),o(this,`_onResize`,e=>{e.preventDefault(),e.stopPropagation(),window.requestAnimationFrame(()=>{this.requestUpdate()})}),this.showOverflowSize=!1,this.selected=0,this.disabledSelectedSizeText=!1,this.screenSizes=[{width:360,height:800,id:`360x800`},{width:390,height:864,id:`390x864`},{width:414,height:896,id:`414x896`},{width:768,height:1024,id:`768x1024`},{width:810,height:1080,id:`810x1080`},{width:1280,height:720,id:`1280x800`},{width:1366,height:768,id:`1366x768`},{width:1536,height:864,id:`1536x864`},{width:1920,height:1080,id:`1920x1080`}],this.widthInPercent=!1}get selectedSize(){return this.screenSizes[this.selected-1]}get selectedDetail(){return{...this.selectedSize,index:this.selected}}get computedStyleWidth(){return parseInt(window.getComputedStyle(this).width,10)}connectedCallback(){super.connectedCallback&&super.connectedCallback(),window.addEventListener(`resize`,this._onResize)}disconnectedCallback(){super.disconnectedCallback&&super.disconnectedCallback(),window.removeEventListener(`resize`,this._onResize)}willUpdate(e){super.willUpdate&&super.willUpdate(e),e.has(`screenSizes`)&&this.screenSizes.sort((e,t)=>t.width-e.width),e.has(`selected`)&&(this.selected>this.screenSizes.length||this.selected===0)&&(this.selected=this.screenSizes.length)}updated(e){if(super.updated&&super.updated(e),e.has(`selected`)){let e=new CustomEvent(`selectedchange`,{bubbles:!0,detail:this.selectedDetail});this.dispatchEvent(e)}}render(){return e`
       <div class="rect">
         ${this._toolbarTpl}
         ${this._visualTextTpl}
         </div>
       </div>
-    `}get _toolbarTpl(){return n`
-      ${this.screenSizes.map((e,t)=>n`
+    `}get _toolbarTpl(){return e`
+      ${this.screenSizes.map((t,n)=>e`
           <button
             @click="${this._setSelected}"
-            id="${e.id}"
-            data-index="${t+1}"
-            ?data-selected="${this.selected===t+1}"
-            ?hidden="${!this.showOverflowSize&&e.width>this.computedStyleWidth}"
-            style="${this.widthInPercent?`width: calc(100% / ${t+1});`:`width: ${e.width}px;`}">
-            <span>${e.id}</span>
+            id="${t.id}"
+            data-index="${n+1}"
+            ?data-selected="${this.selected===n+1}"
+            ?hidden="${!this.showOverflowSize&&t.width>this.computedStyleWidth}"
+            style="${this.widthInPercent?`width: calc(100% / ${n+1});`:`width: ${t.width}px;`}">
+            <span>${t.id}</span>
           </button>
         `)}
-    `}get _visualTextTpl(){return n`
+    `}get _visualTextTpl(){return e`
       <span aria-disabled="${this.disabledSelectedSizeText}" aria-hidden="true">
         ${this.selectedSize.id}
       </span>
-    `}_setSelected(e){e.preventDefault(),e.stopPropagation(),this.selected=Number(e.target.dataset.index);const t=new CustomEvent("click",{detail:this.selectedDetail});this.dispatchEvent(t)}}window.customElements.define("blockquote-base-embedded-webview-size",I);const O=w`
+    `}_setSelected(e){e.preventDefault(),e.stopPropagation(),this.selected=Number(e.target.dataset.index);let t=new CustomEvent(`click`,{detail:this.selectedDetail});this.dispatchEvent(t)}};window.customElements.define(`blockquote-base-embedded-webview-size`,w);var T=a`
   :host {
     --__resizer-factor: calc(1.25rem * var(--blockquote-base-embedded-webview-resize-factor, 1));
     --_rect-min-width: var(--blockquote-base-embedded-webview-resize-rect-min-width, 18.75rem);
@@ -339,19 +339,19 @@ var $=Object.defineProperty;var R=(s,i,e)=>i in s?$(s,i,{enumerable:!0,configura
   :host([resizing]) ::slotted(*) {
     pointer-events: none;
   }
-`;class W extends _{constructor(){super();h(this,"_doubleclickForCssInitialSize",()=>{this.removeAttribute("style")});this._cursor="",this._resize=this._resize.bind(this),this._createResizerLeft=this._createResizer.bind(this,"right"),this._createResizerRight=this._createResizer.bind(this,"left"),this._createResizerBottom=this._createResizer.bind(this,"top"),this._createResizerBottomLeft=this._createResizer.bind(this,"scaleTopRight"),this._createResizerBottomRight=this._createResizer.bind(this,"scaleTopLeft"),this._getBoundingClientRectWidth=0,this._getBoundingClientRectHeight=0}static get styles(){return[O]}async connectedCallback(){var e,t,r,o,d,a,l,c,u,m,p,g,f;(e=super.connectedCallback)==null||e.call(this),await this.updateComplete,this.rect=(t=this.shadowRoot)==null?void 0:t.querySelector(".rect"),this.bottomRightResizerElement=(r=this.shadowRoot)==null?void 0:r.querySelector(".resizer-se"),this.bottomLeftResizerElement=(o=this.shadowRoot)==null?void 0:o.querySelector(".resizer-sw"),this.rightResizerElement=(d=this.shadowRoot)==null?void 0:d.querySelector(".resizer-e"),this.leftResizerElement=(a=this.shadowRoot)==null?void 0:a.querySelector(".resizer-w"),this.bottomResizerElement=(l=this.shadowRoot)==null?void 0:l.querySelector(".resizer-s"),(c=this.leftResizerElement)==null||c.addEventListener("pointerdown",this._createResizerLeft),(u=this.rightResizerElement)==null||u.addEventListener("pointerdown",this._createResizerRight),(m=this.bottomResizerElement)==null||m.addEventListener("pointerdown",this._createResizerBottom),(p=this.bottomLeftResizerElement)==null||p.addEventListener("pointerdown",this._createResizerBottomLeft),(g=this.bottomRightResizerElement)==null||g.addEventListener("pointerdown",this._createResizerBottomRight),(f=this.bottomResizerElement)==null||f.addEventListener("dblclick",this._doubleclickForCssInitialSize)}render(){return n`
+`,E=class extends n{static get styles(){return[T]}constructor(){super(),o(this,`_doubleclickForCssInitialSize`,()=>{this.removeAttribute(`style`)}),this._cursor=``,this._resize=this._resize.bind(this),this._createResizerLeft=this._createResizer.bind(this,`right`),this._createResizerRight=this._createResizer.bind(this,`left`),this._createResizerBottom=this._createResizer.bind(this,`top`),this._createResizerBottomLeft=this._createResizer.bind(this,`scaleTopRight`),this._createResizerBottomRight=this._createResizer.bind(this,`scaleTopLeft`),this._getBoundingClientRectWidth=0,this._getBoundingClientRectHeight=0}async connectedCallback(){var e,t,n,r,i,a,o,s,c,l,u,d,f;(e=super.connectedCallback)==null||e.call(this),await this.updateComplete,this.rect=(t=this.shadowRoot)==null?void 0:t.querySelector(`.rect`),this.bottomRightResizerElement=(n=this.shadowRoot)==null?void 0:n.querySelector(`.resizer-se`),this.bottomLeftResizerElement=(r=this.shadowRoot)==null?void 0:r.querySelector(`.resizer-sw`),this.rightResizerElement=(i=this.shadowRoot)==null?void 0:i.querySelector(`.resizer-e`),this.leftResizerElement=(a=this.shadowRoot)==null?void 0:a.querySelector(`.resizer-w`),this.bottomResizerElement=(o=this.shadowRoot)==null?void 0:o.querySelector(`.resizer-s`),(s=this.leftResizerElement)==null||s.addEventListener(`pointerdown`,this._createResizerLeft),(c=this.rightResizerElement)==null||c.addEventListener(`pointerdown`,this._createResizerRight),(l=this.bottomResizerElement)==null||l.addEventListener(`pointerdown`,this._createResizerBottom),(u=this.bottomLeftResizerElement)==null||u.addEventListener(`pointerdown`,this._createResizerBottomLeft),(d=this.bottomRightResizerElement)==null||d.addEventListener(`pointerdown`,this._createResizerBottomRight),(f=this.bottomResizerElement)==null||f.addEventListener(`dblclick`,this._doubleclickForCssInitialSize)}render(){return e`
       <div class="rect">
         ${this._resizersTpl}
         <slot></slot>
       </div>
-    `}get _resizersTpl(){return n`
+    `}get _resizersTpl(){return e`
       <span aria-hidden="true" class="resizer resizer-n"></span>
       <span aria-hidden="true" class="resizer resizer-e"></span>
       <span aria-hidden="true" class="resizer resizer-s"></span>
       <span aria-hidden="true" class="resizer resizer-w"></span>
       <span aria-hidden="true" class="resizer resizer-se"></span>
       <span aria-hidden="true" class="resizer resizer-sw"></span>
-    `}_createResizer(e,t){this.setAttribute("resizing",""),this._getBoundingClientRecDOMRect=e,this._getBoundingClientRectWidth=this._getBoundingClientRect("width"),this._getBoundingClientRectHeight=this._getBoundingClientRect("height");const{target:r,pointerId:o,clientX:d,clientY:a}=t;r==null||r.setPointerCapture(o);const l=({clientX:u,clientY:m})=>{const p=Math.floor(u-d),g=Math.floor(m-a);this._resize({detail:{dx:p,dy:g}})};r==null||r.addEventListener("pointermove",l);const c=()=>{this.removeAttribute("resizing"),r==null||r.releasePointerCapture(o),r==null||r.removeEventListener("pointermove",l),r==null||r.removeEventListener("pointerup",c),this._dispatchResizeEvent()};r==null||r.addEventListener("pointerup",c)}_resize({detail:e}){let t,r;const o=Math.floor(e.dx*2.04),d=Math.floor(e.dy*1.04);switch(this._getBoundingClientRecDOMRect){case"right":this._cursor="w",t=`${this._getBoundingClientRectWidth-o}px`,this.style.setProperty("--blockquote-base-embedded-webview-resize-rect-width",t);break;case"left":this._cursor="e",t=`${this._getBoundingClientRectWidth+o}px`,this.style.setProperty("--blockquote-base-embedded-webview-resize-rect-width",t);break;case"top":this._cursor="n",r=`${this._getBoundingClientRectHeight+d}px`,this.style.setProperty("--blockquote-base-embedded-webview-resize-rect-height",r);break;case"scaleTopLeft":this._cursor="ne",t=`${this._getBoundingClientRectWidth+o}px`,r=`${this._getBoundingClientRectHeight+d}px`,this.style.setProperty("--blockquote-base-embedded-webview-resize-rect-width",t),this.style.setProperty("--blockquote-base-embedded-webview-resize-rect-height",r);break;case"scaleTopRight":this._cursor="nw",t=`${this._getBoundingClientRectWidth-o}px`,r=`${this._getBoundingClientRectHeight+d}px`,this.style.setProperty("--blockquote-base-embedded-webview-resize-rect-width",t),this.style.setProperty("--blockquote-base-embedded-webview-resize-rect-height",r);break}this._dispatchResizeEvent()}_dispatchResizeEvent(){const e=new CustomEvent("webviewresize",{composed:!0,detail:{x:getComputedStyle(this).getPropertyValue("--blockquote-base-embedded-webview-resize-rect-width"),y:getComputedStyle(this).getPropertyValue("--blockquote-base-embedded-webview-resize-rect-height"),resizing:this.hasAttribute("resizing"),cursor:this._cursor}});this.dispatchEvent(e)}_getBoundingClientRect(e){var t;return Math.abs(parseInt((t=this.rect)==null?void 0:t.getBoundingClientRect()[e],10))}}window.customElements.define("blockquote-base-embedded-webview-resize",W);const N=w`
+    `}_createResizer(e,t){this.setAttribute(`resizing`,``),this._getBoundingClientRecDOMRect=e,this._getBoundingClientRectWidth=this._getBoundingClientRect(`width`),this._getBoundingClientRectHeight=this._getBoundingClientRect(`height`);let{target:n,pointerId:r,clientX:i,clientY:a}=t;n==null||n.setPointerCapture(r);let o=({clientX:e,clientY:t})=>{let n=Math.floor(e-i),r=Math.floor(t-a);this._resize({detail:{dx:n,dy:r}})};n==null||n.addEventListener(`pointermove`,o);let s=()=>{this.removeAttribute(`resizing`),n==null||n.releasePointerCapture(r),n==null||n.removeEventListener(`pointermove`,o),n==null||n.removeEventListener(`pointerup`,s),this._dispatchResizeEvent()};n==null||n.addEventListener(`pointerup`,s)}_resize({detail:e}){let t,n,r=Math.floor(e.dx*2.04),i=Math.floor(e.dy*1.04);switch(this._getBoundingClientRecDOMRect){case`right`:this._cursor=`w`,t=`${this._getBoundingClientRectWidth-r}px`,this.style.setProperty(`--blockquote-base-embedded-webview-resize-rect-width`,t);break;case`left`:this._cursor=`e`,t=`${this._getBoundingClientRectWidth+r}px`,this.style.setProperty(`--blockquote-base-embedded-webview-resize-rect-width`,t);break;case`top`:this._cursor=`n`,n=`${this._getBoundingClientRectHeight+i}px`,this.style.setProperty(`--blockquote-base-embedded-webview-resize-rect-height`,n);break;case`scaleTopLeft`:this._cursor=`ne`,t=`${this._getBoundingClientRectWidth+r}px`,n=`${this._getBoundingClientRectHeight+i}px`,this.style.setProperty(`--blockquote-base-embedded-webview-resize-rect-width`,t),this.style.setProperty(`--blockquote-base-embedded-webview-resize-rect-height`,n);break;case`scaleTopRight`:this._cursor=`nw`,t=`${this._getBoundingClientRectWidth-r}px`,n=`${this._getBoundingClientRectHeight+i}px`,this.style.setProperty(`--blockquote-base-embedded-webview-resize-rect-width`,t),this.style.setProperty(`--blockquote-base-embedded-webview-resize-rect-height`,n);break;default:}this._dispatchResizeEvent()}_dispatchResizeEvent(){let e=new CustomEvent(`webviewresize`,{composed:!0,detail:{x:getComputedStyle(this).getPropertyValue(`--blockquote-base-embedded-webview-resize-rect-width`),y:getComputedStyle(this).getPropertyValue(`--blockquote-base-embedded-webview-resize-rect-height`),resizing:this.hasAttribute(`resizing`),cursor:this._cursor}});this.dispatchEvent(e)}_getBoundingClientRect(e){var t;return Math.abs(parseInt((t=this.rect)==null?void 0:t.getBoundingClientRect()[e],10))}};window.customElements.define(`blockquote-base-embedded-webview-resize`,E);var D=a`
   :host,
   ::slotted([slot='embedded']) {
     display: block;
@@ -372,11 +372,11 @@ var $=Object.defineProperty;var R=(s,i,e)=>i in s?$(s,i,{enumerable:!0,configura
   *::after {
     box-sizing: inherit;
   }
-`;class G extends _{constructor(){super();h(this,"_onLoadElement",({target:e})=>{if(!e.contentDocument||!e.contentDocument.head.childNodes.length)return;Object.assign(e.contentDocument.body.dataset,{embedded:""}),window.performance.mark("iframeend"),window.performance.measure("iframe","iframestart","iframeend"),window.requestAnimationFrame(()=>e.removeAttribute("style"));const t=new CustomEvent("elementloaded",{bubbles:!0,detail:e});this.dispatchEvent(t)});this.embeddedTitle="",this.src="",this.type="iframe"}static get styles(){return[N]}static get properties(){return{embeddedTitle:{type:String,attribute:"embedded-title"},src:{type:String},type:{type:String}}}connectedCallback(){this._embeddedElement||(super.connectedCallback&&super.connectedCallback(),this._embeddedElement=document.createElement(this.type),Object.assign(this._embeddedElement,{slot:"embedded"}),this._embeddedElement.addEventListener("load",this._onLoadElement))}willUpdate(e){super.willUpdate&&super.willUpdate(e),(e.has("src")||e.has("embeddedTitle"))&&this.src!==""&&this._fetch(this.src)}render(){return n`
+`,O=class extends n{static get styles(){return[D]}static get properties(){return{embeddedTitle:{type:String,attribute:`embedded-title`},src:{type:String},type:{type:String}}}constructor(){super(),o(this,`_onLoadElement`,({target:e})=>{if(!e.contentDocument||!e.contentDocument.head.childNodes.length)return;Object.assign(e.contentDocument.body.dataset,{embedded:``}),window.performance.mark(`iframeend`),window.performance.measure(`iframe`,`iframestart`,`iframeend`),window.requestAnimationFrame(()=>e.removeAttribute(`style`));let t=new CustomEvent(`elementloaded`,{bubbles:!0,detail:e});this.dispatchEvent(t)}),this.embeddedTitle=``,this.src=``,this.type=`iframe`}connectedCallback(){this._embeddedElement||(super.connectedCallback&&super.connectedCallback(),this._embeddedElement=document.createElement(this.type),Object.assign(this._embeddedElement,{slot:`embedded`}),this._embeddedElement.addEventListener(`load`,this._onLoadElement))}willUpdate(e){super.willUpdate&&super.willUpdate(e),(e.has(`src`)||e.has(`embeddedTitle`))&&this.src!==``&&this._fetch(this.src)}render(){return e`
       ${this._embeddedTpl} ${this._litHtmlRender()}
-    `}_litHtmlRender(){y(this._lightDomTpl,this,{host:this})}get _lightDomTpl(){return this._embeddedElement}get _loadResource(){return this.type==="iframe"?"src":"data"}get _embeddedTpl(){return n`
+    `}_litHtmlRender(){t(this._lightDomTpl,this,{host:this})}get _lightDomTpl(){return this._embeddedElement}get _loadResource(){return this.type===`iframe`?`src`:`data`}get _embeddedTpl(){return e`
       <slot name="embedded"></slot>
-    `}_fetch(e){var t,r,o,d;e&&(Object.assign((t=this._embeddedElement)!=null?t:{},this.type==="iframe"&&{allow:"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture",allowFullscreen:!0,loading:"lazy"},this.embeddedTitle&&{title:this.embeddedTitle}),Object.assign((r=this._embeddedElement)!=null?r:{},{[this._loadResource]:e}),window.performance.mark("iframestart"),Object.assign((d=(o=this._embeddedElement)==null?void 0:o.style)!=null?d:{},e.indexOf("http")!==0&&{opacity:0}))}}window.customElements.define("blockquote-base-embedded-webview-element",G);const U=w`
+    `}_fetch(e){if(e){var t,n,r,i;Object.assign((t=this._embeddedElement)==null?{}:t,this.type===`iframe`&&{allow:`accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture`,allowFullscreen:!0,loading:`lazy`},this.embeddedTitle&&{title:this.embeddedTitle}),Object.assign((n=this._embeddedElement)==null?{}:n,{[this._loadResource]:e}),window.performance.mark(`iframestart`),Object.assign((r=(i=this._embeddedElement)==null?void 0:i.style)==null?{}:r,e.indexOf(`http`)!==0&&{opacity:0})}}};window.customElements.define(`blockquote-base-embedded-webview-element`,O);var k=a`
   :host {
     --_host-color: var(--blockquote-base-embedded-webview-color, rgb(32, 32, 32));
     --_main-bgcolor: var(--blockquote-base-embedded-webview-main-bgcolor, rgb(250, 250, 250));
@@ -526,7 +526,7 @@ var $=Object.defineProperty;var R=(s,i,e)=>i in s?$(s,i,{enumerable:!0,configura
     overflow-x: hidden;
     overflow-inline: hidden;
   }
-`,V=n`
+`,A=e`
   <svg
     aria-hidden="true"
     viewBox="0 0 24 24"
@@ -537,7 +537,7 @@ var $=Object.defineProperty;var R=(s,i,e)=>i in s?$(s,i,{enumerable:!0,configura
     stroke-linejoin="round">
     <polyline points="6 9 12 15 18 9" />
   </svg>
-`,j=n`
+`,j=e`
   <svg
     viewBox="0 0 20 20"
     fill-rule="evenodd"
@@ -548,9 +548,9 @@ var $=Object.defineProperty;var R=(s,i,e)=>i in s?$(s,i,{enumerable:!0,configura
     <path
       d="M4.5 17C4.08333 17 3.72933 16.854 3.438 16.562C3.146 16.2707 3 15.9167 3 15.5V4.5C3 4.08333 3.146 3.72933 3.438 3.438C3.72933 3.146 4.08333 3 4.5 3H10V4.5H4.5V15.5H15.5V10H17V15.5C17 15.9167 16.854 16.2707 16.562 16.562C16.2707 16.854 15.9167 17 15.5 17H4.5ZM8.062 13L7 11.938L14.438 4.5H12V3H17V8H15.5V5.562L8.062 13Z" />
   </svg>
-`;class F extends _{constructor(){super();h(this,"_updateSize",({detail:e})=>{var t,r,o,d;(r=(t=this._embeddedResizeRef)==null?void 0:t.value)==null||r.style.setProperty("--blockquote-base-embedded-webview-resize-rect-width",`${e.width}px`),(d=(o=this._embeddedResizeRef)==null?void 0:o.value)==null||d.style.setProperty("--blockquote-base-embedded-webview-resize-rect-height",this.limitHeight?"100%":`${e.height}px`),this.__resetResizing=!1,this.requestUpdate()});this.selected=0,this.screenSizeSelected=0,this.headingLevel=1,this.heading="",this.__resetResizing=!1,this.__selectArrow=V,this.__readDataPos={x:"0",y:"0",resizing:!1,cursor:""},this.limitHeight=!1,this._sources=[{src:"",option:"",description:""}],this._embeddedResizeRef=D()}static get styles(){return[U]}static get properties(){return{heading:{type:String},selected:{type:Number},headingLevel:{type:Number,attribute:"heading-level",reflect:!0,useDefault:!0},screenSizeSelected:{type:Number,attribute:"screen-size-selected"},limitHeight:{type:Boolean,attribute:"limit-height",reflect:!0,useDefault:!0}}}async connectedCallback(){var t,r;(t=super.connectedCallback)==null||t.call(this),await this.updateComplete,this.addEventListener("webviewresize",o=>{var a;const{detail:d}=o;Object.assign(this.__readDataPos,d),this.__resetResizing=!0,(d.cursor==="n"||d.cursor==="ne"||d.cursor==="nw")&&window.scroll({top:Math.abs(parseInt(this.__readDataPos.y,10)+((a=this._controlBottom)!=null?a:0)),left:0,behavior:"smooth"}),this.requestUpdate()});const e=Array.from(this.querySelectorAll("template"));e.length&&(this._sources=e.map(o=>{const{src:d="",option:a="",description:l=""}=o.dataset;return{src:d,option:a,description:l}}),this._src=this._sources[this.selected].src),this.embedded=(r=this.shadowRoot)==null?void 0:r.querySelector('[slot="embedded"]'),this._embeddedResizeRef.value&&(this._controlBottom=parseFloat(window.getComputedStyle(this._embeddedResizeRef.value).paddingBottom))}get _headingLevel(){return this.headingLevel>=1&&this.headingLevel<=6?this.headingLevel:2}render(){return n`
+`,M=class extends n{static get styles(){return[k]}static get properties(){return{heading:{type:String},selected:{type:Number},headingLevel:{type:Number,attribute:`heading-level`,reflect:!0,useDefault:!0},screenSizeSelected:{type:Number,attribute:`screen-size-selected`},limitHeight:{type:Boolean,attribute:`limit-height`,reflect:!0,useDefault:!0}}}constructor(){super(),o(this,`_updateSize`,({detail:e})=>{var t,n;(t=this._embeddedResizeRef)==null||(t=t.value)==null||t.style.setProperty(`--blockquote-base-embedded-webview-resize-rect-width`,`${e.width}px`),(n=this._embeddedResizeRef)==null||(n=n.value)==null||n.style.setProperty(`--blockquote-base-embedded-webview-resize-rect-height`,this.limitHeight?`100%`:`${e.height}px`),this.__resetResizing=!1,this.requestUpdate()}),this.selected=0,this.screenSizeSelected=0,this.headingLevel=1,this.heading=``,this.__resetResizing=!1,this.__selectArrow=A,this.__readDataPos={x:`0`,y:`0`,resizing:!1,cursor:``},this.limitHeight=!1,this._sources=[{src:``,option:``,description:``}],this._embeddedResizeRef=y()}async connectedCallback(){var e,t;(e=super.connectedCallback)==null||e.call(this),await this.updateComplete,this.addEventListener(`webviewresize`,e=>{let{detail:t}=e;if(Object.assign(this.__readDataPos,t),this.__resetResizing=!0,t.cursor===`n`||t.cursor===`ne`||t.cursor===`nw`){var n;window.scroll({top:Math.abs(parseInt(this.__readDataPos.y,10)+((n=this._controlBottom)==null?0:n)),left:0,behavior:`smooth`})}this.requestUpdate()});let n=Array.from(this.querySelectorAll(`template`));n.length&&(this._sources=n.map(e=>{let{src:t=``,option:n=``,description:r=``}=e.dataset;return{src:t,option:n,description:r}}),this._src=this._sources[this.selected].src),this.embedded=(t=this.shadowRoot)==null?void 0:t.querySelector(`[slot="embedded"]`),this._embeddedResizeRef.value&&(this._controlBottom=parseFloat(window.getComputedStyle(this._embeddedResizeRef.value).paddingBottom))}get _headingLevel(){return this.headingLevel>=1&&this.headingLevel<=6?this.headingLevel:2}render(){return e`
       ${this._headerTpl} ${this._mainTpl} ${this._litHtmlRender()}
-    `}_litHtmlRender(){y(this._lightDomTpl,this,{host:this})}get _lightDomTpl(){return this.embedded}get _headerTpl(){return n`
+    `}_litHtmlRender(){t(this._lightDomTpl,this,{host:this})}get _lightDomTpl(){return this.embedded}get _headerTpl(){return e`
       <header>
         <div>
           ${this._headingTpl} ${this._navigationDemosTpl} ${this._descriptionTpl}
@@ -558,31 +558,31 @@ var $=Object.defineProperty;var R=(s,i,e)=>i in s?$(s,i,{enumerable:!0,configura
         </div>
         ${this._screenSizeTpl}
       </header>
-    `}get _headingTpl(){return n`
+    `}get _headingTpl(){return e`
       <div aria-level="${this._headingLevel}" role="heading">${this.heading}</div>
-    `}get _navigationDemosTpl(){return n`
+    `}get _navigationDemosTpl(){return e`
       <div>${this._selectTpl}${this._externalLinkTpl}</div>
-    `}get _selectTpl(){return n`
-      ${this._sources.some(e=>e.option)?n`
+    `}get _selectTpl(){return e`
+      ${this._sources.some(e=>e.option)?e`
             <div class="select">
               <select id="select-sources" @change="${this._onChangeFile}" aria-label="Cases">
-                ${this._sources.map((e,t)=>n`
-                    <option ?selected="${this.selected===t}" value="${t}">
-                      ${e.option}
+                ${this._sources.map((t,n)=>e`
+                    <option ?selected="${this.selected===n}" value="${n}">
+                      ${t.option}
                     </option>
                   `)}
               </select>
               ${this.__selectArrow}
             </div>
-          `:""}
-    `}get _externalLinkTpl(){return n`
-      <a href="${this._src||"#"}" target="_blank" class="open-externally">
+          `:``}
+    `}get _externalLinkTpl(){return e`
+      <a href="${this._src||`#`}" target="_blank" class="open-externally">
         <span class="sr-only">View demo in a new tab</span>
         <span aria-hidden="true">${j}</span>
       </a>
-    `}get _descriptionTpl(){return n`
+    `}get _descriptionTpl(){return e`
       <p class="description">${this._sources[this.selected].description}</p>
-    `}get _readDataPosTpl(){return n`
+    `}get _readDataPosTpl(){return e`
       <div
         aria-hidden="true"
         class="read-data-pos"
@@ -591,21 +591,21 @@ var $=Object.defineProperty;var R=(s,i,e)=>i in s?$(s,i,{enumerable:!0,configura
         <span>x</span>
         <span>${this.__readDataPos.y}</span>
       </div>
-    `}get _screenSizeTpl(){return n`
+    `}get _screenSizeTpl(){return e`
       <blockquote-base-embedded-webview-size
         .disabledSelectedSizeText="${this.__resetResizing}"
         @click="${this._updateSize}"
         @selectedchange="${this._updateSize}"
         .selected="${this.screenSizeSelected}"></blockquote-base-embedded-webview-size>
-    `}get _mainTpl(){return n`
+    `}get _mainTpl(){return e`
       <div class="main">
-        <blockquote-base-embedded-webview-resize ${H(this._embeddedResizeRef)}>
+        <blockquote-base-embedded-webview-resize ${S(this._embeddedResizeRef)}>
           <slot name="embedded">${this._embeddedSlotTpl}</slot>
         </blockquote-base-embedded-webview-resize>
       </div>
-    `}get _embeddedSlotTpl(){return n`
+    `}get _embeddedSlotTpl(){return e`
       <blockquote-base-embedded-webview-element
         slot="embedded"
-        .src="${this._src||""}"
-        .embeddedTitle="${this._sources[this.selected].option||"Demo"}"></blockquote-base-embedded-webview-element>
-    `}_onChangeFile({target:e}){this.selected=e.selectedIndex,this._src=this._sources[this.selected].src}}window.customElements.define("blockquote-base-embedded-webview",F);
+        .src="${this._src||``}"
+        .embeddedTitle="${this._sources[this.selected].option||`Demo`}"></blockquote-base-embedded-webview-element>
+    `}_onChangeFile({target:e}){this.selected=e.selectedIndex,this._src=this._sources[this.selected].src}};window.customElements.define(`blockquote-base-embedded-webview`,M);

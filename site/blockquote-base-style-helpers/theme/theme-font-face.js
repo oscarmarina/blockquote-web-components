@@ -1,4 +1,4 @@
-const U={main:`
+var e={main:`
   @font-face {
     font-family: 'Kaisei HarunoUmi';
     font-style: normal;
@@ -11,4 +11,4 @@ const U={main:`
       U+fa, U+fc-fd, U+103, U+14d, U+1b0, U+300-301, U+1ebf, U+1ec7, U+2013-2014, U+201c-201d,
       U+2039-203a, U+203c, U+2048-2049, U+2113, U+2122, U+65e5, U+6708, U+70b9;
   }
-  `};export{U as fontFace};
+  `};export{e as fontFace};

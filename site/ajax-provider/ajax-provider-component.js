@@ -1,14 +1,14 @@
-var $e=Object.defineProperty;var de=o=>{throw TypeError(o)};var we=(o,e,t)=>e in o?$e(o,e,{enumerable:!0,configurable:!0,writable:!0,value:t}):o[e]=t;var pe=(o,e,t)=>we(o,typeof e!="symbol"?e+"":e,t),ue=(o,e,t)=>e.has(o)||de("Cannot "+t);var p=(o,e,t)=>(ue(o,e,"read from private field"),t?t.call(o):e.get(o)),j=(o,e,t)=>e.has(o)?de("Cannot add the same private member more than once"):e instanceof WeakSet?e.add(o):e.set(o,t),M=(o,e,t,r)=>(ue(o,e,"write to private field"),r?r.call(o,t):e.set(o,t),t);import{f as Oe,u as Pe,i as m,a as f,b as l,e as Ee,c as Ne,t as Te,E as Re,A as te}from"./assets/directive-p80Jr2dA.js";import{A as Ae}from"./assets/AjaxProvider-DIG5l2G9.js";const x=o=>(e,t)=>{t!==void 0?t.addInitializer(()=>{customElements.define(o,e)}):customElements.define(o,e)};const De={attribute:!0,type:String,converter:Pe,reflect:!1,hasChanged:Oe},_e=(o=De,e,t)=>{const{kind:r,metadata:a}=t;let n=globalThis.litPropertyMetadata.get(a);if(n===void 0&&globalThis.litPropertyMetadata.set(a,n=new Map),r==="setter"&&((o=Object.create(o)).wrapped=!0),n.set(t.name,o),r==="accessor"){const{name:i}=t;return{set(s){const d=e.get.call(this);e.set.call(this,s),this.requestUpdate(i,d,o,!0,s)},init(s){return s!==void 0&&this.C(i,void 0,o,s),s}}}if(r==="setter"){const{name:i}=t;return function(s){const d=this[i];e.call(this,s),this.requestUpdate(i,d,o,!0,s)}}throw Error("Unsupported decorator location: "+r)};function c(o){return(e,t)=>typeof t=="object"?_e(o,e,t):((r,a,n)=>{const i=a.hasOwnProperty(n);return a.constructor.createProperty(n,r),i?Object.getOwnPropertyDescriptor(a,n):void 0})(o,e,t)}function*me(o,e){if(o!==void 0){let t=0;for(const r of o)yield e(r,t++)}}var se=function(o,e,t,r){var a=arguments.length,n=a<3?e:r===null?r=Object.getOwnPropertyDescriptor(e,t):r,i;if(typeof Reflect=="object"&&typeof Reflect.decorate=="function")n=Reflect.decorate(o,e,t,r);else for(var s=o.length-1;s>=0;s--)(i=o[s])&&(n=(a<3?i(n):a>3?i(e,t,n):i(e,t))||n);return a>3&&n&&Object.defineProperty(e,t,n),n},P;let V=(P=class extends m{constructor(){super(...arguments),this.dimmed=!1}render(){return this.name}},P.styles=f`
+import{t as e}from"./assets/src-DOiH6zdm.js";import{t}from"./assets/defineProperty-RqLV7r3I.js";import{a as n,c as r,d as i,f as a,i as o,n as s,r as c,s as l,t as u,u as ee}from"./assets/directive-RKw_Dd-x.js";function te(e,t){if(t.has(e))throw TypeError(`Cannot initialize the same private elements twice on an object`)}function d(e,t,n){te(e,t),t.set(e,n)}function f(e,t,n){if(typeof e==`function`?e===t:e.has(t))return arguments.length<3?t:n;throw TypeError(`Private element is not present on this object`)}function p(e,t,n){return e.set(f(e,t),n),n}function m(e,t){return e.get(f(e,t))}var h=e=>(t,n)=>{n===void 0?customElements.define(e,t):n.addInitializer(()=>{customElements.define(e,t)})},ne={attribute:!0,type:String,converter:i,reflect:!1,hasChanged:ee},re=(e=ne,t,n)=>{let{kind:r,metadata:i}=n,a=globalThis.litPropertyMetadata.get(i);if(a===void 0&&globalThis.litPropertyMetadata.set(i,a=new Map),r===`setter`&&((e=Object.create(e)).wrapped=!0),a.set(n.name,e),r===`accessor`){let{name:r}=n;return{set(n){let i=t.get.call(this);t.set.call(this,n),this.requestUpdate(r,i,e,!0,n)},init(t){return t!==void 0&&this.C(r,void 0,e,t),t}}}if(r===`setter`){let{name:r}=n;return function(n){let i=this[r];t.call(this,n),this.requestUpdate(r,i,e,!0,n)}}throw Error(`Unsupported decorator location: `+r)};function g(e){return(t,n)=>typeof n==`object`?re(e,t,n):((e,t,n)=>{let r=t.hasOwnProperty(n);return t.constructor.createProperty(n,e),r?Object.getOwnPropertyDescriptor(t,n):void 0})(e,t,n)}function*ie(e,t){if(e!==void 0){let n=0;for(let r of e)yield t(r,n++)}}var _,v=function(e,t,n,r){var i=arguments.length,a=i<3?t:r===null?r=Object.getOwnPropertyDescriptor(t,n):r,o;if(typeof Reflect==`object`&&typeof Reflect.decorate==`function`)a=Reflect.decorate(e,t,n,r);else for(var s=e.length-1;s>=0;s--)(o=e[s])&&(a=(i<3?o(a):i>3?o(t,n,a):o(t,n))||a);return i>3&&a&&Object.defineProperty(t,n,a),a},y=(_=class extends o{constructor(){super(...arguments),this.dimmed=!1}render(){return this.name}},_.styles=a`
     :host {
       color: var(--ix-object-name-color);
     }
     :host([dimmed]) {
       opacity: var(--ix-object-name-dimmed-opacity, 0.6);
     }
-  `,P);se([c({reflect:!0})],V.prototype,"name",void 0);se([c({type:Boolean,reflect:!0})],V.prototype,"dimmed",void 0);V=se([x("ix-object-name")],V);var be=function(o,e,t,r){var a=arguments.length,n=a<3?e:r===null?r=Object.getOwnPropertyDescriptor(e,t):r,i;if(typeof Reflect=="object"&&typeof Reflect.decorate=="function")n=Reflect.decorate(o,e,t,r);else for(var s=o.length-1;s>=0;s--)(i=o[s])&&(n=(a<3?i(n):a>3?i(e,t,n):i(e,t))||n);return a>3&&n&&Object.defineProperty(e,t,n),n};class H{constructor(e){this.map=e}}class k{constructor(e){this.set=e}}var E;let ne=(E=class extends m{render(){const e=this.data;switch(typeof e){case"bigint":return l`<span class="number">${String(e)}n</span>`;case"number":return l`<span class="number">${String(e)}</span>`;case"string":return l`<span class="string">"${e}"</span>`;case"boolean":return l`<span class="boolean">${String(e)}</span>`;case"undefined":return l`<span class="undefined">undefined</span>`;case"object":return e===null?l`<span class="null">null</span>`:e instanceof Map?l`<span>Map(${e.size})</span>`:e instanceof Set?l`<span>Set(${e.size})</span>`:e instanceof H?l`<span>(${e.map.size})</span>`:e instanceof k?l`<span>(${e.set.size})</span>`:e instanceof Date?l`<span>${e.toString()}</span>`:e instanceof RegExp?l`<span class="RegExp"> ${e.toString()} </span>`:Array.isArray(e)?l`<span>${`Array(${e.length})`}</span>`:e.constructor?typeof e.constructor.isBuffer=="function"&&e.constructor.isBuffer(e)?l`<span>${`Buffer[${e.length}]`}</span>`:l`<span>${e.constructor.name}</span>`:l`<span>Object</span>`;case"function":return l`<span>
+  `,_);v([g({reflect:!0})],y.prototype,`name`,void 0),v([g({type:Boolean,reflect:!0})],y.prototype,`dimmed`,void 0),y=v([h(`ix-object-name`)],y);var b,x=function(e,t,n,r){var i=arguments.length,a=i<3?t:r===null?r=Object.getOwnPropertyDescriptor(t,n):r,o;if(typeof Reflect==`object`&&typeof Reflect.decorate==`function`)a=Reflect.decorate(e,t,n,r);else for(var s=e.length-1;s>=0;s--)(o=e[s])&&(a=(i<3?o(a):i>3?o(t,n,a):o(t,n))||a);return i>3&&a&&Object.defineProperty(t,n,a),a},S=class{constructor(e){this.map=e}},C=class{constructor(e){this.set=e}},w=(b=class extends o{render(){let e=this.data;switch(typeof e){case`bigint`:return r`<span class="number">${String(e)}n</span>`;case`number`:return r`<span class="number">${String(e)}</span>`;case`string`:return r`<span class="string">"${e}"</span>`;case`boolean`:return r`<span class="boolean">${String(e)}</span>`;case`undefined`:return r`<span class="undefined">undefined</span>`;case`object`:return e===null?r`<span class="null">null</span>`:e instanceof Map?r`<span>Map(${e.size})</span>`:e instanceof Set?r`<span>Set(${e.size})</span>`:e instanceof S?r`<span>(${e.map.size})</span>`:e instanceof C?r`<span>(${e.set.size})</span>`:e instanceof Date?r`<span>${e.toString()}</span>`:e instanceof RegExp?r`<span class="RegExp"> ${e.toString()} </span>`:Array.isArray(e)?r`<span>${`Array(${e.length})`}</span>`:e.constructor?typeof e.constructor.isBuffer==`function`&&e.constructor.isBuffer(e)?r`<span>${`Buffer[${e.length}]`}</span>`:r`<span>${e.constructor.name}</span>`:r`<span>Object</span>`;case`function`:return r`<span>
           <span class="FunctionPrefix">ƒ&nbsp;</span>
           <span class="FunctionName"> ${e.name}() </span>
-        </span>`;case"symbol":return l`<span class="symbol">${e.toString()}</span>`;default:return l`<span></span>`}}},E.styles=f`
+        </span>`;case`symbol`:return r`<span class="symbol">${e.toString()}</span>`;default:return r`<span></span>`}}},b.styles=a`
     :host {
       color: var(--ix-object-value-color);
     }
@@ -41,7 +41,7 @@ var $e=Object.defineProperty;var de=o=>{throw TypeError(o)};var we=(o,e,t)=>e in
     .symbol {
       color: var(--ix-object-value-symbol-color);
     }
-  `,E);be([c({attribute:!1})],ne.prototype,"data",void 0);ne=be([x("ix-object-value")],ne);const J=f`
+  `,b);x([g({attribute:!1})],w.prototype,`data`,void 0),w=x([h(`ix-object-value`)],w);var T=a`
   :host {
     --ix-base-font-family: Menlo, monospace;
     --ix-base-font-size: 11px;
@@ -86,10 +86,10 @@ var $e=Object.defineProperty;var de=o=>{throw TypeError(o)};var we=(o,e,t)=>e in
     --ix-table-tr-even-background-color: rgb(234, 243, 255);
     --ix-table-tr-odd-background-color: #fff;
   }
-`,I="$",fe="*",Ce=o=>Array.from({length:o},(e,t)=>[I].concat(Array.from({length:t},()=>"*")).join(".")),Se=(o,e,t,r=0,a)=>{const n=[...Ce(r)].concat(t).filter(s=>typeof s=="string"),i=new Map;if(n.forEach(s=>{const d=s.split("."),b=(u,w,h)=>{var ce;if(h===d.length){i.set(w,!0);return}const v=d[h],O=e.hasChildren(u);if(h===0)O&&(v===I||v===fe)&&b(u,I,h+1);else if(v===fe)for(const{data:ee,name:je}of(ce=e.children(u))!=null?ce:[])O&&b(ee,`${w}.${je}`,h+1);else if(u!=null){const ee=u[v];O&&b(ee,`${w}.${v}`,h+1)}};b(o,"",0)}),a!==void 0)for(const[s,d]of a)d&&i.set(s,!0);return i};const Le=Ee(class extends Ne{constructor(o){var e;if(super(o),o.type!==Te.ATTRIBUTE||o.name!=="class"||((e=o.strings)==null?void 0:e.length)>2)throw Error("`classMap()` can only be used in the `class` attribute and must be the only part in the attribute.")}render(o){return" "+Object.keys(o).filter(e=>o[e]).join(" ")+" "}update(o,[e]){var r,a;if(this.st===void 0){this.st=new Set,o.strings!==void 0&&(this.nt=new Set(o.strings.join(" ").split(/\s/).filter(n=>n!=="")));for(const n in e)e[n]&&!((r=this.nt)!=null&&r.has(n))&&this.st.add(n);return this.render(e)}const t=o.element.classList;for(const n of this.st)n in e||(t.remove(n),this.st.delete(n));for(const n in e){const i=!!e[n];i===this.st.has(n)||(a=this.nt)!=null&&a.has(n)||(i?(t.add(n),this.st.add(n)):(t.remove(n),this.st.delete(n)))}return Re}});var G=function(o,e,t,r){var a=arguments.length,n=a<3?e:r===null?r=Object.getOwnPropertyDescriptor(e,t):r,i;if(typeof Reflect=="object"&&typeof Reflect.decorate=="function")n=Reflect.decorate(o,e,t,r);else for(var s=o.length-1;s>=0;s--)(i=o[s])&&(n=(a<3?i(n):a>3?i(e,t,n):i(e,t))||n);return a>3&&n&&Object.defineProperty(e,t,n),n},B,oe,q,N;let L=(N=class extends m{constructor(){super();j(this,B);j(this,q);this.expanded=!1,this.showGutter=!1,M(this,q,t=>{if(!p(this,B,oe))return;const r=this.renderRoot.querySelector("slot#children");t.composedPath().includes(r)||this.dispatchEvent(new re)}),this.addEventListener("click",p(this,q))}render(){return l`
+`,ae=`*`,oe=e=>Array.from({length:e},(e,t)=>[`$`].concat(Array.from({length:t},()=>`*`)).join(`.`)),se=(e,t,n,r=0,i)=>{let a=[...oe(r)].concat(n).filter(e=>typeof e==`string`),o=new Map;if(a.forEach(n=>{let r=n.split(`.`),i=(e,n,a)=>{if(a===r.length){o.set(n,!0);return}let s=r[a],c=t.hasChildren(e);if(a===0)c&&(s===`$`||s===ae)&&i(e,`$`,a+1);else if(s===ae){var l;for(let{data:r,name:o}of(l=t.children(e))==null?[]:l)c&&i(r,`${n}.${o}`,a+1)}else if(e!=null){let t=e[s];c&&i(t,`${n}.${s}`,a+1)}};i(e,``,0)}),i!==void 0)for(let[e,t]of i)t&&o.set(e,!0);return o};function ce(e,t){te(e,t),t.add(e)}var le=u(class extends s{constructor(e){var t;if(super(e),e.type!==c.ATTRIBUTE||e.name!==`class`||((t=e.strings)==null?void 0:t.length)>2)throw Error("`classMap()` can only be used in the `class` attribute and must be the only part in the attribute.")}render(e){return` `+Object.keys(e).filter(t=>e[t]).join(` `)+` `}update(e,[t]){if(this.st===void 0){var n;this.st=new Set,e.strings!==void 0&&(this.nt=new Set(e.strings.join(` `).split(/\s/).filter(e=>e!==``)));for(let e in t)t[e]&&!((n=this.nt)!=null&&n.has(e))&&this.st.add(e);return this.render(t)}let r=e.element.classList;for(let e of this.st)e in t||(r.remove(e),this.st.delete(e));for(let e in t){var i;let n=!!t[e];n===this.st.has(e)||(i=this.nt)!=null&&i.has(e)||(n?(r.add(e),this.st.add(e)):(r.remove(e),this.st.delete(e)))}return l}}),E,D,O,ue,k=function(e,t,n,r){var i=arguments.length,a=i<3?t:r===null?r=Object.getOwnPropertyDescriptor(t,n):r,o;if(typeof Reflect==`object`&&typeof Reflect.decorate==`function`)a=Reflect.decorate(e,t,n,r);else for(var s=e.length-1;s>=0;s--)(o=e[s])&&(a=(i<3?o(a):i>3?o(t,n,a):o(t,n))||a);return i>3&&a&&Object.defineProperty(t,n,a),a},A=(E=new WeakSet,D=new WeakMap,O=class extends o{constructor(){super(),ce(this,E),d(this,D,void 0),this.expanded=!1,this.showGutter=!1,p(D,this,e=>{if(!j.call(f(E,this)))return;let t=this.renderRoot.querySelector(`slot#children`);e.composedPath().includes(t)||this.dispatchEvent(new M)}),this.addEventListener(`click`,m(D,this))}render(){return r`
       <div
         id="gutter"
-        class=${Le({hidden:!p(this,B,oe),placeholder:this.showGutter})}
+        class=${le({hidden:!j.call(f(E,this)),placeholder:this.showGutter})}
       >
         <span id="arrow">▶</span>
       </div>
@@ -97,7 +97,7 @@ var $e=Object.defineProperty;var de=o=>{throw TypeError(o)};var we=(o,e,t)=>e in
         <slot name="label"></slot>
         <slot id="children" role="group"></slot>
       </div>
-    `}},B=new WeakSet,oe=function(){var t;return this.item&&((t=this.treeAdapter)==null?void 0:t.hasChildren(this.item.data))},q=new WeakMap,N.styles=[J,f`
+    `}},O.styles=[T,a`
       :host {
         display: flex;
         flex-direction: row;
@@ -152,39 +152,39 @@ var $e=Object.defineProperty;var de=o=>{throw TypeError(o)};var we=(o,e,t)=>e in
           display: block;
         }
       }
-    `],N);G([c({type:Boolean,reflect:!0})],L.prototype,"expanded",void 0);G([c({attribute:!1})],L.prototype,"treeAdapter",void 0);G([c({type:Boolean})],L.prototype,"showGutter",void 0);G([c({attribute:!1})],L.prototype,"item",void 0);L=G([x("ix-tree-node")],L);const X=class X extends Event{constructor(){super(X.eventName,{cancelable:!0})}};X.eventName="toggle-expanded";let re=X;const xe=Object.getOwnPropertyNames;function Me(o,e){const t=Object.getOwnPropertyDescriptor(o,e);if(t!=null&&t.get)try{return t.get()}catch{return t.get}return o[e]}function*he(o,e){if(o!==void 0){let t=-1;for(const r of o)t>-1&&(yield e),t++,yield r}}var W=function(o,e,t,r){var a=arguments.length,n=a<3?e:r===null?r=Object.getOwnPropertyDescriptor(e,t):r,i;if(typeof Reflect=="object"&&typeof Reflect.decorate=="function")n=Reflect.decorate(o,e,t,r);else for(var s=o.length-1;s>=0;s--)(i=o[s])&&(n=(a<3?i(n):a>3?i(e,t,n):i(e,t))||n);return a>3&&n&&Object.defineProperty(e,t,n),n},T;let U=(T=class extends m{constructor(){super(...arguments),this.maxProperties=5,this.maxArrayItems=10}render(){const e=this.data;if(typeof e!="object"||e===null||e instanceof Date||e instanceof RegExp)return l`<ix-object-value .data=${e}></ix-object-value>`;if(Array.isArray(e)){const t=e.slice(0,this.maxArrayItems).map(a=>l`<ix-object-value .data=${a}></ix-object-value>`),r=e.length;return r>this.maxArrayItems&&t.push(l`<span>…</span>`),l`
-        <span>${r===0?"":`(${r}) `}</span
-        ><span>[${he(t,", ")}]</span>
-      `}else{const t=xe(e),r=t.slice(0,this.maxProperties).map(n=>{const i=Me(e,n);return l`<span
-            ><ix-object-name .name=${n||'""'}></ix-object-name
-            >:&nbsp;<ix-object-value .data=${i}></ix-object-value
-          ></span>`});t.length>this.maxProperties&&r.push(l`<span>…</span>`);const a=e.constructor===void 0||e.constructor.name==="Object"?void 0:`${e.constructor.name} `;return l`
-        <span>${a}</span
-        ><span>{${he(r,", ")}}</span>
-      `}}},T.styles=f`
+    `],O);function j(){var e;return this.item&&((e=this.treeAdapter)==null?void 0:e.hasChildren(this.item.data))}k([g({type:Boolean,reflect:!0})],A.prototype,`expanded`,void 0),k([g({attribute:!1})],A.prototype,`treeAdapter`,void 0),k([g({type:Boolean})],A.prototype,`showGutter`,void 0),k([g({attribute:!1})],A.prototype,`item`,void 0),A=k([h(`ix-tree-node`)],A);var M=class e extends Event{constructor(){super(e.eventName,{cancelable:!0})}};ue=M,ue.eventName=`toggle-expanded`;var de=Object.getOwnPropertyNames;Object.hasOwn;function fe(e,t){let n=Object.getOwnPropertyDescriptor(e,t);if(n!=null&&n.get)try{return n.get()}catch{return n.get}return e[t]}function*pe(e,t){let n=typeof t==`function`;if(e!==void 0){let r=-1;for(let i of e)r>-1&&(yield n?t(r):t),r++,yield i}}var N,P=function(e,t,n,r){var i=arguments.length,a=i<3?t:r===null?r=Object.getOwnPropertyDescriptor(t,n):r,o;if(typeof Reflect==`object`&&typeof Reflect.decorate==`function`)a=Reflect.decorate(e,t,n,r);else for(var s=e.length-1;s>=0;s--)(o=e[s])&&(a=(i<3?o(a):i>3?o(t,n,a):o(t,n))||a);return i>3&&a&&Object.defineProperty(t,n,a),a},F=(N=class extends o{constructor(){super(...arguments),this.maxProperties=5,this.maxArrayItems=10}render(){let e=this.data;if(typeof e!=`object`||!e||e instanceof Date||e instanceof RegExp)return r`<ix-object-value .data=${e}></ix-object-value>`;if(Array.isArray(e)){let t=e.slice(0,this.maxArrayItems).map(e=>r`<ix-object-value .data=${e}></ix-object-value>`),n=e.length;return n>this.maxArrayItems&&t.push(r`<span>…</span>`),r`
+        <span>${n===0?``:`(${n})\xa0`}</span
+        ><span>[${pe(t,`, `)}]</span>
+      `}else{let t=de(e),n=t.slice(0,this.maxProperties).map(t=>{let n=fe(e,t);return r`<span
+            ><ix-object-name .name=${t||`""`}></ix-object-name
+            >:&nbsp;<ix-object-value .data=${n}></ix-object-value
+          ></span>`});return t.length>this.maxProperties&&n.push(r`<span>…</span>`),r`
+        <span>${e.constructor===void 0||e.constructor.name===`Object`?void 0:`${e.constructor.name} `}</span
+        ><span>{${pe(n,`, `)}}</span>
+      `}}},N.styles=a`
     :host {
       color: var(--ix-object-preview-color);
       font-style: var(--ix-object-preview-font-style);
     }
-  `,T);W([c({attribute:!1})],U.prototype,"data",void 0);W([c({type:Number})],U.prototype,"maxProperties",void 0);W([c({type:Number})],U.prototype,"maxArrayItems",void 0);U=W([x("ix-object-preview")],U);var $=function(o,e,t,r){var a=arguments.length,n=a<3?e:r===null?r=Object.getOwnPropertyDescriptor(e,t):r,i;if(typeof Reflect=="object"&&typeof Reflect.decorate=="function")n=Reflect.decorate(o,e,t,r);else for(var s=o.length-1;s>=0;s--)(i=o[s])&&(n=(a<3?i(n):a>3?i(e,t,n):i(e,t))||n);return a>3&&n&&Object.defineProperty(e,t,n),n},R;class Ie{constructor(e){j(this,R);this.expandedPaths=new Map,M(this,R,e)}requestUpdate(){return p(this,R).requestUpdate()}hasChildren(e){return typeof e=="object"&&e!==null||typeof e=="function"?Array.isArray(e)?e.length>0:typeof e[Symbol.iterator]=="function"?!0:xe(e).length>0:!1}children(e){if(!this.hasChildren(e))return;const t=[];if(e instanceof Map)t.push({name:"[[Entries]]",data:new H(e),synthetic:!0,expanded:!0});else{if(e instanceof H)return t.push(...Array.from(e.map.entries()).map(([a,n])=>({name:String(a),data:n}))),t;if(e instanceof Set)t.push({name:"[[Entries]]",data:new k(e),synthetic:!0,expanded:!0});else{if(e instanceof k)return t.push(...Array.from(e.set.values()).map((a,n)=>({name:String(n),data:a}))),t;!Array.isArray(e)&&typeof e[Symbol.iterator]=="function"&&t.push(...Array.from(e).map((a,n)=>({name:n.toString(),data:a})))}}const r=Object.getOwnPropertyDescriptors(e);return t.push(...Object.entries(r).map(([a,n])=>({name:a,data:e[a],isNonEnumerable:!n.enumerable}))),t}render({item:e,depth:t=0,isNonEnumerable:r,parentPath:a}){var u,w;const n=a===void 0?I:`${a}.${e.name}`,i=(w=(u=this.expandedPaths.get(n))!=null?u:e.expanded)!=null?w:!1,s=typeof e.name=="string"&&e.name!==""?l`<ix-object-name
+  `,N);P([g({attribute:!1})],F.prototype,`data`,void 0),P([g({type:Number})],F.prototype,`maxProperties`,void 0),P([g({type:Number})],F.prototype,`maxArrayItems`,void 0),F=P([h(`ix-object-preview`)],F);var I,L,R=function(e,t,n,r){var i=arguments.length,a=i<3?t:r===null?r=Object.getOwnPropertyDescriptor(t,n):r,o;if(typeof Reflect==`object`&&typeof Reflect.decorate==`function`)a=Reflect.decorate(e,t,n,r);else for(var s=e.length-1;s>=0;s--)(o=e[s])&&(a=(i<3?o(a):i>3?o(t,n,a):o(t,n))||a);return i>3&&a&&Object.defineProperty(t,n,a),a},z=new WeakMap,me=class{constructor(e){d(this,z,void 0),this.expandedPaths=new Map,p(z,this,e)}requestUpdate(){return m(z,this).requestUpdate()}hasChildren(e){return typeof e==`object`&&e||typeof e==`function`?Array.isArray(e)?e.length>0:typeof e[Symbol.iterator]==`function`?!0:de(e).length>0:!1}children(e){if(!this.hasChildren(e))return;let t=[];if(e instanceof Map)t.push({name:`[[Entries]]`,data:new S(e),synthetic:!0,expanded:!0});else if(e instanceof S)return t.push(...Array.from(e.map.entries()).map(([e,t])=>({name:String(e),data:t}))),t;else if(e instanceof Set)t.push({name:`[[Entries]]`,data:new C(e),synthetic:!0,expanded:!0});else if(e instanceof C)return t.push(...Array.from(e.set.values()).map((e,t)=>({name:String(t),data:e}))),t;else !Array.isArray(e)&&typeof e[Symbol.iterator]==`function`&&t.push(...Array.from(e).map((e,t)=>({name:t.toString(),data:e})));let n=Object.getOwnPropertyDescriptors(e);return t.push(...Object.entries(n).map(([t,n])=>({name:t,data:e[t],isNonEnumerable:!n.enumerable}))),t}render({item:e,depth:t=0,isNonEnumerable:n,parentPath:i}){var a,o;let s=i===void 0?`$`:`${i}.${e.name}`,c=(a=(o=this.expandedPaths.get(s))==null?e.expanded:o)==null?!1:a,l=typeof e.name==`string`&&e.name!==``?r`<ix-object-name
             .name=${e.name}
-            .dimmed=${r!=null?r:!1}
-          ></ix-object-name>`:t===0?void 0:l`<ix-object-preview .data=${e.name}></ix-object-preview>`,d=e.data instanceof H||e.data instanceof k?void 0:t===0?l`<ix-object-preview .data=${e.data}></ix-object-preview>`:l`<ix-object-value .data=${e.data}></ix-object-value>`,b=s&&d?l`<span>: </span>`:void 0;return l`<ix-tree-node
+            .dimmed=${n==null?!1:n}
+          ></ix-object-name>`:t===0?void 0:r`<ix-object-preview .data=${e.name}></ix-object-preview>`,u=e.data instanceof S||e.data instanceof C?void 0:t===0?r`<ix-object-preview .data=${e.data}></ix-object-preview>`:r`<ix-object-value .data=${e.data}></ix-object-value>`,ee=l&&u?r`<span>: </span>`:void 0;return r`<ix-tree-node
       .item=${e}
       .treeAdapter=${this}
-      .expanded=${i}
+      .expanded=${c}
       .showGutter=${t>0}
-      @toggle-expanded=${()=>{var v,O;const h=(O=(v=this.expandedPaths.get(n))!=null?v:e.expanded)!=null?O:!1;this.expandedPaths.set(n,!h),p(this,R).requestUpdate()}}
-      ><span slot="label">${s}${b}${d}</span
-      >${me(this.children(e.data),h=>this.render({item:h,depth:t+1,parentPath:n}))}</ix-tree-node
-    >`}}R=new WeakMap;var g,A;let y=(A=class extends m{constructor(){super(...arguments);j(this,g);this.expandLevel=1,this.showNonenumerable=!1,this.sortObjectKeys=!1,M(this,g,new Ie(this))}willUpdate(t){if(t.has("data")||t.has("expandPaths")||t.has("expandLevel")){const r=Array.isArray(this.expandPaths)?this.expandPaths:this.expandPaths===void 0?[]:[this.expandPaths];p(this,g).expandedPaths=Se(this.data,p(this,g),r,this.expandLevel,p(this,g).expandedPaths),this.requestUpdate()}}render(){return p(this,g).render({item:{data:this.data,name:this.name}})}},g=new WeakMap,A.styles=[J,f`
+      @toggle-expanded=${()=>{var t,n;let r=(t=(n=this.expandedPaths.get(s))==null?e.expanded:n)==null?!1:t;this.expandedPaths.set(s,!r),m(z,this).requestUpdate()}}
+      ><span slot="label">${l}${ee}${u}</span
+      >${ie(this.children(e.data),e=>this.render({item:e,depth:t+1,parentPath:s}))}</ix-tree-node
+    >`}},B=(I=new WeakMap,L=class extends o{constructor(){super(...arguments),d(this,I,void 0),this.expandLevel=1,this.showNonenumerable=!1,this.sortObjectKeys=!1,p(I,this,new me(this))}willUpdate(e){if(e.has(`data`)||e.has(`expandPaths`)||e.has(`expandLevel`)){let e=Array.isArray(this.expandPaths)?this.expandPaths:this.expandPaths===void 0?[]:[this.expandPaths];m(I,this).expandedPaths=se(this.data,m(I,this),e,this.expandLevel,m(I,this).expandedPaths),this.requestUpdate()}}render(){return m(I,this).render({item:{data:this.data,name:this.name}})}},L.styles=[T,a`
       :host {
         display: block;
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
-    `],A);$([c({type:Number})],y.prototype,"expandLevel",void 0);$([c()],y.prototype,"expandPaths",void 0);$([c()],y.prototype,"name",void 0);$([c({type:Object})],y.prototype,"data",void 0);$([c({type:Boolean})],y.prototype,"showNonenumerable",void 0);$([c({attribute:!1})],y.prototype,"sortObjectKeys",void 0);y=$([x("ix-object-inspector")],y);var ie=function(o,e,t,r){var a=arguments.length,n=a<3?e:r===null?r=Object.getOwnPropertyDescriptor(e,t):r,i;if(typeof Reflect=="object"&&typeof Reflect.decorate=="function")n=Reflect.decorate(o,e,t,r);else for(var s=o.length-1;s>=0;s--)(i=o[s])&&(n=(a<3?i(n):a>3?i(e,t,n):i(e,t))||n);return a>3&&n&&Object.defineProperty(e,t,n),n},D;let Y=(D=class extends m{constructor(){super(...arguments),this.expanded=!1}render(){return l`&lt;/<span class="tagName">${this.name}</span>&gt;`}},D.styles=f`
+    `],L);R([g({type:Number})],B.prototype,`expandLevel`,void 0),R([g()],B.prototype,`expandPaths`,void 0),R([g()],B.prototype,`name`,void 0),R([g({type:Object})],B.prototype,`data`,void 0),R([g({type:Boolean})],B.prototype,`showNonenumerable`,void 0),R([g({attribute:!1})],B.prototype,`sortObjectKeys`,void 0),B=R([h(`ix-object-inspector`)],B);var V,H=function(e,t,n,r){var i=arguments.length,a=i<3?t:r===null?r=Object.getOwnPropertyDescriptor(t,n):r,o;if(typeof Reflect==`object`&&typeof Reflect.decorate==`function`)a=Reflect.decorate(e,t,n,r);else for(var s=e.length-1;s>=0;s--)(o=e[s])&&(a=(i<3?o(a):i>3?o(t,n,a):o(t,n))||a);return i>3&&a&&Object.defineProperty(t,n,a),a},U=(V=class extends o{constructor(){super(...arguments),this.expanded=!1}render(){return r`&lt;/<span class="tagName">${this.name}</span>&gt;`}},V.styles=a`
     :host {
       white-space: nowrap;
       color: var(--ix-html-tag-color);
@@ -194,14 +194,14 @@ var $e=Object.defineProperty;var de=o=>{throw TypeError(o)};var we=(o,e,t)=>e in
       color: var(--ix-html-tagname-color);
       text-transform: var(--ix-html-tagname-text-transform);
     }
-  `,D);ie([c({attribute:!1})],Y.prototype,"name",void 0);ie([c({type:Boolean,reflect:!0})],Y.prototype,"expanded",void 0);Y=ie([x("ix-dom-close-tag")],Y);var Q=function(o,e,t,r){var a=arguments.length,n=a<3?e:r===null?r=Object.getOwnPropertyDescriptor(e,t):r,i;if(typeof Reflect=="object"&&typeof Reflect.decorate=="function")n=Reflect.decorate(o,e,t,r);else for(var s=o.length-1;s>=0;s--)(i=o[s])&&(n=(a<3?i(n):a>3?i(e,t,n):i(e,t))||n);return a>3&&n&&Object.defineProperty(e,t,n),n},_;let z=(_=class extends m{constructor(){super(...arguments),this.expanded=!1}render(){var e;return l`<span
-      >&lt;<span class="tagName">${this.name}</span>${(e=this.attributeData)==null?void 0:e.map(t=>l`<span>
-            <span class="htmlAttributeName">${t.name}</span>="<span
+  `,V);H([g({attribute:!1})],U.prototype,`name`,void 0),H([g({type:Boolean,reflect:!0})],U.prototype,`expanded`,void 0),U=H([h(`ix-dom-close-tag`)],U);var W,G=function(e,t,n,r){var i=arguments.length,a=i<3?t:r===null?r=Object.getOwnPropertyDescriptor(t,n):r,o;if(typeof Reflect==`object`&&typeof Reflect.decorate==`function`)a=Reflect.decorate(e,t,n,r);else for(var s=e.length-1;s>=0;s--)(o=e[s])&&(a=(i<3?o(a):i>3?o(t,n,a):o(t,n))||a);return i>3&&a&&Object.defineProperty(t,n,a),a},K=(W=class extends o{constructor(){super(...arguments),this.expanded=!1}render(){var e;return r`<span
+      >&lt;<span class="tagName">${this.name}</span>${(e=this.attributeData)==null?void 0:e.map(e=>r`<span>
+            <span class="htmlAttributeName">${e.name}</span>="<span
               class="htmlAttributeValue"
-              >${t.value}</span
+              >${e.value}</span
             >"</span
           >`)}&gt;</span
-    >`}},_.styles=f`
+    >`}},W.styles=a`
     :host {
       white-space: nowrap;
       color: var(--ix-html-tag-color);
@@ -219,21 +219,21 @@ var $e=Object.defineProperty;var de=o=>{throw TypeError(o)};var we=(o,e,t)=>e in
     .htmlAttributeValue {
       color: var(--ix-html-attribute-value-color);
     }
-  `,_);Q([c()],z.prototype,"name",void 0);Q([c({attribute:!1})],z.prototype,"attributeData",void 0);Q([c({type:Boolean,reflect:!0})],z.prototype,"expanded",void 0);z=Q([x("ix-dom-open-tag")],z);const ve=(o,e=80)=>{var t,r;return o.nodeType===Node.ELEMENT_NODE&&((t=o.childNodes)==null?void 0:t.length)===1&&o.childNodes[0].nodeType===Node.TEXT_NODE&&((r=o.childNodes[0].textContent)==null?void 0:r.length)<e};var le=function(o,e,t,r){var a=arguments.length,n=a<3?e:r===null?r=Object.getOwnPropertyDescriptor(e,t):r,i;if(typeof Reflect=="object"&&typeof Reflect.decorate=="function")n=Reflect.decorate(o,e,t,r);else for(var s=o.length-1;s>=0;s--)(i=o[s])&&(n=(a<3?i(n):a>3?i(e,t,n):i(e,t))||n);return a>3&&n&&Object.defineProperty(e,t,n),n},C;let K=(C=class extends m{constructor(){super(...arguments),this.expanded=!1}render(){const{data:e}=this;if(e===void 0)return l`<span>undefined</span>`;switch(e.nodeType){case Node.ELEMENT_NODE:{const t=this.expanded?te:ve(e)?e.childNodes[0].textContent:"…";return l`<span
-          >${l`<ix-dom-open-tag
+  `,W);G([g()],K.prototype,`name`,void 0),G([g({attribute:!1})],K.prototype,`attributeData`,void 0),G([g({type:Boolean,reflect:!0})],K.prototype,`expanded`,void 0),K=G([h(`ix-dom-open-tag`)],K);var he=(e,t=80)=>{var n,r;return e.nodeType===Node.ELEMENT_NODE&&((n=e.childNodes)==null?void 0:n.length)===1&&e.childNodes[0].nodeType===Node.TEXT_NODE&&((r=e.childNodes[0].textContent)==null?void 0:r.length)<t},q,J=function(e,t,n,r){var i=arguments.length,a=i<3?t:r===null?r=Object.getOwnPropertyDescriptor(t,n):r,o;if(typeof Reflect==`object`&&typeof Reflect.decorate==`function`)a=Reflect.decorate(e,t,n,r);else for(var s=e.length-1;s>=0;s--)(o=e[s])&&(a=(i<3?o(a):i>3?o(t,n,a):o(t,n))||a);return i>3&&a&&Object.defineProperty(t,n,a),a},Y=(q=class extends o{constructor(){super(...arguments),this.expanded=!1}render(){let{data:e}=this;if(e===void 0)return r`<span>undefined</span>`;switch(e.nodeType){case Node.ELEMENT_NODE:{let t=this.expanded?n:he(e)?e.childNodes[0].textContent:`…`;return r`<span
+          >${r`<ix-dom-open-tag
             .name=${e.tagName}
             .attributeData=${e.attributes}
-          ></ix-dom-open-tag>`}${t}${this.expanded?te:l`<ix-dom-close-tag
+          ></ix-dom-open-tag>`}${t}${this.expanded?n:r`<ix-dom-close-tag
                 .name=${e.tagName}
               ></ix-dom-close-tag>`}</span
-        >`}case Node.TEXT_NODE:return l`<span>${e.textContent}</span>`;case Node.CDATA_SECTION_NODE:return l`<span>${"<![CDATA["+e.textContent+"]]>"}</span>`;case Node.PROCESSING_INSTRUCTION_NODE:return l`<span>${e.nodeName}</span>`;case Node.COMMENT_NODE:return l`<span class="htmlComment"
+        >`}case Node.TEXT_NODE:return r`<span>${e.textContent}</span>`;case Node.CDATA_SECTION_NODE:return r`<span>${`<![CDATA[`+e.textContent+`]]>`}</span>`;case Node.PROCESSING_INSTRUCTION_NODE:return r`<span>${e.nodeName}</span>`;case Node.COMMENT_NODE:return r`<span class="htmlComment"
           >&lt;!--${e.textContent}--&gt;</span
-        >`;case Node.DOCUMENT_NODE:return l`<span>${e.nodeName}</span>`;case Node.DOCUMENT_TYPE_NODE:return l`<span class="htmlDoctype">
+        >`;case Node.DOCUMENT_NODE:return r`<span>${e.nodeName}</span>`;case Node.DOCUMENT_TYPE_NODE:return r`<span class="htmlDoctype">
           &lt;!DOCTYPE ${e.name}
-          ${e.publicId?` PUBLIC "${e.publicId}"`:""}
-          ${!e.publicId&&e.systemId?" SYSTEM":""}
-          ${e.systemId?` "${e.systemId}"`:""} &gt;
-        </span>`;case Node.DOCUMENT_FRAGMENT_NODE:return l`<span>${e.nodeName}</span>`;default:return}}},C.styles=[J,f`
+          ${e.publicId?` PUBLIC "${e.publicId}"`:``}
+          ${!e.publicId&&e.systemId?` SYSTEM`:``}
+          ${e.systemId?` "${e.systemId}"`:``} &gt;
+        </span>`;case Node.DOCUMENT_FRAGMENT_NODE:return r`<span>${e.nodeName}</span>`;default:return}}},q.styles=[T,a`
       :host {
         display: inline-block;
         white-space: nowrap;
@@ -244,24 +244,24 @@ var $e=Object.defineProperty;var de=o=>{throw TypeError(o)};var we=(o,e,t)=>e in
       .htmlDoctype {
         color: var(--ix-html-doctype-color);
       }
-    `],C);le([c({attribute:!1})],K.prototype,"data",void 0);le([c({type:Boolean,reflect:!0})],K.prototype,"expanded",void 0);K=le([x("ix-dom-node-preview")],K);var ge=function(o,e,t,r){var a=arguments.length,n=a<3?e:r===null?r=Object.getOwnPropertyDescriptor(e,t):r,i;if(typeof Reflect=="object"&&typeof Reflect.decorate=="function")n=Reflect.decorate(o,e,t,r);else for(var s=o.length-1;s>=0;s--)(i=o[s])&&(n=(a<3?i(n):a>3?i(e,t,n):i(e,t))||n);return a>3&&n&&Object.defineProperty(e,t,n),n},F;class Ue{constructor(e){j(this,F);this.expandedPaths=new Map,M(this,F,e)}hasChildren(e){var t,r;return((r=(t=e.childNodes)==null?void 0:t.length)!=null?r:0)>0&&!(e.nodeType===Node.ELEMENT_NODE&&ve(e))}children(e){if(this.hasChildren(e))return e.childNodes.map((t,r)=>({name:`${t.nodeName}[${r}]`,data:t}))}render({item:e,depth:t=0,parentPath:r}){var i,s;const a=r===void 0?I:`${r}.${e.name}`,n=(s=(i=this.expandedPaths.get(a))!=null?i:e.expanded)!=null?s:!1;return l`<ix-tree-node
+    `],q);J([g({attribute:!1})],Y.prototype,`data`,void 0),J([g({type:Boolean,reflect:!0})],Y.prototype,`expanded`,void 0),Y=J([h(`ix-dom-node-preview`)],Y);var X,Z,ge=function(e,t,n,r){var i=arguments.length,a=i<3?t:r===null?r=Object.getOwnPropertyDescriptor(t,n):r,o;if(typeof Reflect==`object`&&typeof Reflect.decorate==`function`)a=Reflect.decorate(e,t,n,r);else for(var s=e.length-1;s>=0;s--)(o=e[s])&&(a=(i<3?o(a):i>3?o(t,n,a):o(t,n))||a);return i>3&&a&&Object.defineProperty(t,n,a),a},Q=new WeakMap,_e=class{constructor(e){d(this,Q,void 0),this.expandedPaths=new Map,p(Q,this,e)}hasChildren(e){var t,n;return((t=(n=e.childNodes)==null?void 0:n.length)==null?0:t)>0&&!(e.nodeType===Node.ELEMENT_NODE&&he(e))}children(e){if(this.hasChildren(e))return e.childNodes.map((e,t)=>({name:`${e.nodeName}[${t}]`,data:e}))}render({item:e,depth:t=0,parentPath:i}){var a,o;let s=i===void 0?`$`:`${i}.${e.name}`,c=(a=(o=this.expandedPaths.get(s))==null?e.expanded:o)==null?!1:a;return r`<ix-tree-node
       .item=${e}
       .treeAdapter=${this}
       .depth=${t}
-      .expanded=${n}
+      .expanded=${c}
       .shouldShowPlaceholder=${t>0}
-      @toggle-expanded=${()=>{var b,u;const d=(u=(b=this.expandedPaths.get(a))!=null?b:e.expanded)!=null?u:!1;this.expandedPaths.set(a,!d),p(this,F).requestUpdate()}}
+      @toggle-expanded=${()=>{var t,n;let r=(t=(n=this.expandedPaths.get(s))==null?e.expanded:n)==null?!1:t;this.expandedPaths.set(s,!r),m(Q,this).requestUpdate()}}
       ><ix-dom-node-preview
         slot="label"
         .data=${e.data}
-        .expanded=${n}
+        .expanded=${c}
       ></ix-dom-node-preview
-      >${me(this.children(e.data),d=>this.render({item:d,depth:t+1,parentPath:a}))}${e.data.nodeType===Node.ELEMENT_NODE?l`<ix-dom-close-tag .name=${e.data.tagName}></ix-dom-close-tag>`:te}</ix-tree-node
-    >`}}F=new WeakMap;var Z,S;let ae=(S=class extends m{constructor(){super(...arguments);j(this,Z,new Ue(this))}render(){return this.data===void 0?l`<span>undefined</span>`:p(this,Z).render({item:{data:this.data}})}},Z=new WeakMap,S.styles=[J,f`
+      >${ie(this.children(e.data),e=>this.render({item:e,depth:t+1,parentPath:s}))}${e.data.nodeType===Node.ELEMENT_NODE?r`<ix-dom-close-tag .name=${e.data.tagName}></ix-dom-close-tag>`:n}</ix-tree-node
+    >`}},$=(X=new WeakMap,Z=class extends o{constructor(...e){super(...e),d(this,X,new _e(this))}render(){return this.data===void 0?r`<span>undefined</span>`:m(X,this).render({item:{data:this.data}})}},Z.styles=[T,a`
       :host {
         display: block;
       }
-    `],S);ge([c({attribute:!1})],ae.prototype,"data",void 0);ae=ge([x("ix-dom-inspector")],ae);class ye extends m{async connectedCallback(){var e,t;(e=super.connectedCallback)==null||e.call(this),await this.updateComplete,this.json=(t=this.shadowRoot)==null?void 0:t.getElementById("json")}render(){return l`
+    `],Z);ge([g({attribute:!1})],$.prototype,`data`,void 0),$=ge([h(`ix-dom-inspector`)],$);var ve=class extends o{async connectedCallback(){var e,t;(e=super.connectedCallback)==null||e.call(this),await this.updateComplete,this.json=(t=this.shadowRoot)==null?void 0:t.getElementById(`json`)}render(){return r`
       <label for="selectOption">
         Testing different HTTP Verbs
         <a target="_blank" rel="noopener" href="https://httpbin.org/#/HTTP_Methods/">
@@ -282,7 +282,7 @@ var $e=Object.defineProperty;var de=o=>{throw TypeError(o)};var we=(o,e,t)=>e in
       </div>
       <p>Open DevTools to view different events</p>
       <ix-object-inspector name="object-inspector" expandLevel="2" id="json"></ix-object-inspector>
-    `}_onHandleChange({target:e}){const{value:t}=e;this._makeRequest(t)}_makeRequest(e){const t=e==="FORMDATA"?"POST":e,r={url:"https://httpbin.org",method:t};let a={};const n=new FormData;switch(n.append("rxjs","Ajax"),n.append("ajax","RxJS"),e){case"GET":a={path:e.toLowerCase()};break;case"POST":a={path:e.toLowerCase(),headers:{"Content-Type":"application/json","rxjs-custom-header":"Rxjs"},body:{rxjs:`Body ${t}`},includeDownloadProgress:!0,includeUploadProgress:!0};break;case"FORMDATA":a={path:"post",headers:{"rxjs-custom-header":"Rxjs"},body:n};break;case"PATCH":a={path:e.toLowerCase(),body:{rxjs:`Body ${t}`}};break;case"PUT":a={path:e.toLowerCase(),body:{rxjs:`Body ${t}`}};break;case"DELETE":a={path:e.toLowerCase(),body:{rxjs:`Body ${t}`},includeDownloadProgress:!0,includeUploadProgress:!0};break;case"ERROR":a={path:"status/500",method:"GET"};break;default:console.error("Invalid HTTP method");return}const i=new Ae({...r,...a});i.addEventListener("ajaxpresend",({detail:s})=>{this.json&&(this.json.data=void 0),console.log(`ajaxpresend: ${s}`)}),i.addEventListener("ajaxresponse",({detail:s})=>console.log(s)),i.addEventListener("ajaxprogress",({detail:s})=>console.log(s)),i.addEventListener("ajaxresponseend",({detail:s})=>console.log(`ajaxresponseend: ${s}`)),i.addEventListener("ajaxerror",({detail:s})=>console.dir(s)),i.addEventListener("ajaxerrorend",({detail:s})=>console.log(`ajaxerrorend: ${s}`)),i.generateRequest().then(s=>{this.json&&(this.json.data=s),console.log(`RESULT ${e}`,s)}).catch(s=>{this.json&&(this.json.data=s),console.dir(s)})}}pe(ye,"styles",f`
+    `}_onHandleChange({target:e}){let{value:t}=e;this._makeRequest(t)}_makeRequest(t){let n=t===`FORMDATA`?`POST`:t,r={url:`https://httpbin.org`,method:n},i,a=new FormData;switch(a.append(`rxjs`,`Ajax`),a.append(`ajax`,`RxJS`),t){case`GET`:i={path:t.toLowerCase()};break;case`POST`:i={path:t.toLowerCase(),headers:{"Content-Type":`application/json`,"rxjs-custom-header":`Rxjs`},body:{rxjs:`Body ${n}`},includeDownloadProgress:!0,includeUploadProgress:!0};break;case`FORMDATA`:i={path:`post`,headers:{"rxjs-custom-header":`Rxjs`},body:a};break;case`PATCH`:i={path:t.toLowerCase(),body:{rxjs:`Body ${n}`}};break;case`PUT`:i={path:t.toLowerCase(),body:{rxjs:`Body ${n}`}};break;case`DELETE`:i={path:t.toLowerCase(),body:{rxjs:`Body ${n}`},includeDownloadProgress:!0,includeUploadProgress:!0};break;case`ERROR`:i={path:`status/500`,method:`GET`};break;default:console.error(`Invalid HTTP method`);return}let o=new e({...r,...i});o.addEventListener(`ajaxpresend`,({detail:e})=>{this.json&&(this.json.data=void 0),console.log(`ajaxpresend: ${e}`)}),o.addEventListener(`ajaxresponse`,({detail:e})=>console.log(e)),o.addEventListener(`ajaxprogress`,({detail:e})=>console.log(e)),o.addEventListener(`ajaxresponseend`,({detail:e})=>console.log(`ajaxresponseend: ${e}`)),o.addEventListener(`ajaxerror`,({detail:e})=>console.dir(e)),o.addEventListener(`ajaxerrorend`,({detail:e})=>console.log(`ajaxerrorend: ${e}`)),o.generateRequest().then(e=>{this.json&&(this.json.data=e),console.log(`RESULT ${t}`,e)}).catch(e=>{this.json&&(this.json.data=e),console.dir(e)})}};t(ve,`styles`,a`
     :host {
       display: flex;
       flex-direction: column;
@@ -353,4 +353,4 @@ var $e=Object.defineProperty;var de=o=>{throw TypeError(o)};var we=(o,e,t)=>e in
       padding: 0.5rem;
       background-color: #fff;
     }
-  `);customElements.define("ajax-provider-component",ye);
+  `),customElements.define(`ajax-provider-component`,ve);

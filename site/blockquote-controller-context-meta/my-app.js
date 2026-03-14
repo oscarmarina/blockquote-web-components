@@ -1,4 +1,4 @@
-import{a as e,b as i}from"./assets/BaseContextMetaElement-BHhKyWvZ.js";import"./my-section.js";import"./my-heading.js";import"./assets/directive-BfKz1_qq.js";class n extends e{render(){return i`
+import{f as e,s as t}from"./assets/src-BnYe8xbO.js";import"./my-section.js";import"./assets/my-heading-D7SATZDV.js";var n=class extends t{render(){return e`
       <my-section id="root-1">
         <my-heading>Heading level 1</my-heading>
         <my-section id="1">
@@ -54,4 +54,4 @@ import{a as e,b as i}from"./assets/BaseContextMetaElement-BHhKyWvZ.js";import"./
           </my-section>
         </my-section>
       </my-section>
-    `}}customElements.define("my-app",n);export{n as MyApp};
+    `}};customElements.define(`my-app`,n);export{n as MyApp};
