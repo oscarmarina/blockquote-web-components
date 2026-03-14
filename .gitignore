@@ -13,6 +13,7 @@
 **/*-debug.log
 **/yarn-error.log
 **/.npmrc
+!.npmrc
 
 ## testing
 **/coverage

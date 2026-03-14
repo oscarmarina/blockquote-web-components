@@ -84,7 +84,7 @@ function getAllDev(
   DEVDIRECTORY = DEFAULT_DEV_NAME
 ) {
   const basePath = readdirSync(dirPath);
-  const basePathFiltered = basePath.filter((bp) => !bp.startsWith('.'));
+  const basePathFiltered = basePath.filter((bp) => !bp.startsWith('.') && bp !== 'node_modules');
 
   basePathFiltered.forEach((fileOrDirectory) => {
     const fullPath = join(dirPath, fileOrDirectory);
