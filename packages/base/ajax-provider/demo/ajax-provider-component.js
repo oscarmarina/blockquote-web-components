@@ -122,7 +122,7 @@ class AjaxProviderComponent extends LitElement {
       method,
     };
 
-    let optionsMethod = {};
+    let optionsMethod;
 
     const formData = new FormData();
     formData.append('rxjs', 'Ajax');
