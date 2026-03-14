@@ -271,7 +271,7 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
   };
 
   _onTabKeyDown = (ev) => {
-    let idx = '';
+    let idx;
 
     switch (ev.key) {
       case 'ArrowLeft':
