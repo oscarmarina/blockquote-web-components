@@ -124,9 +124,11 @@
     "lit": "^3.3.2"
   },
   "devDependencies": {
-    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.12.9",
     "@blockquote-web-components/blockquote-base-embedded-webview": "^1.13.16",
     "@blockquote-web-components/blockquote-foundations-sass": "^1.1.8"
+  },
+  "peerDependencies": {
+    "lit-html": "^3.3.2"
   },
   "publishConfig": {
     "access": "public"
