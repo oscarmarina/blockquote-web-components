@@ -215,10 +215,10 @@ export default css`
 
 #### Functions
 
-| Name                  | Description                                   | Parameters                                           | Return |
-| --------------------- | --------------------------------------------- | ---------------------------------------------------- | ------ |
-| `adoptDocumentStyles` | Adopts the given styles into the render root. | `renderRoot: Document \| HTMLElement, styles: Array` |        |
-| `setDocumentStyles`   | Sets the document styles.                     | `styles: !*`                                         |        |
+| Name                  | Description                                   | Parameters                                              | Return |
+| --------------------- | --------------------------------------------- | ------------------------------------------------------- | ------ |
+| `adoptDocumentStyles` | Adopts the given styles into the render root. | `renderRoot: Document \| HTMLElement, styles: Array<*>` |        |
+| `setDocumentStyles`   | Sets the document styles.                     | `styles: !*`                                            |        |
 
 <hr/>
 

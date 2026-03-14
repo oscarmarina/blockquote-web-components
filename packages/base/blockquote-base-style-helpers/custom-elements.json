@@ -149,7 +149,7 @@
               "name": "styles",
               "description": "The styles to adopt.",
               "type": {
-                "text": "Array"
+                "text": "Array<*>"
               }
             }
           ],
