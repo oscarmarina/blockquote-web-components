@@ -115,7 +115,6 @@
     "rxjs": "^8.0.0-alpha.14"
   },
   "devDependencies": {
-    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.12.9",
     "@blockquote-web-components/blockquote-base-embedded-webview": "^1.13.16"
   },
   "publishConfig": {
