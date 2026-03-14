@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.18](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-tabs@1.6.17...@blockquote-web-components/blockquote-tabs@1.6.18) (2026-03-14)
+
+**Note:** Version bump only for package @blockquote-web-components/blockquote-tabs
+
+
+
+
+
 ## [1.6.17](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-tabs@1.6.16...@blockquote-web-components/blockquote-tabs@1.6.17) (2026-02-11)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-tabs
