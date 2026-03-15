@@ -457,49 +457,111 @@ var e=globalThis,t=e.ShadowRoot&&(e.ShadyCSS===void 0||e.ShadyCSS.nativeShadow)&
     vertical-align: bottom;
   }
 
-  .select {
-    display: inline-grid;
-    grid-template-areas: select;
-    align-items: center;
+  select,
+  select::picker(select) {
+    -webkit-appearance: base-select;
+    -moz-appearance: base-select;
+    appearance: base-select;
   }
 
-  .select > * {
-    grid-area: select;
+  select:open > button svg {
+    transform: rotate(0.5turn);
   }
 
-  .select svg {
-    inline-size: 0.875rem;
-    justify-self: end;
-    pointer-events: none;
+  select button {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-inline-start: 0.2ch;
   }
 
-  .select select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+  select button svg {
+    inline-size: 1.62ch;
+    transition: transform 192ms cubic-bezier(0.5, 1, 0.75, 1.25);
+  }
+
+  select::picker-icon {
+    display: none;
+  }
+
+  select::picker(select) {
+    background-color: inherit;
+    border: 0.0625rem solid var(--_select-bgcolor);
+    margin-block: 0.125rem;
+    overflow: visible;
+  }
+
+  select {
+    field-sizing: content;
     color: inherit;
     font: inherit;
-    background-color: transparent;
+    background-color: #fff;
     border: none;
     border-block-end: 0.125rem solid var(--_select-bgcolor);
-    padding-block: 0.25em;
-    padding-inline: 0 1em;
+    padding: 0;
     margin: 0;
-    inline-size: 100%;
     cursor: pointer;
     outline: none;
     border-radius: 0;
-    min-inline-size: 10ch;
-    max-inline-size: 18ch;
+    min-inline-size: 16ch;
+    max-inline-size: 20ch;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     transition: var(--_select-transition);
   }
 
-  .select select:hover,
-  .select select:focus {
+  select:hover,
+  select:focus {
     border-block-end-color: currentcolor;
+  }
+
+  option {
+    gap: 0.25em;
+    padding: 0.25em 0.5em;
+  }
+
+  option::checkmark {
+    content: '⊙';
+    color: currentcolor;
+  }
+
+  @supports not (
+    (-webkit-appearance: base-select) or (-moz-appearance: base-select) or (appearance: base-select)
+  ) {
+    .select {
+      display: inline-grid;
+      grid-template-areas: select;
+      align-items: center;
+    }
+
+    .select > * {
+      grid-area: select;
+    }
+
+    .select > svg {
+      inline-size: 0.875rem;
+      justify-self: end;
+      pointer-events: none;
+      display: block;
+    }
+
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      padding-block: 0.25em;
+      padding-inline: 0 1em;
+      inline-size: 100%;
+    }
+  }
+
+  @supports (
+    (-webkit-appearance: base-select) or (-moz-appearance: base-select) or (appearance: base-select)
+  ) {
+    .select > svg {
+      display: none;
+    }
   }
 
   .description {
@@ -567,6 +629,10 @@ var e=globalThis,t=e.ShadowRoot&&(e.ShadyCSS===void 0||e.ShadyCSS.nativeShadow)&
       ${this._sources.some(e=>e.option)?O`
             <div class="select">
               <select id="select-sources" @change="${this._onChangeFile}" aria-label="Cases">
+                <button>
+                  <selectedcontent></selectedcontent>
+                  ${this.__selectArrow}
+                </button>
                 ${this._sources.map((e,t)=>O`
                     <option ?selected="${this.selected===t}" value="${t}">
                       ${e.option}
