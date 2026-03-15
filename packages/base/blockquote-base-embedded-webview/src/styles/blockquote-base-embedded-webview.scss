@@ -76,45 +76,103 @@ header > div {
   }
 }
 
-.select {
-  display: inline-grid;
-  grid-template-areas: select;
-  align-items: center;
-
-  & > * {
-    grid-area: select;
+select {
+  &,
+  &::picker(select) {
+    appearance: base-select;
   }
 
-  svg {
-    inline-size: 0.875rem;
-    justify-self: end;
-    pointer-events: none;
+  &:open > button svg {
+    transform: rotate(0.5turn);
+  }
+
+  button {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-inline-start: 0.2ch;
+
+    svg {
+      inline-size: 1.62ch;
+      transition: transform 192ms cubic-bezier(0.5, 1, 0.75, 1.25);
+    }
+  }
+
+  &::picker-icon {
+    display: none;
+  }
+
+  &::picker(select) {
+    background-color: inherit;
+    border: 0.0625rem solid var(--_select-bgcolor);
+    margin-block: 0.125rem;
+    overflow: visible;
+  }
+
+  field-sizing: content;
+  color: inherit;
+  font: inherit;
+  background-color: #fff;
+  border: none;
+  border-block-end: 0.125rem solid var(--_select-bgcolor);
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+  border-radius: 0;
+  min-inline-size: 16ch;
+  max-inline-size: 20ch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: var(--_select-transition);
+
+  &:hover,
+  &:focus {
+    border-block-end-color: currentcolor;
+  }
+}
+
+option {
+  gap: 0.25em;
+  padding: 0.25em 0.5em;
+}
+
+option::checkmark {
+  content: "⊙";
+  color: currentcolor;
+}
+
+@supports not (appearance: base-select) {
+  .select {
+    display: inline-grid;
+    grid-template-areas: select;
+    align-items: center;
+
+    & > * {
+      grid-area: select;
+    }
+
+    & > svg {
+      inline-size: 0.875rem;
+      justify-self: end;
+      pointer-events: none;
+      display: block;
+    }
   }
 
   select {
     appearance: none;
-    color: inherit;
-    font: inherit;
-    background-color: transparent;
-    border: none;
-    border-block-end: 0.125rem solid var(--_select-bgcolor);
     padding-block: 0.25em;
     padding-inline: 0 1em;
-    margin: 0;
     inline-size: 100%;
-    cursor: pointer;
-    outline: none;
-    border-radius: 0;
-    min-inline-size: 10ch;
-    max-inline-size: 18ch;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: var(--_select-transition);
+  }
+}
 
-    &:hover,
-    &:focus {
-      border-block-end-color: currentcolor;
+@supports (appearance: base-select) {
+  .select {
+    > svg {
+      display: none;
     }
   }
 }
