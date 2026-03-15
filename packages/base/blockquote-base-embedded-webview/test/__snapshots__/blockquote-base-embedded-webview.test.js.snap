@@ -15,6 +15,11 @@ exports[`BlockquoteBaseEmbeddedWebview > Behavior > limit height > SHADOW DOM 1`
           aria-label="Cases"
           id="select-sources"
         >
+          <button>
+            <selectedcontent>
+              Base Complex
+            </selectedcontent>
+          </button>
           <option
             selected=""
             value="0"
@@ -107,6 +112,11 @@ exports[`BlockquoteBaseEmbeddedWebview > Default > SHADOW DOM - Structure test >
           aria-label="Cases"
           id="select-sources"
         >
+          <button>
+            <selectedcontent>
+              Base
+            </selectedcontent>
+          </button>
           <option
             selected=""
             value="0"
