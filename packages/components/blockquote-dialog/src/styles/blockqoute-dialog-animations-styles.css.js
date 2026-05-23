@@ -3,19 +3,15 @@ import {css} from 'lit';
 export const styles = css`
   dialog {
     opacity: 0;
-    transform: translateY(16%);
-    transition:
-      opacity 200ms ease-out,
-      transform 200ms ease-out;
+    transform: translateY(16dvh);
+    transition: 200ms ease-out;
+    transition-property: opacity, transform;
   }
 
   @supports (transition-behavior: allow-discrete) {
     dialog {
-      transition:
-        opacity 200ms ease-out,
-        transform 200ms ease-out,
-        overlay 200ms ease-out allow-discrete,
-        display 200ms ease-out allow-discrete;
+      transition: 200ms ease-out allow-discrete;
+      transition-property: opacity, transform, display;
     }
   }
 
@@ -29,7 +25,7 @@ export const styles = css`
   @starting-style {
     dialog[open] {
       opacity: 0;
-      transform: translateY(16%);
+      transform: translateY(16dvh);
     }
   }
 
@@ -41,10 +37,8 @@ export const styles = css`
 
   @supports (transition-behavior: allow-discrete) {
     dialog::backdrop {
-      transition:
-        display 190ms ease-in allow-discrete,
-        overlay 190ms ease-in allow-discrete,
-        background-color 190ms ease-in;
+      transition: 190ms ease-in allow-discrete;
+      transition-property: display, background-color;
     }
   }
 
@@ -56,6 +50,16 @@ export const styles = css`
     dialog[open]::backdrop {
       background-color: rgb(120, 120, 120, 0);
     }
+  }
+
+  /* Firefox/Safari fallback: is-closing class drives the exit animation via JS */
+  dialog.is-closing {
+    opacity: 0;
+    transform: translateY(16dvh);
+  }
+
+  dialog.is-closing::backdrop {
+    background-color: rgb(120, 120, 120, 0);
   }
 
   @media (prefers-reduced-motion: reduce) {

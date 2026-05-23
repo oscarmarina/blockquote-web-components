@@ -1,7 +1,10 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`BlockquoteDialog > Default Close > Semantic Dom and a11y > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
-"<blockquote-dialog role="presentation">
+"<blockquote-dialog
+  label="aria-label Name"
+  role="presentation"
+>
   <form method="dialog">
     <header>
       <h2>
@@ -27,7 +30,10 @@ exports[`BlockquoteDialog > Default Close > Semantic Dom and a11y > LIGHT DOM - 
 `;
 
 exports[`BlockquoteDialog > Default Close > Semantic Dom and a11y > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
-"<dialog role="alertdialog">
+"<dialog
+  aria-label="aria-label Name"
+  role="alertdialog"
+>
   <span
     hidden=""
     tabindex="0"
@@ -78,7 +84,10 @@ exports[`BlockquoteDialog > Default Close role dialog > Semantic Dom and a11y > 
 `;
 
 exports[`BlockquoteDialog > Default Close role dialog > Semantic Dom and a11y > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
-"<dialog role="alertdialog">
+"<dialog
+  aria-label="aria-label Name"
+  role="alertdialog"
+>
   <span
     hidden=""
     tabindex="0"
@@ -129,7 +138,10 @@ exports[`BlockquoteDialog > Default Close with "label" > Semantic Dom and a11y >
 `;
 
 exports[`BlockquoteDialog > Default Close with "label" > Semantic Dom and a11y > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
-"<dialog role="alertdialog">
+"<dialog
+  aria-label="aria-label Name"
+  role="alertdialog"
+>
   <span
     hidden=""
     tabindex="0"
@@ -184,7 +196,10 @@ exports[`BlockquoteDialog > Default Open > Semantic Dom and a11y > LIGHT DOM - S
 `;
 
 exports[`BlockquoteDialog > Default Open > Semantic Dom and a11y > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
-"<dialog role="alertdialog">
+"<dialog
+  aria-label="aria-label Name"
+  role="alertdialog"
+>
   <span
     hidden=""
     tabindex="0"

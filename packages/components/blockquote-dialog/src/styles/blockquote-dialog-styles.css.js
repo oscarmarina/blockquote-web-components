@@ -31,6 +31,7 @@ export const styles = css`
   }
 
   dialog {
+    display: block;
     inset: 0;
     background: inherit;
     border: none;
@@ -46,7 +47,6 @@ export const styles = css`
     padding: 0;
   }
 
-  dialog[open],
   .scroller,
   .content {
     display: flex;

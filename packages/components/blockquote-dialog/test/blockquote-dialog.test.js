@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {describe, it, expect, beforeAll, beforeEach, chai} from 'vitest';
+import {describe, it, expect, beforeAll, beforeEach, vi, chai} from 'vitest';
 import {fixture, fixtureCleanup, aTimeout} from '@open-wc/testing-helpers';
 import {chaiA11yAxe} from 'chai-a11y-axe';
 import {getDiffableHTML} from '@open-wc/semantic-dom-diff/get-diffable-html.js';
@@ -65,7 +65,7 @@ describe('BlockquoteDialog', () => {
   describe('Default Close', () => {
     beforeAll(async () => {
       el = await fixture(html`
-        <blockquote-dialog>${_formTpl}</blockquote-dialog>
+        <blockquote-dialog label="aria-label Name">${_formTpl}</blockquote-dialog>
       `);
       elShadowRoot = el?.shadowRoot?.innerHTML;
 
@@ -322,6 +322,93 @@ describe('BlockquoteDialog', () => {
       button?.click();
       await el.updateComplete;
       expect(el?.hasAttribute('open')).toBe(true);
+    });
+  });
+
+  describe('Firefox/Safari fallback - is-closing exit animation', () => {
+    beforeEach(async () => {
+      vi.spyOn(CSS, 'supports').mockImplementation(
+        /** @type {any} */ (
+          (/** @type {string} */ prop, /** @type {string} */ val) => {
+            if (prop === 'overlay' && val === 'auto') {
+              return false;
+            }
+            return true;
+          }
+        )
+      );
+
+      el = await fixture(html`
+        <blockquote-dialog open label="aria-label Name">${_formTpl}</blockquote-dialog>
+      `);
+
+      return () => {
+        vi.restoreAllMocks();
+        fixtureCleanup();
+      };
+    });
+
+    it('adds is-closing class to the dialog immediately on close()', () => {
+      const dialog = el.shadowRoot?.querySelector('dialog');
+      el.close();
+      expect(dialog?.classList.contains('is-closing')).toBe(true);
+    });
+
+    it('dialog stays open until transitionend fires', () => {
+      const dialog = el.shadowRoot?.querySelector('dialog');
+      el.close();
+      expect(dialog?.open).toBe(true);
+    });
+
+    it('calls dialog.close() after transitionend fires with opacity', async () => {
+      const dialog = /** @type {HTMLDialogElement} */ (el.shadowRoot?.querySelector('dialog'));
+      const closeSpy = vi.spyOn(dialog, 'close');
+
+      el.close();
+      expect(dialog?.classList.contains('is-closing')).toBe(true);
+
+      // Simulate the transitionend event firing on the dialog for opacity property
+      const event = new TransitionEvent('transitionend', {
+        propertyName: 'opacity',
+        bubbles: false,
+      });
+      Object.defineProperty(event, 'target', {value: dialog, enumerable: true});
+      dialog?.dispatchEvent(event);
+
+      await el.updateComplete;
+      await new Promise((resolve) => setTimeout(resolve, 0));
+
+      // Handler should have been called and removed the class
+      expect(dialog?.classList.contains('is-closing')).toBe(false);
+      expect(closeSpy).toHaveBeenCalled();
+      closeSpy.mockRestore();
+    });
+
+    it('ignores transitionend for non-opacity property (transform)', async () => {
+      const dialog = el.shadowRoot?.querySelector('dialog');
+      el.close();
+
+      dialog?.dispatchEvent(
+        new TransitionEvent('transitionend', {propertyName: 'transform', bubbles: true})
+      );
+
+      await el.updateComplete;
+      expect(dialog?.classList.contains('is-closing')).toBe(true);
+      expect(dialog?.open).toBe(true);
+    });
+
+    it('ignores transitionend bubbling from a child element', async () => {
+      const dialog = el.shadowRoot?.querySelector('dialog');
+      const content = el.shadowRoot?.querySelector('.content');
+      el.close();
+
+      content?.dispatchEvent(
+        new TransitionEvent('transitionend', {propertyName: 'opacity', bubbles: true})
+      );
+
+      await el.updateComplete;
+      expect(dialog?.classList.contains('is-closing')).toBe(true);
+      expect(dialog?.open).toBe(true);
     });
   });
 
