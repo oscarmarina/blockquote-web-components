@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.4](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-dialog@1.5.3...@blockquote-web-components/blockquote-dialog@1.5.4) (2026-05-23)
+
+
+### Bug Fixes
+
+* **blockquote-dialog:** exit animation in Firefox/Safari ([f803c0c](https://github.com/oscarmarina/blockquote-web-components/commit/f803c0c4e06a65bfa1021f31bd3cc971f7f91ace))
+
+
+
+
+
 ## [1.5.3](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-dialog@1.5.2...@blockquote-web-components/blockquote-dialog@1.5.3) (2026-03-15)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-dialog
