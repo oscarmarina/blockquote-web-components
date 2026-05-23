@@ -43,13 +43,31 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
     this.leftResizerElement = this.shadowRoot?.querySelector('.resizer-w');
     this.bottomResizerElement = this.shadowRoot?.querySelector('.resizer-s');
 
-    this.leftResizerElement?.addEventListener('pointerdown', this._createResizerLeft);
-    this.rightResizerElement?.addEventListener('pointerdown', this._createResizerRight);
-    this.bottomResizerElement?.addEventListener('pointerdown', this._createResizerBottom);
-    this.bottomLeftResizerElement?.addEventListener('pointerdown', this._createResizerBottomLeft);
-    this.bottomRightResizerElement?.addEventListener('pointerdown', this._createResizerBottomRight);
+    this.leftResizerElement?.addEventListener(
+      'pointerdown',
+      /** @type {EventListenerOrEventListenerObject} */ (this._createResizerLeft)
+    );
+    this.rightResizerElement?.addEventListener(
+      'pointerdown',
+      /** @type {EventListenerOrEventListenerObject} */ (this._createResizerRight)
+    );
+    this.bottomResizerElement?.addEventListener(
+      'pointerdown',
+      /** @type {EventListenerOrEventListenerObject} */ (this._createResizerBottom)
+    );
+    this.bottomLeftResizerElement?.addEventListener(
+      'pointerdown',
+      /** @type {EventListenerOrEventListenerObject} */ (this._createResizerBottomLeft)
+    );
+    this.bottomRightResizerElement?.addEventListener(
+      'pointerdown',
+      /** @type {EventListenerOrEventListenerObject} */ (this._createResizerBottomRight)
+    );
 
-    this.bottomResizerElement?.addEventListener('dblclick', this._doubleclickForCssInitialSize);
+    this.bottomResizerElement?.addEventListener(
+      'dblclick',
+      /** @type {EventListenerOrEventListenerObject} */ (this._doubleclickForCssInitialSize)
+    );
   }
 
   render() {
@@ -77,13 +95,13 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
   };
 
   /**
-   * @param {!string} DOMRect
+   * @param {'right' | 'left' | 'top' | 'scaleTopLeft' | 'scaleTopRight'} resizeDirection
    * @param {PointerEvent} ev
    */
-  _createResizer(DOMRect, ev) {
+  _createResizer(resizeDirection, ev) {
     this.setAttribute('resizing', '');
 
-    this._getBoundingClientRecDOMRect = DOMRect;
+    this._resizeDirection = resizeDirection;
     this._getBoundingClientRectWidth = this._getBoundingClientRect('width');
     this._getBoundingClientRectHeight = this._getBoundingClientRect('height');
     const {target, pointerId, clientX: trackDistanceX, clientY: trackDistanceY} = ev;
@@ -117,13 +135,17 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
     target?.addEventListener('pointerup', removeResizer);
   }
 
+  /**
+   * @param {Object} params
+   * @param {{dx: number, dy: number}} params.detail
+   */
   _resize({detail}) {
     let cssOffsetX;
     let cssOffsetY;
     const dx = Math.floor(detail.dx * 2.04);
     const dy = Math.floor(detail.dy * 1.04);
     // http://jsfiddle.net/MissoulaLorenzo/gfn6ob3j/
-    switch (this._getBoundingClientRecDOMRect) {
+    switch (this._resizeDirection) {
       case 'right':
         this._cursor = 'w';
         cssOffsetX = `${this._getBoundingClientRectWidth - dx}px`;
@@ -177,9 +199,10 @@ export class BlockquoteBaseEmbeddedWebviewResize extends LitElement {
   }
 
   /**
-   * @param {!string} DOMRect
+   * @param {'x' | 'y' | 'width' | 'height' | 'top' | 'right' | 'bottom' | 'left'} rectProp
    */
-  _getBoundingClientRect(DOMRect) {
-    return Math.abs(parseInt(this.rect?.getBoundingClientRect()[DOMRect], 10));
+  _getBoundingClientRect(rectProp) {
+    const rect = this.rect?.getBoundingClientRect();
+    return rect ? Math.abs(rect[rectProp]) : 0;
   }
 }
