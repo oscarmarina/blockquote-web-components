@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import {LitElement, html, css} from 'lit';
 import 'inspector-elements';
 import {AjaxProvider} from '../src/index.js';
