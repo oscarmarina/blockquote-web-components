@@ -1,1 +1,1 @@
-import"./assets/src-BnYe8xbO.js";import{t as e}from"./assets/my-heading-D7SATZDV.js";export{e as MyHeading};
+import{t as e}from"./assets/my-heading-Ba8C65iX.js";export{e as MyHeading};

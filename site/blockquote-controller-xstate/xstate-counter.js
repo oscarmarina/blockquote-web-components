@@ -1,1 +1,1 @@
-import"./assets/counterMachine-DM7uL9DF.js";import"./assets/xstate-counter-styles.css-mU2TAGVr.js";import{t as e}from"./assets/xstate-counter-Ds2LfRUv.js";export{e as XstateCounter};
+import{t as e}from"./assets/xstate-counter-C-Izrnoq.js";export{e as XstateCounter};
