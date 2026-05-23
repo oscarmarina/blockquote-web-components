@@ -29,6 +29,7 @@
 }
 
 dialog {
+  display: block;
   inset: 0;
   background: inherit;
   border: none;
@@ -44,7 +45,6 @@ dialog {
   padding: 0;
 }
 
-dialog[open],
 .scroller,
 .content {
   display: flex;

@@ -239,8 +239,27 @@ export class BlockquoteDialog extends LitElement {
       return;
     }
 
+    // Chrome supports `overlay`, which keeps the dialog in the top layer during the exit
+    // transition. Firefox/Safari don't, so `dialog.close()` would remove it immediately.
+    if (!CSS.supports('overlay', 'auto')) {
+      const dialog = /** @type {HTMLDialogElement} */ (value);
+      dialog.classList.add('is-closing');
+
+      const handler = (/** @type {TransitionEvent} */ ev) => {
+        if (ev.target !== dialog || ev.propertyName !== 'opacity') {
+          return;
+        }
+        dialog.removeEventListener('transitionend', handler);
+        dialog.classList.remove('is-closing');
+        dialog.close();
+        this._overflowRoot && this._overflowRoot.style.setProperty('overflow', '');
+      };
+
+      dialog.addEventListener('transitionend', handler);
+      return;
+    }
+
     /** @type {HTMLDialogElement} */ (value)?.close();
-    this.requestUpdate();
     this._overflowRoot && this._overflowRoot.style.setProperty('overflow', '');
   }
 
