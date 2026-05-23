@@ -172,12 +172,13 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 
 ##### Methods
 
-| Name                     | Privacy | Description | Parameters                           | Return | Inherited From |
-| ------------------------ | ------- | ----------- | ------------------------------------ | ------ | -------------- |
-| `_createResizer`         |         |             | `DOMRect: !string, ev: PointerEvent` |        |                |
-| `_resize`                |         |             | `{detail}`                           |        |                |
-| `_dispatchResizeEvent`   |         |             |                                      |        |                |
-| `_getBoundingClientRect` |         |             | `DOMRect: !string`                   |        |                |
+| Name                     | Privacy | Description | Parameters                                                                                           | Return | Inherited From |
+| ------------------------ | ------- | ----------- | ---------------------------------------------------------------------------------------------------- | ------ | -------------- |
+| `_createResizer`         |         |             | `resizeDirection: 'right' \| 'left' \| 'top' \| 'scaleTopLeft' \| 'scaleTopRight', ev: PointerEvent` |        |                |
+| `_resize`                |         |             | `{detail}, params: @param {{dx: number, dy: number}} params.detail
+   `                              |        |                |
+| `_dispatchResizeEvent`   |         |             |                                                                                                      |        |                |
+| `_getBoundingClientRect` |         |             | `rectProp: 'x' \| 'y' \| 'width' \| 'height' \| 'top' \| 'right' \| 'bottom' \| 'left'`              |        |                |
 
 ##### Events
 
