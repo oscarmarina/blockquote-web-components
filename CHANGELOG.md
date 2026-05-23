@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.19.1](https://github.com/oscarmarina/blockquote-web-components/compare/v2.19.0...v2.19.1) (2026-05-23)
+
+
+### Bug Fixes
+
+* **blockquote-dialog:** exit animation in Firefox/Safari ([f803c0c](https://github.com/oscarmarina/blockquote-web-components/commit/f803c0c4e06a65bfa1021f31bd3cc971f7f91ace))
+
 ## [2.19.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.18.2...v2.19.0) (2026-03-15)
 
 
