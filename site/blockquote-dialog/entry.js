@@ -381,11 +381,10 @@ var e=globalThis,t=e.ShadowRoot&&(e.ShadyCSS===void 0||e.ShadyCSS.nativeShadow)&
   :host {
     --_host-color: var(--blockquote-base-embedded-webview-color, rgb(32, 32, 32));
     --_main-bgcolor: var(--blockquote-base-embedded-webview-main-bgcolor, rgb(250, 250, 250));
-    --_select-bgcolor: var(--blockquote-base-embedded-webview-select-bgcolor, rgb(222, 222, 222));
+    --_select-bgcolor: var(--blockquote-base-embedded-webview-select-bgcolor, rgb(169, 169, 169));
     --_select-transition: var(
       --blockquote-base-embedded-webview-select-transition,
-      border-bottom 196ms ease-out,
-      var(--blockquote-base-embedded-webview-select-transition, border-bottom 196ms ease-out)
+      border-color 196ms ease-out
     );
     --blockquote-base-embedded-webview-resize-rect-width: 40rem; /* 40rem */
     --blockquote-base-embedded-webview-resize-rect-height: 22.5rem; /* 22.5rem */
@@ -438,7 +437,7 @@ var e=globalThis,t=e.ShadowRoot&&(e.ShadyCSS===void 0||e.ShadyCSS.nativeShadow)&
 
   [role='heading'] {
     font-size: 1.25rem;
-    margin-block-end: 0.5rem;
+    margin-block-end: 1rem;
   }
 
   [role='heading'] + div {
@@ -464,24 +463,31 @@ var e=globalThis,t=e.ShadowRoot&&(e.ShadyCSS===void 0||e.ShadyCSS.nativeShadow)&
     appearance: base-select;
   }
 
-  select:open > button svg {
+  select:open {
+    border-color: currentcolor;
+  }
+
+  select:open::picker-icon {
     transform: rotate(0.5turn);
   }
 
   select button {
     display: inline-flex;
-    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    padding-inline-start: 0.2ch;
-  }
-
-  select button svg {
-    inline-size: 1.62ch;
-    transition: transform 192ms cubic-bezier(0.5, 1, 0.75, 1.25);
+    padding-inline: 0.2ch 1.25rem;
   }
 
   select::picker-icon {
-    display: none;
+    content: '∨';
+    display: block;
+    font: inherit;
+    font-weight: bolder;
+    position: absolute;
+    inset-inline-end: 0;
+    inset-block-start: 50%;
+    translate: -50% -50%;
+    transition: transform 192ms cubic-bezier(0.5, 1, 0.75, 1.25);
   }
 
   select::picker(select) {
@@ -492,19 +498,20 @@ var e=globalThis,t=e.ShadowRoot&&(e.ShadyCSS===void 0||e.ShadyCSS.nativeShadow)&
   }
 
   select {
+    position: relative;
     field-sizing: content;
-    color: inherit;
+    color: oklch(from var(--_host-color) calc(l * 1.25) c h);
     font: inherit;
     background-color: #fff;
-    border: none;
-    border-block-end: 0.125rem solid var(--_select-bgcolor);
-    padding: 0;
+    border-color: var(--_select-bgcolor);
+    border-width: 0.125em;
+    border-radius: 0.25em;
     margin: 0;
+    padding: 0.5em 0.25em;
     cursor: pointer;
     outline: none;
-    border-radius: 0;
-    min-inline-size: 16ch;
-    max-inline-size: 20ch;
+    min-inline-size: 24ch;
+    max-inline-size: 36ch;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -513,17 +520,27 @@ var e=globalThis,t=e.ShadowRoot&&(e.ShadyCSS===void 0||e.ShadyCSS.nativeShadow)&
 
   select:hover,
   select:focus {
-    border-block-end-color: currentcolor;
+    border-color: currentcolor;
   }
 
   option {
+    font-size: 0.875rem;
     gap: 0.25em;
     padding: 0.25em 0.5em;
   }
 
   option::checkmark {
-    content: '⊙';
-    color: currentcolor;
+    content: '';
+    inline-size: 1rem;
+    block-size: 1rem;
+    background-color: currentcolor;
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='square'><path d='M3 8.5 L6.5 12 L13 5'/></svg>");
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='square'><path d='M3 8.5 L6.5 12 L13 5'/></svg>");
+  }
+
+  option:checked {
+    background-color: oklch(from var(--_host-color) calc(l + 0.72) c h);
+    font-weight: 600;
   }
 
   @supports not (
@@ -540,8 +557,10 @@ var e=globalThis,t=e.ShadowRoot&&(e.ShadyCSS===void 0||e.ShadyCSS.nativeShadow)&
     }
 
     .select > svg {
+      position: relative;
       inline-size: 0.875rem;
       justify-self: end;
+      margin-inline-end: 0.25rem;
       pointer-events: none;
       display: block;
     }
@@ -550,8 +569,8 @@ var e=globalThis,t=e.ShadowRoot&&(e.ShadyCSS===void 0||e.ShadyCSS.nativeShadow)&
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
-      padding-block: 0.25em;
-      padding-inline: 0 1em;
+      border: 1px solid var(--_select-bgcolor);
+      padding: 0.5em 0.25em;
       inline-size: 100%;
     }
   }
@@ -559,14 +578,12 @@ var e=globalThis,t=e.ShadowRoot&&(e.ShadyCSS===void 0||e.ShadyCSS.nativeShadow)&
   @supports (
     (-webkit-appearance: base-select) or (-moz-appearance: base-select) or (appearance: base-select)
   ) {
-    .select > svg {
+    .select svg {
       display: none;
     }
   }
 
   .description {
-    margin-inline: 0;
-    margin-block: 0.5rem 1rem;
     font-size: 0.875rem;
   }
 
@@ -631,7 +648,6 @@ var e=globalThis,t=e.ShadowRoot&&(e.ShadyCSS===void 0||e.ShadyCSS.nativeShadow)&
               <select id="select-sources" @change="${this._onChangeFile}" aria-label="Cases">
                 <button>
                   <selectedcontent></selectedcontent>
-                  ${this.__selectArrow}
                 </button>
                 ${this._sources.map((e,t)=>j`
                     <option ?selected="${this.selected===t}" value="${t}">
