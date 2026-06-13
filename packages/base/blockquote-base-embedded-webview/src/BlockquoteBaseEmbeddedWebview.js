@@ -259,7 +259,6 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
               <select id="select-sources" @change="${this._onChangeFile}" aria-label="Cases">
                 <button>
                   <selectedcontent></selectedcontent>
-                  ${this.__selectArrow}
                 </button>
                 ${this._sources.map(
                   (item, index) => html`
