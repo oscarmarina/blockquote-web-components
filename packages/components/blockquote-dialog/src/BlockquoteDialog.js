@@ -271,9 +271,11 @@ export class BlockquoteDialog extends LitElement {
 
   get _labeledbyTpl() {
     return html`
-      ${this.labelledby
-        ? blockquoteDirectiveAriaidrefSlot(this.labelledby, this.labelledbyVisible)
-        : ''}
+      ${
+        this.labelledby
+          ? blockquoteDirectiveAriaidrefSlot(this.labelledby, this.labelledbyVisible)
+          : ''
+      }
     `;
   }
 

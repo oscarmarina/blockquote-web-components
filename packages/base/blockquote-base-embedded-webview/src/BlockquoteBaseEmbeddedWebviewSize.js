@@ -167,9 +167,9 @@ export class BlockquoteBaseEmbeddedWebviewSize extends LitElement {
             data-index="${index + 1}"
             ?data-selected="${this.selected === index + 1}"
             ?hidden="${!this.showOverflowSize && item.width > this.computedStyleWidth}"
-            style="${this.widthInPercent
-              ? `width: calc(100% / ${index + 1});`
-              : `width: ${item.width}px;`}">
+            style="${
+              this.widthInPercent ? `width: calc(100% / ${index + 1});` : `width: ${item.width}px;`
+            }">
             <span>${item.id}</span>
           </button>
         `

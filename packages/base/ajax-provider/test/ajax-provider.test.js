@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import-x/no-extraneous-dependencies */
 import {describe, it, expect, beforeAll, vi} from 'vitest';
 import {fakeServer} from 'nise';
 import {AjaxProvider} from '../src/index.js';
