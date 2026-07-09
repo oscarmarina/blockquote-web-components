@@ -128,7 +128,7 @@
     "@blockquote-web-components/blockquote-foundations-sass": "^1.1.8"
   },
   "peerDependencies": {
-    "lit-html": "^3.3.2"
+    "lit-html": "^3.3.3"
   },
   "publishConfig": {
     "access": "public"

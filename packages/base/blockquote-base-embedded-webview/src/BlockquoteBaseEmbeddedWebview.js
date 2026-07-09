@@ -253,25 +253,27 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
 
   get _selectTpl() {
     return html`
-      ${this._sources.some((options) => options.option)
-        ? html`
-            <div class="select">
-              <select id="select-sources" @change="${this._onChangeFile}" aria-label="Cases">
-                <button>
-                  <selectedcontent></selectedcontent>
-                </button>
-                ${this._sources.map(
-                  (item, index) => html`
-                    <option ?selected="${this.selected === index}" value="${index}">
-                      ${item.option}
-                    </option>
-                  `
-                )}
-              </select>
-              ${this.__selectArrow}
-            </div>
-          `
-        : ''}
+      ${
+        this._sources.some((options) => options.option)
+          ? html`
+              <div class="select">
+                <select id="select-sources" @change="${this._onChangeFile}" aria-label="Cases">
+                  <button>
+                    <selectedcontent></selectedcontent>
+                  </button>
+                  ${this._sources.map(
+                    (item, index) => html`
+                      <option ?selected="${this.selected === index}" value="${index}">
+                        ${item.option}
+                      </option>
+                    `
+                  )}
+                </select>
+                ${this.__selectArrow}
+              </div>
+            `
+          : ''
+      }
     `;
   }
 
@@ -328,8 +330,9 @@ export class BlockquoteBaseEmbeddedWebview extends LitElement {
       <blockquote-base-embedded-webview-element
         slot="embedded"
         .src="${this._src || ''}"
-        .embeddedTitle="${this._sources[this.selected].option ||
-        'Demo'}"></blockquote-base-embedded-webview-element>
+        .embeddedTitle="${
+          this._sources[this.selected].option || 'Demo'
+        }"></blockquote-base-embedded-webview-element>
     `;
   }
 

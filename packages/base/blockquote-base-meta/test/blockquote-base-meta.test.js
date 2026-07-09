@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import-x/no-extraneous-dependencies */
 import {describe, it, expect, beforeAll, beforeEach} from 'vitest';
 import {BlockquoteBaseMeta} from '../src/index.js';
 

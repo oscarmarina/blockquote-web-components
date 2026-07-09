@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import-x/no-extraneous-dependencies */
 import {describe, it, expect, beforeAll} from 'vitest';
 import {fixture, fixtureCleanup} from '@open-wc/testing-helpers';
 import {html, LitElement} from 'lit';
