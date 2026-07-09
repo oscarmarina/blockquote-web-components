@@ -1,4 +1,4 @@
-import{f as e,s as t}from"./assets/src-C-VWXgZb.js";import"./my-section.js";import"./assets/my-heading-Ba8C65iX.js";var n=class extends t{render(){return e`
+import{f as e,s as t}from"./assets/src-hq5Li6Z7.js";import"./my-section.js";import"./assets/my-heading-Cm3-fVHC.js";var n=class extends t{render(){return e`
       <my-section id="root-1">
         <my-heading>Heading level 1</my-heading>
         <my-section id="1">

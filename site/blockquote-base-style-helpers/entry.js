@@ -643,20 +643,20 @@ import{a as e,c as t,i as n,n as r,o as i,r as a,s as o,t as s}from"./theme/them
       <div>${this._selectTpl}${this._externalLinkTpl}</div>
     `}get _selectTpl(){return i`
       ${this._sources.some(e=>e.option)?i`
-            <div class="select">
-              <select id="select-sources" @change="${this._onChangeFile}" aria-label="Cases">
-                <button>
-                  <selectedcontent></selectedcontent>
-                </button>
-                ${this._sources.map((e,t)=>i`
-                    <option ?selected="${this.selected===t}" value="${t}">
-                      ${e.option}
-                    </option>
-                  `)}
-              </select>
-              ${this.__selectArrow}
-            </div>
-          `:``}
+              <div class="select">
+                <select id="select-sources" @change="${this._onChangeFile}" aria-label="Cases">
+                  <button>
+                    <selectedcontent></selectedcontent>
+                  </button>
+                  ${this._sources.map((e,t)=>i`
+                      <option ?selected="${this.selected===t}" value="${t}">
+                        ${e.option}
+                      </option>
+                    `)}
+                </select>
+                ${this.__selectArrow}
+              </div>
+            `:``}
     `}get _externalLinkTpl(){return i`
       <a href="${this._src||`#`}" target="_blank" class="open-externally">
         <span class="sr-only">View demo in a new tab</span>

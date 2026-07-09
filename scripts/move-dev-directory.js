@@ -2,6 +2,8 @@ import { readdirSync, statSync, readFileSync, writeFileSync, existsSync, cpSync 
 import { resolve, join, sep } from 'path';
 import { parseHTML } from 'linkedom';
 
+// npx unlighthouse --site https://main--adorable-macaron-7c1b61.netlify.app/
+
 /**
  * Safe error to string conversion
  * @param {unknown} err

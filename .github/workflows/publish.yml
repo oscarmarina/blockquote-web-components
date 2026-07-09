@@ -17,7 +17,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '26.x'
-          registry-url: 'https://registry.npmjs.org'
       - name: Install npm
         run: npm install -g npm@12.x
       - name: Checkout
@@ -44,9 +43,8 @@ jobs:
       - name: Version and publish with Lerna
         if: env.SKIP_LERNA == 'false'
         run: |
+          npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
           npx lerna version --yes
           npx lerna publish from-package --yes
-env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
