@@ -3,6 +3,7 @@
 **/.vscode
 **/.nx
 **/.code-workspace
+**/.unlighthouse
 
 ## system files
 **/.DS_Store

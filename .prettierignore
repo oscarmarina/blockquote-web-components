@@ -2,6 +2,7 @@
 **/.idea
 **/.vscode
 **/.code-workspace
+**/.unlighthouse
 
 ## system files
 **/.DS_Store
