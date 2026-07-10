@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.20.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.19.4...v2.20.0) (2026-07-10)
+
+
+### Features
+
+* **blockquote-base-embedded-webview:** update select height ([b80997d](https://github.com/oscarmarina/blockquote-web-components/commit/b80997d89d39d97118dca9582f3d7b720a24fd30))
+
 ## [2.19.4](https://github.com/oscarmarina/blockquote-web-components/compare/v2.19.3...v2.19.4) (2026-07-09)
 
 ## [2.19.3](https://github.com/oscarmarina/blockquote-web-components/compare/v2.19.2...v2.19.3) (2026-06-13)
