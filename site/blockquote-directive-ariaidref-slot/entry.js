@@ -380,7 +380,7 @@ import{a as e,c as t,i as n,l as r,n as i,o as a,r as o,s,t as c,u as l}from"./w
   :host {
     --_host-color: var(--blockquote-base-embedded-webview-color, rgb(32, 32, 32));
     --_main-bgcolor: var(--blockquote-base-embedded-webview-main-bgcolor, rgb(250, 250, 250));
-    --_select-bgcolor: var(--blockquote-base-embedded-webview-select-bgcolor, rgb(169, 169, 169));
+    --_select-bgcolor: var(--blockquote-base-embedded-webview-select-bgcolor, rgb(183, 183, 183));
     --_select-transition: var(
       --blockquote-base-embedded-webview-select-transition,
       border-color 196ms ease-out
@@ -474,7 +474,8 @@ import{a as e,c as t,i as n,l as r,n as i,o as a,r as o,s,t as c,u as l}from"./w
     display: inline-flex;
     align-items: center;
     width: 100%;
-    padding-inline: 0.2ch 1.25rem;
+    min-block-size: 2.5rem;
+    padding-inline: 0.4ch 1.25rem;
   }
 
   select::picker-icon {
@@ -506,7 +507,7 @@ import{a as e,c as t,i as n,l as r,n as i,o as a,r as o,s,t as c,u as l}from"./w
     border-width: 0.125em;
     border-radius: 0.25em;
     margin: 0;
-    padding: 0.5em 0.25em;
+    padding: 0;
     cursor: pointer;
     outline: none;
     min-inline-size: 24ch;
@@ -519,7 +520,7 @@ import{a as e,c as t,i as n,l as r,n as i,o as a,r as o,s,t as c,u as l}from"./w
 
   select:hover,
   select:focus {
-    border-color: currentcolor;
+    border-color: oklch(from currentcolor calc(l + 0.3) c h);
   }
 
   option {

@@ -57,10 +57,10 @@ function parseArgs(argv = []) {
  */
 function loadIndexTemplate(indexHtmlPath) {
   const defaultHtml = `<!DOCTYPE html><html lang="en"><head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <meta name="description" content="All Demos - blockquote-web-components">
-    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta name="description" content="All Demos - blockquote-web-components" />
+    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml" />
     <title>Blockquote - Web Components</title>
   </head>
   <body>
