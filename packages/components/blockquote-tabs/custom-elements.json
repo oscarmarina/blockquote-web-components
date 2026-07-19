@@ -12,37 +12,21 @@
           "name": "BlockquoteTabs",
           "members": [
             {
-              "kind": "method",
-              "name": "_selectedIsInRange",
-              "parameters": [
-                {
-                  "name": "idx"
-                }
-              ]
-            },
-            {
               "kind": "field",
               "name": "_selectedTab",
               "readonly": true
             },
             {
               "kind": "field",
-              "name": "_selectedTabIndex",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "_selectedTabIndexFromOne",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "_getTabListLength",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "_onSlotChanges"
+              "name": "_onSlotChanges",
+              "parameters": [
+                {
+                  "name": "ev",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
             },
             {
               "kind": "field",
@@ -79,58 +63,16 @@
               "name": "_scrollEdge",
               "parameters": [
                 {
-                  "name": "{target = this._scrollContentRef.value}",
-                  "default": "{}"
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "_onTabClick"
-            },
-            {
-              "kind": "field",
-              "name": "_onTabKeyDown"
-            },
-            {
-              "kind": "method",
-              "name": "_selectTab"
-            },
-            {
-              "kind": "method",
-              "name": "_moveFocusSelectedTab",
-              "parameters": [
-                {
-                  "name": "selectedTab",
-                  "default": "this._selectedTab"
+                  "name": "ev",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
                 }
               ]
             },
             {
               "kind": "method",
-              "name": "_requestFocusUpdate"
-            },
-            {
-              "kind": "method",
-              "name": "_scrollIntoView"
-            },
-            {
-              "kind": "method",
-              "name": "_scrollIntoViewWithOffset",
-              "parameters": [
-                {
-                  "name": "tabScroller",
-                  "default": "this._selectedTab"
-                },
-                {
-                  "name": "behavior",
-                  "default": "this._observeScrollBehavior ? 'smooth' : 'auto'"
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "_onResizeObserverChange"
+              "name": "_onSelectionCommit"
             },
             {
               "kind": "field",
@@ -139,7 +81,7 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "If present, the tab automatically have focus",
+              "description": "If present, the selected tab is focused on boot. Alternatively, set the\nnative `autofocus` attribute on the desired `<blockquote-tab>` (takes\nprecedence): the component delegates it in JS because native support is\nunreliable across browsers today (see focusgroup redesign notes).",
               "default": "false",
               "attribute": "autofocus"
             },
@@ -168,6 +110,29 @@
             },
             {
               "kind": "field",
+              "name": "activation",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "description": "Activation mode:\n- `auto` (default): selection follows focus (arrow keys select).\n- `manual`: arrow keys only move focus; Enter, Space or click select.",
+              "default": "'auto'",
+              "attribute": "activation"
+            },
+            {
+              "kind": "field",
+              "name": "orientation",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "description": "Orientation of the tablist: `horizontal` (default) or `vertical`.\nDetermines the arrow-key axis, `aria-orientation`, and the scroll\naxis (scroll indicators, reveal-on-focus, separator).",
+              "default": "'horizontal'",
+              "attribute": "orientation",
+              "reflects": true
+            },
+            {
+              "kind": "field",
               "name": "_tabList",
               "type": {
                 "text": "array"
@@ -184,69 +149,26 @@
             },
             {
               "kind": "field",
-              "name": "_selectTabLast",
-              "default": "undefined"
-            },
-            {
-              "kind": "field",
-              "name": "_selectTabpanelLast",
-              "default": "undefined"
-            },
-            {
-              "kind": "field",
-              "name": "_observedFocus",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "_observeScrollBehavior",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "_slotChangesCount",
-              "type": {
-                "text": "number"
-              },
-              "default": "0"
-            },
-            {
-              "kind": "field",
-              "name": "_slotNodesCount",
-              "default": "undefined"
-            },
-            {
-              "kind": "field",
               "name": "_scrollContentRef"
             },
             {
               "kind": "field",
-              "name": "_resizeControllerObserver",
-              "default": "new ResizeController(this, { callback: () => { this._onResizeObserverChange(); }, skipInitial: true, })"
+              "name": "_tablistRef"
             },
             {
               "kind": "field",
-              "name": "_hasScrollLeftIndicator",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "attribute": "_hasScrollLeftIndicator"
+              "name": "_selection",
+              "default": "new SelectionController(this)"
             },
             {
               "kind": "field",
-              "name": "_hasScrollRightIndicator",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "attribute": "_hasScrollRightIndicator"
+              "name": "_focusGroup",
+              "default": "new FocusGroupController(this, { getItems: () => this._tabList, getSelectedIndex: () => this._selection.selectedIndex, getOrientation: () => (this.orientation === 'vertical' ? 'vertical' : 'horizontal'), getActivation: () => (this.activation === 'manual' ? 'manual' : 'auto'), onSelect: (index) => { this.selected = index + 1; }, onReveal: (tab) => { this._scroll.scrollIntoView(tab); }, })"
+            },
+            {
+              "kind": "field",
+              "name": "_scroll",
+              "default": "new ScrollController(this, { getScrollContent: () => this._scrollContentRef.value, getIndicators: () => this._indicators, getSelectedTab: () => this._selectedTab, getOrientation: () => (this.orientation === 'vertical' ? 'vertical' : 'horizontal'), })"
             }
           ],
           "events": [
@@ -260,7 +182,7 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "If present, the tab automatically have focus",
+              "description": "If present, the selected tab is focused on boot. Alternatively, set the\nnative `autofocus` attribute on the desired `<blockquote-tab>` (takes\nprecedence): the component delegates it in JS because native support is\nunreliable across browsers today (see focusgroup redesign notes).",
               "default": "false",
               "fieldName": "autofocus"
             },
@@ -283,18 +205,22 @@
               "fieldName": "selected"
             },
             {
-              "name": "_hasScrollLeftIndicator",
+              "name": "activation",
               "type": {
-                "text": "boolean"
+                "text": "string"
               },
-              "fieldName": "_hasScrollLeftIndicator"
+              "description": "Activation mode:\n- `auto` (default): selection follows focus (arrow keys select).\n- `manual`: arrow keys only move focus; Enter, Space or click select.",
+              "default": "'auto'",
+              "fieldName": "activation"
             },
             {
-              "name": "_hasScrollRightIndicator",
+              "name": "orientation",
               "type": {
-                "text": "boolean"
+                "text": "string"
               },
-              "fieldName": "_hasScrollRightIndicator"
+              "description": "Orientation of the tablist: `horizontal` (default) or `vertical`.\nDetermines the arrow-key axis, `aria-orientation`, and the scroll\naxis (scroll indicators, reveal-on-focus, separator).",
+              "default": "'horizontal'",
+              "fieldName": "orientation"
             }
           ],
           "mixins": [
@@ -355,6 +281,708 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/controllers/FocusGroupController.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "`FocusGroupController`\n\nOrchestrates the focus-driven interaction of a composite widget, following\nthe Open UI `focusgroup` model where focus movement and selection are\ndecoupled:\n\n- Entry-point management is delegated to an engine (the roving-tabindex\n  fallback engine today; the native `focusgroup` attribute in Phase 3).\n- Commit triggers: `focusin` (auto activation), and click / Enter / Space\n  (both activation modes). Directional navigation only moves DOM focus.\n- Focus is placed exclusively inside user-interaction handlers. The commit\n  pipeline (`selected` -> SelectionController) NEVER moves focus, which\n  makes programmatic selection changes focus-safe by construction\n  (structural event-origin tracking; no focus latch anywhere).",
+          "name": "FocusGroupController",
+          "members": [
+            {
+              "kind": "field",
+              "name": "#container",
+              "privacy": "private",
+              "type": {
+                "text": "null"
+              },
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "#engine",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#getItems",
+              "privacy": "private",
+              "type": {
+                "text": "() => HTMLElement[]"
+              },
+              "default": "getItems"
+            },
+            {
+              "kind": "field",
+              "name": "#getSelectedIndex",
+              "privacy": "private",
+              "type": {
+                "text": "() => number"
+              },
+              "default": "getSelectedIndex"
+            },
+            {
+              "kind": "field",
+              "name": "#getActivation",
+              "privacy": "private",
+              "type": {
+                "text": "() => 'auto' | 'manual'"
+              },
+              "default": "getActivation"
+            },
+            {
+              "kind": "field",
+              "name": "#onSelect",
+              "privacy": "private",
+              "type": {
+                "text": "(index: number) => void"
+              },
+              "default": "onSelect"
+            },
+            {
+              "kind": "field",
+              "name": "#onReveal",
+              "privacy": "private",
+              "type": {
+                "text": "(item: HTMLElement) => void"
+              },
+              "default": "onReveal"
+            },
+            {
+              "kind": "field",
+              "name": "entryItem",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "hostConnected"
+            },
+            {
+              "kind": "method",
+              "name": "hostDisconnected"
+            },
+            {
+              "kind": "method",
+              "name": "attach",
+              "parameters": [
+                {
+                  "name": "container",
+                  "description": "the tablist container in the host's shadow DOM",
+                  "type": {
+                    "text": "HTMLElement"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "syncOrientation",
+              "description": "Pushes an `orientation` change to the engine. The native engine encodes\nthe axis in the `focusgroup` token and must be synced explicitly; the\nfallback reads orientation live and treats this as a no-op."
+            },
+            {
+              "kind": "method",
+              "name": "syncEntryPoint",
+              "description": "Moves the group's entry point to the currently selected item. Idempotent;\ncall on every selection commit and whenever the slotted items change."
+            },
+            {
+              "kind": "field",
+              "name": "#onFocusIn",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#onClick",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#onActivationKeyDown",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "host",
+              "default": "host"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "FocusGroupController",
+          "declaration": {
+            "name": "FocusGroupController",
+            "module": "src/controllers/FocusGroupController.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/controllers/NativeFocusgroupEngine.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "`NativeFocusgroupEngine`\n\nFocus engine backed by the browser's native `focusgroup` behavior. It does\nNO key handling and NO tabindex management: the browser provides\ndirectional navigation, `Home`/`End`, wrap, logical (writing-mode aware)\ndirection, the guaranteed single tab stop, last-focused memory and\nfocus-into-view scrolling.\n\nWhat remains here is exactly what the explainer assigns to author code for\nthe tabs pattern:\n\n- Declare the group on the tablist container:\n  `focusgroup=\"tablist [block] nomemory\"`. `tablist` supplies the\n  `inline wrap` default modifiers; `block` overrides the axis for vertical\n  tablists; `nomemory` reproduces roving-by-selection entry semantics\n  (sequential re-entry always lands on the SELECTED item, not on the last\n  arrowed-to one).\n- Move `focusgroupstart` to the newly selected item on every commit.\n\nThe engine intentionally leaves every item's `tabindex` untouched: native\ndirectional navigation requires items to be focusable (non-negative\ntabindex), and the guaranteed tab stop collapses them into a single\nsequential stop.",
+          "name": "NativeFocusgroupEngine",
+          "members": [
+            {
+              "kind": "field",
+              "name": "#container",
+              "privacy": "private",
+              "type": {
+                "text": "null"
+              },
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "#getItems",
+              "privacy": "private",
+              "type": {
+                "text": "() => HTMLElement[]"
+              },
+              "default": "getItems"
+            },
+            {
+              "kind": "field",
+              "name": "#getOrientation",
+              "privacy": "private",
+              "type": {
+                "text": "() => 'horizontal' | 'vertical'"
+              },
+              "default": "getOrientation"
+            },
+            {
+              "kind": "method",
+              "name": "attach",
+              "parameters": [
+                {
+                  "name": "container",
+                  "type": {
+                    "text": "HTMLElement"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "detach"
+            },
+            {
+              "kind": "method",
+              "name": "syncOrientation",
+              "description": "Pushes the current orientation to the `focusgroup` token. The token\nencodes the axis (`block` for vertical tablists), so a dynamic\n`orientation` change must be synced explicitly. Safe to call before\n`attach` (no-op until a container exists)."
+            },
+            {
+              "kind": "method",
+              "name": "setEntryItem",
+              "parameters": [
+                {
+                  "name": "entryItem",
+                  "type": {
+                    "text": "HTMLElement | undefined"
+                  }
+                }
+              ],
+              "description": "Moves `focusgroupstart` to the selected item. Idempotent; safe to call on\nevery selection commit or slot change."
+            },
+            {
+              "kind": "method",
+              "name": "#syncTokens",
+              "privacy": "private"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "NativeFocusgroupEngine",
+          "declaration": {
+            "name": "NativeFocusgroupEngine",
+            "module": "src/controllers/NativeFocusgroupEngine.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/controllers/RovingTabindexEngine.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "`RovingTabindexEngine`\n\nFallback focus engine for composite widgets. It replicates the semantics of\nthe Open UI `focusgroup` proposal until browsers ship it natively:\n\n- Directional navigation (arrow keys) restricted to the widget's axis and\n  resolved in logical direction (`direction`-aware: RTL swaps the arrow\n  mapping; `writing-mode` is NOT consulted), wrapping around at both ends.\n- `Home` / `End` move focus to the first / last item.\n- Roving tabindex entry point: the entry item is the only tab stop of the\n  group; every other item gets `tabindex=\"-1\"`.\n\nThe engine ONLY moves DOM focus. Selection is committed elsewhere\n(focusin / click / activation handlers), mirroring the native model where\nfocus and selection are decoupled. Cross-axis keys are never handled nor\ncanceled, so they remain available for scrolling or supplementary actions.",
+          "name": "RovingTabindexEngine",
+          "members": [
+            {
+              "kind": "field",
+              "name": "#container",
+              "privacy": "private",
+              "type": {
+                "text": "null"
+              },
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "#getItems",
+              "privacy": "private",
+              "type": {
+                "text": "() => HTMLElement[]"
+              },
+              "default": "getItems"
+            },
+            {
+              "kind": "field",
+              "name": "#getOrientation",
+              "privacy": "private",
+              "type": {
+                "text": "() => 'horizontal' | 'vertical'"
+              },
+              "default": "getOrientation"
+            },
+            {
+              "kind": "method",
+              "name": "attach",
+              "parameters": [
+                {
+                  "name": "container",
+                  "type": {
+                    "text": "HTMLElement"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "detach"
+            },
+            {
+              "kind": "method",
+              "name": "syncOrientation",
+              "description": "No-op: the fallback resolves orientation live on every keydown, so there\nis no orientation-dependent state to push. It exists to keep the engine\ninterface symmetric with `NativeFocusgroupEngine`."
+            },
+            {
+              "kind": "method",
+              "name": "setEntryItem",
+              "parameters": [
+                {
+                  "name": "entryItem",
+                  "type": {
+                    "text": "HTMLElement | undefined"
+                  }
+                }
+              ],
+              "description": "Roving tabindex: `entryItem` becomes the only tab stop of the group.\nIdempotent; safe to call on every selection commit or slot change."
+            },
+            {
+              "kind": "method",
+              "name": "#nextIndex",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "currentIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                },
+                {
+                  "name": "key",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ],
+              "description": "Resolves the index targeted by a navigation key, in logical direction.\nReturns `null` for keys the engine does not handle."
+            },
+            {
+              "kind": "field",
+              "name": "#onKeyDown",
+              "privacy": "private"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "RovingTabindexEngine",
+          "declaration": {
+            "name": "RovingTabindexEngine",
+            "module": "src/controllers/RovingTabindexEngine.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/controllers/ScrollController.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ScrollController",
+          "members": [
+            {
+              "kind": "field",
+              "name": "#observeScrollBehavior",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "scrollEdge",
+              "parameters": [
+                {
+                  "name": "target",
+                  "default": "this.getScrollContent()",
+                  "optional": true,
+                  "type": {
+                    "text": "HTMLElement"
+                  }
+                }
+              ],
+              "description": "Updates scroll edge indicators."
+            },
+            {
+              "kind": "method",
+              "name": "scrollIntoView",
+              "parameters": [
+                {
+                  "name": "tab",
+                  "default": "this.getSelectedTab()",
+                  "optional": true,
+                  "type": {
+                    "text": "HTMLElement"
+                  }
+                }
+              ],
+              "description": "Schedules a reveal-into-view operation for the given tab item."
+            },
+            {
+              "kind": "method",
+              "name": "scrollIntoViewWithOffset",
+              "parameters": [
+                {
+                  "name": "tabScroller",
+                  "default": "this.getSelectedTab()",
+                  "optional": true,
+                  "type": {
+                    "text": "HTMLElement"
+                  }
+                },
+                {
+                  "name": "behavior",
+                  "default": "this.#observeScrollBehavior ? 'smooth' : 'auto'",
+                  "optional": true,
+                  "type": {
+                    "text": "ScrollBehavior"
+                  }
+                }
+              ],
+              "description": "Calculates offsets and scrolls the tab into view if overflowing."
+            },
+            {
+              "kind": "method",
+              "name": "onResizeChange"
+            },
+            {
+              "kind": "field",
+              "name": "host",
+              "default": "host"
+            },
+            {
+              "kind": "field",
+              "name": "getScrollContent",
+              "default": "getScrollContent"
+            },
+            {
+              "kind": "field",
+              "name": "getIndicators",
+              "default": "getIndicators"
+            },
+            {
+              "kind": "field",
+              "name": "getSelectedTab",
+              "default": "getSelectedTab"
+            },
+            {
+              "kind": "field",
+              "name": "getOrientation"
+            },
+            {
+              "kind": "field",
+              "name": "hasScrollLeftIndicator",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "hasScrollRightIndicator",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ScrollController",
+          "declaration": {
+            "name": "ScrollController",
+            "module": "src/controllers/ScrollController.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/controllers/SelectionController.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "`SelectionController`\n\nOwns the selection semantics of a tab set:\n\n- Sanitizes the 1-based `selected` index on write (nearest-bound clamp) and\n  reports the committed value so the host can correct its reflected attribute\n  (attribute and effective state never diverge).\n- Applies the selection idempotently to every tab/tabpanel pair, so no\n  \"last selected item\" bookkeeping is needed.\n- Wires the bidirectional ARIA relationship of each pair (`aria-controls` on\n  the tab <-> `aria-labelledby` on the tabpanel), generating missing ids and\n  always respecting author-supplied values; warns when an author-supplied\n  half does not close the pair (dangling idref).\n- Re-syncs selection and wiring when the slotted items change.\n\nFocus and activation are intentionally out of scope here.",
+          "name": "SelectionController",
+          "members": [
+            {
+              "kind": "field",
+              "name": "#tabs",
+              "privacy": "private",
+              "type": {
+                "text": "HTMLElement[]"
+              },
+              "default": "[]"
+            },
+            {
+              "kind": "field",
+              "name": "#tabpanels",
+              "privacy": "private",
+              "type": {
+                "text": "HTMLElement[]"
+              },
+              "default": "[]"
+            },
+            {
+              "kind": "field",
+              "name": "#selectedIndex",
+              "privacy": "private",
+              "type": {
+                "text": "number"
+              },
+              "default": "0"
+            },
+            {
+              "kind": "field",
+              "name": "#warnedMismatches",
+              "privacy": "private",
+              "default": "new Set()",
+              "description": "mismatches already surfaced (each one warns once)",
+              "type": {
+                "text": "Set<string>"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "length",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "selectedIndex",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "selectedIndexFromOne",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "selectedTab",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "selectedTabpanel",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "setItems",
+              "parameters": [
+                {
+                  "name": "tabs",
+                  "default": "[]",
+                  "optional": true,
+                  "type": {
+                    "text": "HTMLElement[]"
+                  }
+                },
+                {
+                  "name": "tabpanels",
+                  "default": "[]",
+                  "optional": true,
+                  "type": {
+                    "text": "HTMLElement[]"
+                  }
+                }
+              ],
+              "description": "Updates the slotted items, wires their ARIA relationships and re-syncs the\nselection. When the current selection falls outside the new range, the\nhost's `selected` is corrected and the commit happens on the next update."
+            },
+            {
+              "kind": "method",
+              "name": "commit",
+              "parameters": [
+                {
+                  "name": "selectedFromOne",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ],
+              "description": "Applies a 1-based selection and returns the committed 1-based value. When\nthe committed value differs from the requested one, nothing is applied and\nthe host should correct `selected` (the commit happens on the next update)."
+            },
+            {
+              "kind": "method",
+              "name": "#apply",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "index",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "#wireAriaRelationships",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "#warnOnce",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "condition",
+                  "type": {
+                    "text": "boolean"
+                  }
+                },
+                {
+                  "name": "message",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "host",
+              "default": "host"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SelectionController",
+          "declaration": {
+            "name": "SelectionController",
+            "module": "src/controllers/SelectionController.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/controllers/focusgroup-capability.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "supportsFocusgroup",
+          "description": "Capability detection for the Open UI `focusgroup` attribute.\n\nThe explainer specifies IDL reflection as the feature-detection surface:\n\n```webidl\npartial interface mixin HTMLOrSVGElement {\n  [SameObject, PutForwards=value, Reflect] readonly attribute DOMTokenList focusGroup;\n  [CEReactions, Reflect] attribute boolean focusGroupStart;\n};\n```\n\nNo UA sniffing. Unknown or absent reflection means `false`, which fails\nsafe: the component stays on the JS fallback engine until a browser\npositively confirms support."
+        },
+        {
+          "kind": "function",
+          "name": "setFocusgroupOverride",
+          "parameters": [
+            {
+              "name": "value",
+              "type": {
+                "text": "boolean | undefined"
+              }
+            }
+          ],
+          "description": "Override hook for tests (dual-run suites) and enterprise pinning. Pass\n`undefined` to restore real detection. Evaluated per component instance at\nconstruction time, so set it before creating elements."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "supportsFocusgroup",
+          "declaration": {
+            "name": "supportsFocusgroup",
+            "module": "src/controllers/focusgroup-capability.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "setFocusgroupOverride",
+          "declaration": {
+            "name": "setFocusgroupOverride",
+            "module": "src/controllers/focusgroup-capability.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/controllers/focusgroup-tokens.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "toFocusgroupTokens",
+          "parameters": [
+            {
+              "name": "{behavior, axis, wrap, memory = true}"
+            },
+            {
+              "name": "spec",
+              "type": {
+                "text": "FocusGroupSpec"
+              }
+            }
+          ],
+          "description": "Maps a declarative behavior spec to a focusgroup token string."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "toFocusgroupTokens",
+          "declaration": {
+            "name": "toFocusgroupTokens",
+            "module": "src/controllers/focusgroup-tokens.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/define/blockquote-tab.js",
       "declarations": [],
       "exports": [
@@ -405,7 +1033,7 @@
         {
           "kind": "variable",
           "name": "styles",
-          "default": "css` :host { --_unselected-color: var(--blockquote-tabs-unselected-color, rgb(234 234 234)); --_scroll-gradient-start-color: var( --blockquote-tabs-scroll-gradient-start-color, rgb(255, 255, 255, 0) ); --_scroll-gradient-end-color: var( --blockquote-tabs-scroll-gradient-end-color, rgb(252, 252, 252, 1) ); --_scroll-arrow-color: var(--blockquote-tabs-scroll-arrow-color, rgb(94, 94, 94)); contain: content; display: block; box-sizing: border-box; color: #202020; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } .hold { position: relative; display: flex; } .hold .separator { position: absolute; z-index: -1; inset-block-end: 0; block-size: 1px; inset-inline: 0; background-color: var(--_unselected-color); } .hold .indicator { position: absolute; inline-size: 1rem; pointer-events: none; inset-block: 0 1px; inset-inline-start: 0; box-shadow: rgb(255, 255, 255) 4px 0 12px 4px inset, rgb(210, 210, 210) 4px 0 4px -4px; background-color: rgb(234, 234, 234, 0.5); transition: opacity 92ms ease-in-out; opacity: 0; background-clip: padding-box; } .hold .indicator.show-indicator { opacity: 1; } .hold .indicator + .indicator { inset-inline: auto 0; transform: scale(-1); } .scroll-content { inline-size: 100%; overflow: auto hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; overscroll-behavior: none; } .scroll-content::-webkit-scrollbar { display: none; } .scroll-content:focus-visible { outline: #9e9e9e dashed 0.0625rem; outline-offset: -2px; } .scroll-content:focus:not(:focus-visible) { outline: none; } [role='tablist'] { display: flex; } `"
+          "default": "css` :host { --_unselected-color: var(--blockquote-tabs-unselected-color, rgb(234 234 234)); --_scroll-gradient-start-color: var( --blockquote-tabs-scroll-gradient-start-color, rgb(255, 255, 255, 0) ); --_scroll-gradient-end-color: var( --blockquote-tabs-scroll-gradient-end-color, rgb(252, 252, 252, 1) ); --_scroll-arrow-color: var(--blockquote-tabs-scroll-arrow-color, rgb(94, 94, 94)); contain: content; display: block; box-sizing: border-box; color: #202020; height: inherit; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } .hold { position: relative; display: flex; } .hold .separator { position: absolute; z-index: -1; inset-block-end: 0; block-size: 1px; inset-inline: 0; background-color: var(--_unselected-color); } .hold .indicator { position: absolute; inline-size: 1rem; pointer-events: none; inset-block: 0 1px; inset-inline-start: 0; box-shadow: rgb(255, 255, 255) 4px 0 12px 4px inset, rgb(210, 210, 210) 4px 0 4px -4px; background-color: rgb(234, 234, 234, 0.5); transition: opacity 92ms ease-in-out; opacity: 0; background-clip: padding-box; } .hold .indicator.show-indicator { opacity: 1; } .hold .indicator + .indicator { inset-inline: auto 0; transform: scale(-1); } .scroll-content { position: relative; inline-size: 100%; overflow: auto hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; overscroll-behavior: none; } .scroll-content::-webkit-scrollbar { display: none; } .scroll-content:focus-visible { outline: #9e9e9e dashed 0.0625rem; outline-offset: -2px; } .scroll-content:focus:not(:focus-visible) { outline: none; } [role='tablist'] { display: flex; } :host([orientation='vertical']) { display: grid; grid-template-columns: auto 1fr; grid-template-rows: 1fr; } :host([orientation='vertical']) ::slotted([slot='tab']) { grid-column: 1; } :host([orientation='vertical']) ::slotted([slot='tabpanel']) { grid-column: 2; } :host([orientation='vertical']) .hold { height: inherit; } :host([orientation='vertical']) .hold .separator { inset-block: 0; inset-inline: auto 0; inline-size: 1px; block-size: 100%; } :host([orientation='vertical']) .hold .indicator { inline-size: 100%; block-size: 1rem; inset-inline: 0; inset-block: 0 auto; box-shadow: rgb(255, 255, 255) 0 4px 12px 4px inset, rgb(210, 210, 210) 0 4px 4px -4px; } :host([orientation='vertical']) .hold .indicator + .indicator { inset-block: auto 0; transform: scaleY(-1); } :host([orientation='vertical']) .scroll-content { overflow: hidden auto; } :host([orientation='vertical']) [role='tablist'] { flex-direction: column; } `"
         }
       ],
       "exports": [
@@ -430,21 +1058,74 @@
           "members": [
             {
               "kind": "field",
-              "name": "_onSlotChanges"
+              "name": "rootAttributes",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ role: 'tab', slot: 'tab', tabindex: 0, }"
             },
             {
               "kind": "method",
-              "name": "__setArrayAttibute",
+              "name": "_shouldSyncState",
               "parameters": [
                 {
-                  "name": "entries",
-                  "default": "{}",
+                  "name": "props",
                   "type": {
-                    "text": "Record<*, *>"
+                    "text": "Map<PropertyKey, unknown>"
                   }
                 }
               ],
-              "description": "Sets attributes on the element."
+              "description": "Returns whether the component state needs to be synchronized.",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_syncState",
+              "parameters": [
+                {
+                  "name": "props",
+                  "type": {
+                    "text": "Map<PropertyKey, unknown>"
+                  }
+                }
+              ],
+              "description": "Synchronizes the derived DOM state."
+            },
+            {
+              "kind": "method",
+              "name": "_syncRootAttributes",
+              "description": "Synchronizes the host attributes that are always present."
+            },
+            {
+              "kind": "method",
+              "name": "_setAttributes",
+              "parameters": [
+                {
+                  "name": "attributes",
+                  "default": "{}",
+                  "type": {
+                    "text": "Record<string, *>"
+                  }
+                }
+              ],
+              "description": "Sets multiple attributes on the host element."
+            },
+            {
+              "kind": "field",
+              "name": "_onSlotChanges",
+              "parameters": [
+                {
+                  "name": "ev",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
             },
             {
               "kind": "field",
@@ -459,11 +1140,15 @@
             },
             {
               "kind": "field",
-              "name": "globalRootAttributes",
+              "name": "disabled",
+              "privacy": "public",
               "type": {
-                "text": "object"
+                "text": "boolean"
               },
-              "default": "{ role: 'tab', slot: 'tab', tabindex: 0, }"
+              "description": "Whether or not the tab is `disabled`.",
+              "default": "false",
+              "attribute": "disabled",
+              "reflects": true
             }
           ],
           "attributes": [
@@ -475,6 +1160,15 @@
               "description": "Whether or not the tab is `selected`.",
               "default": "false",
               "fieldName": "selected"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Whether or not the tab is `disabled`.",
+              "default": "false",
+              "fieldName": "disabled"
             }
           ],
           "mixins": [
@@ -508,22 +1202,59 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n`<blockquote-tabpanel>`\nA tab element that can be used inside a `blockquote-tabs` element.",
+          "description": "![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n`<blockquote-tabpanel>`\nA tab panel element that can be used inside a `blockquote-tabs` element.",
           "name": "BlockquoteTabPanel",
           "members": [
             {
+              "kind": "field",
+              "name": "rootAttributes",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ role: 'tabpanel', slot: 'tabpanel', tabindex: 0, }"
+            },
+            {
               "kind": "method",
-              "name": "__setArrayAttibute",
+              "name": "_shouldSyncState",
               "parameters": [
                 {
-                  "name": "entries",
-                  "default": "{}",
+                  "name": "props",
                   "type": {
-                    "text": "Record<*, *>"
+                    "text": "Map<PropertyKey, unknown>"
                   }
                 }
               ],
-              "description": "Sets attributes on the element."
+              "description": "Returns whether the component state needs to be synchronized.",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_syncState",
+              "description": "Synchronizes the derived DOM state."
+            },
+            {
+              "kind": "method",
+              "name": "_syncRootAttributes",
+              "description": "Synchronizes the host attributes that are always present."
+            },
+            {
+              "kind": "method",
+              "name": "_setAttributes",
+              "parameters": [
+                {
+                  "name": "attributes",
+                  "default": "{}",
+                  "type": {
+                    "text": "Record<string, *>"
+                  }
+                }
+              ],
+              "description": "Sets multiple attributes on the host element."
             },
             {
               "kind": "field",
@@ -532,17 +1263,9 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "Whether or not the tabpanel is `selected`.",
+              "description": "Whether or not the tab panel is `selected`.",
               "default": "false",
               "attribute": "selected"
-            },
-            {
-              "kind": "field",
-              "name": "globalRootAttributes",
-              "type": {
-                "text": "object"
-              },
-              "default": "{ role: 'tabpanel', slot: 'tabpanel', tabindex: 0, }"
             }
           ],
           "attributes": [
@@ -551,7 +1274,7 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "Whether or not the tabpanel is `selected`.",
+              "description": "Whether or not the tab panel is `selected`.",
               "default": "false",
               "fieldName": "selected"
             }
@@ -582,7 +1305,7 @@
         {
           "kind": "variable",
           "name": "styles",
-          "default": "css` :host { --__color: var( --blockquote-tab-color-dark-mode, var(--blockquote-tab-color-ambient, var(--theme-colors-secondary500, rgb(32, 32, 32))) ); --_color: var(--blockquote-tab-color, var(--__color)); --_selected-border-color: var( --blockquote-tab-selected-border-color, var( --blockquote-tab-selected-border-color-ambient, var(--theme-colors-secondary500, rgb(184, 184, 184)) ) ); --_focus-outline-color: var( --blockquote-tab-focus-outline-color, var( --blockquote-tab-focus-outline-color-ambient, var(--theme-colors-secondary500, rgb(184, 184, 184)) ) ); display: flex; flex-direction: column; justify-content: center; white-space: nowrap; color: var(--_color); padding-block: 1em; padding-inline: 0.5em; min-inline-size: 6.25rem; border-block-end: 0.0625rem solid transparent; transition: border-block-end-color 192ms ease-in-out; cursor: pointer; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } :host([aria-selected='true']) { font-weight: 700; border-block-end-color: var(--_selected-border-color); } :host(:focus:not(:focus-visible)) { outline: none; } :host(:focus-visible) { outline: 0.0625rem dashed var(--_focus-outline-color); outline-offset: -0.125rem; } slot::before { content: attr(data-text); display: block; font: inherit; font-weight: 700; inline-size: inherit; block-size: 0; overflow: hidden; visibility: hidden; } `"
+          "default": "css` :host { --__color: var( --blockquote-tab-color-dark-mode, var(--blockquote-tab-color-ambient, var(--theme-colors-secondary500, rgb(32, 32, 32))) ); --_color: var(--blockquote-tab-color, var(--__color)); --_selected-border-color: var( --blockquote-tab-selected-border-color, var( --blockquote-tab-selected-border-color-ambient, var(--theme-colors-secondary500, rgb(184, 184, 184)) ) ); --_focus-outline-color: var( --blockquote-tab-focus-outline-color, var( --blockquote-tab-focus-outline-color-ambient, var(--theme-colors-secondary500, rgb(184, 184, 184)) ) ); display: flex; flex-direction: column; justify-content: center; white-space: nowrap; color: var(--_color); padding-block: 1em; padding-inline: 0.5em; min-inline-size: 6.25rem; border-block-end: 0.0625rem solid transparent; transition: border-block-end-color 192ms ease-in-out; cursor: pointer; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } :host([aria-selected='true']) { font-weight: 700; border-block-end-color: var(--_selected-border-color); } :host([disabled]), :host([aria-disabled='true']) { opacity: 0.5; cursor: not-allowed; } :host(:focus:not(:focus-visible)) { outline: none; } :host(:focus-visible) { outline: 0.0625rem dashed var(--_focus-outline-color); outline-offset: -0.125rem; } slot::before { content: attr(data-text); display: block; font: inherit; font-weight: 700; inline-size: inherit; block-size: 0; overflow: hidden; visibility: hidden; } `"
         }
       ],
       "exports": [
@@ -603,7 +1326,7 @@
         {
           "kind": "variable",
           "name": "styles",
-          "default": "css` :host { display: block; box-sizing: border-box; padding-block: 1rem; padding-inline: 1rem; color: var(--tabpanel, inherit); } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } :host([aria-hidden='true']) { display: none; } :host(:focus:not(:focus-visible)) { outline: none; } :host(:focus-visible) { outline: #9e9e9e dashed 0.0625rem; outline-offset: -2px; } `"
+          "default": "css` :host { display: block; box-sizing: border-box; padding-block: 1rem; padding-inline: 1rem; color: var(--tabpanel, inherit); } :host([hidden]), :host([aria-hidden='true']), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } :host(:focus:not(:focus-visible)) { outline: none; } :host(:focus-visible) { outline: #9e9e9e dashed 0.0625rem; outline-offset: -2px; } `"
         }
       ],
       "exports": [

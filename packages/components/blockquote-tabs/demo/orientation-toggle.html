@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, interactive-widget=resizes-content" />
+    <meta name="description" content="Demo Orientation toggle - blockquote-tabs" />
+    <title>Orientation toggle - blockquote-tabs</title>
+    <style>
+      :root {
+        font: normal medium/1.25 sans-serif;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      [data-embedded] .sr-only {
+        position: absolute;
+        inline-size: 1px;
+        block-size: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      blockquote-tabs:not(:defined) {
+        visibility: hidden;
+      }
+
+      .controls {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+      }
+
+      .note {
+        margin: 0;
+        padding: 0.5rem 1rem;
+        font-size: 0.875em;
+        color: #666;
+      }
+
+      .wrapper:has(blockquote-tabs[orientation='vertical']) {
+        height: 14rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 class="sr-only">blockquote-tabs</h1>
+      <p class="note">
+        Switching orientation updates the arrow-key axis and aria-orientation live. Arrow keys:
+        Left/Right in horizontal, Up/Down in vertical.
+      </p>
+      <div class="controls">
+        <label for="orientation">orientation</label>
+        <select id="orientation">
+          <option value="vertical" selected>vertical</option>
+          <option value="horizontal">horizontal</option>
+        </select>
+      </div>
+
+      <div class="wrapper">
+        <blockquote-tabs label="List of tabs" orientation="vertical">
+          <blockquote-tab id="tab-1">Tab 1</blockquote-tab>
+          <blockquote-tab id="tab-2">Tab 2</blockquote-tab>
+          <blockquote-tab id="tab-3">Tab 3</blockquote-tab>
+          <blockquote-tab id="tab-4">Tab 4</blockquote-tab>
+          <blockquote-tab id="tab-5">Tab 5</blockquote-tab>
+          <blockquote-tab id="tab-6">Tab 6</blockquote-tab>
+          <blockquote-tabpanel aria-labelledby="tab-1">
+            <p>Panel 1</p>
+          </blockquote-tabpanel>
+          <blockquote-tabpanel aria-labelledby="tab-2">
+            <p>Panel 2</p>
+          </blockquote-tabpanel>
+          <blockquote-tabpanel aria-labelledby="tab-3">
+            <p>
+              <button>Panel 3</button>
+            </p>
+          </blockquote-tabpanel>
+          <blockquote-tabpanel aria-labelledby="tab-4">
+            <p>Panel 4</p>
+          </blockquote-tabpanel>
+          <blockquote-tabpanel aria-labelledby="tab-5">
+            <p>Panel 5</p>
+          </blockquote-tabpanel>
+          <blockquote-tabpanel aria-labelledby="tab-6">
+            <p>Panel 6</p>
+          </blockquote-tabpanel>
+        </blockquote-tabs>
+      </div>
+    </main>
+    <script type="module" src="./entry.js"></script>
+    <script type="module">
+      const tabs = document.querySelector('blockquote-tabs');
+      const select = document.querySelector('#orientation');
+      select.addEventListener('change', () => {
+        tabs.orientation = select.value;
+      });
+      document.addEventListener('selectedchange', ({detail}) => console.log(detail));
+    </script>
+  </body>
+</html>

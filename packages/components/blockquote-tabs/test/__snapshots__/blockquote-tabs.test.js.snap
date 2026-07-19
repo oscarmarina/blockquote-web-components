@@ -3,6 +3,7 @@
 exports[`BlockquoteTabs > Autofocus > Semantic Dom and a11y > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
 "<blockquote-tabs
   autofocus=""
+  orientation="horizontal"
   selected="1"
 >
   <blockquote-tab
@@ -14,7 +15,6 @@ exports[`BlockquoteTabs > Autofocus > Semantic Dom and a11y > LIGHT DOM - Struct
     Tab 1
   </blockquote-tab>
   <blockquote-tab
-    aria-selected="false"
     role="tab"
     slot="tab"
     tabindex="-1"
@@ -22,7 +22,6 @@ exports[`BlockquoteTabs > Autofocus > Semantic Dom and a11y > LIGHT DOM - Struct
     Tab 2
   </blockquote-tab>
   <blockquote-tab
-    aria-selected="false"
     role="tab"
     slot="tab"
     tabindex="-1"
@@ -30,8 +29,6 @@ exports[`BlockquoteTabs > Autofocus > Semantic Dom and a11y > LIGHT DOM - Struct
     Tab 3
   </blockquote-tab>
   <blockquote-tabpanel
-    aria-hidden="false"
-    aria-labelledby="tab-1"
     role="tabpanel"
     slot="tabpanel"
     tabindex="0"
@@ -42,10 +39,9 @@ exports[`BlockquoteTabs > Autofocus > Semantic Dom and a11y > LIGHT DOM - Struct
   </blockquote-tabpanel>
   <blockquote-tabpanel
     aria-hidden="true"
-    aria-labelledby="tab-2"
+    hidden=""
     role="tabpanel"
     slot="tabpanel"
-    tabindex="0"
   >
     <p>
       Panel 2
@@ -53,10 +49,9 @@ exports[`BlockquoteTabs > Autofocus > Semantic Dom and a11y > LIGHT DOM - Struct
   </blockquote-tabpanel>
   <blockquote-tabpanel
     aria-hidden="true"
-    aria-labelledby="tab-3"
+    hidden=""
     role="tabpanel"
     slot="tabpanel"
-    tabindex="0"
   >
     <p>
       Panel 3
@@ -98,7 +93,10 @@ exports[`BlockquoteTabs > Autofocus > Semantic Dom and a11y > SHADOW DOM - Struc
 `;
 
 exports[`BlockquoteTabs > Default > Semantic Dom and a11y > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
-"<blockquote-tabs selected="1">
+"<blockquote-tabs
+  orientation="horizontal"
+  selected="1"
+>
   <blockquote-tab
     aria-selected="true"
     role="tab"
@@ -108,7 +106,6 @@ exports[`BlockquoteTabs > Default > Semantic Dom and a11y > LIGHT DOM - Structur
     Tab 1
   </blockquote-tab>
   <blockquote-tab
-    aria-selected="false"
     role="tab"
     slot="tab"
     tabindex="-1"
@@ -116,7 +113,6 @@ exports[`BlockquoteTabs > Default > Semantic Dom and a11y > LIGHT DOM - Structur
     Tab 2
   </blockquote-tab>
   <blockquote-tab
-    aria-selected="false"
     role="tab"
     slot="tab"
     tabindex="-1"
@@ -124,8 +120,6 @@ exports[`BlockquoteTabs > Default > Semantic Dom and a11y > LIGHT DOM - Structur
     Tab 3
   </blockquote-tab>
   <blockquote-tabpanel
-    aria-hidden="false"
-    aria-labelledby="tab-1"
     role="tabpanel"
     slot="tabpanel"
     tabindex="0"
@@ -136,10 +130,9 @@ exports[`BlockquoteTabs > Default > Semantic Dom and a11y > LIGHT DOM - Structur
   </blockquote-tabpanel>
   <blockquote-tabpanel
     aria-hidden="true"
-    aria-labelledby="tab-2"
+    hidden=""
     role="tabpanel"
     slot="tabpanel"
-    tabindex="0"
   >
     <p>
       Panel 2
@@ -147,10 +140,9 @@ exports[`BlockquoteTabs > Default > Semantic Dom and a11y > LIGHT DOM - Structur
   </blockquote-tabpanel>
   <blockquote-tabpanel
     aria-hidden="true"
-    aria-labelledby="tab-3"
+    hidden=""
     role="tabpanel"
     slot="tabpanel"
-    tabindex="0"
   >
     <p>
       Panel 3
@@ -192,9 +184,11 @@ exports[`BlockquoteTabs > Default > Semantic Dom and a11y > SHADOW DOM - Structu
 `;
 
 exports[`BlockquoteTabs > Selected > Semantic Dom and a11y > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
-"<blockquote-tabs selected="2">
+"<blockquote-tabs
+  orientation="horizontal"
+  selected="2"
+>
   <blockquote-tab
-    aria-selected="false"
     role="tab"
     slot="tab"
     tabindex="-1"
@@ -210,7 +204,6 @@ exports[`BlockquoteTabs > Selected > Semantic Dom and a11y > LIGHT DOM - Structu
     Tab 2
   </blockquote-tab>
   <blockquote-tab
-    aria-selected="false"
     role="tab"
     slot="tab"
     tabindex="-1"
@@ -219,18 +212,15 @@ exports[`BlockquoteTabs > Selected > Semantic Dom and a11y > LIGHT DOM - Structu
   </blockquote-tab>
   <blockquote-tabpanel
     aria-hidden="true"
-    aria-labelledby="tab-1"
+    hidden=""
     role="tabpanel"
     slot="tabpanel"
-    tabindex="0"
   >
     <p>
       Panel 1
     </p>
   </blockquote-tabpanel>
   <blockquote-tabpanel
-    aria-hidden="false"
-    aria-labelledby="tab-2"
     role="tabpanel"
     slot="tabpanel"
     tabindex="0"
@@ -241,10 +231,9 @@ exports[`BlockquoteTabs > Selected > Semantic Dom and a11y > LIGHT DOM - Structu
   </blockquote-tabpanel>
   <blockquote-tabpanel
     aria-hidden="true"
-    aria-labelledby="tab-3"
+    hidden=""
     role="tabpanel"
     slot="tabpanel"
-    tabindex="0"
   >
     <p>
       Panel 3

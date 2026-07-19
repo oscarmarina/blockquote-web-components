@@ -140,7 +140,6 @@
   },
   "dependencies": {
     "@blockquote-web-components/blockquote-mixin-slot-content": "^1.9.23",
-    "@juggle/resize-observer": "^3.4.0",
     "@lit-labs/observers": "^2.1.0",
     "lit": "^3.3.3"
   },

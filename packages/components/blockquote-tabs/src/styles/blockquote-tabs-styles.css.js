@@ -16,6 +16,7 @@ export const styles = css`
     display: block;
     box-sizing: border-box;
     color: #202020;
+    height: inherit;
   }
 
   :host([hidden]),
@@ -68,6 +69,7 @@ export const styles = css`
   }
 
   .scroll-content {
+    position: relative;
     inline-size: 100%;
     overflow: auto hidden;
     -webkit-overflow-scrolling: touch;
@@ -90,5 +92,53 @@ export const styles = css`
 
   [role='tablist'] {
     display: flex;
+  }
+
+  :host([orientation='vertical']) {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  :host([orientation='vertical']) ::slotted([slot='tab']) {
+    grid-column: 1;
+  }
+
+  :host([orientation='vertical']) ::slotted([slot='tabpanel']) {
+    grid-column: 2;
+  }
+
+  :host([orientation='vertical']) .hold {
+    height: inherit;
+  }
+
+  :host([orientation='vertical']) .hold .separator {
+    inset-block: 0;
+    inset-inline: auto 0;
+    inline-size: 1px;
+    block-size: 100%;
+  }
+
+  :host([orientation='vertical']) .hold .indicator {
+    inline-size: 100%;
+    block-size: 1rem;
+    inset-inline: 0;
+    inset-block: 0 auto;
+    box-shadow:
+      rgb(255, 255, 255) 0 4px 12px 4px inset,
+      rgb(210, 210, 210) 0 4px 4px -4px;
+  }
+
+  :host([orientation='vertical']) .hold .indicator + .indicator {
+    inset-block: auto 0;
+    transform: scaleY(-1);
+  }
+
+  :host([orientation='vertical']) .scroll-content {
+    overflow: hidden auto;
+  }
+
+  :host([orientation='vertical']) [role='tablist'] {
+    flex-direction: column;
   }
 `;
