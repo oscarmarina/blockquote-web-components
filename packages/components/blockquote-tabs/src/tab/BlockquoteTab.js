@@ -19,52 +19,52 @@ export class BlockquoteTab extends BlockquoteMixinSlotContent(LitElement) {
       selected: {
         type: Boolean,
       },
+
+      /**
+       * Whether or not the tab is `disabled`.
+       */
+      disabled: {
+        type: Boolean,
+        reflect: true,
+      },
     };
   }
 
-  constructor() {
-    super();
-    this.selected = false;
-    this.globalRootAttributes = {
-      role: 'tab',
-      slot: 'tab',
-      tabindex: 0,
-    };
-
-    this.addEventListener('slotchanges', this._onSlotChanges);
-  }
+  static rootAttributes = {
+    role: 'tab',
+    slot: 'tab',
+    tabindex: 0,
+  };
 
   static get styles() {
     return [styles];
   }
 
+  constructor() {
+    super();
+
+    this.selected = false;
+    this.disabled = false;
+
+    this.addEventListener('slotchanges', /** @type {EventListener} */ (this._onSlotChanges));
+  }
+
   connectedCallback() {
     super.connectedCallback?.();
-    this.__setArrayAttibute(this.globalRootAttributes);
+
+    this._syncRootAttributes();
   }
 
+  /**
+   * @param {Map<PropertyKey, unknown>} props
+   */
   updated(props) {
-    super.updated && super.updated(props);
-    if (props.has('selected')) {
-      const globalRootAttributes = {
-        ...this.globalRootAttributes,
-        ...{
-          'aria-selected': !!this.selected,
-          tabindex: this.selected ? 0 : -1,
-        },
-      };
+    super.updated?.(props);
 
-      this.__setArrayAttibute(globalRootAttributes);
+    if (this._shouldSyncState(props)) {
+      this._syncState(props);
     }
   }
-
-  _onSlotChanges = (ev) => {
-    const {detail} = ev;
-    ev.stopPropagation();
-    ev.preventDefault();
-    const assignedNodesList = detail.assignedSlotContent.assignedSlot;
-    Object.assign(assignedNodesList.dataset, {text: this.textContent});
-  };
 
   render() {
     return html`
@@ -73,13 +73,77 @@ export class BlockquoteTab extends BlockquoteMixinSlotContent(LitElement) {
   }
 
   /**
-   * Sets attributes on the element.
+   * Returns whether the component state needs to be synchronized.
    *
-   * @param {Record<*, *>} entries
+   * @param {Map<PropertyKey, unknown>} props
+   * @returns {boolean}
    */
-  __setArrayAttibute(entries = {}) {
-    Object.entries(entries).forEach(([key, value]) => {
-      this.setAttribute(key, value);
-    });
+  _shouldSyncState(props) {
+    const keys = ['selected', 'disabled'];
+
+    return keys.some((prop) => props.has(prop));
   }
+
+  /**
+   * Synchronizes the derived DOM state.
+   *
+   * @param {Map<PropertyKey, unknown>} props
+   */
+  _syncState(props) {
+    // Only ARIA state is reflected here. The `tabindex` entry point is
+    // managed by the host's FocusGroupController (roving tabindex).
+
+    if (props.has('selected')) {
+      this._setAttributes({
+        'aria-selected': this.selected ? 'true' : null,
+      });
+    }
+
+    if (props.has('disabled')) {
+      if (this.disabled) {
+        this._setAttributes({
+          'aria-disabled': 'true',
+        });
+      } else {
+        this.removeAttribute('aria-disabled');
+      }
+    }
+  }
+
+  /**
+   * Synchronizes the host attributes that are always present.
+   */
+  _syncRootAttributes() {
+    const {rootAttributes} = /** @type {typeof BlockquoteTab} */ (this.constructor);
+    this._setAttributes(rootAttributes);
+  }
+
+  /**
+   * Sets multiple attributes on the host element.
+   *
+   * @param {Record<string, *>} attributes
+   */
+  _setAttributes(attributes = {}) {
+    for (const [name, value] of Object.entries(attributes)) {
+      if (value === false || value == null) {
+        this.removeAttribute(name);
+      } else {
+        this.setAttribute(name, String(value));
+      }
+    }
+  }
+
+  /**
+   * @param {CustomEvent} ev
+   */
+  _onSlotChanges = (ev) => {
+    const {detail} = ev;
+    ev.stopPropagation();
+    ev.preventDefault();
+
+    const assignedNodesList = detail.assignedSlotContent.assignedSlot;
+    Object.assign(assignedNodesList.dataset, {
+      text: this.textContent,
+    });
+  };
 }

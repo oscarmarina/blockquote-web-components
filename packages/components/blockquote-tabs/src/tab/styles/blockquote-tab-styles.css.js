@@ -50,6 +50,12 @@ export const styles = css`
     border-block-end-color: var(--_selected-border-color);
   }
 
+  :host([disabled]),
+  :host([aria-disabled='true']) {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
   :host(:focus:not(:focus-visible)) {
     outline: none;
   }

@@ -1,12 +1,10 @@
 import {html, LitElement, nothing} from 'lit';
 import {ref, createRef} from 'lit/directives/ref.js';
-import {ResizeObserver as ResizeObserverPolyfill} from '@juggle/resize-observer';
-import {ResizeController} from '@lit-labs/observers/resize-controller.js';
 import {BlockquoteMixinSlotContent} from '@blockquote-web-components/blockquote-mixin-slot-content';
+import {SelectionController} from './controllers/SelectionController.js';
+import {FocusGroupController} from './controllers/FocusGroupController.js';
+import {ScrollController} from './controllers/ScrollController.js';
 import {styles} from './styles/blockquote-tabs-styles.css.js';
-
-/* A minimal library which polyfills the ResizeObserver */
-window.ResizeObserver || /* c8 ignore next */ (window.ResizeObserver = ResizeObserverPolyfill);
 
 // https://gist.github.com/ebidel/2d2bb0cdec3f2a16cf519dbaa791ce1b
 // https://darn.es/building-tabs-in-web-components/
@@ -53,6 +51,8 @@ window.ResizeObserver || /* c8 ignore next */ (window.ResizeObserver = ResizeObs
  * @attribute autofocus
  * @attribute label
  * @attribute selected
+ * @attribute activation
+ * @attribute orientation
  * @fires selectedchange
  */
 export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
@@ -63,7 +63,10 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
   static get properties() {
     return {
       /**
-       * If present, the tab automatically have focus
+       * If present, the selected tab is focused on boot. Alternatively, set the
+       * native `autofocus` attribute on the desired `<blockquote-tab>` (takes
+       * precedence): the component delegates it in JS because native support is
+       * unreliable across browsers today (see focusgroup redesign notes).
        */
       autofocus: {
         type: Boolean,
@@ -84,14 +87,23 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
         reflect: true,
       },
 
-      _hasScrollLeftIndicator: {
-        type: Boolean,
-        state: true,
+      /**
+       * Activation mode:
+       * - `auto` (default): selection follows focus (arrow keys select).
+       * - `manual`: arrow keys only move focus; Enter, Space or click select.
+       */
+      activation: {
+        type: String,
       },
 
-      _hasScrollRightIndicator: {
-        type: Boolean,
-        state: true,
+      /**
+       * Orientation of the tablist: `horizontal` (default) or `vertical`.
+       * Determines the arrow-key axis, `aria-orientation`, and the scroll
+       * axis (scroll indicators, reveal-on-focus, separator).
+       */
+      orientation: {
+        type: String,
+        reflect: true,
       },
     };
   }
@@ -103,64 +115,89 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     this.autofocus = false;
     this.label = '';
     this.selected = 1;
+    this.activation = 'auto';
+    this.orientation = 'horizontal';
 
     this._tabList = [];
     this._tabpanelList = [];
-    this._selectTabLast = undefined;
-    this._selectTabpanelLast = undefined;
-    this._observedFocus = false;
-    this._observeScrollBehavior = false;
-
-    this._slotChangesCount = 0;
-    this._slotNodesCount = undefined;
 
     this._scrollContentRef = createRef();
+    this._tablistRef = createRef();
 
-    this._resizeControllerObserver = new ResizeController(this, {
-      callback: () => {
-        this._onResizeObserverChange();
+    this._selection = new SelectionController(this);
+
+    this._focusGroup = new FocusGroupController(this, {
+      getItems: () => this._tabList,
+      getSelectedIndex: () => this._selection.selectedIndex,
+      getOrientation: () => (this.orientation === 'vertical' ? 'vertical' : 'horizontal'),
+      getActivation: () => (this.activation === 'manual' ? 'manual' : 'auto'),
+      onSelect: (index) => {
+        this.selected = index + 1;
       },
-      skipInitial: true,
+      onReveal: (tab) => {
+        this._scroll.scrollIntoView(tab);
+      },
     });
 
-    this.addEventListener('slotchanges', this._onSlotChanges);
-  }
+    this._scroll = new ScrollController(this, {
+      getScrollContent: () => this._scrollContentRef.value,
+      getIndicators: () => this._indicators,
+      getSelectedTab: () => this._selectedTab,
+      getOrientation: () => (this.orientation === 'vertical' ? 'vertical' : 'horizontal'),
+    });
 
-  _selectedIsInRange(idx) {
-    return idx >= 0 && idx <= this._getTabListLength ? idx : 0;
+    this.addEventListener('slotchanges', /** @type {EventListener} */ (this._onSlotChanges));
   }
 
   get _selectedTab() {
-    return this._tabList[this._selectedIsInRange(this.selected - 1)];
+    return this._selection.selectedTab;
   }
 
-  get _selectedTabIndex() {
-    return this._tabList.indexOf(this._selectedTab);
-  }
-
-  get _selectedTabIndexFromOne() {
-    return this._selectedTabIndex + 1;
-  }
-
-  get _getTabListLength() {
-    return this._tabList.length;
-  }
-
+  /**
+   * @param {Map<PropertyKey, unknown>} props
+   */
   firstUpdated(props) {
     super.firstUpdated && super.firstUpdated(props);
     const tabSlot = this.shadowRoot?.querySelector('[name="tab"]');
     const tabpanelSlot = this.shadowRoot?.querySelector('[name="tabpanel"]');
 
-    this._slotNodesCount = this.shadowRoot?.querySelectorAll('slot');
     this._tabList = /** @type {HTMLSlotElement} */ (tabSlot)?.assignedElements();
     this._tabpanelList = /** @type {HTMLSlotElement} */ (tabpanelSlot)?.assignedElements();
     this._indicators = this.shadowRoot?.querySelectorAll('.indicator');
+    this._selection.setItems(this._tabList, this._tabpanelList);
+    this._focusGroup.attach(this._tablistRef.value);
+
+    // Boot focus: a tab-level `autofocus` attribute (delegated in JS, since
+    // native global autofocus is unreliable across browsers today) takes
+    // precedence over the host-level `autofocus` property.
+    const bootTab =
+      this._tabList.find((tab) => tab.hasAttribute('autofocus')) ??
+      (this.autofocus ? this._focusGroup.entryItem : undefined);
+    if (bootTab) {
+      window.requestAnimationFrame(() => bootTab.focus());
+    }
   }
 
+  /**
+   * @param {Map<PropertyKey, unknown>} props
+   */
   updated(props) {
     super.updated && super.updated(props);
+    // Before the `selected` branch: its clamping early-return must not skip
+    // the orientation sync (the native engine's focusgroup token encodes the
+    // axis; the fallback treats this as a no-op).
+    if (props.has('orientation')) {
+      this._focusGroup.syncOrientation();
+    }
     if (props.has('selected')) {
-      this._selectTab();
+      const committed = this._selection.commit(this.selected);
+      if (committed !== this.selected) {
+        // Correct the reflected value; the commit happens on the next update.
+        this.selected = committed;
+        return;
+      }
+
+      this._onSelectionCommit();
 
       /**
        * Fired when selected changes
@@ -169,20 +206,21 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
       const event = new CustomEvent('selectedchange', {
         bubbles: true,
         detail: {
-          selected: this._selectedTabIndexFromOne,
-          tab: this._selectedTab,
-          tabpanel: this._tabpanelList[this._selectedTabIndex],
+          selected: this._selection.selectedIndexFromOne,
+          tab: this._selection.selectedTab,
+          tabpanel: this._selection.selectedTabpanel,
         },
       });
       this.dispatchEvent(event);
     }
   }
 
+  /**
+   * @param {CustomEvent} ev
+   */
   _onSlotChanges = (ev) => {
     ev.stopPropagation();
     ev.preventDefault();
-
-    this._slotChangesCount += 1;
 
     const {detail} = ev;
     const assignedNodesList = detail.assignedNodesContent.assignedNodes;
@@ -193,6 +231,9 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     if (detail.assignedSlotContent.slotName === 'tabpanel') {
       this._tabpanelList = assignedNodesList;
     }
+
+    this._selection.setItems(this._tabList, this._tabpanelList);
+    this._focusGroup.syncEntryPoint();
   };
 
   get _scrollContentTpl() {
@@ -205,8 +246,12 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
 
   get _tablistTpl() {
     return html`
-      <div role="tablist" aria-label="${this.label || nothing}">
-        <slot @click="${this._onTabClick}" @keydown="${this._onTabKeyDown}" name="tab"></slot>
+      <div
+        role="tablist"
+        ${ref(this._tablistRef)}
+        aria-label="${this.label || nothing}"
+        aria-orientation="${this.orientation === 'vertical' ? 'vertical' : nothing}">
+        <slot name="tab"></slot>
       </div>
     `;
   }
@@ -221,10 +266,10 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     return html`
       <span
         aria-hidden="true"
-        class="indicator ${this._hasScrollLeftIndicator ? 'show-indicator' : ''}"></span>
+        class="indicator ${this._scroll?.hasScrollLeftIndicator ? 'show-indicator' : ''}"></span>
       <span
         aria-hidden="true"
-        class="indicator ${this._hasScrollRightIndicator ? 'show-indicator' : ''}"></span>
+        class="indicator ${this._scroll?.hasScrollRightIndicator ? 'show-indicator' : ''}"></span>
     `;
   }
 
@@ -248,135 +293,15 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     `;
   }
 
-  _scrollEdge({target = this._scrollContentRef.value} = {}) {
-    // @ts-ignore
-    const {scrollLeft, scrollWidth, offsetWidth} = target;
-    const overflowingWidth = scrollWidth - offsetWidth;
-    this._hasScrollLeftIndicator = scrollLeft > 0;
-    this._hasScrollRightIndicator = scrollLeft < overflowingWidth;
+  /**
+   * @param {CustomEvent} ev
+   */
+  _scrollEdge(ev) {
+    this._scroll.scrollEdge(ev?.target instanceof HTMLElement ? ev.target : undefined);
   }
 
-  _onTabClick = (ev) => {
-    const findSelectedTab = ev
-      .composedPath()
-      .find((tab) => tab instanceof Element && tab.slot === 'tab');
-
-    const findSelectedTabIdxFromOne = this._tabList.indexOf(findSelectedTab) + 1;
-
-    if (this.selected === findSelectedTabIdxFromOne) {
-      this._scrollIntoView();
-    }
-
-    this.selected = findSelectedTabIdxFromOne;
-  };
-
-  _onTabKeyDown = (ev) => {
-    let idx;
-
-    switch (ev.key) {
-      case 'ArrowLeft':
-        ev.preventDefault();
-        // @ts-ignore
-        idx = this._selectedTabIndexFromOne - 1;
-        // @ts-ignore
-        this.selected = idx <= 0 ? this._getTabListLength : idx;
-        break;
-      case 'ArrowRight':
-        ev.preventDefault();
-        // @ts-ignore
-        idx = this._selectedTabIndexFromOne + 1;
-        // @ts-ignore
-        this.selected = idx > this._getTabListLength ? 1 : idx;
-        break;
-      case 'Home':
-        ev.preventDefault();
-        this.selected = 1;
-        break;
-      case 'End':
-        ev.preventDefault();
-        this.selected = this._getTabListLength;
-        break;
-      default:
-        break;
-    }
-  };
-
-  _selectTab() {
-    const newSelectedTab = this._tabList[this._selectedTabIndex];
-    const newSelectedTabPanel = this._tabpanelList[this._selectedTabIndex];
-    if (this._selectTabLast) {
-      this._selectTabLast.selected = false;
-      this._selectTabPanelLast.selected = false;
-    }
-    this._selectTabLast = newSelectedTab;
-    this._selectTabPanelLast = newSelectedTabPanel;
-    newSelectedTab.selected = true;
-    newSelectedTabPanel.selected = true;
-
-    if (this.autofocus || this._observedFocus) {
-      this._requestFocusUpdate();
-    }
-    this._observedFocus = true;
-  }
-
-  _moveFocusSelectedTab(selectedTab = this._selectedTab) {
-    /* same focus behavior between browsers */
-    window.setTimeout(() => {
-      selectedTab.focus();
-    }, 0);
-  }
-
-  async _requestFocusUpdate() {
-    await this.updateComplete;
-    this._moveFocusSelectedTab();
-    this._scrollIntoView();
-  }
-
-  _scrollIntoView() {
-    window.requestAnimationFrame(() => {
-      this._scrollIntoViewWithOffset();
-      this._observeScrollBehavior = true;
-    });
-  }
-
-  _scrollIntoViewWithOffset(
-    tabScroller = this._selectedTab,
-    behavior = this._observeScrollBehavior ? 'smooth' : 'auto'
-  ) {
-    const scrollContentNode = this._scrollContentRef.value;
-    if (!scrollContentNode) {
-      return;
-    }
-    const [rootA, rootB] = this._indicators || [];
-    const {right: boundaryight} = scrollContentNode.getBoundingClientRect();
-    const {offsetLeft: scrollerLeft} = tabScroller;
-    const {
-      left: tabScrollerXLeft,
-      right: tabScrollerXRight,
-      width: tabScrollerWidth,
-    } = tabScroller.getBoundingClientRect();
-
-    const {right: rootARight} = rootA.getBoundingClientRect();
-    const {width: rootBWidth, left: rootBLeft} = rootB.getBoundingClientRect();
-
-    if (tabScrollerXRight > rootBLeft || tabScrollerXLeft < rootARight) {
-      const left =
-        tabScrollerXRight > rootBLeft
-          ? scrollerLeft - boundaryight + tabScrollerWidth + rootBWidth
-          : scrollerLeft - rootARight;
-
-      scrollContentNode.scroll({
-        left,
-        // @ts-ignore
-        behavior,
-      });
-    }
-
-    // tabScroller.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
-  }
-
-  _onResizeObserverChange() {
-    this._scrollIntoView();
-    this._scrollEdge();
+  _onSelectionCommit() {
+    this._focusGroup.syncEntryPoint();
+    this._scroll.scrollIntoView();
   }
 }

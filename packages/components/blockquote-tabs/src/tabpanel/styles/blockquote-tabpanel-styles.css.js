@@ -10,6 +10,7 @@ export const styles = css`
   }
 
   :host([hidden]),
+  :host([aria-hidden='true']),
   [hidden] {
     display: none !important;
   }
@@ -18,10 +19,6 @@ export const styles = css`
   *::before,
   *::after {
     box-sizing: inherit;
-  }
-
-  :host([aria-hidden='true']) {
-    display: none;
   }
 
   :host(:focus:not(:focus-visible)) {

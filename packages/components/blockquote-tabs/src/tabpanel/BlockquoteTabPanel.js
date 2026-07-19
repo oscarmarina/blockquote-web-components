@@ -5,7 +5,7 @@ import {styles} from './styles/blockquote-tabpanel-styles.css.js';
  * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
  * `<blockquote-tabpanel>`
- * A tab element that can be used inside a `blockquote-tabs` element.
+ * A tab panel element that can be used inside a `blockquote-tabs` element.
  *
  * @attribute selected
  */
@@ -13,7 +13,7 @@ export class BlockquoteTabPanel extends LitElement {
   static get properties() {
     return {
       /**
-       * Whether or not the tabpanel is `selected`.
+       * Whether or not the tab panel is `selected`.
        */
       selected: {
         type: Boolean,
@@ -21,38 +21,37 @@ export class BlockquoteTabPanel extends LitElement {
     };
   }
 
-  constructor() {
-    super();
-    this.selected = false;
-    this.globalRootAttributes = {
-      role: 'tabpanel',
-      slot: 'tabpanel',
-      tabindex: 0,
-    };
-  }
+  static rootAttributes = {
+    role: 'tabpanel',
+    slot: 'tabpanel',
+    tabindex: 0,
+  };
 
   static get styles() {
     return [styles];
   }
 
-  connectedCallback() {
-    super.connectedCallback?.();
-    // https://www.scottohara.me/blog/2021/07/23/aria-idl.html
-    // https://wpt.fyi/results/html/dom/aria-attribute-reflection.html?label=master&label=experimental&aligned&view=subtest&q=aria-attribute-reflection
-    this.__setArrayAttibute(this.globalRootAttributes);
+  constructor() {
+    super();
+    this.selected = false;
   }
 
-  updated(props) {
-    super.updated && super.updated(props);
-    if (props.has('selected')) {
-      const globalRootAttributes = {
-        ...this.globalRootAttributes,
-        ...{
-          'aria-hidden': !this.selected,
-        },
-      };
+  connectedCallback() {
+    super.connectedCallback?.();
 
-      this.__setArrayAttibute(globalRootAttributes);
+    // https://www.scottohara.me/blog/2021/07/23/aria-idl.html
+    // https://wpt.fyi/results/html/dom/aria-attribute-reflection.html?label=master&label=experimental&aligned&view=subtest&q=aria-attribute-reflection
+    this._syncRootAttributes();
+  }
+
+  /**
+   * @param {Map<PropertyKey, unknown>} props
+   */
+  updated(props) {
+    super.updated?.(props);
+
+    if (this._shouldSyncState(props)) {
+      this._syncState();
     }
   }
 
@@ -63,13 +62,60 @@ export class BlockquoteTabPanel extends LitElement {
   }
 
   /**
-   * Sets attributes on the element.
+   * Returns whether the component state needs to be synchronized.
    *
-   * @param {Record<*, *>} entries
+   * @param {Map<PropertyKey, unknown>} props
+   * @returns {boolean}
    */
-  __setArrayAttibute(entries = {}) {
-    Object.entries(entries).forEach(([key, value]) => {
-      this.setAttribute(key, value);
+  _shouldSyncState(props) {
+    const keys = ['selected'];
+
+    return keys.some((prop) => props.has(prop));
+  }
+
+  /**
+   * Synchronizes the derived DOM state.
+   */
+  _syncState() {
+    // `hidden` provides the native semantics (display:none + removal from
+    // the accessibility tree); `aria-hidden` is kept in sync as a compat
+    // fallback for a transition period.
+    this.hidden = !this.selected;
+
+    this._setAttributes({
+      'aria-hidden': this.selected ? null : 'true',
     });
+
+    // Only the visible panel should carry `tabindex="0"` so it can receive
+    // focus from the tab via script. Inactive panels get no tabindex: they
+    // are hidden (inert) and should not pollute the DOM tab order.
+    if (this.selected) {
+      this._setAttributes({tabindex: 0});
+    } else {
+      this._setAttributes({tabindex: null});
+    }
+  }
+
+  /**
+   * Synchronizes the host attributes that are always present.
+   */
+  _syncRootAttributes() {
+    const {rootAttributes} = /** @type {typeof BlockquoteTabPanel} */ (this.constructor);
+    this._setAttributes(rootAttributes);
+  }
+
+  /**
+   * Sets multiple attributes on the host element.
+   *
+   * @param {Record<string, *>} attributes
+   */
+  _setAttributes(attributes = {}) {
+    for (const [name, value] of Object.entries(attributes)) {
+      if (value === false || value == null) {
+        this.removeAttribute(name);
+      } else {
+        this.setAttribute(name, String(value));
+      }
+    }
   }
 }
