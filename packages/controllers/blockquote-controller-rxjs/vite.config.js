@@ -93,7 +93,7 @@ export default defineConfig(({command}) => ({
       exclude: ['**/src/**/index.*', '**/src/styles/'],
     },
   },
-  plugins: [viteStaticCopy(copyConfig), totalBundlesize()],
+  plugins: command === 'build' ? [viteStaticCopy(copyConfig), totalBundlesize()] : [],
   optimizeDeps: {
     exclude: ['lit', 'lit-html'],
   },
