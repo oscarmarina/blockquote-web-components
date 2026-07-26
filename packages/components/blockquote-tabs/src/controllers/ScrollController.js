@@ -82,7 +82,6 @@ export class ScrollController {
       this.#observeScrollBehavior = true;
     });
   }
-
   /**
    * Calculates offsets and scrolls the tab into view if overflowing.
    *
@@ -99,6 +98,13 @@ export class ScrollController {
     }
 
     const isVertical = this.getOrientation() === 'vertical';
+    const indicators = this.getIndicators();
+    const indicator = indicators?.[0];
+    let indicatorSize = 0;
+    if (indicator) {
+      const style = getComputedStyle(indicator);
+      indicatorSize = isVertical ? parseFloat(style.blockSize) : parseFloat(style.inlineSize);
+    }
 
     if (isVertical) {
       const tabTop = tabScroller.offsetTop;
@@ -107,16 +113,16 @@ export class ScrollController {
       const scrollBottom = scrollTop + scrollContentNode.clientHeight;
 
       if (tabBottom > scrollBottom) {
-        // Tab overflows bottom: scroll down to reveal bottom edge
+        // Tab overflows bottom: scroll down to reveal bottom edge with indicator offset
         scrollContentNode.scroll({
-          top: tabBottom - scrollContentNode.clientHeight,
+          top: tabBottom - scrollContentNode.clientHeight + indicatorSize,
           // @ts-ignore
           behavior,
         });
       } else if (tabTop < scrollTop) {
-        // Tab overflows top: scroll up to reveal top edge
+        // Tab overflows top: scroll up to reveal top edge with indicator offset
         scrollContentNode.scroll({
-          top: tabTop,
+          top: tabTop - indicatorSize,
           // @ts-ignore
           behavior,
         });
@@ -126,17 +132,18 @@ export class ScrollController {
       const tabRight = tabLeft + tabScroller.offsetWidth;
       const scrollLeft = scrollContentNode.scrollLeft;
       const scrollRight = scrollLeft + scrollContentNode.clientWidth;
+
       if (tabRight > scrollRight) {
-        // Tab overflows right: scroll right to reveal right edge
+        // Tab overflows right: scroll right to reveal right edge with indicator offset
         scrollContentNode.scroll({
-          left: tabRight - scrollContentNode.clientWidth,
+          left: tabRight - scrollContentNode.clientWidth + indicatorSize,
           // @ts-ignore
           behavior,
         });
       } else if (tabLeft < scrollLeft) {
-        // Tab overflows left: scroll left to reveal left edge
+        // Tab overflows left: scroll left to reveal left edge with indicator offset
         scrollContentNode.scroll({
-          left: tabLeft,
+          left: tabLeft - indicatorSize,
           // @ts-ignore
           behavior,
         });
