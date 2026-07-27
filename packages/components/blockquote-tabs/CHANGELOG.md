@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-tabs@1.7.0...@blockquote-web-components/blockquote-tabs@1.7.1) (2026-07-27)
+
+
+### Bug Fixes
+
+* **blockquote-tabs:** scroll reveal with indicator offset ([990f9ca](https://github.com/oscarmarina/blockquote-web-components/commit/990f9ca327e94e1575025a51d5b6c1361c6d1491))
+
+
+
+
+
 # [1.7.0](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-tabs@1.6.24...@blockquote-web-components/blockquote-tabs@1.7.0) (2026-07-26)
 
 
