@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.21.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.20.0...v2.21.0) (2026-07-27)
+
+### Features
+
+* **blockquote-tabs:** focusgroup-ready architecture with dual focus engines ([e996524](https://github.com/oscarmarina/blockquote-web-components/commit/e99652431c5d9a7e69ce651c29ad6ab80c7c461d))
+
+### Bug Fixes
+
+* **blockquote-tabs:** scroll reveal with indicator offset ([990f9ca](https://github.com/oscarmarina/blockquote-web-components/commit/990f9ca327e94e1575025a51d5b6c1361c6d1491))
 ## [2.20.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.19.4...v2.20.0) (2026-07-10)
 
 
