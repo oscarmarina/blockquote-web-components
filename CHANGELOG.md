@@ -2,6 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.21.1](https://github.com/oscarmarina/blockquote-web-components/compare/v2.21.0...v2.21.1) (2026-07-28)
 ## [2.21.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.20.0...v2.21.0) (2026-07-27)
 
 ### Features
