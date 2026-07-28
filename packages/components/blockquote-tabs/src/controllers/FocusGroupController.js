@@ -78,9 +78,6 @@ export class FocusGroupController {
     this.#getActivation = getActivation;
     this.#onSelect = onSelect;
     this.#onReveal = onReveal;
-    // One behavior spec, two engines: identical component semantics, either
-    // native focusgroup mechanics or the JS fallback. The host never branches
-    // on capability beyond this line.
     const engineOptions = {getItems, getOrientation};
     this.#engine = supportsFocusgroup()
       ? new NativeFocusgroupEngine(engineOptions)
@@ -147,7 +144,8 @@ export class FocusGroupController {
     }
     this.#onReveal(item);
     if (this.#getActivation() === 'auto') {
-      this.#onSelect(this.#getItems().indexOf(item));
+      const index = this.#getItems().indexOf(item);
+      this.#onSelect(index);
     }
   };
 
@@ -160,11 +158,9 @@ export class FocusGroupController {
       ev.preventDefault();
       return;
     }
-    // Deterministic focus, also for synthetic / AT-dispatched clicks.
     item.focus();
     const index = this.#getItems().indexOf(item);
     if (index === this.#getSelectedIndex()) {
-      // Re-click on the selected tab only reveals it (no commit).
       this.#onReveal(item);
       return;
     }
@@ -180,6 +176,7 @@ export class FocusGroupController {
       return;
     }
     ev.preventDefault();
-    this.#onSelect(this.#getItems().indexOf(item));
+    const index = this.#getItems().indexOf(item);
+    this.#onSelect(index);
   };
 }

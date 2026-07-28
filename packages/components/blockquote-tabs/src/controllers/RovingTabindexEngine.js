@@ -71,7 +71,8 @@ export class RovingTabindexEngine {
       return;
     }
     this.#getItems().forEach((item) => {
-      item.setAttribute('tabindex', item === entryItem ? '0' : '-1');
+      const tabIndex = item === entryItem ? '0' : '-1';
+      item.setAttribute('tabindex', tabIndex);
     });
   }
 
@@ -114,12 +115,15 @@ export class RovingTabindexEngine {
       return;
     }
 
-    const next = this.#nextIndex(items.indexOf(item), ev.key);
+    const currentIndex = items.indexOf(item);
+    const next = this.#nextIndex(currentIndex, ev.key);
     if (next === null) {
       return;
     }
 
+    const targetIndex = (next + items.length) % items.length;
+    const target = items[targetIndex];
     ev.preventDefault();
-    items[(next + items.length) % items.length].focus();
+    target.focus();
   };
 }
