@@ -143,7 +143,7 @@
     "chai-a11y-axe": "^1.5.0",
     "commit-and-tag-version": "^13.1.0",
     "concurrently": "^10.0.4",
-    "conventional-changelog-conventionalcommits": "10.2.1",
+    "conventional-changelog-conventionalcommits": "^10.2.1",
     "eslint": "^10.6.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-node": "^0.4.0",
