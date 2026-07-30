@@ -16,6 +16,8 @@
  * focus and selection are decoupled. Cross-axis keys are never handled nor
  * canceled, so they remain available for scrolling or supplementary actions.
  */
+import {describeInteractionElement} from './InteractionLogger.js';
+
 export class RovingTabindexEngine {
   #container = null;
 
@@ -25,14 +27,18 @@ export class RovingTabindexEngine {
   /** @type {() => 'horizontal' | 'vertical'} */
   #getOrientation;
 
+  #logger;
+
   /**
    * @param {Object} options
    * @param {() => HTMLElement[]} options.getItems
    * @param {() => 'horizontal' | 'vertical'} options.getOrientation
+   * @param {import('./InteractionLogger.js').InteractionLogger} options.logger
    */
-  constructor({getItems, getOrientation}) {
+  constructor({getItems, getOrientation, logger}) {
     this.#getItems = getItems;
     this.#getOrientation = getOrientation;
+    this.#logger = logger;
   }
 
   /**
@@ -44,9 +50,21 @@ export class RovingTabindexEngine {
     }
     this.#container = container;
     container.addEventListener('keydown', this.#onKeyDown);
+    this.#logger.step(
+      'CICLO',
+      'RovingTabindexEngine.attach()',
+      'EventTarget.addEventListener(keydown)',
+      'Motor fallback conectado después del listener de activación. Para cada keydown, activación decide primero y navegación de foco decide después.'
+    );
   }
 
   detach() {
+    this.#logger.step(
+      'CICLO',
+      'RovingTabindexEngine.detach()',
+      'EventTarget.removeEventListener(keydown)',
+      'Se desconecta el motor fallback de navegación.'
+    );
     this.#container?.removeEventListener('keydown', this.#onKeyDown);
     this.#container = null;
   }
@@ -57,7 +75,12 @@ export class RovingTabindexEngine {
    * interface symmetric with `NativeFocusgroupEngine`.
    */
   syncOrientation() {
-    // Intentionally blank: see the method doc.
+    this.#logger.step(
+      'DECISIÓN',
+      'RovingTabindexEngine.syncOrientation()',
+      'no-op',
+      'No se guarda ningún eje: #nextIndex() leerá orientation en vivo en el próximo keydown.'
+    );
   }
 
   /**
@@ -68,9 +91,26 @@ export class RovingTabindexEngine {
    */
   setEntryItem(entryItem) {
     if (!entryItem) {
+      this.#logger.step(
+        'DECISIÓN',
+        'RovingTabindexEngine.setEntryItem()',
+        'return',
+        'No existe tab seleccionado; no hay tabindex que sincronizar.'
+      );
       return;
     }
-    this.#getItems().forEach((item) => {
+    const items = this.#getItems();
+    this.#logger.step(
+      'FOCO',
+      'RovingTabindexEngine.setEntryItem()',
+      'HTMLElement.setAttribute(tabindex)',
+      'Roving tabindex: el tab seleccionado será el único tabindex="0"; el resto pasa a -1. Esto define la reentrada con Tab, pero NO enfoca.',
+      {
+        entryItem: describeInteractionElement(entryItem, items),
+        llamaAFocus: false,
+      }
+    );
+    items.forEach((item) => {
       const tabIndex = item === entryItem ? '0' : '-1';
       item.setAttribute('tabindex', tabIndex);
     });
@@ -107,23 +147,101 @@ export class RovingTabindexEngine {
 
   #onKeyDown = (ev) => {
     const items = this.#getItems();
+    this.#logger.event(
+      ev,
+      'keydown',
+      'RovingTabindexEngine.#onKeyDown()',
+      'Segundo listener de teclado: el motor fallback solo decidirá movimiento de FOCO; jamás escribe selected.',
+      {
+        orientation: this.#getOrientation(),
+        tabsGestionados: items.length,
+      }
+    );
     if (items.length === 0) {
+      this.#logger.step(
+        'DECISIÓN',
+        'RovingTabindexEngine.#onKeyDown()',
+        'return',
+        'No hay tabs gestionados; la tecla queda intacta.'
+      );
       return;
     }
     const item = ev.composedPath().find((node) => items.includes(node));
     if (!item) {
+      this.#logger.step(
+        'DECISIÓN',
+        'RovingTabindexEngine.#onKeyDown()',
+        'return',
+        'El origen del evento no es un tab de este grupo.'
+      );
       return;
     }
 
     const currentIndex = items.indexOf(item);
+    const horizontal = this.#getOrientation() !== 'vertical';
+    const rtl = this.#container !== null && getComputedStyle(this.#container).direction === 'rtl';
+    this.#logger.step(
+      'DECISIÓN',
+      'RovingTabindexEngine.#onKeyDown()',
+      'RovingTabindexEngine.#nextIndex()',
+      'Se traduce la tecla a un índice lógico según eje y dirección. Home/End son absolutos; las flechas del eje cruzado no se consumen.',
+      {
+        tecla: ev.key,
+        indiceActual0Based: currentIndex,
+        orientation: horizontal ? 'horizontal' : 'vertical',
+        direction: rtl ? 'rtl' : 'ltr',
+      }
+    );
     const next = this.#nextIndex(currentIndex, ev.key);
     if (next === null) {
+      this.#logger.step(
+        'DECISIÓN',
+        'RovingTabindexEngine.#nextIndex()',
+        'return',
+        'La tecla no pertenece al eje de navegación. No se cancela y no cambian foco ni selected.',
+        {
+          tecla: ev.key,
+          defaultPrevented: ev.defaultPrevented,
+        }
+      );
       return;
     }
 
     const targetIndex = (next + items.length) % items.length;
     const target = items[targetIndex];
+    this.#logger.step(
+      'FOCO',
+      'RovingTabindexEngine.#onKeyDown()',
+      'Event.preventDefault()',
+      'La tecla sí navega: se cancela el comportamiento nativo y se aplica wrap con módulo para calcular el destino.',
+      {
+        indiceSinWrap: next,
+        indiceDestino0Based: targetIndex,
+        tabDestino: describeInteractionElement(target, items),
+      }
+    );
     ev.preventDefault();
+    this.#logger.step(
+      'FOCO',
+      'RovingTabindexEngine.#onKeyDown()',
+      'HTMLElement.focus()',
+      'FOCO PRIMERO: el motor llama a focus() y no toca selected. focusout/focusin se ejecutarán de forma síncrona dentro de esta llamada.',
+      {
+        tabOrigen: describeInteractionElement(item, items),
+        tabDestino: describeInteractionElement(target, items),
+        selectedSeModificaEnElMotor: false,
+      }
+    );
     target.focus();
+    this.#logger.step(
+      'FOCO',
+      'HTMLElement.focus()',
+      'RovingTabindexEngine.#onKeyDown()',
+      'focus() retornó. El foco ya está en destino; en modo auto, #onFocusIn() ya solicitó selected. En manual, selected sigue intacto.',
+      {
+        focoFinal: describeInteractionElement(document.activeElement, items),
+        defaultPrevented: ev.defaultPrevented,
+      }
+    );
   };
 }

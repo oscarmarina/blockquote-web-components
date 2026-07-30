@@ -1,4 +1,5 @@
 import {html, LitElement} from 'lit';
+import {logInteractionElementState} from '../controllers/InteractionLogger.js';
 import {styles} from './styles/blockquote-tabpanel-styles.css.js';
 
 /**
@@ -94,6 +95,18 @@ export class BlockquoteTabPanel extends LitElement {
     } else {
       this._setAttributes({tabindex: null});
     }
+
+    logInteractionElementState(
+      this,
+      '_syncState()',
+      'La microtarea del panel terminó: selected ya determina visibilidad, árbol de accesibilidad y posibilidad de foco del panel.',
+      {
+        selectedProperty: this.selected,
+        hiddenFinal: this.hidden,
+        ariaHiddenFinal: this.getAttribute('aria-hidden'),
+        tabindexFinal: this.getAttribute('tabindex'),
+      }
+    );
   }
 
   /**

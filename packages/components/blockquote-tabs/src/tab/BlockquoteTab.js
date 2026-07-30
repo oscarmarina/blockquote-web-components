@@ -1,5 +1,6 @@
 import {html, LitElement} from 'lit';
 import {BlockquoteMixinSlotContent} from '@blockquote-web-components/blockquote-mixin-slot-content';
+import {logInteractionElementState} from '../controllers/InteractionLogger.js';
 import {styles} from './styles/blockquote-tab-styles.css.js';
 
 /**
@@ -108,6 +109,21 @@ export class BlockquoteTab extends BlockquoteMixinSlotContent(LitElement) {
         this.removeAttribute('aria-disabled');
       }
     }
+
+    logInteractionElementState(
+      this,
+      '_syncState()',
+      'La microtarea del hijo terminó: selected ya quedó reflejado en aria-selected y disabled en aria-disabled. tabindex no se deriva aquí porque pertenece al motor de foco.',
+      {
+        propiedadesQueCambiaron: [...props.keys()],
+        selectedProperty: this.selected,
+        ariaSelectedFinal: this.getAttribute('aria-selected'),
+        disabledProperty: this.disabled,
+        ariaDisabledFinal: this.getAttribute('aria-disabled'),
+        tabindexFinal: this.getAttribute('tabindex'),
+        tieneFocoDOM: document.activeElement === this,
+      }
+    );
   }
 
   /**

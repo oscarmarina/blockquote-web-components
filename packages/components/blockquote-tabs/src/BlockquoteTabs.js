@@ -4,6 +4,7 @@ import {BlockquoteMixinSlotContent} from '@blockquote-web-components/blockquote-
 import {SelectionController} from './controllers/SelectionController.js';
 import {FocusGroupController} from './controllers/FocusGroupController.js';
 import {ScrollController} from './controllers/ScrollController.js';
+import {InteractionLogger, describeInteractionElement} from './controllers/InteractionLogger.js';
 import {styles} from './styles/blockquote-tabs-styles.css.js';
 
 // https://gist.github.com/ebidel/2d2bb0cdec3f2a16cf519dbaa791ce1b
@@ -124,7 +125,21 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     this._scrollContentRef = createRef();
     this._tablistRef = createRef();
 
-    this._selection = new SelectionController(this);
+    this._interaction = new InteractionLogger(this, () => ({
+      activation: this.activation,
+      orientation: this.orientation,
+      selectedSolicitado: this.selected,
+      selectedConfirmado:
+        this._selection?.length > 0 ? this._selection.selectedIndexFromOne : 'sin tabs todavía',
+      focoDOM: describeInteractionElement(
+        document.activeElement,
+        /** @type {HTMLElement[]} */ (this._tabList)
+      ),
+    }));
+
+    this._selection = new SelectionController(this, {
+      logger: this._interaction,
+    });
 
     this._focusGroup = new FocusGroupController(this, {
       getItems: () => this._tabList,
@@ -132,11 +147,38 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
       getOrientation: () => (this.orientation === 'vertical' ? 'vertical' : 'horizontal'),
       getActivation: () => (this.activation === 'manual' ? 'manual' : 'auto'),
       onSelect: (index) => {
-        this.selected = index + 1;
+        const requested = index + 1;
+        const previous = this.selected;
+        this._interaction.step(
+          'SELECCIÓN',
+          'FocusGroupController',
+          'BlockquoteTabs.onSelect()',
+          `Se solicita selected=${requested} (API pública 1-based). Asignar la propiedad solo ` +
+            `agenda el update de Lit; todavía no cambia aria-selected ni el panel visible.`,
+          {
+            selectedAntesDeAsignar: previous,
+            selectedSolicitado: requested,
+            agendaUpdateLit: previous !== requested,
+          }
+        );
+        if (previous !== requested) {
+          this._interaction.expectSelection(requested);
+        }
+        this.selected = requested;
       },
       onReveal: (tab) => {
+        this._interaction.step(
+          'SCROLL',
+          'FocusGroupController',
+          'BlockquoteTabs.onReveal()',
+          'El tab que acaba de recibir foco se delega al ScrollController para asegurar que sea visible.',
+          {
+            tab: describeInteractionElement(tab, this._tabList),
+          }
+        );
         this._scroll.scrollIntoView(tab);
       },
+      logger: this._interaction,
     });
 
     this._scroll = new ScrollController(this, {
@@ -144,9 +186,16 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
       getIndicators: () => this._indicators,
       getSelectedTab: () => this._selectedTab,
       getOrientation: () => (this.orientation === 'vertical' ? 'vertical' : 'horizontal'),
+      logger: this._interaction,
     });
 
     this.addEventListener('slotchanges', /** @type {EventListener} */ (this._onSlotChanges));
+    this._interaction.step(
+      'CICLO',
+      'BlockquoteTabs.constructor()',
+      'SelectionController + FocusGroupController + ScrollController',
+      'Controladores construidos. El motor de foco ya está elegido, pero se conectará al tablist después del primer render.'
+    );
   }
 
   get _selectedTab() {
@@ -158,13 +207,35 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
    */
   firstUpdated(props) {
     super.firstUpdated && super.firstUpdated(props);
+    this._interaction.step(
+      'CICLO',
+      'LitElement.firstUpdated()',
+      'BlockquoteTabs.firstUpdated()',
+      'Primer render terminado: ahora existen el tablist, los slots y el contenedor de scroll.'
+    );
     const tabSlot = this.shadowRoot?.querySelector('[name="tab"]');
     const tabpanelSlot = this.shadowRoot?.querySelector('[name="tabpanel"]');
 
     this._tabList = /** @type {HTMLSlotElement} */ (tabSlot)?.assignedElements();
     this._tabpanelList = /** @type {HTMLSlotElement} */ (tabpanelSlot)?.assignedElements();
     this._indicators = this.shadowRoot?.querySelectorAll('.indicator');
+    this._interaction.step(
+      'CICLO',
+      'BlockquoteTabs.firstUpdated()',
+      'SelectionController.setItems()',
+      'Los elementos asignados a ambos slots se entregan al controlador de selección para parearlos y aplicar su estado.',
+      {
+        tabsEncontrados: this._tabList.length,
+        tabpanelsEncontrados: this._tabpanelList.length,
+      }
+    );
     this._selection.setItems(this._tabList, this._tabpanelList);
+    this._interaction.step(
+      'CICLO',
+      'BlockquoteTabs.firstUpdated()',
+      'FocusGroupController.attach()',
+      'Se conectan los listeners de interacción al tablist y se establece el punto de entrada de foco.'
+    );
     this._focusGroup.attach(this._tablistRef.value);
 
     // Boot focus: a tab-level `autofocus` attribute (delegated in JS, since
@@ -174,7 +245,42 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
       this._tabList.find((tab) => tab.hasAttribute('autofocus')) ??
       (this.autofocus ? this._focusGroup.entryItem : undefined);
     if (bootTab) {
-      window.requestAnimationFrame(() => bootTab.focus());
+      this._interaction.step(
+        'FOCO',
+        'BlockquoteTabs.firstUpdated()',
+        'window.requestAnimationFrame()',
+        'Autofocus detectado. El focus se aplaza al siguiente frame; selected aún no se modifica.',
+        {
+          tabAutofocus: describeInteractionElement(bootTab, this._tabList),
+          origen:
+            this._tabList.find((tab) => tab.hasAttribute('autofocus')) === bootTab
+              ? 'atributo autofocus del tab (tiene prioridad)'
+              : 'propiedad autofocus del host',
+        }
+      );
+      window.requestAnimationFrame(() => {
+        this._interaction.begin(
+          'autofocus',
+          'El callback de requestAnimationFrame ejecuta el autofocus delegado.'
+        );
+        this._interaction.step(
+          'FOCO',
+          'window.requestAnimationFrame()',
+          'HTMLElement.focus()',
+          'FOCO PRIMERO: focus() cambiará document.activeElement y disparará focusin de forma síncrona; en modo auto, ese focusin solicitará selected después.',
+          {
+            tabDestino: describeInteractionElement(bootTab, this._tabList),
+          }
+        );
+        bootTab.focus();
+      });
+    } else {
+      this._interaction.step(
+        'DECISIÓN',
+        'BlockquoteTabs.firstUpdated()',
+        'autofocus',
+        'No hay autofocus en el host ni en ningún tab: el componente no mueve el foco durante el arranque.'
+      );
     }
   }
 
@@ -187,16 +293,58 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
     // the orientation sync (the native engine's focusgroup token encodes the
     // axis; the fallback treats this as a no-op).
     if (props.has('orientation')) {
+      this._interaction.step(
+        'CICLO',
+        'LitElement.updated()',
+        'FocusGroupController.syncOrientation()',
+        'La orientación cambió: el motor nativo debe reescribir su token; el fallback lee el eje en vivo.',
+        {
+          orientationAnterior: props.get('orientation'),
+          orientationActual: this.orientation,
+        }
+      );
       this._focusGroup.syncOrientation();
     }
     if (props.has('selected')) {
+      this._interaction.selectionUpdate(
+        /** @type {number | undefined} */ (props.get('selected')),
+        this.selected
+      );
+      this._interaction.step(
+        'SELECCIÓN',
+        'LitElement.updated()',
+        'SelectionController.commit()',
+        'Lit entra en la microtarea de commit. AHORA se valida el índice y se preparan los estados selected de tabs y paneles; este pipeline nunca llama a focus().',
+        {
+          selectedAnterior: props.get('selected'),
+          selectedSolicitado: this.selected,
+          mueveFoco: false,
+        }
+      );
       const committed = this._selection.commit(this.selected);
       if (committed !== this.selected) {
         // Correct the reflected value; the commit happens on the next update.
+        this._interaction.step(
+          'SELECCIÓN',
+          'SelectionController.commit()',
+          'BlockquoteTabs.selected (write-back)',
+          `El valor estaba fuera de rango: se corrige a ${committed}. No se aplica un estado parcial; Lit ejecutará otro updated() para confirmar el valor corregido.`,
+          {
+            valorRechazado: this.selected,
+            valorCorregido: committed,
+          }
+        );
+        this._interaction.expectSelectionCorrection(committed);
         this.selected = committed;
         return;
       }
 
+      this._interaction.step(
+        'SELECCIÓN',
+        'SelectionController.commit()',
+        'BlockquoteTabs._onSelectionCommit()',
+        'Selección confirmada en memoria. A continuación se mueve el punto de entrada del grupo al tab seleccionado y se solicita su revelado visual; el foco DOM permanece donde estaba.'
+      );
       this._onSelectionCommit();
 
       /**
@@ -211,7 +359,21 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
           tabpanel: this._selection.selectedTabpanel,
         },
       });
+      this._interaction.step(
+        'EVENTO',
+        'BlockquoteTabs.updated()',
+        'EventTarget.dispatchEvent(selectedchange)',
+        'El host publica el commit con selectedchange. Las propiedades selected de los hijos ya están asignadas, pero sus updated() de Lit pueden ejecutarse justo después para reflejar ARIA/hidden.',
+        {
+          bubbles: event.bubbles,
+          composed: event.composed,
+          detailSelected: event.detail.selected,
+          tab: describeInteractionElement(event.detail.tab, this._tabList),
+          tabpanel: describeInteractionElement(event.detail.tabpanel),
+        }
+      );
       this.dispatchEvent(event);
+      this._interaction.selectionCommitted();
     }
   }
 
@@ -219,6 +381,12 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
    * @param {CustomEvent} ev
    */
   _onSlotChanges = (ev) => {
+    this._interaction.event(
+      ev,
+      'slotchanges',
+      'BlockquoteTabs._onSlotChanges()',
+      'El mixin de slots notifica una nueva lista de elementos asignados.'
+    );
     ev.stopPropagation();
     ev.preventDefault();
 
@@ -232,7 +400,24 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
       this._tabpanelList = assignedNodesList;
     }
 
+    this._interaction.step(
+      'CICLO',
+      'BlockquoteTabs._onSlotChanges()',
+      'SelectionController.setItems()',
+      'Se vuelven a registrar tabs y paneles; la selección actual se clampea si el nuevo tamaño la deja fuera de rango.',
+      {
+        slot: detail.assignedSlotContent.slotName,
+        tabs: this._tabList.length,
+        tabpanels: this._tabpanelList.length,
+      }
+    );
     this._selection.setItems(this._tabList, this._tabpanelList);
+    this._interaction.step(
+      'FOCO',
+      'BlockquoteTabs._onSlotChanges()',
+      'FocusGroupController.syncEntryPoint()',
+      'Se resincroniza el único punto de entrada de teclado con el tab seleccionado; no se llama a focus().'
+    );
     this._focusGroup.syncEntryPoint();
   };
 
@@ -297,11 +482,29 @@ export class BlockquoteTabs extends BlockquoteMixinSlotContent(LitElement) {
    * @param {CustomEvent} ev
    */
   _scrollEdge(ev) {
+    this._interaction.event(
+      ev,
+      'scroll',
+      'BlockquoteTabs._scrollEdge()',
+      'El usuario o una operación programática desplazó la tira de tabs; se recalculan los indicadores.'
+    );
     this._scroll.scrollEdge(ev?.target instanceof HTMLElement ? ev.target : undefined);
   }
 
   _onSelectionCommit() {
+    this._interaction.step(
+      'FOCO',
+      'BlockquoteTabs._onSelectionCommit()',
+      'FocusGroupController.syncEntryPoint()',
+      'Se cambia el TAB STOP de reentrada al tab seleccionado (tabindex o focusgroupstart). Esto NO cambia document.activeElement.'
+    );
     this._focusGroup.syncEntryPoint();
+    this._interaction.step(
+      'SCROLL',
+      'BlockquoteTabs._onSelectionCommit()',
+      'ScrollController.scrollIntoView()',
+      'Se agenda el revelado del tab seleccionado para el siguiente frame.'
+    );
     this._scroll.scrollIntoView();
   }
 }

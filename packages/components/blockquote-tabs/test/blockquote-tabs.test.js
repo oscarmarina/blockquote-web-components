@@ -694,6 +694,113 @@ describe('BlockquoteTabs', () => {
     });
   });
 
+  describe('Interaction story console logs', () => {
+    let log;
+
+    beforeEach(async () => {
+      el = await fixture(html`
+        <blockquote-tabs>
+          <blockquote-tab id="tab-1">Tab 1</blockquote-tab>
+          <blockquote-tab id="tab-2">Tab 2</blockquote-tab>
+          <blockquote-tab id="tab-3">Tab 3</blockquote-tab>
+          <blockquote-tabpanel aria-labelledby="tab-1"><p>Panel 1</p></blockquote-tabpanel>
+          <blockquote-tabpanel aria-labelledby="tab-2"><p>Panel 2</p></blockquote-tabpanel>
+          <blockquote-tabpanel aria-labelledby="tab-3"><p>Panel 3</p></blockquote-tabpanel>
+        </blockquote-tabs>
+      `);
+      log = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+    });
+
+    afterEach(() => {
+      log.mockRestore();
+      fixtureCleanup();
+    });
+
+    const messages = () => log.mock.calls.map(([message]) => String(message));
+
+    it('narrates the real auto-arrow order: focus, focusin selection request, Lit commit, event', async () => {
+      const tabs = [...el.querySelectorAll('blockquote-tab')];
+
+      keydown(tabs[0], 'ArrowRight');
+      await settle(el);
+
+      const story = messages();
+      const focusCall = story.findIndex((message) =>
+        message.includes('FOCO PRIMERO: el motor llama a focus()')
+      );
+      const focusObserved = story.findIndex((message) => message.includes('FOCO YA CAMBIÓ'));
+      const selectionRequested = story.findIndex((message) =>
+        message.includes('DESPUÉS DEL FOCO, focusin solicita')
+      );
+      const litCommit = story.findIndex((message) =>
+        message.includes('Lit entra en la microtarea de commit')
+      );
+      const selectedchange = story.findIndex((message) =>
+        message.includes('El host publica el commit con selectedchange')
+      );
+      const childDomUpdate = story.findIndex((message) =>
+        message.includes('La microtarea del hijo terminó')
+      );
+
+      expect(focusCall).toBeGreaterThanOrEqual(0);
+      expect(focusObserved).toBeGreaterThan(focusCall);
+      expect(selectionRequested).toBeGreaterThan(focusObserved);
+      expect(litCommit).toBeGreaterThan(selectionRequested);
+      expect(selectedchange).toBeGreaterThan(litCommit);
+      expect(childDomUpdate).toBeGreaterThan(selectedchange);
+      const historyIds = [focusCall, focusObserved, selectionRequested, litCommit, selectedchange]
+        .map((index) => story[index].match(/\[Historia (\d+):/)?.[1])
+        .filter(Boolean);
+      expect(new Set(historyIds).size).toBe(1);
+      expect(story.some((message) => message.includes('RovingTabindexEngine.#onKeyDown()'))).toBe(
+        true
+      );
+      expect(story.some((message) => message.includes('SelectionController.commit()'))).toBe(true);
+    });
+
+    it('explains that manual arrow navigation changes focus without committing selected', async () => {
+      el.activation = 'manual';
+      await settle(el);
+      log.mockClear();
+      const tabs = [...el.querySelectorAll('blockquote-tab')];
+
+      keydown(tabs[0], 'ArrowRight');
+      await settle(el);
+
+      const story = messages();
+      expect(document.activeElement).toBe(tabs[1]);
+      expect(el.selected).toBe(1);
+      expect(
+        story.some((message) => message.includes('Modo manual: focusin termina sin seleccionar'))
+      ).toBe(true);
+      expect(
+        story.some((message) => message.includes('Lit entra en la microtarea de commit'))
+      ).toBe(false);
+    });
+
+    it('identifies a programmatic selected commit and proves that pipeline never calls focus', async () => {
+      const tabs = [...el.querySelectorAll('blockquote-tab')];
+      tabs[0].focus();
+      await settle(el);
+      log.mockClear();
+
+      el.selected = 3;
+      await settle(el);
+
+      const story = messages();
+      expect(
+        story.some(
+          (message) => message.includes('Historia') && message.includes('selected programático')
+        )
+      ).toBe(true);
+      expect(story.some((message) => message.includes('este pipeline nunca llama a focus()'))).toBe(
+        true
+      );
+      expect(story.some((message) => message.includes('FOCO PRIMERO'))).toBe(false);
+      expect(document.activeElement).toBe(tabs[0]);
+    });
+  });
+
   describe('FocusGroup native engine (Phase 3)', () => {
     // The local browser matrix has no focusgroup support, so the native engine
     // is exercised by forcing the capability override. These tests verify OUR
