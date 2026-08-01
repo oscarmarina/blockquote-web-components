@@ -3,32 +3,42 @@ name: Checks
 on:
   pull_request:
     types: [opened, synchronize]
+
   workflow_dispatch:
+
+env:
+  NODE_VERSION: 26.x
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   checks:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+
     steps:
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '26.x'
-      - name: Install npm
-        run: npm install -g npm@12.x
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - name: Cache node modules
-        uses: actions/cache@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
         with:
-          path: node_modules
-          key: ${{ hashFiles('**/package-lock.json') }}
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install npm
+        run: npm install --global npm@12.x
+
       - name: Install dependencies
         run: npm ci
-      - name: Install playwright
-        run: |
-          npx playwright install chromium webkit
+
+      - name: Install Playwright browsers
+        run: npm exec -- playwright install --with-deps chromium webkit
+
       - name: Format and test
         run: |
           npm run format

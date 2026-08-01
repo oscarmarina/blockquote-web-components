@@ -1,50 +1,74 @@
 name: Publish
 
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches:
       - main
       - master
 
   workflow_dispatch:
 
+permissions:
+  contents: write
+
+env:
+  NODE_VERSION: 26.x
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    env:
+      HUSKY: 0
+
     steps:
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '26.x'
-      - name: Install npm
-        run: npm install -g npm@12.x
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - name: Cache node modules
-        uses: actions/cache@v4
+          persist-credentials: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
         with:
-          path: node_modules
-          key: ${{ hashFiles('**/package-lock.json') }}
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: https://registry.npmjs.org
+          cache: npm
+
+      - name: Install npm
+        run: npm install --global npm@12.x
+
       - name: Install dependencies
         run: npm ci
+
       - name: Check for skip lerna in commit message
-        id: check_skip
         run: |
           COMMIT_MESSAGE=$(git log -1 --pretty=%B)
           echo "Commit message: $COMMIT_MESSAGE"
+
           if [[ "$COMMIT_MESSAGE" == *"[skip lerna]"* ]]; then
-            echo "SKIP_LERNA=true" >> $GITHUB_ENV
+            echo "SKIP_LERNA=true" >> "$GITHUB_ENV"
           else
-            echo "SKIP_LERNA=false" >> $GITHUB_ENV
+            echo "SKIP_LERNA=false" >> "$GITHUB_ENV"
           fi
-      - name: Version and publish with Lerna
+
+      - name: Configure Git
         if: env.SKIP_LERNA == 'false'
         run: |
-          npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
-          npx lerna version --yes
-          npx lerna publish from-package --yes
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Version packages
+        if: env.SKIP_LERNA == 'false'
+        run: npm exec -- lerna version --yes
+
+      - name: Publish packages
+        if: env.SKIP_LERNA == 'false'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm exec -- lerna publish from-package --yes
