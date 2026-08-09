@@ -83,33 +83,43 @@ console.log(myDefault.mapList); // Map(1) { { id: 'dsfaskj0' } => 'foo/bar' }
 ```
 
 
-### `src/BlockquoteBaseMeta.js`:
+### `src/BlockquoteBaseMeta.ts`:
 
 #### class: `BlockquoteBaseMeta`
 
 ##### Static Fields
 
-| Name    | Privacy | Type | Default | Description | Inherited From |
-| ------- | ------- | ---- | ------- | ----------- | -------------- |
-| `types` |         |      |         |             |                |
-| `uuid`  |         |      |         |             |                |
+| Name    | Privacy | Type                                  | Default | Description | Inherited From |
+| ------- | ------- | ------------------------------------- | ------- | ----------- | -------------- |
+| `types` |         | `Map<unknown, Map<unknown, unknown>>` |         |             |                |
+| `uuid`  |         | `string`                              |         |             |                |
 
 ##### Fields
 
-| Name         | Privacy | Type | Default | Description                                                     | Inherited From |
-| ------------ | ------- | ---- | ------- | --------------------------------------------------------------- | -------------- |
-| `value`      |         |      |         | Sets value to instance type and key                             |                |
-| `list`       |         |      |         | Returns a list (Array) of the values for that instance \`type\` |                |
-| `mapList`    |         |      |         | Returns a list (Map) for that instance \`type\`                 |                |
-| `objectList` |         |      |         | Returns a list (Object) for that instance \`type\`              |                |
-| `type`       |         |      | `type`  | Type of Meta                                                    |                |
-| `key`        |         |      | `key`   | Key for Meta                                                    |                |
+| Name         | Privacy | Type                      | Default | Description                                                     | Inherited From |
+| ------------ | ------- | ------------------------- | ------- | --------------------------------------------------------------- | -------------- |
+| `type`       |         | `unknown`                 | `type`  | Type of Meta                                                    |                |
+| `key`        |         | `unknown`                 | `key`   | Key for Meta                                                    |                |
+| `value`      |         | `unknown`                 |         | Sets value to instance type and key                             |                |
+| `list`       |         | `unknown[]`               |         | Returns a list (Array) of the values for that instance \`type\` |                |
+| `mapList`    |         | `Map<unknown, unknown>`   |         | Returns a list (Map) for that instance \`type\`                 |                |
+| `objectList` |         | `Record<string, unknown>` |         | Returns a list (Object) for that instance \`type\`              |                |
 
 ##### Methods
 
-| Name    | Privacy | Description                                                      | Parameters | Return | Inherited From |
-| ------- | ------- | ---------------------------------------------------------------- | ---------- | ------ | -------------- |
-| `byKey` |         | Returns the value of the provided key for that instance \`type\` | `key: *`   | `*`    |                |
+| Name    | Privacy | Description                                                      | Parameters     | Return    | Inherited From |
+| ------- | ------- | ---------------------------------------------------------------- | -------------- | --------- | -------------- |
+| `byKey` |         | Returns the value of the provided key for that instance \`type\` | `key: unknown` | `unknown` |                |
+
+<details><summary>Private API</summary>
+
+##### Fields
+
+| Name    | Privacy | Type      | Default | Description | Inherited From |
+| ------- | ------- | --------- | ------- | ----------- | -------------- |
+| `__key` | private | `unknown` |         |             |                |
+
+</details>
 
 <hr/>
 
@@ -117,9 +127,9 @@ console.log(myDefault.mapList); // Map(1) { { id: 'dsfaskj0' } => 'foo/bar' }
 
 | Kind | Name                 | Declaration        | Module                    | Package |
 | ---- | -------------------- | ------------------ | ------------------------- | ------- |
-| `js` | `BlockquoteBaseMeta` | BlockquoteBaseMeta | src/BlockquoteBaseMeta.js |         |
+| `js` | `BlockquoteBaseMeta` | BlockquoteBaseMeta | src/BlockquoteBaseMeta.ts |         |
 
-### `src/index.js`:
+### `src/index.ts`:
 
 #### Exports
 

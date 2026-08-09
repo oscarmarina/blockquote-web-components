@@ -1,5 +1,47 @@
 ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
+`BaseContextMetaElement` emulates the behavior of a flow element using ARIA, preserving standard HTML functionality while enhancing its features.
+
+## Demo
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/flow-element)
+
+## Features
+- Acts as a structural element that follows HTML flow content rules.
+- Provides a default ARIA role (`none`) to avoid unintended semantics.
+- Can be used as a wrapper for contextual metadata.
+
+## Accessibility
+By default, `BaseContextMetaElement` [assigns the role="none"](https://github.com/w3c/aria/pull/2383),
+ensuring that it does not introduce unintended semantics in assistive technologies.
+This behavior can be overridden by explicitly setting a different role.
+
+**Related:** [ARIA Structural Roles](https://www.w3.org/WAI/ARIA/apg/practices/structural-roles/#allstructuralrolesandtheirhtmlequivalents)
+
+> Inspired by the discussion: [Is it possible to make normal DOM elements context providers?](https://github.com/lit/lit/discussions/4690)
+**See Also:** [contextmeta provider directive](https://github.com/oscarmarina/blockquote-web-components/tree/main/packages/controllers/blockquote-controller-context-meta/src/directives/context-meta-provider.js)
+
+With this setup, `BaseContextMetaElement` behaves like a [flow element](https://developer.mozilla.org/en-US/docs/Web/HTML/Content_categories#flow_content).
+
+
+<hr>
+
+
+### `src/BaseContextMetaElement.ts`:
+
+#### class: `BaseContextMetaElement`, `base-context-meta`
+
+<hr/>
+
+#### Exports
+
+| Kind                        | Name                     | Declaration            | Module                        | Package |
+| --------------------------- | ------------------------ | ---------------------- | ----------------------------- | ------- |
+| `js`                        | `BaseContextMetaElement` | BaseContextMetaElement | src/BaseContextMetaElement.ts |         |
+| `custom-element-definition` | `base-context-meta`      | BaseContextMetaElement | src/BaseContextMetaElement.ts |         |
+
+![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
+
 `BlockquoteControllerContextMeta` is a Lit Reactive Controller that encapsulates the controllers provided by [@lit/context](https://lit.dev/docs/data/context/)
 
 **Features:**
@@ -97,26 +139,37 @@ customElements.define('consumer-el', ConsumerEl);
  <hr>
 
 
-### `src/BlockquoteControllerContextMeta.js`:
+### `src/BlockquoteControllerContextMeta.ts`:
 
 #### class: `ContextMeta`
 
 ##### Fields
 
-| Name           | Privacy | Type | Default        | Description | Inherited From |
-| -------------- | ------- | ---- | -------------- | ----------- | -------------- |
-| `value`        |         |      |                |             |                |
-| `context`      |         |      |                |             |                |
-| `initialValue` |         |      | `initialValue` |             |                |
-| `callback`     |         |      | `callback`     |             |                |
-| `host`         |         |      | `host`         |             |                |
+| Name    | Privacy | Type                              | Default | Description | Inherited From |
+| ------- | ------- | --------------------------------- | ------- | ----------- | -------------- |
+| `value` |         | `ContextType<TMeta> \| undefined` |         |             |                |
 
 ##### Methods
 
-| Name            | Privacy | Description | Parameters | Return | Inherited From |
-| --------------- | ------- | ----------- | ---------- | ------ | -------------- |
-| `setValue`      |         |             | `v, force` |        |                |
-| `hostConnected` |         |             |            |        |                |
+| Name            | Privacy | Description | Parameters                     | Return | Inherited From |
+| --------------- | ------- | ----------- | ------------------------------ | ------ | -------------- |
+| `setValue`      |         |             | `v: ContextType<TMeta>, force` |        |                |
+| `hostConnected` |         |             |                                |        |                |
+
+<details><summary>Private API</summary>
+
+##### Fields
+
+| Name                   | Privacy | Type                                                                     | Default                  | Description | Inherited From |
+| ---------------------- | ------- | ------------------------------------------------------------------------ | ------------------------ | ----------- | -------------- |
+| `host`                 | private | `HostElement`                                                            | `host`                   |             |                |
+| `context`              | private | `TMeta`                                                                  | `createContext(context)` |             |                |
+| `initialValue`         | private | `ContextType<TMeta> \| undefined`                                        | `initialValue`           |             |                |
+| `callback`             | private | `(value: ContextType<TMeta>, dispose?: () => void) => void \| undefined` | `callback`               |             |                |
+| `_contextMetaProvider` | private | `ContextProviderHs<TMeta, HostElement> \| undefined`                     |                          |             |                |
+| `_contextMetaConsumer` | private | `ContextConsumer<TMeta, HostElement> \| undefined`                       |                          |             |                |
+
+</details>
 
 <hr/>
 
@@ -132,10 +185,10 @@ customElements.define('consumer-el', ConsumerEl);
 
 | Kind | Name                              | Declaration       | Module                                 | Package |
 | ---- | --------------------------------- | ----------------- | -------------------------------------- | ------- |
-| `js` | `contextMetaSymbol`               | contextMetaSymbol | src/BlockquoteControllerContextMeta.js |         |
-| `js` | `BlockquoteControllerContextMeta` | ContextMeta       | src/BlockquoteControllerContextMeta.js |         |
+| `js` | `contextMetaSymbol`               | contextMetaSymbol | src/BlockquoteControllerContextMeta.ts |         |
+| `js` | `BlockquoteControllerContextMeta` | ContextMeta       | src/BlockquoteControllerContextMeta.ts |         |
 
-### `src/index.js`:
+### `src/index.ts`:
 
 #### Exports
 
@@ -146,6 +199,21 @@ customElements.define('consumer-el', ConsumerEl);
 | `js` | `contextMetaProvider`             | contextMetaProvider             | ./directives/context-meta-provider.js       |         |
 | `js` | `cacheContextMetaProvider`        | cacheContextMetaProvider        | ./directives/cache-context-meta-provider.js |         |
 
+### `src/directives/cache-context-meta-provider.ts`:
+
+#### Functions
+
+| Name                       | Description                                                                                                                                                                                                                                                                                                                                                                            | Parameters                                                                                                                                                                             | Return                |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| `cacheContextMetaProvider` | Return or create a cached BlockquoteControllerContextMeta for (element, context).&#xA;&#xA;This function memoizes BlockquoteControllerContextMeta instances per (element, contextKey).&#xA;If a BlockquoteControllerContextMeta already exists for the given element and context, it is&#xA;returned; otherwise a new BlockquoteControllerContextMeta is created, cached and returned. | `element: HTMLElement, {context = contextMetaSymbol, initialValue}: CacheOptions, options: {  *   context?: unknown,  *   initialValue?: ContextType<Context<unknown, unknown>>,  * }` | `ContextMetaInstance` |
+
+<hr/>
+
+#### Exports
+
+| Kind | Name                       | Declaration              | Module                                        | Package |
+| ---- | -------------------------- | ------------------------ | --------------------------------------------- | ------- |
+| `js` | `cacheContextMetaProvider` | cacheContextMetaProvider | src/directives/cache-context-meta-provider.ts |         |
 
 ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
@@ -174,7 +242,7 @@ Lit Reactive Controller that encapsulates controllers provided by [@lit/context]
 ```
 
 
-### `src/directives/context-meta-provider.js`:
+### `src/directives/context-meta-provider.ts`:
 
 #### class: `README`
 
@@ -192,63 +260,5 @@ Lit Reactive Controller that encapsulates controllers provided by [@lit/context]
 
 | Kind | Name                  | Declaration         | Module                                  | Package |
 | ---- | --------------------- | ------------------- | --------------------------------------- | ------- |
-| `js` | `README`              | README              | src/directives/context-meta-provider.js |         |
-| `js` | `contextMetaProvider` | contextMetaProvider | src/directives/context-meta-provider.js |         |
-
-### `src/directives/cache-context-meta-provider.js`:
-
-#### Functions
-
-| Name                       | Description                                                                                                                                                                                                                                                                                                                                                                            | Parameters                                                                                                                                | Return |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| `cacheContextMetaProvider` | Return or create a cached BlockquoteControllerContextMeta for (element, context).&#xA;&#xA;This function memoizes BlockquoteControllerContextMeta instances per (element, contextKey).&#xA;If a BlockquoteControllerContextMeta already exists for the given element and context, it is&#xA;returned; otherwise a new BlockquoteControllerContextMeta is created, cached and returned. | `element: HTMLElement\|*, {context = contextMetaSymbol, initialValue}, arg: {  *   context?: *,  *   initialValue?: ContextType<*>,  * }` |        |
-
-<hr/>
-
-#### Exports
-
-| Kind | Name                       | Declaration              | Module                                        | Package |
-| ---- | -------------------------- | ------------------------ | --------------------------------------------- | ------- |
-| `js` | `cacheContextMetaProvider` | cacheContextMetaProvider | src/directives/cache-context-meta-provider.js |         |
-
-![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
-
-`BaseContextMetaElement` emulates the behavior of a flow element using ARIA, preserving standard HTML functionality while enhancing its features.
-
-## Demo
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/flow-element)
-
-## Features
-- Acts as a structural element that follows HTML flow content rules.
-- Provides a default ARIA role (`none`) to avoid unintended semantics.
-- Can be used as a wrapper for contextual metadata.
-
-## Accessibility
-By default, `BaseContextMetaElement` [assigns the role="none"](https://github.com/w3c/aria/pull/2383),
-ensuring that it does not introduce unintended semantics in assistive technologies.
-This behavior can be overridden by explicitly setting a different role.
-
-**Related:** [ARIA Structural Roles](https://www.w3.org/WAI/ARIA/apg/practices/structural-roles/#allstructuralrolesandtheirhtmlequivalents)
-
-> Inspired by the discussion: [Is it possible to make normal DOM elements context providers?](https://github.com/lit/lit/discussions/4690)
-**See Also:** [contextmeta provider directive](https://github.com/oscarmarina/blockquote-web-components/tree/main/packages/controllers/blockquote-controller-context-meta/src/directives/context-meta-provider.js)
-
-With this setup, `BaseContextMetaElement` behaves like a [flow element](https://developer.mozilla.org/en-US/docs/Web/HTML/Content_categories#flow_content).
-
-
-<hr>
-
-
-### `src/BaseContextMetaElement.js`:
-
-#### class: `BaseContextMetaElement`, `base-context-meta`
-
-<hr/>
-
-#### Exports
-
-| Kind                        | Name                     | Declaration            | Module                        | Package |
-| --------------------------- | ------------------------ | ---------------------- | ----------------------------- | ------- |
-| `js`                        | `BaseContextMetaElement` | BaseContextMetaElement | src/BaseContextMetaElement.js |         |
-| `custom-element-definition` | `base-context-meta`      | BaseContextMetaElement | src/BaseContextMetaElement.js |         |
+| `js` | `README`              | README              | src/directives/context-meta-provider.ts |         |
+| `js` | `contextMetaProvider` | contextMetaProvider | src/directives/context-meta-provider.ts |         |

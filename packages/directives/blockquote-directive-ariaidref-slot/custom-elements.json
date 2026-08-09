@@ -4,7 +4,7 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "src/BlockquoteDirectiveAriaidrefSlot.js",
+      "path": "src/BlockquoteDirectiveAriaidrefSlot.ts",
       "declarations": [
         {
           "kind": "class",
@@ -12,7 +12,7 @@
           "name": "README",
           "superclass": {
             "name": "Text",
-            "module": "src/BlockquoteDirectiveAriaidrefSlot.js"
+            "module": "src/BlockquoteDirectiveAriaidrefSlot.ts"
           }
         },
         {
@@ -26,7 +26,7 @@
           "name": "README",
           "declaration": {
             "name": "README",
-            "module": "src/BlockquoteDirectiveAriaidrefSlot.js"
+            "module": "src/BlockquoteDirectiveAriaidrefSlot.ts"
           }
         },
         {
@@ -34,14 +34,14 @@
           "name": "blockquoteDirectiveAriaidrefSlot",
           "declaration": {
             "name": "blockquoteDirectiveAriaidrefSlot",
-            "module": "src/BlockquoteDirectiveAriaidrefSlot.js"
+            "module": "src/BlockquoteDirectiveAriaidrefSlot.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/index.js",
+      "path": "src/index.ts",
       "declarations": [],
       "exports": [
         {

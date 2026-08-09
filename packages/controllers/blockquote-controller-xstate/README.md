@@ -183,42 +183,45 @@ export class XstateCounter extends LitElement {
 <hr>
 
 
-### `src/BlockquoteControllerXstate.js`:
+### `src/BlockquoteControllerXstate.ts`:
 
-#### class: `UseMachine`
+#### class: `BlockquoteControllerXstate`
 
 ##### Fields
 
-| Name              | Privacy | Type | Default    | Description                              | Inherited From |
-| ----------------- | ------- | ---- | ---------- | ---------------------------------------- | -------------- |
-| `actor`           |         |      |            | The underlying ActorRef from XState      |                |
-| `snapshot`        |         |      |            | The latest snapshot of the actor's state |                |
-| `onNext`          |         |      |            | Internal subscriber for state changes    |                |
-| `machine`         |         |      | `machine`  |                                          |                |
-| `options`         |         |      | `options`  |                                          |                |
-| `callback`        |         |      | `callback` |                                          |                |
-| `currentSnapshot` |         |      |            |                                          |                |
+| Name              | Privacy | Type                                                             | Default    | Description                              | Inherited From |
+| ----------------- | ------- | ---------------------------------------------------------------- | ---------- | ---------------------------------------- | -------------- |
+| `machine`         |         | `AnyStateMachine`                                                | `machine`  |                                          |                |
+| `options`         |         | `ActorOptions<AnyStateMachine> \| undefined`                     | `options`  |                                          |                |
+| `callback`        |         | `(snapshot: SnapshotFrom<AnyStateMachine>) => void \| undefined` | `callback` |                                          |                |
+| `actorRef`        |         | `Actor<AnyStateMachine> \| undefined`                            |            |                                          |                |
+| `subscription`    |         | `Subscription \| undefined`                                      |            |                                          |                |
+| `currentSnapshot` |         | `SnapshotFrom<AnyStateMachine> \| undefined`                     |            |                                          |                |
+| `host`            |         | `BlockquoteControllerXstateHost`                                 |            |                                          |                |
+| `actor`           |         | `Actor<AnyStateMachine> \| undefined`                            |            | The underlying ActorRef from XState      |                |
+| `snapshot`        |         | `SnapshotFrom<AnyStateMachine> \| undefined`                     |            | The latest snapshot of the actor's state |                |
+| `onNext`          |         |                                                                  |            | Internal subscriber for state changes    |                |
 
 ##### Methods
 
 | Name               | Privacy | Description                        | Parameters                           | Return | Inherited From |
 | ------------------ | ------- | ---------------------------------- | ------------------------------------ | ------ | -------------- |
-| `send`             |         | Send an event to the actor service | `ev: EventFrom<typeof this.machine>` |        |                |
-| `unsubscribe`      |         |                                    |                                      |        |                |
-| `startService`     |         |                                    |                                      |        |                |
-| `stopService`      |         |                                    |                                      |        |                |
-| `hostConnected`    |         |                                    |                                      |        |                |
-| `hostDisconnected` |         |                                    |                                      |        |                |
+| `send`             |         | Send an event to the actor service | `ev: EventFrom<typeof this.machine>` | `void` |                |
+| `unsubscribe`      |         |                                    |                                      | `void` |                |
+| `startService`     |         |                                    |                                      | `void` |                |
+| `stopService`      |         |                                    |                                      | `void` |                |
+| `hostConnected`    |         |                                    |                                      | `void` |                |
+| `hostDisconnected` |         |                                    |                                      | `void` |                |
 
 <hr/>
 
 #### Exports
 
-| Kind | Name                         | Declaration | Module                            | Package |
-| ---- | ---------------------------- | ----------- | --------------------------------- | ------- |
-| `js` | `BlockquoteControllerXstate` | UseMachine  | src/BlockquoteControllerXstate.js |         |
+| Kind | Name                         | Declaration                | Module                            | Package |
+| ---- | ---------------------------- | -------------------------- | --------------------------------- | ------- |
+| `js` | `BlockquoteControllerXstate` | BlockquoteControllerXstate | src/BlockquoteControllerXstate.ts |         |
 
-### `src/index.js`:
+### `src/index.ts`:
 
 #### Exports
 

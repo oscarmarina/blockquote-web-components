@@ -45,44 +45,40 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 ```
 
 
-### `src/BlockquoteBaseEmbeddedWebview.js`:
+### `src/BlockquoteBaseEmbeddedWebview.ts`:
 
 #### class: `BlockquoteBaseEmbeddedWebview`, `blockquote-base-embedded-webview`
 
 ##### Fields
 
-| Name                  | Privacy | Type      | Default                                                                                                                                                                                                  | Description                             | Inherited From |
-| --------------------- | ------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | -------------- |
-| `_updateSize`         |         |           |                                                                                                                                                                                                          |                                         |                |
-| `_headingLevel`       |         |           |                                                                                                                                                                                                          |                                         |                |
-| `_lightDomTpl`        |         |           |                                                                                                                                                                                                          |                                         |                |
-| `_headerTpl`          |         |           |                                                                                                                                                                                                          |                                         |                |
-| `_headingTpl`         |         |           |                                                                                                                                                                                                          |                                         |                |
-| `_navigationDemosTpl` |         |           |                                                                                                                                                                                                          |                                         |                |
-| `_selectTpl`          |         |           |                                                                                                                                                                                                          |                                         |                |
-| `_externalLinkTpl`    |         |           |                                                                                                                                                                                                          |                                         |                |
-| `_descriptionTpl`     |         |           |                                                                                                                                                                                                          |                                         |                |
-| `_readDataPosTpl`     |         |           |                                                                                                                                                                                                          |                                         |                |
-| `_screenSizeTpl`      |         |           |                                                                                                                                                                                                          |                                         |                |
-| `_mainTpl`            |         |           |                                                                                                                                                                                                          |                                         |                |
-| `_embeddedSlotTpl`    |         |           |                                                                                                                                                                                                          |                                         |                |
-| `selected`            | public  | `number`  | `0`                                                                                                                                                                                                      | Index of currently srcset file          |                |
-| `screenSizeSelected`  | public  | `number`  | `0`                                                                                                                                                                                                      | Index of currently screen size selected |                |
-| `headingLevel`        | public  | `number`  | `1`                                                                                                                                                                                                      | Heading level from 1 to 6               |                |
-| `heading`             | public  | `string`  | `''`                                                                                                                                                                                                     | The heading of the webview.             |                |
-| `__resetResizing`     |         | `boolean` | `false`                                                                                                                                                                                                  |                                         |                |
-| `__selectArrow`       |         |           | `` html` <svg aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <polyline points="6 9 12 15 18 9" /> </svg> ` `` |                                         |                |
-| `__readDataPos`       |         | `object`  | `{x: '0', y: '0', resizing: false, cursor: ''}`                                                                                                                                                          |                                         |                |
-| `limitHeight`         | public  | `boolean` | `false`                                                                                                                                                                                                  | Limit height to 100% available          |                |
-| `_sources`            |         | `array`   | `[{src: '', option: '', description: ''}]`                                                                                                                                                               |                                         |                |
-| `_embeddedResizeRef`  |         |           |                                                                                                                                                                                                          |                                         |                |
+| Name                  | Privacy | Type                           | Default | Description                             | Inherited From |
+| --------------------- | ------- | ------------------------------ | ------- | --------------------------------------- | -------------- |
+| `heading`             | public  | `string`                       | `''`    | The heading of the webview.             |                |
+| `selected`            | public  | `number`                       | `0`     | Index of currently srcset file          |                |
+| `headingLevel`        | public  | `number`                       | `1`     | Heading level from 1 to 6               |                |
+| `screenSizeSelected`  | public  | `number`                       | `0`     | Index of currently screen size selected |                |
+| `limitHeight`         | public  | `boolean`                      | `false` | Limit height to 100% available          |                |
+| `embedded`            |         | `Element \| null \| undefined` |         |                                         |                |
+| `_updateSize`         |         |                                |         |                                         |                |
+| `_headingLevel`       |         |                                |         |                                         |                |
+| `_lightDomTpl`        |         |                                |         |                                         |                |
+| `_headerTpl`          |         |                                |         |                                         |                |
+| `_headingTpl`         |         |                                |         |                                         |                |
+| `_navigationDemosTpl` |         |                                |         |                                         |                |
+| `_selectTpl`          |         |                                |         |                                         |                |
+| `_externalLinkTpl`    |         |                                |         |                                         |                |
+| `_descriptionTpl`     |         |                                |         |                                         |                |
+| `_readDataPosTpl`     |         |                                |         |                                         |                |
+| `_screenSizeTpl`      |         |                                |         |                                         |                |
+| `_mainTpl`            |         |                                |         |                                         |                |
+| `_embeddedSlotTpl`    |         |                                |         |                                         |                |
 
 ##### Methods
 
-| Name             | Privacy | Description | Parameters | Return | Inherited From |
-| ---------------- | ------- | ----------- | ---------- | ------ | -------------- |
-| `_litHtmlRender` |         |             |            |        |                |
-| `_onChangeFile`  |         |             | `{target}` |        |                |
+| Name             | Privacy | Description | Parameters        | Return | Inherited From |
+| ---------------- | ------- | ----------- | ----------------- | ------ | -------------- |
+| `_litHtmlRender` |         |             |                   |        |                |
+| `_onChangeFile`  |         |             | `{target}: Event` |        |                |
 
 ##### Attributes
 
@@ -94,20 +90,36 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 | `screen-size-selected` | screenSizeSelected |                |
 | `limit-height`         | limitHeight        |                |
 
+<details><summary>Private API</summary>
+
+##### Fields
+
+| Name                 | Privacy | Type                  | Default                                                                                                                                                                                                  | Description | Inherited From |
+| -------------------- | ------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | -------------- |
+| `_sources`           | private | `SourceItem[]`        | `[{src: '', option: '', description: ''}]`                                                                                                                                                               |             |                |
+| `_src`               | private | `string \| undefined` |                                                                                                                                                                                                          |             |                |
+| `_controlBottom`     | private | `number \| undefined` |                                                                                                                                                                                                          |             |                |
+| `__resetResizing`    | private | `boolean`             | `false`                                                                                                                                                                                                  |             |                |
+| `__selectArrow`      | private | `TemplateResult`      | `` html` <svg aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <polyline points="6 9 12 15 18 9" /> </svg> ` `` |             |                |
+| `__readDataPos`      | private | `object`              | `{x: '0', y: '0', resizing: false, cursor: ''}`                                                                                                                                                          |             |                |
+| `_embeddedResizeRef` | private |                       |                                                                                                                                                                                                          |             |                |
+
+</details>
+
 <hr/>
 
 #### Exports
 
 | Kind | Name                            | Declaration                   | Module                                | Package |
 | ---- | ------------------------------- | ----------------------------- | ------------------------------------- | ------- |
-| `js` | `BlockquoteBaseEmbeddedWebview` | BlockquoteBaseEmbeddedWebview | src/BlockquoteBaseEmbeddedWebview\.js |         |
+| `js` | `BlockquoteBaseEmbeddedWebview` | BlockquoteBaseEmbeddedWebview | src/BlockquoteBaseEmbeddedWebview\.ts |         |
 
 ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
 `blockquote-base-embedded-webview-element` wraps an `iframe` or `object` and shows it through light dom.
 
 
-### `src/BlockquoteBaseEmbeddedWebviewElement.js`:
+### `src/BlockquoteBaseEmbeddedWebviewElement.ts`:
 
 #### class: `BlockquoteBaseEmbeddedWebviewElement`, `blockquote-base-embedded-webview-element`
 
@@ -115,20 +127,20 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 
 | Name             | Privacy | Type     | Default    | Description                                               | Inherited From |
 | ---------------- | ------- | -------- | ---------- | --------------------------------------------------------- | -------------- |
+| `embeddedTitle`  | public  | `string` | `''`       | The title attribute on an \<element> to label its content |                |
+| `src`            | public  | `string` | `''`       | The URL of the page to embed                              |                |
+| `type`           | public  | `string` | `'iframe'` | The type of the tag to embed - iframe or object           |                |
 | `_lightDomTpl`   |         |          |            |                                                           |                |
 | `_loadResource`  |         |          |            |                                                           |                |
 | `_embeddedTpl`   |         |          |            |                                                           |                |
 | `_onLoadElement` |         |          |            |                                                           |                |
-| `embeddedTitle`  | public  | `string` | `''`       | The title attribute on an \<element> to label its content |                |
-| `src`            | public  | `string` | `''`       | The URL of the page to embed                              |                |
-| `type`           | public  | `string` | `'iframe'` | The type of the tag to embed - iframe or object           |                |
 
 ##### Methods
 
-| Name             | Privacy | Description | Parameters | Return | Inherited From |
-| ---------------- | ------- | ----------- | ---------- | ------ | -------------- |
-| `_litHtmlRender` |         |             |            |        |                |
-| `_fetch`         |         |             | `resource` |        |                |
+| Name             | Privacy | Description | Parameters         | Return | Inherited From |
+| ---------------- | ------- | ----------- | ------------------ | ------ | -------------- |
+| `_litHtmlRender` |         |             |                    |        |                |
+| `_fetch`         |         |             | `resource: string` |        |                |
 
 ##### Attributes
 
@@ -138,47 +150,48 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 | `src`            | src           |                |
 | `type`           | type          |                |
 
+<details><summary>Private API</summary>
+
+##### Fields
+
+| Name               | Privacy | Type                       | Default | Description | Inherited From |
+| ------------------ | ------- | -------------------------- | ------- | ----------- | -------------- |
+| `_embeddedElement` | private | `HTMLElement \| undefined` |         |             |                |
+
+</details>
+
 <hr/>
 
 #### Exports
 
 | Kind | Name                                   | Declaration                          | Module                                      | Package |
 | ---- | -------------------------------------- | ------------------------------------ | ------------------------------------------- | ------- |
-| `js` | `BlockquoteBaseEmbeddedWebviewElement` | BlockquoteBaseEmbeddedWebviewElement | src/BlockquoteBaseEmbeddedWebviewElement.js |         |
+| `js` | `BlockquoteBaseEmbeddedWebviewElement` | BlockquoteBaseEmbeddedWebviewElement | src/BlockquoteBaseEmbeddedWebviewElement.ts |         |
 
 ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
 `blockquote-base-embedded-webview-resize`
 
 
-### `src/BlockquoteBaseEmbeddedWebviewResize.js`:
+### `src/BlockquoteBaseEmbeddedWebviewResize.ts`:
 
 #### class: `BlockquoteBaseEmbeddedWebviewResize`, `blockquote-base-embedded-webview-resize`
 
 ##### Fields
 
-| Name                            | Privacy | Type     | Default | Description | Inherited From |
-| ------------------------------- | ------- | -------- | ------- | ----------- | -------------- |
-| `_resizersTpl`                  |         |          |         |             |                |
-| `_doubleclickForCssInitialSize` |         |          |         |             |                |
-| `_cursor`                       |         | `string` | `''`    |             |                |
-| `_createResizerLeft`            |         |          |         |             |                |
-| `_createResizerRight`           |         |          |         |             |                |
-| `_createResizerBottom`          |         |          |         |             |                |
-| `_createResizerBottomLeft`      |         |          |         |             |                |
-| `_createResizerBottomRight`     |         |          |         |             |                |
-| `_getBoundingClientRectWidth`   |         | `number` | `0`     |             |                |
-| `_getBoundingClientRectHeight`  |         | `number` | `0`     |             |                |
+| Name                            | Privacy | Type | Default | Description | Inherited From |
+| ------------------------------- | ------- | ---- | ------- | ----------- | -------------- |
+| `_resizersTpl`                  |         |      |         |             |                |
+| `_doubleclickForCssInitialSize` |         |      |         |             |                |
 
 ##### Methods
 
-| Name                     | Privacy | Description | Parameters                                                                                           | Return | Inherited From |
-| ------------------------ | ------- | ----------- | ---------------------------------------------------------------------------------------------------- | ------ | -------------- |
-| `_createResizer`         |         |             | `resizeDirection: 'right' \| 'left' \| 'top' \| 'scaleTopLeft' \| 'scaleTopRight', ev: PointerEvent` |        |                |
-| `_resize`                |         |             | `{detail}, params: @param {{dx: number, dy: number}} params.detail
-   `                              |        |                |
-| `_dispatchResizeEvent`   |         |             |                                                                                                      |        |                |
-| `_getBoundingClientRect` |         |             | `rectProp: 'x' \| 'y' \| 'width' \| 'height' \| 'top' \| 'right' \| 'bottom' \| 'left'`              |        |                |
+| Name                     | Privacy | Description | Parameters                                           | Return | Inherited From |
+| ------------------------ | ------- | ----------- | ---------------------------------------------------- | ------ | -------------- |
+| `_createResizer`         |         |             | `resizeDirection: ResizeDirection, ev: PointerEvent` |        |                |
+| `_resize`                |         |             | `{detail}: {detail: ResizeDetail}`                   |        |                |
+| `_dispatchResizeEvent`   |         |             |                                                      |        |                |
+| `_getBoundingClientRect` |         |             | `rectProp: DOMRectProp`                              |        |                |
 
 ##### Events
 
@@ -186,13 +199,37 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 | --------------- | ---- | -------------------------------------------- | -------------- |
 | `webviewresize` |      | Raised when the element's dimensions changes |                |
 
+<details><summary>Private API</summary>
+
+##### Fields
+
+| Name                           | Privacy | Type                               | Default | Description | Inherited From |
+| ------------------------------ | ------- | ---------------------------------- | ------- | ----------- | -------------- |
+| `_cursor`                      | private | `string`                           | `''`    |             |                |
+| `_resizeDirection`             | private | `ResizeDirection \| undefined`     |         |             |                |
+| `_getBoundingClientRectWidth`  | private | `number`                           | `0`     |             |                |
+| `_getBoundingClientRectHeight` | private | `number`                           | `0`     |             |                |
+| `rect`                         | private | `HTMLElement \| null \| undefined` |         |             |                |
+| `bottomRightResizerElement`    | private | `HTMLElement \| null \| undefined` |         |             |                |
+| `bottomLeftResizerElement`     | private | `HTMLElement \| null \| undefined` |         |             |                |
+| `rightResizerElement`          | private | `HTMLElement \| null \| undefined` |         |             |                |
+| `leftResizerElement`           | private | `HTMLElement \| null \| undefined` |         |             |                |
+| `bottomResizerElement`         | private | `HTMLElement \| null \| undefined` |         |             |                |
+| `_createResizerLeft`           | private | `(ev: PointerEvent) => void`       |         |             |                |
+| `_createResizerRight`          | private | `(ev: PointerEvent) => void`       |         |             |                |
+| `_createResizerBottom`         | private | `(ev: PointerEvent) => void`       |         |             |                |
+| `_createResizerBottomLeft`     | private | `(ev: PointerEvent) => void`       |         |             |                |
+| `_createResizerBottomRight`    | private | `(ev: PointerEvent) => void`       |         |             |                |
+
+</details>
+
 <hr/>
 
 #### Exports
 
 | Kind | Name                                  | Declaration                         | Module                                     | Package |
 | ---- | ------------------------------------- | ----------------------------------- | ------------------------------------------ | ------- |
-| `js` | `BlockquoteBaseEmbeddedWebviewResize` | BlockquoteBaseEmbeddedWebviewResize | src/BlockquoteBaseEmbeddedWebviewResize.js |         |
+| `js` | `BlockquoteBaseEmbeddedWebviewResize` | BlockquoteBaseEmbeddedWebviewResize | src/BlockquoteBaseEmbeddedWebviewResize.ts |         |
 
 ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
@@ -215,31 +252,31 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 ```
 
 
-### `src/BlockquoteBaseEmbeddedWebviewSize.js`:
+### `src/BlockquoteBaseEmbeddedWebviewSize.ts`:
 
 #### class: `BlockquoteBaseEmbeddedWebviewSize`, `blockquote-base-embedded-webview-size`
 
 ##### Fields
 
-| Name                       | Privacy | Type      | Default                                                                                                                                                                                                                                                                                                                                                                                                       | Description                                                   | Inherited From |
-| -------------------------- | ------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | -------------- |
-| `selectedSize`             |         |           |                                                                                                                                                                                                                                                                                                                                                                                                               |                                                               |                |
-| `selectedDetail`           |         |           |                                                                                                                                                                                                                                                                                                                                                                                                               |                                                               |                |
-| `computedStyleWidth`       |         |           |                                                                                                                                                                                                                                                                                                                                                                                                               |                                                               |                |
-| `_toolbarTpl`              |         |           |                                                                                                                                                                                                                                                                                                                                                                                                               |                                                               |                |
-| `_visualTextTpl`           |         |           |                                                                                                                                                                                                                                                                                                                                                                                                               |                                                               |                |
-| `_onResize`                |         |           |                                                                                                                                                                                                                                                                                                                                                                                                               |                                                               |                |
-| `showOverflowSize`         | public  | `boolean` | `false`                                                                                                                                                                                                                                                                                                                                                                                                       | Show screen size options that are too large for the container |                |
-| `selected`                 | public  | `number`  | `0`                                                                                                                                                                                                                                                                                                                                                                                                           | The screen size option selected                               |                |
-| `disabledSelectedSizeText` | public  | `boolean` | `false`                                                                                                                                                                                                                                                                                                                                                                                                       | If true, selected size text is disabled                       |                |
-| `screenSizes`              | public  | `array`   | `[ {width: 360, height: 800, id: '360x800'}, {width: 390, height: 864, id: '390x864'}, {width: 414, height: 896, id: '414x896'}, {width: 768, height: 1024, id: '768x1024'}, {width: 810, height: 1080, id: '810x1080'}, {width: 1280, height: 720, id: '1280x800'}, {width: 1366, height: 768, id: '1366x768'}, {width: 1536, height: 864, id: '1536x864'}, {width: 1920, height: 1080, id: '1920x1080'}, ]` | The screen size options to display                            |                |
-| `widthInPercent`           | public  | `boolean` | `false`                                                                                                                                                                                                                                                                                                                                                                                                       | Percentage value for the width                                |                |
+| Name                       | Privacy | Type           | Default                                                                                                                                                                                                                                                                                                                                                                                                       | Description                                                   | Inherited From |
+| -------------------------- | ------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | -------------- |
+| `screenSizes`              | public  | `ScreenSize[]` | `[ {width: 360, height: 800, id: '360x800'}, {width: 390, height: 864, id: '390x864'}, {width: 414, height: 896, id: '414x896'}, {width: 768, height: 1024, id: '768x1024'}, {width: 810, height: 1080, id: '810x1080'}, {width: 1280, height: 720, id: '1280x800'}, {width: 1366, height: 768, id: '1366x768'}, {width: 1536, height: 864, id: '1536x864'}, {width: 1920, height: 1080, id: '1920x1080'}, ]` | The screen size options to display                            |                |
+| `selected`                 | public  | `number`       | `0`                                                                                                                                                                                                                                                                                                                                                                                                           | The screen size option selected                               |                |
+| `widthInPercent`           | public  | `boolean`      | `false`                                                                                                                                                                                                                                                                                                                                                                                                       | Percentage value for the width                                |                |
+| `showOverflowSize`         | public  | `boolean`      | `false`                                                                                                                                                                                                                                                                                                                                                                                                       | Show screen size options that are too large for the container |                |
+| `disabledSelectedSizeText` | public  | `boolean`      | `false`                                                                                                                                                                                                                                                                                                                                                                                                       | If true, selected size text is disabled                       |                |
+| `selectedSize`             |         |                |                                                                                                                                                                                                                                                                                                                                                                                                               |                                                               |                |
+| `selectedDetail`           |         |                |                                                                                                                                                                                                                                                                                                                                                                                                               |                                                               |                |
+| `computedStyleWidth`       |         |                |                                                                                                                                                                                                                                                                                                                                                                                                               |                                                               |                |
+| `_toolbarTpl`              |         |                |                                                                                                                                                                                                                                                                                                                                                                                                               |                                                               |                |
+| `_visualTextTpl`           |         |                |                                                                                                                                                                                                                                                                                                                                                                                                               |                                                               |                |
+| `_onResize`                |         |                |                                                                                                                                                                                                                                                                                                                                                                                                               |                                                               |                |
 
 ##### Methods
 
-| Name           | Privacy | Description | Parameters | Return | Inherited From |
-| -------------- | ------- | ----------- | ---------- | ------ | -------------- |
-| `_setSelected` |         |             | `ev`       |        |                |
+| Name           | Privacy | Description | Parameters  | Return | Inherited From |
+| -------------- | ------- | ----------- | ----------- | ------ | -------------- |
+| `_setSelected` |         |             | `ev: Event` |        |                |
 
 ##### Attributes
 
@@ -257,9 +294,9 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 
 | Kind | Name                                | Declaration                       | Module                                   | Package |
 | ---- | ----------------------------------- | --------------------------------- | ---------------------------------------- | ------- |
-| `js` | `BlockquoteBaseEmbeddedWebviewSize` | BlockquoteBaseEmbeddedWebviewSize | src/BlockquoteBaseEmbeddedWebviewSize.js |         |
+| `js` | `BlockquoteBaseEmbeddedWebviewSize` | BlockquoteBaseEmbeddedWebviewSize | src/BlockquoteBaseEmbeddedWebviewSize.ts |         |
 
-### `src/index.js`:
+### `src/index.ts`:
 
 #### Exports
 
@@ -270,7 +307,7 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 | `js` | `BlockquoteBaseEmbeddedWebviewResize`  | BlockquoteBaseEmbeddedWebviewResize  | ./BlockquoteBaseEmbeddedWebviewResize.js  |         |
 | `js` | `BlockquoteBaseEmbeddedWebviewElement` | BlockquoteBaseEmbeddedWebviewElement | ./BlockquoteBaseEmbeddedWebviewElement.js |         |
 
-### `src/define/blockquote-base-embedded-webview-element.js`:
+### `src/define/blockquote-base-embedded-webview-element.ts`:
 
 #### Exports
 
@@ -278,7 +315,7 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 | --------------------------- | ------------------------------------------ | ------------------------------------ | -------------------------------------------- | ------- |
 | `custom-element-definition` | `blockquote-base-embedded-webview-element` | BlockquoteBaseEmbeddedWebviewElement | /src/BlockquoteBaseEmbeddedWebviewElement.js |         |
 
-### `src/define/blockquote-base-embedded-webview-resize.js`:
+### `src/define/blockquote-base-embedded-webview-resize.ts`:
 
 #### Exports
 
@@ -286,7 +323,7 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 | --------------------------- | ----------------------------------------- | ----------------------------------- | ------------------------------------------- | ------- |
 | `custom-element-definition` | `blockquote-base-embedded-webview-resize` | BlockquoteBaseEmbeddedWebviewResize | /src/BlockquoteBaseEmbeddedWebviewResize.js |         |
 
-### `src/define/blockquote-base-embedded-webview-size.js`:
+### `src/define/blockquote-base-embedded-webview-size.ts`:
 
 #### Exports
 
@@ -294,7 +331,7 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 | --------------------------- | --------------------------------------- | --------------------------------- | ----------------------------------------- | ------- |
 | `custom-element-definition` | `blockquote-base-embedded-webview-size` | BlockquoteBaseEmbeddedWebviewSize | /src/BlockquoteBaseEmbeddedWebviewSize.js |         |
 
-### `src/define/blockquote-base-embedded-webview.js`:
+### `src/define/blockquote-base-embedded-webview.ts`:
 
 #### Exports
 
@@ -302,7 +339,7 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 | --------------------------- | ---------------------------------- | ----------------------------- | -------------------------------------- | ------- |
 | `custom-element-definition` | `blockquote-base-embedded-webview` | BlockquoteBaseEmbeddedWebview | /src/BlockquoteBaseEmbeddedWebview\.js |         |
 
-### `src/styles/blockquote-base-embedded-webview-element-styles.css.js`:
+### `src/styles/blockquote-base-embedded-webview-element-styles.css.ts`:
 
 #### Variables
 
@@ -316,9 +353,9 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 
 | Kind | Name     | Declaration | Module                                                            | Package |
 | ---- | -------- | ----------- | ----------------------------------------------------------------- | ------- |
-| `js` | `styles` | styles      | src/styles/blockquote-base-embedded-webview-element-styles.css.js |         |
+| `js` | `styles` | styles      | src/styles/blockquote-base-embedded-webview-element-styles.css.ts |         |
 
-### `src/styles/blockquote-base-embedded-webview-resize-styles.css.js`:
+### `src/styles/blockquote-base-embedded-webview-resize-styles.css.ts`:
 
 #### Variables
 
@@ -332,9 +369,9 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 
 | Kind | Name     | Declaration | Module                                                           | Package |
 | ---- | -------- | ----------- | ---------------------------------------------------------------- | ------- |
-| `js` | `styles` | styles      | src/styles/blockquote-base-embedded-webview-resize-styles.css.js |         |
+| `js` | `styles` | styles      | src/styles/blockquote-base-embedded-webview-resize-styles.css.ts |         |
 
-### `src/styles/blockquote-base-embedded-webview-size-styles.css.js`:
+### `src/styles/blockquote-base-embedded-webview-size-styles.css.ts`:
 
 #### Variables
 
@@ -348,9 +385,9 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 
 | Kind | Name     | Declaration | Module                                                         | Package |
 | ---- | -------- | ----------- | -------------------------------------------------------------- | ------- |
-| `js` | `styles` | styles      | src/styles/blockquote-base-embedded-webview-size-styles.css.js |         |
+| `js` | `styles` | styles      | src/styles/blockquote-base-embedded-webview-size-styles.css.ts |         |
 
-### `src/styles/blockquote-base-embedded-webview-styles.css.js`:
+### `src/styles/blockquote-base-embedded-webview-styles.css.ts`:
 
 #### Variables
 
@@ -364,4 +401,4 @@ It will create a `select` tag with the provided demo HTML files and add the `[da
 
 | Kind | Name     | Declaration | Module                                                    | Package |
 | ---- | -------- | ----------- | --------------------------------------------------------- | ------- |
-| `js` | `styles` | styles      | src/styles/blockquote-base-embedded-webview-styles.css.js |         |
+| `js` | `styles` | styles      | src/styles/blockquote-base-embedded-webview-styles.css.ts |         |

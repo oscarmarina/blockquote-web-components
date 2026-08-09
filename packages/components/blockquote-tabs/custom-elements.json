@@ -4,76 +4,13 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "src/BlockquoteTabs.js",
+      "path": "src/BlockquoteTabs.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n[ARIA patterns](https://www.w3.org/WAI/ARIA/apg/patterns/)\n\nTabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time. Each tab panel has an associated tab element, that when activated, displays the panel. The list of tab elements is arranged along one edge of the currently displayed panel, most commonly the top edge.\n\n### Demo\n\n[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/components/blockquote-tabs)\n\n### Usage\n\n```html\n<blockquote-tabs label=\"List of tabs\">\n  <blockquote-tab id=\"tab-1\">Tab 1</blockquote-tab>\n  <blockquote-tab id=\"tab-2\">Tab 2</blockquote-tab>\n  <blockquote-tab id=\"tab-3\">Tab 3</blockquote-tab>\n  <blockquote-tab id=\"tab-4\">Tab 4</blockquote-tab>\n  <blockquote-tab id=\"tab-5\">Tab 5</blockquote-tab>\n  <blockquote-tab id=\"tab-6\">Tab 6</blockquote-tab>\n  <blockquote-tab id=\"tab-7\">Tab 7</blockquote-tab>\n  <blockquote-tab id=\"tab-8\">Tab 8</blockquote-tab>\n  <blockquote-tab id=\"tab-9\">Tab 9</blockquote-tab>\n  <blockquote-tab id=\"tab-10\">Tab 10</blockquote-tab>\n  <blockquote-tabpanel aria-labelledby=\"tab-1\"><p>Panel 1</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-2\"><p>Panel 2</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-3\"><p>Panel 3</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-4\"><p>Panel 4</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-5\"><p>Panel 5</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-6\"><p>Panel 6</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-7\"><p>Panel 7</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-8\"><p>Panel 8</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-9\"><p>Panel 9</p></blockquote-tabpanel>\n  <blockquote-tabpanel aria-labelledby=\"tab-10\"><p>Panel 10</p></blockquote-tabpanel>\n</blockquote-tabs>\n```",
           "name": "BlockquoteTabs",
           "members": [
-            {
-              "kind": "field",
-              "name": "_selectedTab",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "_onSlotChanges",
-              "parameters": [
-                {
-                  "name": "ev",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "_scrollContentTpl",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "_tablistTpl",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "_separatorTpl",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "_indicatorsTpl",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "_holdTpl",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "_tabpanelTpl",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "_scrollEdge",
-              "parameters": [
-                {
-                  "name": "ev",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "_onSelectionCommit"
-            },
             {
               "kind": "field",
               "name": "autofocus",
@@ -135,7 +72,7 @@
               "kind": "field",
               "name": "_tabList",
               "type": {
-                "text": "array"
+                "text": "HTMLElement[]"
               },
               "default": "[]"
             },
@@ -143,32 +80,112 @@
               "kind": "field",
               "name": "_tabpanelList",
               "type": {
-                "text": "array"
+                "text": "HTMLElement[]"
               },
               "default": "[]"
             },
             {
               "kind": "field",
-              "name": "_scrollContentRef"
+              "name": "_scrollContentRef",
+              "type": {
+                "text": "Ref<HTMLDivElement>"
+              }
             },
             {
               "kind": "field",
-              "name": "_tablistRef"
+              "name": "_tablistRef",
+              "type": {
+                "text": "Ref<HTMLDivElement>"
+              }
             },
             {
               "kind": "field",
               "name": "_selection",
+              "type": {
+                "text": "SelectionController"
+              },
               "default": "new SelectionController(this)"
             },
             {
               "kind": "field",
               "name": "_focusGroup",
+              "type": {
+                "text": "FocusGroupController"
+              },
               "default": "new FocusGroupController(this, { getItems: () => this._tabList, getSelectedIndex: () => this._selection.selectedIndex, getOrientation: () => (this.orientation === 'vertical' ? 'vertical' : 'horizontal'), getActivation: () => (this.activation === 'manual' ? 'manual' : 'auto'), onSelect: (index) => { this.selected = index + 1; }, onReveal: (tab) => { this._scroll.scrollIntoView(tab); }, })"
             },
             {
               "kind": "field",
               "name": "_scroll",
+              "type": {
+                "text": "ScrollController"
+              },
               "default": "new ScrollController(this, { getScrollContent: () => this._scrollContentRef.value, getIndicators: () => this._indicators, getSelectedTab: () => this._selectedTab, getOrientation: () => (this.orientation === 'vertical' ? 'vertical' : 'horizontal'), })"
+            },
+            {
+              "kind": "field",
+              "name": "_indicators",
+              "type": {
+                "text": "NodeListOf<Element> | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_selectedTab",
+              "type": {
+                "text": "HTMLElement | undefined"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_onSlotChanges"
+            },
+            {
+              "kind": "field",
+              "name": "_scrollContentTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_tablistTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_separatorTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_indicatorsTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_holdTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_tabpanelTpl",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "_scrollEdge",
+              "parameters": [
+                {
+                  "name": "ev",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_onSelectionCommit"
             }
           ],
           "events": [
@@ -243,14 +260,14 @@
           "name": "BlockquoteTabs",
           "declaration": {
             "name": "BlockquoteTabs",
-            "module": "src/BlockquoteTabs.js"
+            "module": "src/BlockquoteTabs.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/index.js",
+      "path": "src/index.ts",
       "declarations": [],
       "exports": [
         {
@@ -281,7 +298,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/controllers/FocusGroupController.js",
+      "path": "src/controllers/FocusGroupController.ts",
       "declarations": [
         {
           "kind": "class",
@@ -293,14 +310,17 @@
               "name": "#container",
               "privacy": "private",
               "type": {
-                "text": "null"
+                "text": "HTMLElement | null"
               },
               "default": "null"
             },
             {
               "kind": "field",
               "name": "#engine",
-              "privacy": "private"
+              "privacy": "private",
+              "type": {
+                "text": "NativeFocusgroupEngine | RovingTabindexEngine"
+              }
             },
             {
               "kind": "field",
@@ -349,6 +369,14 @@
             },
             {
               "kind": "field",
+              "name": "host",
+              "type": {
+                "text": "FocusGroupControllerHost"
+              },
+              "default": "host"
+            },
+            {
+              "kind": "field",
               "name": "entryItem",
               "readonly": true
             },
@@ -366,10 +394,10 @@
               "parameters": [
                 {
                   "name": "container",
-                  "description": "the tablist container in the host's shadow DOM",
                   "type": {
-                    "text": "HTMLElement"
-                  }
+                    "text": "HTMLElement | undefined"
+                  },
+                  "description": "the tablist container in the host's shadow DOM"
                 }
               ]
             },
@@ -397,11 +425,6 @@
               "kind": "field",
               "name": "#onActivationKeyDown",
               "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "host",
-              "default": "host"
             }
           ]
         }
@@ -412,14 +435,14 @@
           "name": "FocusGroupController",
           "declaration": {
             "name": "FocusGroupController",
-            "module": "src/controllers/FocusGroupController.js"
+            "module": "src/controllers/FocusGroupController.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/controllers/NativeFocusgroupEngine.js",
+      "path": "src/controllers/NativeFocusgroupEngine.ts",
       "declarations": [
         {
           "kind": "class",
@@ -431,7 +454,7 @@
               "name": "#container",
               "privacy": "private",
               "type": {
-                "text": "null"
+                "text": "HTMLElement | null"
               },
               "default": "null"
             },
@@ -460,7 +483,7 @@
                 {
                   "name": "container",
                   "type": {
-                    "text": "HTMLElement"
+                    "text": "HTMLElement | undefined"
                   }
                 }
               ]
@@ -501,14 +524,14 @@
           "name": "NativeFocusgroupEngine",
           "declaration": {
             "name": "NativeFocusgroupEngine",
-            "module": "src/controllers/NativeFocusgroupEngine.js"
+            "module": "src/controllers/NativeFocusgroupEngine.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/controllers/RovingTabindexEngine.js",
+      "path": "src/controllers/RovingTabindexEngine.ts",
       "declarations": [
         {
           "kind": "class",
@@ -520,7 +543,7 @@
               "name": "#container",
               "privacy": "private",
               "type": {
-                "text": "null"
+                "text": "HTMLElement | null"
               },
               "default": "null"
             },
@@ -549,7 +572,7 @@
                 {
                   "name": "container",
                   "type": {
-                    "text": "HTMLElement"
+                    "text": "HTMLElement | undefined"
                   }
                 }
               ]
@@ -580,6 +603,11 @@
               "kind": "method",
               "name": "#nextIndex",
               "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "number | null"
+                }
+              },
               "parameters": [
                 {
                   "name": "currentIndex",
@@ -610,14 +638,14 @@
           "name": "RovingTabindexEngine",
           "declaration": {
             "name": "RovingTabindexEngine",
-            "module": "src/controllers/RovingTabindexEngine.js"
+            "module": "src/controllers/RovingTabindexEngine.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/controllers/ScrollController.js",
+      "path": "src/controllers/ScrollController.ts",
       "declarations": [
         {
           "kind": "class",
@@ -634,85 +662,43 @@
               "default": "false"
             },
             {
-              "kind": "method",
-              "name": "scrollEdge",
-              "parameters": [
-                {
-                  "name": "target",
-                  "default": "this.getScrollContent()",
-                  "optional": true,
-                  "type": {
-                    "text": "HTMLElement"
-                  }
-                }
-              ],
-              "description": "Updates scroll edge indicators."
-            },
-            {
-              "kind": "method",
-              "name": "scrollIntoView",
-              "parameters": [
-                {
-                  "name": "tab",
-                  "default": "this.getSelectedTab()",
-                  "optional": true,
-                  "type": {
-                    "text": "HTMLElement"
-                  }
-                }
-              ],
-              "description": "Schedules a reveal-into-view operation for the given tab item."
-            },
-            {
-              "kind": "method",
-              "name": "scrollIntoViewWithOffset",
-              "parameters": [
-                {
-                  "name": "tabScroller",
-                  "default": "this.getSelectedTab()",
-                  "optional": true,
-                  "type": {
-                    "text": "HTMLElement"
-                  }
-                },
-                {
-                  "name": "behavior",
-                  "default": "this.#observeScrollBehavior ? 'smooth' : 'auto'",
-                  "optional": true,
-                  "type": {
-                    "text": "ScrollBehavior"
-                  }
-                }
-              ],
-              "description": "Calculates offsets and scrolls the tab into view if overflowing."
-            },
-            {
-              "kind": "method",
-              "name": "onResizeChange"
-            },
-            {
               "kind": "field",
               "name": "host",
+              "type": {
+                "text": "ReactiveControllerHost & HTMLElement"
+              },
               "default": "host"
             },
             {
               "kind": "field",
               "name": "getScrollContent",
+              "type": {
+                "text": "() => HTMLElement | undefined"
+              },
               "default": "getScrollContent"
             },
             {
               "kind": "field",
               "name": "getIndicators",
+              "type": {
+                "text": "() => NodeListOf<Element> | HTMLElement[] | undefined"
+              },
               "default": "getIndicators"
             },
             {
               "kind": "field",
               "name": "getSelectedTab",
+              "type": {
+                "text": "() => HTMLElement | undefined"
+              },
               "default": "getSelectedTab"
             },
             {
               "kind": "field",
-              "name": "getOrientation"
+              "name": "getOrientation",
+              "type": {
+                "text": "() => 'horizontal' | 'vertical'"
+              }
             },
             {
               "kind": "field",
@@ -729,6 +715,59 @@
                 "text": "boolean"
               },
               "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "scrollEdge",
+              "parameters": [
+                {
+                  "name": "target",
+                  "default": "this.getScrollContent()",
+                  "type": {
+                    "text": "HTMLElement | undefined"
+                  }
+                }
+              ],
+              "description": "Updates scroll edge indicators."
+            },
+            {
+              "kind": "method",
+              "name": "scrollIntoView",
+              "parameters": [
+                {
+                  "name": "tab",
+                  "default": "this.getSelectedTab()",
+                  "type": {
+                    "text": "HTMLElement | undefined"
+                  }
+                }
+              ],
+              "description": "Schedules a reveal-into-view operation for the given tab item."
+            },
+            {
+              "kind": "method",
+              "name": "scrollIntoViewWithOffset",
+              "parameters": [
+                {
+                  "name": "tabScroller",
+                  "default": "this.getSelectedTab()",
+                  "type": {
+                    "text": "HTMLElement | undefined"
+                  }
+                },
+                {
+                  "name": "behavior",
+                  "default": "this.#observeScrollBehavior ? 'smooth' : 'auto'",
+                  "type": {
+                    "text": "ScrollBehavior"
+                  }
+                }
+              ],
+              "description": "Calculates offsets and scrolls the tab into view if overflowing."
+            },
+            {
+              "kind": "method",
+              "name": "onResizeChange"
             }
           ]
         }
@@ -739,14 +778,14 @@
           "name": "ScrollController",
           "declaration": {
             "name": "ScrollController",
-            "module": "src/controllers/ScrollController.js"
+            "module": "src/controllers/ScrollController.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/controllers/SelectionController.js",
+      "path": "src/controllers/SelectionController.ts",
       "declarations": [
         {
           "kind": "class",
@@ -758,7 +797,7 @@
               "name": "#tabs",
               "privacy": "private",
               "type": {
-                "text": "HTMLElement[]"
+                "text": "SelectionItem[]"
               },
               "default": "[]"
             },
@@ -767,7 +806,7 @@
               "name": "#tabpanels",
               "privacy": "private",
               "type": {
-                "text": "HTMLElement[]"
+                "text": "SelectionItem[]"
               },
               "default": "[]"
             },
@@ -784,11 +823,16 @@
               "kind": "field",
               "name": "#warnedMismatches",
               "privacy": "private",
-              "default": "new Set()",
-              "description": "mismatches already surfaced (each one warns once)",
+              "default": "new Set<string>()",
+              "description": "mismatches already surfaced (each one warns once)"
+            },
+            {
+              "kind": "field",
+              "name": "host",
               "type": {
-                "text": "Set<string>"
-              }
+                "text": "SelectionControllerHost"
+              },
+              "default": "host"
             },
             {
               "kind": "field",
@@ -822,7 +866,6 @@
                 {
                   "name": "tabs",
                   "default": "[]",
-                  "optional": true,
                   "type": {
                     "text": "HTMLElement[]"
                   }
@@ -830,7 +873,6 @@
                 {
                   "name": "tabpanels",
                   "default": "[]",
-                  "optional": true,
                   "type": {
                     "text": "HTMLElement[]"
                   }
@@ -887,11 +929,6 @@
                   }
                 }
               ]
-            },
-            {
-              "kind": "field",
-              "name": "host",
-              "default": "host"
             }
           ]
         }
@@ -902,18 +939,23 @@
           "name": "SelectionController",
           "declaration": {
             "name": "SelectionController",
-            "module": "src/controllers/SelectionController.js"
+            "module": "src/controllers/SelectionController.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/controllers/focusgroup-capability.js",
+      "path": "src/controllers/focusgroup-capability.ts",
       "declarations": [
         {
           "kind": "function",
           "name": "supportsFocusgroup",
+          "return": {
+            "type": {
+              "text": "boolean"
+            }
+          },
           "description": "Capability detection for the Open UI `focusgroup` attribute.\n\nThe explainer specifies IDL reflection as the feature-detection surface:\n\n```webidl\npartial interface mixin HTMLOrSVGElement {\n  [SameObject, PutForwards=value, Reflect] readonly attribute DOMTokenList focusGroup;\n  [CEReactions, Reflect] attribute boolean focusGroupStart;\n};\n```\n\nNo UA sniffing. Unknown or absent reflection means `false`, which fails\nsafe: the component stays on the JS fallback engine until a browser\npositively confirms support."
         },
         {
@@ -936,7 +978,7 @@
           "name": "supportsFocusgroup",
           "declaration": {
             "name": "supportsFocusgroup",
-            "module": "src/controllers/focusgroup-capability.js"
+            "module": "src/controllers/focusgroup-capability.ts"
           }
         },
         {
@@ -944,24 +986,26 @@
           "name": "setFocusgroupOverride",
           "declaration": {
             "name": "setFocusgroupOverride",
-            "module": "src/controllers/focusgroup-capability.js"
+            "module": "src/controllers/focusgroup-capability.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/controllers/focusgroup-tokens.js",
+      "path": "src/controllers/focusgroup-tokens.ts",
       "declarations": [
         {
           "kind": "function",
           "name": "toFocusgroupTokens",
+          "return": {
+            "type": {
+              "text": "string"
+            }
+          },
           "parameters": [
             {
-              "name": "{behavior, axis, wrap, memory = true}"
-            },
-            {
-              "name": "spec",
+              "name": "{behavior, axis, wrap, memory = true}",
               "type": {
                 "text": "FocusGroupSpec"
               }
@@ -976,14 +1020,14 @@
           "name": "toFocusgroupTokens",
           "declaration": {
             "name": "toFocusgroupTokens",
-            "module": "src/controllers/focusgroup-tokens.js"
+            "module": "src/controllers/focusgroup-tokens.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/define/blockquote-tab.js",
+      "path": "src/define/blockquote-tab.ts",
       "declarations": [],
       "exports": [
         {
@@ -998,7 +1042,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/define/blockquote-tabpanel.js",
+      "path": "src/define/blockquote-tabpanel.ts",
       "declarations": [],
       "exports": [
         {
@@ -1013,7 +1057,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/define/blockquote-tabs.js",
+      "path": "src/define/blockquote-tabs.ts",
       "declarations": [],
       "exports": [
         {
@@ -1028,7 +1072,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/styles/blockquote-tabs-styles.css.js",
+      "path": "src/styles/blockquote-tabs-styles.css.ts",
       "declarations": [
         {
           "kind": "variable",
@@ -1042,14 +1086,14 @@
           "name": "styles",
           "declaration": {
             "name": "styles",
-            "module": "src/styles/blockquote-tabs-styles.css.js"
+            "module": "src/styles/blockquote-tabs-styles.css.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/tab/BlockquoteTab.js",
+      "path": "src/tab/BlockquoteTab.ts",
       "declarations": [
         {
           "kind": "class",
@@ -1066,8 +1110,36 @@
               "default": "{ role: 'tab', slot: 'tab', tabindex: 0, }"
             },
             {
+              "kind": "field",
+              "name": "selected",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Whether or not the tab is `selected`.",
+              "default": "false",
+              "attribute": "selected"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Whether or not the tab is `disabled`.",
+              "default": "false",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
               "kind": "method",
               "name": "_shouldSyncState",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
               "parameters": [
                 {
                   "name": "props",
@@ -1076,12 +1148,7 @@
                   }
                 }
               ],
-              "description": "Returns whether the component state needs to be synchronized.",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              }
+              "description": "Returns whether the component state needs to be synchronized."
             },
             {
               "kind": "method",
@@ -1109,7 +1176,7 @@
                   "name": "attributes",
                   "default": "{}",
                   "type": {
-                    "text": "Record<string, *>"
+                    "text": "Record<string, string | number | boolean | null | undefined>"
                   }
                 }
               ],
@@ -1117,38 +1184,7 @@
             },
             {
               "kind": "field",
-              "name": "_onSlotChanges",
-              "parameters": [
-                {
-                  "name": "ev",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "selected",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "Whether or not the tab is `selected`.",
-              "default": "false",
-              "attribute": "selected"
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "Whether or not the tab is `disabled`.",
-              "default": "false",
-              "attribute": "disabled",
-              "reflects": true
+              "name": "_onSlotChanges"
             }
           ],
           "attributes": [
@@ -1191,14 +1227,14 @@
           "name": "BlockquoteTab",
           "declaration": {
             "name": "BlockquoteTab",
-            "module": "src/tab/BlockquoteTab.js"
+            "module": "src/tab/BlockquoteTab.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/tabpanel/BlockquoteTabPanel.js",
+      "path": "src/tabpanel/BlockquoteTabPanel.ts",
       "declarations": [
         {
           "kind": "class",
@@ -1215,8 +1251,24 @@
               "default": "{ role: 'tabpanel', slot: 'tabpanel', tabindex: 0, }"
             },
             {
+              "kind": "field",
+              "name": "selected",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Whether or not the tab panel is `selected`.",
+              "default": "false",
+              "attribute": "selected"
+            },
+            {
               "kind": "method",
               "name": "_shouldSyncState",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
               "parameters": [
                 {
                   "name": "props",
@@ -1225,12 +1277,7 @@
                   }
                 }
               ],
-              "description": "Returns whether the component state needs to be synchronized.",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              }
+              "description": "Returns whether the component state needs to be synchronized."
             },
             {
               "kind": "method",
@@ -1250,22 +1297,11 @@
                   "name": "attributes",
                   "default": "{}",
                   "type": {
-                    "text": "Record<string, *>"
+                    "text": "Record<string, string | number | boolean | null | undefined>"
                   }
                 }
               ],
               "description": "Sets multiple attributes on the host element."
-            },
-            {
-              "kind": "field",
-              "name": "selected",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "Whether or not the tab panel is `selected`.",
-              "default": "false",
-              "attribute": "selected"
             }
           ],
           "attributes": [
@@ -1293,14 +1329,14 @@
           "name": "BlockquoteTabPanel",
           "declaration": {
             "name": "BlockquoteTabPanel",
-            "module": "src/tabpanel/BlockquoteTabPanel.js"
+            "module": "src/tabpanel/BlockquoteTabPanel.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/tab/styles/blockquote-tab-styles.css.js",
+      "path": "src/tab/styles/blockquote-tab-styles.css.ts",
       "declarations": [
         {
           "kind": "variable",
@@ -1314,14 +1350,14 @@
           "name": "styles",
           "declaration": {
             "name": "styles",
-            "module": "src/tab/styles/blockquote-tab-styles.css.js"
+            "module": "src/tab/styles/blockquote-tab-styles.css.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/tabpanel/styles/blockquote-tabpanel-styles.css.js",
+      "path": "src/tabpanel/styles/blockquote-tabpanel-styles.css.ts",
       "declarations": [
         {
           "kind": "variable",
@@ -1335,7 +1371,7 @@
           "name": "styles",
           "declaration": {
             "name": "styles",
-            "module": "src/tabpanel/styles/blockquote-tabpanel-styles.css.js"
+            "module": "src/tabpanel/styles/blockquote-tabpanel-styles.css.ts"
           }
         }
       ]

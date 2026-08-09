@@ -4,7 +4,7 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "src/BaseContextMetaElement.js",
+      "path": "src/BaseContextMetaElement.ts",
       "declarations": [
         {
           "kind": "class",
@@ -25,7 +25,7 @@
           "name": "BaseContextMetaElement",
           "declaration": {
             "name": "BaseContextMetaElement",
-            "module": "src/BaseContextMetaElement.js"
+            "module": "src/BaseContextMetaElement.ts"
           }
         },
         {
@@ -33,14 +33,14 @@
           "name": "base-context-meta",
           "declaration": {
             "name": "BaseContextMetaElement",
-            "module": "src/BaseContextMetaElement.js"
+            "module": "src/BaseContextMetaElement.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/BlockquoteControllerContextMeta.js",
+      "path": "src/BlockquoteControllerContextMeta.ts",
       "declarations": [
         {
           "kind": "variable",
@@ -53,7 +53,62 @@
           "members": [
             {
               "kind": "field",
+              "name": "host",
+              "type": {
+                "text": "HostElement"
+              },
+              "privacy": "private",
+              "default": "host"
+            },
+            {
+              "kind": "field",
+              "name": "context",
+              "type": {
+                "text": "TMeta"
+              },
+              "privacy": "private",
+              "default": "createContext(context)"
+            },
+            {
+              "kind": "field",
+              "name": "initialValue",
+              "type": {
+                "text": "ContextType<TMeta> | undefined"
+              },
+              "privacy": "private",
+              "default": "initialValue"
+            },
+            {
+              "kind": "field",
+              "name": "callback",
+              "type": {
+                "text": "(value: ContextType<TMeta>, dispose?: () => void) => void | undefined"
+              },
+              "privacy": "private",
+              "default": "callback"
+            },
+            {
+              "kind": "field",
+              "name": "_contextMetaProvider",
+              "type": {
+                "text": "ContextProviderHs<TMeta, HostElement> | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_contextMetaConsumer",
+              "type": {
+                "text": "ContextConsumer<TMeta, HostElement> | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
               "name": "value",
+              "type": {
+                "text": "ContextType<TMeta> | undefined"
+              },
               "readonly": true
             },
             {
@@ -63,41 +118,18 @@
                 {
                   "name": "v",
                   "type": {
-                    "text": "any"
+                    "text": "ContextType<TMeta>"
                   }
                 },
                 {
                   "name": "force",
-                  "default": "false",
-                  "optional": true,
-                  "type": {
-                    "text": "boolean"
-                  }
+                  "default": "false"
                 }
               ]
             },
             {
               "kind": "method",
               "name": "hostConnected"
-            },
-            {
-              "kind": "field",
-              "name": "context"
-            },
-            {
-              "kind": "field",
-              "name": "initialValue",
-              "default": "initialValue"
-            },
-            {
-              "kind": "field",
-              "name": "callback",
-              "default": "callback"
-            },
-            {
-              "kind": "field",
-              "name": "host",
-              "default": "host"
             }
           ]
         }
@@ -108,7 +140,7 @@
           "name": "contextMetaSymbol",
           "declaration": {
             "name": "contextMetaSymbol",
-            "module": "src/BlockquoteControllerContextMeta.js"
+            "module": "src/BlockquoteControllerContextMeta.ts"
           }
         },
         {
@@ -116,14 +148,14 @@
           "name": "BlockquoteControllerContextMeta",
           "declaration": {
             "name": "ContextMeta",
-            "module": "src/BlockquoteControllerContextMeta.js"
+            "module": "src/BlockquoteControllerContextMeta.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/index.js",
+      "path": "src/index.ts",
       "declarations": [],
       "exports": [
         {
@@ -162,27 +194,35 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/directives/cache-context-meta-provider.js",
+      "path": "src/directives/cache-context-meta-provider.ts",
       "declarations": [
         {
           "kind": "function",
           "name": "cacheContextMetaProvider",
+          "return": {
+            "type": {
+              "text": "ContextMetaInstance"
+            }
+          },
           "parameters": [
             {
               "name": "element",
-              "description": "element",
               "type": {
-                "text": "HTMLElement|*"
+                "text": "HTMLElement"
+              },
+              "description": "element"
+            },
+            {
+              "name": "{context = contextMetaSymbol, initialValue}",
+              "type": {
+                "text": "CacheOptions"
               }
             },
             {
-              "name": "{context = contextMetaSymbol, initialValue}"
-            },
-            {
               "description": "options for the context provider.",
-              "name": "arg",
+              "name": "options",
               "type": {
-                "text": "{\n *   context?: *,\n *   initialValue?: ContextType<*>,\n * }"
+                "text": "{\n *   context?: unknown,\n *   initialValue?: ContextType<Context<unknown, unknown>>,\n * }"
               }
             }
           ],
@@ -195,14 +235,14 @@
           "name": "cacheContextMetaProvider",
           "declaration": {
             "name": "cacheContextMetaProvider",
-            "module": "src/directives/cache-context-meta-provider.js"
+            "module": "src/directives/cache-context-meta-provider.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/directives/context-meta-provider.js",
+      "path": "src/directives/context-meta-provider.ts",
       "declarations": [
         {
           "kind": "class",
@@ -210,7 +250,7 @@
           "name": "README",
           "superclass": {
             "name": "Text",
-            "module": "src/directives/context-meta-provider.js"
+            "module": "src/directives/context-meta-provider.ts"
           }
         },
         {
@@ -224,7 +264,7 @@
           "name": "README",
           "declaration": {
             "name": "README",
-            "module": "src/directives/context-meta-provider.js"
+            "module": "src/directives/context-meta-provider.ts"
           }
         },
         {
@@ -232,7 +272,7 @@
           "name": "contextMetaProvider",
           "declaration": {
             "name": "contextMetaProvider",
-            "module": "src/directives/context-meta-provider.js"
+            "module": "src/directives/context-meta-provider.ts"
           }
         }
       ]

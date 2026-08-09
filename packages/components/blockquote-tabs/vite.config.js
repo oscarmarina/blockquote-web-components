@@ -1,4 +1,5 @@
-import {defineConfig} from 'vitest/config';
+/// <reference types="vitest/config" />
+import {defineConfig, defaultClientConditions} from 'vite';
 import {playwright} from '@vitest/browser-playwright';
 import {globSync} from 'tinyglobby';
 import {viteStaticCopy} from 'vite-plugin-static-copy';
@@ -96,6 +97,9 @@ export default defineConfig(({command}) => ({
   plugins: command === 'build' ? [viteStaticCopy(copyConfig), totalBundlesize()] : [],
   optimizeDeps: {
     exclude: ['lit', 'lit-html'],
+  },
+  resolve: {
+    conditions: ['workspaces', ...defaultClientConditions],
   },
   build: {
     outDir: OUT_DIR,

@@ -77,7 +77,7 @@ render() {
 ```
 
 
-### `src/BlockquoteDirectiveSvgToDataImage.js`:
+### `src/BlockquoteDirectiveSvgToDataImage.ts`:
 
 #### Variables
 
@@ -91,10 +91,10 @@ render() {
 
 | Kind | Name                                | Declaration                       | Module                                   | Package |
 | ---- | ----------------------------------- | --------------------------------- | ---------------------------------------- | ------- |
-| `js` | `README`                            | README                            | src/BlockquoteDirectiveSvgToDataImage.js |         |
-| `js` | `blockquoteDirectiveSvgToDataImage` | blockquoteDirectiveSvgToDataImage | src/BlockquoteDirectiveSvgToDataImage.js |         |
+| `js` | `README`                            | README                            | src/BlockquoteDirectiveSvgToDataImage.ts |         |
+| `js` | `blockquoteDirectiveSvgToDataImage` | blockquoteDirectiveSvgToDataImage | src/BlockquoteDirectiveSvgToDataImage.ts |         |
 
-### `src/index.js`:
+### `src/index.ts`:
 
 #### Exports
 

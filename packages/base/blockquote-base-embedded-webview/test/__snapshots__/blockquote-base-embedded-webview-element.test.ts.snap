@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BlockquoteBaseEmbeddedWebviewElement > Default > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
+"<blockquote-base-embedded-webview-element
+  embedded-title="test"
+  src="/test/test.html"
+>
+  <iframe
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen=""
+    slot="embedded"
+    src="/test/test.html"
+    style="opacity: 0;"
+    title="test"
+  >
+  </iframe>
+</blockquote-base-embedded-webview-element>
+"
+`;
+
+exports[`BlockquoteBaseEmbeddedWebviewElement > Default > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
+"<slot name="embedded">
+</slot>
+"
+`;

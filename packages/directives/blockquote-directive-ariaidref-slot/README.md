@@ -51,7 +51,7 @@ class MyDialog extends LitElement {
 ```
 
 
-### `src/BlockquoteDirectiveAriaidrefSlot.js`:
+### `src/BlockquoteDirectiveAriaidrefSlot.ts`:
 
 #### class: `README`
 
@@ -69,10 +69,10 @@ class MyDialog extends LitElement {
 
 | Kind | Name                               | Declaration                      | Module                                  | Package |
 | ---- | ---------------------------------- | -------------------------------- | --------------------------------------- | ------- |
-| `js` | `README`                           | README                           | src/BlockquoteDirectiveAriaidrefSlot.js |         |
-| `js` | `blockquoteDirectiveAriaidrefSlot` | blockquoteDirectiveAriaidrefSlot | src/BlockquoteDirectiveAriaidrefSlot.js |         |
+| `js` | `README`                           | README                           | src/BlockquoteDirectiveAriaidrefSlot.ts |         |
+| `js` | `blockquoteDirectiveAriaidrefSlot` | blockquoteDirectiveAriaidrefSlot | src/BlockquoteDirectiveAriaidrefSlot.ts |         |
 
-### `src/index.js`:
+### `src/index.ts`:
 
 #### Exports
 

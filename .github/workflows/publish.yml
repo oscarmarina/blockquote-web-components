@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 env:
   NODE_VERSION: 26.x
@@ -38,10 +39,15 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: https://registry.npmjs.org
-          cache: npm
+          package-manager-cache: false
 
       - name: Install npm
-        run: npm install --global npm@12.x
+        run: npm install --global npm@12
+
+      - name: Show tool versions
+        run: |
+          node --version
+          npm --version
 
       - name: Install dependencies
         run: npm ci
@@ -49,7 +55,8 @@ jobs:
       - name: Check for skip lerna in commit message
         run: |
           COMMIT_MESSAGE=$(git log -1 --pretty=%B)
-          echo "Commit message: $COMMIT_MESSAGE"
+          echo "Commit message:"
+          echo "$COMMIT_MESSAGE"
 
           if [[ "$COMMIT_MESSAGE" == *"[skip lerna]"* ]]; then
             echo "SKIP_LERNA=true" >> "$GITHUB_ENV"
@@ -67,8 +74,20 @@ jobs:
         if: env.SKIP_LERNA == 'false'
         run: npm exec -- lerna version --yes
 
+      - name: Show git status
+        if: env.SKIP_LERNA == 'false'
+        run: |
+          git status
+          git tag --sort=-creatordate | head
+
+      - name: Build publishable packages
+        if: env.SKIP_LERNA == 'false'
+        run: npm exec -- lerna run build --stream
+
+      - name: Verify package contents
+        if: env.SKIP_LERNA == 'false'
+        run: npm exec -- lerna exec --stream -- npm pack --dry-run
+
       - name: Publish packages
         if: env.SKIP_LERNA == 'false'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm exec -- lerna publish from-package --yes

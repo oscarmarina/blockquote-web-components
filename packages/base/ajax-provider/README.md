@@ -1,197 +1,4 @@
-# AJAX Provider Documentation
-
-A class that provides AJAX functionality with event handling capabilities.
-
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Creating an Instance](#creating-an-instance)
-  - [Configuring AJAX Requests](#configuring-ajax-requests)
-  - [Sending AJAX Requests](#sending-ajax-requests)
-  - [Event Handling](#event-handling)
-- [API Reference](#api-reference)
-
-## Introduction
-
-The AJAX Provider is a JavaScript class that provides AJAX functionality with event handling capabilities through [EventTarget](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). It uses the `AjaxProviderMixin`, a mixin that leverages RxJS to manage AJAX requests efficiently.
-
-## Installation
-
-To use the AJAX Provider, you need to install it as a package dependency.
-
-```bash
-npm install @blockquote-web-components/ajax-provider
-```
-
-### Demo
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/base/ajax-provider)
-
-### Usage
-
-### Creating an Instance
-
-To use the AJAX Provider, first, create an instance of the `AjaxProvider` class.
-
-```js
-import { AjaxProvider } from '@blockquote-web-components/ajax-provider';
-
-// A basic request configuration looks like this:
-const ajaxProvider = new AjaxProvider({
-  url: 'https://httpbin.org/get',
-});
-```
-
-```js
-  // Default method
-  method: 'GET',
-
-  // Default request Headers.
-  headers: {
-    Accept: 'application/json, text/plain, *\/*; q=0.01',
-    'Content-Type': 'application/json',
-  }
-```
-
-### Configuring AJAX Requests
-
-You can configure your AJAX request by setting various options on the `ajaxProvider` instance. Here are some common configuration options:
-
-```js
-const ajaxProvider = new AjaxProvider({
-  url: 'https://httpbin.org/get',
-  path: method.toLowerCase(),
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'rxjs-custom-header': 'Rxjs',
-  },
-  body: {
-    rxjs: `Hi`,
-  },
-  includeDownloadProgress: true,
-  includeUploadProgress: true,
-});
-```
-
-### Sending AJAX Requests
-
-Once you have configured the AJAX request, you can send it using the `generateRequest` method. This method returns a promise that resolves with the AJAX response or attaching event listeners to handle various stages of the AJAX request.
-
-```js
-const ajaxProvider = new AjaxProvider({
-  url: 'https://api.github.com/users',
-  queryParams: 'per_page=4',
-});
-
-ajaxProvider
-  .generateRequest()
-  .then(response => {
-    console.log('Response:', response.response);
-  })
-  .catch(error => {
-    console.log('Error:', error.message);
-  });
-```
-
-### Event Handling
-
-The AJAX Provider allows you to handle events related to HTTP requests. You can listen to events such as:
-
-- `'presend'` --> `'progress'` --> `'response'` --> `'responseend'`
-- `'presend'` --> `'error'` --> `'errorend'`
-
-Here's how to set up event listeners:
-
-```js
-const ajaxProvider = new AjaxProvider({
-  url: 'https://api.github.com/users',
-  queryParams: 'per_page=3',
-});
-
-ajaxProvider.addEventListener('ajaxpresend', ({ detail }) => {
-  console.log('Preparing to send request...', detail);
-});
-
-ajaxProvider.addEventListener('ajaxprogress', ({ detail }) => {
-  console.log(`Progress: ${detail.loaded} of ${detail.total} bytes`);
-});
-
-ajaxProvider.addEventListener('ajaxresponse', ({ detail }) => {
-  const { response } = detail;
-  console.log('Received response:', response);
-});
-
-ajaxProvider.addEventListener('ajaxresponseend', ({ detail }) => {
-  console.log('End request:', detail);
-});
-
-ajaxProvider.addEventListener('ajaxerror', ({ detail }) => {
-  const error = detail;
-  console.log('Request error:', error.message);
-});
-
-ajaxProvider.addEventListener('ajaxerrorend', ({ detail }) => {
-  console.log('End error:', detail);
-});
-
-ajaxProvider.generateRequest();
-```
-
-## API Reference
-
-Requests can be made by passing the relevant config to `AjaxProvider`.
-
-#### Properties
-
-#### [Configuration for the RxJS/ajax creation function.](https://rxjs.dev/api/ajax/AjaxConfig)
-
-- `url`: The base URL for the AJAX request. _(string)_
-- `body`: The request body. (\*)
-- `async`: Whether or not to send the request asynchronously. _(boolean)_
-  - Default value: `true`
-- `method`: The HTTP request method (e.g., GET, POST). _(string)_
-  - Default value: `GET`
-- `headers`: Custom headers for the request. _(Object|undefined)_
-  - Default value:
-    - Accept: 'application/json, text/plain, *\/*; q=0.01'
-    - Content-Type: 'application/json'
-- `timeout`: The request timeout in milliseconds. _(number)_
-  - Default value: `0`
-- `user`: The user for authentication. _(string)_
-- `password`: The password for authentication. _(string)_
-- `withCredentials`: Indicates whether to include credentials with the request. _(boolean)_
-  - Default value: `false`
-- `xsrfCookieName`: The name of the XSRF cookie. _(string)_
-- `xsrfHeaderName`: The name of the XSRF header. _(string)_
-- `responseType`: The response type (e.g., 'json', 'text'). _(string)_
-  - Default value: `json`
-- `queryParams`: The query parameters to include in the request URL. _(Object|undefined)_
-- `includeDownloadProgress`: Indicates whether to include download progress in the response. _(boolean)_
-  - Default value: `false`
-- `includeUploadProgress`: Indicates whether to include upload progress in the response. _(boolean)_
-  - Default value: `false`
-
-#### Configuration `AJAX Provider`.
-
-- `path`: The path to append to the base URL. _(string)_
-- `dispatchEventContext`: The context for dispatching events. _(AjaxProvider instance)_
-- `lastResponse`: The last AJAX response object. _(Object)_
-- `lastError`: The last error object. _(Object)_
-- `customEventPrefix`: A custom event prefix for events related to HTTP requests. _(string)_
-  - Default value: `ajax`
-- `avoidBoundary`: Set to `true` to stop delegating the use of [boundaries for multipart requests to the browser](https://github.com/axios/axios/issues/4631). _(boolean)_
-  - Only change this to `true` if you know what you are doing.
-    Default value: `false`
-
-#### Methods
-
-- `generateRequest()`: Generates and sends the AJAX request. This method can be used both with promises and by attaching event listeners to handle various stages of the AJAX request.
-
-
-### `src/AjaxProvider.js`:
+### `src/AjaxProvider.ts`:
 
 #### class: `AjaxProvider`
 
@@ -203,37 +10,38 @@ Requests can be made by passing the relevant config to `AjaxProvider`.
 
 ##### Fields
 
-| Name                      | Privacy | Type                | Default                                                                                        | Description                                                                                                                                                      | Inherited From    |
-| ------------------------- | ------- | ------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-| `dispatchEventContext`    |         | `Object`            | `this`                                                                                         | The context for dispatching events.                                                                                                                              |                   |
-| `lastResponse`            |         | `Object\|undefined` | `undefined`                                                                                    | The last AJAX response object.                                                                                                                                   |                   |
-| `lastError`               |         | `Object\|undefined` | `undefined`                                                                                    | The last error object.                                                                                                                                           |                   |
-| `customEventPrefix`       |         | `string`            | `'ajax'`                                                                                       | A custom event prefix for events related to HTTP requests.                                                                                                       |                   |
-| `avoidBoundary`           |         | `boolean`           | `false`                                                                                        | Set to \`true\` to stop delegating the use of boundaries for multipart requests to the browser.&#xA;Only change this to \`true\` if you know what you are doing. |                   |
-| `url`                     |         | `string`            | `''`                                                                                           | The base URL for the AJAX request.                                                                                                                               | AjaxProviderMixin |
-| `path`                    |         | `string`            | `''`                                                                                           | The path to append to the base URL.                                                                                                                              | AjaxProviderMixin |
-| `body`                    |         | `*`                 | `undefined`                                                                                    | The request body.                                                                                                                                                | AjaxProviderMixin |
-| `async`                   |         | `boolean`           | `true`                                                                                         | Whether or not to send the request asynchronously.                                                                                                               | AjaxProviderMixin |
-| `method`                  |         | `string`            | `'GET'`                                                                                        | The HTTP request method (e.g., GET, POST).                                                                                                                       | AjaxProviderMixin |
-| `_headers`                |         | `Object`            | `{ Accept: 'application/json, text/plain, */*; q=0.01', 'Content-Type': 'application/json', }` | The default headers for the request.                                                                                                                             | AjaxProviderMixin |
-| `headers`                 |         | `Object\|undefined` | `undefined`                                                                                    | Custom headers for the request.                                                                                                                                  | AjaxProviderMixin |
-| `timeout`                 |         | `number`            | `0`                                                                                            | The request timeout in milliseconds.                                                                                                                             | AjaxProviderMixin |
-| `user`                    |         | `string`            | `''`                                                                                           | The user for authentication.                                                                                                                                     | AjaxProviderMixin |
-| `password`                |         | `string`            | `''`                                                                                           | The password for authentication.                                                                                                                                 | AjaxProviderMixin |
-| `withCredentials`         |         | `boolean`           | `false`                                                                                        | Indicates whether to include credentials with the request.                                                                                                       | AjaxProviderMixin |
-| `xsrfCookieName`          |         | `string`            | `''`                                                                                           | The name of the XSRF cookie.                                                                                                                                     | AjaxProviderMixin |
-| `xsrfHeaderName`          |         | `string`            | `''`                                                                                           | The name of the XSRF header.                                                                                                                                     | AjaxProviderMixin |
-| `responseType`            |         | `string`            | `''`                                                                                           | The response type (e.g., 'json', 'text').                                                                                                                        | AjaxProviderMixin |
-| `queryParams`             |         | `Object\|undefined` | `undefined`                                                                                    | The query parameters to include in the request URL.                                                                                                              | AjaxProviderMixin |
-| `includeDownloadProgress` |         | `boolean`           | `false`                                                                                        | Indicates whether to include download progress in the response.                                                                                                  | AjaxProviderMixin |
-| `includeUploadProgress`   |         | `boolean`           | `false`                                                                                        | Indicates whether to include upload progress in the response.                                                                                                    | AjaxProviderMixin |
+| Name                      | Privacy | Type                                                     | Default                                                                                        | Description                                                                                                                                                      | Inherited From    |
+| ------------------------- | ------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| `dispatchEventContext`    |         | `{dispatchEvent(event: CustomEvent): void} \| undefined` | `this`                                                                                         | The context for dispatching events.                                                                                                                              | AjaxProviderMixin |
+| `lastResponse`            |         | `AjaxResponse<unknown> \| undefined`                     | `undefined`                                                                                    | The last AJAX response object.                                                                                                                                   | AjaxProviderMixin |
+| `lastError`               |         | `AjaxError \| undefined`                                 | `undefined`                                                                                    | The last error object.                                                                                                                                           | AjaxProviderMixin |
+| `customEventPrefix`       |         | `string \| undefined`                                    | `'ajax'`                                                                                       | A custom event prefix for events related to HTTP requests.                                                                                                       | AjaxProviderMixin |
+| `avoidBoundary`           |         | `boolean \| undefined`                                   | `false`                                                                                        | Set to \`true\` to stop delegating the use of boundaries for multipart requests to the browser.&#xA;Only change this to \`true\` if you know what you are doing. | AjaxProviderMixin |
+| `url`                     |         | `string`                                                 | `''`                                                                                           |                                                                                                                                                                  | AjaxProviderMixin |
+| `path`                    |         | `string`                                                 | `''`                                                                                           |                                                                                                                                                                  | AjaxProviderMixin |
+| `body`                    |         | `unknown`                                                | `undefined`                                                                                    |                                                                                                                                                                  | AjaxProviderMixin |
+| `async`                   |         | `boolean`                                                | `true`                                                                                         |                                                                                                                                                                  | AjaxProviderMixin |
+| `method`                  |         | `string`                                                 | `'GET'`                                                                                        |                                                                                                                                                                  | AjaxProviderMixin |
+| `_headers`                |         | `Record<string, string>`                                 | `{ Accept: 'application/json, text/plain, */*; q=0.01', 'Content-Type': 'application/json', }` |                                                                                                                                                                  | AjaxProviderMixin |
+| `headers`                 |         | `Record<string, string> \| undefined`                    | `undefined`                                                                                    |                                                                                                                                                                  | AjaxProviderMixin |
+| `timeout`                 |         | `number`                                                 | `0`                                                                                            |                                                                                                                                                                  | AjaxProviderMixin |
+| `user`                    |         | `string`                                                 | `''`                                                                                           |                                                                                                                                                                  | AjaxProviderMixin |
+| `password`                |         | `string`                                                 | `''`                                                                                           |                                                                                                                                                                  | AjaxProviderMixin |
+| `withCredentials`         |         | `boolean`                                                | `false`                                                                                        |                                                                                                                                                                  | AjaxProviderMixin |
+| `xsrfCookieName`          |         | `string`                                                 | `''`                                                                                           |                                                                                                                                                                  | AjaxProviderMixin |
+| `xsrfHeaderName`          |         | `string`                                                 | `''`                                                                                           |                                                                                                                                                                  | AjaxProviderMixin |
+| `responseType`            |         | `string`                                                 | `''`                                                                                           |                                                                                                                                                                  | AjaxProviderMixin |
+| `queryParams`             |         | `unknown \| undefined`                                   | `undefined`                                                                                    |                                                                                                                                                                  | AjaxProviderMixin |
+| `includeDownloadProgress` |         | `boolean`                                                | `false`                                                                                        |                                                                                                                                                                  | AjaxProviderMixin |
+| `includeUploadProgress`   |         | `boolean`                                                | `false`                                                                                        |                                                                                                                                                                  | AjaxProviderMixin |
 
 ##### Methods
 
-| Name                        | Privacy | Description                                                 | Parameters       | Return         | Inherited From    |
-| --------------------------- | ------- | ----------------------------------------------------------- | ---------------- | -------------- | ----------------- |
-| `_assignAjaxProviderConfig` |         | Assigns configuration options to the AjaxProvider instance. | `config: Object` |                |                   |
-| `generateRequest`           |         | Generates and sends the AJAX request.                       |                  | `Promise<any>` | AjaxProviderMixin |
+| Name                        | Privacy | Description                                                                                                                                                                                                                                          | Parameters                   | Return                              | Inherited From    |
+| --------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ----------------------------------- | ----------------- |
+| `_assignAjaxProviderConfig` |         | Assigns configuration options to the AjaxProvider instance.                                                                                                                                                                                          | `config: AjaxProviderConfig` | `void`                              |                   |
+| `request$`                  |         | Returns a cold Observable that performs the AJAX request on each subscription.&#xA;&#xA;Progress is reported through the \`ajaxprogress\` event. Errors are reported&#xA;through \`ajaxerror\`/\`ajaxerrorend\` events before the observable errors. |                              | `Observable<AjaxResponse<unknown>>` | AjaxProviderMixin |
+| `generateRequest`           |         | Generates and sends the AJAX request.                                                                                                                                                                                                                |                              | `Promise<any>`                      | AjaxProviderMixin |
 
 <details><summary>Private API</summary>
 
@@ -243,8 +51,8 @@ Requests can be made by passing the relevant config to `AjaxProvider`.
 | ----------------------- | ------- | --------------------------------------------------------------- | -------------------------- | -------- | ----------------- |
 | `_assignAjaxRxjsConfig` | private | Assigns the configuration settings for the AJAX request.        |                            | `Object` | AjaxProviderMixin |
 | `_joinUrlData`          | private | Joins the base URL and path to create the complete request URL. |                            | `string` | AjaxProviderMixin |
-| `_joinHeaders`          | private | Joins the default headers with custom headers.                  | `formData`                 | `Object` | AjaxProviderMixin |
-| `_dispatchEvent`        | private | Dispatches a custom event with the specified type and payload.  | `type: string, payload: *` |          | AjaxProviderMixin |
+| `_joinHeaders`          | private | Joins the default headers with custom headers.                  | `formData: unknown`        | `Object` | AjaxProviderMixin |
+| `_dispatchEvent`        | private | Dispatches a custom event with the specified type and payload.  | `type: string, payload: *` | `void`   | AjaxProviderMixin |
 
 </details>
 
@@ -254,12 +62,12 @@ Requests can be made by passing the relevant config to `AjaxProvider`.
 
 | Kind | Name           | Declaration  | Module              | Package |
 | ---- | -------------- | ------------ | ------------------- | ------- |
-| `js` | `AjaxProvider` | AjaxProvider | src/AjaxProvider.js |         |
+| `js` | `AjaxProvider` | AjaxProvider | src/AjaxProvider.ts |         |
 
 Mixin for providing AJAX functionality using RxJS. This mixin can be used to enhance classes with AJAX capabilities.
 
 
-### `src/AjaxProviderMixin.js`:
+### `src/AjaxProviderMixin.ts`:
 
 #### mixin: `AjaxProviderMixin`
 
@@ -273,35 +81,41 @@ Mixin for providing AJAX functionality using RxJS. This mixin can be used to enh
 
 | Name   | Type | Default | Description |
 | ------ | ---- | ------- | ----------- |
-| `Base` |      |         |             |
+| `Base` | `T`  |         |             |
 
 ##### Fields
 
-| Name                      | Privacy | Type                | Default                                                                                        | Description                                                     | Inherited From |
-| ------------------------- | ------- | ------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | -------------- |
-| `url`                     |         | `string`            | `''`                                                                                           | The base URL for the AJAX request.                              |                |
-| `path`                    |         | `string`            | `''`                                                                                           | The path to append to the base URL.                             |                |
-| `body`                    |         | `*`                 | `undefined`                                                                                    | The request body.                                               |                |
-| `async`                   |         | `boolean`           | `true`                                                                                         | Whether or not to send the request asynchronously.              |                |
-| `method`                  |         | `string`            | `'GET'`                                                                                        | The HTTP request method (e.g., GET, POST).                      |                |
-| `_headers`                |         | `Object`            | `{ Accept: 'application/json, text/plain, */*; q=0.01', 'Content-Type': 'application/json', }` | The default headers for the request.                            |                |
-| `headers`                 |         | `Object\|undefined` | `undefined`                                                                                    | Custom headers for the request.                                 |                |
-| `timeout`                 |         | `number`            | `0`                                                                                            | The request timeout in milliseconds.                            |                |
-| `user`                    |         | `string`            | `''`                                                                                           | The user for authentication.                                    |                |
-| `password`                |         | `string`            | `''`                                                                                           | The password for authentication.                                |                |
-| `withCredentials`         |         | `boolean`           | `false`                                                                                        | Indicates whether to include credentials with the request.      |                |
-| `xsrfCookieName`          |         | `string`            | `''`                                                                                           | The name of the XSRF cookie.                                    |                |
-| `xsrfHeaderName`          |         | `string`            | `''`                                                                                           | The name of the XSRF header.                                    |                |
-| `responseType`            |         | `string`            | `''`                                                                                           | The response type (e.g., 'json', 'text').                       |                |
-| `queryParams`             |         | `Object\|undefined` | `undefined`                                                                                    | The query parameters to include in the request URL.             |                |
-| `includeDownloadProgress` |         | `boolean`           | `false`                                                                                        | Indicates whether to include download progress in the response. |                |
-| `includeUploadProgress`   |         | `boolean`           | `false`                                                                                        | Indicates whether to include upload progress in the response.   |                |
+| Name                      | Privacy | Type                                                     | Default                                                                                        | Description | Inherited From |
+| ------------------------- | ------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ----------- | -------------- |
+| `url`                     |         | `string`                                                 | `''`                                                                                           |             |                |
+| `path`                    |         | `string`                                                 | `''`                                                                                           |             |                |
+| `body`                    |         | `unknown`                                                | `undefined`                                                                                    |             |                |
+| `async`                   |         | `boolean`                                                | `true`                                                                                         |             |                |
+| `method`                  |         | `string`                                                 | `'GET'`                                                                                        |             |                |
+| `_headers`                |         | `Record<string, string>`                                 | `{ Accept: 'application/json, text/plain, */*; q=0.01', 'Content-Type': 'application/json', }` |             |                |
+| `headers`                 |         | `Record<string, string> \| undefined`                    | `undefined`                                                                                    |             |                |
+| `timeout`                 |         | `number`                                                 | `0`                                                                                            |             |                |
+| `user`                    |         | `string`                                                 | `''`                                                                                           |             |                |
+| `password`                |         | `string`                                                 | `''`                                                                                           |             |                |
+| `withCredentials`         |         | `boolean`                                                | `false`                                                                                        |             |                |
+| `xsrfCookieName`          |         | `string`                                                 | `''`                                                                                           |             |                |
+| `xsrfHeaderName`          |         | `string`                                                 | `''`                                                                                           |             |                |
+| `responseType`            |         | `string`                                                 | `''`                                                                                           |             |                |
+| `queryParams`             |         | `unknown \| undefined`                                   | `undefined`                                                                                    |             |                |
+| `includeDownloadProgress` |         | `boolean`                                                | `false`                                                                                        |             |                |
+| `includeUploadProgress`   |         | `boolean`                                                | `false`                                                                                        |             |                |
+| `avoidBoundary`           |         | `boolean \| undefined`                                   |                                                                                                |             |                |
+| `dispatchEventContext`    |         | `{dispatchEvent(event: CustomEvent): void} \| undefined` |                                                                                                |             |                |
+| `customEventPrefix`       |         | `string \| undefined`                                    |                                                                                                |             |                |
+| `lastResponse`            |         | `AjaxResponse<unknown> \| undefined`                     |                                                                                                |             |                |
+| `lastError`               |         | `AjaxError \| undefined`                                 |                                                                                                |             |                |
 
 ##### Methods
 
-| Name              | Privacy | Description                           | Parameters | Return         | Inherited From |
-| ----------------- | ------- | ------------------------------------- | ---------- | -------------- | -------------- |
-| `generateRequest` |         | Generates and sends the AJAX request. |            | `Promise<any>` |                |
+| Name              | Privacy | Description                                                                                                                                                                                                                                          | Parameters | Return                              | Inherited From |
+| ----------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ----------------------------------- | -------------- |
+| `request$`        |         | Returns a cold Observable that performs the AJAX request on each subscription.&#xA;&#xA;Progress is reported through the \`ajaxprogress\` event. Errors are reported&#xA;through \`ajaxerror\`/\`ajaxerrorend\` events before the observable errors. |            | `Observable<AjaxResponse<unknown>>` |                |
+| `generateRequest` |         | Generates and sends the AJAX request.                                                                                                                                                                                                                |            | `Promise<any>`                      |                |
 
 <details><summary>Private API</summary>
 
@@ -311,8 +125,8 @@ Mixin for providing AJAX functionality using RxJS. This mixin can be used to enh
 | ----------------------- | ------- | --------------------------------------------------------------- | -------------------------- | -------- | -------------- |
 | `_assignAjaxRxjsConfig` | private | Assigns the configuration settings for the AJAX request.        |                            | `Object` |                |
 | `_joinUrlData`          | private | Joins the base URL and path to create the complete request URL. |                            | `string` |                |
-| `_joinHeaders`          | private | Joins the default headers with custom headers.                  | `formData`                 | `Object` |                |
-| `_dispatchEvent`        | private | Dispatches a custom event with the specified type and payload.  | `type: string, payload: *` |          |                |
+| `_joinHeaders`          | private | Joins the default headers with custom headers.                  | `formData: unknown`        | `Object` |                |
+| `_dispatchEvent`        | private | Dispatches a custom event with the specified type and payload.  | `type: string, payload: *` | `void`   |                |
 
 </details>
 
@@ -322,18 +136,99 @@ Mixin for providing AJAX functionality using RxJS. This mixin can be used to enh
 
 | Kind | Name                | Declaration       | Module                   | Package |
 | ---- | ------------------- | ----------------- | ------------------------ | ------- |
-| `js` | `AjaxProviderMixin` | AjaxProviderMixin | src/AjaxProviderMixin.js |         |
+| `js` | `AjaxProviderMixin` | AjaxProviderMixin | src/AjaxProviderMixin.ts |         |
 
-### `src/index.js`:
+### `src/fromAjax.ts`:
+
+#### class: `AjaxResponse`
+
+##### Fields
+
+| Name              | Privacy | Type                     | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Description | Inherited From |
+| ----------------- | ------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | -------------- |
+| `originalEvent`   |         | `Event`                  | `originalEvent`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |             |                |
+| `xhr`             |         | `XMLHttpRequest`         | `xhr`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |             |                |
+| `request`         |         | `AjaxRequest`            | `{ url, headers, body, async: config.async, crossDomain: config.crossDomain, withCredentials: config.withCredentials, method: config.method, timeout: config.timeout, responseType: config.responseType as XMLHttpRequestResponseType, user: config.user, password: config.password, xsrfCookieName: config.xsrfCookieName, xsrfHeaderName: config.xsrfHeaderName, queryParams: config.queryParams, includeDownloadProgress: config.includeDownloadProgress, includeUploadProgress: config.includeUploadProgress, }` |             |                |
+| `type`            |         | `string`                 | `type`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |             |                |
+| `status`          |         | `number`                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |             |                |
+| `responseType`    |         | `string`                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |             |                |
+| `responseHeaders` |         | `Record<string, string>` |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |             |                |
+| `response`        |         | `T`                      | `getXHRResponse(xhr)`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |             |                |
+| `loaded`          |         | `number`                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |             |                |
+| `total`           |         | `number`                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |             |                |
+
+<hr/>
+
+#### class: `AjaxError`
+
+##### Fields
+
+| Name           | Privacy | Type             | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Description | Inherited From |
+| -------------- | ------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | -------------- |
+| `name`         |         | `string`         | `'AjaxError'`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |             |                |
+| `xhr`          |         | `XMLHttpRequest` | `xhr`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |             |                |
+| `request`      |         | `AjaxRequest`    | `{ url, headers, body, async: config.async, crossDomain: config.crossDomain, withCredentials: config.withCredentials, method: config.method, timeout: config.timeout, responseType: config.responseType as XMLHttpRequestResponseType, user: config.user, password: config.password, xsrfCookieName: config.xsrfCookieName, xsrfHeaderName: config.xsrfHeaderName, queryParams: config.queryParams, includeDownloadProgress: config.includeDownloadProgress, includeUploadProgress: config.includeUploadProgress, }` |             |                |
+| `status`       |         | `number`         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |             |                |
+| `responseType` |         | `string`         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |             |                |
+| `response`     |         | `unknown`        | `response`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |             |                |
+
+<hr/>
+
+#### class: `AjaxTimeoutError`
+
+##### Fields
+
+| Name           | Privacy | Type             | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Description | Inherited From |
+| -------------- | ------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | -------------- |
+| `name`         |         | `string`         | `'AjaxTimeoutError'`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |             | AjaxError      |
+| `xhr`          |         | `XMLHttpRequest` | `xhr`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |             | AjaxError      |
+| `request`      |         | `AjaxRequest`    | `{ url, headers, body, async: config.async, crossDomain: config.crossDomain, withCredentials: config.withCredentials, method: config.method, timeout: config.timeout, responseType: config.responseType as XMLHttpRequestResponseType, user: config.user, password: config.password, xsrfCookieName: config.xsrfCookieName, xsrfHeaderName: config.xsrfHeaderName, queryParams: config.queryParams, includeDownloadProgress: config.includeDownloadProgress, includeUploadProgress: config.includeUploadProgress, }` |             | AjaxError      |
+| `status`       |         | `number`         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |             | AjaxError      |
+| `responseType` |         | `string`         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |             | AjaxError      |
+| `response`     |         | `unknown`        | `response`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |             | AjaxError      |
+
+<hr/>
+
+#### Variables
+
+| Name      | Description | Type                     |
+| --------- | ----------- | ------------------------ |
+| `url`     |             |                          |
+| `headers` |             | `Record<string, string>` |
+| `body`    |             |                          |
+
+<hr/>
+
+#### Functions
+
+| Name                 | Description                                                                                                                                                                                                                   | Parameters                 | Return                                  |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | --------------------------------------- |
+| `fromXMLHttpRequest` | Creates an \`XMLHttpRequest\` observable that emits \`AjaxResponse\` values,&#xA;replicating the behavior of the removed \`rxjs/ajax\` \`fromAjax\` factory&#xA;using the Web Platform Observable (\`ColdObservable\`) model. | `init: AjaxConfig`         | `ColdObservable<AjaxResponse<unknown>>` |
+| `lastValueFrom`      | Resolves with the last value emitted by the observable before completion.                                                                                                                                                     | `source$: Subscribable<T>` | `Promise<T>`                            |
+
+<hr/>
 
 #### Exports
 
-| Kind | Name                | Declaration       | Module                 | Package |
-| ---- | ------------------- | ----------------- | ---------------------- | ------- |
-| `js` | `AjaxProvider`      | AjaxProvider      | ./AjaxProvider.js      |         |
-| `js` | `AjaxProviderMixin` | AjaxProviderMixin | ./AjaxProviderMixin.js |         |
+| Kind | Name                 | Declaration        | Module          | Package |
+| ---- | -------------------- | ------------------ | --------------- | ------- |
+| `js` | `fromXMLHttpRequest` | fromXMLHttpRequest | src/fromAjax.ts |         |
+| `js` | `lastValueFrom`      | lastValueFrom      | src/fromAjax.ts |         |
+| `js` | `AjaxResponse`       | AjaxResponse       | src/fromAjax.ts |         |
+| `js` | `AjaxError`          | AjaxError          | src/fromAjax.ts |         |
+| `js` | `AjaxTimeoutError`   | AjaxTimeoutError   | src/fromAjax.ts |         |
 
-### `src/utils.js`:
+### `src/index.ts`:
+
+#### Exports
+
+| Kind | Name                 | Declaration        | Module                 | Package |
+| ---- | -------------------- | ------------------ | ---------------------- | ------- |
+| `js` | `AjaxProvider`       | AjaxProvider       | ./AjaxProvider.js      |         |
+| `js` | `AjaxProviderConfig` | AjaxProviderConfig | ./AjaxProvider.js      |         |
+| `js` | `AjaxProviderMixin`  | AjaxProviderMixin  | ./AjaxProviderMixin.js |         |
+
+### `src/utils.ts`:
 
 #### Variables
 
@@ -349,7 +244,7 @@ Mixin for providing AJAX functionality using RxJS. This mixin can be used to enh
 | Name              | Description                                                                 | Parameters                            | Return    |
 | ----------------- | --------------------------------------------------------------------------- | ------------------------------------- | --------- |
 | `isFormData`      | Determine if a value is a FormData                                          | `thing: *`                            | `boolean` |
-| `assignIfDefined` | Utility function to assign a property to an object if the value is defined. | `obj: Object, prop: string, value: *` |           |
+| `assignIfDefined` | Utility function to assign a property to an object if the value is defined. | `obj: Object, prop: string, value: *` | `void`    |
 
 <hr/>
 
@@ -357,7 +252,7 @@ Mixin for providing AJAX functionality using RxJS. This mixin can be used to enh
 
 | Kind | Name                            | Declaration                   | Module       | Package |
 | ---- | ------------------------------- | ----------------------------- | ------------ | ------- |
-| `js` | `isStandardBrowserEnv`          | isStandardBrowserEnv          | src/utils.js |         |
-| `js` | `isStandardBrowserWebWorkerEnv` | isStandardBrowserWebWorkerEnv | src/utils.js |         |
-| `js` | `isFormData`                    | isFormData                    | src/utils.js |         |
-| `js` | `assignIfDefined`               | assignIfDefined               | src/utils.js |         |
+| `js` | `isStandardBrowserEnv`          | isStandardBrowserEnv          | src/utils.ts |         |
+| `js` | `isStandardBrowserWebWorkerEnv` | isStandardBrowserWebWorkerEnv | src/utils.ts |         |
+| `js` | `isFormData`                    | isFormData                    | src/utils.ts |         |
+| `js` | `assignIfDefined`               | assignIfDefined               | src/utils.ts |         |

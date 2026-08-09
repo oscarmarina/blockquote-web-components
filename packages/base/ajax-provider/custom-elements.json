@@ -4,23 +4,28 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "src/AjaxProvider.js",
+      "path": "src/AjaxProvider.ts",
       "declarations": [
         {
           "kind": "class",
-          "description": "# AJAX Provider Documentation\n\nA class that provides AJAX functionality with event handling capabilities.\n\n## Table of Contents\n\n- [Introduction](#introduction)\n- [Installation](#installation)\n- [Usage](#usage)\n  - [Creating an Instance](#creating-an-instance)\n  - [Configuring AJAX Requests](#configuring-ajax-requests)\n  - [Sending AJAX Requests](#sending-ajax-requests)\n  - [Event Handling](#event-handling)\n- [API Reference](#api-reference)\n\n## Introduction\n\nThe AJAX Provider is a JavaScript class that provides AJAX functionality with event handling capabilities through [EventTarget](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). It uses the `AjaxProviderMixin`, a mixin that leverages RxJS to manage AJAX requests efficiently.\n\n## Installation\n\nTo use the AJAX Provider, you need to install it as a package dependency.\n\n```bash\nnpm install",
+          "description": "",
           "name": "AjaxProvider",
           "members": [
             {
               "kind": "method",
               "name": "_assignAjaxProviderConfig",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
               "parameters": [
                 {
                   "name": "config",
-                  "description": "Configuration config to be assigned.",
                   "type": {
-                    "text": "Object"
-                  }
+                    "text": "AjaxProviderConfig"
+                  },
+                  "description": "Configuration config to be assigned."
                 }
               ],
               "description": "Assigns configuration options to the AjaxProvider instance."
@@ -28,136 +33,66 @@
             {
               "kind": "field",
               "name": "dispatchEventContext",
-              "description": "The context for dispatching events.",
               "type": {
-                "text": "Object"
+                "text": "{dispatchEvent(event: CustomEvent): void} | undefined"
               },
-              "default": "this"
+              "description": "The context for dispatching events.",
+              "default": "this",
+              "inheritedFrom": {
+                "name": "AjaxProviderMixin",
+                "module": "src/AjaxProviderMixin.ts"
+              }
             },
             {
               "kind": "field",
               "name": "lastResponse",
-              "description": "The last AJAX response object.",
               "type": {
-                "text": "Object|undefined"
+                "text": "AjaxResponse<unknown> | undefined"
               },
-              "default": "undefined"
+              "description": "The last AJAX response object.",
+              "default": "undefined",
+              "inheritedFrom": {
+                "name": "AjaxProviderMixin",
+                "module": "src/AjaxProviderMixin.ts"
+              }
             },
             {
               "kind": "field",
               "name": "lastError",
-              "description": "The last error object.",
               "type": {
-                "text": "Object|undefined"
+                "text": "AjaxError | undefined"
               },
-              "default": "undefined"
+              "description": "The last error object.",
+              "default": "undefined",
+              "inheritedFrom": {
+                "name": "AjaxProviderMixin",
+                "module": "src/AjaxProviderMixin.ts"
+              }
             },
             {
               "kind": "field",
               "name": "customEventPrefix",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "A custom event prefix for events related to HTTP requests.",
-              "default": "'ajax'"
+              "default": "'ajax'",
+              "inheritedFrom": {
+                "name": "AjaxProviderMixin",
+                "module": "src/AjaxProviderMixin.ts"
+              }
             },
             {
               "kind": "field",
               "name": "avoidBoundary",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Set to `true` to stop delegating the use of boundaries for multipart requests to the browser.\nOnly change this to `true` if you know what you are doing.",
-              "default": "false"
-            },
-            {
-              "kind": "method",
-              "name": "_assignAjaxRxjsConfig",
-              "description": "Assigns the configuration settings for the AJAX request.",
-              "return": {
-                "type": {
-                  "text": "Object"
-                }
-              },
-              "privacy": "private",
+              "default": "false",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "_joinUrlData",
-              "description": "Joins the base URL and path to create the complete request URL.",
-              "return": {
-                "type": {
-                  "text": "string"
-                }
-              },
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "_joinHeaders",
-              "parameters": [
-                {
-                  "name": "formData"
-                }
-              ],
-              "description": "Joins the default headers with custom headers.",
-              "return": {
-                "type": {
-                  "text": "Object"
-                }
-              },
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "_dispatchEvent",
-              "parameters": [
-                {
-                  "name": "type",
-                  "description": "The type of the custom event.",
-                  "type": {
-                    "text": "string"
-                  }
-                },
-                {
-                  "name": "payload",
-                  "description": "The payload to include in the custom event.",
-                  "type": {
-                    "text": "*"
-                  }
-                }
-              ],
-              "description": "Dispatches a custom event with the specified type and payload.",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "generateRequest",
-              "description": "Generates and sends the AJAX request.",
-              "return": {
-                "type": {
-                  "text": "Promise<any>"
-                }
-              },
-              "inheritedFrom": {
-                "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
+                "module": "src/AjaxProviderMixin.ts"
               }
             },
             {
@@ -166,11 +101,10 @@
               "type": {
                 "text": "string"
               },
-              "description": "The base URL for the AJAX request.",
               "default": "''",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
+                "module": "src/AjaxProviderMixin.ts"
               }
             },
             {
@@ -179,24 +113,22 @@
               "type": {
                 "text": "string"
               },
-              "description": "The path to append to the base URL.",
               "default": "''",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
+                "module": "src/AjaxProviderMixin.ts"
               }
             },
             {
               "kind": "field",
               "name": "body",
-              "description": "The request body.",
               "type": {
-                "text": "*"
+                "text": "unknown"
               },
               "default": "undefined",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
+                "module": "src/AjaxProviderMixin.ts"
               }
             },
             {
@@ -205,11 +137,10 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "Whether or not to send the request asynchronously.",
               "default": "true",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
+                "module": "src/AjaxProviderMixin.ts"
               }
             },
             {
@@ -218,37 +149,34 @@
               "type": {
                 "text": "string"
               },
-              "description": "The HTTP request method (e.g., GET, POST).",
               "default": "'GET'",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
+                "module": "src/AjaxProviderMixin.ts"
               }
             },
             {
               "kind": "field",
               "name": "_headers",
               "type": {
-                "text": "Object"
+                "text": "Record<string, string>"
               },
-              "description": "The default headers for the request.",
               "default": "{ Accept: 'application/json, text/plain, */*; q=0.01', 'Content-Type': 'application/json', }",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
+                "module": "src/AjaxProviderMixin.ts"
               }
             },
             {
               "kind": "field",
               "name": "headers",
-              "description": "Custom headers for the request.",
               "type": {
-                "text": "Object|undefined"
+                "text": "Record<string, string> | undefined"
               },
               "default": "undefined",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
+                "module": "src/AjaxProviderMixin.ts"
               }
             },
             {
@@ -257,11 +185,10 @@
               "type": {
                 "text": "number"
               },
-              "description": "The request timeout in milliseconds.",
               "default": "0",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
+                "module": "src/AjaxProviderMixin.ts"
               }
             },
             {
@@ -270,11 +197,10 @@
               "type": {
                 "text": "string"
               },
-              "description": "The user for authentication.",
               "default": "''",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
+                "module": "src/AjaxProviderMixin.ts"
               }
             },
             {
@@ -283,11 +209,10 @@
               "type": {
                 "text": "string"
               },
-              "description": "The password for authentication.",
               "default": "''",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
+                "module": "src/AjaxProviderMixin.ts"
               }
             },
             {
@@ -296,11 +221,10 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "Indicates whether to include credentials with the request.",
               "default": "false",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
+                "module": "src/AjaxProviderMixin.ts"
               }
             },
             {
@@ -309,11 +233,10 @@
               "type": {
                 "text": "string"
               },
-              "description": "The name of the XSRF cookie.",
               "default": "''",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
+                "module": "src/AjaxProviderMixin.ts"
               }
             },
             {
@@ -322,11 +245,10 @@
               "type": {
                 "text": "string"
               },
-              "description": "The name of the XSRF header.",
               "default": "''",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
+                "module": "src/AjaxProviderMixin.ts"
               }
             },
             {
@@ -335,24 +257,22 @@
               "type": {
                 "text": "string"
               },
-              "description": "The response type (e.g., 'json', 'text').",
               "default": "''",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
+                "module": "src/AjaxProviderMixin.ts"
               }
             },
             {
               "kind": "field",
               "name": "queryParams",
-              "description": "The query parameters to include in the request URL.",
               "type": {
-                "text": "Object|undefined"
+                "text": "unknown | undefined"
               },
               "default": "undefined",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
+                "module": "src/AjaxProviderMixin.ts"
               }
             },
             {
@@ -361,11 +281,10 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "Indicates whether to include download progress in the response.",
               "default": "false",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
+                "module": "src/AjaxProviderMixin.ts"
               }
             },
             {
@@ -374,11 +293,122 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "Indicates whether to include upload progress in the response.",
               "default": "false",
               "inheritedFrom": {
                 "name": "AjaxProviderMixin",
-                "module": "src/AjaxProviderMixin.js"
+                "module": "src/AjaxProviderMixin.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_assignAjaxRxjsConfig",
+              "return": {
+                "type": {
+                  "text": "Object"
+                }
+              },
+              "description": "Assigns the configuration settings for the AJAX request.",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "AjaxProviderMixin",
+                "module": "src/AjaxProviderMixin.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_joinUrlData",
+              "return": {
+                "type": {
+                  "text": "string"
+                }
+              },
+              "description": "Joins the base URL and path to create the complete request URL.",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "AjaxProviderMixin",
+                "module": "src/AjaxProviderMixin.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_joinHeaders",
+              "return": {
+                "type": {
+                  "text": "Object"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "formData",
+                  "type": {
+                    "text": "unknown"
+                  }
+                }
+              ],
+              "description": "Joins the default headers with custom headers.",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "AjaxProviderMixin",
+                "module": "src/AjaxProviderMixin.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_dispatchEvent",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "type",
+                  "type": {
+                    "text": "string"
+                  },
+                  "description": "The type of the custom event."
+                },
+                {
+                  "name": "payload",
+                  "type": {
+                    "text": "*"
+                  },
+                  "description": "The payload to include in the custom event."
+                }
+              ],
+              "description": "Dispatches a custom event with the specified type and payload.",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "AjaxProviderMixin",
+                "module": "src/AjaxProviderMixin.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "request$",
+              "return": {
+                "type": {
+                  "text": "Observable<AjaxResponse<unknown>>"
+                }
+              },
+              "description": "Returns a cold Observable that performs the AJAX request on each subscription.\n\nProgress is reported through the `ajaxprogress` event. Errors are reported\nthrough `ajaxerror`/`ajaxerrorend` events before the observable errors.",
+              "inheritedFrom": {
+                "name": "AjaxProviderMixin",
+                "module": "src/AjaxProviderMixin.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "generateRequest",
+              "return": {
+                "type": {
+                  "text": "Promise<any>"
+                }
+              },
+              "description": "Generates and sends the AJAX request.",
+              "inheritedFrom": {
+                "name": "AjaxProviderMixin",
+                "module": "src/AjaxProviderMixin.ts"
               }
             }
           ],
@@ -390,7 +420,7 @@
           ],
           "superclass": {
             "name": "EventTarget",
-            "module": "src/AjaxProvider.js"
+            "module": "src/AjaxProvider.ts"
           }
         }
       ],
@@ -400,14 +430,14 @@
           "name": "AjaxProvider",
           "declaration": {
             "name": "AjaxProvider",
-            "module": "src/AjaxProvider.js"
+            "module": "src/AjaxProvider.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/AjaxProviderMixin.js",
+      "path": "src/AjaxProviderMixin.ts",
       "declarations": [
         {
           "kind": "mixin",
@@ -415,82 +445,11 @@
           "name": "AjaxProviderMixin",
           "members": [
             {
-              "kind": "method",
-              "name": "_assignAjaxRxjsConfig",
-              "description": "Assigns the configuration settings for the AJAX request.",
-              "return": {
-                "type": {
-                  "text": "Object"
-                }
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "_joinUrlData",
-              "description": "Joins the base URL and path to create the complete request URL.",
-              "return": {
-                "type": {
-                  "text": "string"
-                }
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "_joinHeaders",
-              "parameters": [
-                {
-                  "name": "formData"
-                }
-              ],
-              "description": "Joins the default headers with custom headers.",
-              "return": {
-                "type": {
-                  "text": "Object"
-                }
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "_dispatchEvent",
-              "parameters": [
-                {
-                  "name": "type",
-                  "description": "The type of the custom event.",
-                  "type": {
-                    "text": "string"
-                  }
-                },
-                {
-                  "name": "payload",
-                  "description": "The payload to include in the custom event.",
-                  "type": {
-                    "text": "*"
-                  }
-                }
-              ],
-              "description": "Dispatches a custom event with the specified type and payload.",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "generateRequest",
-              "description": "Generates and sends the AJAX request.",
-              "return": {
-                "type": {
-                  "text": "Promise<any>"
-                }
-              }
-            },
-            {
               "kind": "field",
               "name": "url",
               "type": {
                 "text": "string"
               },
-              "description": "The base URL for the AJAX request.",
               "default": "''"
             },
             {
@@ -499,15 +458,13 @@
               "type": {
                 "text": "string"
               },
-              "description": "The path to append to the base URL.",
               "default": "''"
             },
             {
               "kind": "field",
               "name": "body",
-              "description": "The request body.",
               "type": {
-                "text": "*"
+                "text": "unknown"
               },
               "default": "undefined"
             },
@@ -517,7 +474,6 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "Whether or not to send the request asynchronously.",
               "default": "true"
             },
             {
@@ -526,24 +482,21 @@
               "type": {
                 "text": "string"
               },
-              "description": "The HTTP request method (e.g., GET, POST).",
               "default": "'GET'"
             },
             {
               "kind": "field",
               "name": "_headers",
               "type": {
-                "text": "Object"
+                "text": "Record<string, string>"
               },
-              "description": "The default headers for the request.",
               "default": "{ Accept: 'application/json, text/plain, */*; q=0.01', 'Content-Type': 'application/json', }"
             },
             {
               "kind": "field",
               "name": "headers",
-              "description": "Custom headers for the request.",
               "type": {
-                "text": "Object|undefined"
+                "text": "Record<string, string> | undefined"
               },
               "default": "undefined"
             },
@@ -553,7 +506,6 @@
               "type": {
                 "text": "number"
               },
-              "description": "The request timeout in milliseconds.",
               "default": "0"
             },
             {
@@ -562,7 +514,6 @@
               "type": {
                 "text": "string"
               },
-              "description": "The user for authentication.",
               "default": "''"
             },
             {
@@ -571,7 +522,6 @@
               "type": {
                 "text": "string"
               },
-              "description": "The password for authentication.",
               "default": "''"
             },
             {
@@ -580,7 +530,6 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "Indicates whether to include credentials with the request.",
               "default": "false"
             },
             {
@@ -589,7 +538,6 @@
               "type": {
                 "text": "string"
               },
-              "description": "The name of the XSRF cookie.",
               "default": "''"
             },
             {
@@ -598,7 +546,6 @@
               "type": {
                 "text": "string"
               },
-              "description": "The name of the XSRF header.",
               "default": "''"
             },
             {
@@ -607,15 +554,13 @@
               "type": {
                 "text": "string"
               },
-              "description": "The response type (e.g., 'json', 'text').",
               "default": "''"
             },
             {
               "kind": "field",
               "name": "queryParams",
-              "description": "The query parameters to include in the request URL.",
               "type": {
-                "text": "Object|undefined"
+                "text": "unknown | undefined"
               },
               "default": "undefined"
             },
@@ -625,7 +570,6 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "Indicates whether to include download progress in the response.",
               "default": "false"
             },
             {
@@ -634,13 +578,138 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "Indicates whether to include upload progress in the response.",
               "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "avoidBoundary",
+              "type": {
+                "text": "boolean | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "dispatchEventContext",
+              "type": {
+                "text": "{dispatchEvent(event: CustomEvent): void} | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "customEventPrefix",
+              "type": {
+                "text": "string | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastResponse",
+              "type": {
+                "text": "AjaxResponse<unknown> | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastError",
+              "type": {
+                "text": "AjaxError | undefined"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_assignAjaxRxjsConfig",
+              "return": {
+                "type": {
+                  "text": "Object"
+                }
+              },
+              "description": "Assigns the configuration settings for the AJAX request.",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "_joinUrlData",
+              "return": {
+                "type": {
+                  "text": "string"
+                }
+              },
+              "description": "Joins the base URL and path to create the complete request URL.",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "_joinHeaders",
+              "return": {
+                "type": {
+                  "text": "Object"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "formData",
+                  "type": {
+                    "text": "unknown"
+                  }
+                }
+              ],
+              "description": "Joins the default headers with custom headers.",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "_dispatchEvent",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "type",
+                  "type": {
+                    "text": "string"
+                  },
+                  "description": "The type of the custom event."
+                },
+                {
+                  "name": "payload",
+                  "type": {
+                    "text": "*"
+                  },
+                  "description": "The payload to include in the custom event."
+                }
+              ],
+              "description": "Dispatches a custom event with the specified type and payload.",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "request$",
+              "return": {
+                "type": {
+                  "text": "Observable<AjaxResponse<unknown>>"
+                }
+              },
+              "description": "Returns a cold Observable that performs the AJAX request on each subscription.\n\nProgress is reported through the `ajaxprogress` event. Errors are reported\nthrough `ajaxerror`/`ajaxerrorend` events before the observable errors."
+            },
+            {
+              "kind": "method",
+              "name": "generateRequest",
+              "return": {
+                "type": {
+                  "text": "Promise<any>"
+                }
+              },
+              "description": "Generates and sends the AJAX request."
             }
           ],
           "parameters": [
             {
-              "name": "Base"
+              "name": "Base",
+              "type": {
+                "text": "T"
+              }
             }
           ],
           "mixins": [
@@ -657,14 +726,336 @@
           "name": "AjaxProviderMixin",
           "declaration": {
             "name": "AjaxProviderMixin",
-            "module": "src/AjaxProviderMixin.js"
+            "module": "src/AjaxProviderMixin.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/index.js",
+      "path": "src/fromAjax.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "fromXMLHttpRequest",
+          "return": {
+            "type": {
+              "text": "ColdObservable<AjaxResponse<unknown>>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "init",
+              "type": {
+                "text": "AjaxConfig"
+              },
+              "description": "The request configuration."
+            }
+          ],
+          "description": "Creates an `XMLHttpRequest` observable that emits `AjaxResponse` values,\nreplicating the behavior of the removed `rxjs/ajax` `fromAjax` factory\nusing the Web Platform Observable (`ColdObservable`) model."
+        },
+        {
+          "kind": "variable",
+          "name": "url"
+        },
+        {
+          "kind": "variable",
+          "name": "headers",
+          "type": {
+            "text": "Record<string, string>"
+          },
+          "default": "{}"
+        },
+        {
+          "kind": "variable",
+          "name": "body"
+        },
+        {
+          "kind": "function",
+          "name": "lastValueFrom",
+          "return": {
+            "type": {
+              "text": "Promise<T>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "source$",
+              "type": {
+                "text": "Subscribable<T>"
+              },
+              "description": "The observable to subscribe to."
+            }
+          ],
+          "description": "Resolves with the last value emitted by the observable before completion."
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "AjaxResponse",
+          "members": [
+            {
+              "kind": "field",
+              "name": "originalEvent",
+              "type": {
+                "text": "Event"
+              },
+              "default": "originalEvent"
+            },
+            {
+              "kind": "field",
+              "name": "xhr",
+              "type": {
+                "text": "XMLHttpRequest"
+              },
+              "default": "xhr"
+            },
+            {
+              "kind": "field",
+              "name": "request",
+              "type": {
+                "text": "AjaxRequest"
+              },
+              "default": "{ url, headers, body, async: config.async, crossDomain: config.crossDomain, withCredentials: config.withCredentials, method: config.method, timeout: config.timeout, responseType: config.responseType as XMLHttpRequestResponseType, user: config.user, password: config.password, xsrfCookieName: config.xsrfCookieName, xsrfHeaderName: config.xsrfHeaderName, queryParams: config.queryParams, includeDownloadProgress: config.includeDownloadProgress, includeUploadProgress: config.includeUploadProgress, }"
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "default": "type"
+            },
+            {
+              "kind": "field",
+              "name": "status",
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "responseType",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "responseHeaders",
+              "type": {
+                "text": "Record<string, string>"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "response",
+              "type": {
+                "text": "T"
+              },
+              "default": "getXHRResponse(xhr)"
+            },
+            {
+              "kind": "field",
+              "name": "loaded",
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "total",
+              "type": {
+                "text": "number"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "AjaxError",
+          "members": [
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "'AjaxError'"
+            },
+            {
+              "kind": "field",
+              "name": "xhr",
+              "type": {
+                "text": "XMLHttpRequest"
+              },
+              "default": "xhr"
+            },
+            {
+              "kind": "field",
+              "name": "request",
+              "type": {
+                "text": "AjaxRequest"
+              },
+              "default": "{ url, headers, body, async: config.async, crossDomain: config.crossDomain, withCredentials: config.withCredentials, method: config.method, timeout: config.timeout, responseType: config.responseType as XMLHttpRequestResponseType, user: config.user, password: config.password, xsrfCookieName: config.xsrfCookieName, xsrfHeaderName: config.xsrfHeaderName, queryParams: config.queryParams, includeDownloadProgress: config.includeDownloadProgress, includeUploadProgress: config.includeUploadProgress, }"
+            },
+            {
+              "kind": "field",
+              "name": "status",
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "responseType",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "response",
+              "type": {
+                "text": "unknown"
+              },
+              "default": "response"
+            }
+          ],
+          "superclass": {
+            "name": "Error",
+            "module": "src/fromAjax.ts"
+          }
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "AjaxTimeoutError",
+          "members": [
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "'AjaxTimeoutError'",
+              "inheritedFrom": {
+                "name": "AjaxError",
+                "module": "src/fromAjax.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "xhr",
+              "type": {
+                "text": "XMLHttpRequest"
+              },
+              "default": "xhr",
+              "inheritedFrom": {
+                "name": "AjaxError",
+                "module": "src/fromAjax.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "request",
+              "type": {
+                "text": "AjaxRequest"
+              },
+              "default": "{ url, headers, body, async: config.async, crossDomain: config.crossDomain, withCredentials: config.withCredentials, method: config.method, timeout: config.timeout, responseType: config.responseType as XMLHttpRequestResponseType, user: config.user, password: config.password, xsrfCookieName: config.xsrfCookieName, xsrfHeaderName: config.xsrfHeaderName, queryParams: config.queryParams, includeDownloadProgress: config.includeDownloadProgress, includeUploadProgress: config.includeUploadProgress, }",
+              "inheritedFrom": {
+                "name": "AjaxError",
+                "module": "src/fromAjax.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "status",
+              "type": {
+                "text": "number"
+              },
+              "inheritedFrom": {
+                "name": "AjaxError",
+                "module": "src/fromAjax.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "responseType",
+              "type": {
+                "text": "string"
+              },
+              "inheritedFrom": {
+                "name": "AjaxError",
+                "module": "src/fromAjax.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "response",
+              "type": {
+                "text": "unknown"
+              },
+              "default": "response",
+              "inheritedFrom": {
+                "name": "AjaxError",
+                "module": "src/fromAjax.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "AjaxError",
+            "module": "src/fromAjax.ts"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "fromXMLHttpRequest",
+          "declaration": {
+            "name": "fromXMLHttpRequest",
+            "module": "src/fromAjax.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "lastValueFrom",
+          "declaration": {
+            "name": "lastValueFrom",
+            "module": "src/fromAjax.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "AjaxResponse",
+          "declaration": {
+            "name": "AjaxResponse",
+            "module": "src/fromAjax.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "AjaxError",
+          "declaration": {
+            "name": "AjaxError",
+            "module": "src/fromAjax.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "AjaxTimeoutError",
+          "declaration": {
+            "name": "AjaxTimeoutError",
+            "module": "src/fromAjax.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/index.ts",
       "declarations": [],
       "exports": [
         {
@@ -672,6 +1063,14 @@
           "name": "AjaxProvider",
           "declaration": {
             "name": "AjaxProvider",
+            "module": "./AjaxProvider.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "AjaxProviderConfig",
+          "declaration": {
+            "name": "AjaxProviderConfig",
             "module": "./AjaxProvider.js"
           }
         },
@@ -687,7 +1086,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/utils.js",
+      "path": "src/utils.ts",
       "declarations": [
         {
           "kind": "variable",
@@ -712,46 +1111,51 @@
         {
           "kind": "function",
           "name": "isFormData",
-          "parameters": [
-            {
-              "name": "thing",
-              "description": "The value to test",
-              "type": {
-                "text": "*"
-              }
-            }
-          ],
-          "description": "Determine if a value is a FormData",
           "return": {
             "type": {
               "text": "boolean"
             }
-          }
+          },
+          "parameters": [
+            {
+              "name": "thing",
+              "type": {
+                "text": "*"
+              },
+              "description": "The value to test"
+            }
+          ],
+          "description": "Determine if a value is a FormData"
         },
         {
           "kind": "function",
           "name": "assignIfDefined",
+          "return": {
+            "type": {
+              "text": "void"
+            }
+          },
           "parameters": [
             {
               "name": "obj",
-              "description": "The object to which the property will be assigned.",
               "type": {
                 "text": "Object"
-              }
+              },
+              "description": "The object to which the property will be assigned."
             },
             {
               "name": "prop",
-              "description": "The property name.",
               "type": {
                 "text": "string"
-              }
+              },
+              "description": "The property name."
             },
             {
               "name": "value",
-              "description": "The value to assign if it is defined.",
               "type": {
                 "text": "*"
-              }
+              },
+              "description": "The value to assign if it is defined."
             }
           ],
           "description": "Utility function to assign a property to an object if the value is defined."
@@ -763,7 +1167,7 @@
           "name": "isStandardBrowserEnv",
           "declaration": {
             "name": "isStandardBrowserEnv",
-            "module": "src/utils.js"
+            "module": "src/utils.ts"
           }
         },
         {
@@ -771,7 +1175,7 @@
           "name": "isStandardBrowserWebWorkerEnv",
           "declaration": {
             "name": "isStandardBrowserWebWorkerEnv",
-            "module": "src/utils.js"
+            "module": "src/utils.ts"
           }
         },
         {
@@ -779,7 +1183,7 @@
           "name": "isFormData",
           "declaration": {
             "name": "isFormData",
-            "module": "src/utils.js"
+            "module": "src/utils.ts"
           }
         },
         {
@@ -787,7 +1191,7 @@
           "name": "assignIfDefined",
           "declaration": {
             "name": "assignIfDefined",
-            "module": "src/utils.js"
+            "module": "src/utils.ts"
           }
         }
       ]

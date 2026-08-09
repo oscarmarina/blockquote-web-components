@@ -1,0 +1,47 @@
+{
+  "compilerOptions": {
+    "allowArbitraryExtensions": true,
+    "declaration": true,
+    "declarationDir": "./dist/",
+    "emitDeclarationOnly": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": [
+      "es2023",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "esnext",
+    "moduleResolution": "Bundler",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "resolvePackageJsonExports": true,
+    "resolvePackageJsonImports": true,
+    "skipLibCheck": true,
+    "customConditions": [
+      "workspaces"
+    ],
+    "sourceMap": true,
+    "strict": true,
+    "stripInternal": true,
+    "target": "es2023",
+    "types": [
+      "mocha",
+      "nise",
+      "@rxjs/observable-polyfill"
+    ],
+    "useDefineForClassFields": false,
+    "verbatimModuleSyntax": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts"
+  ]
+}

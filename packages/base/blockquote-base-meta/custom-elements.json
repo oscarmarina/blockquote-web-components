@@ -4,7 +4,7 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "src/BlockquoteBaseMeta.js",
+      "path": "src/BlockquoteBaseMeta.ts",
       "declarations": [
         {
           "kind": "class",
@@ -13,96 +13,100 @@
           "members": [
             {
               "kind": "field",
-              "name": "types",
-              "static": true,
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "uuid",
-              "static": true,
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "description": "Sets value to instance type and key",
-              "return": {
-                "type": {
-                  "text": "*"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "value",
-                  "type": {
-                    "text": "*"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "list",
-              "description": "Returns a list (Array) of the values for that instance `type`",
-              "return": {
-                "type": {
-                  "text": "Array"
-                }
-              },
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "mapList",
-              "description": "Returns a list (Map) for that instance `type`",
-              "return": {
-                "type": {
-                  "text": "Map"
-                }
-              },
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "objectList",
-              "description": "Returns a list (Object) for that instance `type`",
-              "return": {
-                "type": {
-                  "text": "Object"
-                }
-              },
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "byKey",
-              "parameters": [
-                {
-                  "name": "key",
-                  "type": {
-                    "text": "*"
-                  }
-                }
-              ],
-              "description": "Returns the value of the provided key for that instance `type`",
-              "return": {
-                "type": {
-                  "text": "*"
-                }
-              }
-            },
-            {
-              "kind": "field",
               "name": "type",
+              "type": {
+                "text": "unknown"
+              },
               "description": "Type of Meta",
               "default": "type"
             },
             {
               "kind": "field",
               "name": "key",
+              "type": {
+                "text": "unknown"
+              },
               "description": "Key for Meta",
               "default": "key"
+            },
+            {
+              "kind": "field",
+              "name": "__key",
+              "type": {
+                "text": "unknown"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "types",
+              "type": {
+                "text": "Map<unknown, Map<unknown, unknown>>"
+              },
+              "static": true,
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "uuid",
+              "type": {
+                "text": "string"
+              },
+              "static": true,
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "unknown"
+              },
+              "description": "Sets value to instance type and key"
+            },
+            {
+              "kind": "field",
+              "name": "list",
+              "type": {
+                "text": "unknown[]"
+              },
+              "description": "Returns a list (Array) of the values for that instance `type`",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "mapList",
+              "type": {
+                "text": "Map<unknown, unknown>"
+              },
+              "description": "Returns a list (Map) for that instance `type`",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "objectList",
+              "type": {
+                "text": "Record<string, unknown>"
+              },
+              "description": "Returns a list (Object) for that instance `type`",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "byKey",
+              "return": {
+                "type": {
+                  "text": "unknown"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "key",
+                  "type": {
+                    "text": "unknown"
+                  }
+                }
+              ],
+              "description": "Returns the value of the provided key for that instance `type`"
             }
           ]
         }
@@ -113,14 +117,14 @@
           "name": "BlockquoteBaseMeta",
           "declaration": {
             "name": "BlockquoteBaseMeta",
-            "module": "src/BlockquoteBaseMeta.js"
+            "module": "src/BlockquoteBaseMeta.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/index.js",
+      "path": "src/index.ts",
       "declarations": [],
       "exports": [
         {

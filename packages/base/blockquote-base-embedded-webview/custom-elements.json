@@ -4,13 +4,134 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "src/BlockquoteBaseEmbeddedWebview.js",
+      "path": "src/BlockquoteBaseEmbeddedWebview.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n`blockquote-base-embedded-webview` offers a responsive display using individual HTML files as content with different use cases to be displayed.\nIt will create a `select` tag with the provided demo HTML files and add the `[data-embedded]` attribute to the loaded body tag.\n\n### Demo\n\n[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/base/blockquote-base-embedded-webview)\n\n### Usage\n\n```html\n<blockquote-base-embedded-webview heading=\"My demo title\">\n  <template data-src=\"./base.html\" data-option=\"Base\" data-description=\"base - description\"></template>\n  <template data-src=\"./complex.html\" data-option=\"Complex\" data-description=\"complex - description\"></template>\n</blockquote-base-embedded-webview>\n```\n\n## base.html\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <title>Demo Base</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, interactive-widget=resizes-content\" />\n    <meta charset=\"utf-8\" />\n    <style>\n      :root {\n        font: normal medium/1.25 sans-serif;\n      }\n      body {\n        margin: 0;\n      }\n      [data-embedded] .hidden {\n        display: none;\n      }\n    </style>\n  </head>\n  <body>\n    <h1 class=\"hidden\">Heading</h1>\n    <p>Base Demo</p>\n  </body>\n</html>\n```",
           "name": "BlockquoteBaseEmbeddedWebview",
           "members": [
+            {
+              "kind": "field",
+              "name": "heading",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "description": "The heading of the webview.",
+              "default": "''",
+              "attribute": "heading"
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "description": "Index of currently srcset file",
+              "default": "0",
+              "attribute": "selected"
+            },
+            {
+              "kind": "field",
+              "name": "headingLevel",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "description": "Heading level from 1 to 6",
+              "default": "1",
+              "attribute": "heading-level",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "screenSizeSelected",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "description": "Index of currently screen size selected",
+              "default": "0",
+              "attribute": "screen-size-selected"
+            },
+            {
+              "kind": "field",
+              "name": "limitHeight",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Limit height to 100% available",
+              "default": "false",
+              "attribute": "limit-height",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "embedded",
+              "type": {
+                "text": "Element | null | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_sources",
+              "type": {
+                "text": "SourceItem[]"
+              },
+              "privacy": "private",
+              "default": "[{src: '', option: '', description: ''}]"
+            },
+            {
+              "kind": "field",
+              "name": "_src",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_controlBottom",
+              "type": {
+                "text": "number | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "__resetResizing",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "__selectArrow",
+              "privacy": "private",
+              "default": "html` <svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentcolor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"> <polyline points=\"6 9 12 15 18 9\" /> </svg> `",
+              "type": {
+                "text": "TemplateResult"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "__readDataPos",
+              "type": {
+                "text": "object"
+              },
+              "privacy": "private",
+              "default": "{x: '0', y: '0', resizing: false, cursor: ''}"
+            },
+            {
+              "kind": "field",
+              "name": "_embeddedResizeRef",
+              "privacy": "private"
+            },
             {
               "kind": "field",
               "name": "_updateSize"
@@ -84,99 +205,12 @@
               "name": "_onChangeFile",
               "parameters": [
                 {
-                  "name": "{target}"
+                  "name": "{target}",
+                  "type": {
+                    "text": "Event"
+                  }
                 }
               ]
-            },
-            {
-              "kind": "field",
-              "name": "selected",
-              "privacy": "public",
-              "type": {
-                "text": "number"
-              },
-              "description": "Index of currently srcset file",
-              "default": "0",
-              "attribute": "selected"
-            },
-            {
-              "kind": "field",
-              "name": "screenSizeSelected",
-              "privacy": "public",
-              "type": {
-                "text": "number"
-              },
-              "description": "Index of currently screen size selected",
-              "default": "0",
-              "attribute": "screen-size-selected"
-            },
-            {
-              "kind": "field",
-              "name": "headingLevel",
-              "privacy": "public",
-              "type": {
-                "text": "number"
-              },
-              "description": "Heading level from 1 to 6",
-              "default": "1",
-              "attribute": "heading-level",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "heading",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "description": "The heading of the webview.",
-              "default": "''",
-              "attribute": "heading"
-            },
-            {
-              "kind": "field",
-              "name": "__resetResizing",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "__selectArrow",
-              "default": "html` <svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentcolor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"> <polyline points=\"6 9 12 15 18 9\" /> </svg> `"
-            },
-            {
-              "kind": "field",
-              "name": "__readDataPos",
-              "type": {
-                "text": "object"
-              },
-              "default": "{x: '0', y: '0', resizing: false, cursor: ''}"
-            },
-            {
-              "kind": "field",
-              "name": "limitHeight",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "Limit height to 100% available",
-              "default": "false",
-              "attribute": "limit-height",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "_sources",
-              "type": {
-                "text": "array"
-              },
-              "default": "[{src: '', option: '', description: ''}]"
-            },
-            {
-              "kind": "field",
-              "name": "_embeddedResizeRef"
             }
           ],
           "attributes": [
@@ -240,52 +274,20 @@
           "name": "BlockquoteBaseEmbeddedWebview",
           "declaration": {
             "name": "BlockquoteBaseEmbeddedWebview",
-            "module": "src/BlockquoteBaseEmbeddedWebview.js"
+            "module": "src/BlockquoteBaseEmbeddedWebview.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/BlockquoteBaseEmbeddedWebviewElement.js",
+      "path": "src/BlockquoteBaseEmbeddedWebviewElement.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n`blockquote-base-embedded-webview-element` wraps an `iframe` or `object` and shows it through light dom.",
           "name": "BlockquoteBaseEmbeddedWebviewElement",
           "members": [
-            {
-              "kind": "method",
-              "name": "_litHtmlRender"
-            },
-            {
-              "kind": "field",
-              "name": "_lightDomTpl",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "_loadResource",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "_embeddedTpl",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "_fetch",
-              "parameters": [
-                {
-                  "name": "resource"
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "_onLoadElement"
-            },
             {
               "kind": "field",
               "name": "embeddedTitle",
@@ -318,6 +320,49 @@
               "description": "The type of the tag to embed - iframe or object",
               "default": "'iframe'",
               "attribute": "type"
+            },
+            {
+              "kind": "field",
+              "name": "_embeddedElement",
+              "type": {
+                "text": "HTMLElement | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "_litHtmlRender"
+            },
+            {
+              "kind": "field",
+              "name": "_lightDomTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_loadResource",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_embeddedTpl",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "_fetch",
+              "parameters": [
+                {
+                  "name": "resource",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "_onLoadElement"
             }
           ],
           "attributes": [
@@ -363,20 +408,143 @@
           "name": "BlockquoteBaseEmbeddedWebviewElement",
           "declaration": {
             "name": "BlockquoteBaseEmbeddedWebviewElement",
-            "module": "src/BlockquoteBaseEmbeddedWebviewElement.js"
+            "module": "src/BlockquoteBaseEmbeddedWebviewElement.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/BlockquoteBaseEmbeddedWebviewResize.js",
+      "path": "src/BlockquoteBaseEmbeddedWebviewResize.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n`blockquote-base-embedded-webview-resize`",
           "name": "BlockquoteBaseEmbeddedWebviewResize",
           "members": [
+            {
+              "kind": "field",
+              "name": "_cursor",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "private",
+              "default": "''"
+            },
+            {
+              "kind": "field",
+              "name": "_resizeDirection",
+              "type": {
+                "text": "ResizeDirection | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_getBoundingClientRectWidth",
+              "type": {
+                "text": "number"
+              },
+              "privacy": "private",
+              "default": "0"
+            },
+            {
+              "kind": "field",
+              "name": "_getBoundingClientRectHeight",
+              "type": {
+                "text": "number"
+              },
+              "privacy": "private",
+              "default": "0"
+            },
+            {
+              "kind": "field",
+              "name": "rect",
+              "type": {
+                "text": "HTMLElement | null | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "bottomRightResizerElement",
+              "type": {
+                "text": "HTMLElement | null | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "bottomLeftResizerElement",
+              "type": {
+                "text": "HTMLElement | null | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "rightResizerElement",
+              "type": {
+                "text": "HTMLElement | null | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "leftResizerElement",
+              "type": {
+                "text": "HTMLElement | null | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "bottomResizerElement",
+              "type": {
+                "text": "HTMLElement | null | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_createResizerLeft",
+              "type": {
+                "text": "(ev: PointerEvent) => void"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_createResizerRight",
+              "type": {
+                "text": "(ev: PointerEvent) => void"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_createResizerBottom",
+              "type": {
+                "text": "(ev: PointerEvent) => void"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_createResizerBottomLeft",
+              "type": {
+                "text": "(ev: PointerEvent) => void"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_createResizerBottomRight",
+              "type": {
+                "text": "(ev: PointerEvent) => void"
+              },
+              "privacy": "private"
+            },
             {
               "kind": "field",
               "name": "_resizersTpl",
@@ -393,7 +561,7 @@
                 {
                   "name": "resizeDirection",
                   "type": {
-                    "text": "'right' | 'left' | 'top' | 'scaleTopLeft' | 'scaleTopRight'"
+                    "text": "ResizeDirection"
                   }
                 },
                 {
@@ -409,12 +577,9 @@
               "name": "_resize",
               "parameters": [
                 {
-                  "name": "{detail}"
-                },
-                {
-                  "name": "params",
+                  "name": "{detail}",
                   "type": {
-                    "text": "@param {{dx: number, dy: number}} params.detail\n   "
+                    "text": "{detail: ResizeDetail}"
                   }
                 }
               ]
@@ -430,54 +595,10 @@
                 {
                   "name": "rectProp",
                   "type": {
-                    "text": "'x' | 'y' | 'width' | 'height' | 'top' | 'right' | 'bottom' | 'left'"
+                    "text": "DOMRectProp"
                   }
                 }
               ]
-            },
-            {
-              "kind": "field",
-              "name": "_cursor",
-              "type": {
-                "text": "string"
-              },
-              "default": "''"
-            },
-            {
-              "kind": "field",
-              "name": "_createResizerLeft"
-            },
-            {
-              "kind": "field",
-              "name": "_createResizerRight"
-            },
-            {
-              "kind": "field",
-              "name": "_createResizerBottom"
-            },
-            {
-              "kind": "field",
-              "name": "_createResizerBottomLeft"
-            },
-            {
-              "kind": "field",
-              "name": "_createResizerBottomRight"
-            },
-            {
-              "kind": "field",
-              "name": "_getBoundingClientRectWidth",
-              "type": {
-                "text": "number"
-              },
-              "default": "0"
-            },
-            {
-              "kind": "field",
-              "name": "_getBoundingClientRectHeight",
-              "type": {
-                "text": "number"
-              },
-              "default": "0"
             }
           ],
           "events": [
@@ -500,20 +621,75 @@
           "name": "BlockquoteBaseEmbeddedWebviewResize",
           "declaration": {
             "name": "BlockquoteBaseEmbeddedWebviewResize",
-            "module": "src/BlockquoteBaseEmbeddedWebviewResize.js"
+            "module": "src/BlockquoteBaseEmbeddedWebviewResize.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/BlockquoteBaseEmbeddedWebviewSize.js",
+      "path": "src/BlockquoteBaseEmbeddedWebviewSize.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n`blockquote-base-embedded-webview-size` provides a list of ideal screen sizes for responsive designs.\n<br>\n\n```html\n<blockquote-base-embedded-webview-size\n  screen-sizes=\"[\n    { width: 360, height: 800, id: '360x800' },\n    { width: 390, height: 864, id: '390x864' },\n    { width: 414, height: 896, id: '414x896' },\n    { width: 768, height: 1024, id: '768x1024' },\n    { width: 810, height: 1080, id: '810x1080' },\n    { width: 1280, height: 720, id: '1280x800' },\n    { width: 1366, height: 768, id: '1366x768' },\n    { width: 1536, height: 864, id: '1536x864' },\n    { width: 1920, height: 1080, id: '1920x1080' },\n  ]\"></blockquote-base-embedded-webview-size>\n```",
           "name": "BlockquoteBaseEmbeddedWebviewSize",
           "members": [
+            {
+              "kind": "field",
+              "name": "screenSizes",
+              "privacy": "public",
+              "type": {
+                "text": "ScreenSize[]"
+              },
+              "description": "The screen size options to display",
+              "default": "[ {width: 360, height: 800, id: '360x800'}, {width: 390, height: 864, id: '390x864'}, {width: 414, height: 896, id: '414x896'}, {width: 768, height: 1024, id: '768x1024'}, {width: 810, height: 1080, id: '810x1080'}, {width: 1280, height: 720, id: '1280x800'}, {width: 1366, height: 768, id: '1366x768'}, {width: 1536, height: 864, id: '1536x864'}, {width: 1920, height: 1080, id: '1920x1080'}, ]",
+              "attribute": "screen-sizes"
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "description": "The screen size option selected",
+              "default": "0",
+              "attribute": "selected"
+            },
+            {
+              "kind": "field",
+              "name": "widthInPercent",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Percentage value for the width",
+              "default": "false",
+              "attribute": "width-in-percent"
+            },
+            {
+              "kind": "field",
+              "name": "showOverflowSize",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Show screen size options that are too large for the container",
+              "default": "false",
+              "attribute": "show-overflow-size"
+            },
+            {
+              "kind": "field",
+              "name": "disabledSelectedSizeText",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, selected size text is disabled",
+              "default": "false",
+              "attribute": "disabled-selected-size-text"
+            },
             {
               "kind": "field",
               "name": "selectedSize",
@@ -548,71 +724,19 @@
               "name": "_setSelected",
               "parameters": [
                 {
-                  "name": "ev"
+                  "name": "ev",
+                  "type": {
+                    "text": "Event"
+                  }
                 }
               ]
-            },
-            {
-              "kind": "field",
-              "name": "showOverflowSize",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "Show screen size options that are too large for the container",
-              "default": "false",
-              "attribute": "show-overflow-size"
-            },
-            {
-              "kind": "field",
-              "name": "selected",
-              "privacy": "public",
-              "type": {
-                "text": "number"
-              },
-              "description": "The screen size option selected",
-              "default": "0",
-              "attribute": "selected"
-            },
-            {
-              "kind": "field",
-              "name": "disabledSelectedSizeText",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "If true, selected size text is disabled",
-              "default": "false",
-              "attribute": "disabled-selected-size-text"
-            },
-            {
-              "kind": "field",
-              "name": "screenSizes",
-              "privacy": "public",
-              "type": {
-                "text": "array"
-              },
-              "description": "The screen size options to display",
-              "default": "[ {width: 360, height: 800, id: '360x800'}, {width: 390, height: 864, id: '390x864'}, {width: 414, height: 896, id: '414x896'}, {width: 768, height: 1024, id: '768x1024'}, {width: 810, height: 1080, id: '810x1080'}, {width: 1280, height: 720, id: '1280x800'}, {width: 1366, height: 768, id: '1366x768'}, {width: 1536, height: 864, id: '1536x864'}, {width: 1920, height: 1080, id: '1920x1080'}, ]",
-              "attribute": "screen-sizes"
-            },
-            {
-              "kind": "field",
-              "name": "widthInPercent",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "Percentage value for the width",
-              "default": "false",
-              "attribute": "width-in-percent"
             }
           ],
           "attributes": [
             {
               "name": "screen-sizes",
               "type": {
-                "text": "array"
+                "text": "ScreenSize[]"
               },
               "description": "The screen size options to display",
               "default": "[ {width: 360, height: 800, id: '360x800'}, {width: 390, height: 864, id: '390x864'}, {width: 414, height: 896, id: '414x896'}, {width: 768, height: 1024, id: '768x1024'}, {width: 810, height: 1080, id: '810x1080'}, {width: 1280, height: 720, id: '1280x800'}, {width: 1366, height: 768, id: '1366x768'}, {width: 1536, height: 864, id: '1536x864'}, {width: 1920, height: 1080, id: '1920x1080'}, ]",
@@ -669,14 +793,14 @@
           "name": "BlockquoteBaseEmbeddedWebviewSize",
           "declaration": {
             "name": "BlockquoteBaseEmbeddedWebviewSize",
-            "module": "src/BlockquoteBaseEmbeddedWebviewSize.js"
+            "module": "src/BlockquoteBaseEmbeddedWebviewSize.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/index.js",
+      "path": "src/index.ts",
       "declarations": [],
       "exports": [
         {
@@ -715,7 +839,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/define/blockquote-base-embedded-webview-element.js",
+      "path": "src/define/blockquote-base-embedded-webview-element.ts",
       "declarations": [],
       "exports": [
         {
@@ -730,7 +854,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/define/blockquote-base-embedded-webview-resize.js",
+      "path": "src/define/blockquote-base-embedded-webview-resize.ts",
       "declarations": [],
       "exports": [
         {
@@ -745,7 +869,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/define/blockquote-base-embedded-webview-size.js",
+      "path": "src/define/blockquote-base-embedded-webview-size.ts",
       "declarations": [],
       "exports": [
         {
@@ -760,7 +884,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/define/blockquote-base-embedded-webview.js",
+      "path": "src/define/blockquote-base-embedded-webview.ts",
       "declarations": [],
       "exports": [
         {
@@ -775,7 +899,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/styles/blockquote-base-embedded-webview-element-styles.css.js",
+      "path": "src/styles/blockquote-base-embedded-webview-element-styles.css.ts",
       "declarations": [
         {
           "kind": "variable",
@@ -789,14 +913,14 @@
           "name": "styles",
           "declaration": {
             "name": "styles",
-            "module": "src/styles/blockquote-base-embedded-webview-element-styles.css.js"
+            "module": "src/styles/blockquote-base-embedded-webview-element-styles.css.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/styles/blockquote-base-embedded-webview-resize-styles.css.js",
+      "path": "src/styles/blockquote-base-embedded-webview-resize-styles.css.ts",
       "declarations": [
         {
           "kind": "variable",
@@ -810,14 +934,14 @@
           "name": "styles",
           "declaration": {
             "name": "styles",
-            "module": "src/styles/blockquote-base-embedded-webview-resize-styles.css.js"
+            "module": "src/styles/blockquote-base-embedded-webview-resize-styles.css.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/styles/blockquote-base-embedded-webview-size-styles.css.js",
+      "path": "src/styles/blockquote-base-embedded-webview-size-styles.css.ts",
       "declarations": [
         {
           "kind": "variable",
@@ -831,14 +955,14 @@
           "name": "styles",
           "declaration": {
             "name": "styles",
-            "module": "src/styles/blockquote-base-embedded-webview-size-styles.css.js"
+            "module": "src/styles/blockquote-base-embedded-webview-size-styles.css.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/styles/blockquote-base-embedded-webview-styles.css.js",
+      "path": "src/styles/blockquote-base-embedded-webview-styles.css.ts",
       "declarations": [
         {
           "kind": "variable",
@@ -852,7 +976,7 @@
           "name": "styles",
           "declaration": {
             "name": "styles",
-            "module": "src/styles/blockquote-base-embedded-webview-styles.css.js"
+            "module": "src/styles/blockquote-base-embedded-webview-styles.css.ts"
           }
         }
       ]

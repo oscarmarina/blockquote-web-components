@@ -4,7 +4,7 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "src/BlockquoteDialog.js",
+      "path": "src/BlockquoteDialog.ts",
       "declarations": [
         {
           "kind": "class",
@@ -19,7 +19,11 @@
           "members": [
             {
               "kind": "field",
-              "name": "treewalker"
+              "name": "treewalker",
+              "type": {
+                "text": "IterableIterator<HTMLElement>"
+              },
+              "default": "walkComposedTree({ root: this, whatToShow: NodeFilter.SHOW_ELEMENT, filterAccept: isFocusable, filterReject: isElementInvisible, })"
             },
             {
               "kind": "field",
@@ -32,7 +36,10 @@
             },
             {
               "kind": "field",
-              "name": "dialogRef"
+              "name": "dialogRef",
+              "type": {
+                "text": "Ref<HTMLDialogElement>"
+              }
             },
             {
               "kind": "field",
@@ -55,12 +62,137 @@
               "reflects": true
             },
             {
+              "kind": "field",
+              "name": "_isConnectedCallbackResolve",
+              "type": {
+                "text": "() => void"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_isConnectedCallback",
+              "type": {
+                "text": "Promise<void>"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_firstFocusableChild",
+              "type": {
+                "text": "HTMLElement | null | undefined"
+              },
+              "default": "undefined"
+            },
+            {
+              "kind": "field",
+              "name": "_lastFocusableChild",
+              "type": {
+                "text": "HTMLElement | null | undefined"
+              },
+              "default": "undefined"
+            },
+            {
+              "kind": "field",
+              "name": "_nextClickIsFromContent",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "_overflowRoot",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_nativeDialogOpenObserver",
+              "type": {
+                "text": "MutationController | undefined"
+              },
+              "default": "undefined"
+            },
+            {
+              "kind": "field",
+              "name": "_submitter",
+              "type": {
+                "text": "HTMLElement | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "scroller",
+              "type": {
+                "text": "HTMLElement | null | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "returnValue",
+              "privacy": "public",
+              "description": "Gets or sets the dialog's return value, usually to indicate which button\na user pressed to close it.\n\nhttps://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/returnValue returnValue",
+              "type": {
+                "text": "string | HTMLElement | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "description": "The type of dialog for accessibility. Set this to `alert` to announce a\ndialog as an alert dialog.",
+              "default": "'alert'",
+              "attribute": "type"
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "description": "The 'label' attribute will be used as the 'aria-label' for the dialog",
+              "default": "''",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "labelledby",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "description": "The 'labelledby' attribute will be used as the 'aria-labelledby' for the dialog.\nIt will also be used to create a slot with the same 'id' and 'name'.\nThis slot is hidden by default and its 'name' and 'id' should correspond to the 'slot' attribute of an element in the Light DOM.\nThis connects the 'slot', 'name', and 'id' attributes of a slot to be used with ARIA relationships.",
+              "default": "''",
+              "attribute": "labelledby"
+            },
+            {
+              "kind": "field",
+              "name": "labelledbyVisible",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "The 'labelledbyVisible' attribute will control the visibility of the slot created by 'labelledby'.\nBy default, it is set to 'hidden'.",
+              "default": "false",
+              "attribute": "labelledby-visibile"
+            },
+            {
               "kind": "method",
               "name": "getIsConnectedCallbackResolve"
             },
             {
               "kind": "method",
-              "name": "show"
+              "name": "show",
+              "return": {
+                "type": {
+                  "text": "Promise<void>"
+                }
+              }
             },
             {
               "kind": "method",
@@ -113,7 +245,10 @@
               "name": "_handleNativeOpen",
               "parameters": [
                 {
-                  "name": "records"
+                  "name": "records",
+                  "type": {
+                    "text": "MutationRecord[]"
+                  }
                 }
               ]
             },
@@ -158,7 +293,10 @@
               "name": "_firstFocusTrap",
               "parameters": [
                 {
-                  "name": "{relatedTarget}"
+                  "name": "{relatedTarget}",
+                  "type": {
+                    "text": "FocusEvent"
+                  }
                 }
               ]
             },
@@ -167,94 +305,12 @@
               "name": "_lastFocusTrap",
               "parameters": [
                 {
-                  "name": "{relatedTarget}"
+                  "name": "{relatedTarget}",
+                  "type": {
+                    "text": "FocusEvent"
+                  }
                 }
               ]
-            },
-            {
-              "kind": "field",
-              "name": "_isConnectedCallbackResolve"
-            },
-            {
-              "kind": "field",
-              "name": "_isConnectedCallback"
-            },
-            {
-              "kind": "field",
-              "name": "_firstFocusableChild",
-              "default": "undefined"
-            },
-            {
-              "kind": "field",
-              "name": "_lastFocusableChild",
-              "default": "undefined"
-            },
-            {
-              "kind": "field",
-              "name": "_nextClickIsFromContent",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "_overflowRoot"
-            },
-            {
-              "kind": "field",
-              "name": "_nativeDialogOpenObserver",
-              "default": "undefined"
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "description": "The type of dialog for accessibility. Set this to `alert` to announce a\ndialog as an alert dialog.",
-              "default": "'alert'",
-              "attribute": "type"
-            },
-            {
-              "kind": "field",
-              "name": "label",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "description": "The 'label' attribute will be used as the 'aria-label' for the dialog",
-              "default": "''",
-              "attribute": "label"
-            },
-            {
-              "kind": "field",
-              "name": "labelledby",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "description": "The 'labelledby' attribute will be used as the 'aria-labelledby' for the dialog.\nIt will also be used to create a slot with the same 'id' and 'name'.\nThis slot is hidden by default and its 'name' and 'id' should correspond to the 'slot' attribute of an element in the Light DOM.\nThis connects the 'slot', 'name', and 'id' attributes of a slot to be used with ARIA relationships.",
-              "default": "''",
-              "attribute": "labelledby"
-            },
-            {
-              "kind": "field",
-              "name": "labelledbyVisible",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "The 'labelledbyVisible' attribute will control the visibility of the slot created by 'labelledby'.\nBy default, it is set to 'hidden'.",
-              "default": "false",
-              "attribute": "labelledby-visibile"
-            },
-            {
-              "kind": "field",
-              "name": "returnValue",
-              "privacy": "public",
-              "description": "Gets or sets the dialog's return value, usually to indicate which button\na user pressed to close it.\n\nhttps://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/returnValue returnValue"
             }
           ],
           "events": [
@@ -331,14 +387,14 @@
           "name": "BlockquoteDialog",
           "declaration": {
             "name": "BlockquoteDialog",
-            "module": "src/BlockquoteDialog.js"
+            "module": "src/BlockquoteDialog.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/index.js",
+      "path": "src/index.ts",
       "declarations": [],
       "exports": [
         {
@@ -353,7 +409,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/define/blockquote-dialog.js",
+      "path": "src/define/blockquote-dialog.ts",
       "declarations": [],
       "exports": [
         {
@@ -368,7 +424,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/styles/blockqoute-dialog-animations-styles.css.js",
+      "path": "src/styles/blockqoute-dialog-animations-styles.css.ts",
       "declarations": [
         {
           "kind": "variable",
@@ -382,14 +438,14 @@
           "name": "styles",
           "declaration": {
             "name": "styles",
-            "module": "src/styles/blockqoute-dialog-animations-styles.css.js"
+            "module": "src/styles/blockqoute-dialog-animations-styles.css.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/styles/blockquote-dialog-styles.css.js",
+      "path": "src/styles/blockquote-dialog-styles.css.ts",
       "declarations": [
         {
           "kind": "variable",
@@ -403,7 +459,7 @@
           "name": "styles",
           "declaration": {
             "name": "styles",
-            "module": "src/styles/blockquote-dialog-styles.css.js"
+            "module": "src/styles/blockquote-dialog-styles.css.ts"
           }
         }
       ]

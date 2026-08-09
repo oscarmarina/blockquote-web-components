@@ -1,0 +1,41 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BlockquoteControllerContextMeta > Default > Default value > LIGHT DOM > LIGHT DOM 1`] = `
+"<provider-el data="foo">
+  <consumer-el data="foo">
+  </consumer-el>
+</provider-el>
+"
+`;
+
+exports[`BlockquoteControllerContextMeta > Default > Default value > SHADOW DOM > SHADOW DOM 1`] = `
+"<h3>
+  Provider's data:
+  <code>
+    foo
+  </code>
+</h3>
+<hr>
+<consumer-el data="foo">
+</consumer-el>
+<hr>
+<div data-info="foo">
+  normal element 1
+  <flow-element
+    data="foo"
+    role="none"
+  >
+    <consumer-el data="foo">
+    </consumer-el>
+  </flow-element>
+</div>
+<hr>
+<div>
+  normal element 2
+  <consumer-el data="foo">
+  </consumer-el>
+</div>
+<slot>
+</slot>
+"
+`;
