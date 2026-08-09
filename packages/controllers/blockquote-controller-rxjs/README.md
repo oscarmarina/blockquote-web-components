@@ -23,10 +23,6 @@ assign values to and the Observable we want to subscribe.
 
 ```js
 class BlockquoteControllerRxjsDemo extends LitElement {
-  static get is() {
-    return 'blockquote-controller-rxjs-demo';
-  }
-
   static get properties() {
     return {
       _pos: {
@@ -39,16 +35,24 @@ class BlockquoteControllerRxjsDemo extends LitElement {
   constructor() {
     super();
     this.rx = new BlockquoteControllerRxjs(this);
-    this._pos = { x: 0, y: 0 };
-    this.values$ = fromEvent(window, 'mousemove').pipe(
-      map(({ clientX, clientY }) => ({ x: clientX, y: clientY })),
+    this._pos = {x: 0, y: 0};
+    const mousemove$ = fromEventPattern(
+      (handler) => {
+        window.addEventListener('mousemove', handler);
+      },
+      (handler) => {
+        window.removeEventListener('mousemove', handler);
+      }
     );
+
+    this.values$ = mousemove$[map](({clientX, clientY}) => ({
+      x: clientX,
+      y: clientY,
+    }));
   }
 
   connectedCallback() {
     super.connectedCallback();
-
-    // Property and Observable.
     this.rx.subscribe('_pos', this.values$);
   }
 
@@ -58,30 +62,38 @@ class BlockquoteControllerRxjsDemo extends LitElement {
       <pre>
         x: ${this._pos.x}
         y: ${this._pos.y}
-      </pre
-      >
+      </pre>
     `;
   }
 }
 ```
 
-
-### `src/BlockquoteControllerRxjs.js`:
+### `src/BlockquoteControllerRxjs.ts`:
 
 #### class: `BlockquoteControllerRxjs`
 
 ##### Fields
 
-| Name | Privacy | Type | Default     | Description | Inherited From |
-| ---- | ------- | ---- | ----------- | ----------- | -------------- |
-|      |         |      | `new Map()` |             |                |
+| Name   | Privacy | Type                           | Default | Description | Inherited From |
+| ------ | ------- | ------------------------------ | ------- | ----------- | -------------- |
+| `host` |         | `BlockquoteControllerRxjsHost` | `host`  |             |                |
 
 ##### Methods
 
-| Name               | Privacy | Description | Parameters         | Return | Inherited From |
-| ------------------ | ------- | ----------- | ------------------ | ------ | -------------- |
-| `subscribe`        |         |             | `propKey, stream$` |        |                |
-| `hostDisconnected` |         |             |                    |        |                |
+| Name               | Privacy | Description | Parameters                                         | Return              | Inherited From |
+| ------------------ | ------- | ----------- | -------------------------------------------------- | ------------------- | -------------- |
+| `subscribe`        |         |             | `propKey: PropertyKey, stream$: ObservableLike<T>` | `ObservableLike<T>` |                |
+| `hostDisconnected` |         |             |                                                    |                     |                |
+
+<details><summary>Private API</summary>
+
+##### Fields
+
+| Name            | Privacy | Type | Default                                     | Description | Inherited From |
+| --------------- | ------- | ---- | ------------------------------------------- | ----------- | -------------- |
+| `subscriptions` | private |      | `new Map<PropertyKey, SubscriptionEntry>()` |             |                |
+
+</details>
 
 <hr/>
 
@@ -89,9 +101,9 @@ class BlockquoteControllerRxjsDemo extends LitElement {
 
 | Kind | Name                       | Declaration              | Module                          | Package |
 | ---- | -------------------------- | ------------------------ | ------------------------------- | ------- |
-| `js` | `BlockquoteControllerRxjs` | BlockquoteControllerRxjs | src/BlockquoteControllerRxjs.js |         |
+| `js` | `BlockquoteControllerRxjs` | BlockquoteControllerRxjs | src/BlockquoteControllerRxjs.ts |         |
 
-### `src/index.js`:
+### `src/index.ts`:
 
 #### Exports
 

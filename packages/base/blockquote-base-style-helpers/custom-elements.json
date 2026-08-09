@@ -4,7 +4,7 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "src/getComponentSharedStyles.js",
+      "path": "src/getComponentSharedStyles.ts",
       "declarations": [
         {
           "kind": "class",
@@ -12,27 +12,27 @@
           "name": "README",
           "superclass": {
             "name": "Text",
-            "module": "src/getComponentSharedStyles.js"
+            "module": "src/getComponentSharedStyles.ts"
           }
         },
         {
           "kind": "function",
           "name": "getComponentSharedStyles",
-          "parameters": [
-            {
-              "name": "id",
-              "description": "Identifier of styles; usually will be `[component-name]-shared-styles`",
-              "type": {
-                "text": "String"
-              }
-            }
-          ],
-          "description": "Get styles (as cssResult) already associated to provided ID string (using setComponentSharedStyles helper) and returns them",
           "return": {
             "type": {
               "text": ""
             }
-          }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "type": {
+                "text": "String"
+              },
+              "description": "Identifier of styles; usually will be `[component-name]-shared-styles`"
+            }
+          ],
+          "description": "Get styles (as cssResult) already associated to provided ID string (using setComponentSharedStyles helper) and returns them"
         }
       ],
       "exports": [
@@ -41,7 +41,7 @@
           "name": "README",
           "declaration": {
             "name": "README",
-            "module": "src/getComponentSharedStyles.js"
+            "module": "src/getComponentSharedStyles.ts"
           }
         },
         {
@@ -49,14 +49,14 @@
           "name": "getComponentSharedStyles",
           "declaration": {
             "name": "getComponentSharedStyles",
-            "module": "src/getComponentSharedStyles.js"
+            "module": "src/getComponentSharedStyles.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/index.js",
+      "path": "src/index.ts",
       "declarations": [],
       "exports": [
         {
@@ -95,25 +95,30 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/setComponentSharedStyles.js",
+      "path": "src/setComponentSharedStyles.ts",
       "declarations": [
         {
           "kind": "function",
           "name": "setComponentSharedStyles",
+          "return": {
+            "type": {
+              "text": "void"
+            }
+          },
           "parameters": [
             {
               "name": "id",
-              "description": "Identifier of styles; usually will be `[component-name]-shared-styles`",
               "type": {
                 "text": "String"
-              }
+              },
+              "description": "Identifier of styles; usually will be `[component-name]-shared-styles`"
             },
             {
               "name": "styles",
-              "description": "Styles to add, wrapper in a Lit css tagged template literal",
               "type": {
                 "text": "CSSResult"
-              }
+              },
+              "description": "Styles to add, wrapper in a Lit css tagged template literal"
             }
           ],
           "description": "Set styles (as cssResult) associated to provided ID string which can then be retrieved by components"
@@ -125,32 +130,37 @@
           "name": "setComponentSharedStyles",
           "declaration": {
             "name": "setComponentSharedStyles",
-            "module": "src/setComponentSharedStyles.js"
+            "module": "src/setComponentSharedStyles.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/setDocumentStyles.js",
+      "path": "src/setDocumentStyles.ts",
       "declarations": [
         {
           "kind": "function",
           "name": "adoptDocumentStyles",
+          "return": {
+            "type": {
+              "text": "void"
+            }
+          },
           "parameters": [
             {
               "name": "renderRoot",
-              "description": "The root element where styles will be rendered.",
               "type": {
                 "text": "Document | HTMLElement"
-              }
+              },
+              "description": "The root element where styles will be rendered."
             },
             {
               "name": "styles",
-              "description": "The styles to adopt.",
               "type": {
                 "text": "Array<*>"
-              }
+              },
+              "description": "The styles to adopt."
             }
           ],
           "description": "Adopts the given styles into the render root."
@@ -158,13 +168,18 @@
         {
           "kind": "function",
           "name": "setDocumentStyles",
+          "return": {
+            "type": {
+              "text": "void"
+            }
+          },
           "parameters": [
             {
               "name": "styles",
-              "description": "The styles to set.",
               "type": {
                 "text": "!*"
-              }
+              },
+              "description": "The styles to set."
             }
           ],
           "description": "Sets the document styles."
@@ -176,7 +191,7 @@
           "name": "adoptDocumentStyles",
           "declaration": {
             "name": "adoptDocumentStyles",
-            "module": "src/setDocumentStyles.js"
+            "module": "src/setDocumentStyles.ts"
           }
         },
         {
@@ -184,7 +199,7 @@
           "name": "setDocumentStyles",
           "declaration": {
             "name": "setDocumentStyles",
-            "module": "src/setDocumentStyles.js"
+            "module": "src/setDocumentStyles.ts"
           }
         }
       ]

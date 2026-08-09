@@ -1,0 +1,45 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BlockquoteBaseEmbeddedWebviewResize > Default > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
+"<blockquote-base-embedded-webview-resize>
+</blockquote-base-embedded-webview-resize>
+"
+`;
+
+exports[`BlockquoteBaseEmbeddedWebviewResize > Default > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
+"<div class="rect">
+  <span
+    aria-hidden="true"
+    class="resizer resizer-n"
+  >
+  </span>
+  <span
+    aria-hidden="true"
+    class="resizer resizer-e"
+  >
+  </span>
+  <span
+    aria-hidden="true"
+    class="resizer resizer-s"
+  >
+  </span>
+  <span
+    aria-hidden="true"
+    class="resizer resizer-w"
+  >
+  </span>
+  <span
+    aria-hidden="true"
+    class="resizer resizer-se"
+  >
+  </span>
+  <span
+    aria-hidden="true"
+    class="resizer resizer-sw"
+  >
+  </span>
+  <slot>
+  </slot>
+</div>
+"
+`;

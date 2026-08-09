@@ -1,72 +1,99 @@
 {
   "name": "@blockquote-web-components/blockquote-tabs",
   "version": "1.7.2",
-  "description": "Webcomponent blockquote-tabs following open-wc recommendations",
+  "description": "A modern architecture for building composable and reusable Web Components",
   "keywords": [
     "lit",
     "web-component",
     "lit-element"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oscarmarina/blockquote-web-components",
+    "directory": "packages/components/blockquote-tabs"
+  },
   "license": "MIT",
-  "author": "blockquote-tabs",
+  "author": "Blockquote",
   "type": "module",
   "exports": {
     ".": {
-      "default": "./src/index.js"
+      "workspaces": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./package.json": {
       "default": "./package.json"
     },
-    "./src/BlockquoteTabs.js": {
-      "default": "./src/BlockquoteTabs.js"
+    "./BlockquoteTabs.js": {
+      "workspaces": "./src/BlockquoteTabs.ts",
+      "types": "./dist/BlockquoteTabs.d.ts",
+      "default": "./dist/BlockquoteTabs.js"
     },
-    "./src/tab/BlockquoteTab.js": {
-      "default": "./src/tab/BlockquoteTab.js"
+    "./BlockquoteTab.js": {
+      "workspaces": "./src/tab/BlockquoteTab.ts",
+      "types": "./dist/tab/BlockquoteTab.d.ts",
+      "default": "./dist/tab/BlockquoteTab.js"
     },
-    "./src/tabpanel/BlockquoteTabPanel.js": {
-      "default": "./src/tabpanel/BlockquoteTabPanel.js"
-    },
-    "./src/styles/blockquote-tabs-styles.css.js": {
-      "default": "./src/styles/blockquote-tabs-styles.css.js"
-    },
-    "./src/tab/styles/blockquote-tab-styles.css.js": {
-      "default": "./src/tab/styles/blockquote-tab-styles.css.js"
-    },
-    "./src/tabpanel/styles/blockquote-tabpanel-styles.css.js": {
-      "default": "./src/tabpanel/styles/blockquote-tabpanel-styles.css.js"
-    },
-    "./define/blockquote-tabs.js": {
-      "default": "./define/blockquote-tabs.js"
-    },
-    "./define/blockquote-tab.js": {
-      "default": "./define/blockquote-tab.js"
-    },
-    "./define/blockquote-tabpanel.js": {
-      "default": "./define/blockquote-tabpanel.js"
+    "./BlockquoteTabPanel.js": {
+      "workspaces": "./src/tabpanel/BlockquoteTabPanel.ts",
+      "types": "./dist/tabpanel/BlockquoteTabPanel.d.ts",
+      "default": "./dist/tabpanel/BlockquoteTabPanel.js"
     },
     "./index.js": {
-      "default": "./src/index.js"
+      "workspaces": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./blockquote-tabs.js": {
+      "workspaces": "./src/define/blockquote-tabs.ts",
+      "types": "./dist/define/blockquote-tabs.d.ts",
+      "default": "./dist/define/blockquote-tabs.js"
+    },
+    "./blockquote-tab.js": {
+      "workspaces": "./src/define/blockquote-tab.ts",
+      "types": "./dist/define/blockquote-tab.d.ts",
+      "default": "./dist/define/blockquote-tab.js"
+    },
+    "./blockquote-tabpanel.js": {
+      "workspaces": "./src/define/blockquote-tabpanel.ts",
+      "types": "./dist/define/blockquote-tabpanel.d.ts",
+      "default": "./dist/define/blockquote-tabpanel.js"
+    },
+    "./blockquote-tabs-styles.css.js": {
+      "workspaces": "./src/styles/blockquote-tabs-styles.css.ts",
+      "types": "./dist/styles/blockquote-tabs-styles.css.d.ts",
+      "default": "./dist/styles/blockquote-tabs-styles.css.js"
+    },
+    "./blockquote-tab-styles.css.js": {
+      "workspaces": "./src/tab/styles/blockquote-tab-styles.css.ts",
+      "types": "./dist/tab/styles/blockquote-tab-styles.css.d.ts",
+      "default": "./dist/tab/styles/blockquote-tab-styles.css.js"
+    },
+    "./blockquote-tabpanel-styles.css.js": {
+      "workspaces": "./src/tabpanel/styles/blockquote-tabpanel-styles.css.ts",
+      "types": "./dist/tabpanel/styles/blockquote-tabpanel-styles.css.d.ts",
+      "default": "./dist/tabpanel/styles/blockquote-tabpanel-styles.css.js"
     }
   },
-  "main": "src/index.js",
-  "module": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "/define/",
     "/src/",
-    "index.js",
-    "!/**/*.scss"
+    "/dist/"
   ],
   "scripts": {
     "analyze": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
-    "build": "echo \"This is not a TypeScript project, so no need to build.\"",
-    "dev:vite": "vite build",
+    "build": "npm run build:lib && npm run build:tsc",
+    "build:demo": "vite build",
+    "build:lib": "vite build --config vite.lib.config.js",
+    "build:tsc": "tsc --project ./tsconfig.build.json",
     "format": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
     "format:eslint": "eslint . --fix",
     "format:prettier": "prettier \"**/*.{js,ts,css,scss,html,json}\" --write --ignore-path .prettierignore",
     "format:stylelint": "stylelint \"{demo,src}/**/*.{js,ts,css,scss,html}\" --fix --ignore-path .prettierignore",
-    "postinstall": "npm run sort:package",
     "preview:vite": "vite preview",
-    "sass:watch": "sass-style-template",
+    "sass:watch": "sass-style-template -j ts",
     "sort:package": "npx sort-package-json",
     "start": "concurrently -k -r \"npm:vite\" \"npm:sass:watch\"",
     "test": "vitest",

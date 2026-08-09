@@ -1,52 +1,69 @@
 {
   "name": "@blockquote-web-components/blockquote-dialog",
   "version": "1.5.8",
-  "description": "Webcomponent blockquote-dialog following open-wc recommendations",
+  "description": "A modern architecture for building composable and reusable Web Components",
   "keywords": [
     "lit",
     "web-component",
     "lit-element"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oscarmarina/blockquote-web-components",
+    "directory": "packages/components/blockquote-dialog"
+  },
   "license": "MIT",
-  "author": "blockquote-dialog",
+  "author": "Blockquote",
   "type": "module",
   "exports": {
     ".": {
-      "default": "./src/index.js"
+      "workspaces": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./package.json": {
       "default": "./package.json"
     },
     "./BlockquoteDialog.js": {
-      "default": "./src/BlockquoteDialog.js"
+      "workspaces": "./src/BlockquoteDialog.ts",
+      "types": "./dist/BlockquoteDialog.d.ts",
+      "default": "./dist/BlockquoteDialog.js"
     },
     "./blockquote-dialog.js": {
-      "default": "./define/blockquote-dialog.js"
-    },
-    "./index.js": {
-      "default": "./src/index.js"
+      "workspaces": "./src/define/blockquote-dialog.ts",
+      "types": "./dist/define/blockquote-dialog.d.ts",
+      "default": "./dist/define/blockquote-dialog.js"
     },
     "./blockquote-dialog-styles.css.js": {
-      "default": "./src/styles/blockquote-dialog-styles.css.js"
+      "workspaces": "./src/styles/blockquote-dialog-styles.css.ts",
+      "types": "./dist/styles/blockquote-dialog-styles.css.d.ts",
+      "default": "./dist/styles/blockquote-dialog-styles.css.js"
+    },
+    "./index.js": {
+      "workspaces": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
-  "main": "src/index.js",
-  "module": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "/src/",
-    "!/**/*.scss"
+    "/dist/"
   ],
   "scripts": {
     "analyze": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
-    "build": "echo \"This is not a TypeScript project, so no need to build.\"",
-    "dev:vite": "vite build",
+    "build": "npm run build:lib && npm run build:tsc",
+    "build:demo": "vite build",
+    "build:lib": "vite build --config vite.lib.config.js",
+    "build:tsc": "tsc --project ./tsconfig.build.json",
     "format": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
     "format:eslint": "eslint . --fix",
     "format:prettier": "prettier \"**/*.{js,ts,css,scss,html,json}\" --write --ignore-path .prettierignore",
     "format:stylelint": "stylelint \"{demo,src}/**/*.{js,ts,css,scss,html}\" --fix --ignore-path .prettierignore",
-    "postinstall": "npm run sort:package",
     "preview:vite": "vite preview",
-    "sass:watch": "sass-style-template",
+    "sass:watch": "sass-style-template -j ts",
     "sort:package": "npx sort-package-json",
     "start": "concurrently -k -r \"npm:vite\" \"npm:sass:watch\"",
     "test": "vitest",

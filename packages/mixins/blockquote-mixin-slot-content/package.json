@@ -1,7 +1,7 @@
 {
   "name": "@blockquote-web-components/blockquote-mixin-slot-content",
   "version": "1.9.23",
-  "description": "Webcomponent blockquote-mixin-slot-content following open-wc recommendations",
+  "description": "A modern architecture for building composable and reusable Web Components",
   "keywords": [
     "lit",
     "web-component",
@@ -9,40 +9,51 @@
     "slotchange",
     "assignedNodes"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oscarmarina/blockquote-web-components",
+    "directory": "packages/mixins/blockquote-mixin-slot-content"
+  },
   "license": "MIT",
-  "author": "blockquote-mixin-slot-content",
+  "author": "Blockquote",
   "type": "module",
   "exports": {
     ".": {
-      "default": "./src/index.js"
+      "workspaces": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./BlockquoteMixinSlotContent.js": {
+      "workspaces": "./src/BlockquoteMixinSlotContent.ts",
+      "types": "./dist/BlockquoteMixinSlotContent.d.ts",
+      "default": "./dist/BlockquoteMixinSlotContent.js"
+    },
+    "./index.js": {
+      "workspaces": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./package.json": {
       "default": "./package.json"
-    },
-    "./BlockquoteMixinSlotContent.js": {
-      "default": "./src/BlockquoteMixinSlotContent.js"
-    },
-    "./index.js": {
-      "default": "./src/index.js"
     }
   },
-  "main": "src/index.js",
-  "module": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "/define/",
     "/src/",
-    "index.js",
-    "!/**/*.scss"
+    "/dist/"
   ],
   "scripts": {
     "analyze": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
-    "build": "echo \"This is not a TypeScript project, so no need to build.\"",
-    "dev:vite": "vite build",
+    "build": "npm run build:lib && npm run build:tsc",
+    "build:demo": "vite build",
+    "build:lib": "vite build --config vite.lib.config.js",
+    "build:tsc": "tsc --project ./tsconfig.build.json",
     "format": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
     "format:eslint": "eslint . --fix",
     "format:prettier": "prettier \"**/*.{js,ts,css,scss,html,json}\" --write --ignore-path .prettierignore",
     "format:stylelint": "stylelint \"{demo,src}/**/*.{js,ts,css,scss,html}\" --fix --ignore-path .prettierignore",
-    "postinstall": "npm run sort:package",
     "preview:vite": "vite preview",
     "sass:watch": "sass-style-template",
     "sort:package": "npx sort-package-json",

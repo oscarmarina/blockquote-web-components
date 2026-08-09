@@ -1,7 +1,7 @@
 {
   "name": "@blockquote-web-components/blockquote-controller-xstate",
   "version": "2.3.37",
-  "description": "This controller allows you to subscribe to an XState actor, updating a specified reactive property whenever the state machine transitions.",
+  "description": "A modern architecture for building composable and reusable Web Components",
   "keywords": [
     "lit",
     "web-component",
@@ -11,35 +11,51 @@
     "statechart",
     "actor"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oscarmarina/blockquote-web-components",
+    "directory": "packages/controllers/blockquote-controller-xstate"
+  },
   "license": "MIT",
-  "author": "blockquote-controller-xstate",
+  "author": "Blockquote",
   "type": "module",
   "exports": {
     ".": {
-      "default": "./src/index.js"
+      "workspaces": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./package.json": {
       "default": "./package.json"
     },
     "./BlockquoteControllerXstate.js": {
-      "default": "./src/BlockquoteControllerXstate.js"
+      "workspaces": "./src/BlockquoteControllerXstate.ts",
+      "types": "./dist/BlockquoteControllerXstate.d.ts",
+      "default": "./dist/BlockquoteControllerXstate.js"
     },
     "./index.js": {
-      "default": "./src/index.js"
+      "workspaces": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "/src/"
+    "/src/",
+    "/dist/"
   ],
   "scripts": {
     "analyze": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
-    "build": "echo \"This is not a TypeScript project, so no need to build.\"",
-    "dev:vite": "vite build",
+    "build": "npm run build:lib && npm run build:tsc",
+    "build:demo": "vite build",
+    "build:lib": "vite build --config vite.lib.config.js",
+    "build:tsc": "tsc --project ./tsconfig.build.json",
     "format": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
     "format:eslint": "eslint . --fix",
     "format:prettier": "prettier \"**/*.{js,ts,css,scss,html,json}\" --write --ignore-path .prettierignore",
     "format:stylelint": "stylelint \"{demo,src}/**/*.{js,ts,css,scss,html}\" --fix --ignore-path .prettierignore",
-    "postinstall": "npm run sort:package",
     "preview:vite": "vite preview",
     "sass:watch": "sass-style-template",
     "sort:package": "npx sort-package-json",

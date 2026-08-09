@@ -1,0 +1,115 @@
+import {html, LitElement} from 'lit';
+import {styles} from './styles/blockquote-tabpanel-styles.css.js';
+
+/**
+ * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
+ *
+ * `<blockquote-tabpanel>`
+ * A tab panel element that can be used inside a `blockquote-tabs` element.
+ *
+ * @attribute selected
+ */
+export class BlockquoteTabPanel extends LitElement {
+  static override get properties() {
+    return {
+      /**
+       * Whether or not the tab panel is `selected`.
+       */
+      selected: {
+        type: Boolean,
+      },
+    };
+  }
+
+  static rootAttributes = {
+    role: 'tabpanel',
+    slot: 'tabpanel',
+    tabindex: 0,
+  };
+
+  static override get styles() {
+    return [styles];
+  }
+
+  selected!: boolean;
+
+  constructor() {
+    super();
+    this.selected = false;
+  }
+
+  override connectedCallback() {
+    super.connectedCallback?.();
+
+    // https://www.scottohara.me/blog/2021/07/23/aria-idl.html
+    // https://wpt.fyi/results/html/dom/aria-attribute-reflection.html?label=master&label=experimental&aligned&view=subtest&q=aria-attribute-reflection
+    this._syncRootAttributes();
+  }
+
+  override updated(props: Map<PropertyKey, unknown>) {
+    super.updated?.(props);
+
+    if (this._shouldSyncState(props)) {
+      this._syncState();
+    }
+  }
+
+  override render() {
+    return html`
+      <slot></slot>
+    `;
+  }
+
+  /**
+   * Returns whether the component state needs to be synchronized.
+   */
+  _shouldSyncState(props: Map<PropertyKey, unknown>): boolean {
+    const keys = ['selected'];
+
+    return keys.some((prop) => props.has(prop));
+  }
+
+  /**
+   * Synchronizes the derived DOM state.
+   */
+  _syncState() {
+    // `hidden` provides the native semantics (display:none + removal from
+    // the accessibility tree); `aria-hidden` is kept in sync as a compat
+    // fallback for a transition period.
+    this.hidden = !this.selected;
+
+    this._setAttributes({
+      'aria-hidden': this.selected ? null : 'true',
+    });
+
+    // Only the visible panel should carry `tabindex="0"` so it can receive
+    // focus from the tab via script. Inactive panels get no tabindex: they
+    // are hidden (inert) and should not pollute the DOM tab order.
+    if (this.selected) {
+      this._setAttributes({tabindex: 0});
+    } else {
+      this._setAttributes({tabindex: null});
+    }
+  }
+
+  /**
+   * Synchronizes the host attributes that are always present.
+   */
+  _syncRootAttributes() {
+    const {rootAttributes} = this.constructor as typeof BlockquoteTabPanel;
+    this._setAttributes(rootAttributes);
+  }
+
+  /**
+   * Sets multiple attributes on the host element.
+   */
+  _setAttributes(attributes: Record<string, string | number | boolean | null | undefined> = {}) {
+    for (const [name, value] of Object.entries(attributes)) {
+      if (value === false || value == null) {
+        this.removeAttribute(name);
+      } else {
+        this.setAttribute(name, String(value));
+      }
+    }
+  }
+}

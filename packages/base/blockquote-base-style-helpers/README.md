@@ -167,7 +167,7 @@ export default css`
 - support browsers with native `Shadow DOM` and `adoptedStyleSheets`
 
 
-### `src/getComponentSharedStyles.js`:
+### `src/getComponentSharedStyles.ts`:
 
 #### Functions
 
@@ -181,10 +181,10 @@ export default css`
 
 | Kind | Name                       | Declaration              | Module                          | Package |
 | ---- | -------------------------- | ------------------------ | ------------------------------- | ------- |
-| `js` | `README`                   | README                   | src/getComponentSharedStyles.js |         |
-| `js` | `getComponentSharedStyles` | getComponentSharedStyles | src/getComponentSharedStyles.js |         |
+| `js` | `README`                   | README                   | src/getComponentSharedStyles.ts |         |
+| `js` | `getComponentSharedStyles` | getComponentSharedStyles | src/getComponentSharedStyles.ts |         |
 
-### `src/index.js`:
+### `src/index.ts`:
 
 #### Exports
 
@@ -195,13 +195,13 @@ export default css`
 | `js` | `setComponentSharedStyles` | setComponentSharedStyles | ./setComponentSharedStyles.js |         |
 | `js` | `getComponentSharedStyles` | getComponentSharedStyles | ./getComponentSharedStyles.js |         |
 
-### `src/setComponentSharedStyles.js`:
+### `src/setComponentSharedStyles.ts`:
 
 #### Functions
 
 | Name                       | Description                                                                                          | Parameters                      | Return |
 | -------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------- | ------ |
-| `setComponentSharedStyles` | Set styles (as cssResult) associated to provided ID string which can then be retrieved by components | `id: String, styles: CSSResult` |        |
+| `setComponentSharedStyles` | Set styles (as cssResult) associated to provided ID string which can then be retrieved by components | `id: String, styles: CSSResult` | `void` |
 
 <hr/>
 
@@ -209,16 +209,16 @@ export default css`
 
 | Kind | Name                       | Declaration              | Module                          | Package |
 | ---- | -------------------------- | ------------------------ | ------------------------------- | ------- |
-| `js` | `setComponentSharedStyles` | setComponentSharedStyles | src/setComponentSharedStyles.js |         |
+| `js` | `setComponentSharedStyles` | setComponentSharedStyles | src/setComponentSharedStyles.ts |         |
 
-### `src/setDocumentStyles.js`:
+### `src/setDocumentStyles.ts`:
 
 #### Functions
 
 | Name                  | Description                                   | Parameters                                              | Return |
 | --------------------- | --------------------------------------------- | ------------------------------------------------------- | ------ |
-| `adoptDocumentStyles` | Adopts the given styles into the render root. | `renderRoot: Document \| HTMLElement, styles: Array<*>` |        |
-| `setDocumentStyles`   | Sets the document styles.                     | `styles: !*`                                            |        |
+| `adoptDocumentStyles` | Adopts the given styles into the render root. | `renderRoot: Document \| HTMLElement, styles: Array<*>` | `void` |
+| `setDocumentStyles`   | Sets the document styles.                     | `styles: !*`                                            | `void` |
 
 <hr/>
 
@@ -226,5 +226,5 @@ export default css`
 
 | Kind | Name                  | Declaration         | Module                   | Package |
 | ---- | --------------------- | ------------------- | ------------------------ | ------- |
-| `js` | `adoptDocumentStyles` | adoptDocumentStyles | src/setDocumentStyles.js |         |
-| `js` | `setDocumentStyles`   | setDocumentStyles   | src/setDocumentStyles.js |         |
+| `js` | `adoptDocumentStyles` | adoptDocumentStyles | src/setDocumentStyles.ts |         |
+| `js` | `setDocumentStyles`   | setDocumentStyles   | src/setDocumentStyles.ts |         |

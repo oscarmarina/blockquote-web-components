@@ -1,79 +1,114 @@
 {
   "name": "@blockquote-web-components/blockquote-base-embedded-webview",
   "version": "1.15.0",
-  "description": "Webcomponent blockquote-base-embedded-webview following open-wc recommendations",
+  "description": "A modern architecture for building composable and reusable Web Components",
   "keywords": [
     "lit",
     "web-component",
     "lit-element"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oscarmarina/blockquote-web-components",
+    "directory": "packages/base/blockquote-base-embedded-webview"
+  },
   "license": "MIT",
-  "author": "blockquote-base-embedded-webview",
+  "author": "Blockquote",
   "type": "module",
   "exports": {
     ".": {
-      "default": "./src/index.js"
+      "workspaces": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./package.json": {
       "default": "./package.json"
     },
     "./BlockquoteBaseEmbeddedWebview.js": {
-      "default": "./src/BlockquoteBaseEmbeddedWebview.js"
+      "workspaces": "./src/BlockquoteBaseEmbeddedWebview.ts",
+      "types": "./dist/BlockquoteBaseEmbeddedWebview.d.ts",
+      "default": "./dist/BlockquoteBaseEmbeddedWebview.js"
     },
     "./BlockquoteBaseEmbeddedWebviewElement.js": {
-      "default": "./src/BlockquoteBaseEmbeddedWebviewElement.js"
+      "workspaces": "./src/BlockquoteBaseEmbeddedWebviewElement.ts",
+      "types": "./dist/BlockquoteBaseEmbeddedWebviewElement.d.ts",
+      "default": "./dist/BlockquoteBaseEmbeddedWebviewElement.js"
     },
     "./BlockquoteBaseEmbeddedWebviewResize.js": {
-      "default": "./src/BlockquoteBaseEmbeddedWebviewResize.js"
+      "workspaces": "./src/BlockquoteBaseEmbeddedWebviewResize.ts",
+      "types": "./dist/BlockquoteBaseEmbeddedWebviewResize.d.ts",
+      "default": "./dist/BlockquoteBaseEmbeddedWebviewResize.js"
     },
     "./BlockquoteBaseEmbeddedWebviewSize.js": {
-      "default": "./src/BlockquoteBaseEmbeddedWebviewSize.js"
+      "workspaces": "./src/BlockquoteBaseEmbeddedWebviewSize.ts",
+      "types": "./dist/BlockquoteBaseEmbeddedWebviewSize.d.ts",
+      "default": "./dist/BlockquoteBaseEmbeddedWebviewSize.js"
     },
     "./blockquote-base-embedded-webview-element.js": {
-      "default": "./src/define/blockquote-base-embedded-webview-element.js"
+      "workspaces": "./src/define/blockquote-base-embedded-webview-element.ts",
+      "types": "./dist/define/blockquote-base-embedded-webview-element.d.ts",
+      "default": "./dist/define/blockquote-base-embedded-webview-element.js"
     },
     "./blockquote-base-embedded-webview-resize.js": {
-      "default": "./src/define/blockquote-base-embedded-webview-resize.js"
+      "workspaces": "./src/define/blockquote-base-embedded-webview-resize.ts",
+      "types": "./dist/define/blockquote-base-embedded-webview-resize.d.ts",
+      "default": "./dist/define/blockquote-base-embedded-webview-resize.js"
     },
     "./blockquote-base-embedded-webview-size.js": {
-      "default": "./src/define/blockquote-base-embedded-webview-size.js"
+      "workspaces": "./src/define/blockquote-base-embedded-webview-size.ts",
+      "types": "./dist/define/blockquote-base-embedded-webview-size.d.ts",
+      "default": "./dist/define/blockquote-base-embedded-webview-size.js"
     },
     "./blockquote-base-embedded-webview.js": {
-      "default": "./src/define/blockquote-base-embedded-webview.js"
+      "workspaces": "./src/define/blockquote-base-embedded-webview.ts",
+      "types": "./dist/define/blockquote-base-embedded-webview.d.ts",
+      "default": "./dist/define/blockquote-base-embedded-webview.js"
     },
     "./index.js": {
-      "default": "./src/index.js"
+      "workspaces": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./blockquote-base-embedded-webview-styles.css.js": {
-      "default": "./src/styles/blockquote-base-embedded-webview-styles.css.js"
+      "workspaces": "./src/styles/blockquote-base-embedded-webview-styles.css.ts",
+      "types": "./dist/styles/blockquote-base-embedded-webview-styles.css.d.ts",
+      "default": "./dist/styles/blockquote-base-embedded-webview-styles.css.js"
     },
     "./blockquote-base-embedded-webview-element-styles.css.js": {
-      "default": "./src/styles/blockquote-base-embedded-webview-element-styles.css.js"
+      "workspaces": "./src/styles/blockquote-base-embedded-webview-element-styles.css.ts",
+      "types": "./dist/styles/blockquote-base-embedded-webview-element-styles.css.d.ts",
+      "default": "./dist/styles/blockquote-base-embedded-webview-element-styles.css.js"
     },
     "./blockquote-base-embedded-webview-resize-styles.css.js": {
-      "default": "./src/styles/blockquote-base-embedded-webview-resize-styles.css.js"
+      "workspaces": "./src/styles/blockquote-base-embedded-webview-resize-styles.css.ts",
+      "types": "./dist/styles/blockquote-base-embedded-webview-resize-styles.css.d.ts",
+      "default": "./dist/styles/blockquote-base-embedded-webview-resize-styles.css.js"
     },
     "./blockquote-base-embedded-webview-size-styles.css.js": {
-      "default": "./src/styles/blockquote-base-embedded-webview-size-styles.css.js"
+      "workspaces": "./src/styles/blockquote-base-embedded-webview-size-styles.css.ts",
+      "types": "./dist/styles/blockquote-base-embedded-webview-size-styles.css.d.ts",
+      "default": "./dist/styles/blockquote-base-embedded-webview-size-styles.css.js"
     }
   },
-  "main": "src/index.js",
-  "module": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "/src/",
-    "!/**/*.scss"
+    "/dist/"
   ],
   "scripts": {
     "analyze": "cem analyze --litelement --globs \"{src,define}/**/*.{js,ts}\" \"index.js\"",
-    "build": "echo \"This is not a TypeScript project, so no need to build.\"",
-    "dev:vite": "vite build",
+    "build": "npm run build:lib && npm run build:tsc",
+    "build:demo": "vite build",
+    "build:lib": "vite build --config vite.lib.config.js",
+    "build:tsc": "tsc --project ./tsconfig.build.json",
     "format": "npm run format:eslint && npm run format:prettier && npm run format:stylelint",
     "format:eslint": "eslint . --fix",
     "format:prettier": "prettier \"**/*.{js,ts,css,scss,html,json}\" --write --ignore-path .prettierignore",
     "format:stylelint": "stylelint \"{demo,src}/**/*.{js,ts,css,scss,html}\" --fix --ignore-path .prettierignore",
-    "postinstall": "npm run sort:package",
     "preview:vite": "vite preview",
-    "sass:watch": "sass-style-template",
+    "sass:watch": "sass-style-template -j ts",
     "sort:package": "npx sort-package-json",
     "start": "concurrently -k -r \"npm:vite\" \"npm:sass:watch\"",
     "test": "vitest",
@@ -148,7 +183,6 @@
     "lit": "^3.3.3"
   },
   "devDependencies": {
-    "@blockquote-web-components/blockquote-base-common-dev-dependencies": "^1.12.9",
     "@blockquote-web-components/blockquote-foundations-sass": "^1.1.8"
   },
   "publishConfig": {

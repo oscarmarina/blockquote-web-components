@@ -36,7 +36,7 @@ Tabs are a set of layered sections of content, known as tab panels, that display
 ```
 
 
-### `src/BlockquoteTabs.js`:
+### `src/BlockquoteTabs.ts`:
 
 #### class: `BlockquoteTabs`, `blockquote-tabs`
 
@@ -48,35 +48,36 @@ Tabs are a set of layered sections of content, known as tab panels, that display
 
 ##### Fields
 
-| Name                | Privacy | Type      | Default                                                                                                                                                                                                                                                                                                                                                                                                  | Description                                                                                                                                                                                                                                                                                              | Inherited From |
-| ------------------- | ------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
-| `_selectedTab`      |         |           |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
-| `_onSlotChanges`    |         |           |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
-| `_scrollContentTpl` |         |           |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
-| `_tablistTpl`       |         |           |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
-| `_separatorTpl`     |         |           |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
-| `_indicatorsTpl`    |         |           |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
-| `_holdTpl`          |         |           |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
-| `_tabpanelTpl`      |         |           |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
-| `autofocus`         | public  | `boolean` | `false`                                                                                                                                                                                                                                                                                                                                                                                                  | If present, the selected tab is focused on boot. Alternatively, set the&#xA;native \`autofocus\` attribute on the desired \`\<blockquote-tab>\` (takes&#xA;precedence): the component delegates it in JS because native support is&#xA;unreliable across browsers today (see focusgroup redesign notes). |                |
-| `label`             | public  | `string`  | `''`                                                                                                                                                                                                                                                                                                                                                                                                     | \`aria-label\` for tabs group                                                                                                                                                                                                                                                                            |                |
-| `selected`          | public  | `number`  | `1`                                                                                                                                                                                                                                                                                                                                                                                                      | The tab selected.                                                                                                                                                                                                                                                                                        |                |
-| `activation`        | public  | `string`  | `'auto'`                                                                                                                                                                                                                                                                                                                                                                                                 | Activation mode:&#xA;- \`auto\` (default): selection follows focus (arrow keys select).&#xA;- \`manual\`: arrow keys only move focus; Enter, Space or click select.                                                                                                                                      |                |
-| `orientation`       | public  | `string`  | `'horizontal'`                                                                                                                                                                                                                                                                                                                                                                                           | Orientation of the tablist: \`horizontal\` (default) or \`vertical\`.&#xA;Determines the arrow-key axis, \`aria-orientation\`, and the scroll&#xA;axis (scroll indicators, reveal-on-focus, separator).                                                                                                  |                |
-| `_tabList`          |         | `array`   | `[]`                                                                                                                                                                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                          |                |
-| `_tabpanelList`     |         | `array`   | `[]`                                                                                                                                                                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                          |                |
-| `_scrollContentRef` |         |           |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
-| `_tablistRef`       |         |           |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
-| `_selection`        |         |           | `new SelectionController(this)`                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
-| `_focusGroup`       |         |           | `new FocusGroupController(this, { getItems: () => this._tabList, getSelectedIndex: () => this._selection.selectedIndex, getOrientation: () => (this.orientation === 'vertical' ? 'vertical' : 'horizontal'), getActivation: () => (this.activation === 'manual' ? 'manual' : 'auto'), onSelect: (index) => { this.selected = index + 1; }, onReveal: (tab) => { this._scroll.scrollIntoView(tab); }, })` |                                                                                                                                                                                                                                                                                                          |                |
-| `_scroll`           |         |           | `new ScrollController(this, { getScrollContent: () => this._scrollContentRef.value, getIndicators: () => this._indicators, getSelectedTab: () => this._selectedTab, getOrientation: () => (this.orientation === 'vertical' ? 'vertical' : 'horizontal'), })`                                                                                                                                             |                                                                                                                                                                                                                                                                                                          |                |
+| Name                | Privacy | Type                               | Default                                                                                                                                                                                                                                                                                                                                                                                                  | Description                                                                                                                                                                                                                                                                                              | Inherited From |
+| ------------------- | ------- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| `autofocus`         | public  | `boolean`                          | `false`                                                                                                                                                                                                                                                                                                                                                                                                  | If present, the selected tab is focused on boot. Alternatively, set the&#xA;native \`autofocus\` attribute on the desired \`\<blockquote-tab>\` (takes&#xA;precedence): the component delegates it in JS because native support is&#xA;unreliable across browsers today (see focusgroup redesign notes). |                |
+| `label`             | public  | `string`                           | `''`                                                                                                                                                                                                                                                                                                                                                                                                     | \`aria-label\` for tabs group                                                                                                                                                                                                                                                                            |                |
+| `selected`          | public  | `number`                           | `1`                                                                                                                                                                                                                                                                                                                                                                                                      | The tab selected.                                                                                                                                                                                                                                                                                        |                |
+| `activation`        | public  | `string`                           | `'auto'`                                                                                                                                                                                                                                                                                                                                                                                                 | Activation mode:&#xA;- \`auto\` (default): selection follows focus (arrow keys select).&#xA;- \`manual\`: arrow keys only move focus; Enter, Space or click select.                                                                                                                                      |                |
+| `orientation`       | public  | `string`                           | `'horizontal'`                                                                                                                                                                                                                                                                                                                                                                                           | Orientation of the tablist: \`horizontal\` (default) or \`vertical\`.&#xA;Determines the arrow-key axis, \`aria-orientation\`, and the scroll&#xA;axis (scroll indicators, reveal-on-focus, separator).                                                                                                  |                |
+| `_tabList`          |         | `HTMLElement[]`                    | `[]`                                                                                                                                                                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                          |                |
+| `_tabpanelList`     |         | `HTMLElement[]`                    | `[]`                                                                                                                                                                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                          |                |
+| `_scrollContentRef` |         | `Ref<HTMLDivElement>`              |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
+| `_tablistRef`       |         | `Ref<HTMLDivElement>`              |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
+| `_selection`        |         | `SelectionController`              | `new SelectionController(this)`                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
+| `_focusGroup`       |         | `FocusGroupController`             | `new FocusGroupController(this, { getItems: () => this._tabList, getSelectedIndex: () => this._selection.selectedIndex, getOrientation: () => (this.orientation === 'vertical' ? 'vertical' : 'horizontal'), getActivation: () => (this.activation === 'manual' ? 'manual' : 'auto'), onSelect: (index) => { this.selected = index + 1; }, onReveal: (tab) => { this._scroll.scrollIntoView(tab); }, })` |                                                                                                                                                                                                                                                                                                          |                |
+| `_scroll`           |         | `ScrollController`                 | `new ScrollController(this, { getScrollContent: () => this._scrollContentRef.value, getIndicators: () => this._indicators, getSelectedTab: () => this._selectedTab, getOrientation: () => (this.orientation === 'vertical' ? 'vertical' : 'horizontal'), })`                                                                                                                                             |                                                                                                                                                                                                                                                                                                          |                |
+| `_indicators`       |         | `NodeListOf<Element> \| undefined` |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
+| `_selectedTab`      |         | `HTMLElement \| undefined`         |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
+| `_onSlotChanges`    |         |                                    |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
+| `_scrollContentTpl` |         |                                    |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
+| `_tablistTpl`       |         |                                    |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
+| `_separatorTpl`     |         |                                    |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
+| `_indicatorsTpl`    |         |                                    |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
+| `_holdTpl`          |         |                                    |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
+| `_tabpanelTpl`      |         |                                    |                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                          |                |
 
 ##### Methods
 
-| Name                 | Privacy | Description | Parameters        | Return | Inherited From |
-| -------------------- | ------- | ----------- | ----------------- | ------ | -------------- |
-| `_scrollEdge`        |         |             | `ev: CustomEvent` |        |                |
-| `_onSelectionCommit` |         |             |                   |        |                |
+| Name                 | Privacy | Description | Parameters  | Return | Inherited From |
+| -------------------- | ------- | ----------- | ----------- | ------ | -------------- |
+| `_scrollEdge`        |         |             | `ev: Event` |        |                |
+| `_onSelectionCommit` |         |             |             |        |                |
 
 ##### Events
 
@@ -100,9 +101,9 @@ Tabs are a set of layered sections of content, known as tab panels, that display
 
 | Kind | Name             | Declaration    | Module                | Package |
 | ---- | ---------------- | -------------- | --------------------- | ------- |
-| `js` | `BlockquoteTabs` | BlockquoteTabs | src/BlockquoteTabs.js |         |
+| `js` | `BlockquoteTabs` | BlockquoteTabs | src/BlockquoteTabs.ts |         |
 
-### `src/index.js`:
+### `src/index.ts`:
 
 #### Exports
 
@@ -128,43 +129,43 @@ decoupled:
   (structural event-origin tracking; no focus latch anywhere).
 
 
-### `src/controllers/FocusGroupController.js`:
+### `src/controllers/FocusGroupController.ts`:
 
 #### class: `FocusGroupController`
 
 ##### Fields
 
-| Name        | Privacy | Type | Default | Description | Inherited From |
-| ----------- | ------- | ---- | ------- | ----------- | -------------- |
-| `entryItem` |         |      |         |             |                |
-| `host`      |         |      | `host`  |             |                |
+| Name        | Privacy | Type                       | Default | Description | Inherited From |
+| ----------- | ------- | -------------------------- | ------- | ----------- | -------------- |
+| `host`      |         | `FocusGroupControllerHost` | `host`  |             |                |
+| `entryItem` |         |                            |         |             |                |
 
 ##### Methods
 
-| Name               | Privacy | Description                                                                                                                                                                                                           | Parameters               | Return | Inherited From |
-| ------------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ------ | -------------- |
-| `hostConnected`    |         |                                                                                                                                                                                                                       |                          |        |                |
-| `hostDisconnected` |         |                                                                                                                                                                                                                       |                          |        |                |
-| `attach`           |         |                                                                                                                                                                                                                       | `container: HTMLElement` |        |                |
-| `syncOrientation`  |         | Pushes an \`orientation\` change to the engine. The native engine encodes&#xA;the axis in the \`focusgroup\` token and must be synced explicitly; the&#xA;fallback reads orientation live and treats this as a no-op. |                          |        |                |
-| `syncEntryPoint`   |         | Moves the group's entry point to the currently selected item. Idempotent;&#xA;call on every selection commit and whenever the slotted items change.                                                                   |                          |        |                |
+| Name               | Privacy | Description                                                                                                                                                                                                           | Parameters                            | Return | Inherited From |
+| ------------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- | ------ | -------------- |
+| `hostConnected`    |         |                                                                                                                                                                                                                       |                                       |        |                |
+| `hostDisconnected` |         |                                                                                                                                                                                                                       |                                       |        |                |
+| `attach`           |         |                                                                                                                                                                                                                       | `container: HTMLElement \| undefined` |        |                |
+| `syncOrientation`  |         | Pushes an \`orientation\` change to the engine. The native engine encodes&#xA;the axis in the \`focusgroup\` token and must be synced explicitly; the&#xA;fallback reads orientation live and treats this as a no-op. |                                       |        |                |
+| `syncEntryPoint`   |         | Moves the group's entry point to the currently selected item. Idempotent;&#xA;call on every selection commit and whenever the slotted items change.                                                                   |                                       |        |                |
 
 <details><summary>Private API</summary>
 
 ##### Fields
 
-| Name                   | Privacy | Type                          | Default            | Description | Inherited From |
-| ---------------------- | ------- | ----------------------------- | ------------------ | ----------- | -------------- |
-| `#container`           | private | `null`                        | `null`             |             |                |
-| `#engine`              | private |                               |                    |             |                |
-| `#getItems`            | private | `() => HTMLElement[]`         | `getItems`         |             |                |
-| `#getSelectedIndex`    | private | `() => number`                | `getSelectedIndex` |             |                |
-| `#getActivation`       | private | `() => 'auto' \| 'manual'`    | `getActivation`    |             |                |
-| `#onSelect`            | private | `(index: number) => void`     | `onSelect`         |             |                |
-| `#onReveal`            | private | `(item: HTMLElement) => void` | `onReveal`         |             |                |
-| `#onFocusIn`           | private |                               |                    |             |                |
-| `#onClick`             | private |                               |                    |             |                |
-| `#onActivationKeyDown` | private |                               |                    |             |                |
+| Name                   | Privacy | Type                                             | Default            | Description | Inherited From |
+| ---------------------- | ------- | ------------------------------------------------ | ------------------ | ----------- | -------------- |
+| `#container`           | private | `HTMLElement \| null`                            | `null`             |             |                |
+| `#engine`              | private | `NativeFocusgroupEngine \| RovingTabindexEngine` |                    |             |                |
+| `#getItems`            | private | `() => HTMLElement[]`                            | `getItems`         |             |                |
+| `#getSelectedIndex`    | private | `() => number`                                   | `getSelectedIndex` |             |                |
+| `#getActivation`       | private | `() => 'auto' \| 'manual'`                       | `getActivation`    |             |                |
+| `#onSelect`            | private | `(index: number) => void`                        | `onSelect`         |             |                |
+| `#onReveal`            | private | `(item: HTMLElement) => void`                    | `onReveal`         |             |                |
+| `#onFocusIn`           | private |                                                  |                    |             |                |
+| `#onClick`             | private |                                                  |                    |             |                |
+| `#onActivationKeyDown` | private |                                                  |                    |             |                |
 
 </details>
 
@@ -174,7 +175,7 @@ decoupled:
 
 | Kind | Name                   | Declaration          | Module                                  | Package |
 | ---- | ---------------------- | -------------------- | --------------------------------------- | ------- |
-| `js` | `FocusGroupController` | FocusGroupController | src/controllers/FocusGroupController.js |         |
+| `js` | `FocusGroupController` | FocusGroupController | src/controllers/FocusGroupController.ts |         |
 
 `NativeFocusgroupEngine`
 
@@ -201,7 +202,7 @@ tabindex), and the guaranteed tab stop collapses them into a single
 sequential stop.
 
 
-### `src/controllers/NativeFocusgroupEngine.js`:
+### `src/controllers/NativeFocusgroupEngine.ts`:
 
 #### class: `NativeFocusgroupEngine`
 
@@ -209,7 +210,7 @@ sequential stop.
 
 | Name              | Privacy | Description                                                                                                                                                                                                                                                           | Parameters                            | Return | Inherited From |
 | ----------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- | ------ | -------------- |
-| `attach`          |         |                                                                                                                                                                                                                                                                       | `container: HTMLElement`              |        |                |
+| `attach`          |         |                                                                                                                                                                                                                                                                       | `container: HTMLElement \| undefined` |        |                |
 | `detach`          |         |                                                                                                                                                                                                                                                                       |                                       |        |                |
 | `syncOrientation` |         | Pushes the current orientation to the \`focusgroup\` token. The token&#xA;encodes the axis (\`block\` for vertical tablists), so a dynamic&#xA;\`orientation\` change must be synced explicitly. Safe to call before&#xA;\`attach\` (no-op until a container exists). |                                       |        |                |
 | `setEntryItem`    |         | Moves \`focusgroupstart\` to the selected item. Idempotent; safe to call on&#xA;every selection commit or slot change.                                                                                                                                                | `entryItem: HTMLElement \| undefined` |        |                |
@@ -220,7 +221,7 @@ sequential stop.
 
 | Name              | Privacy | Type                               | Default          | Description | Inherited From |
 | ----------------- | ------- | ---------------------------------- | ---------------- | ----------- | -------------- |
-| `#container`      | private | `null`                             | `null`           |             |                |
+| `#container`      | private | `HTMLElement \| null`              | `null`           |             |                |
 | `#getItems`       | private | `() => HTMLElement[]`              | `getItems`       |             |                |
 | `#getOrientation` | private | `() => 'horizontal' \| 'vertical'` | `getOrientation` |             |                |
 
@@ -238,7 +239,7 @@ sequential stop.
 
 | Kind | Name                     | Declaration            | Module                                    | Package |
 | ---- | ------------------------ | ---------------------- | ----------------------------------------- | ------- |
-| `js` | `NativeFocusgroupEngine` | NativeFocusgroupEngine | src/controllers/NativeFocusgroupEngine.js |         |
+| `js` | `NativeFocusgroupEngine` | NativeFocusgroupEngine | src/controllers/NativeFocusgroupEngine.ts |         |
 
 `RovingTabindexEngine`
 
@@ -258,7 +259,7 @@ focus and selection are decoupled. Cross-axis keys are never handled nor
 canceled, so they remain available for scrolling or supplementary actions.
 
 
-### `src/controllers/RovingTabindexEngine.js`:
+### `src/controllers/RovingTabindexEngine.ts`:
 
 #### class: `RovingTabindexEngine`
 
@@ -266,7 +267,7 @@ canceled, so they remain available for scrolling or supplementary actions.
 
 | Name              | Privacy | Description                                                                                                                                                                                                   | Parameters                            | Return | Inherited From |
 | ----------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- | ------ | -------------- |
-| `attach`          |         |                                                                                                                                                                                                               | `container: HTMLElement`              |        |                |
+| `attach`          |         |                                                                                                                                                                                                               | `container: HTMLElement \| undefined` |        |                |
 | `detach`          |         |                                                                                                                                                                                                               |                                       |        |                |
 | `syncOrientation` |         | No-op: the fallback resolves orientation live on every keydown, so there&#xA;is no orientation-dependent state to push. It exists to keep the engine&#xA;interface symmetric with \`NativeFocusgroupEngine\`. |                                       |        |                |
 | `setEntryItem`    |         | Roving tabindex: \`entryItem\` becomes the only tab stop of the group.&#xA;Idempotent; safe to call on every selection commit or slot change.                                                                 | `entryItem: HTMLElement \| undefined` |        |                |
@@ -277,16 +278,16 @@ canceled, so they remain available for scrolling or supplementary actions.
 
 | Name              | Privacy | Type                               | Default          | Description | Inherited From |
 | ----------------- | ------- | ---------------------------------- | ---------------- | ----------- | -------------- |
-| `#container`      | private | `null`                             | `null`           |             |                |
+| `#container`      | private | `HTMLElement \| null`              | `null`           |             |                |
 | `#getItems`       | private | `() => HTMLElement[]`              | `getItems`       |             |                |
 | `#getOrientation` | private | `() => 'horizontal' \| 'vertical'` | `getOrientation` |             |                |
 | `#onKeyDown`      | private |                                    |                  |             |                |
 
 ##### Methods
 
-| Name         | Privacy | Description                                                                                                                      | Parameters                          | Return | Inherited From |
-| ------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- | ------ | -------------- |
-| `#nextIndex` | private | Resolves the index targeted by a navigation key, in logical direction.&#xA;Returns \`null\` for keys the engine does not handle. | `currentIndex: number, key: string` |        |                |
+| Name         | Privacy | Description                                                                                                                      | Parameters                          | Return           | Inherited From |
+| ------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- | ---------------- | -------------- |
+| `#nextIndex` | private | Resolves the index targeted by a navigation key, in logical direction.&#xA;Returns \`null\` for keys the engine does not handle. | `currentIndex: number, key: string` | `number \| null` |                |
 
 </details>
 
@@ -296,32 +297,32 @@ canceled, so they remain available for scrolling or supplementary actions.
 
 | Kind | Name                   | Declaration          | Module                                  | Package |
 | ---- | ---------------------- | -------------------- | --------------------------------------- | ------- |
-| `js` | `RovingTabindexEngine` | RovingTabindexEngine | src/controllers/RovingTabindexEngine.js |         |
+| `js` | `RovingTabindexEngine` | RovingTabindexEngine | src/controllers/RovingTabindexEngine.ts |         |
 
-### `src/controllers/ScrollController.js`:
+### `src/controllers/ScrollController.ts`:
 
 #### class: `ScrollController`
 
 ##### Fields
 
-| Name                      | Privacy | Type      | Default            | Description | Inherited From |
-| ------------------------- | ------- | --------- | ------------------ | ----------- | -------------- |
-| `host`                    |         |           | `host`             |             |                |
-| `getScrollContent`        |         |           | `getScrollContent` |             |                |
-| `getIndicators`           |         |           | `getIndicators`    |             |                |
-| `getSelectedTab`          |         |           | `getSelectedTab`   |             |                |
-| `getOrientation`          |         |           |                    |             |                |
-| `hasScrollLeftIndicator`  |         | `boolean` | `false`            |             |                |
-| `hasScrollRightIndicator` |         | `boolean` | `false`            |             |                |
+| Name                      | Privacy | Type                                                      | Default            | Description | Inherited From |
+| ------------------------- | ------- | --------------------------------------------------------- | ------------------ | ----------- | -------------- |
+| `host`                    |         | `ReactiveControllerHost & HTMLElement`                    | `host`             |             |                |
+| `getScrollContent`        |         | `() => HTMLElement \| undefined`                          | `getScrollContent` |             |                |
+| `getIndicators`           |         | `() => NodeListOf<Element> \| HTMLElement[] \| undefined` | `getIndicators`    |             |                |
+| `getSelectedTab`          |         | `() => HTMLElement \| undefined`                          | `getSelectedTab`   |             |                |
+| `getOrientation`          |         | `() => 'horizontal' \| 'vertical'`                        |                    |             |                |
+| `hasScrollLeftIndicator`  |         | `boolean`                                                 | `false`            |             |                |
+| `hasScrollRightIndicator` |         | `boolean`                                                 | `false`            |             |                |
 
 ##### Methods
 
-| Name                       | Privacy | Description                                                      | Parameters                                           | Return | Inherited From |
-| -------------------------- | ------- | ---------------------------------------------------------------- | ---------------------------------------------------- | ------ | -------------- |
-| `scrollEdge`               |         | Updates scroll edge indicators.                                  | `target: HTMLElement`                                |        |                |
-| `scrollIntoView`           |         | Schedules a reveal-into-view operation for the given tab item.   | `tab: HTMLElement`                                   |        |                |
-| `scrollIntoViewWithOffset` |         | Calculates offsets and scrolls the tab into view if overflowing. | `tabScroller: HTMLElement, behavior: ScrollBehavior` |        |                |
-| `onResizeChange`           |         |                                                                  |                                                      |        |                |
+| Name                       | Privacy | Description                                                      | Parameters                                                        | Return | Inherited From |
+| -------------------------- | ------- | ---------------------------------------------------------------- | ----------------------------------------------------------------- | ------ | -------------- |
+| `scrollEdge`               |         | Updates scroll edge indicators.                                  | `target: HTMLElement \| undefined`                                |        |                |
+| `scrollIntoView`           |         | Schedules a reveal-into-view operation for the given tab item.   | `tab: HTMLElement \| undefined`                                   |        |                |
+| `scrollIntoViewWithOffset` |         | Calculates offsets and scrolls the tab into view if overflowing. | `tabScroller: HTMLElement \| undefined, behavior: ScrollBehavior` |        |                |
+| `onResizeChange`           |         |                                                                  |                                                                   |        |                |
 
 <details><summary>Private API</summary>
 
@@ -339,7 +340,7 @@ canceled, so they remain available for scrolling or supplementary actions.
 
 | Kind | Name               | Declaration      | Module                              | Package |
 | ---- | ------------------ | ---------------- | ----------------------------------- | ------- |
-| `js` | `ScrollController` | ScrollController | src/controllers/ScrollController.js |         |
+| `js` | `ScrollController` | ScrollController | src/controllers/ScrollController.ts |         |
 
 `SelectionController`
 
@@ -359,20 +360,20 @@ Owns the selection semantics of a tab set:
 Focus and activation are intentionally out of scope here.
 
 
-### `src/controllers/SelectionController.js`:
+### `src/controllers/SelectionController.ts`:
 
 #### class: `SelectionController`
 
 ##### Fields
 
-| Name                   | Privacy | Type | Default | Description | Inherited From |
-| ---------------------- | ------- | ---- | ------- | ----------- | -------------- |
-| `length`               |         |      |         |             |                |
-| `selectedIndex`        |         |      |         |             |                |
-| `selectedIndexFromOne` |         |      |         |             |                |
-| `selectedTab`          |         |      |         |             |                |
-| `selectedTabpanel`     |         |      |         |             |                |
-| `host`                 |         |      | `host`  |             |                |
+| Name                   | Privacy | Type                      | Default | Description | Inherited From |
+| ---------------------- | ------- | ------------------------- | ------- | ----------- | -------------- |
+| `host`                 |         | `SelectionControllerHost` | `host`  |             |                |
+| `length`               |         |                           |         |             |                |
+| `selectedIndex`        |         |                           |         |             |                |
+| `selectedIndexFromOne` |         |                           |         |             |                |
+| `selectedTab`          |         |                           |         |             |                |
+| `selectedTabpanel`     |         |                           |         |             |                |
 
 ##### Methods
 
@@ -385,12 +386,12 @@ Focus and activation are intentionally out of scope here.
 
 ##### Fields
 
-| Name                | Privacy | Type            | Default     | Description                                       | Inherited From |
-| ------------------- | ------- | --------------- | ----------- | ------------------------------------------------- | -------------- |
-| `#tabs`             | private | `HTMLElement[]` | `[]`        |                                                   |                |
-| `#tabpanels`        | private | `HTMLElement[]` | `[]`        |                                                   |                |
-| `#selectedIndex`    | private | `number`        | `0`         |                                                   |                |
-| `#warnedMismatches` | private | `Set<string>`   | `new Set()` | mismatches already surfaced (each one warns once) |                |
+| Name                | Privacy | Type              | Default             | Description                                       | Inherited From |
+| ------------------- | ------- | ----------------- | ------------------- | ------------------------------------------------- | -------------- |
+| `#tabs`             | private | `SelectionItem[]` | `[]`                |                                                   |                |
+| `#tabpanels`        | private | `SelectionItem[]` | `[]`                |                                                   |                |
+| `#selectedIndex`    | private | `number`          | `0`                 |                                                   |                |
+| `#warnedMismatches` | private |                   | `new Set<string>()` | mismatches already surfaced (each one warns once) |                |
 
 ##### Methods
 
@@ -408,16 +409,16 @@ Focus and activation are intentionally out of scope here.
 
 | Kind | Name                  | Declaration         | Module                                 | Package |
 | ---- | --------------------- | ------------------- | -------------------------------------- | ------- |
-| `js` | `SelectionController` | SelectionController | src/controllers/SelectionController.js |         |
+| `js` | `SelectionController` | SelectionController | src/controllers/SelectionController.ts |         |
 
-### `src/controllers/focusgroup-capability.js`:
+### `src/controllers/focusgroup-capability.ts`:
 
 #### Functions
 
-| Name                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Parameters                    | Return |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- | ------ |
-| `supportsFocusgroup`    | Capability detection for the Open UI \`focusgroup\` attribute.&#xA;&#xA;The explainer specifies IDL reflection as the feature-detection surface:&#xA;&#xA;\`\`\`webidl&#xA;partial interface mixin HTMLOrSVGElement {&#xA;  \[SameObject, PutForwards=value, Reflect] readonly attribute DOMTokenList focusGroup;&#xA;  \[CEReactions, Reflect] attribute boolean focusGroupStart;&#xA;};&#xA;\`\`\`&#xA;&#xA;No UA sniffing. Unknown or absent reflection means \`false\`, which fails&#xA;safe: the component stays on the JS fallback engine until a browser&#xA;positively confirms support. |                               |        |
-| `setFocusgroupOverride` | Override hook for tests (dual-run suites) and enterprise pinning. Pass&#xA;\`undefined\` to restore real detection. Evaluated per component instance at&#xA;construction time, so set it before creating elements.                                                                                                                                                                                                                                                                                                                                                                               | `value: boolean \| undefined` |        |
+| Name                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Parameters                    | Return    |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- | --------- |
+| `supportsFocusgroup`    | Capability detection for the Open UI \`focusgroup\` attribute.&#xA;&#xA;The explainer specifies IDL reflection as the feature-detection surface:&#xA;&#xA;\`\`\`webidl&#xA;partial interface mixin HTMLOrSVGElement {&#xA;  \[SameObject, PutForwards=value, Reflect] readonly attribute DOMTokenList focusGroup;&#xA;  \[CEReactions, Reflect] attribute boolean focusGroupStart;&#xA;};&#xA;\`\`\`&#xA;&#xA;No UA sniffing. Unknown or absent reflection means \`false\`, which fails&#xA;safe: the component stays on the JS fallback engine until a browser&#xA;positively confirms support. |                               | `boolean` |
+| `setFocusgroupOverride` | Override hook for tests (dual-run suites) and enterprise pinning. Pass&#xA;\`undefined\` to restore real detection. Evaluated per component instance at&#xA;construction time, so set it before creating elements.                                                                                                                                                                                                                                                                                                                                                                               | `value: boolean \| undefined` |           |
 
 <hr/>
 
@@ -425,16 +426,16 @@ Focus and activation are intentionally out of scope here.
 
 | Kind | Name                    | Declaration           | Module                                   | Package |
 | ---- | ----------------------- | --------------------- | ---------------------------------------- | ------- |
-| `js` | `supportsFocusgroup`    | supportsFocusgroup    | src/controllers/focusgroup-capability.js |         |
-| `js` | `setFocusgroupOverride` | setFocusgroupOverride | src/controllers/focusgroup-capability.js |         |
+| `js` | `supportsFocusgroup`    | supportsFocusgroup    | src/controllers/focusgroup-capability.ts |         |
+| `js` | `setFocusgroupOverride` | setFocusgroupOverride | src/controllers/focusgroup-capability.ts |         |
 
-### `src/controllers/focusgroup-tokens.js`:
+### `src/controllers/focusgroup-tokens.ts`:
 
 #### Functions
 
-| Name                 | Description                                                    | Parameters                                                    | Return |
-| -------------------- | -------------------------------------------------------------- | ------------------------------------------------------------- | ------ |
-| `toFocusgroupTokens` | Maps a declarative behavior spec to a focusgroup token string. | `{behavior, axis, wrap, memory = true}, spec: FocusGroupSpec` |        |
+| Name                 | Description                                                    | Parameters                                              | Return   |
+| -------------------- | -------------------------------------------------------------- | ------------------------------------------------------- | -------- |
+| `toFocusgroupTokens` | Maps a declarative behavior spec to a focusgroup token string. | `{behavior, axis, wrap, memory = true}: FocusGroupSpec` | `string` |
 
 <hr/>
 
@@ -442,9 +443,9 @@ Focus and activation are intentionally out of scope here.
 
 | Kind | Name                 | Declaration        | Module                               | Package |
 | ---- | -------------------- | ------------------ | ------------------------------------ | ------- |
-| `js` | `toFocusgroupTokens` | toFocusgroupTokens | src/controllers/focusgroup-tokens.js |         |
+| `js` | `toFocusgroupTokens` | toFocusgroupTokens | src/controllers/focusgroup-tokens.ts |         |
 
-### `src/define/blockquote-tab.js`:
+### `src/define/blockquote-tab.ts`:
 
 #### Exports
 
@@ -452,7 +453,7 @@ Focus and activation are intentionally out of scope here.
 | --------------------------- | ---------------- | ------------- | ------------------------- | ------- |
 | `custom-element-definition` | `blockquote-tab` | BlockquoteTab | /src/tab/BlockquoteTab.js |         |
 
-### `src/define/blockquote-tabpanel.js`:
+### `src/define/blockquote-tabpanel.ts`:
 
 #### Exports
 
@@ -460,7 +461,7 @@ Focus and activation are intentionally out of scope here.
 | --------------------------- | --------------------- | ------------------ | ----------------------------------- | ------- |
 | `custom-element-definition` | `blockquote-tabpanel` | BlockquoteTabPanel | /src/tabpanel/BlockquoteTabPanel.js |         |
 
-### `src/define/blockquote-tabs.js`:
+### `src/define/blockquote-tabs.ts`:
 
 #### Exports
 
@@ -468,7 +469,7 @@ Focus and activation are intentionally out of scope here.
 | --------------------------- | ----------------- | -------------- | ---------------------- | ------- |
 | `custom-element-definition` | `blockquote-tabs` | BlockquoteTabs | /src/BlockquoteTabs.js |         |
 
-### `src/styles/blockquote-tabs-styles.css.js`:
+### `src/styles/blockquote-tabs-styles.css.ts`:
 
 #### Variables
 
@@ -482,7 +483,7 @@ Focus and activation are intentionally out of scope here.
 
 | Kind | Name     | Declaration | Module                                   | Package |
 | ---- | -------- | ----------- | ---------------------------------------- | ------- |
-| `js` | `styles` | styles      | src/styles/blockquote-tabs-styles.css.js |         |
+| `js` | `styles` | styles      | src/styles/blockquote-tabs-styles.css.ts |         |
 
 ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
@@ -490,7 +491,7 @@ Focus and activation are intentionally out of scope here.
 A tab element that can be used inside a `blockquote-tabs` element.
 
 
-### `src/tab/BlockquoteTab.js`:
+### `src/tab/BlockquoteTab.ts`:
 
 #### class: `BlockquoteTab`, `blockquote-tab`
 
@@ -510,18 +511,18 @@ A tab element that can be used inside a `blockquote-tabs` element.
 
 | Name             | Privacy | Type      | Default | Description                             | Inherited From |
 | ---------------- | ------- | --------- | ------- | --------------------------------------- | -------------- |
-| `_onSlotChanges` |         |           |         |                                         |                |
 | `selected`       | public  | `boolean` | `false` | Whether or not the tab is \`selected\`. |                |
 | `disabled`       | public  | `boolean` | `false` | Whether or not the tab is \`disabled\`. |                |
+| `_onSlotChanges` |         |           |         |                                         |                |
 
 ##### Methods
 
-| Name                  | Privacy | Description                                                   | Parameters                         | Return    | Inherited From |
-| --------------------- | ------- | ------------------------------------------------------------- | ---------------------------------- | --------- | -------------- |
-| `_shouldSyncState`    |         | Returns whether the component state needs to be synchronized. | `props: Map<PropertyKey, unknown>` | `boolean` |                |
-| `_syncState`          |         | Synchronizes the derived DOM state.                           | `props: Map<PropertyKey, unknown>` |           |                |
-| `_syncRootAttributes` |         | Synchronizes the host attributes that are always present.     |                                    |           |                |
-| `_setAttributes`      |         | Sets multiple attributes on the host element.                 | `attributes: Record<string, *>`    |           |                |
+| Name                  | Privacy | Description                                                   | Parameters                                                                     | Return    | Inherited From |
+| --------------------- | ------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------ | --------- | -------------- |
+| `_shouldSyncState`    |         | Returns whether the component state needs to be synchronized. | `props: Map<PropertyKey, unknown>`                                             | `boolean` |                |
+| `_syncState`          |         | Synchronizes the derived DOM state.                           | `props: Map<PropertyKey, unknown>`                                             |           |                |
+| `_syncRootAttributes` |         | Synchronizes the host attributes that are always present.     |                                                                                |           |                |
+| `_setAttributes`      |         | Sets multiple attributes on the host element.                 | `attributes: Record<string, string \| number \| boolean \| null \| undefined>` |           |                |
 
 ##### Attributes
 
@@ -536,7 +537,7 @@ A tab element that can be used inside a `blockquote-tabs` element.
 
 | Kind | Name            | Declaration   | Module                   | Package |
 | ---- | --------------- | ------------- | ------------------------ | ------- |
-| `js` | `BlockquoteTab` | BlockquoteTab | src/tab/BlockquoteTab.js |         |
+| `js` | `BlockquoteTab` | BlockquoteTab | src/tab/BlockquoteTab.ts |         |
 
 ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
 
@@ -544,7 +545,7 @@ A tab element that can be used inside a `blockquote-tabs` element.
 A tab panel element that can be used inside a `blockquote-tabs` element.
 
 
-### `src/tabpanel/BlockquoteTabPanel.js`:
+### `src/tabpanel/BlockquoteTabPanel.ts`:
 
 #### class: `BlockquoteTabPanel`, `blockquote-tabpanel`
 
@@ -562,12 +563,12 @@ A tab panel element that can be used inside a `blockquote-tabs` element.
 
 ##### Methods
 
-| Name                  | Privacy | Description                                                   | Parameters                         | Return    | Inherited From |
-| --------------------- | ------- | ------------------------------------------------------------- | ---------------------------------- | --------- | -------------- |
-| `_shouldSyncState`    |         | Returns whether the component state needs to be synchronized. | `props: Map<PropertyKey, unknown>` | `boolean` |                |
-| `_syncState`          |         | Synchronizes the derived DOM state.                           |                                    |           |                |
-| `_syncRootAttributes` |         | Synchronizes the host attributes that are always present.     |                                    |           |                |
-| `_setAttributes`      |         | Sets multiple attributes on the host element.                 | `attributes: Record<string, *>`    |           |                |
+| Name                  | Privacy | Description                                                   | Parameters                                                                     | Return    | Inherited From |
+| --------------------- | ------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------ | --------- | -------------- |
+| `_shouldSyncState`    |         | Returns whether the component state needs to be synchronized. | `props: Map<PropertyKey, unknown>`                                             | `boolean` |                |
+| `_syncState`          |         | Synchronizes the derived DOM state.                           |                                                                                |           |                |
+| `_syncRootAttributes` |         | Synchronizes the host attributes that are always present.     |                                                                                |           |                |
+| `_setAttributes`      |         | Sets multiple attributes on the host element.                 | `attributes: Record<string, string \| number \| boolean \| null \| undefined>` |           |                |
 
 ##### Attributes
 
@@ -581,9 +582,9 @@ A tab panel element that can be used inside a `blockquote-tabs` element.
 
 | Kind | Name                 | Declaration        | Module                             | Package |
 | ---- | -------------------- | ------------------ | ---------------------------------- | ------- |
-| `js` | `BlockquoteTabPanel` | BlockquoteTabPanel | src/tabpanel/BlockquoteTabPanel.js |         |
+| `js` | `BlockquoteTabPanel` | BlockquoteTabPanel | src/tabpanel/BlockquoteTabPanel.ts |         |
 
-### `src/tab/styles/blockquote-tab-styles.css.js`:
+### `src/tab/styles/blockquote-tab-styles.css.ts`:
 
 #### Variables
 
@@ -597,9 +598,9 @@ A tab panel element that can be used inside a `blockquote-tabs` element.
 
 | Kind | Name     | Declaration | Module                                      | Package |
 | ---- | -------- | ----------- | ------------------------------------------- | ------- |
-| `js` | `styles` | styles      | src/tab/styles/blockquote-tab-styles.css.js |         |
+| `js` | `styles` | styles      | src/tab/styles/blockquote-tab-styles.css.ts |         |
 
-### `src/tabpanel/styles/blockquote-tabpanel-styles.css.js`:
+### `src/tabpanel/styles/blockquote-tabpanel-styles.css.ts`:
 
 #### Variables
 
@@ -613,4 +614,4 @@ A tab panel element that can be used inside a `blockquote-tabs` element.
 
 | Kind | Name     | Declaration | Module                                                | Package |
 | ---- | -------- | ----------- | ----------------------------------------------------- | ------- |
-| `js` | `styles` | styles      | src/tabpanel/styles/blockquote-tabpanel-styles.css.js |         |
+| `js` | `styles` | styles      | src/tabpanel/styles/blockquote-tabpanel-styles.css.ts |         |

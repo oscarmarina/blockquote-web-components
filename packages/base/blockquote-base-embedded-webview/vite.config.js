@@ -97,6 +97,9 @@ export default defineConfig(({command}) => ({
   optimizeDeps: {
     exclude: ['lit', 'lit-html'],
   },
+  resolve: {
+    conditions: ['workspaces', 'module', 'browser', 'development|production'],
+  },
   build: {
     outDir: OUT_DIR,
     rolldownOptions: {

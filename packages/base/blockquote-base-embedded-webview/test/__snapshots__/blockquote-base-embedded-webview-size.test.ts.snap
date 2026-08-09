@@ -1,0 +1,158 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BlockquoteBaseEmbeddedWebviewSize > Custom selected > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
+"<blockquote-base-embedded-webview-size
+  selected="3"
+  width-in-percent=""
+>
+</blockquote-base-embedded-webview-size>
+"
+`;
+
+exports[`BlockquoteBaseEmbeddedWebviewSize > Custom selected > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
+"<div class="rect">
+  <button
+    data-index="1"
+    hidden=""
+    id="1920x1080"
+    style="width: calc(100% / 1);"
+  >
+    <span>
+      1920x1080
+    </span>
+  </button>
+  <button
+    data-index="2"
+    hidden=""
+    id="1536x864"
+    style="width: calc(100% / 2);"
+  >
+    <span>
+      1536x864
+    </span>
+  </button>
+  <button
+    data-index="3"
+    data-selected=""
+    hidden=""
+    id="1366x768"
+    style="width: calc(100% / 3);"
+  >
+    <span>
+      1366x768
+    </span>
+  </button>
+  <button
+    data-index="4"
+    hidden=""
+    id="1280x800"
+    style="width: calc(100% / 4);"
+  >
+    <span>
+      1280x800
+    </span>
+  </button>
+  <button
+    data-index="5"
+    hidden=""
+    id="810x1080"
+    style="width: calc(100% / 5);"
+  >
+    <span>
+      810x1080
+    </span>
+  </button>
+  <button
+    data-index="6"
+    hidden=""
+    id="768x1024"
+    style="width: calc(100% / 6);"
+  >
+    <span>
+      768x1024
+    </span>
+  </button>
+  <button
+    data-index="7"
+    id="414x896"
+    style="width: calc(100% / 7);"
+  >
+    <span>
+      414x896
+    </span>
+  </button>
+  <button
+    data-index="8"
+    id="390x864"
+    style="width: calc(100% / 8);"
+  >
+    <span>
+      390x864
+    </span>
+  </button>
+  <button
+    data-index="9"
+    id="360x800"
+    style="width: calc(100% / 9);"
+  >
+    <span>
+      360x800
+    </span>
+  </button>
+  <span
+    aria-disabled="false"
+    aria-hidden="true"
+  >
+    1366x768
+  </span>
+</div>
+"
+`;
+
+exports[`BlockquoteBaseEmbeddedWebviewSize > Default > LIGHT DOM - Structure test > LIGHT DOM 1`] = `
+"<blockquote-base-embedded-webview-size>
+</blockquote-base-embedded-webview-size>
+"
+`;
+
+exports[`BlockquoteBaseEmbeddedWebviewSize > Default > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
+"<div class="rect">
+  <button
+    data-index="1"
+    hidden=""
+    id="1920x1080"
+    style="width: 1920px;"
+  >
+    <span>
+      1920x1080
+    </span>
+  </button>
+  <button
+    data-index="2"
+    hidden=""
+    id="1024x768"
+    style="width: 1024px;"
+  >
+    <span>
+      1024x768
+    </span>
+  </button>
+  <button
+    data-index="3"
+    data-selected=""
+    id="360x640"
+    style="width: 360px;"
+  >
+    <span>
+      360x640
+    </span>
+  </button>
+  <span
+    aria-disabled="false"
+    aria-hidden="true"
+  >
+    360x640
+  </span>
+</div>
+"
+`;

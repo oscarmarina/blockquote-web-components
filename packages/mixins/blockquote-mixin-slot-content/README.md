@@ -104,7 +104,7 @@ and equally for flattened nodes.
 <slot-element>
   #shadow-root
   <slot>
-    <img src="icon.svg" />
+    <div>Default Fallback</div>
   </slot>
 </slot-element>
 
@@ -118,6 +118,8 @@ and equally for flattened nodes.
 
 ```json
 {
+  "hasComposed": true,
+  "isFallback": false,
   "assignedSlotContent": {
     "slotName": "",
     "assignedSlot": slot
@@ -125,83 +127,67 @@ and equally for flattened nodes.
   "assignedNodesContent": {
     "assignedNodesByNode": [
       {
-        "flatten": false,
+        "isFlattened": true,
+        "hasComposed": true,
+        "isFallback": false,
         "assignedNodes": p,
         "assignedSlot": slot
       },
       {
-        "flatten": false,
+        "isFlattened": true,
+        "hasComposed": true,
+        "isFallback": false,
         "assignedNodes": p,
         "assignedSlot": slot
       }
     ],
     "assignedNodes": [p, p]
   },
-  "flattenedNodesContent": {
+  "fallbackNodesContent": {
     "assignedNodesByNode": [
       {
-        "flatten": true,
-        "assignedNodes": img,
+        "isFlattened": true,
+        "hasComposed": true,
+        "isFallback": true,
+        "assignedNodes": div,
         "assignedSlot": null
       }
     ],
-    "assignedNodes": [img]
-  },
-  "originalEvent": {
-    "event": {
-      "isTrusted": true,
-      "type": "slotchange",
-      "target": null,
-      "currentTarget": null,
-      // ...
-    },
-    "assignedNodes": [text, p, text, p, text, text, text]
-  }
-}
-```
-
-<hr>
-
-```html
-<slot-element>
-  #shadow-root
-  <slot></slot>
-</slot-element>
-
-<slot-element> </slot-element>
-```
-
-#### `event.detail`
-
-```json
-{
-  "assignedSlotContent": {
-    "slotName": "",
-    "assignedSlot": null
-  },
-  "assignedNodesContent": {
-    "assignedNodesByNode": [],
-    "assignedNodes": []
+    "assignedNodes": [div]
   },
   "flattenedNodesContent": {
-    "assignedNodesByNode": [],
-    "assignedNodes": []
+    "assignedNodesByNode": [
+      {
+        "isFlattened": true,
+        "hasComposed": true,
+        "isFallback": false,
+        "assignedNodes": p,
+        "assignedSlot": slot
+      },
+      {
+        "isFlattened": true,
+        "hasComposed": true,
+        "isFallback": false,
+        "assignedNodes": p,
+        "assignedSlot": slot
+      }
+    ],
+    "assignedNodes": [p, p]
   },
   "originalEvent": {
     "event": {
       "isTrusted": true,
       "type": "slotchange",
       "target": null,
-      "currentTarget": null,
-      // ...
+      "currentTarget": null
     },
-    "assignedNodes": [text]
+    "assignedNodes": [text, p, text, p, text]
   }
 }
 ```
 
 
-### `src/BlockquoteMixinSlotContent.js`:
+### `src/BlockquoteMixinSlotContent.ts`:
 
 #### mixin: `BlockquoteMixinSlotContent`
 
@@ -215,7 +201,7 @@ and equally for flattened nodes.
 
 | Name   | Type | Default | Description |
 | ------ | ---- | ------- | ----------- |
-| `Base` |      |         |             |
+| `Base` | `T`  |         |             |
 
 <details><summary>Private API</summary>
 
@@ -227,12 +213,24 @@ and equally for flattened nodes.
 
 ##### Methods
 
-| Name                      | Privacy | Description | Parameters                  | Return | Inherited From |
-| ------------------------- | ------- | ----------- | --------------------------- | ------ | -------------- |
-| `#processSlotContent`     | private |             | `slotNode: HTMLSlotElement` |        |                |
-| `#createContentStructure` | private |             | `content: *`                |        |                |
+| Name                      | Privacy | Description | Parameters                  | Return                                                                                                        | Inherited From |
+| ------------------------- | ------- | ----------- | --------------------------- | ------------------------------------------------------------------------------------------------------------- | -------------- |
+| `#processSlotContent`     | private |             | `slotNode: HTMLSlotElement` | `SlotContent`                                                                                                 |                |
+| `#createContentStructure` | private |             | `content: *`                | `{
+      assignedNodesByNode: SlotContentNode[];
+      assignedNodes: (string \| undefined \| Node)[];
+    }` |                |
 
 </details>
+
+<hr/>
+
+#### Variables
+
+| Name          | Description | Type |
+| ------------- | ----------- | ---- |
+| `hasComposed` |             |      |
+| `isFallback`  |             |      |
 
 <hr/>
 
@@ -240,9 +238,9 @@ and equally for flattened nodes.
 
 | Kind | Name                         | Declaration                | Module                            | Package |
 | ---- | ---------------------------- | -------------------------- | --------------------------------- | ------- |
-| `js` | `BlockquoteMixinSlotContent` | BlockquoteMixinSlotContent | src/BlockquoteMixinSlotContent.js |         |
+| `js` | `BlockquoteMixinSlotContent` | BlockquoteMixinSlotContent | src/BlockquoteMixinSlotContent.ts |         |
 
-### `src/index.js`:
+### `src/index.ts`:
 
 #### Exports
 

@@ -1,6 +1,7 @@
-import { readdirSync, statSync, readFileSync, writeFileSync, existsSync, cpSync } from 'fs';
-import { resolve, join, sep } from 'path';
-import { parseHTML } from 'linkedom';
+import process from 'node:process';
+import {resolve, join, sep} from 'node:path';
+import {readdirSync, readFileSync, writeFileSync, existsSync, cpSync, mkdirSync} from 'node:fs';
+import {parseHTML} from 'linkedom';
 
 // npx unlighthouse --site https://main--adorable-macaron-7c1b61.netlify.app/
 
@@ -15,7 +16,7 @@ function stringifyError(err) {
   if (err instanceof Error) return err.message;
   try {
     return JSON.stringify(err);
-  } catch (e) {
+  } catch {
     return String(err);
   }
 }
@@ -69,7 +70,7 @@ function loadIndexTemplate(indexHtmlPath) {
   </body></html>`;
 
   const html = existsSync(indexHtmlPath) ? readFileSync(indexHtmlPath, 'utf8') : defaultHtml;
-  const { document } = parseHTML(html);
+  const {document} = parseHTML(html);
   // Reset the list to avoid duplicates across runs
   document.querySelectorAll('ol').forEach((ol) => ol.remove());
   if (!document.body) {
@@ -85,28 +86,26 @@ function getAllDev(
   /** @type {Array<any>} */ arrayOfDevDirectories = [],
   DEVDIRECTORY = DEFAULT_DEV_NAME
 ) {
-  const basePath = readdirSync(dirPath);
-  const basePathFiltered = basePath.filter((bp) => !bp.startsWith('.') && bp !== 'node_modules');
+  // withFileTypes elimina la necesidad de llamar a statSync
+  const entries = readdirSync(dirPath, {withFileTypes: true});
 
-  basePathFiltered.forEach((fileOrDirectory) => {
-    const fullPath = join(dirPath, fileOrDirectory);
-    const statType = statSync(fullPath);
-    if (!statType.isDirectory()) return;
+  for (const entry of entries) {
+    if (entry.name.startsWith('.') || entry.name === 'node_modules' || !entry.isDirectory()) {
+      continue;
+    }
 
-    if (fileOrDirectory === DEVDIRECTORY) {
-      const devBasePathObject = join(dirPath, fileOrDirectory);
+    const fullPath = join(dirPath, entry.name);
 
+    if (entry.name === DEVDIRECTORY) {
       arrayOfDevDirectories.push({
-        devDirectory: devBasePathObject,
-        devDirectoryName: join(devBasePathObject, '..').split(sep).pop(),
-        devDirectoryCategory: join(devBasePathObject, '..', '..')
-          .split(sep)
-          .pop(),
+        devDirectory: fullPath,
+        devDirectoryName: join(fullPath, '..').split(sep).pop(),
+        devDirectoryCategory: join(fullPath, '..', '..').split(sep).pop(),
       });
     } else {
       getAllDev(fullPath, arrayOfDevDirectories, DEVDIRECTORY);
     }
-  });
+  }
 
   return arrayOfDevDirectories;
 }
@@ -115,13 +114,19 @@ async function main() {
   const opts = parseArgs(process.argv.slice(2));
 
   if (opts.help) {
-    console.log(`Usage: node move-dev-directory.js [options]\n\nOptions:\n  --dry-run           Do not copy files, only simulate and generate index.html\n  --verbose           Verbose logging\n  --site-dir=PATH     Directory to copy demos into (default: ./site)\n  --packages-dir=PATH Directory where packages live (default: ./packages)\n  --dev-name=NAME     Name of the dev directory (default: dev)\n  --help, -h          Show this help message\n`);
+    console.log(
+      `Usage: node move-dev-directory.js [options]\n\nOptions:\n  --dry-run           Do not copy files, only simulate and generate index.html\n  --verbose           Verbose logging\n  --site-dir=PATH     Directory to copy demos into (default: ./site)\n  --packages-dir=PATH Directory where packages live (default: ./packages)\n  --dev-name=NAME     Name of the dev directory (default: dev)\n  --help, -h          Show this help message\n`
+    );
     return;
   }
 
   const SITE_DIR = resolve(opts.siteDir);
   const PACKAGES_DIR = resolve(opts.packagesDir);
   const INDEX_HTML_PATH = resolve(SITE_DIR, 'index.html');
+
+  if (!existsSync(SITE_DIR) && !opts.dryRun) {
+    mkdirSync(SITE_DIR, {recursive: true});
+  }
 
   if (opts.verbose) console.info('Options:', opts);
 
@@ -139,19 +144,19 @@ async function main() {
     const dest = resolve(join(SITE_DIR, dev.devDirectoryName));
 
     if (opts.dryRun) {
-      successful.push({ dev, results: [] });
+      successful.push({dev, results: []});
       if (opts.verbose) console.info(`[dry-run] Would copy ${dev.devDirectory} -> ${dest}`);
       else console.info(`[dry-run] ${dev.devDirectoryName}`);
       continue;
     }
 
     try {
-      cpSync(dev.devDirectory, dest, { recursive: true });
-      successful.push({ dev });
+      cpSync(dev.devDirectory, dest, {recursive: true});
+      successful.push({dev});
       if (opts.verbose) console.info(`Copied - ${dev.devDirectoryName}`);
       else console.info(`${dev.devDirectoryName} copied`);
     } catch (err) {
-      failed.push({ dev, error: err });
+      failed.push({dev, error: err});
       const msg = stringifyError(err);
       console.error(`Copy failed for ${dev.devDirectoryName}: ${msg}`);
     }
@@ -160,8 +165,8 @@ async function main() {
   // Load template and write the list once to avoid race conditions
   const document = loadIndexTemplate(INDEX_HTML_PATH);
   const ol = document.querySelector('ol');
-  successful.forEach(({ dev }) => {
-    ol.insertAdjacentHTML(
+  successful.forEach(({dev}) => {
+    ol?.insertAdjacentHTML(
       'beforeend',
       `<li>
           <ul>
@@ -173,7 +178,11 @@ async function main() {
   });
 
   try {
-    writeFileSync(INDEX_HTML_PATH, '<!DOCTYPE html>\n' + document.documentElement.outerHTML, 'utf8');
+    writeFileSync(
+      INDEX_HTML_PATH,
+      '<!DOCTYPE html>\n' + document.documentElement.outerHTML,
+      'utf8'
+    );
     console.info(`Wrote index to ${INDEX_HTML_PATH}`);
   } catch (err) {
     console.error(`Failed to write index.html: ${stringifyError(err)}`);
