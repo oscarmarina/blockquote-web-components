@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.24](https://github.com/oscarmarina/blockquote-web-components/compare/%40blockquote-web-components%2Fblockquote-directive-ariaidref-slot%401.3.23...%40blockquote-web-components%2Fblockquote-directive-ariaidref-slot%401.3.24) (2026-08-15)
+
+**Note:** Version bump only for package @blockquote-web-components/blockquote-directive-ariaidref-slot
+
+
+
+
+
 ## [1.3.23](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-directive-ariaidref-slot@1.3.22...@blockquote-web-components/blockquote-directive-ariaidref-slot@1.3.23) (2026-07-10)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-directive-ariaidref-slot

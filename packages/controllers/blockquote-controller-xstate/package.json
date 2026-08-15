@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-controller-xstate",
-  "version": "2.3.37",
+  "version": "2.3.38",
   "description": "A modern architecture for building composable and reusable Web Components",
   "keywords": [
     "lit",
@@ -133,7 +133,7 @@
     "xstate": "^5.32.5"
   },
   "devDependencies": {
-    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.15.0"
+    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.15.1"
   },
   "publishConfig": {
     "access": "public"

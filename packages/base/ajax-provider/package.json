@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/ajax-provider",
-  "version": "1.4.35",
+  "version": "1.4.36",
   "description": "A modern architecture for building composable and reusable Web Components",
   "keywords": [
     "lit",
@@ -130,7 +130,7 @@
     "rxjs": "^9.0.0-beta.0"
   },
   "devDependencies": {
-    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.15.0",
+    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.15.1",
     "@types/nise": "^1.4.5",
     "inspector-elements": "^0.1.0",
     "lit": "^3.3.3"

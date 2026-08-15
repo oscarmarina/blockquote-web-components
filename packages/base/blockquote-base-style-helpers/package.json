@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-base-style-helpers",
-  "version": "1.4.35",
+  "version": "1.4.36",
   "description": "A modern architecture for building composable and reusable Web Components",
   "keywords": [
     "lit",
@@ -135,10 +135,10 @@
     ]
   },
   "dependencies": {
-    "@blockquote-web-components/blockquote-base-meta": "^1.5.35"
+    "@blockquote-web-components/blockquote-base-meta": "^1.5.36"
   },
   "devDependencies": {
-    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.15.0",
+    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.15.1",
     "lit": "^3.3.3"
   },
   "publishConfig": {

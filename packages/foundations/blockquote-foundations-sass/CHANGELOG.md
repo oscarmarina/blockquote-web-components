@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.9](https://github.com/oscarmarina/blockquote-web-components/compare/%40blockquote-web-components%2Fblockquote-foundations-sass%401.1.8...%40blockquote-web-components%2Fblockquote-foundations-sass%401.1.9) (2026-08-15)
+
+**Note:** Version bump only for package @blockquote-web-components/blockquote-foundations-sass
+
+
+
+
+
 ## [1.1.8](https://github.com/oscarmarina/blockquote-web-components/compare/@blockquote-web-components/blockquote-foundations-sass@1.1.7...@blockquote-web-components/blockquote-foundations-sass@1.1.8) (2025-09-27)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-foundations-sass

@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-mixin-slot-content",
-  "version": "1.9.23",
+  "version": "1.9.24",
   "description": "A modern architecture for building composable and reusable Web Components",
   "keywords": [
     "lit",
@@ -131,7 +131,7 @@
     "lit": "^3.3.3"
   },
   "devDependencies": {
-    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.15.0"
+    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.15.1"
   },
   "publishConfig": {
     "access": "public"
