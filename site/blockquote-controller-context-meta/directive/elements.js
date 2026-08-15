@@ -1,4 +1,4 @@
-import{a as e,f as t,h as n,o as r,s as i,t as a}from"../assets/src-hq5Li6Z7.js";var o=Symbol.for(`symbol-for-surface`),s=class extends i{constructor(){super(),this._provider=new r(this,{context:o}),this.data=void 0}willUpdate(e){var t;(t=super.willUpdate)==null||t.call(this,e),e.has(`data`)&&this._provider.setValue(this.data)}render(){return t`
+import{a as e,d as t,m as n,o as r,t as i}from"../assets/src-ZFMlM1TH.js";import{t as a}from"../assets/defineProperty-BbfpZ9Tg.js";var o=Symbol.for(`symbol-for-surface`),s=class extends r{constructor(){super(),this._provider=new e(this,{context:o}),this.data=void 0}willUpdate(e){var t;(t=super.willUpdate)==null||t.call(this,e),e.has(`data`)&&this._provider.setValue(this.data)}render(){return t`
       <p>
         Provider data:
         <code>${this.data}</code>
@@ -6,13 +6,13 @@ import{a as e,f as t,h as n,o as r,s as i,t as a}from"../assets/src-hq5Li6Z7.js"
       <consumer-el></consumer-el>
       <div
         id="data-info-1"
-        data-info="${a(`${this.data} #data-info-1`,{context:o})}">
+        data-info="${i(`${this.data} #data-info-1`,{context:o})}">
         <p>Div Element (Provider)</p>
         <consumer-el></consumer-el>
       </div>
       <div
         id="data-info-2"
-        ${a(`${this.data} #data-info-2`,{context:o})}>
+        ${i(`${this.data} #data-info-2`,{context:o})}>
         <p>
           Div Element (Provider)
           <span>with slotted consumer</span>
@@ -21,7 +21,7 @@ import{a as e,f as t,h as n,o as r,s as i,t as a}from"../assets/src-hq5Li6Z7.js"
         <hr />
         <consumer-el></consumer-el>
       </div>
-    `}};e(s,`styles`,n`
+    `}};a(s,`styles`,n`
     :host {
       display: block;
       border: 2px solid #adadad;
@@ -49,12 +49,12 @@ import{a as e,f as t,h as n,o as r,s as i,t as a}from"../assets/src-hq5Li6Z7.js"
     ::slotted(*) {
       margin-inline-start: 0.5em;
     }
-  `),e(s,`properties`,{data:{reflect:!0}}),customElements.define(`provider-el`,s);var c=class extends i{constructor(...t){super(...t),e(this,`_consumer`,new r(this,{context:o}))}render(){return t`
+  `),a(s,`properties`,{data:{reflect:!0}}),customElements.define(`provider-el`,s);var c=class extends r{constructor(...t){super(...t),a(this,`_consumer`,new e(this,{context:o}))}render(){return t`
       <p>
         Consumer data:
         <code>${this._consumer.value}</code>
       </p>
-    `}};e(c,`styles`,n`
+    `}};a(c,`styles`,n`
     :host {
       display: block;
       border: 1px dashed #adadad;
