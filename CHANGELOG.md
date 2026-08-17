@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.22.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.21.2...v2.22.0) (2026-08-17)
+
+### Features
+
+* **ajax-provider:** enhance AjaxProvider with comprehensive configuration options and lifecycle events ([783f6a6](https://github.com/oscarmarina/blockquote-web-components/commit/783f6a62b5fcdb7d9d695f1de6f2baab97e51e0f))
 ## [2.21.2](https://github.com/oscarmarina/blockquote-web-components/compare/v2.21.1...v2.21.2) (2026-08-15)
 ## [2.21.1](https://github.com/oscarmarina/blockquote-web-components/compare/v2.21.0...v2.21.1) (2026-07-28)
 ## [2.21.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.20.0...v2.21.0) (2026-07-27)
