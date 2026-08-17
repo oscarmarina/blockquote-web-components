@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.22.1](https://github.com/oscarmarina/blockquote-web-components/compare/v2.22.0...v2.22.1) (2026-08-17)
+
+### Bug Fixes
+
+* **ajax-provider:** forward subscriber signal to cancel XHR on abort ([93a31be](https://github.com/oscarmarina/blockquote-web-components/commit/93a31be15dd2f26dd90b7f4916a330163222c696))
 ## [2.22.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.21.2...v2.22.0) (2026-08-17)
 
 ### Features
