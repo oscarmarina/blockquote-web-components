@@ -296,5 +296,21 @@ describe('AjaxProvider', () => {
       expect(responseSpy).toHaveBeenCalledTimes(1);
       expect(responseendSpy).toHaveBeenCalledTimes(1);
     });
+
+    it('`request$()` aborts the underlying XHR when the subscription signal is aborted', async () => {
+      const controller = new AbortController();
+      const el = new AjaxProvider({url: '/never-responds-cancel'});
+      el.request$().subscribe(
+        {
+          next: () => undefined,
+          error: () => undefined,
+          complete: () => undefined,
+        },
+        {signal: controller.signal}
+      );
+      const req = server.lastRequest;
+      controller.abort();
+      expect(req?.aborted).toBe(true);
+    });
   });
 });
