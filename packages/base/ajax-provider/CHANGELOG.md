@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/oscarmarina/blockquote-web-components/compare/%40blockquote-web-components%2Fajax-provider%401.5.0...%40blockquote-web-components%2Fajax-provider%401.5.1) (2026-08-17)
+
+### Bug Fixes
+
+* **ajax-provider:** forward subscriber signal to cancel XHR on abort ([93a31be](https://github.com/oscarmarina/blockquote-web-components/commit/93a31be15dd2f26dd90b7f4916a330163222c696))
+
+
 # [1.5.0](https://github.com/oscarmarina/blockquote-web-components/compare/%40blockquote-web-components%2Fajax-provider%401.4.36...%40blockquote-web-components%2Fajax-provider%401.5.0) (2026-08-17)
 
 ### Features
