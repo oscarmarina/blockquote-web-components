@@ -165,6 +165,17 @@ describe('AjaxProvider', () => {
       expect(spyEvent).toHaveBeenCalledTimes(1);
     });
 
+    it('uses json as the default response type', async () => {
+      const el = new AjaxProvider({url: '/responds_get_with_json'});
+      const response = el.generateRequest();
+      server.respond();
+
+      await expect(response).resolves.toMatchObject({
+        response: {success: 'true'},
+        responseType: 'json',
+      });
+    });
+
     it('The `ajaxerror` event gets fired', async () => {
       const spyEvent = vi.fn();
       const el = new AjaxProvider({url: '/responds_to_get_with_502_error_json'});
@@ -253,6 +264,37 @@ describe('AjaxProvider', () => {
         })
         .catch(() => undefined);
       server.respond();
+    });
+
+    it('`request$()` fires the complete set of lifecycle events (ajaxpresend, ajaxprogress, ajaxresponse, ajaxresponseend)', async () => {
+      const presendSpy = vi.fn();
+      const progressSpy = vi.fn();
+      const responseSpy = vi.fn();
+      const responseendSpy = vi.fn();
+
+      const el = new AjaxProvider({
+        url: '/responds_get_with_json',
+      });
+
+      el.addEventListener('ajaxpresend', presendSpy);
+      el.addEventListener('ajaxprogress', progressSpy);
+      el.addEventListener('ajaxresponse', responseSpy);
+      el.addEventListener('ajaxresponseend', responseendSpy);
+
+      const pending = new Promise((resolve) => {
+        el.request$().subscribe({
+          next: resolve,
+        });
+      });
+
+      server.respond();
+      await pending;
+      await aTimeout(16);
+
+      expect(presendSpy).toHaveBeenCalledTimes(1);
+      expect(progressSpy).toHaveBeenCalledTimes(1);
+      expect(responseSpy).toHaveBeenCalledTimes(1);
+      expect(responseendSpy).toHaveBeenCalledTimes(1);
     });
   });
 });

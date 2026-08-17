@@ -1,4 +1,5 @@
 import {dedupeMixin} from '@open-wc/dedupe-mixin';
+import {ColdObservable} from 'rxjs';
 import {pipe} from 'rxjs/pipe';
 import {tap} from 'rxjs/tap';
 import {catchError} from 'rxjs/catch-error';
@@ -98,7 +99,7 @@ interface AjaxProviderMixinInterface {
   /**
    * Returns a cold Observable that performs the AJAX request on each subscription.
    */
-  request$(): Observable<AjaxResponse<unknown>>;
+  request$(): ColdObservable<AjaxResponse<unknown>>;
   /**
    * Generates and sends the AJAX request.
    */
@@ -182,7 +183,11 @@ const AjaxProvider = <T extends Constructor>(Base: T) =>
       assignIfDefined(config, 'password', this.password);
       assignIfDefined(config, 'xsrfCookieName', this.xsrfCookieName);
       assignIfDefined(config, 'xsrfHeaderName', this.xsrfHeaderName);
-      assignIfDefined(config, 'responseType', this.responseType);
+      // An empty responseType intentionally means "use fromXMLHttpRequest's default".
+      // Do not pass it through, otherwise it would override the default `json` value.
+      if (this.responseType !== '') {
+        config.responseType = this.responseType as XMLHttpRequestResponseType;
+      }
       assignIfDefined(config, 'queryParams', this.queryParams);
       return config;
     }
@@ -244,31 +249,44 @@ const AjaxProvider = <T extends Constructor>(Base: T) =>
      * Progress is reported through the `ajaxprogress` event. Errors are reported
      * through `ajaxerror`/`ajaxerrorend` events before the observable errors.
      *
-     * @returns {Observable<AjaxResponse<unknown>>} An observable that emits the AJAX response.
+     * @returns {ColdObservable<AjaxResponse<unknown>>} An observable that emits the AJAX response.
      *
+     * @fires ajaxpresend - Fired before a request is sent.
      * @fires ajaxprogress - Fired when some progress state is received.
+     * @fires ajaxresponse - Fired when a response is received.
+     * @fires ajaxresponseend - Fired after a response is received.
      * @fires ajaxerror - Fired when an error is received.
      * @fires ajaxerrorend - Fired after a error is received.
      */
-    request$(): Observable<AjaxResponse<unknown>> {
-      return fromXMLHttpRequest<unknown>(this._assignAjaxRxjsConfig())[pipe](
-        (values) =>
-          values[tap]((response) => {
-            const setProgress = {
-              type: response.type,
-              loaded: response.loaded,
-              total: response.total,
-            };
-            this._dispatchEvent('progress', setProgress);
-          }),
-        (values) =>
-          values[catchError]((error: AjaxError) => {
-            this._dispatchEvent('error', error);
-            this._dispatchEvent('errorend', true);
-            this.lastError = error;
-            throw error;
-          })
-      );
+    request$(): ColdObservable<AjaxResponse<unknown>> {
+      return new ColdObservable<AjaxResponse<unknown>>((subscriber) => {
+        this._dispatchEvent('presend', true);
+        fromXMLHttpRequest<unknown>(this._assignAjaxRxjsConfig())
+          [pipe](
+            (values) =>
+              values[tap]((response) => {
+                const setProgress = {
+                  type: response.type,
+                  loaded: response.loaded,
+                  total: response.total,
+                };
+                this._dispatchEvent('progress', setProgress);
+                if (response.type === 'download_load') {
+                  this._dispatchEvent('response', response);
+                  this._dispatchEvent('responseend', true);
+                  this.lastResponse = response;
+                }
+              }),
+            (values) =>
+              values[catchError]((error: AjaxError) => {
+                this._dispatchEvent('error', error);
+                this._dispatchEvent('errorend', true);
+                this.lastError = error;
+                throw error;
+              })
+          )
+          .subscribe(subscriber);
+      });
     }
 
     /**
@@ -281,14 +299,7 @@ const AjaxProvider = <T extends Constructor>(Base: T) =>
      * @fires ajaxresponseend - Fired after a response is received.
      */
     async generateRequest(): Promise<AjaxResponse<unknown>> {
-      this._dispatchEvent('presend', true);
-
-      const toPromise$ = await lastValueFrom(this.request$());
-
-      this._dispatchEvent('response', toPromise$);
-      this._dispatchEvent('responseend', true);
-      this.lastResponse = toPromise$;
-      return toPromise$;
+      return lastValueFrom(this.request$());
     }
   };
 

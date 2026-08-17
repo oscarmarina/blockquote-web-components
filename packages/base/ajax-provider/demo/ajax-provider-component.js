@@ -9,6 +9,7 @@ class AjaxProviderComponent extends LitElement {
   static properties = {
     _status: {state: true},
     _progress: {state: true},
+    _abortController: {state: true},
   };
 
   static styles = css`
@@ -23,6 +24,39 @@ class AjaxProviderComponent extends LitElement {
 
     a {
       text-decoration: none;
+    }
+
+    .intro {
+      margin-block-end: 1rem;
+      padding: 0.75rem;
+      border-inline-start: 3px solid #2196f3;
+      background-color: #f4f9ff;
+    }
+
+    .intro h1,
+    .intro p {
+      margin: 0;
+      text-align: start;
+    }
+
+    .intro p {
+      margin-block-start: 0.5rem;
+    }
+
+    code {
+      font-family: monospace;
+    }
+
+    button {
+      align-self: start;
+      margin-block-end: 1rem;
+      padding: 0.5rem 0.75rem;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
     }
 
     label {
@@ -144,6 +178,7 @@ class AjaxProviderComponent extends LitElement {
     super();
     this._status = [];
     this._progress = {};
+    this._abortController = null;
   }
 
   async connectedCallback() {
@@ -159,27 +194,45 @@ class AjaxProviderComponent extends LitElement {
     const upload = this._progress.upload ?? {};
 
     return html`
+      <section class="intro">
+        <h1>AjaxProvider</h1>
+        <p>
+          Most examples use
+          <code>generateRequest()</code>
+          , which resolves with the final response. Reactive examples use
+          <code>request$()</code>
+          to receive progress, compose operators, and cancel the request.
+        </p>
+      </section>
       <label for="selectOption">
         Testing different HTTP Verbs
-        <a target="_blank" rel="noopener" href="https://httpbin.org/#/HTTP_Methods/">
-          - httpbin.org
-        </a>
+        <a target="_blank" rel="noopener" href="https://httpbingo.org">- httpbingo.org</a>
       </label>
       <div class="select-dropdown">
         <select id="selectOption" @change=${this._onHandleChange}>
-          <option>[ HTTP Methods ]</option>
-          <option value="GET">Get</option>
-          <option value="POST">Post</option>
-          <option value="FORMDATA">Post - FormData</option>
-          <option value="PATCH">Patch</option>
-          <option value="PUT">Put</option>
-          <option value="DELETE">Delete</option>
-          <option value="DRIP">Get - stream (download progress)</option>
-          <option value="ERROR">Error</option>
-          <option value="REQ$">Get - request$() + retry(2)</option>
-          <option value="CHAIN">Chain - when('ajaxresponse') → request$()</option>
+          <option>[ Select HTTP Scenario ]</option>
+          <optgroup label="Standard HTTP Verbs">
+            <option value="GET">GET — Fetch data</option>
+            <option value="POST">POST — Send JSON payload</option>
+            <option value="FORMDATA">POST — Send FormData</option>
+            <option value="PATCH">PATCH — Partial update</option>
+            <option value="PUT">PUT — Full update</option>
+            <option value="DELETE">DELETE — Remove resource</option>
+          </optgroup>
+          <optgroup label="Streaming and Errors">
+            <option value="DRIP">GET — Stream response (progress)</option>
+            <option value="ERROR">GET — Status 500 error</option>
+          </optgroup>
+          <optgroup label="Reactive RxJS Features">
+            <option value="REQ$">Reactive — request$() + retry(2) → error</option>
+            <option value="CANCEL">Reactive — request$() + cancel</option>
+            <option value="CHAIN">Reactive — EventTarget.when() → request$()</option>
+          </optgroup>
         </select>
       </div>
+      <button ?disabled=${!this._abortController} @click=${this._cancelRequest}>
+        Cancel reactive request
+      </button>
       <div class="progress">
         <span class="progress-label">download</span>
         <div class="progress-track">
@@ -208,16 +261,41 @@ class AjaxProviderComponent extends LitElement {
     `;
   }
 
+  /**
+   * @param {Event} event
+   */
   _onHandleChange({target}) {
     const {value} = /** @type {HTMLSelectElement} */ (target);
     this._makeRequest(value);
   }
 
+  _cancelRequest() {
+    this._abortController?.abort();
+    this._abortController = null;
+    this._status = [
+      ...this._status,
+      html`
+        <span class="name">cancel</span>
+        — subscription aborted; the XHR teardown calls xhr.abort()
+      `,
+    ];
+  }
+
+  /**
+   * @param {string} selectedMethod
+   */
   _makeRequest(selectedMethod) {
+    this._abortController?.abort();
+    this._abortController = null;
+
     const method =
-      selectedMethod === 'FORMDATA' ? 'POST' : selectedMethod === 'DRIP' ? 'GET' : selectedMethod;
+      selectedMethod === 'FORMDATA'
+        ? 'POST'
+        : selectedMethod === 'DRIP' || selectedMethod === 'CANCEL'
+          ? 'GET'
+          : selectedMethod;
     const baseMethod = {
-      url: 'https://httpbin.org',
+      url: 'https://httpbingo.org',
       method,
     };
 
@@ -245,7 +323,7 @@ class AjaxProviderComponent extends LitElement {
         break;
       case 'FORMDATA':
         optionsMethod = {
-          path: '/post',
+          path: 'post',
           headers: {'rxjs-custom-header': 'Rxjs'},
           body: formData,
         };
@@ -273,11 +351,11 @@ class AjaxProviderComponent extends LitElement {
         };
         break;
       case 'DRIP':
-        // httpbin.org/drip streams a response over `duration` seconds, so the
+        // httpbingo.org/drip streams a response over `duration` seconds, so the
         // download progress events fire progressively instead of all at once.
         optionsMethod = {
           path: 'drip',
-          queryParams: 'duration=3&numbytes=1024&code=200',
+          queryParams: 'duration=3&delay=0&numbytes=1024&code=200',
           includeDownloadProgress: true,
         };
         break;
@@ -285,12 +363,20 @@ class AjaxProviderComponent extends LitElement {
         optionsMethod = {path: 'status/500', method: 'GET'};
         break;
       case 'REQ$':
-        // httpbin.org/status/500 always fails, so retry(2) resubscribes twice
+        // httpbingo.org/status/500 always fails, so retry(2) resubscribes twice
         // and the observer receives the error only after the third attempt.
         optionsMethod = {path: 'status/500', method: 'GET'};
         break;
+      case 'CANCEL':
+        optionsMethod = {
+          path: 'drip',
+          queryParams: 'duration=5&delay=0&numbytes=1024&code=200',
+          includeDownloadProgress: true,
+        };
+        break;
       case 'CHAIN':
-        // First request resolves to a uuid; the second request depends on it.
+        // EventTarget.when() is provided by the RxJS 9 Observable polyfill.
+        // The first request resolves to a uuid; the second request depends on it.
         optionsMethod = {path: 'uuid', method: 'GET'};
         break;
       default:
@@ -300,20 +386,22 @@ class AjaxProviderComponent extends LitElement {
 
     this._status = [
       html`
-        <span class="name">presend</span>
-        — dispatching request
+        <span class="name">start</span>
+        — creating request
       `,
     ];
     this._progress = {};
 
     const request = new AjaxProvider({...baseMethod, ...optionsMethod});
 
-    request.addEventListener('ajaxpresend', ({detail}) => {
+    request.addEventListener('ajaxpresend', (ev) => {
+      const {detail} = /** @type {CustomEvent} */ (ev);
       this.json && (this.json.data = undefined);
       console.log(`ajaxpresend: ${detail}`);
     });
 
-    request.addEventListener('ajaxprogress', ({detail}) => {
+    request.addEventListener('ajaxprogress', (ev) => {
+      const {detail} = /** @type {CustomEvent} */ (ev);
       const {type, loaded, total} = detail;
       console.log(detail);
       const direction = type.startsWith('upload_') ? 'upload' : 'download';
@@ -331,7 +419,8 @@ class AjaxProviderComponent extends LitElement {
       ];
     });
 
-    request.addEventListener('ajaxresponse', ({detail}) => {
+    request.addEventListener('ajaxresponse', (ev) => {
+      const {detail} = /** @type {CustomEvent} */ (ev);
       this._status = [
         ...this._status,
         html`
@@ -342,7 +431,8 @@ class AjaxProviderComponent extends LitElement {
       console.log(detail);
     });
 
-    request.addEventListener('ajaxresponseend', ({detail}) => {
+    request.addEventListener('ajaxresponseend', (ev) => {
+      const {detail} = /** @type {CustomEvent} */ (ev);
       this._status = [
         ...this._status,
         html`
@@ -353,7 +443,8 @@ class AjaxProviderComponent extends LitElement {
       console.log(`ajaxresponseend: ${detail}`);
     });
 
-    request.addEventListener('ajaxerror', ({detail}) => {
+    request.addEventListener('ajaxerror', (ev) => {
+      const {detail} = /** @type {CustomEvent} */ (ev);
       this._status = [
         ...this._status,
         html`
@@ -364,7 +455,8 @@ class AjaxProviderComponent extends LitElement {
       console.dir(detail);
     });
 
-    request.addEventListener('ajaxerrorend', ({detail}) => {
+    request.addEventListener('ajaxerrorend', (ev) => {
+      const {detail} = /** @type {CustomEvent} */ (ev);
       this._status = [
         ...this._status,
         html`
@@ -378,12 +470,13 @@ class AjaxProviderComponent extends LitElement {
     if (selectedMethod === 'CHAIN') {
       // request$() inside switchMap() composes the second (dependent) request;
       // when('ajaxresponse') is the trigger source and never completes.
-      const requestData = new AjaxProvider({url: 'https://httpbin.org'});
+      const requestData = new AjaxProvider({url: 'https://httpbingo.org'});
 
       request
         .when('ajaxresponse')
         [pipe]((values) =>
-          values[switchMap](({detail}) => {
+          values[switchMap]((ev) => {
+            const {detail} = /** @type {CustomEvent} */ (ev);
             requestData.path = `anything/${detail.response.uuid}`;
             return requestData.request$();
           })
@@ -429,18 +522,49 @@ class AjaxProviderComponent extends LitElement {
             if (this.json) {
               this.json.data = error;
             }
+            this._status = [
+              ...this._status,
+              html`
+                <span class="name">exhausted</span>
+                — retry(2) failed after ${2 + 1} attempts
+              `,
+            ];
+            console.dir(error);
+          },
+        });
+      return;
+    }
+
+    if (selectedMethod === 'CANCEL') {
+      const controller = new AbortController();
+      this._abortController = controller;
+      request.request$().subscribe(
+        {
+          next: (result) => {
+            if (this.json) {
+              this.json.data = result;
+            }
+            console.log(`RESULT ${selectedMethod}`, result);
+          },
+          error: (error) => {
+            if (this.json) {
+              this.json.data = error;
+            }
             console.dir(error);
           },
           complete: () => {
+            this._abortController = null;
             this._status = [
               ...this._status,
               html`
                 <span class="name">complete</span>
-                — observable completed after ${2 + 1} attempts
+                — observable completed before it was cancelled
               `,
             ];
           },
-        });
+        },
+        {signal: controller.signal}
+      );
       return;
     }
 

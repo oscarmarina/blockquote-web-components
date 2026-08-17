@@ -152,6 +152,26 @@ describe('fromXMLHttpRequest', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
+  it('is cold: it creates one XMLHttpRequest for each subscription', async () => {
+    const createXHR = vi.fn(() => new XMLHttpRequest());
+    const request$ = fromXMLHttpRequest({
+      url: '/query',
+      createXHR,
+    });
+
+    expect(createXHR).not.toHaveBeenCalled();
+
+    const first = lastValueFrom(request$);
+    expect(createXHR).toHaveBeenCalledTimes(1);
+    server.respond();
+    await first;
+
+    const second = lastValueFrom(request$);
+    expect(createXHR).toHaveBeenCalledTimes(2);
+    server.respond();
+    await second;
+  });
+
   it('rejects with an AjaxTimeoutError on timeout', async () => {
     vi.useFakeTimers();
     try {
@@ -240,6 +260,18 @@ describe('fromXMLHttpRequest', () => {
     server.respond();
     await promise;
     expect(xhrUrl).toBe('/query/merge-string?per_page=1&sort=asc');
+  });
+
+  it('does not alter the url for an empty string queryParams', async () => {
+    const request$ = fromXMLHttpRequest({
+      url: '/query',
+      queryParams: '',
+    });
+    const promise = lastValueFrom(request$);
+    const xhrUrl = server.lastRequest?.url;
+    server.respond();
+    await promise;
+    expect(xhrUrl).toBe('/query');
   });
 
   it('skips null values and serializes arrays in queryParams', async () => {

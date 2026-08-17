@@ -77,7 +77,7 @@ export const isFormData = (thing: unknown): boolean =>
  * @param {*} value - The value to assign if it is defined.
  */
 export const assignIfDefined = <T extends object>(obj: T, prop: string, value: unknown): void => {
-  if (value) {
+  if (value !== undefined) {
     (obj as Record<string, unknown>)[prop] = value;
   }
 };
