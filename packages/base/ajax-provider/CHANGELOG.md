@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/oscarmarina/blockquote-web-components/compare/%40blockquote-web-components%2Fajax-provider%401.4.36...%40blockquote-web-components%2Fajax-provider%401.5.0) (2026-08-17)
+
+### Features
+
+* **ajax-provider:** enhance AjaxProvider with comprehensive configuration options and lifecycle events ([783f6a6](https://github.com/oscarmarina/blockquote-web-components/commit/783f6a62b5fcdb7d9d695f1de6f2baab97e51e0f))
+
+
 ## [1.4.36](https://github.com/oscarmarina/blockquote-web-components/compare/%40blockquote-web-components%2Fajax-provider%401.4.35...%40blockquote-web-components%2Fajax-provider%401.4.36) (2026-08-15)
 
 **Note:** Version bump only for package @blockquote-web-components/ajax-provider
