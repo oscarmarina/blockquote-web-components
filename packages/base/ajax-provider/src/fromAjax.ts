@@ -208,7 +208,7 @@ export function fromXMLHttpRequest<T = unknown>(init: AjaxConfig): ColdObservabl
       }
     }
 
-    if (body) {
+    if (body != null) {
       xhr.send(body as XMLHttpRequestBodyInit);
     } else {
       xhr.send();
@@ -417,6 +417,9 @@ function buildUrlWithQueryParams(url: string, queryParams: unknown): string {
   }
 
   if (typeof queryParams === 'string') {
+    if (!queryParams) {
+      return url;
+    }
     return url.includes('?') ? `${url}&${queryParams}` : `${url}?${queryParams}`;
   }
 
