@@ -285,7 +285,7 @@ const AjaxProvider = <T extends Constructor>(Base: T) =>
                 throw error;
               })
           )
-          .subscribe(subscriber);
+          .subscribe(subscriber, {signal: subscriber.signal});
       });
     }
 
