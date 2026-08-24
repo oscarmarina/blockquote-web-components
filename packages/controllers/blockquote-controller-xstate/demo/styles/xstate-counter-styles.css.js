@@ -18,6 +18,7 @@ export const styles = css`
     box-sizing: inherit;
   }
 
+  [data-disabled='true'],
   [aria-disabled='true'] {
     opacity: 0.5;
     -webkit-user-select: none;
@@ -73,9 +74,5 @@ export const styles = css`
     display: flex;
     flex-direction: column;
     margin-right: 2rem;
-  }
-
-  ::slotted(*) {
-    white-space: nowrap;
   }
 `;

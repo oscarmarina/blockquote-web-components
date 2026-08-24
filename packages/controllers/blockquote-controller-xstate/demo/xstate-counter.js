@@ -3,6 +3,9 @@ import {BlockquoteControllerXstate} from '../src/index.js';
 import {counterMachine} from './counterMachine.js';
 import {styles} from './styles/xstate-counter-styles.css.js';
 
+/** @typedef {import('xstate').SnapshotFrom<typeof counterMachine>} CounterSnapshot */
+/** @typedef {CounterSnapshot | {}} CounterSnapshotOrEmpty */
+
 export class XstateCounter extends LitElement {
   static properties = {
     _xstate: {
@@ -26,9 +29,10 @@ export class XstateCounter extends LitElement {
   }
 
   /**
-   * @param {import('xstate').SnapshotFrom<unknown>} snapshot
+   * @param {CounterSnapshot} snapshot
    */
   _callbackCounterController = (snapshot) => {
+    /** @type {CounterSnapshotOrEmpty} */
     this._xstate = snapshot;
   };
 
@@ -37,15 +41,21 @@ export class XstateCounter extends LitElement {
    */
 
   _inspectEvents = (inspEvent) => {
-    if (inspEvent.type === '@xstate.snapshot' && inspEvent.event.type === 'xstate.stop') {
+    if (inspEvent.type === '@xstate.transition' && inspEvent.snapshot.status === 'stopped') {
+      /** @type {CounterSnapshotOrEmpty} */
       this._xstate = {};
     }
   };
 
+  /**
+   * @param {Map<string, unknown>} props
+   */
   updated(props) {
-    super.updated && super.updated(props);
-    if (props.has('_xstate')) {
-      const {context, value} = this._xstate;
+    super.updated?.(props);
+    if (props.has('_xstate') && this._xstate && 'value' in this._xstate) {
+      /** @type {CounterSnapshot} */
+      const snapshot = this._xstate;
+      const {context, value} = snapshot;
       const counterEvent = new CustomEvent('counterchange', {
         bubbles: true,
         detail: {...context, value},
@@ -55,13 +65,13 @@ export class XstateCounter extends LitElement {
   }
 
   get #disabled() {
-    return this.counterController.snapshot.matches('disabled');
+    return this.counterController.snapshot?.matches('disabled');
   }
 
   render() {
     return html`
       <slot></slot>
-      <div aria-disabled="${this.#disabled}">
+      <div data-disabled="${this.#disabled}">
         <span>
           <button
             ?disabled="${this.#disabled}"
@@ -76,7 +86,7 @@ export class XstateCounter extends LitElement {
             Decrement
           </button>
         </span>
-        <p>${this.counterController.snapshot.context.counter}</p>
+        <p>${this.counterController?.snapshot?.context.counter}</p>
       </div>
       <div>
         <button @click=${() => this.counterController.send({type: 'TOGGLE'})}>

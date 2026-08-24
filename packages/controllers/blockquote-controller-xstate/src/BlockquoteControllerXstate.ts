@@ -9,13 +9,10 @@ import type {
 } from 'xstate';
 import type {ReactiveController, ReactiveControllerHost} from 'lit';
 
-interface BlockquoteControllerXstateHost
-  extends ReactiveControllerHost, Record<PropertyKey, unknown> {}
-
-interface BlockquoteControllerXstateOptions {
-  machine: AnyStateMachine;
-  options?: ActorOptions<AnyStateMachine>;
-  callback?: (snapshot: SnapshotFrom<AnyStateMachine>) => void;
+interface BlockquoteControllerXstateOptions<TMachine extends AnyStateMachine> {
+  machine: TMachine;
+  options?: ActorOptions<TMachine>;
+  callback?: (snapshot: SnapshotFrom<TMachine>) => void;
 }
 
 /**
@@ -26,8 +23,8 @@ interface BlockquoteControllerXstateOptions {
  * ### Connect XState machines with Lit
  * The BlockquoteControllerXstate is a Lit Reactive Controller that is specifically designed to facilitate a integration with XState. This controller provides the capability to subscribe to an XState actor. It also provides a callback function to handle the state changes.
  *
- * - [xstate v5](https://stately.ai/docs/installation)
- * - [xstate v5 - examples](https://stately.ai/docs/examples)
+ * - [xstate v6](https://stately.ai/docs/installation)
+ * - [xstate v6 - examples](https://stately.ai/docs/examples)
  *
  * <hr>
  *
@@ -42,48 +39,30 @@ interface BlockquoteControllerXstateOptions {
  * ***counterMachine.js***
  *
  * ```javascript
- * import { createMachine, assign } from 'xstate';
+ * import { createMachine } from 'xstate';
  *
  * const states = {
  *   enabled: 'enabled',
  *   disabled: 'disabled',
  * };
  *
- * const increment = {
- *   counter: ({ context }) => context.counter + 1,
- *   event: ({ event }) => event,
- * };
- * const decrement = {
- *   counter: ({ context }) => context.counter - 1,
- *   event: ({ event }) => event,
- * };
- *
- * const isNotMax = ({ context }) => context.counter < 10;
- * const isNotMin = ({ context }) => context.counter > 0;
- *
  * export const counterMachine = createMachine(
  *   {
  *     id: 'counter',
- *     context: { counter: 0, event: undefined },
+ *     context: { counter: 0 },
  *     initial: 'enabled',
  *     states: {
  *       enabled: {
  *         on: {
- *           INC: {
- *             actions: {
- *               type: 'increment',
- *             },
- *             guard: {
- *               type: 'isNotMax',
- *             },
+ *           INC: ({ context }) => {
+ *             if (context.counter < 10) {
+ *               return { context: { counter: context.counter + 1 } };
+ *             }
  *           },
- *           DEC: {
- *             actions: {
- *               type: 'decrement',
- *             },
- *             guard: {
- *               type: 'isNotMin',
- *             },
+ *           DEC: ({ context }) => {
+ *             if (context.counter > 0) {
+ *               return { context: { counter: context.counter - 1 } };
+ *             }
  *           },
  *           TOGGLE: {
  *             target: states.disabled,
@@ -97,16 +76,6 @@ interface BlockquoteControllerXstateOptions {
  *           },
  *         },
  *       },
- *     },
- *   },
- *   {
- *     actions: {
- *       increment: assign(increment),
- *       decrement: assign(decrement),
- *     },
- *     guards: {
- *       isNotMax,
- *       isNotMin,
  *     },
  *   },
  * );
@@ -203,26 +172,25 @@ interface BlockquoteControllerXstateOptions {
  * ```
  * <hr>
  */
-export class BlockquoteControllerXstate implements ReactiveController {
-  machine: AnyStateMachine;
-  options?: ActorOptions<AnyStateMachine>;
-  callback?: (snapshot: SnapshotFrom<AnyStateMachine>) => void;
-  actorRef?: Actor<AnyStateMachine>;
+export class BlockquoteControllerXstate<
+  TMachine extends AnyStateMachine,
+  THost extends ReactiveControllerHost = ReactiveControllerHost,
+> implements ReactiveController {
+  machine: TMachine;
+  options?: ActorOptions<TMachine>;
+  callback?: (snapshot: SnapshotFrom<TMachine>) => void;
+  actorRef?: Actor<TMachine>;
   subscription?: Subscription;
-  currentSnapshot: SnapshotFrom<AnyStateMachine> | undefined;
-  readonly host: BlockquoteControllerXstateHost;
+  currentSnapshot: SnapshotFrom<TMachine> | undefined;
+  readonly host: THost;
 
   /**
-   * @param {import('lit').ReactiveElement} host - The host object.
-   * @param {{
-   *   machine: import('xstate').StateMachine,
-   *   options?: import('xstate').ActorOptions,
-   *   callback?: Function
-   * }} arg - The arguments for the constructor.
+   * @param {THost} host - The host object.
+   * @param {{ machine: TMachine; options?: ActorOptions<TMachine>; callback?: (snapshot: SnapshotFrom<TMachine>) => void }} arg - The arguments for the constructor.
    */
   constructor(
-    host: BlockquoteControllerXstateHost,
-    {machine, options, callback}: BlockquoteControllerXstateOptions
+    host: THost,
+    {machine, options, callback}: BlockquoteControllerXstateOptions<TMachine>
   ) {
     this.machine = machine;
     this.options = options;
@@ -235,22 +203,22 @@ export class BlockquoteControllerXstate implements ReactiveController {
   /**
    * The underlying ActorRef from XState
    */
-  get actor(): Actor<AnyStateMachine> | undefined {
+  get actor(): Actor<TMachine> | undefined {
     return this.actorRef;
   }
 
   /**
    * The latest snapshot of the actor's state
    */
-  get snapshot(): SnapshotFrom<AnyStateMachine> | undefined {
-    return this.actorRef?.getSnapshot?.();
+  get snapshot(): SnapshotFrom<TMachine> | undefined {
+    return this.actorRef?.getSnapshot();
   }
 
   /**
    * Send an event to the actor service
    * @param {import('xstate').EventFrom<typeof this.machine>} ev
    */
-  send(ev: EventFrom<AnyStateMachine>): void {
+  send(ev: EventFrom<TMachine>): void {
     this.actorRef?.send(ev);
   }
 
@@ -262,7 +230,7 @@ export class BlockquoteControllerXstate implements ReactiveController {
    * Internal subscriber for state changes
    * @param {import('xstate').SnapshotFrom<typeof this.machine>} snapshot
    */
-  onNext = (snapshot: SnapshotFrom<AnyStateMachine>): void => {
+  onNext = (snapshot: SnapshotFrom<TMachine>): void => {
     if (this.currentSnapshot !== snapshot) {
       this.currentSnapshot = snapshot;
       this.callback?.(snapshot);
