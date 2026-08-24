@@ -10,7 +10,7 @@ exports[`BlockquoteControllerXstate > Default > Semantic Dom and a11y > LIGHT DO
 exports[`BlockquoteControllerXstate > Default > Semantic Dom and a11y > SHADOW DOM - Structure test > SHADOW DOM 1`] = `
 "<slot>
 </slot>
-<div aria-disabled="false">
+<div data-disabled="false">
   <span>
     <button data-counter="increment">
       Increment
