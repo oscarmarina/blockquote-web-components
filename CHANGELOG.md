@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.23.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.22.1...v2.23.0) (2026-08-25)
+
+### Features
+
+* **blockquote-controller-xstate:** update BlockquoteControllerXstate to use generic types and improve type safety ([9fe4c26](https://github.com/oscarmarina/blockquote-web-components/commit/9fe4c267ef9791a642454e100037f108d25574fc))
 ## [2.22.1](https://github.com/oscarmarina/blockquote-web-components/compare/v2.22.0...v2.22.1) (2026-08-17)
 
 ### Bug Fixes
