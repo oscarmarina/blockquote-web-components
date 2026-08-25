@@ -96,10 +96,11 @@ export const counterMachine = createMachine(
 ***Usage***
 
 ```javascript
-import { html, LitElement } from 'lit';
-import { BlockquoteControllerXstate } from '@blockquote-web-components/blockquote-controller-xstate';
-import { counterMachine } from './counterMachine.js';
-import { styles } from './styles/xstate-counter-styles.css.js';
+
+import {html, LitElement} from 'lit';
+import {BlockquoteControllerXstate} from '../src/index.js';
+import {counterMachine} from './counterMachine.js';
+import {styles} from './styles/xstate-counter-styles.css.js';
 
 export class XstateCounter extends LitElement {
   static properties = {
@@ -123,64 +124,44 @@ export class XstateCounter extends LitElement {
     });
   }
 
-  _callbackCounterController = snapshot => {
+
+  _callbackCounterController = (snapshot) => {
     this._xstate = snapshot;
   };
 
-  _inspectEvents = inspEvent => {
+
+  _inspectEvents = (inspEvent) => {
     if (inspEvent.type === '@xstate.snapshot' && inspEvent.event.type === 'xstate.stop') {
       this._xstate = {};
     }
   };
 
+
   updated(props) {
     super.updated && super.updated(props);
-    if (props.has('_xstate')) {
-      const { context, value } = this._xstate;
+    if (props.has('_xstate') && this._xstate && 'value' in this._xstate) {
+      const snapshot = (this._xstate);
+      const {context, value} = snapshot;
       const counterEvent = new CustomEvent('counterchange', {
         bubbles: true,
-        detail: { ...context, value },
+        detail: {...context, value},
       });
       this.dispatchEvent(counterEvent);
     }
   }
 
   get #disabled() {
-    return this.counterController.snapshot.matches('disabled');
+    return this.counterController.snapshot?.matches('disabled');
   }
 
   render() {
     return html`
       <slot></slot>
-      <div aria-disabled="${this.#disabled}">
+      <div data-disabled="${this.#disabled}">
         <span>
           <button
             ?disabled="${this.#disabled}"
             data-counter="increment"
-            \@click=${() => this.counterController.send({ type: 'INC' })}
-          >
-            Increment
-          </button>
-          <button
-            ?disabled="${this.#disabled}"
-            data-counter="decrement"
-            \@click=${() => this.counterController.send({ type: 'DEC' })}
-          >
-            Decrement
-          </button>
-        </span>
-        <p>${this.counterController.snapshot.context.counter}</p>
-      </div>
-      <div>
-        <button \@click=${() => this.counterController.send({ type: 'TOGGLE' })}>
-          ${this.#disabled ? 'Enabled counter' : 'Disabled counter'}
-        </button>
-      </div>
-    `;
-  }
-}
-```
-<hr>
 
 
 ### `src/BlockquoteControllerXstate.ts`:
@@ -189,18 +170,18 @@ export class XstateCounter extends LitElement {
 
 ##### Fields
 
-| Name              | Privacy | Type                                                             | Default    | Description                              | Inherited From |
-| ----------------- | ------- | ---------------------------------------------------------------- | ---------- | ---------------------------------------- | -------------- |
-| `machine`         |         | `AnyStateMachine`                                                | `machine`  |                                          |                |
-| `options`         |         | `ActorOptions<AnyStateMachine> \| undefined`                     | `options`  |                                          |                |
-| `callback`        |         | `(snapshot: SnapshotFrom<AnyStateMachine>) => void \| undefined` | `callback` |                                          |                |
-| `actorRef`        |         | `Actor<AnyStateMachine> \| undefined`                            |            |                                          |                |
-| `subscription`    |         | `Subscription \| undefined`                                      |            |                                          |                |
-| `currentSnapshot` |         | `SnapshotFrom<AnyStateMachine> \| undefined`                     |            |                                          |                |
-| `host`            |         | `BlockquoteControllerXstateHost`                                 |            |                                          |                |
-| `actor`           |         | `Actor<AnyStateMachine> \| undefined`                            |            | The underlying ActorRef from XState      |                |
-| `snapshot`        |         | `SnapshotFrom<AnyStateMachine> \| undefined`                     |            | The latest snapshot of the actor's state |                |
-| `onNext`          |         |                                                                  |            | Internal subscriber for state changes    |                |
+| Name              | Privacy | Type                                                      | Default    | Description                              | Inherited From |
+| ----------------- | ------- | --------------------------------------------------------- | ---------- | ---------------------------------------- | -------------- |
+| `machine`         |         | `TMachine`                                                | `machine`  |                                          |                |
+| `options`         |         | `ActorOptions<TMachine> \| undefined`                     | `options`  |                                          |                |
+| `callback`        |         | `(snapshot: SnapshotFrom<TMachine>) => void \| undefined` | `callback` |                                          |                |
+| `actorRef`        |         | `Actor<TMachine> \| undefined`                            |            |                                          |                |
+| `subscription`    |         | `Subscription \| undefined`                               |            |                                          |                |
+| `currentSnapshot` |         | `SnapshotFrom<TMachine> \| undefined`                     |            |                                          |                |
+| `host`            |         | `THost`                                                   |            |                                          |                |
+| `actor`           |         | `Actor<TMachine> \| undefined`                            |            | The underlying ActorRef from XState      |                |
+| `snapshot`        |         | `SnapshotFrom<TMachine> \| undefined`                     |            | The latest snapshot of the actor's state |                |
+| `onNext`          |         |                                                           |            | Internal subscriber for state changes    |                |
 
 ##### Methods
 
