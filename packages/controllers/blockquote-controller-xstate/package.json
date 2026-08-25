@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-controller-xstate",
-  "version": "2.3.38",
+  "version": "2.4.0",
   "description": "A modern architecture for building composable and reusable Web Components",
   "keywords": [
     "lit",
