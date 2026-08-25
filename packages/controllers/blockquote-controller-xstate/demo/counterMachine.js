@@ -12,16 +12,23 @@ const states = {
   disabled: 'disabled',
 };
 
+/** @typedef {{counter: number, event: {type: string} | undefined}} CounterContext */
+
+// Assign actions with documented parameter types
+/** @type {{counter: (args: {context: CounterContext}) => number}} */
 const increment = {
   counter: ({context}) => context.counter + 1,
-  event: ({event}) => event,
-};
-const decrement = {
-  counter: ({context}) => context.counter - 1,
-  event: ({event}) => event,
 };
 
+/** @type {{counter: (args: {context: CounterContext}) => number}} */
+const decrement = {
+  counter: ({context}) => context.counter - 1,
+};
+
+/** @type {(args: {context: CounterContext}) => boolean} */
 const isNotMax = ({context}) => context.counter < 10;
+
+/** @type {(args: {context: CounterContext}) => boolean} */
 const isNotMin = ({context}) => context.counter > 0;
 
 export const counterMachine = createMachine(

@@ -9,13 +9,10 @@ import type {
 } from 'xstate';
 import type {ReactiveController, ReactiveControllerHost} from 'lit';
 
-interface BlockquoteControllerXstateHost
-  extends ReactiveControllerHost, Record<PropertyKey, unknown> {}
-
-interface BlockquoteControllerXstateOptions {
-  machine: AnyStateMachine;
-  options?: ActorOptions<AnyStateMachine>;
-  callback?: (snapshot: SnapshotFrom<AnyStateMachine>) => void;
+interface BlockquoteControllerXstateOptions<TMachine extends AnyStateMachine> {
+  machine: TMachine;
+  options?: ActorOptions<TMachine>;
+  callback?: (snapshot: SnapshotFrom<TMachine>) => void;
 }
 
 /**
@@ -117,10 +114,11 @@ interface BlockquoteControllerXstateOptions {
  * ***Usage***
  *
  * ```javascript
- * import { html, LitElement } from 'lit';
- * import { BlockquoteControllerXstate } from '@blockquote-web-components/blockquote-controller-xstate';
- * import { counterMachine } from './counterMachine.js';
- * import { styles } from './styles/xstate-counter-styles.css.js';
+ *
+ * import {html, LitElement} from 'lit';
+ * import {BlockquoteControllerXstate} from '../src/index.js';
+ * import {counterMachine} from './counterMachine.js';
+ * import {styles} from './styles/xstate-counter-styles.css.js';
  *
  * export class XstateCounter extends LitElement {
  *   static properties = {
@@ -144,56 +142,58 @@ interface BlockquoteControllerXstateOptions {
  *     });
  *   }
  *
- *   _callbackCounterController = snapshot => {
+ *
+ *   _callbackCounterController = (snapshot) => {
  *     this._xstate = snapshot;
  *   };
  *
- *   _inspectEvents = inspEvent => {
+ *
+ *   _inspectEvents = (inspEvent) => {
  *     if (inspEvent.type === '@xstate.snapshot' && inspEvent.event.type === 'xstate.stop') {
  *       this._xstate = {};
  *     }
  *   };
  *
+ *
  *   updated(props) {
  *     super.updated && super.updated(props);
- *     if (props.has('_xstate')) {
- *       const { context, value } = this._xstate;
+ *     if (props.has('_xstate') && this._xstate && 'value' in this._xstate) {
+ *       const snapshot = (this._xstate);
+ *       const {context, value} = snapshot;
  *       const counterEvent = new CustomEvent('counterchange', {
  *         bubbles: true,
- *         detail: { ...context, value },
+ *         detail: {...context, value},
  *       });
  *       this.dispatchEvent(counterEvent);
  *     }
  *   }
  *
  *   get #disabled() {
- *     return this.counterController.snapshot.matches('disabled');
+ *     return this.counterController.snapshot?.matches('disabled');
  *   }
  *
  *   render() {
  *     return html`
  *       <slot></slot>
- *       <div aria-disabled="${this.#disabled}">
+ *       <div data-disabled="${this.#disabled}">
  *         <span>
  *           <button
  *             ?disabled="${this.#disabled}"
  *             data-counter="increment"
- *             \@click=${() => this.counterController.send({ type: 'INC' })}
- *           >
+ *             @click=${() => this.counterController.send({type: 'INC'})}>
  *             Increment
  *           </button>
  *           <button
  *             ?disabled="${this.#disabled}"
  *             data-counter="decrement"
- *             \@click=${() => this.counterController.send({ type: 'DEC' })}
- *           >
+ *             @click=${() => this.counterController.send({type: 'DEC'})}>
  *             Decrement
  *           </button>
  *         </span>
- *         <p>${this.counterController.snapshot.context.counter}</p>
+ *         <p>${this.counterController.snapshot?.context.counter}</p>
  *       </div>
  *       <div>
- *         <button \@click=${() => this.counterController.send({ type: 'TOGGLE' })}>
+ *         <button @click=${() => this.counterController.send({type: 'TOGGLE'})}>
  *           ${this.#disabled ? 'Enabled counter' : 'Disabled counter'}
  *         </button>
  *       </div>
@@ -203,26 +203,25 @@ interface BlockquoteControllerXstateOptions {
  * ```
  * <hr>
  */
-export class BlockquoteControllerXstate implements ReactiveController {
-  machine: AnyStateMachine;
-  options?: ActorOptions<AnyStateMachine>;
-  callback?: (snapshot: SnapshotFrom<AnyStateMachine>) => void;
-  actorRef?: Actor<AnyStateMachine>;
+export class BlockquoteControllerXstate<
+  TMachine extends AnyStateMachine,
+  THost extends ReactiveControllerHost = ReactiveControllerHost,
+> implements ReactiveController {
+  machine: TMachine;
+  options?: ActorOptions<TMachine>;
+  callback?: (snapshot: SnapshotFrom<TMachine>) => void;
+  actorRef?: Actor<TMachine>;
   subscription?: Subscription;
-  currentSnapshot: SnapshotFrom<AnyStateMachine> | undefined;
-  readonly host: BlockquoteControllerXstateHost;
+  currentSnapshot: SnapshotFrom<TMachine> | undefined;
+  readonly host: THost;
 
   /**
-   * @param {import('lit').ReactiveElement} host - The host object.
-   * @param {{
-   *   machine: import('xstate').StateMachine,
-   *   options?: import('xstate').ActorOptions,
-   *   callback?: Function
-   * }} arg - The arguments for the constructor.
+   * @param {THost} host - The host object.
+   * @param {{ machine: TMachine; options?: ActorOptions<TMachine>; callback?: (snapshot: SnapshotFrom<TMachine>) => void }} arg - The arguments for the constructor.
    */
   constructor(
-    host: BlockquoteControllerXstateHost,
-    {machine, options, callback}: BlockquoteControllerXstateOptions
+    host: THost,
+    {machine, options, callback}: BlockquoteControllerXstateOptions<TMachine>
   ) {
     this.machine = machine;
     this.options = options;
@@ -235,14 +234,14 @@ export class BlockquoteControllerXstate implements ReactiveController {
   /**
    * The underlying ActorRef from XState
    */
-  get actor(): Actor<AnyStateMachine> | undefined {
+  get actor(): Actor<TMachine> | undefined {
     return this.actorRef;
   }
 
   /**
    * The latest snapshot of the actor's state
    */
-  get snapshot(): SnapshotFrom<AnyStateMachine> | undefined {
+  get snapshot(): SnapshotFrom<TMachine> | undefined {
     return this.actorRef?.getSnapshot?.();
   }
 
@@ -250,7 +249,7 @@ export class BlockquoteControllerXstate implements ReactiveController {
    * Send an event to the actor service
    * @param {import('xstate').EventFrom<typeof this.machine>} ev
    */
-  send(ev: EventFrom<AnyStateMachine>): void {
+  send(ev: EventFrom<TMachine>): void {
     this.actorRef?.send(ev);
   }
 
@@ -262,7 +261,7 @@ export class BlockquoteControllerXstate implements ReactiveController {
    * Internal subscriber for state changes
    * @param {import('xstate').SnapshotFrom<typeof this.machine>} snapshot
    */
-  onNext = (snapshot: SnapshotFrom<AnyStateMachine>): void => {
+  onNext = (snapshot: SnapshotFrom<TMachine>): void => {
     if (this.currentSnapshot !== snapshot) {
       this.currentSnapshot = snapshot;
       this.callback?.(snapshot);
