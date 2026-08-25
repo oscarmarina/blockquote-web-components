@@ -17,6 +17,7 @@ var e=globalThis,t=e.ShadowRoot&&(e.ShadyCSS===void 0||e.ShadyCSS.nativeShadow)&
     box-sizing: inherit;
   }
 
+  [data-disabled='true'],
   [aria-disabled='true'] {
     opacity: 0.5;
     -webkit-user-select: none;
