@@ -74,8 +74,4 @@ var e=globalThis,t=e.ShadowRoot&&(e.ShadyCSS===void 0||e.ShadyCSS.nativeShadow)&
     flex-direction: column;
     margin-right: 2rem;
   }
-
-  ::slotted(*) {
-    white-space: nowrap;
-  }
 `;export{le as a,ge as i,Q as n,me as o,B as r,o as s,ve as t};
