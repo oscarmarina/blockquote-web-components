@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/oscarmarina/blockquote-web-components/compare/%40blockquote-web-components%2Fblockquote-controller-xstate%402.4.0...%40blockquote-web-components%2Fblockquote-controller-xstate%402.5.0) (2026-09-22)
+
+### Features
+
+* **blockquote-controller-xstate:** upgrade xstate to 6.0.0-alpha ([f385852](https://github.com/oscarmarina/blockquote-web-components/commit/f385852616666df79b8c4b38e54cd29080c95b8b))
+
+
 # [2.4.0](https://github.com/oscarmarina/blockquote-web-components/compare/%40blockquote-web-components%2Fblockquote-controller-xstate%402.3.38...%40blockquote-web-components%2Fblockquote-controller-xstate%402.4.0) (2026-08-25)
 
 ### Features
