@@ -35,7 +35,7 @@ interface SlotContent {
  * @param {Node} nod - The node to check.
  * @returns {boolean} - True if the node's text content contains only whitespace, false otherwise.
  */
-const hasOnlyWhitespace = (nod: Node): boolean => !/[^\t\n\r ]/.test(nod?.textContent ?? '');
+const hasOnlyWhitespace = (nod: Node): boolean => !nod?.textContent?.trim();
 
 /**
  * Checks if a node is a comment node or a text node with only whitespace.

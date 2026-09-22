@@ -109,6 +109,15 @@ describe('BlockquoteMixinSlotContent', () => {
     it('slotchanges event has not content for the slot', () => {
       expect(el.hasAttribute('slotContent')).toBe(false);
     });
+
+    it('ignores Unicode whitespace characters when checking slot content', async () => {
+      const unicodeWhitespace = '\u00a0\f\v\u2003';
+      el = await fixture(html`
+        <slot-element>${unicodeWhitespace}</slot-element>
+      `);
+
+      expect(el.hasAttribute('slotContent')).toBe(false);
+    });
   });
 
   describe('Branch Coverage Edge Cases', () => {
