@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-tabs",
-  "version": "1.7.3",
+  "version": "1.7.4",
   "description": "A modern architecture for building composable and reusable Web Components",
   "keywords": [
     "lit",
@@ -166,7 +166,7 @@
     ]
   },
   "dependencies": {
-    "@blockquote-web-components/blockquote-mixin-slot-content": "^1.9.24",
+    "@blockquote-web-components/blockquote-mixin-slot-content": "^1.9.25",
     "@lit-labs/observers": "^2.1.0",
     "lit": "^3.3.3"
   },

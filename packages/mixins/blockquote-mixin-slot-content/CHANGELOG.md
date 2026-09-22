@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.25](https://github.com/oscarmarina/blockquote-web-components/compare/%40blockquote-web-components%2Fblockquote-mixin-slot-content%401.9.24...%40blockquote-web-components%2Fblockquote-mixin-slot-content%401.9.25) (2026-09-22)
+
+### Bug Fixes
+
+* **blockquote-web-components/blockquote-mixin-slot-content:** improve hasOnlyWhitespace function ([5f41612](https://github.com/oscarmarina/blockquote-web-components/commit/5f4161212923b29511ed76349ac2948e5babbb49))
+
+
 ## [1.9.24](https://github.com/oscarmarina/blockquote-web-components/compare/%40blockquote-web-components%2Fblockquote-mixin-slot-content%401.9.23...%40blockquote-web-components%2Fblockquote-mixin-slot-content%401.9.24) (2026-08-15)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-mixin-slot-content

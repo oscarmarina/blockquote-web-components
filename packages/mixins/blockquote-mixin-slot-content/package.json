@@ -1,6 +1,6 @@
 {
   "name": "@blockquote-web-components/blockquote-mixin-slot-content",
-  "version": "1.9.24",
+  "version": "1.9.25",
   "description": "A modern architecture for building composable and reusable Web Components",
   "keywords": [
     "lit",
