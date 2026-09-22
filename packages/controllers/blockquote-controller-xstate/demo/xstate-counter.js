@@ -4,6 +4,7 @@ import {counterMachine} from './counterMachine.js';
 import {styles} from './styles/xstate-counter-styles.css.js';
 
 /** @typedef {import('xstate').SnapshotFrom<typeof counterMachine>} CounterSnapshot */
+/** @typedef {CounterSnapshot | {}} CounterSnapshotOrEmpty */
 
 export class XstateCounter extends LitElement {
   static properties = {
@@ -17,7 +18,6 @@ export class XstateCounter extends LitElement {
 
   constructor() {
     super();
-    /** @type {CounterSnapshot | Record<string, never>} */
     this._xstate = {};
     this.counterController = new BlockquoteControllerXstate(this, {
       machine: counterMachine,
@@ -32,14 +32,17 @@ export class XstateCounter extends LitElement {
    * @param {CounterSnapshot} snapshot
    */
   _callbackCounterController = (snapshot) => {
+    /** @type {CounterSnapshotOrEmpty} */
     this._xstate = snapshot;
   };
 
   /**
    * @param {import('xstate').InspectionEvent} inspEvent
    */
+
   _inspectEvents = (inspEvent) => {
-    if (inspEvent.type === '@xstate.snapshot' && inspEvent.event.type === 'xstate.stop') {
+    if (inspEvent.type === '@xstate.transition' && inspEvent.snapshot.status === 'stopped') {
+      /** @type {CounterSnapshotOrEmpty} */
       this._xstate = {};
     }
   };
@@ -48,9 +51,10 @@ export class XstateCounter extends LitElement {
    * @param {Map<string, unknown>} props
    */
   updated(props) {
-    super.updated && super.updated(props);
+    super.updated?.(props);
     if (props.has('_xstate') && this._xstate && 'value' in this._xstate) {
-      const snapshot = /** @type {CounterSnapshot} */ (this._xstate);
+      /** @type {CounterSnapshot} */
+      const snapshot = this._xstate;
       const {context, value} = snapshot;
       const counterEvent = new CustomEvent('counterchange', {
         bubbles: true,
@@ -82,7 +86,7 @@ export class XstateCounter extends LitElement {
             Decrement
           </button>
         </span>
-        <p>${this.counterController.snapshot?.context.counter}</p>
+        <p>${this.counterController?.snapshot?.context.counter}</p>
       </div>
       <div>
         <button @click=${() => this.counterController.send({type: 'TOGGLE'})}>

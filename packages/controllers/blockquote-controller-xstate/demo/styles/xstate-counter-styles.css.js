@@ -75,8 +75,4 @@ export const styles = css`
     flex-direction: column;
     margin-right: 2rem;
   }
-
-  ::slotted(*) {
-    white-space: nowrap;
-  }
 `;
