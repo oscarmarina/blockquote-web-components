@@ -39,7 +39,6 @@ export class XstateCounter extends LitElement {
   /**
    * @param {import('xstate').InspectionEvent} inspEvent
    */
-
   _inspectEvents = (inspEvent) => {
     if (inspEvent.type === '@xstate.transition' && inspEvent.snapshot.status === 'stopped') {
       /** @type {CounterSnapshotOrEmpty} */

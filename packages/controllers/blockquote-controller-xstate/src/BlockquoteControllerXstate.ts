@@ -9,7 +9,7 @@ import type {
 } from 'xstate';
 import type {ReactiveController, ReactiveControllerHost} from 'lit';
 
-interface BlockquoteControllerXstateOptions<TMachine extends AnyStateMachine> {
+interface UseMachineOptions<TMachine extends AnyStateMachine> {
   machine: TMachine;
   options?: ActorOptions<TMachine>;
   callback?: (snapshot: SnapshotFrom<TMachine>) => void;
@@ -188,10 +188,7 @@ export class BlockquoteControllerXstate<
    * @param {THost} host - The host object.
    * @param {{ machine: TMachine; options?: ActorOptions<TMachine>; callback?: (snapshot: SnapshotFrom<TMachine>) => void }} arg - The arguments for the constructor.
    */
-  constructor(
-    host: THost,
-    {machine, options, callback}: BlockquoteControllerXstateOptions<TMachine>
-  ) {
+  constructor(host: THost, {machine, options, callback}: UseMachineOptions<TMachine>) {
     this.machine = machine;
     this.options = options;
     this.callback = callback;
