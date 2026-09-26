@@ -8,7 +8,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "# BlockquoteControllerXstate\n\n![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n### Connect XState machines with Lit\nThe BlockquoteControllerXstate is a Lit Reactive Controller that is specifically designed to facilitate a integration with XState. This controller provides the capability to subscribe to an XState actor. It also provides a callback function to handle the state changes.\n\n- [xstate v6](https://stately.ai/docs/installation)\n- [xstate v6 - examples](https://stately.ai/docs/examples)\n\n<hr>\n\n### Demo\n\n[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/controllers/blockquote-controller-xstate)\n\n[![Open in Stately.ai](https://img.shields.io/badge/Open%20in%20Stately.ai-black.svg)](https://stately.ai/registry/editor/154a7a42-9338-4cc0-8c0c-131c859d8349)\n\n### Usage\n\n***counterMachine.js***\n\n```javascript\nimport { createMachine } from 'xstate';\n\nconst states = {\n  enabled: 'enabled',\n  disabled: 'disabled',\n};\n\nexport const counterMachine = createMachine(\n  {\n    id: 'counter',\n    context: { counter: 0 },\n    initial: 'enabled',\n    states: {\n      enabled: {\n        on: {\n          INC: ({ context }) => {\n            if (context.counter < 10) {\n              return { context: { counter: context.counter + 1 } };\n            }\n          },\n          DEC: ({ context }) => {\n            if (context.counter > 0) {\n              return { context: { counter: context.counter - 1 } };\n            }\n          },\n          TOGGLE: {\n            target: states.disabled,\n          },\n        },\n      },\n      disabled: {\n        on: {\n          TOGGLE: {\n            target: states.enabled,\n          },\n        },\n      },\n    },\n  },\n);\n```\n\n**`new BlockquoteControllerXstate(this, {machine, options?, callback?})`**\n\n***Usage***\n\n```javascript\nimport { html, LitElement } from 'lit';\nimport { BlockquoteControllerXstate } from '@blockquote-web-components/blockquote-controller-xstate';\nimport { counterMachine } from './counterMachine.js';\nimport { styles } from './styles/xstate-counter-styles.css.js';\n\nexport class XstateCounter extends LitElement {\n  static properties = {\n    _xstate: {\n      type: Object,\n      state: true,\n    },\n  };\n\n  static styles = [styles];\n\n  constructor() {\n    super();\n    this._xstate = {};\n    this.counterController = new BlockquoteControllerXstate(this, {\n      machine: counterMachine,\n      options: {\n        inspect: this._inspectEvents,\n      },\n      callback: this._callbackCounterController,\n    });\n  }\n\n  _callbackCounterController = snapshot => {\n    this._xstate = snapshot;\n  };\n\n  _inspectEvents = inspEvent => {\n    if (inspEvent.type === '@xstate.snapshot' && inspEvent.event.type === 'xstate.stop') {\n      this._xstate = {};\n    }\n  };\n\n  updated(props) {\n    super.updated && super.updated(props);\n    if (props.has('_xstate')) {\n      const { context, value } = this._xstate;\n      const counterEvent = new CustomEvent('counterchange', {\n        bubbles: true,\n        detail: { ...context, value },\n      });\n      this.dispatchEvent(counterEvent);\n    }\n  }\n\n  get #disabled() {\n    return this.counterController.snapshot.matches('disabled');\n  }\n\n  render() {\n    return html`\n      <slot></slot>\n      <div aria-disabled=\"${this.#disabled}\">\n        <span>\n          <button\n            ?disabled=\"${this.#disabled}\"\n            data-counter=\"increment\"\n            \\@click=${() => this.counterController.send({ type: 'INC' })}\n          >\n            Increment\n          </button>\n          <button\n            ?disabled=\"${this.#disabled}\"\n            data-counter=\"decrement\"\n            \\@click=${() => this.counterController.send({ type: 'DEC' })}\n          >\n            Decrement\n          </button>\n        </span>\n        <p>${this.counterController.snapshot.context.counter}</p>\n      </div>\n      <div>\n        <button \\@click=${() => this.counterController.send({ type: 'TOGGLE' })}>\n          ${this.#disabled ? 'Enabled counter' : 'Disabled counter'}\n        </button>\n      </div>\n    `;\n  }\n}\n```\n<hr>",
+          "description": "# BlockquoteControllerXstate\n\n![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n### Connect XState machines with Lit\nThe BlockquoteControllerXstate is a Lit Reactive Controller that is specifically designed to facilitate a integration with XState. This controller provides the capability to subscribe to an XState actor. It also provides a callback function to handle the state changes.\n\n- [xstate v6](https://stately.ai/docs/installation)\n- [xstate v6 - examples](https://stately.ai/docs/examples)\n\n<hr>\n\n### Demo\n\n[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/controllers/blockquote-controller-xstate)\n\n[![Open in Stately.ai](https://img.shields.io/badge/Open%20in%20Stately.ai-black.svg)](https://stately.ai/registry/editor/154a7a42-9338-4cc0-8c0c-131c859d8349)\n\n### Usage\n\n***counterMachine.ts***\n\n```ts\nimport {setup, types} from 'xstate';\n\nconst counterSetup = setup({\n  // v6: `schemas` (Standard Schema). `types<T>()` is type-only, no runtime validation.\n  // Zod, Valibot, ArkType... can be used instead to validate at runtime.\n  schemas: {\n    context: types<{counter: number}>(),\n    events: {\n      INC: types<void>(),\n      DEC: types<void>(),\n      TOGGLE: types<void>(),\n    },\n  },\n  guards: {\n    canIncrement: ({context}) => context.counter < 10,\n    canDecrement: ({context}) => context.counter > 0,\n  },\n  delays: {\n    backoff: ({context}) => context.counter * 1000,\n  },\n});\n\nexport const counterMachine = counterSetup.createMachine({\n  context: {counter: 0},\n  initial: 'enabled',\n  states: {\n    enabled: {\n      on: {\n        // Transition functions (typed from `schemas`): return the next `context`,\n        // or `undefined` to ignore the event\n        INC: ({context, guards}) =>\n          guards.canIncrement({context}) ? {context: {counter: context.counter + 1}} : undefined,\n        DEC: ({context, guards}) =>\n          guards.canDecrement({context}) ? {context: {counter: context.counter - 1}} : undefined,\n        // v6 types do not accept the string shorthand (`TOGGLE: 'disabled'`)\n        TOGGLE: {target: 'disabled'},\n      },\n    },\n    disabled: {\n      after: {\n        backoff: {target: 'enabled'},\n      },\n      on: {\n        TOGGLE: {target: 'enabled'},\n      },\n    },\n  },\n});\n```\n\n**`new BlockquoteControllerXstate(this, {machine, options?, callback?, onError?})`**\n\n- `machine`: the XState machine.\n- `options`: `createActor` options (`input`, `inspect`, ...).\n- `callback`: called with every new snapshot: the first one on each connection and the last one\n(`snapshot.status === 'stopped'`) when the host is disconnected.\n- `onError`: called when the actor errors (the `'error'` snapshot is also sent to `callback`).\n  If omitted, the error is reported as unhandled (`reportError`).\n\nThe actor is created in the constructor, so `snapshot`, `actor` and `send` are available\nbefore the host is connected. It is started on `hostConnected` and stopped on `hostDisconnected`;\na new actor (initial state) is created if the host is connected again.\n\n***xstate-counter.js***\n\n```javascript\nimport {html, LitElement} from 'lit';\nimport {BlockquoteControllerXstate} from '@blockquote-web-components/blockquote-controller-xstate';\nimport {counterMachine} from './counterMachine.js';\nimport {styles} from './styles/xstate-counter-styles.css.js';\n\nexport class XstateCounter extends LitElement {\n  static properties = {\n    _xstate: {\n      type: Object,\n      state: true,\n    },\n  };\n\n  static styles = [styles];\n\n  constructor() {\n    super();\n    this._xstate = {};\n    this.counterController = new BlockquoteControllerXstate(this, {\n      machine: counterMachine,\n      options: {\n        inspect: this._inspectEvents,\n      },\n      callback: this._callbackCounterController,\n    });\n  }\n\n  _callbackCounterController = (snapshot) => {\n    this._xstate = snapshot;\n  };\n\n  // xstate v6 inspection events: '@xstate.actor' | '@xstate.transition' | '@xstate.deadletter'\n  _inspectEvents = (inspEvent) => {\n    if (inspEvent.type === '@xstate.transition' && inspEvent.snapshot.status === 'stopped') {\n      this._xstate = {};\n    }\n  };\n\n  updated(props) {\n    super.updated?.(props);\n    if (props.has('_xstate') && this._xstate && 'value' in this._xstate) {\n      const {context, value} = this._xstate;\n      const counterEvent = new CustomEvent('counterchange', {\n        bubbles: true,\n        detail: {...context, value},\n      });\n      this.dispatchEvent(counterEvent);\n    }\n  }\n\n  get #disabled() {\n    return this.counterController.snapshot?.matches('disabled');\n  }\n\n  render() {\n    return html`\n      <slot></slot>\n      <div data-disabled=\"${this.#disabled}\">\n        <span>\n          <button\n            ?disabled=\"${this.#disabled}\"\n            data-counter=\"increment\"\n            \\@click=${() => this.counterController.send({type: 'INC'})}>\n            Increment\n          </button>\n          <button\n            ?disabled=\"${this.#disabled}\"\n            data-counter=\"decrement\"\n            \\@click=${() => this.counterController.send({type: 'DEC'})}>\n            Decrement\n          </button>\n        </span>\n        <p>${this.counterController.snapshot?.context.counter}</p>\n      </div>\n      <div>\n        <button \\@click=${() => this.counterController.send({type: 'TOGGLE'})}>\n          ${this.#disabled ? 'Enabled counter' : 'Disabled counter'}\n        </button>\n      </div>\n    `;\n  }\n}\n```\n<hr>",
           "name": "BlockquoteControllerXstate",
           "members": [
             {
@@ -34,6 +34,14 @@
                 "text": "(snapshot: SnapshotFrom<TMachine>) => void | undefined"
               },
               "default": "callback"
+            },
+            {
+              "kind": "field",
+              "name": "onError",
+              "type": {
+                "text": "(error: unknown) => void | undefined"
+              },
+              "default": "onError"
             },
             {
               "kind": "field",
@@ -123,13 +131,23 @@
               ]
             },
             {
+              "kind": "field",
+              "name": "isActive",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "`true` while the current actor can be (or is being) run.\nA snapshot is `'active'` both before `start()` and while running; after `stop()`\nit is `'stopped'` (and `'done'` / `'error'` when it finishes or fails).",
+              "readonly": true
+            },
+            {
               "kind": "method",
               "name": "startService",
               "return": {
                 "type": {
                   "text": "void"
                 }
-              }
+              },
+              "description": "Starts the actor. A new actor is created if the previous one is no longer active\n(e.g. stopped when the host was disconnected), because stopped actors cannot be restarted."
             },
             {
               "kind": "method",
@@ -182,6 +200,22 @@
           "name": "BlockquoteControllerXstate",
           "declaration": {
             "name": "BlockquoteControllerXstate",
+            "module": "./BlockquoteControllerXstate.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "BlockquoteControllerXstateOptions",
+          "declaration": {
+            "name": "BlockquoteControllerXstateOptions",
+            "module": "./BlockquoteControllerXstate.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "UseMachineOptions",
+          "declaration": {
+            "name": "UseMachineOptions",
             "module": "./BlockquoteControllerXstate.js"
           }
         }

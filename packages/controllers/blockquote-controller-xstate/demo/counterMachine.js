@@ -1,6 +1,4 @@
-import {setup} from 'xstate';
-
-/** @typedef {{context: object, guards: {canIncrement: Function, canDecrement: Function}}} CounterActionArgs */
+import {setup, types} from 'xstate';
 
 /*
  * This state machine represents a simple counter that can be incremented, decremented, and toggled on and off.
@@ -11,9 +9,14 @@ import {setup} from 'xstate';
 
 // Setup with reusable guards/delays for future extensibility
 const counterSetup = setup({
-  types: {
-    context: /** @type {{counter: number}} */ ({}),
-    events: /** @type {{type: 'INC'} | {type: 'DEC'} | {type: 'TOGGLE'}} */ ({}),
+  // v6: `schemas` (Standard Schema). `types()` is type-only, no runtime validation.
+  schemas: {
+    context: /** @type {import('xstate').TypeSchema<{counter: number}>} */ (types()),
+    events: {
+      INC: /** @type {import('xstate').TypeSchema<void>} */ (types()),
+      DEC: /** @type {import('xstate').TypeSchema<void>} */ (types()),
+      TOGGLE: /** @type {import('xstate').TypeSchema<void>} */ (types()),
+    },
   },
   guards: {
     canIncrement: ({context}) => context.counter < 10,
@@ -24,26 +27,6 @@ const counterSetup = setup({
   },
 });
 
-/** @param {CounterActionArgs} params */
-const incAction = ({context, guards}) => {
-  const counterContext = /** @type {{counter: number}} */ (context);
-
-  if (guards.canIncrement({context: counterContext})) {
-    return {context: {counter: counterContext.counter + 1}};
-  }
-  return undefined;
-};
-
-/** @param {CounterActionArgs} params */
-const decAction = ({context, guards}) => {
-  const counterContext = /** @type {{counter: number}} */ (context);
-
-  if (guards.canDecrement({context: counterContext})) {
-    return {context: {counter: counterContext.counter - 1}};
-  }
-  return undefined;
-};
-
 export const counterMachine = counterSetup.createMachine({
   /** @xstate-layout N4IgpgJg5mDOIC5QGMD2BXAdgFzAJwDoxMBDAIwBtIBiASQDkBhAbQAYBdRUAB1VgEts-VJi4gAHogAsATgIBGAEzzWMgMwB2AKwAaEAE9E8jQA4CrU-K3XjWy4oC+DvWiy5CxclQjUAIgFEWDjFeASERMUkEWQVlVU1dA0QTeQItJxcMHHwiUkoaABUAeQBxEoAZfzZOJBBQwWFRWqj5ADY1AjVFVjUlRMMERRMNAkU1GVbFGRUZDVZWdOcQV2zCCH5YL0LSiqrg2vrwptAW9s7u3sV+xDHWgg1xrRkTJ+VFMZMnJcxUCDgxFbuEJ8BoRZqIAC08j0AwhrQyyyy7lyWwgwLCjUi0g0MJuGjkrS07XkKjUWisk0WmTcOXWm3yaIOIKOWMGJjurXxrWG1zZigURN6pPJRKuXwcQA */
   context: {counter: 0},
@@ -51,8 +34,11 @@ export const counterMachine = counterSetup.createMachine({
   states: {
     enabled: {
       on: {
-        INC: incAction,
-        DEC: decAction,
+        // Transition functions: return the next `context`, or `undefined` to ignore the event
+        INC: ({context, guards}) =>
+          guards.canIncrement({context}) ? {context: {counter: context.counter + 1}} : undefined,
+        DEC: ({context, guards}) =>
+          guards.canDecrement({context}) ? {context: {counter: context.counter - 1}} : undefined,
         TOGGLE: {target: 'disabled'},
       },
     },
