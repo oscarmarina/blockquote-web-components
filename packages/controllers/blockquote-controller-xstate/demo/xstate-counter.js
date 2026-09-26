@@ -32,18 +32,19 @@ export class XstateCounter extends LitElement {
    * @param {CounterSnapshot} snapshot
    */
   _callbackCounterController = (snapshot) => {
-    /** @type {CounterSnapshotOrEmpty} */
-    this._xstate = snapshot;
+    if (snapshot?.status === 'stopped') {
+      /** @type {CounterSnapshotOrEmpty} */
+      this._xstate = {};
+    } else {
+      this._xstate = snapshot;
+    }
   };
 
   /**
    * @param {import('xstate').InspectionEvent} inspEvent
    */
   _inspectEvents = (inspEvent) => {
-    if (inspEvent.type === '@xstate.transition' && inspEvent.snapshot.status === 'stopped') {
-      /** @type {CounterSnapshotOrEmpty} */
-      this._xstate = {};
-    }
+    console.info('inspect event', inspEvent);
   };
 
   /**
@@ -92,6 +93,13 @@ export class XstateCounter extends LitElement {
           ${this.#disabled ? 'Enabled counter' : 'Disabled counter'}
         </button>
       </div>
+      <span>
+        <slot></slot>
+        <span>
+          The “Disabled counter” disables the counter for:
+          ${(this.counterController.snapshot?.context.counter ?? 0) * 1000} milliseconds.
+        </span>
+      </span>
     `;
   }
 }
