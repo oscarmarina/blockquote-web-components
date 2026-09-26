@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.27.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.26.0...v2.27.0) (2026-09-26)
+
+### Features
+
+* **ajax-provider:** update types for lastResponse and AJAX methods to use generic type R ([75e2ec4](https://github.com/oscarmarina/blockquote-web-components/commit/75e2ec418df87d30a16dd2c3b6fb3728033da2b8))
+
 ## [2.26.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.25.0...v2.26.0) (2026-09-26)
 
 ### Features
