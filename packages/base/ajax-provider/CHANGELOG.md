@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/oscarmarina/blockquote-web-components/compare/%40blockquote-web-components%2Fajax-provider%401.5.1...%40blockquote-web-components%2Fajax-provider%401.6.0) (2026-09-26)
+
+### Features
+
+* **ajax-provider:** update types for lastResponse and AJAX methods to use generic type R ([75e2ec4](https://github.com/oscarmarina/blockquote-web-components/commit/75e2ec418df87d30a16dd2c3b6fb3728033da2b8))
+
+
 ## [1.5.1](https://github.com/oscarmarina/blockquote-web-components/compare/%40blockquote-web-components%2Fajax-provider%401.5.0...%40blockquote-web-components%2Fajax-provider%401.5.1) (2026-08-17)
 
 ### Bug Fixes
