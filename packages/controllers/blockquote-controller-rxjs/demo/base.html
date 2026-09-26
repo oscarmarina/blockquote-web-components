@@ -36,46 +36,34 @@
     <script type="module">
       import {html, LitElement, map, fromEventPattern, BlockquoteControllerRxjs} from './entry.js';
 
-      class BlockquoteControllerRxjsDemo extends LitElement {
-        static get properties() {
-          return {
-            _pos: {
-              type: Object,
-              attribute: false,
-            },
-          };
+      const mousemove$ = fromEventPattern(
+        (handler) => {
+          window.addEventListener('mousemove', handler);
+        },
+        (handler) => {
+          window.removeEventListener('mousemove', handler);
         }
+      );
 
-        constructor() {
-          super();
-          this.rx = new BlockquoteControllerRxjs(this);
-          this._pos = {x: 0, y: 0};
-          const mousemove$ = fromEventPattern(
-            (handler) => {
-              window.addEventListener('mousemove', handler);
-            },
-            (handler) => {
-              window.removeEventListener('mousemove', handler);
-            }
-          );
-
-          this.values$ = mousemove$[map](({clientX, clientY}) => ({
+      class BlockquoteControllerRxjsDemo extends LitElement {
+        pos = new BlockquoteControllerRxjs(this, {
+          stream$: mousemove$[map](({clientX, clientY}) => ({
             x: clientX,
             y: clientY,
-          }));
-        }
-
-        connectedCallback() {
-          super.connectedCallback();
-          this.rx.subscribe('_pos', this.values$);
-        }
+          })),
+          initialValue: {x: 0, y: 0},
+          callback: (value) => {
+            console.info('mouse position', value);
+          },
+        });
 
         render() {
+          const {x, y} = this.pos.value;
           return html`
             <p>The mouse is at:</p>
             <pre>
-              x: ${this._pos.x}
-              y: ${this._pos.y}
+              x: ${x}
+              y: ${y}
             </pre>
           `;
         }
