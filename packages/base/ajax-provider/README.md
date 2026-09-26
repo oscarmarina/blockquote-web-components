@@ -235,7 +235,7 @@ requestAuth.generateRequest();
 | Name                      | Privacy | Type                                                     | Default                                                                                        | Description                                                                                                                                                      | Inherited From    |
 | ------------------------- | ------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | `dispatchEventContext`    |         | `{dispatchEvent(event: CustomEvent): void} \| undefined` | `this`                                                                                         | The context for dispatching events.                                                                                                                              | AjaxProviderMixin |
-| `lastResponse`            |         | `AjaxResponse<unknown> \| undefined`                     | `undefined`                                                                                    | The last AJAX response object.                                                                                                                                   | AjaxProviderMixin |
+| `lastResponse`            |         | `AjaxResponse<R> \| undefined`                           | `undefined`                                                                                    | The last AJAX response object.                                                                                                                                   | AjaxProviderMixin |
 | `lastError`               |         | `AjaxError \| undefined`                                 | `undefined`                                                                                    | The last error object.                                                                                                                                           | AjaxProviderMixin |
 | `customEventPrefix`       |         | `string \| undefined`                                    | `'ajax'`                                                                                       | A custom event prefix for events related to HTTP requests.                                                                                                       | AjaxProviderMixin |
 | `avoidBoundary`           |         | `boolean \| undefined`                                   | `false`                                                                                        | Set to \`true\` to stop delegating the use of boundaries for multipart requests to the browser.&#xA;Only change this to \`true\` if you know what you are doing. | AjaxProviderMixin |
@@ -259,11 +259,11 @@ requestAuth.generateRequest();
 
 ##### Methods
 
-| Name                        | Privacy | Description                                                                                                                                                                                                                                          | Parameters                   | Return                                  | Inherited From    |
-| --------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | --------------------------------------- | ----------------- |
-| `_assignAjaxProviderConfig` |         | Assigns configuration options to the AjaxProvider instance.                                                                                                                                                                                          | `config: AjaxProviderConfig` | `void`                                  |                   |
-| `request$`                  |         | Returns a cold Observable that performs the AJAX request on each subscription.&#xA;&#xA;Progress is reported through the \`ajaxprogress\` event. Errors are reported&#xA;through \`ajaxerror\`/\`ajaxerrorend\` events before the observable errors. |                              | `ColdObservable<AjaxResponse<unknown>>` | AjaxProviderMixin |
-| `generateRequest`           |         | Generates and sends the AJAX request.                                                                                                                                                                                                                |                              | `Promise<any>`                          | AjaxProviderMixin |
+| Name                        | Privacy | Description                                                                                                                                                                                                                                          | Parameters                   | Return                            | Inherited From    |
+| --------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | --------------------------------- | ----------------- |
+| `_assignAjaxProviderConfig` |         | Assigns configuration options to the AjaxProvider instance.                                                                                                                                                                                          | `config: AjaxProviderConfig` | `void`                            |                   |
+| `request$`                  |         | Returns a cold Observable that performs the AJAX request on each subscription.&#xA;&#xA;Progress is reported through the \`ajaxprogress\` event. Errors are reported&#xA;through \`ajaxerror\`/\`ajaxerrorend\` events before the observable errors. |                              | `ColdObservable<AjaxResponse<R>>` | AjaxProviderMixin |
+| `generateRequest`           |         | Generates and sends the AJAX request.                                                                                                                                                                                                                |                              | `Promise<AjaxResponse<R>>`        | AjaxProviderMixin |
 
 <details><summary>Private API</summary>
 
@@ -285,9 +285,6 @@ requestAuth.generateRequest();
 | Kind | Name           | Declaration  | Module              | Package |
 | ---- | -------------- | ------------ | ------------------- | ------- |
 | `js` | `AjaxProvider` | AjaxProvider | src/AjaxProvider.ts |         |
-
-Mixin for providing AJAX functionality using RxJS. This mixin can be used to enhance classes with AJAX capabilities.
-
 
 ### `src/AjaxProviderMixin.ts`:
 
@@ -329,15 +326,15 @@ Mixin for providing AJAX functionality using RxJS. This mixin can be used to enh
 | `avoidBoundary`           |         | `boolean \| undefined`                                   |                                                                                                |             |                |
 | `dispatchEventContext`    |         | `{dispatchEvent(event: CustomEvent): void} \| undefined` |                                                                                                |             |                |
 | `customEventPrefix`       |         | `string \| undefined`                                    |                                                                                                |             |                |
-| `lastResponse`            |         | `AjaxResponse<unknown> \| undefined`                     |                                                                                                |             |                |
+| `lastResponse`            |         | `AjaxResponse<R> \| undefined`                           |                                                                                                |             |                |
 | `lastError`               |         | `AjaxError \| undefined`                                 |                                                                                                |             |                |
 
 ##### Methods
 
-| Name              | Privacy | Description                                                                                                                                                                                                                                          | Parameters | Return                                  | Inherited From |
-| ----------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------------------------------------- | -------------- |
-| `request$`        |         | Returns a cold Observable that performs the AJAX request on each subscription.&#xA;&#xA;Progress is reported through the \`ajaxprogress\` event. Errors are reported&#xA;through \`ajaxerror\`/\`ajaxerrorend\` events before the observable errors. |            | `ColdObservable<AjaxResponse<unknown>>` |                |
-| `generateRequest` |         | Generates and sends the AJAX request.                                                                                                                                                                                                                |            | `Promise<any>`                          |                |
+| Name              | Privacy | Description                                                                                                                                                                                                                                          | Parameters | Return                            | Inherited From |
+| ----------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------------------------------- | -------------- |
+| `request$`        |         | Returns a cold Observable that performs the AJAX request on each subscription.&#xA;&#xA;Progress is reported through the \`ajaxprogress\` event. Errors are reported&#xA;through \`ajaxerror\`/\`ajaxerrorend\` events before the observable errors. |            | `ColdObservable<AjaxResponse<R>>` |                |
+| `generateRequest` |         | Generates and sends the AJAX request.                                                                                                                                                                                                                |            | `Promise<AjaxResponse<R>>`        |                |
 
 <details><summary>Private API</summary>
 
@@ -444,11 +441,16 @@ Mixin for providing AJAX functionality using RxJS. This mixin can be used to enh
 
 #### Exports
 
-| Kind | Name                 | Declaration        | Module                 | Package |
-| ---- | -------------------- | ------------------ | ---------------------- | ------- |
-| `js` | `AjaxProvider`       | AjaxProvider       | ./AjaxProvider.js      |         |
-| `js` | `AjaxProviderConfig` | AjaxProviderConfig | ./AjaxProvider.js      |         |
-| `js` | `AjaxProviderMixin`  | AjaxProviderMixin  | ./AjaxProviderMixin.js |         |
+| Kind | Name                         | Declaration                | Module                 | Package |
+| ---- | ---------------------------- | -------------------------- | ---------------------- | ------- |
+| `js` | `AjaxProvider`               | AjaxProvider               | ./AjaxProvider.js      |         |
+| `js` | `AjaxProviderConfig`         | AjaxProviderConfig         | ./AjaxProvider.js      |         |
+| `js` | `AjaxProviderMixin`          | AjaxProviderMixin          | ./AjaxProviderMixin.js |         |
+| `js` | `AjaxProviderMixinInterface` | AjaxProviderMixinInterface | ./AjaxProviderMixin.js |         |
+| `js` | `ColdObservable`             | ColdObservable             |                        | rxjs    |
+| `js` | `AjaxConfig`                 | AjaxConfig                 | ./fromAjax.js          |         |
+| `js` | `AjaxResponse`               | AjaxResponse               | ./fromAjax.js          |         |
+| `js` | `AjaxError`                  | AjaxError                  | ./fromAjax.js          |         |
 
 ### `src/utils.ts`:
 

@@ -10,7 +10,7 @@ import {assignIfDefined, isFormData} from './utils.js';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Constructor<T = object> = new (...args: any[]) => T;
 
-interface AjaxProviderMixinInterface {
+export interface AjaxProviderMixinInterface<T = unknown> {
   /**
    * The base URL for the AJAX request.
    */
@@ -91,7 +91,7 @@ interface AjaxProviderMixinInterface {
   /**
    * The last AJAX response object.
    */
-  lastResponse?: AjaxResponse<unknown>;
+  lastResponse?: AjaxResponse<T>;
   /**
    * The last error object.
    */
@@ -99,18 +99,15 @@ interface AjaxProviderMixinInterface {
   /**
    * Returns a cold Observable that performs the AJAX request on each subscription.
    */
-  request$(): ColdObservable<AjaxResponse<unknown>>;
+  request$(): ColdObservable<AjaxResponse<T>>;
   /**
    * Generates and sends the AJAX request.
    */
-  generateRequest(): Promise<AjaxResponse<unknown>>;
+  generateRequest(): Promise<AjaxResponse<T>>;
 }
 
-/**
- * Mixin for providing AJAX functionality using RxJS. This mixin can be used to enhance classes with AJAX capabilities.
- */
-const AjaxProvider = <T extends Constructor>(Base: T) =>
-  class AjaxProviderBase extends Base implements AjaxProviderMixinInterface {
+const createAjaxProviderMixin = <R = unknown, T extends Constructor = Constructor>(Base: T) => {
+  class AjaxProviderBase extends Base implements AjaxProviderMixinInterface<R> {
     url: string;
     path: string;
     body: unknown;
@@ -131,7 +128,7 @@ const AjaxProvider = <T extends Constructor>(Base: T) =>
     avoidBoundary?: boolean;
     dispatchEventContext?: {dispatchEvent(event: CustomEvent): void};
     customEventPrefix?: string;
-    lastResponse?: AjaxResponse<unknown>;
+    lastResponse?: AjaxResponse<R>;
     lastError?: AjaxError;
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -249,7 +246,7 @@ const AjaxProvider = <T extends Constructor>(Base: T) =>
      * Progress is reported through the `ajaxprogress` event. Errors are reported
      * through `ajaxerror`/`ajaxerrorend` events before the observable errors.
      *
-     * @returns {ColdObservable<AjaxResponse<unknown>>} An observable that emits the AJAX response.
+     * @returns {ColdObservable<AjaxResponse<R>>} An observable that emits the AJAX response.
      *
      * @fires ajaxpresend - Fired before a request is sent.
      * @fires ajaxprogress - Fired when some progress state is received.
@@ -258,10 +255,10 @@ const AjaxProvider = <T extends Constructor>(Base: T) =>
      * @fires ajaxerror - Fired when an error is received.
      * @fires ajaxerrorend - Fired after a error is received.
      */
-    request$(): ColdObservable<AjaxResponse<unknown>> {
-      return new ColdObservable<AjaxResponse<unknown>>((subscriber) => {
+    request$(): ColdObservable<AjaxResponse<R>> {
+      return new ColdObservable<AjaxResponse<R>>((subscriber) => {
         this._dispatchEvent('presend', true);
-        fromXMLHttpRequest<unknown>(this._assignAjaxRxjsConfig())
+        fromXMLHttpRequest<R>(this._assignAjaxRxjsConfig())
           [pipe](
             (values) =>
               values[tap]((response) => {
@@ -292,15 +289,17 @@ const AjaxProvider = <T extends Constructor>(Base: T) =>
     /**
      * Generates and sends the AJAX request.
      *
-     * @returns {Promise<any>} A promise that resolves with the AJAX response.
+     * @returns {Promise<AjaxResponse<R>>} A promise that resolves with the AJAX response.
      *
      * @fires ajaxpresend - Fired before a request is sent.
      * @fires ajaxresponse - Fired when a response is received.
      * @fires ajaxresponseend - Fired after a response is received.
      */
-    async generateRequest(): Promise<AjaxResponse<unknown>> {
+    async generateRequest(): Promise<AjaxResponse<R>> {
       return lastValueFrom(this.request$());
     }
-  };
+  }
+  return AjaxProviderBase;
+};
 
-export const AjaxProviderMixin = dedupeMixin(AjaxProvider);
+export const AjaxProviderMixin = dedupeMixin(createAjaxProviderMixin);
