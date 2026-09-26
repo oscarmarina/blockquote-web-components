@@ -8,50 +8,159 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "",
+          "description": "# BlockquoteControllerRxjs\n\n![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\n### Connect Observables with Lit\n\n`BlockquoteControllerRxjs` is a Lit Reactive Controller that subscribes to an\n[RxJS 9](https://github.com/ReactiveX/rxjs) / Web Platform `Observable` while the host is connected,\nstores the latest emitted value and requests a host update when it changes.\n\n- One controller per stream, the latest value is available (typed) in `value`\n- It subscribes on `hostConnected` and unsubscribes (`AbortSignal`) on `hostDisconnected`,\n  so it re-subscribes if the element is moved in the DOM\n- The stream can be replaced at any time by assigning `stream$`; the previous one is unsubscribed\n- Repeated values (`Object.is`) do not trigger an update\n- Optional `callback`, `onError` and `onComplete` handlers\n\nOriginal idea by [Adrian Fâciu](https://github.com/adrianfaciu/rx-lit) -\n[observables-litelement](https://adrianfaciu.dev/posts/observables-litelement/)\n\n<hr>\n\n### Demo\n\n[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/blockquote-web-components/tree/main/packages/controllers/blockquote-controller-rxjs)\n\n### Usage\n\n**`new BlockquoteControllerRxjs(this, {stream$, initialValue?, callback?, onError?, onComplete?})`**\n\n```javascript\nimport {html, LitElement} from 'lit';\nimport {fromEventPattern} from 'rxjs/from-event-pattern';\nimport {map} from 'rxjs/map';\nimport {BlockquoteControllerRxjs} from '@blockquote-web-components/blockquote-controller-rxjs';\n\nconst mousemove$ = fromEventPattern(\n  (handler) => window.addEventListener('mousemove', handler),\n  (handler) => window.removeEventListener('mousemove', handler)\n);\n\nclass BlockquoteControllerRxjsDemo extends LitElement {\n  pos = new BlockquoteControllerRxjs(this, {\n    stream$: mousemove$[map](({clientX, clientY}) => ({x: clientX, y: clientY})),\n    initialValue: {x: 0, y: 0},\n  });\n\n  render() {\n    const {x, y} = this.pos.value;\n    return html`\n      <p>The mouse is at:</p>\n      <pre>x: ${x} y: ${y}</pre>\n    `;\n  }\n}\n```\n\nUse `callback` to copy the value into a reactive property when you need it\nin `willUpdate` / `updated`:\n\n```javascript\nnew BlockquoteControllerRxjs(this, {\n  stream$,\n  callback: (value) => (this._pos = value),\n});\n```\n\n<hr>",
           "name": "BlockquoteControllerRxjs",
           "members": [
             {
               "kind": "field",
-              "name": "subscriptions",
-              "privacy": "private",
-              "default": "new Map<PropertyKey, SubscriptionEntry>()"
+              "name": "host",
+              "type": {
+                "text": "THost"
+              },
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "host",
+              "name": "value",
               "type": {
-                "text": "BlockquoteControllerRxjsHost"
+                "text": "T | I"
               },
-              "readonly": true,
-              "default": "host"
+              "description": "Latest value emitted by the stream (or `initialValue`).",
+              "default": "initialValue"
+            },
+            {
+              "kind": "field",
+              "name": "error",
+              "type": {
+                "text": "unknown"
+              },
+              "description": "Last error emitted by the stream, `undefined` otherwise."
+            },
+            {
+              "kind": "field",
+              "name": "completed",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "`true` once the current stream has completed."
+            },
+            {
+              "kind": "field",
+              "name": "callback",
+              "type": {
+                "text": "(value: T) => void | undefined"
+              },
+              "description": "Called with every new (distinct) value emitted by the stream.",
+              "default": "callback"
+            },
+            {
+              "kind": "field",
+              "name": "onError",
+              "type": {
+                "text": "(error: unknown) => void | undefined"
+              },
+              "description": "Called when the stream errors (falls back to `globalThis.reportError`).",
+              "default": "onError"
+            },
+            {
+              "kind": "field",
+              "name": "onComplete",
+              "type": {
+                "text": "() => void | undefined"
+              },
+              "description": "Called when the stream completes.",
+              "default": "onComplete"
+            },
+            {
+              "kind": "field",
+              "name": "#stream$",
+              "privacy": "private",
+              "type": {
+                "text": "ObservableLike<T>"
+              },
+              "default": "stream$"
+            },
+            {
+              "kind": "field",
+              "name": "#abortController",
+              "privacy": "private",
+              "type": {
+                "text": "AbortController | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stream$",
+              "type": {
+                "text": "ObservableLike<T>"
+              },
+              "description": "The current Observable. Assigning a different one re-subscribes."
+            },
+            {
+              "kind": "field",
+              "name": "subscribed",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "`true` while there is an active subscription.",
+              "readonly": true
             },
             {
               "kind": "method",
               "name": "subscribe",
               "return": {
                 "type": {
-                  "text": "ObservableLike<T>"
+                  "text": "void"
+                }
+              },
+              "description": "Subscribes to `stream$`. No-op if already subscribed."
+            },
+            {
+              "kind": "method",
+              "name": "unsubscribe",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "description": "Aborts the current subscription, if any."
+            },
+            {
+              "kind": "method",
+              "name": "hostConnected",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "hostDisconnected",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#settle",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
                 }
               },
               "parameters": [
                 {
-                  "name": "propKey",
+                  "name": "abortController",
                   "type": {
-                    "text": "PropertyKey"
-                  }
-                },
-                {
-                  "name": "stream$",
-                  "type": {
-                    "text": "ObservableLike<T>"
+                    "text": "AbortController"
                   }
                 }
               ]
-            },
-            {
-              "kind": "method",
-              "name": "hostDisconnected"
             }
           ]
         }
@@ -77,6 +186,30 @@
           "name": "BlockquoteControllerRxjs",
           "declaration": {
             "name": "BlockquoteControllerRxjs",
+            "module": "./BlockquoteControllerRxjs.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "BlockquoteControllerRxjsOptions",
+          "declaration": {
+            "name": "BlockquoteControllerRxjsOptions",
+            "module": "./BlockquoteControllerRxjs.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "ObservableLike",
+          "declaration": {
+            "name": "ObservableLike",
+            "module": "./BlockquoteControllerRxjs.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "ObserverLike",
+          "declaration": {
+            "name": "ObserverLike",
             "module": "./BlockquoteControllerRxjs.js"
           }
         }

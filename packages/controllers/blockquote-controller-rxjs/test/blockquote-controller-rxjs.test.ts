@@ -1,185 +1,219 @@
 import {Subject} from 'rxjs';
-import {describe, it, expect, beforeEach, afterEach} from 'vitest';
+import {describe, it, expect, afterEach, vi} from 'vitest';
 import {fixture, fixtureCleanup} from '@open-wc/testing-helpers';
 import {html, LitElement} from 'lit';
 import {BlockquoteControllerRxjs} from '../src/index.js';
+import type {ObservableLike} from '../src/index.js';
 
-const RxjsDemo = class BlockquoteControllerRxjsDemo extends LitElement {
-  static get properties() {
-    return {
-      streamValues: {
-        type: Number,
-        attribute: false,
-      },
-      streamValuesUpdate: {
-        type: Number,
-        attribute: false,
-      },
-    };
-  }
+class RxjsDemo extends LitElement {
+  static override properties = {
+    reactiveValue: {type: Number, attribute: false},
+  };
+
+  declare reactiveValue: number;
+
+  source$ = new Subject<number>();
+
+  rx = new BlockquoteControllerRxjs(this, {
+    stream$: this.source$,
+    initialValue: 0,
+    callback: (value) => {
+      this.reactiveValue = value;
+    },
+  });
 
   constructor() {
     super();
-
-    this.rx = new BlockquoteControllerRxjs(this);
-
-    this.streamValues = 0;
-    this.streamValuesUpdate = 0;
+    this.reactiveValue = 0;
   }
 
-  /**
-   * @param {Observable} stream$
-   * @returns {void}
-   */
-  setupObservable(stream$) {
-    this.rx.subscribe('streamValues', stream$);
-  }
-
-  /**
-   * @param {Observable} stream$
-   * @returns {void}
-   */
-  setupObservableNeedUpdate(stream$) {
-    this.rx.subscribe('streamValuesUpdate', stream$);
-  }
-
-  render() {
+  override render() {
     return html`
-      <b>${this.streamValues}</b>
-      <i>${this.streamValuesUpdate}</i>
+      <b>${this.rx.value}</b>
+      <i>${this.reactiveValue}</i>
     `;
   }
-};
-
-if (!customElements.get('blockquote-controller-rxjs-demo')) {
-  window.customElements.define('blockquote-controller-rxjs-demo', RxjsDemo);
 }
 
+if (!customElements.get('blockquote-controller-rxjs-demo')) {
+  customElements.define('blockquote-controller-rxjs-demo', RxjsDemo);
+}
+
+const createHost = () =>
+  fixture<RxjsDemo>(html`
+    <blockquote-controller-rxjs-demo></blockquote-controller-rxjs-demo>
+  `);
+
 describe('BlockquoteControllerRxjs', () => {
-  /** @type {RxjsDemo} */
-  let el;
-
-  beforeEach(async () => {
-    el = await fixture(html`
-      <blockquote-controller-rxjs-demo></blockquote-controller-rxjs-demo>
-    `);
-  });
-
   afterEach(() => {
     fixtureCleanup();
   });
 
-  it('can handle a Subject - with Reactive property', async () => {
-    const nodeText = el.shadowRoot?.querySelector('b');
-    const stream$ = new Subject();
-
-    el.setupObservable(stream$);
-
-    stream$.next(1);
-
-    expect(el.streamValues).toBe(1);
-
-    await el.updateComplete;
-
-    expect(nodeText?.textContent).toBe('1');
+  it('exposes initialValue before any emission', async () => {
+    const el = await createHost();
+    expect(el.rx.value).toBe(0);
+    expect(el.shadowRoot?.querySelector('b')?.textContent).toBe('0');
   });
 
-  it('can handle a Subject - without Reactive property', async () => {
-    const nodeText = el.shadowRoot?.querySelector('i');
-    const stream$ = new Subject();
+  it('stores the latest value and renders it', async () => {
+    const el = await createHost();
 
-    el.setupObservableNeedUpdate(stream$);
+    el.source$.next(1);
 
-    stream$.next(2);
-
-    expect(el.streamValuesUpdate).toBe(2);
-
+    expect(el.rx.value).toBe(1);
     await el.updateComplete;
-
-    expect(nodeText?.textContent).toBe('2');
+    expect(el.shadowRoot?.querySelector('b')?.textContent).toBe('1');
   });
 
-  it('will stop receiving values when destroyed', () => {
-    const stream$ = new Subject();
+  it('calls the callback so a reactive property can be updated', async () => {
+    const el = await createHost();
 
-    el.setupObservable(stream$);
+    el.source$.next(2);
 
-    stream$.next(1);
+    expect(el.reactiveValue).toBe(2);
+    await el.updateComplete;
+    expect(el.shadowRoot?.querySelector('i')?.textContent).toBe('2');
+  });
 
-    expect(el.streamValues).toBe(1);
+  it('does not request an update for repeated values', async () => {
+    const el = await createHost();
+    const callback = vi.fn();
+    el.rx.callback = callback;
+    const spy = vi.spyOn(el, 'requestUpdate');
+
+    el.source$.next(3);
+    el.source$.next(3);
+
+    expect(callback).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('stops receiving values when disconnected', async () => {
+    const el = await createHost();
+
+    el.source$.next(1);
+    el.remove();
+    el.source$.next(2);
+
+    expect(el.rx.value).toBe(1);
+    expect(el.rx.subscribed).toBe(false);
+  });
+
+  it('re-subscribes when the host is connected again', async () => {
+    const el = await createHost();
+    const parent = el.parentElement!;
 
     el.remove();
+    el.source$.next(1);
+    expect(el.rx.value).toBe(0);
 
-    stream$.next(2);
+    parent.append(el);
+    el.source$.next(2);
 
-    expect(el.streamValues).toBe(1);
+    expect(el.rx.subscribed).toBe(true);
+    expect(el.rx.value).toBe(2);
   });
 
-  it('will unsubscribe from the previous stream when called with a different stream', () => {
-    const firstStream$ = new Subject();
-    const secondStream$ = new Subject();
+  it('replaces the stream and unsubscribes from the previous one', async () => {
+    const el = await createHost();
+    const next$ = new Subject<number>();
 
-    el.setupObservable(firstStream$);
+    el.source$.next(1);
+    el.rx.stream$ = next$;
+    el.source$.next(2);
 
-    firstStream$.next(1);
+    expect(el.rx.value).toBe(1);
 
-    expect(el.streamValues).toBe(1);
+    next$.next(3);
 
-    el.setupObservable(secondStream$);
-
-    firstStream$.next(2);
-
-    expect(el.streamValues).toBe(1);
-
-    secondStream$.next(3);
-
-    expect(el.streamValues).toBe(3);
+    expect(el.rx.value).toBe(3);
   });
 
-  it('will ignore calls with the same stream', () => {
-    const stream$ = new Subject();
-
-    el.setupObservable(stream$);
-
-    stream$.next(1);
-
-    expect(el.streamValues).toBe(1);
-
-    el.setupObservable(stream$);
-
-    stream$.next(2);
-
-    expect(el.streamValues).toBe(2);
-  });
-
-  it('can handle a stream for a property that does not exist', () => {
-    const stream$ = new Subject();
-
-    el.rx.subscribe('unknownProperty', stream$);
-
-    stream$.next(1);
-
-    expect(/** @type {*} */ el['unknownProperty']).toBeUndefined();
-  });
-
-  it('will keep the existing subscription when called with the same stream', () => {
-    const stream$ = new Subject();
-    let subscriptionCount = 0;
-
-    const observable$ = new Observable((subscriber) => {
-      subscriptionCount++;
-
-      stream$.subscribe(subscriber, {
-        signal: subscriber.signal,
-      });
+  it('ignores assigning the same stream', async () => {
+    const el = await createHost();
+    let subscriptions = 0;
+    const stream$ = new Observable<number>((subscriber) => {
+      subscriptions++;
+      el.source$.subscribe(subscriber, {signal: subscriber.signal});
     });
 
-    el.setupObservable(observable$);
+    el.rx.stream$ = stream$;
+    el.rx.stream$ = stream$;
 
-    expect(subscriptionCount).toBe(1);
+    expect(subscriptions).toBe(1);
+  });
 
-    el.setupObservable(observable$);
+  it('does not subscribe while the host is disconnected when replacing the stream', async () => {
+    const el = await createHost();
+    const next$ = new Subject<number>();
 
-    expect(subscriptionCount).toBe(1);
+    el.remove();
+    el.rx.stream$ = next$;
+    next$.next(5);
+
+    expect(el.rx.value).toBe(0);
+  });
+
+  it('handles errors with onError and exposes error', async () => {
+    const el = await createHost();
+    const onError = vi.fn();
+    const failure = new Error('boom');
+    el.rx.onError = onError;
+
+    el.source$.error(failure);
+
+    expect(onError).toHaveBeenCalledWith(failure);
+    expect(el.rx.error).toBe(failure);
+    expect(el.rx.subscribed).toBe(false);
+  });
+
+  it('reports the error globally when there is no onError', async () => {
+    const el = await createHost();
+    const failure = new Error('unhandled');
+    const reportError = vi.spyOn(globalThis, 'reportError').mockImplementation(() => undefined);
+
+    el.source$.error(failure);
+
+    expect(reportError).toHaveBeenCalledWith(failure);
+    expect(el.rx.error).toBe(failure);
+    reportError.mockRestore();
+  });
+
+  it('handles completion with onComplete', async () => {
+    const el = await createHost();
+    const onComplete = vi.fn();
+    el.rx.onComplete = onComplete;
+
+    el.source$.next(4);
+    el.source$.complete();
+
+    expect(onComplete).toHaveBeenCalledTimes(1);
+    expect(el.rx.completed).toBe(true);
+    expect(el.rx.value).toBe(4);
+    expect(el.rx.subscribed).toBe(false);
+  });
+
+  it('works with synchronous emissions on subscribe', async () => {
+    const el = await createHost();
+    const sync$: ObservableLike<number> = new Observable<number>((subscriber) => {
+      subscriber.next(7);
+    });
+
+    el.rx.stream$ = sync$;
+
+    expect(el.rx.value).toBe(7);
+  });
+
+  it('value is undefined when no initialValue is given', () => {
+    const host = {
+      addController: vi.fn(),
+      removeController: vi.fn(),
+      requestUpdate: vi.fn(),
+      updateComplete: Promise.resolve(true),
+    };
+    const rx = new BlockquoteControllerRxjs(host, {stream$: new Subject<string>()});
+
+    expect(rx.value).toBeUndefined();
+    expect(host.addController).toHaveBeenCalledWith(rx);
   });
 });
