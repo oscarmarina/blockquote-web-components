@@ -47,7 +47,7 @@
               "kind": "field",
               "name": "lastResponse",
               "type": {
-                "text": "AjaxResponse<unknown> | undefined"
+                "text": "AjaxResponse<R> | undefined"
               },
               "description": "The last AJAX response object.",
               "default": "undefined",
@@ -388,7 +388,7 @@
               "name": "request$",
               "return": {
                 "type": {
-                  "text": "ColdObservable<AjaxResponse<unknown>>"
+                  "text": "ColdObservable<AjaxResponse<R>>"
                 }
               },
               "description": "Returns a cold Observable that performs the AJAX request on each subscription.\n\nProgress is reported through the `ajaxprogress` event. Errors are reported\nthrough `ajaxerror`/`ajaxerrorend` events before the observable errors.",
@@ -402,7 +402,7 @@
               "name": "generateRequest",
               "return": {
                 "type": {
-                  "text": "Promise<any>"
+                  "text": "Promise<AjaxResponse<R>>"
                 }
               },
               "description": "Generates and sends the AJAX request.",
@@ -441,7 +441,7 @@
       "declarations": [
         {
           "kind": "mixin",
-          "description": "Mixin for providing AJAX functionality using RxJS. This mixin can be used to enhance classes with AJAX capabilities.",
+          "description": "",
           "name": "AjaxProviderMixin",
           "members": [
             {
@@ -605,7 +605,7 @@
               "kind": "field",
               "name": "lastResponse",
               "type": {
-                "text": "AjaxResponse<unknown> | undefined"
+                "text": "AjaxResponse<R> | undefined"
               }
             },
             {
@@ -688,7 +688,7 @@
               "name": "request$",
               "return": {
                 "type": {
-                  "text": "ColdObservable<AjaxResponse<unknown>>"
+                  "text": "ColdObservable<AjaxResponse<R>>"
                 }
               },
               "description": "Returns a cold Observable that performs the AJAX request on each subscription.\n\nProgress is reported through the `ajaxprogress` event. Errors are reported\nthrough `ajaxerror`/`ajaxerrorend` events before the observable errors."
@@ -698,7 +698,7 @@
               "name": "generateRequest",
               "return": {
                 "type": {
-                  "text": "Promise<any>"
+                  "text": "Promise<AjaxResponse<R>>"
                 }
               },
               "description": "Generates and sends the AJAX request."
@@ -1080,6 +1080,46 @@
           "declaration": {
             "name": "AjaxProviderMixin",
             "module": "./AjaxProviderMixin.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "AjaxProviderMixinInterface",
+          "declaration": {
+            "name": "AjaxProviderMixinInterface",
+            "module": "./AjaxProviderMixin.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "ColdObservable",
+          "declaration": {
+            "name": "ColdObservable",
+            "package": "rxjs"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "AjaxConfig",
+          "declaration": {
+            "name": "AjaxConfig",
+            "module": "./fromAjax.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "AjaxResponse",
+          "declaration": {
+            "name": "AjaxResponse",
+            "module": "./fromAjax.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "AjaxError",
+          "declaration": {
+            "name": "AjaxError",
+            "module": "./fromAjax.js"
           }
         }
       ]
