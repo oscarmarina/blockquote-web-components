@@ -34,37 +34,185 @@
       <blockquote-controller-rxjs-demo></blockquote-controller-rxjs-demo>
     </main>
     <script type="module">
-      import {html, LitElement, map, fromEventPattern, BlockquoteControllerRxjs} from './entry.js';
+      import {
+        css,
+        html,
+        LitElement,
+        filter,
+        map,
+        switchMap,
+        takeWhile,
+        startWith,
+        scan,
+        merge,
+        fromEventPattern,
+        BlockquoteControllerRxjs,
+      } from './entry.js';
 
-      const mousemove$ = fromEventPattern(
+      const pointermove$ = fromEventPattern(
         (handler) => {
-          window.addEventListener('mousemove', handler);
+          window.addEventListener('pointermove', handler);
         },
         (handler) => {
-          window.removeEventListener('mousemove', handler);
+          window.removeEventListener('pointermove', handler);
         }
       );
 
+      const pointerdown$ = fromEventPattern(
+        (handler) => window.addEventListener('pointerdown', handler),
+        (handler) => window.removeEventListener('pointerdown', handler)
+      );
+      const pointerup$ = fromEventPattern(
+        (handler) => {
+          window.addEventListener('pointerup', handler);
+          window.addEventListener('pointercancel', handler);
+        },
+        (handler) => {
+          window.removeEventListener('pointerup', handler);
+          window.removeEventListener('pointercancel', handler);
+        }
+      );
+      const drag$ = pointerdown$[filter]((event) =>
+        event.composedPath().some((target) => target.classList?.contains('dot'))
+      )[switchMap]((startEvent) =>
+        pointermove$[filter](({pointerId}) => pointerId === startEvent.pointerId)
+          [map](({clientX, clientY}) => ({type: 'move', clientX, clientY}))
+          [merge]([
+            pointerup$[filter](({pointerId}) => pointerId === startEvent.pointerId)[map](() => ({
+              type: 'end',
+            })),
+          ])
+          [takeWhile](({type}) => type !== 'end', {includeLast: true})
+          [startWith]({type: 'move', clientX: startEvent.clientX, clientY: startEvent.clientY})
+      );
+
       class BlockquoteControllerRxjsDemo extends LitElement {
+        static styles = css`
+          :host {
+            display: block;
+            color: #182230;
+            font:
+              16px/1.5 system-ui,
+              sans-serif;
+          }
+          .demo {
+            display: grid;
+            gap: 1rem;
+            max-width: 760px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+          }
+          .stage {
+            position: relative;
+            min-height: 260px;
+            overflow: hidden;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            background: #f8fafc;
+            touch-action: none;
+          }
+          .stage svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+          }
+          .trail {
+            fill: none;
+            stroke: #173b6c;
+            stroke-width: 2;
+          }
+          .dot {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border: 3px solid white;
+            border-radius: 50%;
+            background: #2563eb;
+            box-shadow: 0 1px 5px #0f172a55;
+            transform: translate(-50%, -50%);
+            touch-action: none;
+            cursor: grab;
+          }
+          .dot:active {
+            cursor: grabbing;
+          }
+          pre {
+            margin: 0;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            background: #f1f5f9;
+          }
+        `;
+
         pos = new BlockquoteControllerRxjs(this, {
-          stream$: mousemove$[map](({clientX, clientY}) => ({
+          stream$: pointermove$[map](({clientX, clientY}) => ({
             x: clientX,
             y: clientY,
           })),
           initialValue: {x: 0, y: 0},
-          callback: (value) => {
-            console.info('mouse position', value);
+        });
+
+        drag = new BlockquoteControllerRxjs(this, {
+          stream$: drag$[map]((pointer) => {
+            if (pointer.type === 'end') return null;
+            const bounds = this.renderRoot.querySelector('.stage').getBoundingClientRect();
+            return {
+              x: Math.max(0, Math.min(100, ((pointer.clientX - bounds.left) / bounds.width) * 100)),
+              y: Math.max(0, Math.min(100, ((pointer.clientY - bounds.top) / bounds.height) * 100)),
+            };
+          })[scan](
+            (state, position) =>
+              position === null ? {...state, dragging: false} : {...position, dragging: true},
+            {x: 50, y: 50, dragging: false}
+          ),
+          initialValue: {x: 50, y: 50, dragging: false},
+          callback: ({x, y, dragging}) => {
+            if (!dragging) return;
+            this.trail = [...this.trail, `${x * 10},${y * 10}`].slice(-60);
           },
         });
 
+        trail = [];
+
+        capturePointer(event) {
+          event.currentTarget.setPointerCapture(event.pointerId);
+          this.trail = [];
+        }
+
         render() {
           const {x, y} = this.pos.value;
+          const {x: dragX, y: dragY, dragging} = this.drag.value;
+          const points = this.trail.join(' ');
           return html`
-            <p>The mouse is at:</p>
-            <pre>
-              x: ${x}
-              y: ${y}
-            </pre>
+            <section class="demo">
+              <div>
+                <h2>RxJS pointer tracking and drag</h2>
+                <p>
+                  RxJS tracks the pointer globally and feeds a second controller while dragging the
+                  blue dot.
+                </p>
+              </div>
+              <div class="stage">
+                <svg viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
+                  <polyline class="trail" points=${points}></polyline>
+                </svg>
+                <div
+                  class="dot"
+                  role="button"
+                  aria-label="Drag to draw a path"
+                  style="left:${dragX}%;top:${dragY}%"
+                  @pointerdown=${this.capturePointer}></div>
+              </div>
+              <div>
+                <strong>Pointer position (RxJS stream)</strong>
+                <pre>x: ${x}    y: ${y}</pre>
+                <strong>Drag position (RxJS controller)</strong>
+                <pre>
+x: ${dragX.toFixed(1)}%    y: ${dragY.toFixed(1)}%    dragging: ${dragging}</pre>
+              </div>
+            </section>
           `;
         }
       }
