@@ -177,38 +177,50 @@ export class BlockquoteControllerRxjs<
     this.error = undefined;
     this.completed = false;
 
-    this.#stream$.subscribe(
-      {
-        next: (value: T) => {
-          if (Object.is(value, this.value)) {
-            return;
-          }
+    try {
+      this.#stream$.subscribe(
+        {
+          next: (value: T) => {
+            if (Object.is(value, this.value)) {
+              return;
+            }
 
-          this.value = value;
-          this.callback?.(value);
-          this.host.requestUpdate();
-        },
-        error: (error: unknown) => {
-          this.#settle(abortController);
-          this.error = error;
+            this.value = value;
+            this.callback?.(value);
+            this.host.requestUpdate();
+          },
+          error: (error: unknown) => {
+            this.#settle(abortController);
+            this.error = error;
 
-          if (this.onError) {
-            this.onError(error);
-          } else {
-            globalThis.reportError?.(error);
-          }
+            if (this.onError) {
+              this.onError(error);
+            } else {
+              globalThis.reportError?.(error);
+            }
 
-          this.host.requestUpdate();
+            this.host.requestUpdate();
+          },
+          complete: () => {
+            this.#settle(abortController);
+            this.completed = true;
+            this.onComplete?.();
+            this.host.requestUpdate();
+          },
         },
-        complete: () => {
-          this.#settle(abortController);
-          this.completed = true;
-          this.onComplete?.();
-          this.host.requestUpdate();
-        },
-      },
-      {signal: abortController.signal}
-    );
+        {signal: abortController.signal}
+      );
+    } catch (error) {
+      try {
+        abortController.abort();
+      } catch {
+        // Preserve the exception thrown by `subscribe`.
+      } finally {
+        this.#settle(abortController);
+      }
+
+      throw error;
+    }
   }
 
   /** Aborts the current subscription, if any. */
