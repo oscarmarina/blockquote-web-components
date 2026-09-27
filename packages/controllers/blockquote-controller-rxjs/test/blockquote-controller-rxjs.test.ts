@@ -129,6 +129,24 @@ describe('BlockquoteControllerRxjs', () => {
     expect(el.rx.value).toBe(3);
   });
 
+  it('aborts and resets state when subscribing throws synchronously', async () => {
+    const el = await createHost();
+    const failure = new Error('subscribe failed');
+    let signal: AbortSignal | undefined;
+    const stream$ = {
+      subscribe: (_observer: unknown, options?: {signal?: AbortSignal}) => {
+        signal = options?.signal;
+        throw failure;
+      },
+    } as unknown as ObservableLike<number>;
+
+    expect(() => {
+      el.rx.stream$ = stream$;
+    }).toThrow(failure);
+    expect(el.rx.subscribed).toBe(false);
+    expect(signal?.aborted).toBe(true);
+  });
+
   it('ignores assigning the same stream', async () => {
     const el = await createHost();
     let subscriptions = 0;
