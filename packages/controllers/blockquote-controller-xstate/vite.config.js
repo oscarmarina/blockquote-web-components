@@ -56,6 +56,12 @@ export default defineConfig(({command}) => ({
       }
     },
     include: ['test/**/*.{test,spec}.?(c|m)[jt]s?(x)'],
+    // Type-level tests (`*.test-d.ts`) run with `tsc`, outside the browser
+    typecheck: {
+      enabled: true,
+      include: ['test/**/*.test-d.ts'],
+      tsconfig: './tsconfig.json',
+    },
     forceRerunTriggers: ['**/src/**/*.scss*'],
     browser: {
       enabled: true,

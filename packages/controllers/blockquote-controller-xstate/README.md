@@ -71,14 +71,34 @@ export const counterMachine = counterSetup.createMachine({
 });
 ```
 
-**`new BlockquoteControllerXstate(this, {machine, options?, callback?, onError?})`**
+**`new BlockquoteControllerXstate(host, config)`**
 
-- `machine`: the XState machine.
-- `options`: `createActor` options (`input`, `inspect`, ...).
-- `callback`: called with every new snapshot: the first one on each connection and the last one
-(`snapshot.status === 'stopped'`) when the host is disconnected.
-- `onError`: called when the actor errors (the `'error'` snapshot is also sent to `callback`).
-  If omitted, the error is reported as unhandled (`reportError`).
+- `host`: the Lit reactive controller host (usually `this`).
+- `config.machine`: the XState machine.
+- `config.options`: `createActor` options (`input`, `inspect`, ...). Optional, unless the machine
+  requires input: then `{input}` or `{snapshot}` must be provided, as when calling `createActor`.
+- `config.callback`: called with every new snapshot: the first one on each connection and the
+  last one (`snapshot.status === 'stopped'`) when the host is disconnected.
+- `config.onError`: called when the actor errors (the `'error'` snapshot is also sent to
+  `callback`). If omitted, the error is reported as unhandled (`reportError`).
+
+***Machine with required input***
+
+```ts
+const userMachine = setup({
+  schemas: {
+    input: types<{userId: string}>(),
+    context: types<{userId: string}>(),
+  },
+}).createMachine({
+  context: ({input}) => ({userId: input.userId}),
+});
+
+new BlockquoteControllerXstate(this, {machine: userMachine}); // type error: `input` is required
+new BlockquoteControllerXstate(this, {machine: userMachine, options: {input: {userId: '123'}}});
+```
+
+Machines whose input accepts `undefined` (or that declare no input) can omit `options`.
 
 The actor is created in the constructor, so `snapshot`, `actor` and `send` are available
 before the host is connected. It is started on `hostConnected` and stopped on `hostDisconnected`;
@@ -141,19 +161,24 @@ export class XstateCounter extends LitElement {
     return this.counterController.snapshot?.matches('disabled');
   }
 
+  // `false` when the event would be ignored (guards, `disabled` state) or the actor is stopped
+  #can(type) {
+    return this.counterController.snapshot?.can({type}) ?? false;
+  }
+
   render() {
     return html`
       <slot></slot>
       <div data-disabled="${this.#disabled}">
         <span>
           <button
-            ?disabled="${this.#disabled}"
+            ?disabled="${!this.#can('INC')}"
             data-counter="increment"
             \@click=${() => this.counterController.send({type: 'INC'})}>
             Increment
           </button>
           <button
-            ?disabled="${this.#disabled}"
+            ?disabled="${!this.#can('DEC')}"
             data-counter="decrement"
             \@click=${() => this.counterController.send({type: 'DEC'})}>
             Decrement
@@ -182,7 +207,7 @@ export class XstateCounter extends LitElement {
 | Name              | Privacy | Type                                                      | Default    | Description                                                                                                                                                                                                                             | Inherited From |
 | ----------------- | ------- | --------------------------------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
 | `machine`         |         | `TMachine`                                                | `machine`  |                                                                                                                                                                                                                                         |                |
-| `options`         |         | `ActorOptions<TMachine> \| undefined`                     | `options`  |                                                                                                                                                                                                                                         |                |
+| `options`         |         | `ControllerActorOptions<TMachine>['options']`             | `options`  | \`createActor\` options. Typed like the constructor argument, so it cannot be reassigned&#xA;without \`input\` when the machine requires it (a new actor is created on reconnect).                                                      |                |
 | `callback`        |         | `(snapshot: SnapshotFrom<TMachine>) => void \| undefined` | `callback` |                                                                                                                                                                                                                                         |                |
 | `onError`         |         | `(error: unknown) => void \| undefined`                   | `onError`  |                                                                                                                                                                                                                                         |                |
 | `actorRef`        |         | `Actor<TMachine> \| undefined`                            |            |                                                                                                                                                                                                                                         |                |
@@ -204,6 +229,16 @@ export class XstateCounter extends LitElement {
 | `stopService`      |         |                                                                                                                                                                                 |                                      | `void` |                |
 | `hostConnected`    |         |                                                                                                                                                                                 |                                      | `void` |                |
 | `hostDisconnected` |         |                                                                                                                                                                                 |                                      | `void` |                |
+
+<details><summary>Private API</summary>
+
+##### Methods
+
+| Name           | Privacy | Description | Parameters | Return            | Inherited From |
+| -------------- | ------- | ----------- | ---------- | ----------------- | -------------- |
+| `#createActor` | private |             |            | `Actor<TMachine>` |                |
+
+</details>
 
 <hr/>
 

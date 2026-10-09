@@ -15,7 +15,10 @@ exports[`BlockquoteControllerXstate > Default > Semantic Dom and a11y > SHADOW D
     <button data-counter="increment">
       Increment
     </button>
-    <button data-counter="decrement">
+    <button
+      data-counter="decrement"
+      disabled=""
+    >
       Decrement
     </button>
   </span>
