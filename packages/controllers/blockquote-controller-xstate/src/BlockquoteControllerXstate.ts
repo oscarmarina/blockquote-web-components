@@ -52,7 +52,7 @@ const reportUnhandledError = (error: unknown): void => {
  * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
  * ### Connect XState machines with Lit
- * The BlockquoteControllerXstate is a Lit Reactive Controller that is specifically designed to facilitate a integration with XState. This controller provides the capability to subscribe to an XState actor. It also provides a callback function to handle the state changes.
+ * The BlockquoteControllerXstate is a Lit Reactive Controller that is specifically designed to facilitate an integration with XState. This controller provides the capability to subscribe to an XState actor. It also provides a callback function to handle the state changes.
  *
  * - [xstate v6](https://stately.ai/docs/installation)
  * - [xstate v6 - examples](https://stately.ai/docs/examples)
@@ -120,15 +120,15 @@ const reportUnhandledError = (error: unknown): void => {
  * });
  * ```
  *
- * **`new BlockquoteControllerXstate(host, config)`**
+ * **`new BlockquoteControllerXstate(this, {machine, options, callback, onError})`**
  *
- * - `host`: the Lit reactive controller host (usually `this`).
- * - `config.machine`: the XState machine.
- * - `config.options`: `createActor` options (`input`, `inspect`, ...). Optional, unless the machine
- *   requires input: then `{input}` or `{snapshot}` must be provided, as when calling `createActor`.
- * - `config.callback`: called with every new snapshot: the first one on each connection and the
+ * - `this`: the host component (a Lit `ReactiveControllerHost`, usually the `LitElement` itself).
+ * - `machine` (required): the XState machine.
+ * - `options`: `createActor` options (`input`, `inspect`, ...). Optional, unless the machine requires
+ *   input: then `{input}` or `{snapshot}` must be provided, as when calling `createActor`.
+ * - `callback` (optional): called with every new snapshot: the first one on each connection and the
  *   last one (`snapshot.status === 'stopped'`) when the host is disconnected.
- * - `config.onError`: called when the actor errors (the `'error'` snapshot is also sent to
+ * - `onError` (optional): called when the actor errors (the `'error'` snapshot is also sent to
  *   `callback`). If omitted, the error is reported as unhandled (`reportError`).
  *
  * ***Machine with required input***
@@ -187,7 +187,7 @@ const reportUnhandledError = (error: unknown): void => {
  *     this._xstate = snapshot;
  *   };
  *
- *   // xstate v6 inspection events: '@xstate.actor' | '@xstate.transition' | '@xstate.deadletter'
+ *   // xstate v6 inspection events: '@xstate.actor' | '@xstate.transition'
  *   _inspectEvents = (inspEvent) => {
  *     if (inspEvent.type === '@xstate.transition' && inspEvent.snapshot.status === 'stopped') {
  *       this._xstate = {};
