@@ -106,10 +106,14 @@
     ]
   },
   "overrides": {
+    "axios": "^1.20.0",
     "glob": "^13.0.6",
     "js-yaml": "^5.4.2",
-    "smol-toml": "^1.9.0",
-    "pacote": "^22.0.0"
+    "nx": {
+      "undici": "^7.29.1"
+    },
+    "pacote": "^22.0.0",
+    "smol-toml": "^1.9.0"
   },
   "dependencies": {
     "linkedom": "^0.18.13"
