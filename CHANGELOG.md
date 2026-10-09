@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.29.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.28.0...v2.29.0) (2026-10-09)
+
+### Features
+
+* **blockquote-controller-xstate:** update alpha version ([2157eb2](https://github.com/oscarmarina/blockquote-web-components/commit/2157eb2d218543ead51367180ee0fb5b2dc851a0))
+* **blockquote-controller-xstate:** update alpha version ([9f0afa1](https://github.com/oscarmarina/blockquote-web-components/commit/9f0afa186b50391f3a1dde0ef27d11330cbc2293))
+
+### Bug Fixes
+
+* **blockquote-web-components/blockquote-mixin-slot-content:** improve hasOnlyWhitespace function ([9210712](https://github.com/oscarmarina/blockquote-web-components/commit/921071261f1d187c7558001110090a59821aad20))
+
 ## [2.28.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.27.0...v2.28.0) (2026-09-27)
 
 ### Features
