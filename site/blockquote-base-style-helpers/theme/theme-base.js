@@ -1,1 +1,1 @@
-import{tertiary0 as e,tertiary1 as t,tertiary2 as n}from"./theme-base-common.js";export{e as tertiary0,t as tertiary1,n as tertiary2};
+export{tertiary0,tertiary1,tertiary2}from"./theme-base-common.js";

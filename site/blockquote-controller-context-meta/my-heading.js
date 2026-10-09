@@ -1,1 +1,1 @@
-import{t as e}from"./assets/my-heading-BO_8DKps.js";export{e as MyHeading};
+export{t as MyHeading}from"./assets/my-heading-BO_8DKps.js";
