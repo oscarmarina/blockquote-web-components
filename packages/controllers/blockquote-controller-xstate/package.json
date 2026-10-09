@@ -130,7 +130,7 @@
   },
   "dependencies": {
     "lit": "^3.3.3",
-    "xstate": "^6.0.0-alpha.59"
+    "xstate": "^6.0.0-alpha.65"
   },
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-embedded-webview": "^1.15.1"

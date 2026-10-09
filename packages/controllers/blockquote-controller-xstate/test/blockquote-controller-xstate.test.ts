@@ -75,10 +75,32 @@ describe('BlockquoteControllerXstate', () => {
       expect(el.counterController.snapshot!.context.counter).toBe(1);
     });
 
-    it('decreases the counter on Decrement button click', () => {
+    it('decreases the counter on Decrement button click', async () => {
       el.shadowRoot?.querySelector<HTMLButtonElement>('button')?.click();
+      await el.updateComplete;
       el.shadowRoot?.querySelector<HTMLButtonElement>('button + button')?.click();
       expect(el.counterController.snapshot!.context.counter).toBe(0);
+    });
+
+    it('disables the Decrement button when the DEC event cannot be handled', async () => {
+      const decrementButton = el.shadowRoot?.querySelector<HTMLButtonElement>('button + button');
+      expect(decrementButton?.disabled).toBe(true);
+      el.shadowRoot?.querySelector<HTMLButtonElement>('button')?.click();
+      await el.updateComplete;
+      expect(decrementButton?.disabled).toBe(false);
+    });
+
+    it('disables the Increment button when the counter reaches the maximum', async () => {
+      const incrementButton = el.shadowRoot?.querySelector<HTMLButtonElement>('button');
+      for (let i = 0; i < 10; i++) {
+        incrementButton?.click();
+        await el.updateComplete;
+      }
+      expect(el.counterController.snapshot!.context.counter).toBe(10);
+      expect(incrementButton?.disabled).toBe(true);
+      expect(el.shadowRoot?.querySelector<HTMLButtonElement>('button + button')?.disabled).toBe(
+        false
+      );
     });
 
     it('disable the counter on Enabled/Disabled button click', () => {
@@ -114,6 +136,30 @@ describe('BlockquoteControllerXstate', () => {
       removeController: vi.fn(),
       requestUpdate: vi.fn(),
       updateComplete: Promise.resolve(true),
+    });
+
+    it('snapshot.can() is false when the transition function ignores the event', () => {
+      const boundedMachine = createMachine({
+        context: {count: 0},
+        on: {
+          INC: ({context}) => ({context: {count: context.count + 1}}),
+          // Returning `undefined` ignores the event
+          DEC: ({context}) =>
+            context.count > 0 ? {context: {count: context.count - 1}} : undefined,
+        },
+      });
+      const controller = new BlockquoteControllerXstate(createHost(), {machine: boundedMachine});
+
+      controller.hostConnected();
+      expect(controller.snapshot?.can({type: 'DEC'})).toBe(false);
+      controller.send({type: 'DEC'});
+      expect(controller.snapshot?.context.count).toBe(0);
+
+      controller.send({type: 'INC'});
+      expect(controller.snapshot?.can({type: 'DEC'})).toBe(true);
+
+      controller.hostDisconnected();
+      expect(controller.snapshot?.can({type: 'INC'})).toBe(false);
     });
 
     it('exposes the actor and snapshot before the host is connected', () => {

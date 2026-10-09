@@ -68,19 +68,25 @@ export class XstateCounter extends LitElement {
     return this.counterController.snapshot?.matches('disabled');
   }
 
+  // `false` when the event would be ignored (guards, `disabled` state) or the actor is stopped
+  /** @param {'INC' | 'DEC'} type */
+  #can(type) {
+    return this.counterController.snapshot?.can({type}) ?? false;
+  }
+
   render() {
     return html`
       <slot></slot>
       <div data-disabled="${this.#disabled}">
         <span>
           <button
-            ?disabled="${this.#disabled}"
+            ?disabled="${!this.#can('INC')}"
             data-counter="increment"
             @click=${() => this.counterController.send({type: 'INC'})}>
             Increment
           </button>
           <button
-            ?disabled="${this.#disabled}"
+            ?disabled="${!this.#can('DEC')}"
             data-counter="decrement"
             @click=${() => this.counterController.send({type: 'DEC'})}>
             Decrement
