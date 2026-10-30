@@ -1,1 +1,1 @@
-export{t as MyHeading}from"./assets/my-heading-BO_8DKps.js";
+export{t as MyHeading}from"./assets/my-heading-BiIcKU6W.js";

@@ -1,4 +1,4 @@
-import{a as e,d as t,m as n,o as r,t as i}from"../assets/src-ZFMlM1TH.js";import{t as a}from"../assets/defineProperty-BbfpZ9Tg.js";var o=Symbol.for(`symbol-for-surface`),s=class extends r{constructor(){super(),this._provider=new e(this,{context:o}),this.data=void 0}willUpdate(e){var t;(t=super.willUpdate)==null||t.call(this,e),e.has(`data`)&&this._provider.setValue(this.data)}render(){return t`
+import{a as e,d as t,m as n,o as r,t as i}from"../assets/src-_uaYFYrw.js";import{t as a}from"../assets/defineProperty-BbfpZ9Tg.js";var o=Symbol.for(`symbol-for-surface`),s=class extends r{constructor(){super(),this._provider=new e(this,{context:o}),this.data=void 0}willUpdate(e){var t;(t=super.willUpdate)==null||t.call(this,e),e.has(`data`)&&this._provider.setValue(this.data)}render(){return t`
       <p>
         Provider data:
         <code>${this.data}</code>
