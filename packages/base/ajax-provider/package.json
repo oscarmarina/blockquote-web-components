@@ -126,8 +126,8 @@
   },
   "dependencies": {
     "@open-wc/dedupe-mixin": "^2.0.1",
-    "@rxjs/observable-polyfill": "^9.0.0-beta.0",
-    "rxjs": "^9.0.0-beta.0"
+    "@rxjs/observable-polyfill": "^9.0.0-beta.1",
+    "rxjs": "^9.0.0-beta.1"
   },
   "devDependencies": {
     "@blockquote-web-components/blockquote-base-embedded-webview": "^1.15.1",
