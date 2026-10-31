@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.30.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.29.1...v2.30.0) (2026-10-31)
+
+### Features
+
+* **blockquote-controller-xstate:** stable trigger/can proxies and passive error observer ([56be493](https://github.com/oscarmarina/blockquote-web-components/commit/56be493bcc9f5069322ddb252d8e601b263ff721))
+
 ## [2.29.1](https://github.com/oscarmarina/blockquote-web-components/compare/v2.29.0...v2.29.1) (2026-10-30)
 
 ## [2.29.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.28.0...v2.29.0) (2026-10-09)
