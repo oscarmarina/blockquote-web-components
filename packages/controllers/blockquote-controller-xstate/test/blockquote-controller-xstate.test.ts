@@ -1,5 +1,5 @@
 import {describe, it, expect, beforeAll, beforeEach, chai, vi} from 'vitest';
-import {createMachine} from 'xstate';
+import {createMachine, setup, types} from 'xstate';
 import {fixture, fixtureCleanup} from '@open-wc/testing-helpers';
 import {chaiA11yAxe} from 'chai-a11y-axe';
 import {getDiffableHTML} from '@open-wc/semantic-dom-diff/get-diffable-html.js';
@@ -31,7 +31,7 @@ describe('BlockquoteControllerXstate', () => {
     });
 
     it('default counter 0', () => {
-      expect(el.counterController.snapshot!.context.counter).toBe(0);
+      expect(el.counterController.snapshot.context.counter).toBe(0);
     });
 
     it('should get an instance of actor', () => {
@@ -72,14 +72,14 @@ describe('BlockquoteControllerXstate', () => {
 
     it('increases the counter on Increment button click', () => {
       el.shadowRoot?.querySelector<HTMLButtonElement>('button')?.click();
-      expect(el.counterController.snapshot!.context.counter).toBe(1);
+      expect(el.counterController.snapshot.context.counter).toBe(1);
     });
 
     it('decreases the counter on Decrement button click', async () => {
       el.shadowRoot?.querySelector<HTMLButtonElement>('button')?.click();
       await el.updateComplete;
       el.shadowRoot?.querySelector<HTMLButtonElement>('button + button')?.click();
-      expect(el.counterController.snapshot!.context.counter).toBe(0);
+      expect(el.counterController.snapshot.context.counter).toBe(0);
     });
 
     it('disables the Decrement button when the DEC event cannot be handled', async () => {
@@ -96,7 +96,7 @@ describe('BlockquoteControllerXstate', () => {
         incrementButton?.click();
         await el.updateComplete;
       }
-      expect(el.counterController.snapshot!.context.counter).toBe(10);
+      expect(el.counterController.snapshot.context.counter).toBe(10);
       expect(incrementButton?.disabled).toBe(true);
       expect(el.shadowRoot?.querySelector<HTMLButtonElement>('button + button')?.disabled).toBe(
         false
@@ -104,19 +104,28 @@ describe('BlockquoteControllerXstate', () => {
     });
 
     it('disable the counter on Enabled/Disabled button click', () => {
-      let lastCounter = el.counterController.snapshot!.context.counter;
+      let lastCounter = el.counterController.snapshot.context.counter;
       const counterButton = el.shadowRoot?.querySelector<HTMLButtonElement>('button');
       const disabledButton = el.shadowRoot?.querySelector<HTMLButtonElement>('div + div button');
 
       counterButton?.click();
-      expect(el.counterController.snapshot!.context.counter).toBe(lastCounter + 1);
-      lastCounter = el.counterController.snapshot!.context.counter;
+      expect(el.counterController.snapshot.context.counter).toBe(lastCounter + 1);
+      lastCounter = el.counterController.snapshot.context.counter;
 
       disabledButton?.click();
-      expect(el.counterController.snapshot!.value).toBe('disabled');
+      expect(el.counterController.snapshot.value).toBe('disabled');
 
+      // Clicked before the re-render disables the button: the machine ignores `INC`, and
+      // XState warns about it in development builds
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
       counterButton?.click();
-      expect(el.counterController.snapshot!.context.counter).toBe(lastCounter);
+      expect(el.counterController.snapshot.context.counter).toBe(lastCounter);
+      expect(warn).toHaveBeenCalledWith(
+        expect.stringContaining(
+          'received event "INC" in state "disabled" with no matching transition'
+        )
+      );
+      warn.mockRestore();
     });
   });
 
@@ -151,22 +160,28 @@ describe('BlockquoteControllerXstate', () => {
       const controller = new BlockquoteControllerXstate(createHost(), {machine: boundedMachine});
 
       controller.hostConnected();
-      expect(controller.snapshot?.can({type: 'DEC'})).toBe(false);
+      expect(controller.snapshot.can({type: 'DEC'})).toBe(false);
+      // Ignored events are reported in development builds
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
       controller.send({type: 'DEC'});
-      expect(controller.snapshot?.context.count).toBe(0);
+      expect(controller.snapshot.context.count).toBe(0);
+      expect(warn).toHaveBeenCalledWith(
+        expect.stringContaining('received event "DEC" in state {} with no matching transition')
+      );
+      warn.mockRestore();
 
       controller.send({type: 'INC'});
-      expect(controller.snapshot?.can({type: 'DEC'})).toBe(true);
+      expect(controller.snapshot.can({type: 'DEC'})).toBe(true);
 
       controller.hostDisconnected();
-      expect(controller.snapshot?.can({type: 'INC'})).toBe(false);
+      expect(controller.snapshot.can({type: 'INC'})).toBe(false);
     });
 
     it('exposes the actor and snapshot before the host is connected', () => {
       const controller = new BlockquoteControllerXstate(createHost(), {machine});
 
       expect(controller.actor).toBeDefined();
-      expect(controller.snapshot?.context.count).toBe(0);
+      expect(controller.snapshot.context.count).toBe(0);
     });
 
     it('notifies the first snapshot through the callback on connect', () => {
@@ -197,7 +212,7 @@ describe('BlockquoteControllerXstate', () => {
 
       controller.hostConnected();
       controller.send({type: 'INC'});
-      expect(controller.snapshot?.context.count).toBe(1);
+      expect(controller.snapshot.context.count).toBe(1);
       const firstActor = controller.actor;
 
       controller.hostDisconnected();
@@ -205,10 +220,10 @@ describe('BlockquoteControllerXstate', () => {
 
       controller.hostConnected();
       expect(controller.actor).not.toBe(firstActor);
-      expect(controller.snapshot?.context.count).toBe(0);
+      expect(controller.snapshot.context.count).toBe(0);
 
       controller.send({type: 'INC'});
-      expect(controller.snapshot?.context.count).toBe(1);
+      expect(controller.snapshot.context.count).toBe(1);
       controller.hostDisconnected();
     });
 
@@ -229,7 +244,7 @@ describe('BlockquoteControllerXstate', () => {
 
       controller.hostConnected();
       const firstActor = controller.actor;
-      controller.actor?.stop();
+      controller.actor.stop();
       controller.unsubscribe();
       controller.hostConnected();
 
@@ -239,10 +254,10 @@ describe('BlockquoteControllerXstate', () => {
     });
 
     it('calls onError when the actor errors', () => {
+      vi.useFakeTimers();
       const onError = vi.fn();
       const callback = vi.fn();
       const host = createHost();
-      const reportError = vi.spyOn(globalThis, 'reportError');
       const controller = new BlockquoteControllerXstate(host, {machine, onError, callback});
 
       controller.hostConnected();
@@ -253,41 +268,163 @@ describe('BlockquoteControllerXstate', () => {
       expect(onError.mock.calls[0][0]).toBeInstanceOf(Error);
       expect(callback.mock.lastCall?.[0].status).toBe('error');
       expect(host.requestUpdate).toHaveBeenCalled();
-      expect(reportError).not.toHaveBeenCalled();
-      reportError.mockRestore();
+      // Handled: XState does not report it as unhandled
+      expect(() => vi.runAllTimers()).not.toThrow();
+      vi.useRealTimers();
       controller.hostDisconnected();
     });
 
-    it('sends the error snapshot to callback and reports the error without onError', () => {
+    it('lets XState report the error as unhandled without onError', () => {
+      vi.useFakeTimers();
       const callback = vi.fn();
-      const reportError = vi.spyOn(globalThis, 'reportError').mockImplementation(() => undefined);
       const controller = new BlockquoteControllerXstate(createHost(), {machine, callback});
 
       controller.hostConnected();
       controller.send({type: 'FAIL'});
 
       expect(callback.mock.lastCall?.[0].status).toBe('error');
-      expect(reportError).toHaveBeenCalledTimes(1);
-      expect(reportError.mock.calls[0][0]).toBeInstanceOf(Error);
       expect(controller.isActive).toBe(false);
-      reportError.mockRestore();
-      controller.hostDisconnected();
-    });
-
-    it('falls back to an async throw when reportError is not available', () => {
-      vi.useFakeTimers();
-      const original = globalThis.reportError;
-      // @ts-expect-error simulate an environment without reportError
-      delete globalThis.reportError;
-      const controller = new BlockquoteControllerXstate(createHost(), {machine});
-
-      controller.hostConnected();
-      controller.send({type: 'FAIL'});
-
+      // The controller subscribes as `passive`: it does not count as an error handler
       expect(() => vi.runAllTimers()).toThrow('boom');
-      globalThis.reportError = original;
       vi.useRealTimers();
       controller.hostDisconnected();
     });
+
+    it('does not report the error when another subscriber handles it', () => {
+      vi.useFakeTimers();
+      const controller = new BlockquoteControllerXstate(createHost(), {machine});
+      const external = vi.fn();
+
+      controller.hostConnected();
+      controller.actor.subscribe({error: external});
+      controller.send({type: 'FAIL'});
+
+      expect(external).toHaveBeenCalledTimes(1);
+      expect(() => vi.runAllTimers()).not.toThrow();
+      vi.useRealTimers();
+      controller.hostDisconnected();
+    });
+  });
+
+  describe('trigger and can', () => {
+    const machine = setup({
+      schemas: {
+        context: types<{count: number; label: string}>(),
+        events: {
+          // eslint-disable-next-line @typescript-eslint/no-invalid-void-type -- XState's way to declare an event without payload
+          INC: types<void>(),
+          RENAME: types<{label: string}>(),
+          // eslint-disable-next-line @typescript-eslint/no-invalid-void-type -- XState's way to declare an event without payload
+          FAIL: types<void>(),
+        },
+      },
+    }).createMachine({
+      context: {count: 0, label: ''},
+      on: {
+        INC: ({context}) => (context.count < 2 ? {context: {count: context.count + 1}} : undefined),
+        RENAME: ({event}) => ({context: {label: event.label}}),
+        FAIL: () => {
+          throw new Error('boom');
+        },
+      },
+    });
+
+    const createHost = () => ({
+      addController: vi.fn(),
+      removeController: vi.fn(),
+      requestUpdate: vi.fn(),
+      updateComplete: Promise.resolve(true),
+    });
+
+    it('sends typed events, with and without payload', () => {
+      const controller = new BlockquoteControllerXstate(createHost(), {machine});
+
+      controller.hostConnected();
+      controller.trigger.INC();
+      controller.trigger.RENAME({label: 'a'});
+
+      expect(controller.snapshot.context).toEqual({count: 1, label: 'a'});
+      controller.hostDisconnected();
+    });
+
+    it('can follows the transition functions and the actor status', () => {
+      vi.useFakeTimers();
+      const controller = new BlockquoteControllerXstate(createHost(), {machine, onError: vi.fn()});
+      const {can, trigger} = controller;
+
+      controller.hostConnected();
+      expect(can.INC()).toBe(true);
+      expect(can.RENAME({label: 'x'})).toBe(true);
+
+      trigger.INC();
+      trigger.INC();
+      expect(can.INC()).toBe(false);
+
+      trigger.FAIL();
+      expect(controller.snapshot.status).toBe('error');
+      expect(can.RENAME({label: 'x'})).toBe(false);
+      vi.useRealTimers();
+      controller.hostDisconnected();
+    });
+
+    it('keeps trigger and can usable across reconnections (stable proxies)', () => {
+      const controller = new BlockquoteControllerXstate(createHost(), {machine});
+      const {trigger, can} = controller;
+
+      controller.hostConnected();
+      const firstActor = controller.actor;
+      trigger.INC();
+
+      controller.hostDisconnected();
+      expect(can.INC()).toBe(false);
+
+      controller.hostConnected();
+      expect(controller.actor).not.toBe(firstActor);
+      expect(can.INC()).toBe(true);
+
+      // The kept proxies reach the new actor; XState's `actor.trigger` would reach the stopped one
+      trigger.INC();
+      expect(controller.snapshot.context.count).toBe(1);
+      expect(firstActor.getSnapshot().context.count).toBe(1);
+      expect(controller.trigger).toBe(trigger);
+      controller.hostDisconnected();
+    });
+
+    it('actor.trigger read before an await drops a response that arrives after a reconnection', async () => {
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+      const controller = new BlockquoteControllerXstate(createHost(), {machine});
+
+      controller.hostConnected();
+      const session = controller.actor.trigger;
+      let respond!: (label: string) => void;
+      const pending = new Promise<string>((resolve) => (respond = resolve)).then((label) =>
+        session.RENAME({label})
+      );
+
+      controller.hostDisconnected();
+      controller.hostConnected();
+      respond('stale');
+      await pending;
+
+      expect(controller.snapshot.context.label).toBe('');
+      expect(warn).toHaveBeenCalledWith(expect.stringContaining('not delivered (stopped)'));
+
+      // `controller.trigger` would have delivered it to the new session
+      controller.trigger.RENAME({label: 'stale'});
+      expect(controller.snapshot.context.label).toBe('stale');
+      warn.mockRestore();
+      controller.hostDisconnected();
+    });
+
+    it.each(['trigger', 'can'] as const)(
+      '%s is not a thenable and ignores symbol keys',
+      async (key) => {
+        const proxy = new BlockquoteControllerXstate(createHost(), {machine})[key];
+
+        expect((proxy as Record<string, unknown>).then).toBeUndefined();
+        expect((proxy as Record<symbol, unknown>)[Symbol.toPrimitive]).toBeUndefined();
+        await expect(Promise.resolve(proxy)).resolves.toBe(proxy);
+      }
+    );
   });
 });

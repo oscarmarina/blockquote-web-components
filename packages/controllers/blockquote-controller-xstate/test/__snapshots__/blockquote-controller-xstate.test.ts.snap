@@ -35,8 +35,8 @@ exports[`BlockquoteControllerXstate > Default > Semantic Dom and a11y > SHADOW D
   <slot>
   </slot>
   <span>
-    The “Disabled counter” disables the counter for:
-          0 milliseconds.
+    The “Disabled counter” disables the counter for: 0
+          milliseconds.
   </span>
 </span>
 "

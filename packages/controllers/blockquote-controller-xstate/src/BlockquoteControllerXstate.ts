@@ -2,8 +2,10 @@ import {createActor} from 'xstate';
 import type {
   Actor,
   ActorOptions,
+  AnyMachineSnapshot,
   AnyStateMachine,
   EventFrom,
+  EventObject,
   RequiredActorOptionsFor,
   RequiredActorOptionsKeys,
   Snapshot,
@@ -22,29 +24,51 @@ type ControllerActorOptions<TMachine extends AnyStateMachine> = [
   ? {options?: ActorOptions<TMachine>}
   : {options: ActorOptions<TMachine> & RequiredActorOptionsFor<TMachine>};
 
+/**
+ * `controller.trigger`: one typed sender per event type, from `schemas.events`. Same signatures
+ * as XState's `actor.trigger`, but a stable proxy owned by the controller: it always sends to
+ * the current actor, so it can be kept or destructured.
+ */
+export type ControllerTrigger<TMachine extends AnyStateMachine> = Actor<TMachine>['trigger'];
+
+/**
+ * `controller.can`: the `trigger` keys and payloads, returning `snapshot.can(...)` for the
+ * current actor. A stable proxy owned by the controller, like `trigger`.
+ */
+export type ControllerCan<TMachine extends AnyStateMachine> = {
+  [K in keyof ControllerTrigger<TMachine>]: (
+    ...args: Parameters<ControllerTrigger<TMachine>[K]>
+  ) => boolean;
+};
+
+/**
+ * A stable object whose keys are event types: `proxy.X(payload)` calls
+ * `fn({ ...payload, type: 'X' })`. Nothing is stored: `fn` decides which actor answers.
+ * Symbols (`Symbol.toPrimitive`, ...) are not events, and a `then` function would make the
+ * proxy a thenable that never settles when awaited, so an event named `then` is not reachable.
+ */
+const createEventProxy = <T extends object>(fn: (event: EventObject) => unknown): T =>
+  new Proxy({} as T, {
+    get: (_, type) =>
+      typeof type === 'string' && type !== 'then'
+        ? (payload?: object) => fn({...payload, type})
+        : undefined,
+  });
+
 export type UseMachineOptions<TMachine extends AnyStateMachine> = {
   machine: TMachine;
   /** Called with every new snapshot emitted by the actor. */
   callback?: (snapshot: SnapshotFrom<TMachine>) => void;
   /**
    * Called when the actor errors. The `'error'` snapshot is also sent to `callback`.
-   * If omitted, the error is reported as unhandled (`reportError`).
+   * If omitted, XState reports the error as unhandled, unless another subscriber of the
+   * actor handles it.
    */
   onError?: (error: unknown) => void;
 } & ControllerActorOptions<TMachine>;
 
 export type BlockquoteControllerXstateOptions<TMachine extends AnyStateMachine> =
   UseMachineOptions<TMachine>;
-
-const reportUnhandledError = (error: unknown): void => {
-  if (typeof globalThis.reportError === 'function') {
-    globalThis.reportError(error);
-  } else {
-    setTimeout(() => {
-      throw error;
-    });
-  }
-};
 
 /**
  * # BlockquoteControllerXstate
@@ -90,7 +114,7 @@ const reportUnhandledError = (error: unknown): void => {
  *   delays: {
  *     backoff: ({context}) => context.counter * 1000,
  *   },
- * });
+ *});
  *
  * export const counterMachine = counterSetup.createMachine({
  *   context: {counter: 0},
@@ -117,7 +141,7 @@ const reportUnhandledError = (error: unknown): void => {
  *       },
  *     },
  *   },
- * });
+ *});
  * ```
  *
  * **`new BlockquoteControllerXstate(this, {machine, options, callback, onError})`**
@@ -129,7 +153,8 @@ const reportUnhandledError = (error: unknown): void => {
  * - `callback` (optional): called with every new snapshot: the first one on each connection and the
  *   last one (`snapshot.status === 'stopped'`) when the host is disconnected.
  * - `onError` (optional): called when the actor errors (the `'error'` snapshot is also sent to
- *   `callback`). If omitted, the error is reported as unhandled (`reportError`).
+ *   `callback`). If omitted, XState reports the error as unhandled, unless another subscriber
+ *   of the actor handles it.
  *
  * ***Machine with required input***
  *
@@ -139,9 +164,9 @@ const reportUnhandledError = (error: unknown): void => {
  *     input: types<{userId: string}>(),
  *     context: types<{userId: string}>(),
  *   },
- * }).createMachine({
+ *}).createMachine({
  *   context: ({input}) => ({userId: input.userId}),
- * });
+ *});
  *
  * new BlockquoteControllerXstate(this, {machine: userMachine}); // type error: `input` is required
  * new BlockquoteControllerXstate(this, {machine: userMachine, options: {input: {userId: '123'}}});
@@ -149,8 +174,9 @@ const reportUnhandledError = (error: unknown): void => {
  *
  * Machines whose input accepts `undefined` (or that declare no input) can omit `options`.
  *
- * The actor is created in the constructor, so `snapshot`, `actor` and `send` are available
- * before the host is connected. It is started on `hostConnected` and stopped on `hostDisconnected`;
+ * The actor is created in the constructor, so `snapshot`, `actor`, `send`, `trigger` and `can`
+ * are available before the host is connected. It is started on `hostConnected` and stopped on
+ * `hostDisconnected`;
  * a new actor (initial state) is created if the host is connected again.
  *
  * ***xstate-counter.js***
@@ -173,7 +199,7 @@ const reportUnhandledError = (error: unknown): void => {
  *
  *   constructor() {
  *     super();
- *     this._xstate = {};
+ *     this._xstate = undefined;
  *     this.counterController = new BlockquoteControllerXstate(this, {
  *       machine: counterMachine,
  *       options: {
@@ -183,20 +209,19 @@ const reportUnhandledError = (error: unknown): void => {
  *     });
  *   }
  *
+ *   // The last snapshot (`status: 'stopped'`) is sent when the host is disconnected
  *   _callbackCounterController = (snapshot) => {
- *     this._xstate = snapshot;
+ *     this._xstate = snapshot.status === 'stopped' ? undefined : snapshot;
  *   };
  *
  *   // xstate v6 inspection events: '@xstate.actor' | '@xstate.transition'
  *   _inspectEvents = (inspEvent) => {
- *     if (inspEvent.type === '@xstate.transition' && inspEvent.snapshot.status === 'stopped') {
- *       this._xstate = {};
- *     }
+ *     console.info('inspect event', inspEvent);
  *   };
  *
  *   updated(props) {
  *     super.updated?.(props);
- *     if (props.has('_xstate') && this._xstate && 'value' in this._xstate) {
+ *     if (props.has('_xstate') && this._xstate) {
  *       const {context, value} = this._xstate;
  *       const counterEvent = new CustomEvent('counterchange', {
  *         bubbles: true,
@@ -207,43 +232,88 @@ const reportUnhandledError = (error: unknown): void => {
  *   }
  *
  *   get #disabled() {
- *     return this.counterController.snapshot?.matches('disabled');
- *   }
- *
- *   // `false` when the event would be ignored (guards, `disabled` state) or the actor is stopped
- *   #can(type) {
- *     return this.counterController.snapshot?.can({type}) ?? false;
+ *     return this.counterController.snapshot.matches('disabled');
  *   }
  *
  *   render() {
+ *     // `can.X()`: `false` when the event would be ignored (guards, `disabled` state) or the
+ *     // actor has finished. `trigger` and `can` always target the current actor.
+ *     const {can, trigger, snapshot} = this.counterController;
  *     return html`
  *       <slot></slot>
  *       <div data-disabled="${this.#disabled}">
  *         <span>
  *           <button
- *             ?disabled="${!this.#can('INC')}"
+ *             ?disabled="${!can.INC()}"
  *             data-counter="increment"
- *             \@click=${() => this.counterController.send({type: 'INC'})}>
+ *             \@click=${() => trigger.INC()}>
  *             Increment
  *           </button>
  *           <button
- *             ?disabled="${!this.#can('DEC')}"
+ *             ?disabled="${!can.DEC()}"
  *             data-counter="decrement"
- *             \@click=${() => this.counterController.send({type: 'DEC'})}>
+ *             \@click=${() => trigger.DEC()}>
  *             Decrement
  *           </button>
  *         </span>
- *         <p>${this.counterController.snapshot?.context.counter}</p>
+ *         <p>${snapshot.context.counter}</p>
  *       </div>
  *       <div>
- *         <button \@click=${() => this.counterController.send({type: 'TOGGLE'})}>
+ *         <button \@click=${() => trigger.TOGGLE()}>
  *           ${this.#disabled ? 'Enabled counter' : 'Disabled counter'}
  *         </button>
  *       </div>
  *     `;
  *   }
- * }
+ *}
  * ```
+ *
+ * ***`trigger` and `can`***
+ *
+ * `trigger` sends typed events generated from `schemas.events`: `trigger.INC()`,
+ * `trigger.RENAME({label})`, like `send({type: 'RENAME', label})`. It has the same signatures as
+ * XState v6's `actor.trigger`, with one difference: XState's belongs to one actor, while the
+ * controller's is a stable proxy (`ControllerTrigger`) that always sends to the current actor.
+ *
+ * That matters because a new actor is created each time the host is connected again (stopped
+ * actors cannot restart). `actor.trigger` kept from the first connection would send to a stopped
+ * actor, and the event would be lost; `controller.trigger` can be kept or destructured safely.
+ *
+ * `can` (`ControllerCan`) has the same shape, is also a stable proxy, and returns
+ * `snapshot.can(event)` for the current actor: `can.INC()`, `can.RENAME({label})`. It is `false`
+ * when the transition function ignores the event (returns `undefined`) or the actor has finished
+ * (`'stopped'`, `'done'` or `'error'`). The machine still rejects invalid events: `can` only
+ * drives the UI.
+ *
+ * ***`controller.trigger` vs `controller.actor.trigger`***
+ *
+ * | | Sends to | After the host is connected again |
+ * | --- | --- | --- |
+ * | `controller.trigger` | the current actor, looked up on each call | reaches the new actor |
+ * | `controller.actor.trigger` | the actor that was current when it was read | reaches the stopped actor: the event is dropped (a warning in development builds) |
+ *
+ * Use `controller.trigger` for events from the UI. Use `controller.actor.trigger` when an event
+ * belongs to one session of the machine, such as a response to a request: read it before the
+ * `await`, so a response that arrives after the host was disconnected does not reach the new
+ * actor.
+ *
+ * ```ts
+ * async #onInput(ev: InputEvent) {
+ *   const query = (ev.target as HTMLInputElement).value;
+ *   this.search.trigger.typed({query});
+ *
+ *   // Bound to this session: read before the `await`
+ *   const session = this.search.actor.trigger;
+ *   const items = await fetchSuggestions(query);
+ *
+ *   // Dropped if the actor that asked was stopped in the meantime.
+ *   // `this.search.trigger.results({items})` would show results for `query` in the new session.
+ *   session.results({items});
+ *}
+ * ```
+ *
+ * Moving the request into the machine (an invoked `createAsyncLogic`) avoids the choice: the
+ * request belongs to the actor, and stopping the actor cancels it (its `AbortSignal` is aborted).
  * <hr>
  */
 export class BlockquoteControllerXstate<
@@ -257,11 +327,34 @@ export class BlockquoteControllerXstate<
    */
   options: ControllerActorOptions<TMachine>['options'];
   callback?: (snapshot: SnapshotFrom<TMachine>) => void;
+  /**
+   * Whether it is set decides, when the host connects, if XState reports errors as unhandled:
+   * adding or removing it applies from the next connection.
+   */
   onError?: (error: unknown) => void;
-  actorRef?: Actor<TMachine>;
+  actorRef: Actor<TMachine>;
   subscription?: Subscription;
   currentSnapshot: SnapshotFrom<TMachine> | undefined;
   readonly host: THost;
+  /**
+   * Typed event senders generated from `schemas.events`: `trigger.INC()`,
+   * `trigger['feedback.update']({ value })`, like `send({ type, ...payload })`.
+   * A stable proxy: it always sends to the current actor (a new one is created each time the
+   * host is connected again), so it can be kept or destructured.
+   *
+   * Not `actor.trigger`, which is bound to one actor. For an event that belongs to one session,
+   * such as the response to a request, read `actor.trigger` before the `await`: if the host was
+   * disconnected meanwhile, the response is dropped instead of reaching the new actor.
+   */
+  readonly trigger: ControllerTrigger<TMachine>;
+  /**
+   * Typed `snapshot.can(...)` per event type, shaped like `trigger`:
+   * `can.INC()`, `can['feedback.update']({ value })`.
+   * `false` when the event would be ignored or the actor has finished (`'stopped'`, `'done'`
+   * or `'error'`). Before the host connects, it answers for the initial state.
+   * A stable proxy, like `trigger`: it always checks the current actor.
+   */
+  readonly can: ControllerCan<TMachine>;
 
   /**
    * @param {THost} host - The host object.
@@ -272,10 +365,17 @@ export class BlockquoteControllerXstate<
     this.options = options;
     this.callback = callback;
     this.onError = onError;
-    // The actor is created (not started) eagerly so `actor`, `snapshot` and `send`
-    // are available before the host is connected.
+    // The actor is created (not started) eagerly so `actor`, `snapshot`, `send` and
+    // `trigger` are available before the host is connected.
     this.actorRef = this.#createActor();
     this.currentSnapshot = this.snapshot;
+    // Both read `this.actorRef` on each call, never at creation: they follow the current actor
+    this.trigger = createEventProxy((event) => this.actorRef.send(event as EventFrom<TMachine>));
+    this.can = createEventProxy((event) =>
+      // `SnapshotFrom<TMachine>` does not resolve to a machine snapshot while generic.
+      // XState already answers `false` once the actor has finished.
+      (this.snapshot as AnyMachineSnapshot).can(event)
+    );
 
     (this.host = host).addController(this);
   }
@@ -291,17 +391,18 @@ export class BlockquoteControllerXstate<
   }
 
   /**
-   * The underlying ActorRef from XState
+   * The underlying ActorRef from XState. A new actor is created each time the host is
+   * connected again, so do not keep a reference to it across connections.
    */
-  get actor(): Actor<TMachine> | undefined {
+  get actor(): Actor<TMachine> {
     return this.actorRef;
   }
 
   /**
    * The latest snapshot of the actor's state
    */
-  get snapshot(): SnapshotFrom<TMachine> | undefined {
-    return this.actorRef?.getSnapshot();
+  get snapshot(): SnapshotFrom<TMachine> {
+    return this.actorRef.getSnapshot();
   }
 
   /**
@@ -309,7 +410,7 @@ export class BlockquoteControllerXstate<
    * @param {import('xstate').EventFrom<typeof this.machine>} ev
    */
   send(ev: EventFrom<TMachine>): void {
-    this.actorRef?.send(ev);
+    this.actorRef.send(ev);
   }
 
   unsubscribe(): void {
@@ -335,8 +436,8 @@ export class BlockquoteControllerXstate<
    * it is `'stopped'` (and `'done'` / `'error'` when it finishes or fails).
    */
   get isActive(): boolean {
-    const snapshot: Snapshot<unknown> | undefined = this.actorRef?.getSnapshot();
-    return snapshot?.status === 'active';
+    const snapshot: Snapshot<unknown> = this.actorRef.getSnapshot();
+    return snapshot.status === 'active';
   }
 
   /**
@@ -348,7 +449,7 @@ export class BlockquoteControllerXstate<
       return;
     }
 
-    if (!this.actorRef || !this.isActive) {
+    if (!this.isActive) {
       this.actorRef = this.#createActor();
     }
 
@@ -359,27 +460,23 @@ export class BlockquoteControllerXstate<
     this.subscription = actorRef.subscribe({
       next: this.onNext,
       // XState does not emit the `'error'` snapshot through `next`: forward it, so `callback`
-      // receives it and the host re-renders. Without `onError`, the error is still reported
-      // as unhandled (`reportError`).
+      // receives it and the host re-renders.
       error: (error: unknown) => {
         this.onNext(actorRef.getSnapshot());
-
-        if (this.onError) {
-          this.onError(error);
-        } else {
-          reportUnhandledError(error);
-        }
+        this.onError?.(error);
       },
-      // `stop()` (and final states) complete the observers without emitting a last
-      // snapshot: forward it, so `callback` receives the `'stopped'` / `'done'` snapshot.
+      // `stop()` (and final states) complete the observers without emitting a last snapshot
       complete: () => this.onNext(actorRef.getSnapshot()),
+      // Without `onError` the controller only tracks the actor's lifecycle: XState still
+      // reports the error as unhandled, unless another subscriber handles it.
+      passive: !this.onError,
     });
     actorRef.start();
     this.onNext(actorRef.getSnapshot());
   }
 
   stopService(): void {
-    this.actorRef?.stop();
+    this.actorRef.stop();
     this.unsubscribe();
   }
 

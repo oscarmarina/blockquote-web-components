@@ -60,8 +60,9 @@
     "sass:watch": "sass-style-template",
     "sort:package": "npx sort-package-json",
     "start": "concurrently -k -r \"npm:vite\" \"npm:sass:watch\"",
-    "test": "vitest",
+    "test": "npm run typecheck && vitest",
     "test:watch": "vitest --browser.headless=false",
+    "typecheck": "tsc --noEmit -p .",
     "vite": "vite"
   },
   "lint-staged": {
