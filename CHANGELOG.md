@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.31.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.30.0...v2.31.0) (2026-10-31)
+
+### Features
+
+* **blockquote-controller-xstate:** emitted events ([f085223](https://github.com/oscarmarina/blockquote-web-components/commit/f08522392bd02d876b2afead6c549e19dae98574))
+
 ## [2.30.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.29.1...v2.30.0) (2026-10-31)
 
 ### Features
