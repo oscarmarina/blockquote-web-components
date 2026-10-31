@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/oscarmarina/blockquote-web-components/compare/%40blockquote-web-components%2Fblockquote-controller-xstate%402.8.1...%40blockquote-web-components%2Fblockquote-controller-xstate%402.9.0) (2026-10-31)
+
+### Features
+
+* **blockquote-controller-xstate:** stable trigger/can proxies and passive error observer ([56be493](https://github.com/oscarmarina/blockquote-web-components/commit/56be493bcc9f5069322ddb252d8e601b263ff721))
+
+
 ## [2.8.1](https://github.com/oscarmarina/blockquote-web-components/compare/%40blockquote-web-components%2Fblockquote-controller-xstate%402.8.0...%40blockquote-web-components%2Fblockquote-controller-xstate%402.8.1) (2026-10-30)
 
 **Note:** Version bump only for package @blockquote-web-components/blockquote-controller-xstate
