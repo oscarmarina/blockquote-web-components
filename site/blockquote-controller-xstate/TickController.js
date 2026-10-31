@@ -1,0 +1,1 @@
+export{t as TickController}from"./assets/TickController-DgPWQsZZ.js";
