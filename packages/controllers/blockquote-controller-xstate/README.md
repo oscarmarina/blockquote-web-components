@@ -80,7 +80,8 @@ export const counterMachine = counterSetup.createMachine({
 - `callback` (optional): called with every new snapshot: the first one on each connection and the
   last one (`snapshot.status === 'stopped'`) when the host is disconnected.
 - `onError` (optional): called when the actor errors (the `'error'` snapshot is also sent to
-  `callback`). If omitted, the error is reported as unhandled (`reportError`).
+  `callback`). If omitted, XState reports the error as unhandled, unless another subscriber
+  of the actor handles it.
 
 ***Machine with required input***
 
@@ -100,8 +101,9 @@ new BlockquoteControllerXstate(this, {machine: userMachine, options: {input: {us
 
 Machines whose input accepts `undefined` (or that declare no input) can omit `options`.
 
-The actor is created in the constructor, so `snapshot`, `actor` and `send` are available
-before the host is connected. It is started on `hostConnected` and stopped on `hostDisconnected`;
+The actor is created in the constructor, so `snapshot`, `actor`, `send`, `trigger` and `can`
+are available before the host is connected. It is started on `hostConnected` and stopped on
+`hostDisconnected`;
 a new actor (initial state) is created if the host is connected again.
 
 ***xstate-counter.js***
@@ -124,7 +126,7 @@ export class XstateCounter extends LitElement {
 
   constructor() {
     super();
-    this._xstate = {};
+    this._xstate = undefined;
     this.counterController = new BlockquoteControllerXstate(this, {
       machine: counterMachine,
       options: {
@@ -134,20 +136,19 @@ export class XstateCounter extends LitElement {
     });
   }
 
+  // The last snapshot (`status: 'stopped'`) is sent when the host is disconnected
   _callbackCounterController = (snapshot) => {
-    this._xstate = snapshot;
+    this._xstate = snapshot.status === 'stopped' ? undefined : snapshot;
   };
 
   // xstate v6 inspection events: '@xstate.actor' | '@xstate.transition'
   _inspectEvents = (inspEvent) => {
-    if (inspEvent.type === '@xstate.transition' && inspEvent.snapshot.status === 'stopped') {
-      this._xstate = {};
-    }
+    console.info('inspect event', inspEvent);
   };
 
   updated(props) {
     super.updated?.(props);
-    if (props.has('_xstate') && this._xstate && 'value' in this._xstate) {
+    if (props.has('_xstate') && this._xstate) {
       const {context, value} = this._xstate;
       const counterEvent = new CustomEvent('counterchange', {
         bubbles: true,
@@ -158,36 +159,34 @@ export class XstateCounter extends LitElement {
   }
 
   get #disabled() {
-    return this.counterController.snapshot?.matches('disabled');
-  }
-
-  // `false` when the event would be ignored (guards, `disabled` state) or the actor is stopped
-  #can(type) {
-    return this.counterController.snapshot?.can({type}) ?? false;
+    return this.counterController.snapshot.matches('disabled');
   }
 
   render() {
+    // `can.X()`: `false` when the event would be ignored (guards, `disabled` state) or the
+    // actor has finished. `trigger` and `can` always target the current actor.
+    const {can, trigger, snapshot} = this.counterController;
     return html`
       <slot></slot>
       <div data-disabled="${this.#disabled}">
         <span>
           <button
-            ?disabled="${!this.#can('INC')}"
+            ?disabled="${!can.INC()}"
             data-counter="increment"
-            \@click=${() => this.counterController.send({type: 'INC'})}>
+            \@click=${() => trigger.INC()}>
             Increment
           </button>
           <button
-            ?disabled="${!this.#can('DEC')}"
+            ?disabled="${!can.DEC()}"
             data-counter="decrement"
-            \@click=${() => this.counterController.send({type: 'DEC'})}>
+            \@click=${() => trigger.DEC()}>
             Decrement
           </button>
         </span>
-        <p>${this.counterController.snapshot?.context.counter}</p>
+        <p>${snapshot.context.counter}</p>
       </div>
       <div>
-        <button \@click=${() => this.counterController.send({type: 'TOGGLE'})}>
+        <button \@click=${() => trigger.TOGGLE()}>
           ${this.#disabled ? 'Enabled counter' : 'Disabled counter'}
         </button>
       </div>
@@ -195,6 +194,53 @@ export class XstateCounter extends LitElement {
   }
 }
 ```
+
+***`trigger` and `can`***
+
+`trigger` sends typed events generated from `schemas.events`: `trigger.INC()`,
+`trigger.RENAME({label})`, like `send({type: 'RENAME', label})`. It has the same signatures as
+XState v6's `actor.trigger`, with one difference: XState's belongs to one actor, while the
+controller's is a stable proxy (`ControllerTrigger`) that always sends to the current actor.
+
+That matters because a new actor is created each time the host is connected again (stopped
+actors cannot restart). `actor.trigger` kept from the first connection would send to a stopped
+actor, and the event would be lost; `controller.trigger` can be kept or destructured safely.
+
+`can` (`ControllerCan`) has the same shape, is also a stable proxy, and returns
+`snapshot.can(event)` for the current actor: `can.INC()`, `can.RENAME({label})`. It is `false`
+when the transition function ignores the event (returns `undefined`) or the actor has finished
+(`'stopped'`, `'done'` or `'error'`). The machine still rejects invalid events: `can` only
+drives the UI.
+
+***`controller.trigger` vs `controller.actor.trigger`***
+
+| | Sends to | After the host is connected again |
+| --- | --- | --- |
+| `controller.trigger` | the current actor, looked up on each call | reaches the new actor |
+| `controller.actor.trigger` | the actor that was current when it was read | reaches the stopped actor: the event is dropped (a warning in development builds) |
+
+Use `controller.trigger` for events from the UI. Use `controller.actor.trigger` when an event
+belongs to one session of the machine, such as a response to a request: read it before the
+`await`, so a response that arrives after the host was disconnected does not reach the new
+actor.
+
+```ts
+async #onInput(ev: InputEvent) {
+  const query = (ev.target as HTMLInputElement).value;
+  this.search.trigger.typed({query});
+
+  // Bound to this session: read before the `await`
+  const session = this.search.actor.trigger;
+  const items = await fetchSuggestions(query);
+
+  // Dropped if the actor that asked was stopped in the meantime.
+  // `this.search.trigger.results({items})` would show results for `query` in the new session.
+  session.results({items});
+}
+```
+
+Moving the request into the machine (an invoked `createAsyncLogic`) avoids the choice: the
+request belongs to the actor, and stopping the actor cancels it (its `AbortSignal` is aborted).
 <hr>
 
 
@@ -204,20 +250,22 @@ export class XstateCounter extends LitElement {
 
 ##### Fields
 
-| Name              | Privacy | Type                                                      | Default    | Description                                                                                                                                                                                                                             | Inherited From |
-| ----------------- | ------- | --------------------------------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
-| `machine`         |         | `TMachine`                                                | `machine`  |                                                                                                                                                                                                                                         |                |
-| `options`         |         | `ControllerActorOptions<TMachine>['options']`             | `options`  | \`createActor\` options. Typed like the constructor argument, so it cannot be reassigned&#xA;without \`input\` when the machine requires it (a new actor is created on reconnect).                                                      |                |
-| `callback`        |         | `(snapshot: SnapshotFrom<TMachine>) => void \| undefined` | `callback` |                                                                                                                                                                                                                                         |                |
-| `onError`         |         | `(error: unknown) => void \| undefined`                   | `onError`  |                                                                                                                                                                                                                                         |                |
-| `actorRef`        |         | `Actor<TMachine> \| undefined`                            |            |                                                                                                                                                                                                                                         |                |
-| `subscription`    |         | `Subscription \| undefined`                               |            |                                                                                                                                                                                                                                         |                |
-| `currentSnapshot` |         | `SnapshotFrom<TMachine> \| undefined`                     |            |                                                                                                                                                                                                                                         |                |
-| `host`            |         | `THost`                                                   |            |                                                                                                                                                                                                                                         |                |
-| `actor`           |         | `Actor<TMachine> \| undefined`                            |            | The underlying ActorRef from XState                                                                                                                                                                                                     |                |
-| `snapshot`        |         | `SnapshotFrom<TMachine> \| undefined`                     |            | The latest snapshot of the actor's state                                                                                                                                                                                                |                |
-| `onNext`          |         |                                                           |            | Internal subscriber for state changes                                                                                                                                                                                                   |                |
-| `isActive`        |         | `boolean`                                                 |            | \`true\` while the current actor can be (or is being) run.&#xA;A snapshot is \`'active'\` both before \`start()\` and while running; after \`stop()\`&#xA;it is \`'stopped'\` (and \`'done'\` / \`'error'\` when it finishes or fails). |                |
+| Name              | Privacy | Type                                                      | Default    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Inherited From |
+| ----------------- | ------- | --------------------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| `machine`         |         | `TMachine`                                                | `machine`  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |                |
+| `options`         |         | `ControllerActorOptions<TMachine>['options']`             | `options`  | \`createActor\` options. Typed like the constructor argument, so it cannot be reassigned&#xA;without \`input\` when the machine requires it (a new actor is created on reconnect).                                                                                                                                                                                                                                                                                                                                                                                                                                              |                |
+| `callback`        |         | `(snapshot: SnapshotFrom<TMachine>) => void \| undefined` | `callback` |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |                |
+| `onError`         |         | `(error: unknown) => void \| undefined`                   | `onError`  | Whether it is set decides, when the host connects, if XState reports errors as unhandled:&#xA;adding or removing it applies from the next connection.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                |
+| `actorRef`        |         | `Actor<TMachine>`                                         |            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |                |
+| `subscription`    |         | `Subscription \| undefined`                               |            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |                |
+| `currentSnapshot` |         | `SnapshotFrom<TMachine> \| undefined`                     |            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |                |
+| `host`            |         | `THost`                                                   |            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |                |
+| `trigger`         |         | `ControllerTrigger<TMachine>`                             |            | Typed event senders generated from \`schemas.events\`: \`trigger.INC()\`,&#xA;\`trigger\['feedback.update']\({ value })\`, like \`send({ type, ...payload })\`.&#xA;A stable proxy: it always sends to the current actor (a new one is created each time the&#xA;host is connected again), so it can be kept or destructured.&#xA;&#xA;Not \`actor.trigger\`, which is bound to one actor. For an event that belongs to one session,&#xA;such as the response to a request, read \`actor.trigger\` before the \`await\`: if the host was&#xA;disconnected meanwhile, the response is dropped instead of reaching the new actor. |                |
+| `can`             |         | `ControllerCan<TMachine>`                                 |            | Typed \`snapshot.can(...)\` per event type, shaped like \`trigger\`:&#xA;\`can.INC()\`, \`can\['feedback.update']\({ value })\`.&#xA;\`false\` when the event would be ignored or the actor has finished (\`'stopped'\`, \`'done'\`&#xA;or \`'error'\`). Before the host connects, it answers for the initial state.&#xA;A stable proxy, like \`trigger\`: it always checks the current actor.                                                                                                                                                                                                                                  |                |
+| `actor`           |         | `Actor<TMachine>`                                         |            | The underlying ActorRef from XState. A new actor is created each time the host is&#xA;connected again, so do not keep a reference to it across connections.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                |
+| `snapshot`        |         | `SnapshotFrom<TMachine>`                                  |            | The latest snapshot of the actor's state                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |                |
+| `onNext`          |         |                                                           |            | Internal subscriber for state changes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                |
+| `isActive`        |         | `boolean`                                                 |            | \`true\` while the current actor can be (or is being) run.&#xA;A snapshot is \`'active'\` both before \`start()\` and while running; after \`stop()\`&#xA;it is \`'stopped'\` (and \`'done'\` / \`'error'\` when it finishes or fails).                                                                                                                                                                                                                                                                                                                                                                                         |                |
 
 ##### Methods
 
@@ -256,4 +304,6 @@ export class XstateCounter extends LitElement {
 | ---- | ----------------------------------- | --------------------------------- | ------------------------------- | ------- |
 | `js` | `BlockquoteControllerXstate`        | BlockquoteControllerXstate        | ./BlockquoteControllerXstate.js |         |
 | `js` | `BlockquoteControllerXstateOptions` | BlockquoteControllerXstateOptions | ./BlockquoteControllerXstate.js |         |
+| `js` | `ControllerCan`                     | ControllerCan                     | ./BlockquoteControllerXstate.js |         |
+| `js` | `ControllerTrigger`                 | ControllerTrigger                 | ./BlockquoteControllerXstate.js |         |
 | `js` | `UseMachineOptions`                 | UseMachineOptions                 | ./BlockquoteControllerXstate.js |         |

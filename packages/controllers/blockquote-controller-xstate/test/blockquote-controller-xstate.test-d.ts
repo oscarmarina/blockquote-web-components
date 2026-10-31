@@ -42,7 +42,7 @@ describe('BlockquoteControllerXstate options types', () => {
       machine: requiredInputMachine,
       options: {input: {userId: '123'}},
     });
-    expectTypeOf(controller.snapshot!.context.userId).toEqualTypeOf<string>();
+    expectTypeOf(controller.snapshot.context.userId).toEqualTypeOf<string>();
 
     // @ts-expect-error the actor is created again on reconnect, so `input` stays required
     controller.options = undefined;
@@ -61,6 +61,42 @@ describe('BlockquoteControllerXstate options types', () => {
 
   it('allows omitting options when the machine declares no input', () => {
     const controller = new BlockquoteControllerXstate(host, {machine: noInputMachine});
-    expectTypeOf(controller.snapshot!.context.count).toEqualTypeOf<number>();
+    expectTypeOf(controller.snapshot.context.count).toEqualTypeOf<number>();
+  });
+});
+
+const eventsMachine = setup({
+  schemas: {
+    events: {
+      // eslint-disable-next-line @typescript-eslint/no-invalid-void-type -- XState's way to declare an event without payload
+      INC: types<void>(),
+      RENAME: types<{label: string}>(),
+    },
+  },
+}).createMachine({});
+
+describe('BlockquoteControllerXstate trigger and can types', () => {
+  const {trigger, can} = new BlockquoteControllerXstate(host, {machine: eventsMachine});
+
+  it('types trigger from schemas.events', () => {
+    expectTypeOf(trigger.INC).toEqualTypeOf<() => void>();
+    expectTypeOf(trigger.RENAME).parameter(0).toEqualTypeOf<{label: string}>();
+    // @ts-expect-error `RENAME` requires a payload
+    trigger.RENAME();
+    // @ts-expect-error `label` must be a string
+    trigger.RENAME({label: 1});
+    // @ts-expect-error unknown event
+    trigger.NOPE();
+  });
+
+  it('types can like trigger, returning boolean', () => {
+    expectTypeOf(can.INC).toEqualTypeOf<() => boolean>();
+    expectTypeOf(can.RENAME).returns.toEqualTypeOf<boolean>();
+    // @ts-expect-error `RENAME` requires a payload
+    can.RENAME();
+    // @ts-expect-error `INC` has no payload
+    can.INC({label: 'x'});
+    // @ts-expect-error unknown event
+    can.NOPE();
   });
 });

@@ -4,7 +4,6 @@ import {counterMachine} from './counterMachine.js';
 import {styles} from './styles/xstate-counter-styles.css.js';
 
 /** @typedef {import('xstate').SnapshotFrom<typeof counterMachine>} CounterSnapshot */
-/** @typedef {CounterSnapshot | {}} CounterSnapshotOrEmpty */
 
 export class XstateCounter extends LitElement {
   static properties = {
@@ -18,7 +17,8 @@ export class XstateCounter extends LitElement {
 
   constructor() {
     super();
-    this._xstate = {};
+    /** @type {CounterSnapshot | undefined} */
+    this._xstate = undefined;
     this.counterController = new BlockquoteControllerXstate(this, {
       machine: counterMachine,
       options: {
@@ -29,15 +29,11 @@ export class XstateCounter extends LitElement {
   }
 
   /**
+   * The last snapshot (`status: 'stopped'`) is sent when the host is disconnected
    * @param {CounterSnapshot} snapshot
    */
   _callbackCounterController = (snapshot) => {
-    if (snapshot?.status === 'stopped') {
-      /** @type {CounterSnapshotOrEmpty} */
-      this._xstate = {};
-    } else {
-      this._xstate = snapshot;
-    }
+    this._xstate = snapshot.status === 'stopped' ? undefined : snapshot;
   };
 
   /**
@@ -52,10 +48,8 @@ export class XstateCounter extends LitElement {
    */
   updated(props) {
     super.updated?.(props);
-    if (props.has('_xstate') && this._xstate && 'value' in this._xstate) {
-      /** @type {CounterSnapshot} */
-      const snapshot = this._xstate;
-      const {context, value} = snapshot;
+    if (props.has('_xstate') && this._xstate) {
+      const {context, value} = this._xstate;
       const counterEvent = new CustomEvent('counterchange', {
         bubbles: true,
         detail: {...context, value},
@@ -65,45 +59,36 @@ export class XstateCounter extends LitElement {
   }
 
   get #disabled() {
-    return this.counterController.snapshot?.matches('disabled');
-  }
-
-  // `false` when the event would be ignored (guards, `disabled` state) or the actor is stopped
-  /** @param {'INC' | 'DEC'} type */
-  #can(type) {
-    return this.counterController.snapshot?.can({type}) ?? false;
+    return this.counterController.snapshot.matches('disabled');
   }
 
   render() {
+    // `can.X()` is `false` when the event would be ignored (guards, `disabled` state) or the
+    // actor has finished. `trigger` and `can` always target the current actor.
+    const {can, trigger, snapshot} = this.counterController;
     return html`
       <slot></slot>
       <div data-disabled="${this.#disabled}">
         <span>
-          <button
-            ?disabled="${!this.#can('INC')}"
-            data-counter="increment"
-            @click=${() => this.counterController.send({type: 'INC'})}>
+          <button ?disabled="${!can.INC()}" data-counter="increment" @click=${() => trigger.INC()}>
             Increment
           </button>
-          <button
-            ?disabled="${!this.#can('DEC')}"
-            data-counter="decrement"
-            @click=${() => this.counterController.send({type: 'DEC'})}>
+          <button ?disabled="${!can.DEC()}" data-counter="decrement" @click=${() => trigger.DEC()}>
             Decrement
           </button>
         </span>
-        <p>${this.counterController?.snapshot?.context.counter}</p>
+        <p>${snapshot.context.counter}</p>
       </div>
       <div>
-        <button @click=${() => this.counterController.send({type: 'TOGGLE'})}>
+        <button @click=${() => trigger.TOGGLE()}>
           ${this.#disabled ? 'Enabled counter' : 'Disabled counter'}
         </button>
       </div>
       <span>
         <slot></slot>
         <span>
-          The “Disabled counter” disables the counter for:
-          ${(this.counterController.snapshot?.context.counter ?? 0) * 1000} milliseconds.
+          The “Disabled counter” disables the counter for: ${snapshot.context.counter * 1000}
+          milliseconds.
         </span>
       </span>
     `;
