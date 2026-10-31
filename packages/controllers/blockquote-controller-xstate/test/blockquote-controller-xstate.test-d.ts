@@ -1,7 +1,7 @@
 import {describe, it, expectTypeOf} from 'vitest';
 import {setup, types} from 'xstate';
 import type {ReactiveControllerHost} from 'lit';
-import {BlockquoteControllerXstate} from '../src/index.js';
+import {BlockquoteControllerXstate, type EmittedEventMap} from '../src/index.js';
 
 declare const host: ReactiveControllerHost;
 
@@ -59,6 +59,12 @@ describe('BlockquoteControllerXstate options types', () => {
     controller.options = undefined;
   });
 
+  it('names the snapshot listener onSnapshot (formerly callback)', () => {
+    new BlockquoteControllerXstate(host, {machine: noInputMachine, onSnapshot: () => undefined});
+    // @ts-expect-error renamed to `onSnapshot`
+    new BlockquoteControllerXstate(host, {machine: noInputMachine, callback: () => undefined});
+  });
+
   it('allows omitting options when the machine declares no input', () => {
     const controller = new BlockquoteControllerXstate(host, {machine: noInputMachine});
     expectTypeOf(controller.snapshot.context.count).toEqualTypeOf<number>();
@@ -98,5 +104,31 @@ describe('BlockquoteControllerXstate trigger and can types', () => {
     can.INC({label: 'x'});
     // @ts-expect-error unknown event
     can.NOPE();
+  });
+});
+
+const emittingMachine = setup({
+  schemas: {
+    emitted: {
+      renamed: types<{label: string}>(),
+    },
+  },
+}).createMachine({});
+
+describe('BlockquoteControllerXstate emitted events types', () => {
+  const controller = new BlockquoteControllerXstate(host, {machine: emittingMachine});
+
+  it('types on from schemas.emitted', () => {
+    controller.on('renamed', (event) => {
+      expectTypeOf(event.label).toEqualTypeOf<string>();
+    });
+    // @ts-expect-error unknown emitted event
+    controller.on('nope', () => undefined);
+  });
+
+  it('maps emitted events to CustomEvent with the rest as detail', () => {
+    expectTypeOf<EmittedEventMap<typeof emittingMachine>['renamed']>().toEqualTypeOf<
+      CustomEvent<{label: string}>
+    >();
   });
 });

@@ -1,40 +1,32 @@
 import {html, LitElement} from 'lit';
 import {BlockquoteControllerXstate} from '../src/index.js';
 import {counterMachine} from './counterMachine.js';
+import {TickController} from './TickController.js';
 import {styles} from './styles/xstate-counter-styles.css.js';
 
-/** @typedef {import('xstate').SnapshotFrom<typeof counterMachine>} CounterSnapshot */
-
 export class XstateCounter extends LitElement {
-  static properties = {
-    _xstate: {
-      type: Object,
-      state: true,
-    },
-  };
-
   static styles = [styles];
 
   constructor() {
     super();
-    /** @type {CounterSnapshot | undefined} */
-    this._xstate = undefined;
+    // The machine emits the element's public events (`counterchange`, `disabledchange`), and
+    // `dispatchEmitted` dispatches them on the element: no `_xstate` mirror or `updated()` needed
     this.counterController = new BlockquoteControllerXstate(this, {
       machine: counterMachine,
+      // Moving the element in the DOM keeps the counter (and the `disabled` timer deadline)
+      reconnect: 'restore',
+      dispatchEmitted: true,
       options: {
         inspect: this._inspectEvents,
       },
-      callback: this._callbackCounterController,
+    });
+    // Re-renders the countdown while `disabled`. The deadline comes from the machine's
+    // `context`, so it survives a move in the DOM with `reconnect: 'restore'`.
+    this.countdownController = new TickController(this, {
+      interval: 100,
+      while: () => this.#disabled,
     });
   }
-
-  /**
-   * The last snapshot (`status: 'stopped'`) is sent when the host is disconnected
-   * @param {CounterSnapshot} snapshot
-   */
-  _callbackCounterController = (snapshot) => {
-    this._xstate = snapshot.status === 'stopped' ? undefined : snapshot;
-  };
 
   /**
    * @param {import('xstate').InspectionEvent} inspEvent
@@ -43,23 +35,14 @@ export class XstateCounter extends LitElement {
     console.info('inspect event', inspEvent);
   };
 
-  /**
-   * @param {Map<string, unknown>} props
-   */
-  updated(props) {
-    super.updated?.(props);
-    if (props.has('_xstate') && this._xstate) {
-      const {context, value} = this._xstate;
-      const counterEvent = new CustomEvent('counterchange', {
-        bubbles: true,
-        detail: {...context, value},
-      });
-      this.dispatchEvent(counterEvent);
-    }
-  }
-
   get #disabled() {
     return this.counterController.snapshot.matches('disabled');
+  }
+
+  /** Seconds left in the `disabled` state, from the deadline the machine stored. */
+  get #secondsLeft() {
+    const {disabledUntil} = this.counterController.snapshot.context;
+    return (Math.max(0, disabledUntil - Date.now()) / 1000).toFixed(1);
   }
 
   render() {
@@ -83,6 +66,13 @@ export class XstateCounter extends LitElement {
         <button @click=${() => trigger.TOGGLE()}>
           ${this.#disabled ? 'Enabled counter' : 'Disabled counter'}
         </button>
+        ${
+          this.#disabled
+            ? html`
+                <span class="countdown" role="timer">${this.#secondsLeft} s</span>
+              `
+            : ''
+        }
       </div>
       <span>
         <slot></slot>
