@@ -4,6 +4,7 @@ import type {
   ActorOptions,
   AnyMachineSnapshot,
   AnyStateMachine,
+  EmittedFrom,
   EventFrom,
   EventObject,
   RequiredActorOptionsFor,
@@ -55,16 +56,50 @@ const createEventProxy = <T extends object>(fn: (event: EventObject) => unknown)
         : undefined,
   });
 
+/**
+ * The DOM events dispatched on the host with `dispatchEmitted`, from `schemas.emitted`: each
+ * emitted type becomes a `CustomEvent` whose `detail` is the rest of the emitted event. Merge it
+ * into `HTMLElementEventMap` to type `addEventListener`:
+ *
+ * ```ts
+ * declare global {
+ *   interface HTMLElementEventMap extends EmittedEventMap<typeof counterMachine> {}
+ *}
+ * ```
+ */
+export type EmittedEventMap<TMachine extends AnyStateMachine> = {
+  [E in EmittedFrom<TMachine> as E['type']]: CustomEvent<Omit<E, 'type'>>;
+};
+
+/** How `dispatchEmitted` creates the DOM events: `true` is `{ composed: true }`. */
+export type DispatchEmittedOptions = Pick<EventInit, 'bubbles' | 'composed'>;
+
 export type UseMachineOptions<TMachine extends AnyStateMachine> = {
   machine: TMachine;
   /** Called with every new snapshot emitted by the actor. */
-  callback?: (snapshot: SnapshotFrom<TMachine>) => void;
+  onSnapshot?: (snapshot: SnapshotFrom<TMachine>) => void;
   /**
-   * Called when the actor errors. The `'error'` snapshot is also sent to `callback`.
+   * Called when the actor errors. The `'error'` snapshot is also sent to `onSnapshot`.
    * If omitted, XState reports the error as unhandled, unless another subscriber of the
    * actor handles it.
    */
   onError?: (error: unknown) => void;
+  /**
+   * What the new actor starts from when the host is connected again (a stopped actor cannot
+   * restart, so a new one is always created):
+   * - `'restart'` (default): the initial state, or `options.snapshot`.
+   * - `'restore'`: the state the actor had when the host was disconnected, from its persisted
+   *   snapshot (context, state value, children and pending timers, which keep their deadlines).
+   *   An actor that had finished (`'done'` or `'error'`) restarts.
+   */
+  reconnect?: 'restart' | 'restore';
+  /**
+   * Dispatch each event the machine emits (`enq.emit`) as a DOM `CustomEvent` on the host (which
+   * must be an `EventTarget`, such as a `LitElement`): the emitted `type` is the event name and
+   * the rest of the emitted event is its `detail`. `true` uses `{ composed: true }`: the event does
+   * not bubble, so listen on the element itself (or in the capture phase).
+   */
+  dispatchEmitted?: boolean | DispatchEmittedOptions;
 } & ControllerActorOptions<TMachine>;
 
 export type BlockquoteControllerXstateOptions<TMachine extends AnyStateMachine> =
@@ -76,7 +111,7 @@ export type BlockquoteControllerXstateOptions<TMachine extends AnyStateMachine> 
  * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
  * ### Connect XState machines with Lit
- * The BlockquoteControllerXstate is a Lit Reactive Controller that is specifically designed to facilitate an integration with XState. This controller provides the capability to subscribe to an XState actor. It also provides a callback function to handle the state changes.
+ * The BlockquoteControllerXstate is a Lit Reactive Controller that is specifically designed to facilitate an integration with XState. This controller provides the capability to subscribe to an XState actor. It also calls `onSnapshot` with every state change.
  *
  * - [xstate v6](https://stately.ai/docs/installation)
  * - [xstate v6 - examples](https://stately.ai/docs/examples)
@@ -106,6 +141,10 @@ export type BlockquoteControllerXstateOptions<TMachine extends AnyStateMachine> 
  *       DEC: types<void>(),
  *       TOGGLE: types<void>(),
  *     },
+ *     // The element's public events, dispatched on the host with `dispatchEmitted`
+ *     emitted: {
+ *       counterchange: types<{counter: number}>(),
+ *     },
  *   },
  *   guards: {
  *     canIncrement: ({context}) => context.counter < 10,
@@ -122,12 +161,25 @@ export type BlockquoteControllerXstateOptions<TMachine extends AnyStateMachine> 
  *   states: {
  *     enabled: {
  *       on: {
- *         // Transition functions (typed from `schemas`): return the next `context`,
- *         // or `undefined` to ignore the event
- *         INC: ({context, guards}) =>
- *           guards.canIncrement({context}) ? {context: {counter: context.counter + 1}} : undefined,
- *         DEC: ({context, guards}) =>
- *           guards.canDecrement({context}) ? {context: {counter: context.counter - 1}} : undefined,
+ *         // Transition functions (typed from `schemas`): return the next `context`, or
+ *         // `undefined` to ignore the event. The guard comes first: a function that calls
+ *         // `enq` handles the event even when it returns nothing.
+ *         INC: ({context, guards}, enq) => {
+ *           if (!guards.canIncrement({context})) {
+ *             return undefined;
+ *           }
+ *           const counter = context.counter + 1;
+ *           enq.emit({type: 'counterchange', counter});
+ *           return {context: {counter}};
+ *         },
+ *         DEC: ({context, guards}, enq) => {
+ *           if (!guards.canDecrement({context})) {
+ *             return undefined;
+ *           }
+ *           const counter = context.counter - 1;
+ *           enq.emit({type: 'counterchange', counter});
+ *           return {context: {counter}};
+ *         },
  *         // v6 types do not accept the string shorthand (`TOGGLE: 'disabled'`)
  *         TOGGLE: {target: 'disabled'},
  *       },
@@ -144,17 +196,21 @@ export type BlockquoteControllerXstateOptions<TMachine extends AnyStateMachine> 
  *});
  * ```
  *
- * **`new BlockquoteControllerXstate(this, {machine, options, callback, onError})`**
+ * **`new BlockquoteControllerXstate(this, {machine, options, onSnapshot, onError, reconnect, dispatchEmitted})`**
  *
  * - `this`: the host component (a Lit `ReactiveControllerHost`, usually the `LitElement` itself).
  * - `machine` (required): the XState machine.
  * - `options`: `createActor` options (`input`, `inspect`, ...). Optional, unless the machine requires
  *   input: then `{input}` or `{snapshot}` must be provided, as when calling `createActor`.
- * - `callback` (optional): called with every new snapshot: the first one on each connection and the
- *   last one (`snapshot.status === 'stopped'`) when the host is disconnected.
+ * - `onSnapshot` (optional): called with every new snapshot: the first one on each connection
+ *   and the last one (`snapshot.status === 'stopped'`) when the host is disconnected.
  * - `onError` (optional): called when the actor errors (the `'error'` snapshot is also sent to
- *   `callback`). If omitted, XState reports the error as unhandled, unless another subscriber
+ *   `onSnapshot`). If omitted, XState reports the error as unhandled, unless another subscriber
  *   of the actor handles it.
+ * - `reconnect` (optional): `'restart'` (default) or `'restore'`, what the new actor starts from
+ *   when the host is connected again.
+ * - `dispatchEmitted` (optional): dispatch the events the machine emits as DOM events on the
+ *   host. `true` uses `{ composed: true }`.
  *
  * ***Machine with required input***
  *
@@ -176,8 +232,9 @@ export type BlockquoteControllerXstateOptions<TMachine extends AnyStateMachine> 
  *
  * The actor is created in the constructor, so `snapshot`, `actor`, `send`, `trigger` and `can`
  * are available before the host is connected. It is started on `hostConnected` and stopped on
- * `hostDisconnected`;
- * a new actor (initial state) is created if the host is connected again.
+ * `hostDisconnected`; a new actor is created if the host is connected again. With
+ * `reconnect: 'restore'` it resumes the state the previous actor had (pending timers keep their
+ * deadlines); by default (`'restart'`) it starts from the initial state.
  *
  * ***xstate-counter.js***
  *
@@ -188,48 +245,28 @@ export type BlockquoteControllerXstateOptions<TMachine extends AnyStateMachine> 
  * import {styles} from './styles/xstate-counter-styles.css.js';
  *
  * export class XstateCounter extends LitElement {
- *   static properties = {
- *     _xstate: {
- *       type: Object,
- *       state: true,
- *     },
- *   };
- *
  *   static styles = [styles];
  *
  *   constructor() {
  *     super();
- *     this._xstate = undefined;
+ *     // The controller re-renders the host on every snapshot. The machine emits the element's
+ *     // public events, and `dispatchEmitted` dispatches them on it: `counterchange` with
+ *     // `detail: {counter}`, `{composed: true}` (listen on the element, or capture).
  *     this.counterController = new BlockquoteControllerXstate(this, {
  *       machine: counterMachine,
+ *       // Moving the element in the DOM keeps its state
+ *       reconnect: 'restore',
+ *       dispatchEmitted: true,
  *       options: {
  *         inspect: this._inspectEvents,
  *       },
- *       callback: this._callbackCounterController,
  *     });
  *   }
- *
- *   // The last snapshot (`status: 'stopped'`) is sent when the host is disconnected
- *   _callbackCounterController = (snapshot) => {
- *     this._xstate = snapshot.status === 'stopped' ? undefined : snapshot;
- *   };
  *
  *   // xstate v6 inspection events: '@xstate.actor' | '@xstate.transition'
  *   _inspectEvents = (inspEvent) => {
  *     console.info('inspect event', inspEvent);
  *   };
- *
- *   updated(props) {
- *     super.updated?.(props);
- *     if (props.has('_xstate') && this._xstate) {
- *       const {context, value} = this._xstate;
- *       const counterEvent = new CustomEvent('counterchange', {
- *         bubbles: true,
- *         detail: {...context, value},
- *       });
- *       this.dispatchEvent(counterEvent);
- *     }
- *   }
  *
  *   get #disabled() {
  *     return this.counterController.snapshot.matches('disabled');
@@ -285,6 +322,74 @@ export type BlockquoteControllerXstateOptions<TMachine extends AnyStateMachine> 
  * (`'stopped'`, `'done'` or `'error'`). The machine still rejects invalid events: `can` only
  * drives the UI.
  *
+ * ***Disconnect and reconnect: `restart` or `restore`***
+ *
+ * A Lit element is disconnected and connected again more often than it seems: moving it in the
+ * DOM, reordering a `repeat`, changing its parent. The actor is stopped on disconnect, and a
+ * stopped actor cannot restart, so a new actor is created on reconnect. The `reconnect` option
+ * decides what it starts from:
+ *
+ * | `reconnect` | The new actor starts from |
+ * | --- | --- |
+ * | `'restart'` (default) | the initial state, or `options.snapshot` |
+ * | `'restore'` | the state the previous actor had: its persisted snapshot |
+ *
+ * With `'restore'`, the snapshot is persisted before the actor stops
+ * (`actor.getPersistedSnapshot()`) and the new actor is created from it
+ * (`createActor(machine, {snapshot})`). It keeps:
+ *
+ * - `context`, the state value and children.
+ * - Pending timers, with their original deadlines: a timer that expired while disconnected fires
+ *   right away.
+ * - Invoked work in flight, such as a `createAsyncLogic` request: stopping aborts it, and the new
+ *   actor runs it again.
+ *
+ * An actor that had finished (`'done'` or `'error'`) restarts, and so does one whose `machine` was
+ * reassigned meanwhile. `onSnapshot` still receives the `'stopped'` snapshot on disconnect, then the
+ * restored one.
+ *
+ * ***Emitted events: `on` and `dispatchEmitted`***
+ *
+ * A machine emits events with `enq.emit(...)` to say that something happened once: the counter
+ * changed, a form was submitted. Declared in `schemas.emitted`, the element's public events live
+ * in the machine, typed and testable without a DOM.
+ *
+ * `dispatchEmitted: true` dispatches each emitted event on the host as a `CustomEvent`: the
+ * emitted `type` is the event name and the rest is its `detail`, with `{composed: true}` (pass an
+ * object to change it). The event does not bubble: listen on the element itself, or on an
+ * ancestor in the capture phase (`{capture: true}`). `EmittedEventMap` types `addEventListener`:
+ *
+ * ```ts
+ * declare global {
+ *   interface HTMLElementEventMap extends EmittedEventMap<typeof counterMachine> {}
+ *}
+ *
+ * el.addEventListener('counterchange', (ev) => ev.detail.counter); // `number`
+ * ```
+ *
+ * To handle emitted events in code, use `controller.on(type, handler)` (or `'*'`). It has the
+ * signature of `actor.on`, but XState removes `actor.on` handlers when the actor stops, while
+ * `controller.on` handlers keep receiving events from the actors created on reconnect.
+ *
+ * When they are delivered:
+ *
+ * - After the transition is applied: `controller.snapshot` already has the new state (the host
+ *   has not re-rendered yet).
+ * - Not when the host is disconnected (stopping the actor does not run `exit`), nor when an actor
+ *   is restored with `reconnect: 'restore'` (`entry` does not run again): moving an element in the
+ *   DOM dispatches nothing.
+ * - `can.X()` does not emit: it only evaluates the transition.
+ *
+ * Listeners run synchronously, inside the `trigger` (or `send`) that caused the event:
+ *
+ * - `controller.snapshot` is already the new state, but the host has not re-rendered yet. To read
+ *   its rendered DOM, `await el.updateComplete` first.
+ * - A `trigger` called from a listener is queued: it is processed when the current event is done,
+ *   so `controller.snapshot` right after it is still the current state. Its own emitted events
+ *   follow, in order.
+ * - A listener that throws is reported as an uncaught error. Other listeners still receive the
+ *   event, and the actor keeps running.
+ *
  * ***`controller.trigger` vs `controller.actor.trigger`***
  *
  * | | Sends to | After the host is connected again |
@@ -292,12 +397,17 @@ export type BlockquoteControllerXstateOptions<TMachine extends AnyStateMachine> 
  * | `controller.trigger` | the current actor, looked up on each call | reaches the new actor |
  * | `controller.actor.trigger` | the actor that was current when it was read | reaches the stopped actor: the event is dropped (a warning in development builds) |
  *
- * Use `controller.trigger` for events from the UI. Use `controller.actor.trigger` when an event
- * belongs to one session of the machine, such as a response to a request: read it before the
- * `await`, so a response that arrives after the host was disconnected does not reach the new
- * actor.
+ * Use `controller.trigger` for events from the UI. For a response to a request made from the
+ * component, it depends on `reconnect`:
+ *
+ * - `'restore'`: the new actor continues the same session, so a response that arrives after a
+ *   reconnection is still valid. Use `controller.trigger`.
+ * - `'restart'`: the new actor starts a new session, so the response belongs to the old one. Read
+ *   `controller.actor.trigger` before the `await`: the response is dropped instead of reaching the
+ *   new actor.
  *
  * ```ts
+ * // `reconnect: 'restart'`
  * async #onInput(ev: InputEvent) {
  *   const query = (ev.target as HTMLInputElement).value;
  *   this.search.trigger.typed({query});
@@ -314,6 +424,7 @@ export type BlockquoteControllerXstateOptions<TMachine extends AnyStateMachine> 
  *
  * Moving the request into the machine (an invoked `createAsyncLogic`) avoids the choice: the
  * request belongs to the actor, and stopping the actor cancels it (its `AbortSignal` is aborted).
+ * With `'restore'` the new actor runs it again; with `'restart'` it is gone with the old session.
  * <hr>
  */
 export class BlockquoteControllerXstate<
@@ -326,12 +437,14 @@ export class BlockquoteControllerXstate<
    * without `input` when the machine requires it (a new actor is created on reconnect).
    */
   options: ControllerActorOptions<TMachine>['options'];
-  callback?: (snapshot: SnapshotFrom<TMachine>) => void;
+  onSnapshot?: (snapshot: SnapshotFrom<TMachine>) => void;
   /**
    * Whether it is set decides, when the host connects, if XState reports errors as unhandled:
    * adding or removing it applies from the next connection.
    */
   onError?: (error: unknown) => void;
+  /** Read when the host is connected again. */
+  reconnect: 'restart' | 'restore';
   actorRef: Actor<TMachine>;
   subscription?: Subscription;
   currentSnapshot: SnapshotFrom<TMachine> | undefined;
@@ -342,9 +455,10 @@ export class BlockquoteControllerXstate<
    * A stable proxy: it always sends to the current actor (a new one is created each time the
    * host is connected again), so it can be kept or destructured.
    *
-   * Not `actor.trigger`, which is bound to one actor. For an event that belongs to one session,
-   * such as the response to a request, read `actor.trigger` before the `await`: if the host was
-   * disconnected meanwhile, the response is dropped instead of reaching the new actor.
+   * Not `actor.trigger`, which is bound to one actor. With `reconnect: 'restart'`, for an event
+   * that belongs to one session, such as the response to a request, read `actor.trigger` before
+   * the `await`: if the host was disconnected meanwhile, the response is dropped instead of
+   * reaching the new actor. With `'restore'` the session continues, so use `trigger`.
    */
   readonly trigger: ControllerTrigger<TMachine>;
   /**
@@ -355,16 +469,44 @@ export class BlockquoteControllerXstate<
    * A stable proxy, like `trigger`: it always checks the current actor.
    */
   readonly can: ControllerCan<TMachine>;
+  /**
+   * Handles events the machine emits (`enq.emit`), like `actor.on(type, handler)`, with `'*'` for
+   * every event. Unlike `actor.on`, whose handlers are removed when the actor stops, the handler
+   * keeps receiving events from the actors created when the host is connected again.
+   */
+  readonly on: Actor<TMachine>['on'];
+  /** `dispatchEmitted` resolved to an `EventInit`, or `undefined` when it is off. */
+  readonly #dispatchInit?: DispatchEmittedOptions;
+  readonly #emittedHandlers = new Set<{
+    type: string;
+    handler: (event: EventObject) => void;
+  }>();
+  #emittedSubscription?: Subscription;
 
   /**
    * @param {THost} host - The host object.
    * @param {UseMachineOptions<TMachine>} arg - The arguments for the constructor.
    */
-  constructor(host: THost, {machine, options, callback, onError}: UseMachineOptions<TMachine>) {
+  constructor(
+    host: THost,
+    {
+      machine,
+      options,
+      onSnapshot,
+      onError,
+      reconnect = 'restart',
+      dispatchEmitted = false,
+    }: UseMachineOptions<TMachine>
+  ) {
+    if (dispatchEmitted && !(host instanceof EventTarget)) {
+      throw new TypeError('`dispatchEmitted` requires a host that is an `EventTarget`.');
+    }
+    this.#dispatchInit = dispatchEmitted === true ? {composed: true} : dispatchEmitted || undefined;
     this.machine = machine;
     this.options = options;
-    this.callback = callback;
+    this.onSnapshot = onSnapshot;
     this.onError = onError;
+    this.reconnect = reconnect;
     // The actor is created (not started) eagerly so `actor`, `snapshot`, `send` and
     // `trigger` are available before the host is connected.
     this.actorRef = this.#createActor();
@@ -376,18 +518,46 @@ export class BlockquoteControllerXstate<
       // XState already answers `false` once the actor has finished.
       (this.snapshot as AnyMachineSnapshot).can(event)
     );
+    // Typed by `Actor<TMachine>['on']`; `EmittedFrom<TMachine>` does not resolve while generic
+    this.on = ((type: string, handler: (event: EventObject) => void): Subscription => {
+      const entry = {type, handler};
+      this.#emittedHandlers.add(entry);
+      return {
+        unsubscribe: () => {
+          this.#emittedHandlers.delete(entry);
+        },
+      };
+    }) as unknown as Actor<TMachine>['on'];
 
     (this.host = host).addController(this);
   }
 
-  #createActor(): Actor<TMachine> {
+  /** Persisted on disconnect with `reconnect: 'restore'`, with the machine it belongs to. */
+  #persisted?: {
+    machine: TMachine;
+    snapshot: ActorOptions<TMachine>['snapshot'];
+  };
+
+  #createActor(snapshot?: ActorOptions<TMachine>['snapshot']): Actor<TMachine> {
     // `TMachine` is generic here, so TypeScript cannot resolve `createActor`'s conditional
     // options (required `input`). The check is enforced where `options` is set instead: the
     // constructor argument (`UseMachineOptions`) and the `options` property share that condition.
     return (createActor as (logic: TMachine, options?: ActorOptions<TMachine>) => Actor<TMachine>)(
       this.machine,
-      this.options
+      snapshot ? {...this.options, snapshot} : this.options
     );
+  }
+
+  /**
+   * The snapshot to restore on reconnect: only with `reconnect: 'restore'`, and only for the
+   * machine it was persisted from (`machine` may have been reassigned meanwhile).
+   */
+  #takePersisted(): ActorOptions<TMachine>['snapshot'] {
+    const persisted = this.#persisted;
+    this.#persisted = undefined;
+    return this.reconnect === 'restore' && persisted?.machine === this.machine
+      ? persisted.snapshot
+      : undefined;
   }
 
   /**
@@ -425,8 +595,30 @@ export class BlockquoteControllerXstate<
   onNext = (snapshot: SnapshotFrom<TMachine>): void => {
     if (this.currentSnapshot !== snapshot) {
       this.currentSnapshot = snapshot;
-      this.callback?.(snapshot);
+      this.onSnapshot?.(snapshot);
       this.host.requestUpdate();
+    }
+  };
+
+  /** Delivers an event emitted by the current actor to the DOM and to `on` handlers. */
+  #onEmitted = (event: EventObject): void => {
+    if (this.#dispatchInit) {
+      const {type, ...detail} = event;
+      (this.host as unknown as EventTarget).dispatchEvent(
+        new CustomEvent(type, {...this.#dispatchInit, detail})
+      );
+    }
+    for (const {type, handler} of this.#emittedHandlers) {
+      if (type === '*' || type === event.type) {
+        // One failing handler does not keep the others from receiving the event
+        try {
+          handler(event);
+        } catch (error) {
+          setTimeout(() => {
+            throw error;
+          });
+        }
+      }
     }
   };
 
@@ -450,16 +642,18 @@ export class BlockquoteControllerXstate<
     }
 
     if (!this.isActive) {
-      this.actorRef = this.#createActor();
+      this.actorRef = this.#createActor(this.#takePersisted());
     }
 
     const actorRef = this.actorRef;
 
+    // Before `start()`: the initial state's entry may emit
+    this.#emittedSubscription = actorRef.on('*', this.#onEmitted);
     // New session: always notify the first snapshot.
     this.currentSnapshot = undefined;
     this.subscription = actorRef.subscribe({
       next: this.onNext,
-      // XState does not emit the `'error'` snapshot through `next`: forward it, so `callback`
+      // XState does not emit the `'error'` snapshot through `next`: forward it, so `onSnapshot`
       // receives it and the host re-renders.
       error: (error: unknown) => {
         this.onNext(actorRef.getSnapshot());
@@ -476,8 +670,19 @@ export class BlockquoteControllerXstate<
   }
 
   stopService(): void {
+    // Persisted before `stop()`: a stopped snapshot keeps no pending timers.
+    // A finished actor (`'done'`, `'error'`) is not persisted, so it restarts.
+    this.#persisted =
+      this.reconnect === 'restore' && this.isActive
+        ? {
+            machine: this.machine,
+            snapshot: this.actorRef.getPersistedSnapshot() as ActorOptions<TMachine>['snapshot'],
+          }
+        : undefined;
     this.actorRef.stop();
     this.unsubscribe();
+    this.#emittedSubscription?.unsubscribe();
+    this.#emittedSubscription = undefined;
   }
 
   hostConnected(): void {

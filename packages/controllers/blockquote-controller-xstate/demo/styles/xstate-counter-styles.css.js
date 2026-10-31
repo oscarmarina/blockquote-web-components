@@ -66,6 +66,7 @@ export const styles = css`
   }
 
   div + div {
+    position: relative;
     border-top: 0.0625rem dashed var(--_mark-color);
     border-bottom: 0.0625rem solid var(--_mark-color);
   }
@@ -74,5 +75,14 @@ export const styles = css`
     display: flex;
     flex-direction: column;
     margin-right: 2rem;
+  }
+
+  .countdown {
+    position: absolute;
+    top: 50%;
+    right: 1.5rem;
+    transform: translateY(-50%);
+    margin: 0;
+    font-variant-numeric: tabular-nums;
   }
 `;
