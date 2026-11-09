@@ -546,6 +546,40 @@ describe('BlockquoteControllerXstate', () => {
       controller.hostDisconnected();
     });
 
+    it('restores with the createActor options, except input', () => {
+      const inputMachine = setup({
+        schemas: {
+          input: types<{id: string}>(),
+          context: types<{id: string; renamed: boolean}>(),
+          events: {
+            // eslint-disable-next-line @typescript-eslint/no-invalid-void-type -- XState's way to declare an event without payload
+            RENAME: types<void>(),
+          },
+        },
+      }).createMachine({
+        context: ({input}) => ({id: input.id, renamed: false}),
+        on: {RENAME: () => ({context: {renamed: true}})},
+      });
+      const inspect = vi.fn();
+      const controller = new BlockquoteControllerXstate(createHost(), {
+        machine: inputMachine,
+        reconnect: 'restore',
+        options: {input: {id: 'a'}, inspect},
+      });
+
+      controller.hostConnected();
+      controller.trigger.RENAME();
+      controller.hostDisconnected();
+      controller.options = {input: {id: 'b'}, inspect};
+      inspect.mockClear();
+      controller.hostConnected();
+
+      // Resumed, not initialized again from the new `input`
+      expect(controller.snapshot.context).toEqual({id: 'a', renamed: true});
+      expect(inspect).toHaveBeenCalled();
+      controller.hostDisconnected();
+    });
+
     it('restarts an actor that had finished with an error', () => {
       const controller = new BlockquoteControllerXstate(createHost(), {
         machine: boomMachine,

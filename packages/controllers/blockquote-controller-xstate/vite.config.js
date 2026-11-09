@@ -96,6 +96,9 @@ export default defineConfig(({command}) => ({
   plugins: command === 'build' ? [viteStaticCopy(copyConfig), totalBundlesize()] : [],
   optimizeDeps: {
     exclude: ['lit', 'lit-html'],
+    // Optimized together: separate pre-bundles of `xstate` and `xstate/persist` would load two
+    // copies of XState, and a machine from one cannot be restored by the other
+    include: ['xstate', 'xstate/persist'],
   },
   resolve: {
     conditions: ['workspaces', 'module', 'browser', 'development|production'],

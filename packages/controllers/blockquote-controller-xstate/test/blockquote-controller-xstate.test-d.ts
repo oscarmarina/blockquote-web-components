@@ -35,7 +35,7 @@ describe('BlockquoteControllerXstate options types', () => {
   it('requires input when the machine input does not accept undefined', () => {
     // @ts-expect-error `options.input` is required
     new BlockquoteControllerXstate(host, {machine: requiredInputMachine});
-    // @ts-expect-error `options` without `input` (or `snapshot`)
+    // @ts-expect-error `options` without `input`
     new BlockquoteControllerXstate(host, {machine: requiredInputMachine, options: {}});
 
     const controller = new BlockquoteControllerXstate(host, {
