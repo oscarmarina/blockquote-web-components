@@ -125,12 +125,11 @@
     ]
   },
   "dependencies": {
-    "@rxjs/observable-polyfill": "^9.0.0-beta.1",
-    "lit": "^3.3.3",
-    "rxjs": "^9.0.0-beta.1"
+    "lit": "^3.3.3"
   },
   "devDependencies": {
-    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.15.1"
+    "@blockquote-web-components/blockquote-base-embedded-webview": "^1.15.1",
+    "rxjs": "^9.0.0-beta.1"
   },
   "publishConfig": {
     "access": "public"
