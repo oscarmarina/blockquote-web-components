@@ -196,14 +196,14 @@
               </div>
               <div class="stage">
                 <svg viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
-                  <polyline class="trail" points=${points}></polyline>
+                  <polyline class="trail" points="${points}"></polyline>
                 </svg>
                 <div
                   class="dot"
                   role="button"
                   aria-label="Drag to draw a path"
                   style="left:${dragX}%;top:${dragY}%"
-                  @pointerdown=${this.capturePointer}></div>
+                  @pointerdown="${this.capturePointer}"></div>
               </div>
               <div>
                 <strong>Pointer position (RxJS stream)</strong>
