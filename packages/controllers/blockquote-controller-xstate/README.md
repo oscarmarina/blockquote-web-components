@@ -93,7 +93,7 @@ export const counterMachine = counterSetup.createMachine({
 - `this`: the host component (a Lit `ReactiveControllerHost`, usually the `LitElement` itself).
 - `machine` (required): the XState machine.
 - `options`: `createActor` options (`input`, `inspect`, ...). Optional, unless the machine requires
-  input: then `{input}` or `{snapshot}` must be provided, as when calling `createActor`.
+  input: then `{input}` must be provided, as when calling `createActor`.
 - `onSnapshot` (optional): called with every new snapshot: the first one on each connection
   and the last one (`snapshot.status === 'stopped'`) when the host is disconnected.
 - `onError` (optional): called when the actor errors (the `'error'` snapshot is also sent to
@@ -223,12 +223,13 @@ decides what it starts from:
 
 | `reconnect` | The new actor starts from |
 | --- | --- |
-| `'restart'` (default) | the initial state, or `options.snapshot` |
+| `'restart'` (default) | the initial state |
 | `'restore'` | the state the previous actor had: its persisted snapshot |
 
 With `'restore'`, the snapshot is persisted before the actor stops
-(`actor.getPersistedSnapshot()`) and the new actor is created from it
-(`createActor(machine, {snapshot})`). It keeps:
+(`actor.getPersistedSnapshot()`) and the new actor is created from it with
+`restoreActor(machine, snapshot)` from `xstate/persist` (the `createActor` options are reused,
+except `input`: a restored actor resumes). It keeps:
 
 - `context`, the state value and children.
 - Pending timers, with their original deadlines: a timer that expired while disconnected fires
@@ -360,23 +361,23 @@ With `'restore'` the new actor runs it again; with `'restart'` it is gone with t
 
 ##### Fields
 
-| Name                   | Privacy | Type                                                                                          | Default                                                               | Description                                                                            | Inherited From |
-| ---------------------- | ------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------- |
-| `#dispatchInit`        | private | `DispatchEmittedOptions \| undefined`                                                         |                                                                       | \`dispatchEmitted\` resolved to an \`EventInit\`, or \`undefined\` when it is off.     |                |
-| `#emittedHandlers`     | private |                                                                                               | `new Set<{ type: string; handler: (event: EventObject) => void; }>()` |                                                                                        |                |
-| `#emittedSubscription` | private | `Subscription \| undefined`                                                                   |                                                                       |                                                                                        |                |
+| Name                   | Privacy | Type                                                                         | Default                                                               | Description                                                                            | Inherited From |
+| ---------------------- | ------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------- |
+| `#dispatchInit`        | private | `DispatchEmittedOptions \| undefined`                                        |                                                                       | \`dispatchEmitted\` resolved to an \`EventInit\`, or \`undefined\` when it is off.     |                |
+| `#emittedHandlers`     | private |                                                                              | `new Set<{ type: string; handler: (event: EventObject) => void; }>()` |                                                                                        |                |
+| `#emittedSubscription` | private | `Subscription \| undefined`                                                  |                                                                       |                                                                                        |                |
 | `#persisted`           | private | `{
     machine: TMachine;
-    snapshot: ActorOptions<TMachine>['snapshot'];
+    snapshot: Snapshot<unknown>;
   } \| undefined` |                                                                       | Persisted on disconnect with \`reconnect: 'restore'\`, with the machine it belongs to. |                |
-| `#onEmitted`           | private |                                                                                               |                                                                       | Delivers an event emitted by the current actor to the DOM and to \`on\` handlers.      |                |
+| `#onEmitted`           | private |                                                                              |                                                                       | Delivers an event emitted by the current actor to the DOM and to \`on\` handlers.      |                |
 
 ##### Methods
 
-| Name             | Privacy | Description                                                                                                                                                                    | Parameters                                     | Return                               | Inherited From |
-| ---------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------- | ------------------------------------ | -------------- |
-| `#createActor`   | private |                                                                                                                                                                                | `snapshot: ActorOptions<TMachine>['snapshot']` | `Actor<TMachine>`                    |                |
-| `#takePersisted` | private | The snapshot to restore on reconnect: only with \`reconnect: 'restore'\`, and only for the&#xA;machine it was persisted from (\`machine\` may have been reassigned meanwhile). |                                                | `ActorOptions<TMachine>['snapshot']` |                |
+| Name             | Privacy | Description                                                                                                                                                                    | Parameters                     | Return                           | Inherited From |
+| ---------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------ | -------------------------------- | -------------- |
+| `#createActor`   | private | A fresh actor, or one restored from \`persisted\` (\`restoreActor\` from \`xstate/persist\`).                                                                                  | `persisted: Snapshot<unknown>` | `Actor<TMachine>`                |                |
+| `#takePersisted` | private | The snapshot to restore on reconnect: only with \`reconnect: 'restore'\`, and only for the&#xA;machine it was persisted from (\`machine\` may have been reassigned meanwhile). |                                | `Snapshot<unknown> \| undefined` |                |
 
 </details>
 
