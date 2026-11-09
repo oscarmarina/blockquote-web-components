@@ -1,1 +1,1 @@
-export{t as XstateCounter}from"./assets/xstate-counter-UbmTLhgN.js";
+export{t as XstateCounter}from"./assets/xstate-counter-B5-MspKN.js";
