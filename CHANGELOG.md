@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.32.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.31.0...v2.32.0) (2026-11-09)
+
+### Features
+
+* **blockquote-controller-xstate:** xstate v6 beta.1 ([1a6f742](https://github.com/oscarmarina/blockquote-web-components/commit/1a6f742d33c498fe30305e1b30a573a90a29d441))
+
+### Bug Fixes
+
+* **blockquote-controller-rxjs:** rxjs is a dev dependency ([6c919bf](https://github.com/oscarmarina/blockquote-web-components/commit/6c919bf522d52c5b4d427753605452f74108ffa4))
+
 ## [2.31.0](https://github.com/oscarmarina/blockquote-web-components/compare/v2.30.0...v2.31.0) (2026-10-31)
 
 ### Features
